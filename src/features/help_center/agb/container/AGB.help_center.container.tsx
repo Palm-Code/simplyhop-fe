@@ -6,6 +6,45 @@ import { HeaderHelpCenter } from "@/core/components/header_help_center";
 
 export const AGBHelpCenterContainer = () => {
   const dictionaries = getDictionaries();
+
+  // exercise 1
+  const getMinimumSlots = (
+    largeSlots: number,
+    smallSlots: number,
+    buses: number,
+    cars: number
+  ) => {
+    if (buses > largeSlots) return -1;
+    if (buses === largeSlots) {
+      if (cars <= smallSlots) return buses + cars;
+      return -1;
+    } else {
+      let remainingLargeSlots = largeSlots - buses;
+      if (remainingLargeSlots >= cars / 3) return buses + remainingLargeSlots;
+      else if (smallSlots >= cars - remainingLargeSlots * 3)
+        return largeSlots + (cars - remainingLargeSlots * 3);
+      return -1;
+    }
+  };
+  const test = getMinimumSlots(2, 12, 1, 4);
+  console.log(test, "ini slots"); // should print 3
+
+  // exercise 2
+  const usageCounts = (bridge: number[]) => {
+    let count = 0;
+    while (bridge.every((section) => section > 0)) {
+      let newBridge: number[] = [];
+      for (let i = 0; i < bridge.length; i++) {
+        bridge[i] = bridge[i] - 2;
+        newBridge.push(bridge[i]);
+      }
+      if (newBridge.every((section) => section >= 0)) count++;
+    }
+    return count;
+  };
+
+  const test2 = usageCounts([7, 6, 5, 8]);
+  console.log(test2, "ini counts");
   return (
     <div
       className={clsx(
@@ -14,6 +53,8 @@ export const AGBHelpCenterContainer = () => {
         "px-[1rem]"
       )}
     >
+  
+
       <HeaderHelpCenter title={dictionaries.title} />
       {dictionaries.contents.map((content, contentIndex) => (
         <div
