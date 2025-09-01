@@ -221,6 +221,19 @@
               }
             ]
           },
+          "shift": {
+            "info": "Die Einstellung für wiederkehrende Fahrten gilt nur für einen Monat im Voraus.",
+            "inputProps": {
+              "id": "shift",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "shift",
+              "children": "Shift",
+              "required": false
+            },
+            "items": []
+          },
           "umweg": {
             "inputProps": {
               "id": "umweg",

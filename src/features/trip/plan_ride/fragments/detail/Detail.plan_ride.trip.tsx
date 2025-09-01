@@ -147,6 +147,25 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
+  const handleSelectShift = (data: { id: string; name: string }) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          plan: {
+            ...state.detail.form.plan,
+            shift: {
+              ...state.detail.form.plan.shift,
+              selected: data,
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleChangeUmweg = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
@@ -616,10 +635,25 @@ export const DetailPlanRideTrip = () => {
             </div>
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                "grid grid-cols-2 place-content-start place-items-start gap-[1rem]",
                 "w-full"
               )}
             >
+              <Dropdownfield
+                labelProps={{
+                  ...dictionaries.detail.plan.form.input.shift.labelProps,
+                }}
+                inputProps={{
+                  ...dictionaries.detail.plan.form.input.shift.inputProps,
+                }}
+                inputContainerProps={{
+                  className: "!border !border-[#F8F8F8]",
+                }}
+                info={dictionaries.detail.plan.form.input.shift.info}
+                selected={state.detail.form.plan.shift.selected}
+                items={state.detail.form.plan.shift.items}
+                onSelect={handleSelectShift}
+              />
               <InputContainer
                 className={clsx(
                   "!border !border-[#F8F8F8]",

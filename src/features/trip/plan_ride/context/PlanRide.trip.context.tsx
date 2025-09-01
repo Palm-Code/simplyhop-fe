@@ -77,6 +77,10 @@ const initialState: PlanRideTripInitialStateType = {
         recurring: {
           selected: null,
         },
+        shift: {
+          selected: null,
+          items: [],
+        },
         seat: {
           value: "",
           error: null,

@@ -86,6 +86,10 @@ export interface PlanRideTripDetail {
       recurring: {
         selected: null | { id: string; name: string };
       };
+      shift: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
       umweg: {
         value: string;
         error: FormError;
