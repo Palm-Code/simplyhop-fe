@@ -110,7 +110,7 @@ export const useRideFilterResultTrip = () => {
     let destinationData: null | { id: string; name: string } = null;
     let destinationLatLng: null | { lat: number; lng: number } = null;
 
-    let dateData: null | Date = null;
+    let dateData: Date[] = [];
 
     let adultData: null | number = null;
     let childrenData: null | number = null;
@@ -138,7 +138,22 @@ export const useRideFilterResultTrip = () => {
     }
 
     if (date) {
-      dateData = new Date(date);
+      // Parse multiple dates from comma-separated string
+      const dateStrings = date.split(',').map(d => d.trim());
+      dateData = dateStrings
+        .map(dateStr => {
+          const parsedDate = new Date(dateStr);
+          return isNaN(parsedDate.getTime()) ? null : parsedDate;
+        })
+        .filter(Boolean) as Date[];
+      
+      // If no valid dates parsed, default to today
+      if (dateData.length === 0) {
+        dateData = [new Date()];
+      }
+    } else {
+      // Default to today if no date parameter
+      dateData = [new Date()];
     }
 
     if (adult) {
@@ -182,8 +197,8 @@ export const useRideFilterResultTrip = () => {
               : findTripDestinationStorage.data,
           },
           date: {
-            ...state.filters.date,
-            selected: dateData ?? new Date(),
+            mode: dateData.length > 1 ? "multiple" : "single",
+            selected: dateData.length === 1 ? dateData[0] : dateData,
           },
 
           passenger: {

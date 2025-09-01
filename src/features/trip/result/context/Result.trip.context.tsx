@@ -43,7 +43,8 @@ const initialState: ResultTripInitialStateType = {
       saved_items: [],
     },
     date: {
-      selected: dayjs().toDate(),
+      mode: "multiple",
+      selected: [],
     },
     passenger: {
       car_seat: {

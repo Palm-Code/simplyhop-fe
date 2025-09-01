@@ -32,6 +32,20 @@ export const useGetRideSearch = () => {
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
 
+  // Helper function to get the primary date for API search
+  const getPrimarySearchDate = () => {
+    if (Array.isArray(state.filters.date.selected)) {
+      // For multiple dates, use the earliest date as primary search
+      return state.filters.date.selected.length > 0 
+        ? state.filters.date.selected.sort((a, b) => a.getTime() - b.getTime())[0]
+        : new Date();
+    } else {
+      return state.filters.date.selected;
+    }
+  };
+
+  const primaryDate = getPrimarySearchDate();
+
   const fullPath = `${pathname}?${searchParams.toString()}`;
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
@@ -39,16 +53,16 @@ export const useGetRideSearch = () => {
       start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
       destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
       destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
-      departure_date: dayjs(state.filters.date.selected).isSame(dayjs(), "day")
+      departure_date: dayjs(primaryDate).isSame(dayjs(), "day")
         ? undefined
-        : dayjs(state.filters.date.selected).format("YYYY-MM-DD"),
-      departure_time__lte: dayjs(state.filters.date.selected).isSame(
+        : dayjs(primaryDate).format("YYYY-MM-DD"),
+      departure_time__lte: dayjs(primaryDate).isSame(
         dayjs(),
         "day"
       )
         ? dayjs().endOf("day").format("YYYY-MM-DDTHH:mm:ss")
         : undefined,
-      departure_time__gte: dayjs(state.filters.date.selected).isSame(
+      departure_time__gte: dayjs(primaryDate).isSame(
         dayjs(),
         "day"
       )

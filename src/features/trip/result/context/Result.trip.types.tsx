@@ -49,7 +49,8 @@ export interface ResultTripFilters {
     };
   };
   date: {
-    selected: Date;
+    mode: "single" | "multiple";
+    selected: Date | Date[];
   };
 
   passenger: {

@@ -260,13 +260,14 @@ export const FilterResultTrip = () => {
     });
   };
 
-  const handleSelectDate = (date: Date) => {
+  const handleSelectDate = (dates: Date | Date[]) => {
     dispatch({
       type: ResultTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
         date: {
-          selected: date,
+          ...state.filters.date,
+          selected: dates,
         },
       },
     });
@@ -364,10 +365,17 @@ export const FilterResultTrip = () => {
       params = params + destination;
     }
     if (state.filters.date.selected) {
-      const date = `&${RIDE_FILTER.DATE}=${dayjs(
-        state.filters.date.selected
-      ).format("YYYY-MM-DD")}`;
-      params = params + date;
+      const selectedDates = Array.isArray(state.filters.date.selected) 
+        ? state.filters.date.selected 
+        : [state.filters.date.selected];
+      
+      if (selectedDates.length > 0) {
+        const dateParams = selectedDates
+          .map(dateItem => dayjs(dateItem).format("YYYY-MM-DD"))
+          .join(",");
+        const date = `&${RIDE_FILTER.DATE}=${dateParams}`;
+        params = params + date;
+      }
     }
     if (state.filters.passenger.value) {
       const adult = `&${RIDE_FILTER.ADULT_PASSENGER}=${
@@ -556,6 +564,7 @@ export const FilterResultTrip = () => {
           />
 
           <DatePicker
+            mode={state.filters.date.mode}
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}
@@ -620,6 +629,7 @@ export const FilterResultTrip = () => {
               !state.filters.origin.selected.item ||
               !state.filters.destination.selected.item ||
               !state.filters.date.selected ||
+              (Array.isArray(state.filters.date.selected) && state.filters.date.selected.length === 0) ||
               !state.filters.passenger.value.length
             }
             onClick={handleClickSearch}

@@ -94,7 +94,12 @@ export const FilterDetailTrip = () => {
               <span
                 className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
               >
-                {dayjs(state.filters.date.selected).format("DD.MM.YY")}
+                {Array.isArray(state.filters.date.selected) 
+                  ? state.filters.date.selected.length > 1
+                    ? `${state.filters.date.selected.length} Tage ausgewählt`
+                    : dayjs(state.filters.date.selected[0]).format("DD.MM.YY")
+                  : dayjs(state.filters.date.selected).format("DD.MM.YY")
+                }
               </span>
             </div>
 
