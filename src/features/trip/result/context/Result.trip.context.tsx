@@ -13,7 +13,6 @@ import {
   ResultTripVehicleFiltersReducers,
 } from "./Result.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
-import dayjs from "dayjs";
 
 const initialState: ResultTripInitialStateType = {
   filters: {

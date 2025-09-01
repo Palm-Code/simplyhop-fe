@@ -5,7 +5,6 @@ import {
   FindTripFiltersReducers,
   FindTripMapReducers,
 } from "./Find.trip.reducers";
-import dayjs from "dayjs";
 
 const initialState: FindTripInitialStateType = {
   filters: {
