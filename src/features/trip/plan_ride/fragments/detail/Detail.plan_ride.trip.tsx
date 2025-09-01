@@ -550,6 +550,7 @@ export const DetailPlanRideTrip = () => {
                 }}
                 info={dictionaries.detail.plan.form.input.recurring.info}
                 selected={state.detail.form.plan.recurring.selected}
+                disabled={Array.isArray(state.filters.date.selected) && state.filters.date.selected.length > 1}
                 items={globalDictionaries.trip.recurring.items}
                 onSelect={handleSelectRecurring}
               />
