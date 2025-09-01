@@ -58,7 +58,7 @@ export interface PlanRideTripFilters {
     };
   };
   date: {
-    selected: Date;
+    selected: Date | Date[];
   };
 
   time: {
@@ -78,7 +78,7 @@ export interface PlanRideTripDetail {
   form: {
     plan: {
       date: {
-        selected: Date;
+        selected: Date | Date[];
       };
       time: {
         value: string;

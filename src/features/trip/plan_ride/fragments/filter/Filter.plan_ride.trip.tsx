@@ -326,7 +326,7 @@ export const FilterPlanRideTrip = () => {
     });
   };
 
-  const handleSelectDate = (date: Date) => {
+  const handleSelectDate = (date: Date | Date[]) => {
     dispatch({
       type: PlanRideTripActionEnum.SetFiltersData,
       payload: {
@@ -633,6 +633,7 @@ export const FilterPlanRideTrip = () => {
           />
 
           <DatePicker
+            mode="multiple"
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}

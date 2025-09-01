@@ -48,7 +48,7 @@ const initialState: PlanRideTripInitialStateType = {
       saved_items: [],
     },
     date: {
-      selected: dayjs().toDate(),
+      selected: [dayjs().toDate()],
     },
     time: {
       value: dayjs().format("HH:mm"),
@@ -65,7 +65,7 @@ const initialState: PlanRideTripInitialStateType = {
     form: {
       plan: {
         date: {
-          selected: dayjs().toDate(),
+          selected: [dayjs().toDate()],
         },
         time: {
           value: dayjs().format("HH:mm"),

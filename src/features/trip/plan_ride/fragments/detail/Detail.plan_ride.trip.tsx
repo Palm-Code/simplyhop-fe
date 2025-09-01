@@ -70,7 +70,7 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
-  const handleSelectDate = (date: Date) => {
+  const handleSelectDate = (date: Date | Date[]) => {
     dispatch({
       type: PlanRideTripActionEnum.SetFiltersData,
       payload: {
@@ -507,6 +507,7 @@ export const DetailPlanRideTrip = () => {
               )}
             >
               <DatePicker
+                mode="multiple"
                 inputContainerProps={{
                   className: "!border !border-[#F8F8F8]",
                 }}
