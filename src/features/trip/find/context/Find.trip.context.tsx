@@ -35,7 +35,7 @@ const initialState: FindTripInitialStateType = {
     },
     date: {
       mode: "multiple",
-      selected: [],
+      selected: [new Date()], // Set today as initial selected date
     },
     passenger: {
       car_seat: {

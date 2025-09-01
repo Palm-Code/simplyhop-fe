@@ -20,7 +20,7 @@ export interface DatePickerProps {
 export const DatePicker = ({
   disabled = false,
   mode = "single",
-  value = mode === "single" ? new Date() : [],
+  value,
   labelProps,
   inputContainerProps,
   onSelect = () => {},
@@ -33,13 +33,14 @@ export const DatePicker = ({
     if (mode === "single") {
       return value instanceof Date ? [value] : [new Date()];
     } else {
-      // For multiple mode, if value is provided use it, otherwise start with empty array
-      if (Array.isArray(value) && value.length > 0) {
+      // For multiple mode, respect the value prop completely
+      if (Array.isArray(value)) {
         return value;
       } else if (value instanceof Date) {
-        return [value]; // Convert single Date to array for multiple mode
+        return [value];
       } else {
-        return []; // Start with empty array for multiple mode
+        // If no value provided, start with empty array for multiple mode
+        return [];
       }
     }
   });
@@ -67,11 +68,13 @@ export const DatePicker = ({
     if (mode === "single") {
       setSelectedDates(value instanceof Date ? [value] : [new Date()]);
     } else {
-      if (Array.isArray(value) && value.length > 0) {
+      // For multiple mode, sync with value prop exactly
+      if (Array.isArray(value)) {
         setSelectedDates(value);
       } else if (value instanceof Date) {
         setSelectedDates([value]);
       } else {
+        // Don't override if value is undefined, let initial state handle it
         setSelectedDates([]);
       }
     }

@@ -42,6 +42,9 @@ export const useSetInitialContextValue = () => {
             ? []
             : findTripDestinationStorage.data,
         },
+        date: {
+          ...state.filters.date, // Preserve existing date state including initial selected date
+        },
         passenger: {
           ...state.filters.passenger,
           value: dictionaries.filter.form.passenger.detail.items.map((item) => {
