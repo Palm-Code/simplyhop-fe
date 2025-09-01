@@ -10,15 +10,17 @@ import { YearPicker } from "../yearpicker";
 
 export interface DatePickerProps {
   disabled?: boolean;
-  value?: Date;
+  mode?: "single" | "multiple";
+  value?: Date | Date[];
   labelProps?: InputLabelProps;
   inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
-  onSelect?: (data: Date) => void;
+  onSelect?: (data: Date | Date[]) => void;
 }
 
 export const DatePicker = ({
   disabled = false,
-  value = new Date(),
+  mode = "single",
+  value = mode === "single" ? new Date() : [],
   labelProps,
   inputContainerProps,
   onSelect = () => {},
@@ -26,7 +28,32 @@ export const DatePicker = ({
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [date, setDate] = React.useState<Date>(value);
+  // For single mode, use Date; for multiple mode, use Date[]
+  const [selectedDates, setSelectedDates] = React.useState<Date[]>(() => {
+    if (mode === "single") {
+      return value instanceof Date ? [value] : [new Date()];
+    } else {
+      // For multiple mode, if value is provided use it, otherwise start with empty array
+      if (Array.isArray(value) && value.length > 0) {
+        return value;
+      } else if (value instanceof Date) {
+        return [value]; // Convert single Date to array for multiple mode
+      } else {
+        return []; // Start with empty array for multiple mode
+      }
+    }
+  });
+
+  // Current display date for navigation
+  const [currentDate, setCurrentDate] = React.useState<Date>(() => {
+    if (mode === "single" && value instanceof Date) {
+      return value;
+    } else if (mode === "multiple" && Array.isArray(value) && value.length > 0) {
+      return value[0];
+    }
+    return new Date();
+  });
+
   const [isDayShow, setIsDayShow] = React.useState<boolean>(false);
   const [isMonthShow, setIsMonthShow] = React.useState<boolean>(false);
   const [isYearShow, setIsYearShow] = React.useState<boolean>(false);
@@ -34,6 +61,21 @@ export const DatePicker = ({
   const [position, setPosition] = React.useState<"above" | "below">("below");
 
   const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  // Sync selectedDates when value prop changes
+  React.useEffect(() => {
+    if (mode === "single") {
+      setSelectedDates(value instanceof Date ? [value] : [new Date()]);
+    } else {
+      if (Array.isArray(value) && value.length > 0) {
+        setSelectedDates(value);
+      } else if (value instanceof Date) {
+        setSelectedDates([value]);
+      } else {
+        setSelectedDates([]);
+      }
+    }
+  }, [value, mode]);
 
   const updatePosition = React.useCallback(() => {
     const dropdownPosition =
@@ -84,10 +126,32 @@ export const DatePicker = ({
   };
 
   const handleSelectDate = (data: Date) => {
-    setDate(data);
-    setIsDayShow(false);
-    setIsOpen(false);
-    onSelect(data);
+    if (mode === "single") {
+      setSelectedDates([data]);
+      setCurrentDate(data);
+      setIsDayShow(false);
+      setIsOpen(false);
+      onSelect(data);
+    } else {
+      // Multiple mode logic with single-click toggle
+      const dateString = data.toDateString();
+      const isAlreadySelected = selectedDates.some(d => d.toDateString() === dateString);
+      
+      if (isAlreadySelected) {
+        // Single click on selected date: unselect it
+        const newSelectedDates = selectedDates.filter(d => d.toDateString() !== dateString);
+        setSelectedDates(newSelectedDates);
+        setCurrentDate(data);
+        onSelect(newSelectedDates);
+      } else {
+        // Single click on unselected date: add to selection
+        const newSelectedDates = [...selectedDates, data];
+        setSelectedDates(newSelectedDates);
+        setCurrentDate(data);
+        onSelect(newSelectedDates);
+      }
+      // Don't close dropdown in multiple mode
+    }
   };
 
   const handleClickYear = () => {
@@ -97,16 +161,21 @@ export const DatePicker = ({
 
   const handleSelectMonth = (data: Date) => {
     const newDate = new Date(
-      `${date.getFullYear()}-${
+      `${currentDate.getFullYear()}-${
         data.getMonth() + 1 < 10
           ? `0${data.getMonth() + 1}`
           : data.getMonth() + 1
-      }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
+      }-${currentDate.getDate() < 10 ? `0${currentDate.getDate()}` : currentDate.getDate()}`
     );
-    setDate(newDate);
-    setIsMonthShow(false);
-    setIsOpen(false);
-    onSelect(newDate);
+    setCurrentDate(newDate);
+    if (mode === "single") {
+      setSelectedDates([newDate]);
+      onSelect(newDate);
+      setIsMonthShow(false);
+      setIsOpen(false);
+    } else {
+      setIsMonthShow(false);
+    }
   };
 
   const handleSelectYear = (data: Date) => {
@@ -115,19 +184,41 @@ export const DatePicker = ({
         data.getMonth() + 1 < 10
           ? `0${data.getMonth() + 1}`
           : data.getMonth() + 1
-      }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
+      }-${currentDate.getDate() < 10 ? `0${currentDate.getDate()}` : currentDate.getDate()}`
     );
-    setDate(newDate);
-    setIsYearShow(false);
-    setIsOpen(false);
-    onSelect(newDate);
+    setCurrentDate(newDate);
+    if (mode === "single") {
+      setSelectedDates([newDate]);
+      onSelect(newDate);
+      setIsYearShow(false);
+      setIsOpen(false);
+    } else {
+      setIsYearShow(false);
+    }
   };
 
-  const formattedValue = new Date(value).toLocaleString("de-DE", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedValue = React.useMemo(() => {
+    if (mode === "single") {
+      const singleValue = selectedDates[0] || new Date();
+      return singleValue.toLocaleString("de-DE", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+    } else {
+      if (selectedDates.length === 0) {
+        return "Datum auswählen";
+      } else if (selectedDates.length === 1) {
+        return selectedDates[0].toLocaleString("de-DE", {
+          day: "2-digit",
+          month: "long", 
+          year: "numeric",
+        });
+      } else {
+        return `${selectedDates.length} Termine ausgewählt`;
+      }
+    }
+  }, [mode, selectedDates]);
 
   return (
     <div
@@ -196,7 +287,8 @@ export const DatePicker = ({
               {isDayShow && (
                 <DayPicker
                   disablePast
-                  date={date}
+                  date={mode === "single" ? selectedDates[0] || currentDate : currentDate}
+                  selectedDates={mode === "multiple" ? selectedDates : undefined}
                   onClickMonth={handleClickMonth}
                   onClickDate={handleSelectDate}
                 />
@@ -205,7 +297,7 @@ export const DatePicker = ({
               {isMonthShow && (
                 <MonthPicker
                   disablePast
-                  date={date}
+                  date={currentDate}
                   onClickYear={handleClickYear}
                   onClickMonth={handleSelectMonth}
                 />
@@ -214,7 +306,7 @@ export const DatePicker = ({
               {isYearShow && (
                 <YearPicker
                   disablePast
-                  date={date}
+                  date={currentDate}
                   onClickYear={handleSelectYear}
                 />
               )}

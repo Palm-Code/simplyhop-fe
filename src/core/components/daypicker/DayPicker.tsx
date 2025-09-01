@@ -61,6 +61,10 @@ const datesAreEqual = (date1: Date, date2: Date): boolean => {
   );
 };
 
+const isDateInArray = (date: Date, dateArray: Date[]): boolean => {
+  return dateArray.some(d => datesAreEqual(d, date));
+};
+
 const generateCalendarDates = (year: number, month: number): CalendarDate[] => {
   const dates: CalendarDate[] = [];
 
@@ -102,6 +106,7 @@ export interface DayPickerProps {
   disablePast?: boolean;
   disableToday?: boolean;
   date?: Date;
+  selectedDates?: Date[]; // For multiple selection mode
   onClickMonth?: () => void;
   onClickDate?: (date: Date) => void;
 }
@@ -110,6 +115,7 @@ export const DayPicker = ({
   disablePast = false,
   disableToday = false,
   date = new Date(),
+  selectedDates = [],
   onClickMonth = () => {},
   onClickDate = () => {},
 }: DayPickerProps) => {
@@ -222,6 +228,12 @@ export const DayPicker = ({
             !calendarItem.isCurrentMonth ||
             (disablePast && isBefore) ||
             (disableToday && isToday);
+          
+          // Check if this date is selected (for single mode, check against date prop; for multiple mode, check against selectedDates array)
+          const isSelected = selectedDates.length > 0 
+            ? isDateInArray(calendarItem.date, selectedDates)
+            : datesAreEqual(calendarItem.date, date);
+            
           return (
             <button
               aria-label={calendarItem.date.toLocaleString("de-DE", {
@@ -236,18 +248,17 @@ export const DayPicker = ({
                 "text-[14px] font-medium",
                 "rounded-[50%]",
                 "w-[30px] h-[30px]",
-                datesAreEqual(calendarItem.date, date)
+                isSelected
                   ? "bg-[#33CC33]"
                   : "bg-transparent",
 
-                datesAreEqual(calendarItem.date, date)
+                isSelected
                   ? "text-[white]"
                   : disablePast && isBefore
                   ? "text-[#E9E6E6]"
                   : disableToday && isToday
                   ? "text-[#E9E6E6]"
-                  : calendarItem.isCurrentMonth &&
-                    !datesAreEqual(calendarItem.date, date)
+                  : calendarItem.isCurrentMonth && !isSelected
                   ? "text-[#4A5660]"
                   : "text-[#E9E6E6]",
                 !calendarItem.isCurrentMonth ? "opacity-0" : "opacity-100"

@@ -44,7 +44,8 @@ export interface FindTripFilters {
     };
   };
   date: {
-    selected: Date;
+    mode: "single" | "multiple";
+    selected: Date | Date[];
   };
 
   passenger: {
