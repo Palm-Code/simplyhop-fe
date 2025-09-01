@@ -99,6 +99,10 @@ export interface ResultTripAdvancedFilter {
   driver_gender: {
     selected: { id: string; name: string }[];
   };
+  shift: {
+    selected: { id: string; name: string }[];
+    items: { id: string; name: string }[];
+  };
   sort: {
     selected: null | { id: string; name: string };
   };

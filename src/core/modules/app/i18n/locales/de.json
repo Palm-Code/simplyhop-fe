@@ -596,6 +596,7 @@
         }
       }
     },
+
     "driver_gender": {
       "type": {
         "options": {

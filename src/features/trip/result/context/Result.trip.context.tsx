@@ -89,6 +89,10 @@ const initialState: ResultTripInitialStateType = {
     driver_gender: {
       selected: [],
     },
+    shift: {
+      selected: [],
+      items: [],
+    },
     sort: {
       selected: null,
     },

@@ -358,6 +358,65 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
+  const handleSelectShift = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        data: [],
+        pagination: {
+          ...state.rides.pagination,
+          current: PAGINATION.NUMBER,
+          last: null,
+        },
+      },
+    });
+    const selected = setMultipleCheckboxPayload(
+      state.advanced_filter.shift.selected,
+      { id: data.id, name: data.name },
+      data.type
+    );
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        shift: {
+          ...state.advanced_filter.shift,
+          selected: selected,
+        },
+      },
+    });
+  };
+
+  const handleResetShift = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        data: [],
+        pagination: {
+          ...state.rides.pagination,
+          current: PAGINATION.NUMBER,
+          last: null,
+        },
+      },
+    });
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        shift: {
+          ...state.advanced_filter.shift,
+          selected: [],
+        },
+      },
+    });
+  };
+
   const handleSelectSort = (data: { id: string; name: string }) => {
     dispatch({
       type: ResultTripActionEnum.SetRidesData,
@@ -399,7 +458,8 @@ export const VehicleFilterResulTrip = () => {
       state.advanced_filter.smoker.selected.length +
       state.advanced_filter.music.selected.length +
       state.advanced_filter.pets.selected.length +
-      state.advanced_filter.driver_gender.selected.length
+      state.advanced_filter.driver_gender.selected.length +
+      state.advanced_filter.shift.selected.length
     );
   }, [
     state.advanced_filter.luggage.selected.length,
@@ -407,6 +467,7 @@ export const VehicleFilterResulTrip = () => {
     state.advanced_filter.music.selected.length,
     state.advanced_filter.pets.selected.length,
     state.advanced_filter.driver_gender.selected.length,
+    state.advanced_filter.shift.selected.length,
   ]);
 
   return (
@@ -499,6 +560,19 @@ export const VehicleFilterResulTrip = () => {
               })
             }
             onReset={handleResetDriverGender}
+          />
+          <CarFacilityFilterDropdown
+            {...(dictionaries.advanced_filter
+              .shift as CarFacilityFilterDropdownProps)}
+            items={state.advanced_filter.shift.items}
+            selected={state.advanced_filter.shift.selected}
+            onSelect={(data) =>
+              handleSelectShift({
+                ...data,
+                type: dictionaries.advanced_filter.pets.variant,
+              })
+            }
+            onReset={handleResetShift}
           />
         </div>
       </div>
