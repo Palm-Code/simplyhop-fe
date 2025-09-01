@@ -514,6 +514,7 @@ export const DetailPlanRideTrip = () => {
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.date.labelProps,
                 }}
+                maxSelection={5}
                 value={state.detail.form.plan.date.selected}
                 onSelect={handleSelectDate}
               />
@@ -550,7 +551,10 @@ export const DetailPlanRideTrip = () => {
                 }}
                 info={dictionaries.detail.plan.form.input.recurring.info}
                 selected={state.detail.form.plan.recurring.selected}
-                disabled={Array.isArray(state.filters.date.selected) && state.filters.date.selected.length > 1}
+                disabled={
+                  Array.isArray(state.filters.date.selected) &&
+                  state.filters.date.selected.length > 1
+                }
                 items={globalDictionaries.trip.recurring.items}
                 onSelect={handleSelectRecurring}
               />

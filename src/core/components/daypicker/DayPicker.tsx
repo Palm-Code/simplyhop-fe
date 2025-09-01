@@ -107,6 +107,7 @@ export interface DayPickerProps {
   disableToday?: boolean;
   date?: Date;
   selectedDates?: Date[]; // For multiple selection mode
+  maxSelection?: number; // Maximum number of dates that can be selected
   onClickMonth?: () => void;
   onClickDate?: (date: Date) => void;
 }
@@ -116,6 +117,7 @@ export const DayPicker = ({
   disableToday = false,
   date = new Date(),
   selectedDates = [],
+  maxSelection,
   onClickMonth = () => {},
   onClickDate = () => {},
 }: DayPickerProps) => {
@@ -224,15 +226,18 @@ export const DayPicker = ({
         {calendarDates.map((calendarItem, calendarIndex) => {
           const isBefore = checkIsBefore(calendarItem.date);
           const isToday = checkIsToday(calendarItem.date);
-          const disabled =
-            !calendarItem.isCurrentMonth ||
-            (disablePast && isBefore) ||
-            (disableToday && isToday);
-          
-          // Check if this date is selected (for single mode, check against date prop; for multiple mode, check against selectedDates array)
           const isSelected = selectedDates.length > 0 
             ? isDateInArray(calendarItem.date, selectedDates)
             : datesAreEqual(calendarItem.date, date);
+          
+          // Check if max selection is reached and this date is not already selected
+          const isMaxReached = !!(maxSelection && selectedDates.length >= maxSelection && !isSelected);
+          
+          const disabled =
+            !calendarItem.isCurrentMonth ||
+            (disablePast && isBefore) ||
+            (disableToday && isToday) ||
+            isMaxReached; // Disable if max selection reached and date not already selected
             
           return (
             <button

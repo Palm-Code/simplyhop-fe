@@ -637,6 +637,7 @@ export const FilterPlanRideTrip = () => {
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}
+            maxSelection={5}
             disabled={!userState.profile?.is_able_to_ride}
             value={state.filters.date.selected}
             onSelect={handleSelectDate}

@@ -365,13 +365,13 @@ export const FilterResultTrip = () => {
       params = params + destination;
     }
     if (state.filters.date.selected) {
-      const selectedDates = Array.isArray(state.filters.date.selected) 
-        ? state.filters.date.selected 
+      const selectedDates = Array.isArray(state.filters.date.selected)
+        ? state.filters.date.selected
         : [state.filters.date.selected];
-      
+
       if (selectedDates.length > 0) {
         const dateParams = selectedDates
-          .map(dateItem => dayjs(dateItem).format("YYYY-MM-DD"))
+          .map((dateItem) => dayjs(dateItem).format("YYYY-MM-DD"))
           .join(",");
         const date = `&${RIDE_FILTER.DATE}=${dateParams}`;
         params = params + date;
@@ -568,6 +568,7 @@ export const FilterResultTrip = () => {
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}
+            maxSelection={5}
             value={state.filters.date.selected}
             onSelect={handleSelectDate}
           />
@@ -629,7 +630,8 @@ export const FilterResultTrip = () => {
               !state.filters.origin.selected.item ||
               !state.filters.destination.selected.item ||
               !state.filters.date.selected ||
-              (Array.isArray(state.filters.date.selected) && state.filters.date.selected.length === 0) ||
+              (Array.isArray(state.filters.date.selected) &&
+                state.filters.date.selected.length === 0) ||
               !state.filters.passenger.value.length
             }
             onClick={handleClickSearch}

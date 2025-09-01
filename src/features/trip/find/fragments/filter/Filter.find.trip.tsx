@@ -556,6 +556,7 @@ export const FilterFindTrip = () => {
               labelProps={{
                 ...dictionaries.filter.form.date.labelProps,
               }}
+              maxSelection={5}
               value={state.filters.date.selected}
               onSelect={handleSelectDate}
             />

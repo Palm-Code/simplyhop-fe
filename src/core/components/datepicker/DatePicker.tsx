@@ -12,6 +12,7 @@ export interface DatePickerProps {
   disabled?: boolean;
   mode?: "single" | "multiple";
   value?: Date | Date[];
+  maxSelection?: number; // Optional: maximum number of dates that can be selected in multiple mode
   labelProps?: InputLabelProps;
   inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   onSelect?: (data: Date | Date[]) => void;
@@ -21,6 +22,7 @@ export const DatePicker = ({
   disabled = false,
   mode = "single",
   value,
+  maxSelection, // Optional prop - no default value
   labelProps,
   inputContainerProps,
   onSelect = () => {},
@@ -147,7 +149,14 @@ export const DatePicker = ({
         setCurrentDate(data);
         onSelect(newSelectedDates);
       } else {
-        // Single click on unselected date: add to selection
+        // Single click on unselected date: check max selection limit
+        if (maxSelection && selectedDates.length >= maxSelection) {
+          // If maxSelection is set and limit reached, don't add more dates
+          // Optionally you could replace the oldest date or show a message
+          return;
+        }
+        
+        // Add to selection
         const newSelectedDates = [...selectedDates, data];
         setSelectedDates(newSelectedDates);
         setCurrentDate(data);
@@ -210,7 +219,9 @@ export const DatePicker = ({
       });
     } else {
       if (selectedDates.length === 0) {
-        return "Datum auswählen";
+        return maxSelection 
+          ? `Datum auswählen (max. ${maxSelection})`
+          : "Datum auswählen";
       } else if (selectedDates.length === 1) {
         return selectedDates[0].toLocaleString("de-DE", {
           day: "2-digit",
@@ -218,10 +229,13 @@ export const DatePicker = ({
           year: "numeric",
         });
       } else {
-        return `${selectedDates.length} Termine ausgewählt`;
+        const countText = maxSelection 
+          ? `${selectedDates.length}/${maxSelection} Termine ausgewählt`
+          : `${selectedDates.length} Termine ausgewählt`;
+        return countText;
       }
     }
-  }, [mode, selectedDates]);
+  }, [mode, selectedDates, maxSelection]);
 
   return (
     <div
@@ -292,6 +306,7 @@ export const DatePicker = ({
                   disablePast
                   date={mode === "single" ? selectedDates[0] || currentDate : currentDate}
                   selectedDates={mode === "multiple" ? selectedDates : undefined}
+                  maxSelection={mode === "multiple" ? maxSelection : undefined}
                   onClickMonth={handleClickMonth}
                   onClickDate={handleSelectDate}
                 />
