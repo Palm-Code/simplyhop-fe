@@ -569,7 +569,7 @@ export const VehicleFilterResulTrip = () => {
             onSelect={(data) =>
               handleSelectShift({
                 ...data,
-                type: dictionaries.advanced_filter.pets.variant,
+                type: dictionaries.advanced_filter.shift.variant,
               })
             }
             onReset={handleResetShift}

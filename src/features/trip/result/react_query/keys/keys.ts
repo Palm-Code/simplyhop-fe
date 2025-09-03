@@ -14,6 +14,9 @@ export const ResultTripReactQueryKey = {
   }) => {
     return ["ResultTripReactQueryKey.GetRideSearch", [payload] as const];
   },
+  GetShiftList: () => {
+    return ["ResultTripReactQueryKey.GetShiftList"];
+  },
   GetRidesId: () => {
     return ["ResultTripReactQueryKey.GetRideSearch"];
   },

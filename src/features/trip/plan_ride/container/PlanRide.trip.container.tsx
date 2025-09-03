@@ -11,6 +11,7 @@ import { useSetInitialContextValue } from "../context";
 
 export const PlanRideTripContainer = () => {
   useSetInitialContextValue();
+
   return (
     <>
       <div className={clsx("w-full h-full", "relative")}>

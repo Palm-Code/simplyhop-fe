@@ -158,6 +158,28 @@ export const VehicleFilters = () => {
     });
   };
 
+  const handleSelectShift = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.vehicle_filters.shift.selected,
+      { id: data.id, name: data.name },
+      data.type
+    );
+    dispatch({
+      type: ResultTripActionEnum.SetVehicleFiltersData,
+      payload: {
+        ...state.vehicle_filters,
+        shift: {
+          ...state.vehicle_filters.shift,
+          selected: selected,
+        },
+      },
+    });
+  };
+
   const handleClickReset = () => {
     dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
@@ -181,6 +203,10 @@ export const VehicleFilters = () => {
         },
         driver_gender: {
           ...state.vehicle_filters.driver_gender,
+          selected: [],
+        },
+        shift: {
+          ...state.vehicle_filters.shift,
           selected: [],
         },
       },
@@ -230,6 +256,10 @@ export const VehicleFilters = () => {
         driver_gender: {
           ...state.advanced_filter.driver_gender,
           selected: state.vehicle_filters.driver_gender.selected,
+        },
+        shift: {
+          ...state.advanced_filter.shift,
+          selected: state.vehicle_filters.shift.selected,
         },
       },
     });
@@ -367,6 +397,18 @@ export const VehicleFilters = () => {
               handleSelectDriverGender({
                 ...data,
                 type: dictionaries.vehicle_filters.driver_gender.variant,
+              })
+            }
+          />
+          <Divider />
+          <VehicleFilterList
+            {...(dictionaries.vehicle_filters.shift as VehicleFilterListProps)}
+            items={state.vehicle_filters.shift.items}
+            selected={state.vehicle_filters.shift.selected}
+            onSelect={(data) =>
+              handleSelectShift({
+                ...data,
+                type: dictionaries.vehicle_filters.shift.variant,
               })
             }
           />

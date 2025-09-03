@@ -132,6 +132,10 @@
       "label": "Geschlecht",
       "variant": "single"
     },
+    "shift": {
+      "label": "Shift",
+      "variant": "single"
+    },
     "sort": {
       "label": "Sortieren",
       "variant": "single"

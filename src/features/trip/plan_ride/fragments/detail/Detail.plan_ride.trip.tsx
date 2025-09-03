@@ -14,6 +14,7 @@ import { DatePicker } from "@/core/components/datepicker";
 import { Checkbox } from "@/core/components/checkbox";
 import { InputContainer } from "@/core/components/input_container";
 import {
+  useGetShiftList,
   usePostRidesFirst,
   usePutRidesSecond,
   usePutRidesThird,
@@ -44,6 +45,7 @@ export const DetailPlanRideTrip = () => {
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const { isLg } = useTailwindBreakpoint();
+  useGetShiftList();
   const isOpen = state.detail.is_open;
 
   const { mutateAsync: postRidesFirst, isPending: isPendingRidesFirst } =

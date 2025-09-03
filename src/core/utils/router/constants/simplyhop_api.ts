@@ -43,6 +43,9 @@ export const SimplyHopAPICollectionURL = {
     ) => `/api/auth/${path.provider}/callback`,
     deleteDeactivateAccount: () => `/api/auth/deactivate-account`,
   },
+  shift: {
+    getList: () => `/api/shifts`,
+  },
   vehicle: {
     postCreateMy: () => `/api/vehicle/storeMy`,
     postUpdate: (path: PutVehicleUpdatePathPayloadRequestInterface) =>

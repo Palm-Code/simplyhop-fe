@@ -4,6 +4,9 @@ export const PlanRideTripReactQueryKey = {
   GetVehicleMy: () => {
     return ["PlanRideTripReactQueryKey.GetVehicleMy"];
   },
+  GetShiftList: () => {
+    return ["PlanRideTripReactQueryKey.GetShiftList"];
+  },
   GetDistanceMatrix: () => {
     return ["PlanRideTripReactQueryKey.GetDistanceMatrix"];
   },
