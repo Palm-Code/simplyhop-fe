@@ -24,6 +24,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   "filter[user.gender]"?: string;
   departure_time__gte?: string;
   departure_time__lte?: string;
+  departure_dates?: string;
   departure_date?: string;
   //mandatory
   sort?: string;

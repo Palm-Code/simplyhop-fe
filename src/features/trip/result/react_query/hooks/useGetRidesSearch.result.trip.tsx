@@ -32,15 +32,15 @@ export const useGetRideSearch = () => {
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
 
-  // Helper function to get the primary date for API search
   const getPrimarySearchDate = () => {
     if (Array.isArray(state.filters.date.selected)) {
-      // For multiple dates, use the earliest date as primary search
-      return state.filters.date.selected.length > 0 
-        ? state.filters.date.selected.sort((a, b) => a.getTime() - b.getTime())[0]
-        : new Date();
+      return state.filters.date.selected.length > 0
+        ? state.filters.date.selected
+            .map((item) => dayjs(item).format("YYYY-MM-DD"))
+            .join(",")
+        : dayjs(new Date()).format("YYYY-MM-DD");
     } else {
-      return state.filters.date.selected;
+      return dayjs(state.filters.date.selected).format("YYYY-MM-DD");
     }
   };
 
@@ -53,21 +53,22 @@ export const useGetRideSearch = () => {
       start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
       destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
       destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
-      departure_date: dayjs(primaryDate).isSame(dayjs(), "day")
-        ? undefined
-        : dayjs(primaryDate).format("YYYY-MM-DD"),
-      departure_time__lte: dayjs(primaryDate).isSame(
-        dayjs(),
-        "day"
-      )
-        ? dayjs().endOf("day").format("YYYY-MM-DDTHH:mm:ss")
-        : undefined,
-      departure_time__gte: dayjs(primaryDate).isSame(
-        dayjs(),
-        "day"
-      )
-        ? dayjs().format("YYYY-MM-DDTHH:mm:ss")
-        : undefined,
+      departure_dates: getPrimarySearchDate(),
+      // departure_date: dayjs(primaryDate).isSame(dayjs(), "day")
+      //   ? undefined
+      //   : dayjs(primaryDate).format("YYYY-MM-DD"),
+      // departure_time__lte: dayjs(primaryDate).isSame(
+      //   dayjs(),
+      //   "day"
+      // )
+      //   ? dayjs().endOf("day").format("YYYY-MM-DDTHH:mm:ss")
+      //   : undefined,
+      // departure_time__gte: dayjs(primaryDate).isSame(
+      //   dayjs(),
+      //   "day"
+      // )
+      //   ? dayjs().format("YYYY-MM-DDTHH:mm:ss")
+      //   : undefined,
       // start_lat: 52.5200066,
       // start_long: 13.414954,
       // destination_lat: 48.1351253,
