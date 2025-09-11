@@ -45,7 +45,7 @@ export const MaintenanceModal = () => {
             </p>
 
             <p className="text-base sm:text-lg">
-              <strong>Wo stehen wir Stand heute?</strong> Wir blicken stolz auf eine fünfstellige Nutzerschaft und rund 250 vermittelte Fahrten pro Monat.
+              <strong>Wo stehen wir Stand heute?:</strong> Wir blicken stolz auf eine fünfstellige Nutzerschaft und rund 250 vermittelte Fahrten pro Monat.
             </p>
 
             <p className="text-base sm:text-lg font-semibold text-gray-900">
