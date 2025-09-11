@@ -7,7 +7,7 @@ export const MaintenanceModal = () => {
     <Dialog
       open={true} // Always open - cannot be closed
       onClose={() => {}} // Empty function - prevents closing
-      className="relative z-[300]" // Higher than navbar z-[200]
+      className="relative z-[250]" // Positioned below vanilla-cookieconsent (z-[300+]) but above other content
     >
       {/* Backdrop */}
       <div
