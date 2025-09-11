@@ -1,8 +1,12 @@
 "use client";
 import { Dialog } from "@headlessui/react";
 import clsx from "clsx";
+import Link from "next/link";
+import { getDictionaries } from "@/core/modules/app/i18n";
 
 export const MaintenanceModal = () => {
+  const dictionaries = getDictionaries();
+  
   return (
     <Dialog
       open={true} // Always open - cannot be closed
@@ -109,6 +113,49 @@ export const MaintenanceModal = () => {
               <p className="text-md sm:text-xl font-bold text-gray-900">
                 Einfach. Nachhaltig. Gemeinsam mobil.
               </p>
+            </div>
+
+            {/* Legal Links Section */}
+            <div className="border-t border-gray-200 pt-6 sm:pt-8 mt-6 sm:mt-8">
+              <div className="text-center mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
+                  {dictionaries.footer.middle.legal.title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Weitere wichtige Informationen und rechtliche Hinweise
+                </p>
+              </div>
+              
+              {/* Legal Links Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-between gap-3 sm:gap-4">
+                {dictionaries.footer.middle.legal.items.map((item, itemIndex) => (
+                  <Link
+                    key={itemIndex}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={clsx(
+                      "group flex items-center justify-center",
+                      "px-3 py-2 sm:px-4 sm:py-3",
+                      "text-xs sm:text-sm font-medium",
+                      "text-gray-600 hover:text-blue-700",
+                      "rounded-lg sm:rounded-xl",
+                      "transition-all duration-200 ease-in-out",
+                    )}
+                  >
+                    <span className="text-center leading-tight">
+                      {item.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Copyright */}
+              <div className="text-center mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-100">
+                <p className="text-xs sm:text-sm text-gray-500">
+                  {dictionaries.footer.bottom.copyright}
+                </p>
+              </div>
             </div>
           </div>
         </Dialog.Panel>
