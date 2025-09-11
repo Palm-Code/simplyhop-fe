@@ -16,55 +16,55 @@ export const MaintenanceModal = () => {
       />
 
       {/* Full-screen container */}
-      <div className="fixed inset-0 flex items-center justify-center p-4">
+      <div className="fixed inset-0 flex items-center justify-center p-2 sm:p-4">
         <Dialog.Panel
           className={clsx(
             "w-full max-w-4xl mx-auto",
-            "bg-white rounded-2xl shadow-2xl",
-            "p-8 sm:p-12",
-            "max-h-[90vh] overflow-y-auto"
+            "bg-white rounded-xl sm:rounded-2xl shadow-2xl",
+            "p-4 sm:p-8 lg:p-12",
+            "max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
           )}
         >
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="mb-6">
-              <span className="text-6xl">✨</span>
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="mb-4 sm:mb-6">
+              <span className="text-4xl sm:text-6xl">✨</span>
             </div>
             <Dialog.Title
               as="h1"
-              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-2"
             >
               Danke an unsere Community!
             </Dialog.Title>
           </div>
 
           {/* Content */}
-          <div className="space-y-6 text-gray-700 leading-relaxed">
-            <p className="text-lg">
+          <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed">
+            <p className="text-base sm:text-lg">
               Seit 2017 begleiten uns zehntausende Nutzer:innen. Die Dieselfahrverbote 2019 ließen die Nachfrage nach Mitfahrmöglichkeiten deutlich steigen, Corona wiederum brachte einen deutlichen Einschnitt. Danach haben wir unsere Simply Hop neu sortiert, intuitiver, nutzerfreundlicher gemacht und auch als Web-App zur Verfügung gestellt.
             </p>
 
-            <p className="text-lg">
+            <p className="text-base sm:text-lg">
               <strong>Wo stehen wir Stand heute?</strong> Wir blicken stolz auf eine fünfstellige Nutzerschaft und rund 250 vermittelte Fahrten pro Monat.
             </p>
 
-            <p className="text-lg font-semibold text-gray-900">
+            <p className="text-base sm:text-lg font-semibold text-gray-900">
               Dennoch ist es Zeit für den nächsten Schritt:<br />
               Simply Hop wird zur B2B-Plattform – begleitet von Sachsen Fährt Mit.
             </p>
 
             {/* Regional Section */}
-            <div className="bg-green-50 rounded-xl p-6 border-l-4 border-green-500">
-              <div className="flex items-start gap-3 mb-4">
-                <span className="text-2xl">🚩</span>
+            <div className="bg-green-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-green-500">
+              <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <span className="text-xl sm:text-2xl">🚩</span>
                 <div>
-                  <h3 className="text-xl font-bold text-green-800 mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-green-800 mb-2">
                     Regional, ab 12-2025: Sachsen Fährt Mit (SFM)
                   </h3>
-                  <p className="text-green-700 font-medium mb-3">
+                  <p className="text-sm sm:text-base text-green-700 font-medium mb-2 sm:mb-3">
                     Einsatzgebiet: Sachsen
                   </p>
-                  <ul className="space-y-2 text-green-700">
+                  <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-green-700">
                     <li>• Für Unternehmen & ihre Mitarbeitenden</li>
                     <li>• Für Institutionen & Behörden</li>
                     <li>• Für Sportvereine, Fans & Event-/Konzertbesucher:innen</li>
@@ -74,17 +74,17 @@ export const MaintenanceModal = () => {
             </div>
 
             {/* International Section */}
-            <div className="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-500">
-              <div className="flex items-start gap-3 mb-4">
-                <span className="text-2xl">🌍</span>
+            <div className="bg-blue-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-blue-500">
+              <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <span className="text-xl sm:text-2xl">🌍</span>
                 <div>
-                  <h3 className="text-xl font-bold text-blue-800 mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-blue-800 mb-2">
                     Überregional, ab 12-2025: Simply Hop (SH)
                   </h3>
-                  <p className="text-blue-700 font-medium mb-3">
+                  <p className="text-sm sm:text-base text-blue-700 font-medium mb-2 sm:mb-3">
                     Einsatzgebiet: Deutschland, Österreich, Schweiz (DACH)
                   </p>
-                  <ul className="space-y-2 text-blue-700">
+                  <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-blue-700">
                     <li>• Für Unternehmen & ihre Mitarbeitenden</li>
                     <li>• Für Institutionen & Behörden</li>
                     <li>• Für Sportvereine, Fans & Event-/Konzertbesucher:innen</li>
@@ -94,11 +94,11 @@ export const MaintenanceModal = () => {
             </div>
 
             {/* Footer Message */}
-            <div className="text-center pt-6">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="text-3xl">💡</span>
+            <div className="text-center pt-4 sm:pt-6">
+              <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+                <span className="text-2xl sm:text-3xl">💡</span>
               </div>
-              <p className="text-xl font-bold text-gray-900">
+              <p className="text-lg sm:text-xl font-bold text-gray-900">
                 Einfach. Nachhaltig. Gemeinsam mobil.
               </p>
             </div>
