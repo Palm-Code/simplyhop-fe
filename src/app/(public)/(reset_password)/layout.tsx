@@ -40,7 +40,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
       )}
     >
       {children}
-      <MaintenanceModal />
+      <MaintenanceModal mode="fixed" />
     </main>
   );
 }

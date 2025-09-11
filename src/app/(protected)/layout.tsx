@@ -35,7 +35,7 @@ export default async function ProtectedLayout({
       <PaymentSupportProvider>
         {children}
 
-        <MaintenanceModal />
+        <MaintenanceModal mode="fixed" />
       </PaymentSupportProvider>
     </UserProvider>
   );
