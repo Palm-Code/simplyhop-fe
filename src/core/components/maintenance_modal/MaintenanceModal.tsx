@@ -98,7 +98,7 @@ export const MaintenanceModal = () => {
               <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
                 <span className="text-2xl sm:text-3xl">💡</span>
               </div>
-              <p className="text-lg sm:text-xl font-bold text-gray-900">
+              <p className="text-md sm:text-xl font-bold text-gray-900">
                 Einfach. Nachhaltig. Gemeinsam mobil.
               </p>
             </div>
