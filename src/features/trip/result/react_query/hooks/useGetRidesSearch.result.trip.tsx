@@ -44,8 +44,6 @@ export const useGetRideSearch = () => {
     }
   };
 
-  const primaryDate = getPrimarySearchDate();
-
   const fullPath = `${pathname}?${searchParams.toString()}`;
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
