@@ -15,7 +15,8 @@ export const FooterApp = () => {
       className={clsx(
         "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
         "w-full",
-        "px-[1rem]"
+        "px-[1rem]",
+        "relative z-[300]" // Ensure footer is above modal backdrop
       )}
     >
       <div

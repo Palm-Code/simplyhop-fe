@@ -1,22 +1,62 @@
 "use client";
 import { Dialog } from "@headlessui/react";
 import clsx from "clsx";
+import { useEffect } from "react";
 
 export const MaintenanceModal = () => {
+  // Allow body scrolling to access footer
+  useEffect(() => {
+    const allowScrolling = () => {
+      // Force body to be scrollable
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+      
+      // Add custom class for additional styling if needed
+      document.body.classList.add('maintenance-modal-open');
+    };
+
+    // Initial set
+    allowScrolling();
+
+    // Watch for any changes and reapply
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          allowScrolling();
+        }
+      });
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
+
+    // Cleanup
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove('maintenance-modal-open');
+    };
+  }, []);
+
   return (
     <Dialog
       open={true} // Always open - cannot be closed
       onClose={() => {}} // Empty function - prevents closing
       className="relative z-[250]" // Positioned below vanilla-cookieconsent (z-[300+]) but above other content
     >
-      {/* Backdrop */}
+      {/* Backdrop covers only the first viewport */}
       <div
-        className="fixed inset-0 bg-black/20 backdrop-blur-sm"
+        className="absolute top-0 left-0 right-0 bg-black/20 backdrop-blur-sm z-[250]"
+        style={{ height: '100vh' }}
         aria-hidden="true"
       />
 
-      {/* Full-screen container */}
-      <div className="fixed inset-0 flex items-center justify-center p-2 sm:p-4">
+      {/* Container positioned within first viewport only */}
+      <div 
+        className="absolute top-0 left-0 right-0 flex items-center justify-center p-2 sm:p-4 z-[251]"
+        style={{ height: '100vh' }}
+      >
         <Dialog.Panel
           className={clsx(
             "w-full max-w-4xl mx-auto",

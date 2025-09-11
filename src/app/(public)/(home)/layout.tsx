@@ -16,16 +16,24 @@ type TripLayoutProps = {
 export default function TripLayout({ children }: TripLayoutProps) {
   return (
     <UserProvider>
-      <main className={clsx("w-full min-h-screen")}>
-        <TopNavigation />
-
-        <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
-          {children}
+      {/* Scrollable container that contains both modal area and footer */}
+      <div className="relative min-h-screen">
+        {/* First viewport area with modal */}
+        <div className="relative h-screen overflow-hidden">
+          <main className={clsx("w-full h-full")}>
+            <TopNavigation />
+            <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
+              {children}
+            </div>
+          </main>
+          
+          {/* Modal positioned within this first viewport */}
+          <MaintenanceModal />
         </div>
-
+        
+        {/* Footer positioned after the first viewport, accessible by scrolling */}
         <FooterApp />
-      </main>
-      <MaintenanceModal />
+      </div>
     </UserProvider>
   );
 }
