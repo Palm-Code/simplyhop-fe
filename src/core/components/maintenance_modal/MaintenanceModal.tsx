@@ -3,7 +3,11 @@ import { Dialog } from "@headlessui/react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
-export const MaintenanceModal = () => {
+export interface MaintenanceModalProps {
+  mode?: "fixed" | "scrollable";
+}
+
+export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps) => {
   const [mounted, setMounted] = useState(false);
 
   // Mount state untuk menghindari hydration issues
@@ -11,63 +15,72 @@ export const MaintenanceModal = () => {
     setMounted(true);
   }, []);
 
-  // Allow body scrolling to access footer
+  // Allow body scrolling to access footer (hanya untuk mode scrollable)
   useEffect(() => {
     if (!mounted) return;
 
-    const allowScrolling = () => {
-      // Force body and html to be scrollable dengan !important melalui style attribute
-      document.body.style.setProperty('overflow', 'auto', 'important');
-      document.body.style.setProperty('overflow-y', 'auto', 'important');
-      document.body.style.setProperty('position', 'static', 'important');
-      document.body.style.setProperty('height', 'auto', 'important');
-      
-      document.documentElement.style.setProperty('overflow', 'auto', 'important');
-      document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
-      document.documentElement.style.setProperty('position', 'static', 'important');
-      document.documentElement.style.setProperty('height', 'auto', 'important');
-      
-      // Add custom class for additional styling if needed
-      document.body.classList.add('maintenance-modal-open');
-      document.documentElement.classList.add('maintenance-modal-open');
-    };
+    if (mode === "scrollable") {
+      // Logic yang sudah bekerja untuk scrollable mode
+      const allowScrolling = () => {
+        // Force body and html to be scrollable dengan !important melalui style attribute
+        document.body.style.setProperty('overflow', 'auto', 'important');
+        document.body.style.setProperty('overflow-y', 'auto', 'important');
+        document.body.style.setProperty('position', 'static', 'important');
+        document.body.style.setProperty('height', 'auto', 'important');
+        
+        document.documentElement.style.setProperty('overflow', 'auto', 'important');
+        document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+        document.documentElement.style.setProperty('position', 'static', 'important');
+        document.documentElement.style.setProperty('height', 'auto', 'important');
+        
+        // Add custom class for additional styling if needed
+        document.body.classList.add('maintenance-modal-open');
+        document.documentElement.classList.add('maintenance-modal-open');
+      };
 
-    // Set initial state
-    allowScrolling();
+      // Set initial state
+      allowScrolling();
 
-    // Watch for any changes and reapply dengan delay untuk memastikan override berhasil
-    const intervalId = setInterval(() => {
-      if (document.body.style.overflow !== 'auto' || 
-          document.documentElement.style.overflow !== 'auto') {
-        allowScrolling();
-      }
-    }, 100);
-
-    // Watch for any DOM changes that might affect scroll
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && 
-            (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-          // Delay untuk memastikan override berhasil setelah HeadlessUI
-          setTimeout(allowScrolling, 0);
+      // Watch for any changes and reapply dengan delay untuk memastikan override berhasil
+      const intervalId = setInterval(() => {
+        if (document.body.style.overflow !== 'auto' || 
+            document.documentElement.style.overflow !== 'auto') {
+          allowScrolling();
         }
+      }, 100);
+
+      // Watch for any DOM changes that might affect scroll
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && 
+              (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+            // Delay untuk memastikan override berhasil setelah HeadlessUI
+            setTimeout(allowScrolling, 0);
+          }
+        });
       });
-    });
 
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['style', 'class']
-    });
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
 
-    // Cleanup
-    return () => {
-      clearInterval(intervalId);
-      observer.disconnect();
-      document.body.classList.remove('maintenance-modal-open');
-      document.documentElement.classList.remove('maintenance-modal-open');
-      // Jangan reset overflow di cleanup untuk menghindari flicker
-    };
-  }, [mounted]);
+      // Cleanup untuk scrollable mode
+      return () => {
+        clearInterval(intervalId);
+        observer.disconnect();
+        document.body.classList.remove('maintenance-modal-open');
+        document.documentElement.classList.remove('maintenance-modal-open');
+        // Jangan reset overflow di cleanup untuk menghindari flicker
+      };
+    } else {
+      // Fixed mode - biarkan HeadlessUI handle scroll blocking
+      // Tidak perlu logic khusus, HeadlessUI akan memblokir scroll secara default
+      return () => {
+        // Cleanup minimal untuk fixed mode
+      };
+    }
+  }, [mounted, mode]);
 
   if (!mounted) {
     return null; // Prevent hydration mismatch
@@ -77,7 +90,12 @@ export const MaintenanceModal = () => {
     <Dialog
       open={true} // Always open - cannot be closed
       onClose={() => {}} // Empty function - prevents closing
-      className="absolute inset-0 z-[250]" // Positioned below vanilla-cookieconsent (z-[300+]) but above other content
+      className={clsx(
+        "z-[250]",
+        mode === "scrollable" 
+          ? "absolute inset-0" // Positioned within parent container untuk scrollable
+          : "fixed inset-0"    // Fixed position covering entire screen untuk fixed
+      )}
     >
       {/* Backdrop covers the entire first viewport area */}
       <div
@@ -94,7 +112,9 @@ export const MaintenanceModal = () => {
             "w-full max-w-4xl mx-auto",
             "bg-white rounded-xl sm:rounded-2xl shadow-2xl",
             "p-4 sm:p-8 lg:p-12",
-            "max-h-[85vh] sm:max-h-[80vh] overflow-y-auto"
+            mode === "scrollable"
+              ? "max-h-[85vh] sm:max-h-[80vh] overflow-y-auto" // Constrained height untuk scrollable
+              : "max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"  // Full height untuk fixed
           )}
         >
           {/* Header */}
