@@ -1,12 +1,8 @@
 "use client";
 import { Dialog } from "@headlessui/react";
 import clsx from "clsx";
-import Link from "next/link";
-import { getDictionaries } from "@/core/modules/app/i18n";
 
 export const MaintenanceModal = () => {
-  const dictionaries = getDictionaries();
-
   return (
     <Dialog
       open={true} // Always open - cannot be closed
