@@ -1,3 +1,4 @@
+import { MaintenanceModal } from "@/core/components/maintenance_modal";
 import { UserProvider } from "@/core/modules/app/context";
 import { FooterApp } from "@/core/modules/app/fragments/footer";
 import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
@@ -24,6 +25,7 @@ export default function TripLayout({ children }: TripLayoutProps) {
 
         <FooterApp />
       </main>
+      <MaintenanceModal />
     </UserProvider>
   );
 }

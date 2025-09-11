@@ -5,6 +5,7 @@ import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_pro
 import { UserProvider } from "@/core/modules/app/context";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { PaymentSupportProvider } from "@/features/support/payment/context";
+import { MaintenanceModal } from "@/core/components/maintenance_modal";
 
 export const metadata: Metadata = {
   title: "Profile Registration",
@@ -31,7 +32,11 @@ export default async function ProtectedLayout({
   }
   return (
     <UserProvider>
-      <PaymentSupportProvider>{children}</PaymentSupportProvider>
+      <PaymentSupportProvider>
+        {children}
+
+        <MaintenanceModal />
+      </PaymentSupportProvider>
     </UserProvider>
   );
 }

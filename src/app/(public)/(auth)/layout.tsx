@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { MaintenanceModal } from "@/core/components/maintenance_modal";
 
 export const metadata: Metadata = {
   title: "Simply Hop",
@@ -25,7 +26,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
         token: token ?? "",
       },
     });
-  } catch { }
+  } catch {}
 
   if (res) {
     redirect(AppCollectionURL.public.home());
@@ -89,6 +90,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
       </div>
 
       {children}
+      <MaintenanceModal />
     </main>
   );
 }

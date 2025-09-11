@@ -5,7 +5,6 @@ import { ReactQueryProvider } from "@/core/utils/react_query";
 import { GlobalProvider, UserProvider } from "@/core/modules/app/context";
 import { ENVIRONMENTS } from "@/core/environments";
 import { AppContainer } from "@/core/modules/app/container";
-import { MaintenanceModal } from "@/core/components/maintenance_modal";
 
 const APP_NAME = "Simply Hop";
 const APP_DEFAULT_TITLE = "Simply Hop";
@@ -99,11 +98,7 @@ export default function RootLayout({
       <AppContainer className={`${inter.variable} antialiased`}>
         <ReactQueryProvider>
           <UserProvider>
-            <GlobalProvider>
-              {children}
-              {/* Maintenance Modal - Always visible, cannot be closed */}
-              <MaintenanceModal />
-            </GlobalProvider>
+            <GlobalProvider>{children}</GlobalProvider>
           </UserProvider>
         </ReactQueryProvider>
       </AppContainer>
