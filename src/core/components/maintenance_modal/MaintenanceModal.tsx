@@ -1,28 +1,55 @@
 "use client";
 import { Dialog } from "@headlessui/react";
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const MaintenanceModal = () => {
+  const [mounted, setMounted] = useState(false);
+
+  // Mount state untuk menghindari hydration issues
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Allow body scrolling to access footer
   useEffect(() => {
+    if (!mounted) return;
+
     const allowScrolling = () => {
-      // Force body to be scrollable
-      document.body.style.overflow = 'auto';
-      document.documentElement.style.overflow = 'auto';
+      // Force body and html to be scrollable dengan !important melalui style attribute
+      document.body.style.setProperty('overflow', 'auto', 'important');
+      document.body.style.setProperty('overflow-y', 'auto', 'important');
+      document.body.style.setProperty('position', 'static', 'important');
+      document.body.style.setProperty('height', 'auto', 'important');
+      
+      document.documentElement.style.setProperty('overflow', 'auto', 'important');
+      document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+      document.documentElement.style.setProperty('position', 'static', 'important');
+      document.documentElement.style.setProperty('height', 'auto', 'important');
       
       // Add custom class for additional styling if needed
       document.body.classList.add('maintenance-modal-open');
+      document.documentElement.classList.add('maintenance-modal-open');
     };
 
-    // Initial set
+    // Set initial state
     allowScrolling();
 
-    // Watch for any changes and reapply
+    // Watch for any changes and reapply dengan delay untuk memastikan override berhasil
+    const intervalId = setInterval(() => {
+      if (document.body.style.overflow !== 'auto' || 
+          document.documentElement.style.overflow !== 'auto') {
+        allowScrolling();
+      }
+    }, 100);
+
+    // Watch for any DOM changes that might affect scroll
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-          allowScrolling();
+        if (mutation.type === 'attributes' && 
+            (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+          // Delay untuk memastikan override berhasil setelah HeadlessUI
+          setTimeout(allowScrolling, 0);
         }
       });
     });
@@ -34,10 +61,17 @@ export const MaintenanceModal = () => {
 
     // Cleanup
     return () => {
+      clearInterval(intervalId);
       observer.disconnect();
       document.body.classList.remove('maintenance-modal-open');
+      document.documentElement.classList.remove('maintenance-modal-open');
+      // Jangan reset overflow di cleanup untuk menghindari flicker
     };
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) {
+    return null; // Prevent hydration mismatch
+  }
 
   return (
     <Dialog
