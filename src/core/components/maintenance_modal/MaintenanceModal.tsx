@@ -43,26 +43,24 @@ export const MaintenanceModal = () => {
     <Dialog
       open={true} // Always open - cannot be closed
       onClose={() => {}} // Empty function - prevents closing
-      className="relative z-[250]" // Positioned below vanilla-cookieconsent (z-[300+]) but above other content
+      className="absolute inset-0 z-[250]" // Positioned below vanilla-cookieconsent (z-[300+]) but above other content
     >
-      {/* Backdrop covers only the first viewport */}
+      {/* Backdrop covers the entire first viewport area */}
       <div
-        className="absolute top-0 left-0 right-0 bg-black/20 backdrop-blur-sm z-[250]"
-        style={{ height: '100vh' }}
+        className="absolute inset-0 bg-black/20 backdrop-blur-sm"
         aria-hidden="true"
       />
 
       {/* Container positioned within first viewport only */}
       <div 
-        className="absolute top-0 left-0 right-0 flex items-center justify-center p-2 sm:p-4 z-[251]"
-        style={{ height: '100vh' }}
+        className="absolute inset-0 flex items-center justify-center p-2 sm:p-4"
       >
         <Dialog.Panel
           className={clsx(
             "w-full max-w-4xl mx-auto",
             "bg-white rounded-xl sm:rounded-2xl shadow-2xl",
             "p-4 sm:p-8 lg:p-12",
-            "max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
+            "max-h-[85vh] sm:max-h-[80vh] overflow-y-auto"
           )}
         >
           {/* Header */}
