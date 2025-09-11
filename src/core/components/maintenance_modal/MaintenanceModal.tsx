@@ -41,7 +41,15 @@ export const MaintenanceModal = () => {
           {/* Content */}
           <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed">
             <p className="text-base sm:text-lg">
-              Seit 2017 begleiten uns zehntausende Nutzer:innen. Die Dieselfahrverbote 2019 ließen die Nachfrage nach Mitfahrmöglichkeiten deutlich steigen, Corona wiederum brachte einen deutlichen Einschnitt. Danach haben wir unsere Simply Hop neu sortiert, intuitiver, nutzerfreundlicher gemacht und auch als Web-App zur Verfügung gestellt.
+              2017 klein beginnend, begleitet uns seitdem eine stetig wachsende Zahl an Nutzer:innen.
+            </p>
+
+            <p className="text-base sm:text-lg">
+              Die Dieselfahrverbote 2019 ließen die Nachfrage nach Mitfahrmöglichkeiten deutlich steigen, Corona wiederum brachte einen deutlichen Einschnitt.
+            </p>
+
+            <p className="text-base sm:text-lg">
+              2023 haben wir unsere Simply Hop dann neu sortiert, 2024 / 2025 intuitiver, nutzerfreundlicher gemacht und auch als Web-App zur Verfügung gestellt.
             </p>
 
             <p className="text-base sm:text-lg">
@@ -49,7 +57,7 @@ export const MaintenanceModal = () => {
             </p>
 
             <p className="text-base sm:text-lg font-semibold text-gray-900">
-              Dennoch ist es Zeit für den nächsten Schritt:<br />
+              Nun ist ist es Zeit für den nächsten Schritt:<br />
               Simply Hop wird zur B2B-Plattform – begleitet von Sachsen Fährt Mit.
             </p>
 
