@@ -6,7 +6,7 @@ import { getDictionaries } from "@/core/modules/app/i18n";
 
 export const MaintenanceModal = () => {
   const dictionaries = getDictionaries();
-  
+
   return (
     <Dialog
       open={true} // Always open - cannot be closed
@@ -45,24 +45,33 @@ export const MaintenanceModal = () => {
           {/* Content */}
           <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed">
             <p className="text-base sm:text-lg">
-              2017 klein beginnend, begleitet uns seitdem eine stetig wachsende Zahl an Nutzer:innen.
+              2017 klein beginnend, begleitet uns seitdem eine stetig wachsende
+              Zahl an Nutzer:innen.
             </p>
 
             <p className="text-base sm:text-lg">
-              Die Dieselfahrverbote 2019 ließen die Nachfrage nach Mitfahrmöglichkeiten deutlich steigen, Corona wiederum brachte einen deutlichen Einschnitt.
+              Die Dieselfahrverbote 2019 ließen die Nachfrage nach
+              Mitfahrmöglichkeiten deutlich steigen, Corona wiederum brachte
+              einen deutlichen Einschnitt.
             </p>
 
             <p className="text-base sm:text-lg">
-              2023 haben wir unsere Simply Hop dann neu sortiert, 2024 / 2025 intuitiver, nutzerfreundlicher gemacht und auch als Web-App zur Verfügung gestellt.
+              2023 haben wir unsere Simply Hop dann neu sortiert, 2024 / 2025
+              intuitiver, nutzerfreundlicher gemacht und auch als Web-App zur
+              Verfügung gestellt.
             </p>
 
             <p className="text-base sm:text-lg">
-              <strong>Wo stehen wir Stand heute?:</strong> Wir blicken stolz auf eine fünfstellige Nutzerschaft und rund 250 vermittelte Fahrten pro Monat.
+              <strong>Wo stehen wir Stand heute?:</strong> Wir blicken stolz auf
+              eine fünfstellige Nutzerschaft und rund 250 vermittelte Fahrten
+              pro Monat.
             </p>
 
             <p className="text-base sm:text-lg font-semibold text-gray-900">
-              Nun ist ist es Zeit für den nächsten Schritt:<br />
-              Simply Hop wird zur B2B-Plattform – begleitet von Sachsen Fährt Mit.
+              Nun ist ist es Zeit für den nächsten Schritt:
+              <br />
+              Simply Hop wird zur B2B-Plattform – begleitet von Sachsen Fährt
+              Mit.
             </p>
 
             {/* Regional Section */}
@@ -79,7 +88,9 @@ export const MaintenanceModal = () => {
                   <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-green-700">
                     <li>• Für Unternehmen & ihre Mitarbeitenden</li>
                     <li>• Für Institutionen & Behörden</li>
-                    <li>• Für Sportvereine, Fans & Event-/Konzertbesucher:innen</li>
+                    <li>
+                      • Für Sportvereine, Fans & Event-/Konzertbesucher:innen
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -99,7 +110,9 @@ export const MaintenanceModal = () => {
                   <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-blue-700">
                     <li>• Für Unternehmen & ihre Mitarbeitenden</li>
                     <li>• Für Institutionen & Behörden</li>
-                    <li>• Für Sportvereine, Fans & Event-/Konzertbesucher:innen</li>
+                    <li>
+                      • Für Sportvereine, Fans & Event-/Konzertbesucher:innen
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -113,49 +126,6 @@ export const MaintenanceModal = () => {
               <p className="text-md sm:text-xl font-bold text-gray-900">
                 Einfach. Nachhaltig. Gemeinsam mobil.
               </p>
-            </div>
-
-            {/* Legal Links Section */}
-            <div className="border-t border-gray-200 pt-6 sm:pt-8 mt-6 sm:mt-8">
-              <div className="text-center mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
-                  {dictionaries.footer.middle.legal.title}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Weitere wichtige Informationen und rechtliche Hinweise
-                </p>
-              </div>
-              
-              {/* Legal Links Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-between gap-3 sm:gap-4">
-                {dictionaries.footer.middle.legal.items.map((item, itemIndex) => (
-                  <Link
-                    key={itemIndex}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={clsx(
-                      "group flex items-center justify-center",
-                      "px-3 py-2 sm:px-4 sm:py-3",
-                      "text-xs sm:text-sm font-medium",
-                      "text-gray-600 hover:text-blue-700",
-                      "rounded-lg sm:rounded-xl",
-                      "transition-all duration-200 ease-in-out",
-                    )}
-                  >
-                    <span className="text-center leading-tight">
-                      {item.name}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Copyright */}
-              <div className="text-center mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-100">
-                <p className="text-xs sm:text-sm text-gray-500">
-                  {dictionaries.footer.bottom.copyright}
-                </p>
-              </div>
             </div>
           </div>
         </Dialog.Panel>
