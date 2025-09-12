@@ -55,7 +55,7 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
     >
       {/* Backdrop covers the entire first viewport area */}
       <div
-        className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/20 backdrop-blur-sm pointer-events-none"
         aria-hidden="true"
       />
 

@@ -92,6 +92,9 @@ html.maintenance-modal-scrollable[style*="overflow"] {
   /* iOS Safari momentum scrolling fix */
   -webkit-transform: translateZ(0) !important;
   transform: translateZ(0) !important;
+  /* Ensure touch events work properly */
+  pointer-events: auto !important;
+  touch-action: pan-y !important; /* Allow vertical scrolling only */
 }
 
 /* Backup rule dengan wildcard untuk edge cases + iOS Safari */
