@@ -33,12 +33,9 @@ export default function TripLayout({ children }: TripLayoutProps) {
             </div>
           </main>
 
-          {/* Modal positioned within this first viewport */}
-          {/* <MaintenanceModal mode="scrollable" /> */}
           <ScrollMaintenanceModal />
         </div>
 
-        {/* Footer positioned after the first viewport, accessible by scrolling */}
         <FooterApp />
       </div>
     </UserProvider>
