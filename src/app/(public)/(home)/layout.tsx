@@ -1,4 +1,5 @@
 import { MaintenanceModal } from "@/core/components/maintenance_modal";
+import { ScrollMaintenanceModal } from "@/core/components/scroll_maintenance_modal/ScrollMaintenanceModal";
 import { UserProvider } from "@/core/modules/app/context";
 import { FooterApp } from "@/core/modules/app/fragments/footer";
 import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
@@ -21,16 +22,22 @@ export default function TripLayout({ children }: TripLayoutProps) {
         {/* First viewport area with modal */}
         <div className="relative h-screen overflow-hidden">
           <main className={clsx("w-full h-full")}>
-            <TopNavigation />
-            <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
+            <TopNavigation mode="maintenance" />
+            {/* TODO: uncomment when unmaintenance mode */}
+            {/* <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
+              {children}
+            </div> */}
+            {/* maintenance mode */}
+            <div className={clsx("w-full h-full overflow-y-auto")}>
               {children}
             </div>
           </main>
-          
+
           {/* Modal positioned within this first viewport */}
-          <MaintenanceModal mode="scrollable" />
+          {/* <MaintenanceModal mode="scrollable" /> */}
+          <ScrollMaintenanceModal />
         </div>
-        
+
         {/* Footer positioned after the first viewport, accessible by scrolling */}
         <FooterApp />
       </div>
