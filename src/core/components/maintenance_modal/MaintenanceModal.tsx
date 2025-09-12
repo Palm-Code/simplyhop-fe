@@ -69,7 +69,7 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
             "bg-white rounded-xl sm:rounded-2xl shadow-2xl",
             "p-4 sm:p-8 lg:p-12",
             mode === "scrollable"
-              ? "max-h-[60vh] sm:max-h-[80vh] overflow-y-auto" // Constrained height untuk scrollable
+              ? "max-h-[60vh] sm:max-h-[80vh] overflow-y-auto ios-safari-scroll" // iOS Safari class added
               : "max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"  // Full height untuk fixed
           )}
         >

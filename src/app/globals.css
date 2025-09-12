@@ -52,32 +52,52 @@ body {
   background-color: #333fff !important;
 }
 
-/* CSS-Only Maintenance Modal Scroll Fix - Efisien & Stabil */
-/* Base rule untuk scrollable mode */
+/* CSS-Only Maintenance Modal Scroll Fix - Efisien & Stabil + iOS Safari Support */
+/* Base rule untuk scrollable mode dengan iOS Safari touch scrolling */
 .maintenance-modal-scrollable {
   overflow: auto !important;
   overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important; /* Key fix untuk iOS Safari */
 }
 
-/* High specificity override untuk HeadlessUI dan inline styles */
+/* High specificity override untuk HeadlessUI dan inline styles + iOS Safari */
 body.maintenance-modal-scrollable,
 html.maintenance-modal-scrollable {
   overflow: auto !important;
   overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important; /* iOS Safari touch scrolling */
   position: static !important;
   height: auto !important;
 }
 
-/* Ultimate override untuk inline styles dengan attribute selector */
+/* Ultimate override untuk inline styles dengan attribute selector + iOS Safari */
 body.maintenance-modal-scrollable[style*="overflow"],
 html.maintenance-modal-scrollable[style*="overflow"] {
   overflow: auto !important;
   overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
-/* Backup rule dengan wildcard untuk edge cases */
+/* iOS Safari modal panel specific fixes */
+.maintenance-modal-scrollable .overflow-y-auto {
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important; /* Prevent iOS bounce scrolling */
+}
+
+/* iOS Safari scroll class untuk modal panel */
+.ios-safari-scroll {
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  overflow-y: auto !important;
+  /* iOS Safari momentum scrolling fix */
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+}
+
+/* Backup rule dengan wildcard untuk edge cases + iOS Safari */
 [class*="maintenance-modal-scrollable"] {
   overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
 /* Legacy maintenance modal rules - tetap ada untuk backward compatibility */
