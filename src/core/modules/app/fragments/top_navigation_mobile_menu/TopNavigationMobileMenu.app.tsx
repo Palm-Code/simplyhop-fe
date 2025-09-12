@@ -2,8 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,9 +13,9 @@ import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
 export const TopNavigationMobileMenu = () => {
   const { state } = useContext(GlobalContext);
   const dictionaries = getDictionaries();
-  const cookie = new Cookies();
-  const token = cookie.get("token");
-  const isLogin = !!token;
+  // const cookie = new Cookies();
+  // const token = cookie.get("token");
+  // const isLogin = !!token;
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -91,10 +90,8 @@ export const TopNavigationMobileMenu = () => {
                   {...menu}
                   href={
                     // MAINTENANCE MODE: Only "mitfahrt-suchen" is active, others are disabled
-                    menu.id === "mitfahrt-suchen"
-                      ? menu.href
-                      : "#" // Disabled - no navigation
-                    
+                    menu.id === "mitfahrt-suchen" ? menu.href : "#" // Disabled - no navigation
+
                     /* ORIGINAL CODE (COMMENTED FOR MAINTENANCE):
                     menu.id === "mitfahrt-anbieten" && !isLogin
                       ? AppCollectionURL.public.login()

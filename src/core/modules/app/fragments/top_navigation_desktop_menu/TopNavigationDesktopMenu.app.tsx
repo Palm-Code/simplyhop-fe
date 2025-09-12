@@ -2,8 +2,8 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import Cookies from "universal-cookie";
+// import { AppCollectionURL } from "@/core/utils/router/constants/app";
+// import Cookies from "universal-cookie";
 import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { GlobalContext } from "../../context";
@@ -12,9 +12,9 @@ import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
 export const TopNavigationDesktopMenu = () => {
   const { state } = React.useContext(GlobalContext);
   const dictionaries = getDictionaries();
-  const cookie = new Cookies();
-  const token = cookie.get("token");
-  const isLogin = !!token;
+  // const cookie = new Cookies();
+  // const token = cookie.get("token");
+  // const isLogin = !!token;
   const pathname = usePathname();
 
   return (
