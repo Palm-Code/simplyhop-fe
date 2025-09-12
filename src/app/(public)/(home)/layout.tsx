@@ -1,4 +1,3 @@
-import { MaintenanceModal } from "@/core/components/maintenance_modal";
 import { ScrollMaintenanceModal } from "@/core/components/scroll_maintenance_modal/ScrollMaintenanceModal";
 import { UserProvider } from "@/core/modules/app/context";
 import { FooterApp } from "@/core/modules/app/fragments/footer";
