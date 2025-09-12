@@ -34,34 +34,48 @@ export const TopNavigationDesktopMenu = () => {
           <Link
             {...menu}
             href={
+              // MAINTENANCE MODE: Only "mitfahrt-suchen" is active, others are disabled
+              menu.id === "mitfahrt-suchen"
+                ? menu.href
+                : "#" // Disabled - no navigation
+              
+              /* ORIGINAL CODE (COMMENTED FOR MAINTENANCE):
               menu.id !== "mitfahrt-suchen" && !isLogin
                 ? AppCollectionURL.public.login()
                 : menu.href
+              */
             }
             key={menuIndex}
+            // MAINTENANCE MODE: Add title for disabled menus
+            title={
+              menu.id !== "mitfahrt-suchen"
+                ? "This feature is temporarily disabled for maintenance"
+                : undefined
+            }
             className={clsx(
               "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
               "h-[90px]",
-              "cursor-pointer",
-              pathname === menu.href && menu.id === "mitfahrt-anbieten"
-                ? "text-[#333FFF]"
-                : pathname === menu.href
-                ? "text-green-500"
-                : pathname.includes(menu.id)
-                ? "text-green-500"
-                : menu.id === "mitfahrt-anbieten"
-                ? "text-[#5B5B5B] hover:text-[#333FFF]"
-                : "text-[#5B5B5B] hover:text-green-500",
+              // MAINTENANCE MODE: Only "mitfahrt-suchen" is clickable
+              menu.id === "mitfahrt-suchen"
+                ? "cursor-pointer"
+                : "cursor-not-allowed opacity-50",
+              // MAINTENANCE MODE: Simplified styling - only active menu gets normal colors
+              menu.id === "mitfahrt-suchen"
+                ? pathname === menu.href
+                  ? "text-green-500"
+                  : pathname.includes(menu.id)
+                  ? "text-green-500"
+                  : "text-[#5B5B5B] hover:text-green-500"
+                : "text-gray-400", // All other menus are grayed out
               "text-[1rem] font-semibold text-inter",
-              pathname === menu.href && menu.id === "mitfahrt-anbieten"
-                ? "border-b-[0.25rem] border-b-[#333FFF]"
-                : pathname === menu.href
-                ? "border-b-[0.25rem] border-b-green-500"
-                : pathname.includes(menu.id)
-                ? "border-b-[0.25rem] border-b-green-500"
-                : menu.id === "mitfahrt-anbieten"
-                ? "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-[#333FFF]"
-                : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500"
+              // MAINTENANCE MODE: Simplified border styling
+              menu.id === "mitfahrt-suchen"
+                ? pathname === menu.href
+                  ? "border-b-[0.25rem] border-b-green-500"
+                  : pathname.includes(menu.id)
+                  ? "border-b-[0.25rem] border-b-green-500"
+                  : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500"
+                : "border-b-[0.25rem] border-b-white" // All other menus have gray border
             )}
           >
             <SVGIcon
