@@ -52,7 +52,35 @@ body {
   background-color: #333fff !important;
 }
 
-/* Maintenance Modal Scroll Fix */
+/* CSS-Only Maintenance Modal Scroll Fix - Efisien & Stabil */
+/* Base rule untuk scrollable mode */
+.maintenance-modal-scrollable {
+  overflow: auto !important;
+  overflow-y: auto !important;
+}
+
+/* High specificity override untuk HeadlessUI dan inline styles */
+body.maintenance-modal-scrollable,
+html.maintenance-modal-scrollable {
+  overflow: auto !important;
+  overflow-y: auto !important;
+  position: static !important;
+  height: auto !important;
+}
+
+/* Ultimate override untuk inline styles dengan attribute selector */
+body.maintenance-modal-scrollable[style*="overflow"],
+html.maintenance-modal-scrollable[style*="overflow"] {
+  overflow: auto !important;
+  overflow-y: auto !important;
+}
+
+/* Backup rule dengan wildcard untuk edge cases */
+[class*="maintenance-modal-scrollable"] {
+  overflow: auto !important;
+}
+
+/* Legacy maintenance modal rules - tetap ada untuk backward compatibility */
 .maintenance-modal-open {
   overflow: auto !important;
   overflow-y: auto !important;

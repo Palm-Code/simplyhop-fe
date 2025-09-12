@@ -15,63 +15,19 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
     setMounted(true);
   }, []);
 
-  // Allow body scrolling to access footer (hanya untuk mode scrollable)
+  // CSS-Only approach untuk scrollable mode (lebih efisien dan stabil)
   useEffect(() => {
     if (!mounted) return;
 
     if (mode === "scrollable") {
-      // Logic yang sudah bekerja untuk scrollable mode
-      const allowScrolling = () => {
-        // Force body and html to be scrollable dengan !important melalui style attribute
-        document.body.style.setProperty('overflow', 'auto', 'important');
-        document.body.style.setProperty('overflow-y', 'auto', 'important');
-        document.body.style.setProperty('position', 'static', 'important');
-        document.body.style.setProperty('height', 'auto', 'important');
-        
-        document.documentElement.style.setProperty('overflow', 'auto', 'important');
-        document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
-        document.documentElement.style.setProperty('position', 'static', 'important');
-        document.documentElement.style.setProperty('height', 'auto', 'important');
-        
-        // Add custom class for additional styling if needed
-        document.body.classList.add('maintenance-modal-open');
-        document.documentElement.classList.add('maintenance-modal-open');
-      };
-
-      // Set initial state
-      allowScrolling();
-
-      // Watch for any changes and reapply dengan delay untuk memastikan override berhasil
-      const intervalId = setInterval(() => {
-        if (document.body.style.overflow !== 'auto' || 
-            document.documentElement.style.overflow !== 'auto') {
-          allowScrolling();
-        }
-      }, 100);
-
-      // Watch for any DOM changes that might affect scroll
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.type === 'attributes' && 
-              (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-            // Delay untuk memastikan override berhasil setelah HeadlessUI
-            setTimeout(allowScrolling, 0);
-          }
-        });
-      });
-
-      observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
+      // Hanya set class sekali, CSS handle sisanya - no polling, no observer
+      document.body.classList.add('maintenance-modal-scrollable');
+      document.documentElement.classList.add('maintenance-modal-scrollable');
 
       // Cleanup untuk scrollable mode
       return () => {
-        clearInterval(intervalId);
-        observer.disconnect();
-        document.body.classList.remove('maintenance-modal-open');
-        document.documentElement.classList.remove('maintenance-modal-open');
-        // Jangan reset overflow di cleanup untuk menghindari flicker
+        document.body.classList.remove('maintenance-modal-scrollable');
+        document.documentElement.classList.remove('maintenance-modal-scrollable');
       };
     } else {
       // Fixed mode - biarkan HeadlessUI handle scroll blocking
