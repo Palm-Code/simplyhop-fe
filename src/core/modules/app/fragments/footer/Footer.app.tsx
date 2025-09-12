@@ -148,6 +148,17 @@ export const FooterApp = () => {
                       ? "/login"
                       : item.href;
                   return (
+                    // DISABLED: Link functionality temporarily disabled
+                    <span
+                      key={itemIndex}
+                      className={clsx(
+                        "text-gray-400 cursor-not-allowed text-[0.875rem] font-normal opacity-50 select-none"
+                      )}
+                      title="This feature is temporarily disabled"
+                    >
+                      {item.name}
+                    </span>
+                    /* ORIGINAL CODE (DISABLED):
                     <Link
                       key={itemIndex}
                       href={link}
@@ -157,6 +168,7 @@ export const FooterApp = () => {
                     >
                       {item.name}
                     </Link>
+                    */
                   );
                 }
               )}
