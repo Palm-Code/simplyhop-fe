@@ -147,6 +147,19 @@ export const FooterApp = () => {
                       : !state.profile
                       ? "/login"
                       : item.href;
+                  if (item.id === "Mitfahrt suchen") {
+                    return (
+                      <Link
+                        key={itemIndex}
+                        href={link}
+                        className={clsx(
+                          "text-[#5B5B5B] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    );
+                  }
                   return (
                     // DISABLED: Link functionality temporarily disabled
                     <span
@@ -158,17 +171,6 @@ export const FooterApp = () => {
                     >
                       {item.name}
                     </span>
-                    /* ORIGINAL CODE (DISABLED):
-                    <Link
-                      key={itemIndex}
-                      href={link}
-                      className={clsx(
-                        "text-[#5B5B5B] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                    */
                   );
                 }
               )}
