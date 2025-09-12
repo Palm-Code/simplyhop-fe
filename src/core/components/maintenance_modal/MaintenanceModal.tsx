@@ -24,25 +24,10 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
       document.body.classList.add('maintenance-modal-scrollable');
       document.documentElement.classList.add('maintenance-modal-scrollable');
 
-      // iOS Safari specific enhancement
-      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent);
-      if (isIOSSafari) {
-        // Apply iOS Safari parent container optimization
-        const parentContainer = document.querySelector('.relative.h-screen.overflow-hidden');
-        if (parentContainer) {
-          parentContainer.classList.add('maintenance-modal-parent-ios');
-        }
-      }
-
       // Cleanup untuk scrollable mode
       return () => {
         document.body.classList.remove('maintenance-modal-scrollable');
         document.documentElement.classList.remove('maintenance-modal-scrollable');
-        // Cleanup iOS Safari classes
-        const parentContainer = document.querySelector('.maintenance-modal-parent-ios');
-        if (parentContainer) {
-          parentContainer.classList.remove('maintenance-modal-parent-ios');
-        }
       };
     } else {
       // Fixed mode - biarkan HeadlessUI handle scroll blocking
@@ -70,7 +55,7 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
     >
       {/* Backdrop covers the entire first viewport area */}
       <div
-        className="absolute inset-0 bg-black/20 backdrop-blur-sm pointer-events-none"
+        className="absolute inset-0 bg-black/20 backdrop-blur-sm"
         aria-hidden="true"
       />
 

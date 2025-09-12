@@ -84,48 +84,14 @@ html.maintenance-modal-scrollable[style*="overflow"] {
   overscroll-behavior: contain !important; /* Prevent iOS bounce scrolling */
 }
 
-/* iOS Safari specific scrolling fix */
+/* iOS Safari scroll class untuk modal panel */
 .ios-safari-scroll {
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-/* Enhanced touch scrolling for iOS */
-.maintenance-modal-scrollable .ios-safari-scroll {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  will-change: scroll-position;
-}
-
-/* Parent container iOS Safari enhancement - mempertahankan overflow-hidden tapi optimize untuk touch */
-.maintenance-modal-parent-ios {
-  -webkit-overflow-scrolling: touch;
-  transform: translateZ(0); /* Hardware acceleration */
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-/* Modal container specific iOS Safari optimization */
-@supports (-webkit-touch-callout: none) { /* iOS Safari detection */
-  .maintenance-modal-scrollable {
-    /* Force hardware acceleration pada modal container */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
-  }
-  
-  .maintenance-modal-scrollable .dialog-panel {
-    /* Optimize scrolling dalam modal panel */
-    position: relative;
-    -webkit-overflow-scrolling: touch;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    will-change: transform, scroll-position;
-    /* Pastikan momentum scrolling bekerja */
-    -webkit-momentum-scrolling: touch;
-  }
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  overflow-y: auto !important;
+  /* iOS Safari momentum scrolling fix */
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
 }
 
 /* Backup rule dengan wildcard untuk edge cases + iOS Safari */
