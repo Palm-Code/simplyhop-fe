@@ -1,3 +1,11 @@
+export interface EventCategory {
+  id: string;
+  name: string;
+  color: "blue" | "green" | "red" | "purple" | "yellow" | "indigo" | "pink" | "gray";
+  icon?: string;
+  description?: string;
+}
+
 export interface CalendarEvent {
   id: string;
   title: string;
@@ -9,6 +17,11 @@ export interface CalendarEvent {
   calendarId?: string; // For multiple calendars
   isAllDay?: boolean;
   recurring?: "none" | "daily" | "weekly" | "monthly" | "yearly";
+  categoryId?: string; // Link to category
+  tags?: string[]; // Additional tags
+  priority?: "low" | "medium" | "high";
+  location?: string;
+  attendees?: string[];
 }
 
 export type CalendarView = "month" | "week" | "day";
@@ -18,6 +31,7 @@ export interface CalendarProps {
   selectedDate?: Date;
   events?: CalendarEvent[];
   calendars?: Calendar[]; // Multiple calendars support
+  categories?: EventCategory[]; // Event categories
   onDateSelect?: (date: Date) => void;
   onEventClick?: (event: CalendarEvent) => void;
   onEventCreate?: (date: Date, time?: string) => void;
@@ -82,6 +96,11 @@ export interface EventFormData {
   color?: CalendarEvent["color"];
   isAllDay?: boolean;
   calendarId?: string;
+  categoryId?: string;
+  tags?: string[];
+  priority?: "low" | "medium" | "high";
+  location?: string;
+  attendees?: string[];
 }
 
 export interface EventModalProps {
@@ -89,6 +108,7 @@ export interface EventModalProps {
   event?: CalendarEvent;
   selectedDate?: Date;
   calendars?: Calendar[];
+  categories?: EventCategory[];
   onClose: () => void;
   onSave: (eventData: EventFormData) => void;
   onDelete?: (eventId: string) => void;

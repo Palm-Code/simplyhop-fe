@@ -43,6 +43,20 @@ export const EventModal = ({
     }
   }, [isOpen, event, selectedDate, calendars]);
 
+  // Handle ESC key to close modal
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [isOpen, onClose]);
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 

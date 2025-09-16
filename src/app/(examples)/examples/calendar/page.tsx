@@ -1,220 +1,550 @@
 "use client";
-import * as React from "react";
-import { Calendar, CalendarEventType, EventFormData } from "@/core/components/calendar";
+import React from "react";
+import clsx from "clsx";
+import { 
+  Calendar, 
+  MiniCalendar, 
+  CalendarEventType,
+  SearchFilterBar,
+  CategoryManager,
+  EventReminders,
+  TouchGestureWrapper,
+  ImportExport,
+  PrintCalendar,
+  SharingFeatures,
+  EventCategory,
+  EventReminder,
+  CalendarShare
+} from "@/core/components/calendar";
 
-export default function CalendarPage() {
-  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
+// Sample events data with enhanced properties
+const sampleEvents: CalendarEventType[] = [
+  {
+    id: "1",
+    title: "Team Meeting",
+    date: new Date(2024, 11, 15),
+    startTime: "10:00",
+    endTime: "11:00",
+    color: "blue",
+    description: "Weekly team sync meeting",
+    categoryId: "work",
+    tags: ["meeting", "team"],
+    priority: "high",
+    location: "Conference Room A",
+    attendees: ["john@example.com", "jane@example.com"],
+  },
+  {
+    id: "2", 
+    title: "Project Review",
+    date: new Date(2024, 11, 16),
+    startTime: "14:00",
+    endTime: "16:00",
+    color: "green",
+    description: "Review project milestones",
+    categoryId: "work",
+    tags: ["project", "review"],
+    priority: "medium",
+    location: "Meeting Room B",
+  },
+  {
+    id: "3",
+    title: "Client Presentation",
+    date: new Date(2024, 11, 18),
+    startTime: "09:00",
+    endTime: "10:30",
+    color: "red",
+    description: "Present Q4 results to client",
+    categoryId: "work",
+    tags: ["client", "presentation"],
+    priority: "high",
+    location: "Client Office",
+  },
+  {
+    id: "4",
+    title: "Personal Workout",
+    date: new Date(2024, 11, 19),
+    startTime: "15:00",
+    endTime: "16:30",
+    color: "purple",
+    description: "Gym session",
+    categoryId: "personal",
+    tags: ["health", "fitness"],
+    priority: "medium",
+  },
+  {
+    id: "5",
+    title: "Family Dinner",
+    date: new Date(2024, 11, 22),
+    startTime: "18:00",
+    endTime: "20:00",
+    color: "yellow",
+    description: "Dinner with family",
+    categoryId: "personal",
+    tags: ["family", "dinner"],
+    priority: "high",
+    location: "Home",
+  }
+];
 
-  // Sample events data with better structure
-  const [events, setEvents] = React.useState<CalendarEventType[]>([
-    {
-      id: "1",
-      title: "Team Meeting",
-      description: "Weekly team sync and project updates",
-      date: new Date(),
-      startTime: "10:00",
-      endTime: "11:00",
-      color: "blue",
-      isAllDay: false,
-    },
-    {
-      id: "2",
-      title: "Project Review",
-      description: "Quarterly project review with stakeholders",
-      date: new Date(new Date().setDate(new Date().getDate() + 1)),
-      startTime: "14:00",
-      endTime: "15:30",
-      color: "green",
-      isAllDay: false,
-    },
-    {
-      id: "3",
-      title: "Client Call",
-      description: "Important client presentation",
-      date: new Date(new Date().setDate(new Date().getDate() + 3)),
-      startTime: "09:00",
-      endTime: "10:00",
-      color: "red",
-      isAllDay: false,
-    },
-    {
-      id: "4",
-      title: "Workshop",
-      description: "Full day design thinking workshop",
-      date: new Date(new Date().setDate(new Date().getDate() + 5)),
-      isAllDay: true,
-      color: "purple",
-    },
-    {
-      id: "5",
-      title: "Lunch Break",
-      date: new Date(new Date().setDate(new Date().getDate() + 2)),
-      startTime: "12:00",
-      endTime: "13:00",
-      color: "yellow",
-      isAllDay: false,
-    },
-  ]);
+// Sample categories
+const sampleCategories: EventCategory[] = [
+  {
+    id: "work",
+    name: "Work",
+    color: "blue",
+    icon: "💼",
+    description: "Work-related events and meetings",
+  },
+  {
+    id: "personal",
+    name: "Personal",
+    color: "green",
+    icon: "🏠",
+    description: "Personal activities and appointments",
+  },
+  {
+    id: "health",
+    name: "Health",
+    color: "red",
+    icon: "🏥",
+    description: "Health and fitness activities",
+  },
+];
 
-  // Sample calendars for multiple calendar support
-  const [calendars] = React.useState([
-    { id: "personal", name: "Personal", color: "blue", visible: true },
-    { id: "work", name: "Work", color: "green", visible: true },
-    { id: "family", name: "Family", color: "purple", visible: true },
-  ]);
+// Sample reminders
+const sampleReminders: EventReminder[] = [
+  {
+    id: "r1",
+    eventId: "1",
+    type: "notification",
+    timing: 15,
+    message: "Team meeting starts in 15 minutes",
+    isActive: true,
+  },
+  {
+    id: "r2",
+    eventId: "3",
+    type: "popup",
+    timing: 30,
+    isActive: true,
+  },
+];
 
-  const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-    console.log("Selected date:", date);
-  };
+// Sample shares
+const sampleShares: CalendarShare[] = [
+  {
+    id: "s1",
+    name: "Team Calendar",
+    shareType: "public",
+    permissions: "view",
+    events: sampleEvents.filter(e => e.categoryId === "work"),
+    createdAt: new Date(2024, 10, 1),
+    accessCount: 24,
+  },
+];
 
-  const handleEventClick = (event: CalendarEventType) => {
-    console.log("Event clicked:", event);
-    alert(`Event: ${event.title}\n${event.description || ""}\nDate: ${event.date.toLocaleDateString()}\n${event.isAllDay ? "All day" : `Time: ${event.startTime} - ${event.endTime}`}`);
-  };
+export default function CalendarExamplePage() {
+  const [events, setEvents] = React.useState<CalendarEventType[]>(sampleEvents);
+  const [filteredEvents, setFilteredEvents] = React.useState<CalendarEventType[]>(sampleEvents);
+  const [categories, setCategories] = React.useState<EventCategory[]>(sampleCategories);
+  const [reminders, setReminders] = React.useState<EventReminder[]>(sampleReminders);
+  const [shares, setShares] = React.useState<CalendarShare[]>(sampleShares);
+  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(new Date());
+  const [activeTab, setActiveTab] = React.useState<"calendar" | "categories" | "reminders" | "import" | "print" | "share">("calendar");
 
-  const handleEventCreate = (date: Date, time?: string) => {
+  // Handle event CRUD operations
+  const handleCreateEvent = (date: Date, time?: string) => {
+    // This will be handled by the Calendar component's modal
     console.log("Create event for date:", date, "time:", time);
-    // Event creation is handled by the modal
   };
 
-  const handleEventEdit = (event: CalendarEventType) => {
-    console.log("Edit event:", event);
-    // Event editing is handled by the modal
-  };
-
-  const handleEventDelete = (event: CalendarEventType) => {
-    console.log("Delete event:", event);
-    setEvents(prevEvents => prevEvents.filter(e => e.id !== event.id));
-  };
-
-  const handleEventMove = (eventId: string, newDate: Date) => {
-    console.log("Move event:", eventId, "to:", newDate);
-    setEvents(prevEvents =>
-      prevEvents.map(event =>
-        event.id === eventId ? { ...event, date: newDate } : event
-      )
+  const handleUpdateEvent = (eventData: CalendarEventType) => {
+    const updatedEvents = events.map((event) =>
+      event.id === eventData.id ? { ...event, ...eventData } : event
     );
+    setEvents(updatedEvents);
+    setFilteredEvents(updatedEvents);
   };
 
-  // Handle modal save (create/update)
-  const handleEventSave = (eventData: EventFormData) => {
-    // This would be called from the Calendar component internally
-    // For demonstration, we'll handle it here
-    const newEvent: CalendarEventType = {
-      id: `event-${Date.now()}`,
-      ...eventData,
-    };
-    setEvents(prevEvents => [...prevEvents, newEvent]);
+  const handleDeleteEvent = (event: CalendarEventType) => {
+    const updatedEvents = events.filter((e) => e.id !== event.id);
+    setEvents(updatedEvents);
+    setFilteredEvents(updatedEvents);
   };
+
+  // Category management
+  const handleCreateCategory = (category: Omit<EventCategory, "id">) => {
+    const newCategory = { ...category, id: `cat-${Date.now()}` };
+    setCategories(prev => [...prev, newCategory]);
+  };
+
+  const handleUpdateCategory = (categoryId: string, updates: Partial<EventCategory>) => {
+    setCategories(prev => prev.map(cat => 
+      cat.id === categoryId ? { ...cat, ...updates } : cat
+    ));
+  };
+
+  const handleDeleteCategory = (categoryId: string) => {
+    setCategories(prev => prev.filter(cat => cat.id !== categoryId));
+    // Remove category from events
+    setEvents(prev => prev.map(event => 
+      event.categoryId === categoryId ? { ...event, categoryId: undefined } : event
+    ));
+  };
+
+  // Reminder management
+  const handleCreateReminder = (reminder: Omit<EventReminder, "id">) => {
+    const newReminder = { ...reminder, id: `rem-${Date.now()}` };
+    setReminders(prev => [...prev, newReminder]);
+  };
+
+  const handleUpdateReminder = (reminderId: string, updates: Partial<EventReminder>) => {
+    setReminders(prev => prev.map(rem => 
+      rem.id === reminderId ? { ...rem, ...updates } : rem
+    ));
+  };
+
+  const handleDeleteReminder = (reminderId: string) => {
+    setReminders(prev => prev.filter(rem => rem.id !== reminderId));
+  };
+
+  // Import/Export
+  const handleImportEvents = (importedEvents: CalendarEventType[]) => {
+    setEvents(prev => [...prev, ...importedEvents]);
+    setFilteredEvents(prev => [...prev, ...importedEvents]);
+  };
+
+  // Sharing
+  const handleCreateShare = (share: Omit<CalendarShare, "id" | "createdAt" | "accessCount">) => {
+    const newShare = {
+      ...share,
+      id: `share-${Date.now()}`,
+      createdAt: new Date(),
+      accessCount: 0,
+    };
+    setShares(prev => [...prev, newShare]);
+  };
+
+  const handleUpdateShare = (shareId: string, updates: Partial<CalendarShare>) => {
+    setShares(prev => prev.map(share => 
+      share.id === shareId ? { ...share, ...updates } : share
+    ));
+  };
+
+  const handleDeleteShare = (shareId: string) => {
+    setShares(prev => prev.filter(share => share.id !== shareId));
+  };
+
+  // Handle mini calendar date selection
+  const handleMiniCalendarDateSelect = (date: Date) => {
+    setSelectedDate(date);
+    setCurrentDate(date);
+  };
+
+  // Handle search and filter
+  const handleFilteredEvents = (filtered: CalendarEventType[]) => {
+    setFilteredEvents(filtered);
+  };
+
+  // Get dates that have events for the mini calendar
+  const eventDates = events.map(event => event.date);
+
+  const tabButtons = [
+    { id: "calendar", label: "Calendar", icon: "📅" },
+    { id: "categories", label: "Categories", icon: "🏷️" },
+    { id: "reminders", label: "Reminders", icon: "🔔" },
+    { id: "import", label: "Import/Export", icon: "📁" },
+    { id: "print", label: "Print", icon: "🖨️" },
+    { id: "share", label: "Share", icon: "🔗" },
+  ] as const;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Advanced Calendar Example
-          </h1>
-          <p className="text-gray-600 mb-4">
-            A feature-rich calendar component with drag & drop, event management, and more
-          </p>
-          
-          {/* Feature highlights */}
-          <div className="flex flex-wrap gap-2 text-sm">
-            <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">
-              ✨ Drag & Drop Events
-            </span>
-            <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full">
-              📝 Event Creation/Editing
-            </span>
-            <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full">
-              🎨 Color Coding
-            </span>
-            <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full">
-              📅 Multiple Views
-            </span>
-            <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full">
-              📱 Responsive Design
-            </span>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Calendar</h1>
+              <p className="mt-1 text-sm text-gray-600">
+                Manage your schedule and events with our Google Calendar-like interface
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        {/* Tab Navigation */}
+        <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="flex overflow-x-auto">
+            {tabButtons.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={clsx(
+                  "flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap",
+                  activeTab === tab.id
+                    ? "border-blue-500 text-blue-600 bg-blue-50"
+                    : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                )}
+              >
+                <span>{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Calendar Component */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <Calendar
-            selectedDate={selectedDate}
-            events={events}
-            calendars={calendars}
-            enableDragDrop={true}
-            onDateSelect={handleDateSelect}
-            onEventClick={handleEventClick}
-            onEventCreate={handleEventCreate}
-            onEventEdit={handleEventEdit}
-            onEventDelete={handleEventDelete}
-            onEventMove={handleEventMove}
-            className="h-[600px]"
-          />
-        </div>
+        {/* Tab Content */}
+        {activeTab === "calendar" && (
+          <>
+            {/* Search and Filter Bar */}
+            <div className="mb-6">
+              <SearchFilterBar
+                events={events}
+                onFilteredEvents={handleFilteredEvents}
+              />
+            </div>
 
-        {/* Info panels */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          {/* Selected Date Info */}
-          <div className="bg-white rounded-lg shadow p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Selected Date
-            </h3>
-            <p className="text-gray-600">
-              {selectedDate.toLocaleDateString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-            
-            {/* Events for selected date */}
-            <div className="mt-4">
-              <h4 className="font-medium text-gray-900 mb-2">Events for this date:</h4>
-              <div className="space-y-2">
-                {events
-                  .filter(event => 
-                    event.date.toDateString() === selectedDate.toDateString()
-                  )
-                  .map(event => (
-                    <div key={event.id} className="flex items-center gap-2 text-sm">
-                      <div className={`w-3 h-3 rounded-full bg-${event.color}-500`} />
-                      <span className="font-medium">{event.title}</span>
-                      {!event.isAllDay && event.startTime && (
-                        <span className="text-gray-500">({event.startTime})</span>
-                      )}
+            <TouchGestureWrapper
+              onSwipeLeft={() => setCurrentDate(prev => new Date(prev.getTime() + 24 * 60 * 60 * 1000))}
+              onSwipeRight={() => setCurrentDate(prev => new Date(prev.getTime() - 24 * 60 * 60 * 1000))}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                {/* Sidebar with Mini Calendar */}
+                <div className="lg:col-span-1 space-y-6">
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-1">
+                    <MiniCalendar
+                      selectedDate={selectedDate}
+                      currentDate={currentDate}
+                      onDateSelect={handleMiniCalendarDateSelect}
+                      highlightedDates={eventDates}
+                    />
+                  </div>
+
+                  {/* Quick Stats */}
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                    <h3 className="text-sm font-semibold text-gray-900 mb-3">Quick Stats</h3>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Total Events:</span>
+                        <span className="font-medium">{events.length}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">This Month:</span>
+                        <span className="font-medium">
+                          {events.filter(event => {
+                            const eventDate = new Date(event.date);
+                            const currentMonth = new Date().getMonth();
+                            const currentYear = new Date().getFullYear();
+                            return eventDate.getMonth() === currentMonth && eventDate.getFullYear() === currentYear;
+                          }).length}
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Filtered:</span>
+                        <span className="font-medium">{filteredEvents.length}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Categories:</span>
+                        <span className="font-medium">{categories.length}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Reminders:</span>
+                        <span className="font-medium">{reminders.filter(r => r.isActive).length}</span>
+                      </div>
                     </div>
-                  ))}
-                {events.filter(event => 
-                  event.date.toDateString() === selectedDate.toDateString()
-                ).length === 0 && (
-                  <p className="text-gray-500 text-sm">No events scheduled</p>
-                )}
+                  </div>
+                </div>
+
+                {/* Main Calendar */}
+                <div className="lg:col-span-4">
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <Calendar
+                      events={filteredEvents}
+                      categories={categories}
+                      selectedDate={selectedDate}
+                      onDateSelect={setSelectedDate}
+                      onEventCreate={handleCreateEvent}
+                      onEventEdit={handleUpdateEvent}
+                      onEventDelete={handleDeleteEvent}
+                      className="min-h-[800px]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </TouchGestureWrapper>
+          </>
+        )}
+
+        {activeTab === "categories" && (
+          <CategoryManager
+            categories={categories}
+            onCategoryCreate={handleCreateCategory}
+            onCategoryUpdate={handleUpdateCategory}
+            onCategoryDelete={handleDeleteCategory}
+          />
+        )}
+
+        {activeTab === "reminders" && (
+          <EventReminders
+            events={events}
+            reminders={reminders}
+            onReminderCreate={handleCreateReminder}
+            onReminderUpdate={handleUpdateReminder}
+            onReminderDelete={handleDeleteReminder}
+          />
+        )}
+
+        {activeTab === "import" && (
+          <ImportExport
+            events={events}
+            onImportEvents={handleImportEvents}
+          />
+        )}
+
+        {activeTab === "print" && (
+          <PrintCalendar
+            events={filteredEvents}
+            currentDate={currentDate}
+            view="month"
+          />
+        )}
+
+        {activeTab === "share" && (
+          <SharingFeatures
+            events={events}
+            existingShares={shares}
+            onCreateShare={handleCreateShare}
+            onUpdateShare={handleUpdateShare}
+            onDeleteShare={handleDeleteShare}
+          />
+        )}
+
+        {/* Feature Highlights */}
+        <div className="mt-12 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Calendar Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Multiple Views</h3>
+                <p className="text-sm text-gray-600">Month, Week, and Day views with seamless switching</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Drag & Drop</h3>
+                <p className="text-sm text-gray-600">Move events between dates with intuitive drag and drop</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Search & Filter</h3>
+                <p className="text-sm text-gray-600">Find events quickly with text search and color filtering</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Event Management</h3>
+                <p className="text-sm text-gray-600">Create, edit, and delete events with detailed forms</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Keyboard Shortcuts</h3>
+                <p className="text-sm text-gray-600">Navigate efficiently with keyboard shortcuts and hotkeys</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Mini Calendar</h3>
+                <p className="text-sm text-gray-600">Quick date navigation with compact sidebar calendar</p>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Instructions */}
-          <div className="bg-white rounded-lg shadow p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">
-              How to Use
-            </h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>• <strong>Click dates</strong> to select them</li>
-              <li>• <strong>Click events</strong> to view details</li>
-              <li>• <strong>Click + button</strong> on dates to create events</li>
-              <li>• <strong>Hover events</strong> to see edit/delete options</li>
-              <li>• <strong>Drag events</strong> between dates to move them</li>
-              <li>• <strong>Use view switcher</strong> to change calendar view</li>
-              <li>• <strong>Click Today</strong> to navigate to current date</li>
-            </ul>
+        {/* Keyboard Shortcuts Guide */}
+        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Keyboard Shortcuts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Month View</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">1</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Week View</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">2</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Day View</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">3</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Previous Period</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">←</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Next Period</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">→</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Go to Today</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">T</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Create Event</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">N</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Close Modal</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">Esc</kbd>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-sm text-gray-600">Confirm Action</span>
+              <kbd className="px-2 py-1 bg-gray-100 text-xs font-mono rounded">Enter</kbd>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

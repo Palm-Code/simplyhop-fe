@@ -6,7 +6,9 @@ import { CalendarProps, CalendarView, CalendarEvent, EventFormData } from "./typ
 import { CalendarHeader } from "./CalendarHeader";
 import { CalendarGrid } from "./CalendarGrid";
 import { WeekView } from "./WeekView";
+import { DayView } from "./DayView";
 import { EventModal } from "./EventModal";
+import { useKeyboardNavigation } from "./useKeyboardNavigation";
 
 export const Calendar = ({
   view = "month",
@@ -79,6 +81,20 @@ export const Calendar = ({
     setInternalSelectedDate(today);
     onDateSelect?.(today);
   };
+
+  // Keyboard navigation
+  const { shortcuts } = useKeyboardNavigation({
+    currentDate,
+    currentView,
+    onDateChange: setCurrentDate,
+    onViewChange: setCurrentView,
+    onCreateEvent: () => {
+      setModalSelectedDate(internalSelectedDate || currentDate);
+      setEditingEvent(undefined);
+      setIsEventModalOpen(true);
+    },
+    onToday: handleToday,
+  });
 
   const handleDateSelect = (date: Date) => {
     setInternalSelectedDate(date);
@@ -182,11 +198,19 @@ export const Calendar = ({
           />
         );
       case "day":
-        // TODO: Implement day view
         return (
-          <div className="flex-1 flex items-center justify-center text-gray-500">
-            Day view coming soon...
-          </div>
+          <DayView
+            currentDate={currentDate}
+            selectedDate={internalSelectedDate}
+            events={events}
+            enableDragDrop={enableDragDrop}
+            onDateSelect={handleDateSelect}
+            onEventClick={handleEventClick}
+            onEventEdit={handleEventEdit}
+            onEventDelete={handleEventDelete}
+            onEventMove={handleEventMove}
+            onEventCreate={handleEventCreate}
+          />
         );
       default:
         return null;
