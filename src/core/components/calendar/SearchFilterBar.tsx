@@ -27,6 +27,15 @@ export const SearchFilterBar = ({
     return Array.from(colors);
   }, [events]);
 
+  // Stable callback refs to avoid re-renders
+  const onFilteredEventsRef = React.useRef(onFilteredEvents);
+  const onSearchChangeRef = React.useRef(onSearchChange);
+  
+  React.useEffect(() => {
+    onFilteredEventsRef.current = onFilteredEvents;
+    onSearchChangeRef.current = onSearchChange;
+  });
+
   // Filter events based on search and filters
   React.useEffect(() => {
     let filtered = [...events];
@@ -72,9 +81,9 @@ export const SearchFilterBar = ({
         break;
     }
 
-    onFilteredEvents(filtered);
-    onSearchChange?.(searchTerm);
-  }, [events, searchTerm, selectedColors, dateRange, onFilteredEvents, onSearchChange]);
+    onFilteredEventsRef.current(filtered);
+    onSearchChangeRef.current?.(searchTerm);
+  }, [events, searchTerm, selectedColors, dateRange]); // Removed onFilteredEvents and onSearchChange from dependencies
 
   const handleColorToggle = (color: string) => {
     setSelectedColors(prev => 
