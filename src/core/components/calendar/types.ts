@@ -35,6 +35,7 @@ export interface CalendarProps {
   onDateSelect?: (date: Date) => void;
   onEventClick?: (event: CalendarEvent) => void;
   onEventCreate?: (date: Date, time?: string) => void;
+  onEventSave?: (eventData: EventFormData) => void; // For saving new/edited events
   onEventEdit?: (event: CalendarEvent) => void;
   onEventDelete?: (event: CalendarEvent) => void;
   onEventMove?: (eventId: string, newDate: Date) => void; // Drag & drop

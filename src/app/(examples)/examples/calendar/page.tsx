@@ -51,8 +51,40 @@ export default function CalendarExamplePage() {
 
   // Handle event CRUD operations
   const handleCreateEvent = (date: Date, time?: string) => {
-    // This will be handled by the Calendar component's modal
-    console.log("Create event for date:", date, "time:", time);
+    // This function should actually add the event to state
+    // But since we're using the EventModal, the actual creation 
+    // happens in handleEventCreate which receives the full event data
+    console.log("Create event trigger for date:", date, "time:", time);
+  };
+
+  const handleEventCreate = (eventData: any) => {
+    console.log("handleEventCreate called with:", eventData);
+    
+    // Generate a unique ID for the new event
+    const newEvent: CalendarEventType = {
+      id: `event-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: eventData.title,
+      description: eventData.description || "",
+      date: new Date(eventData.date),
+      startTime: eventData.startTime || "",
+      endTime: eventData.endTime || "",
+      color: eventData.color || "blue",
+      isAllDay: eventData.isAllDay || false,
+      categoryId: eventData.categoryId,
+      tags: eventData.tags || [],
+      priority: eventData.priority || "medium",
+      location: eventData.location || "",
+      attendees: eventData.attendees || [],
+    };
+
+    console.log("Creating new event:", newEvent);
+
+    // Add to state
+    const updatedEvents = [...events, newEvent];
+    setEvents(updatedEvents);
+    setFilteredEvents(updatedEvents);
+    
+    console.log("Events after creation:", updatedEvents.length, "total events");
   };
 
   const handleUpdateEvent = (eventData: CalendarEventType) => {
@@ -336,6 +368,7 @@ export default function CalendarExamplePage() {
                       selectedDate={selectedDate}
                       onDateSelect={setSelectedDate}
                       onEventCreate={handleCreateEvent}
+                      onEventSave={handleEventCreate}
                       onEventEdit={handleUpdateEvent}
                       onEventDelete={handleDeleteEvent}
                       className="min-h-[800px]"

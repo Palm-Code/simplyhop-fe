@@ -78,9 +78,14 @@ export const EventModal = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("EventModal handleSubmit called with formData:", formData);
+    
     if (validateForm()) {
+      console.log("Form validation passed, calling onSave with:", formData);
       onSave(formData);
       onClose();
+    } else {
+      console.log("Form validation failed, errors:", errors);
     }
   };
 

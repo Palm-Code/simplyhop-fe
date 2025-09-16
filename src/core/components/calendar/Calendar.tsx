@@ -18,6 +18,7 @@ export const Calendar = ({
   onDateSelect,
   onEventClick,
   onEventCreate,
+  onEventSave,
   onEventEdit,
   onEventDelete,
   onEventMove,
@@ -140,20 +141,20 @@ export const Calendar = ({
   };
 
   const handleModalSave = (eventData: EventFormData) => {
-    // This would typically be handled by parent component
-    // For now, we'll just call the appropriate callback
+    console.log("Calendar handleModalSave called with:", eventData, "editingEvent:", editingEvent);
+    
     if (editingEvent) {
+      // Editing existing event
       const updatedEvent: CalendarEvent = {
         ...editingEvent,
         ...eventData,
       };
+      console.log("Calling onEventEdit with:", updatedEvent);
       onEventEdit?.(updatedEvent);
     } else {
-      const newEvent: CalendarEvent = {
-        id: `event-${Date.now()}`, // Generate ID (parent should handle this)
-        ...eventData,
-      };
-      onEventCreate?.(eventData.date);
+      // Creating new event - use onEventSave callback
+      console.log("Calling onEventSave with:", eventData);
+      onEventSave?.(eventData);
     }
   };
 
