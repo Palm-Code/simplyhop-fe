@@ -17,141 +17,37 @@ import {
   CalendarShare
 } from "@/core/components/calendar";
 
-// Sample events data with enhanced properties
-const sampleEvents: CalendarEventType[] = [
-  {
-    id: "1",
-    title: "Team Meeting",
-    date: new Date(2024, 11, 15),
-    startTime: "10:00",
-    endTime: "11:00",
-    color: "blue",
-    description: "Weekly team sync meeting",
-    categoryId: "work",
-    tags: ["meeting", "team"],
-    priority: "high",
-    location: "Conference Room A",
-    attendees: ["john@example.com", "jane@example.com"],
-  },
-  {
-    id: "2", 
-    title: "Project Review",
-    date: new Date(2024, 11, 16),
-    startTime: "14:00",
-    endTime: "16:00",
-    color: "green",
-    description: "Review project milestones",
-    categoryId: "work",
-    tags: ["project", "review"],
-    priority: "medium",
-    location: "Meeting Room B",
-  },
-  {
-    id: "3",
-    title: "Client Presentation",
-    date: new Date(2024, 11, 18),
-    startTime: "09:00",
-    endTime: "10:30",
-    color: "red",
-    description: "Present Q4 results to client",
-    categoryId: "work",
-    tags: ["client", "presentation"],
-    priority: "high",
-    location: "Client Office",
-  },
-  {
-    id: "4",
-    title: "Personal Workout",
-    date: new Date(2024, 11, 19),
-    startTime: "15:00",
-    endTime: "16:30",
-    color: "purple",
-    description: "Gym session",
-    categoryId: "personal",
-    tags: ["health", "fitness"],
-    priority: "medium",
-  },
-  {
-    id: "5",
-    title: "Family Dinner",
-    date: new Date(2024, 11, 22),
-    startTime: "18:00",
-    endTime: "20:00",
-    color: "yellow",
-    description: "Dinner with family",
-    categoryId: "personal",
-    tags: ["family", "dinner"],
-    priority: "high",
-    location: "Home",
-  }
-];
-
-// Sample categories
-const sampleCategories: EventCategory[] = [
-  {
-    id: "work",
-    name: "Work",
-    color: "blue",
-    icon: "💼",
-    description: "Work-related events and meetings",
-  },
-  {
-    id: "personal",
-    name: "Personal",
-    color: "green",
-    icon: "🏠",
-    description: "Personal activities and appointments",
-  },
-  {
-    id: "health",
-    name: "Health",
-    color: "red",
-    icon: "🏥",
-    description: "Health and fitness activities",
-  },
-];
-
-// Sample reminders
-const sampleReminders: EventReminder[] = [
-  {
-    id: "r1",
-    eventId: "1",
-    type: "notification",
-    timing: 15,
-    message: "Team meeting starts in 15 minutes",
-    isActive: true,
-  },
-  {
-    id: "r2",
-    eventId: "3",
-    type: "popup",
-    timing: 30,
-    isActive: true,
-  },
-];
-
-// Sample shares
-const sampleShares: CalendarShare[] = [
-  {
-    id: "s1",
-    name: "Team Calendar",
-    shareType: "public",
-    permissions: "view",
-    events: sampleEvents.filter(e => e.categoryId === "work"),
-    createdAt: new Date(2024, 10, 1),
-    accessCount: 24,
-  },
-];
+// Import complex sample data
+import { 
+  complexSampleEvents,
+  sampleCategories, 
+  complexSampleReminders,
+  complexSampleShares,
+  getConflictingEvents,
+  getEventsInRange
+} from "@/core/components/calendar/sampleData";
 
 export default function CalendarExamplePage() {
-  const [events, setEvents] = React.useState<CalendarEventType[]>(sampleEvents);
-  const [filteredEvents, setFilteredEvents] = React.useState<CalendarEventType[]>(sampleEvents);
+  const [events, setEvents] = React.useState<CalendarEventType[]>(complexSampleEvents);
+  const [filteredEvents, setFilteredEvents] = React.useState<CalendarEventType[]>(complexSampleEvents);
   const [categories, setCategories] = React.useState<EventCategory[]>(sampleCategories);
-  const [reminders, setReminders] = React.useState<EventReminder[]>(sampleReminders);
-  const [shares, setShares] = React.useState<CalendarShare[]>(sampleShares);
+  const [reminders, setReminders] = React.useState<EventReminder[]>(complexSampleReminders);
+  const [shares, setShares] = React.useState<CalendarShare[]>(complexSampleShares);
   const [currentDate, setCurrentDate] = React.useState(new Date());
   const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(new Date());
   const [activeTab, setActiveTab] = React.useState<"calendar" | "categories" | "reminders" | "import" | "print" | "share">("calendar");
+
+  // Get conflicting events for demo insights
+  const conflictingEvents = React.useMemo(() => getConflictingEvents(), []);
+  
+  // Get events for current week for insights
+  const currentWeekEvents = React.useMemo(() => {
+    const startOfWeek = new Date();
+    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(endOfWeek.getDate() + 6);
+    return getEventsInRange(startOfWeek, endOfWeek);
+  }, []);
 
   // Handle event CRUD operations
   const handleCreateEvent = (date: Date, time?: string) => {
@@ -266,10 +162,29 @@ export default function CalendarExamplePage() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Calendar</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Calendar Demo</h1>
               <p className="mt-1 text-sm text-gray-600">
-                Manage your schedule and events with our Google Calendar-like interface
+                Full-featured Google Calendar-like interface with {events.length} complex sample events
               </p>
+              <div className="mt-2 flex flex-wrap gap-4 text-xs text-gray-500">
+                <span className="bg-gray-100 px-2 py-1 rounded">
+                  📅 {events.length} Events across {Math.ceil((Math.max(...events.map(e => e.date.getTime())) - Math.min(...events.map(e => e.date.getTime()))) / (1000 * 60 * 60 * 24))} days
+                </span>
+                <span className="bg-blue-100 px-2 py-1 rounded text-blue-700">
+                  🏷️ {categories.length} Categories
+                </span>
+                <span className="bg-green-100 px-2 py-1 rounded text-green-700">
+                  🔔 {reminders.filter(r => r.isActive).length} Active Reminders
+                </span>
+                {conflictingEvents.length > 0 && (
+                  <span className="bg-orange-100 px-2 py-1 rounded text-orange-700">
+                    ⚠️ {conflictingEvents.length} Time Conflicts
+                  </span>
+                )}
+                <span className="bg-purple-100 px-2 py-1 rounded text-purple-700">
+                  🚀 {events.filter(e => e.priority === 'high').length} High Priority
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -356,6 +271,58 @@ export default function CalendarExamplePage() {
                         <span className="text-gray-600">Reminders:</span>
                         <span className="font-medium">{reminders.filter(r => r.isActive).length}</span>
                       </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">This Week:</span>
+                        <span className="font-medium">{currentWeekEvents.length}</span>
+                      </div>
+                      {conflictingEvents.length > 0 && (
+                        <div className="flex justify-between text-sm">
+                          <span className="text-orange-600">⚠️ Conflicts:</span>
+                          <span className="font-medium text-orange-600">{conflictingEvents.length}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Demo Insights */}
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-4">
+                    <h3 className="text-sm font-semibold text-blue-900 mb-3 flex items-center gap-2">
+                      <span>🎯</span>
+                      Demo Insights
+                    </h3>
+                    <div className="space-y-3 text-xs">
+                      <div className="bg-white bg-opacity-50 rounded p-2">
+                        <div className="font-medium text-blue-800 mb-1">Complex Scenarios:</div>
+                        <ul className="space-y-1 text-blue-700">
+                          <li>• Overlapping meetings (Today 9:00-9:30 & 9:15-10:30)</li>
+                          <li>• Multi-day conferences (Days 3-5)</li>
+                          <li>• All-day events (Company retreat, Anniversary)</li>
+                          <li>• Late night maintenance (23:00-02:00)</li>
+                          <li>• Early morning activities (06:30 jog, 05:30 pickup)</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-white bg-opacity-50 rounded p-2">
+                        <div className="font-medium text-blue-800 mb-1">Rich Event Data:</div>
+                        <ul className="space-y-1 text-blue-700">
+                          <li>• {categories.length} categories with icons & colors</li>
+                          <li>• {reminders.filter(r => r.isActive).length} active reminders</li>
+                          <li>• Location, attendees, priority levels</li>
+                          <li>• Tags for better organization</li>
+                          <li>• Recurring events patterns</li>
+                        </ul>
+                      </div>
+
+                      {conflictingEvents.length > 0 && (
+                        <div className="bg-orange-50 border border-orange-200 rounded p-2">
+                          <div className="font-medium text-orange-800 mb-1">Time Conflicts:</div>
+                          {conflictingEvents.slice(0, 2).map((conflict, idx) => (
+                            <div key={idx} className="text-orange-700 text-xs">
+                              • {conflict.date}: {conflict.events.length} overlapping events
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -497,6 +464,203 @@ export default function CalendarExamplePage() {
               <div>
                 <h3 className="font-medium text-gray-900">Mini Calendar</h3>
                 <p className="text-sm text-gray-600">Quick date navigation with compact sidebar calendar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Demo Use Cases */}
+        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Demo Use Cases & Complex Scenarios</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            {/* Scheduling Conflicts */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                <span className="text-orange-500">⚠️</span>
+                Scheduling Conflicts
+              </h3>
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                <h4 className="font-medium text-orange-900 mb-2">Today's Overlapping Meetings:</h4>
+                <ul className="space-y-2 text-sm text-orange-800">
+                  <li className="flex items-start gap-2">
+                    <span className="flex-shrink-0 w-2 h-2 bg-orange-400 rounded-full mt-2"></span>
+                    <div>
+                      <strong>9:00-9:30:</strong> Daily Standup (Conference Room A)
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex-shrink-0 w-2 h-2 bg-red-400 rounded-full mt-2"></span>
+                    <div>
+                      <strong>9:15-10:30:</strong> Client Presentation Prep (Meeting Room B)
+                      <div className="text-xs text-orange-600 mt-1">⚠️ 15-minute overlap with standup</div>
+                    </div>
+                  </li>
+                </ul>
+                <div className="mt-3 text-xs text-orange-600 italic">
+                  This demonstrates real-world scheduling conflicts that often occur in busy workplaces.
+                </div>
+              </div>
+              
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <h4 className="font-medium text-red-900 mb-2">Next Week's Double Booking:</h4>
+                <ul className="space-y-2 text-sm text-red-800">
+                  <li className="flex items-start gap-2">
+                    <span className="flex-shrink-0 w-2 h-2 bg-red-400 rounded-full mt-2"></span>
+                    <div>
+                      <strong>10:00-11:30:</strong> Emergency Bug Fix Meeting
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex-shrink-0 w-2 h-2 bg-blue-400 rounded-full mt-2"></span>
+                    <div>
+                      <strong>10:30-11:30:</strong> Scheduled 1:1 with Manager
+                      <div className="text-xs text-red-600 mt-1">⚠️ 1-hour overlap - decision needed</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Event Variety */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                <span className="text-blue-500">🎯</span>
+                Event Variety & Complexity
+              </h3>
+              
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 className="font-medium text-blue-900 mb-2">Time Range Examples:</h4>
+                <ul className="space-y-2 text-sm text-blue-800">
+                  <li><strong>Early Morning:</strong> 6:30 AM Jog, 5:30 AM Airport Pickup</li>
+                  <li><strong>Standard Business:</strong> 9:00 AM - 5:00 PM meetings</li>
+                  <li><strong>Evening Events:</strong> 6:00 PM Gym, 7:00 PM Family Time</li>
+                  <li><strong>Overnight:</strong> 11:00 PM - 2:00 AM System Maintenance</li>
+                  <li><strong>All-Day:</strong> Company Retreat, Anniversary</li>
+                  <li><strong>Multi-Day:</strong> 3-day Tech Conference</li>
+                </ul>
+              </div>
+
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h4 className="font-medium text-green-900 mb-2">Event Categories:</h4>
+                <div className="grid grid-cols-2 gap-2 text-sm text-green-800">
+                  <div className="flex items-center gap-2">
+                    <span>💼</span> Work ({events.filter(e => e.categoryId === 'work').length})
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>🏠</span> Personal ({events.filter(e => e.categoryId === 'personal').length})
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>🏥</span> Health ({events.filter(e => e.categoryId === 'health').length})
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>👨‍👩‍👧‍👦</span> Family ({events.filter(e => e.categoryId === 'family').length})
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>📚</span> Education ({events.filter(e => e.categoryId === 'education').length})
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✈️</span> Travel ({events.filter(e => e.categoryId === 'travel').length})
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>🎉</span> Social ({events.filter(e => e.categoryId === 'social').length})
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <h4 className="font-medium text-purple-900 mb-2">Advanced Features:</h4>
+                <ul className="space-y-1 text-sm text-purple-800">
+                  <li>• {reminders.filter(r => r.isActive).length} Active reminders with different timing</li>
+                  <li>• Location tracking for each event</li>
+                  <li>• Attendee management with email integration</li>
+                  <li>• Priority levels (High, Medium, Low)</li>
+                  <li>• Tag-based organization and filtering</li>
+                  <li>• Recurring event patterns</li>
+                  <li>• Import/Export functionality</li>
+                  <li>• Calendar sharing with permissions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Real-World Scenarios */}
+        <div className="mt-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg border border-indigo-200 p-6">
+          <h2 className="text-xl font-semibold text-indigo-900 mb-4 flex items-center gap-2">
+            <span>🌟</span>
+            Real-World Demo Scenarios
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div className="bg-white bg-opacity-60 rounded-lg p-4">
+              <h3 className="font-semibold text-indigo-900 mb-3">Busy Executive Schedule</h3>
+              <ul className="space-y-2 text-sm text-indigo-800">
+                <li>• Back-to-back meetings with overlaps</li>
+                <li>• High-priority client presentations</li>
+                <li>• Emergency meetings disrupting schedule</li>
+                <li>• Travel integration with flights</li>
+                <li>• Multiple reminder types</li>
+              </ul>
+            </div>
+
+            <div className="bg-white bg-opacity-60 rounded-lg p-4">
+              <h3 className="font-semibold text-indigo-900 mb-3">Work-Life Balance</h3>
+              <ul className="space-y-2 text-sm text-indigo-800">
+                <li>• Professional meetings</li>
+                <li>• Personal health appointments</li>
+                <li>• Family activities and events</li>
+                <li>• Social gatherings</li>
+                <li>• Fitness and wellness time</li>
+              </ul>
+            </div>
+
+            <div className="bg-white bg-opacity-60 rounded-lg p-4">
+              <h3 className="font-semibold text-indigo-900 mb-3">Event Management</h3>
+              <ul className="space-y-2 text-sm text-indigo-800">
+                <li>• Multi-day conferences</li>
+                <li>• All-day company events</li>
+                <li>• Recurring weekly patterns</li>
+                <li>• Late night maintenance windows</li>
+                <li>• Early morning activities</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-white bg-opacity-60 rounded-lg p-4">
+            <h3 className="font-semibold text-indigo-900 mb-3">Try These Demo Actions:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-indigo-800">
+              <div>
+                <strong>View Switching:</strong>
+                <ul className="mt-1 space-y-1">
+                  <li>• Press "1" for Month view</li>
+                  <li>• Press "2" for Week view</li>
+                  <li>• Press "3" for Day view</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Navigation:</strong>
+                <ul className="mt-1 space-y-1">
+                  <li>• Arrow keys to navigate</li>
+                  <li>• Press "T" to go to today</li>
+                  <li>• Click mini calendar dates</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Event Management:</strong>
+                <ul className="mt-1 space-y-1">
+                  <li>• Press "N" to create event</li>
+                  <li>• Click events to edit</li>
+                  <li>• Drag events to move</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Filtering:</strong>
+                <ul className="mt-1 space-y-1">
+                  <li>• Search by text</li>
+                  <li>• Filter by category color</li>
+                  <li>• Use date range filters</li>
+                </ul>
               </div>
             </div>
           </div>

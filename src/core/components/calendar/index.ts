@@ -34,3 +34,13 @@ export type {
   EventModalProps,
   EventCategory,
 } from "./types";
+
+// Export sample data for demo purposes
+export {
+  complexSampleEvents,
+  sampleCategories,
+  complexSampleReminders,
+  complexSampleShares,
+  getConflictingEvents,
+  getEventsInRange
+} from "./sampleData";
