@@ -5,6 +5,8 @@ export { CalendarCell } from "./CalendarCell";
 export { CalendarEvent } from "./CalendarEvent";
 export { WeekView } from "./WeekView";
 export { EventModal } from "./EventModal";
+export { EventDetailModal } from "./EventDetailModal";
+export type { EventDetailModalProps } from "./EventDetailModal";
 export { DayView } from "./DayView";
 export { SearchFilterBar } from "./SearchFilterBar";
 export type { SearchFilterBarProps } from "./SearchFilterBar";

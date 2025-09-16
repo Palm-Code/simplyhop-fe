@@ -14,7 +14,8 @@ import {
   SharingFeatures,
   EventCategory,
   EventReminder,
-  CalendarShare
+  CalendarShare,
+  EventDetailModal
 } from "@/core/components/calendar";
 
 // Import complex sample data
@@ -37,6 +38,10 @@ export default function CalendarExamplePage() {
   const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(new Date());
   const [activeTab, setActiveTab] = React.useState<"calendar" | "categories" | "reminders" | "import" | "print" | "share">("calendar");
 
+  // Event detail modal state
+  const [isEventDetailModalOpen, setIsEventDetailModalOpen] = React.useState(false);
+  const [selectedEvent, setSelectedEvent] = React.useState<CalendarEventType | null>(null);
+
   // Get conflicting events for demo insights
   const conflictingEvents = React.useMemo(() => getConflictingEvents(), []);
   
@@ -55,6 +60,25 @@ export default function CalendarExamplePage() {
     // But since we're using the EventModal, the actual creation 
     // happens in handleEventCreate which receives the full event data
     console.log("Create event trigger for date:", date, "time:", time);
+  };
+
+  const handleEventClick = (event: CalendarEventType) => {
+    console.log("Event clicked:", event);
+    setSelectedEvent(event);
+    setIsEventDetailModalOpen(true);
+  };
+
+  const handleEventEdit = (event: CalendarEventType) => {
+    console.log("Event edit requested:", event);
+    setIsEventDetailModalOpen(false);
+    // Here you could open the edit modal
+    // For now, we'll just update the event directly
+  };
+
+  const handleEventDetailDelete = (event: CalendarEventType) => {
+    console.log("Event delete requested from detail modal:", event);
+    handleDeleteEvent(event);
+    setIsEventDetailModalOpen(false);
   };
 
   const handleEventCreate = (eventData: any) => {
@@ -367,6 +391,7 @@ export default function CalendarExamplePage() {
                       categories={categories}
                       selectedDate={selectedDate}
                       onDateSelect={setSelectedDate}
+                      onEventClick={handleEventClick}
                       onEventCreate={handleCreateEvent}
                       onEventSave={handleEventCreate}
                       onEventEdit={handleUpdateEvent}
@@ -742,6 +767,18 @@ export default function CalendarExamplePage() {
           </div>
         </div>
       </main>
+
+      {/* Event Detail Modal */}
+      <EventDetailModal
+        isOpen={isEventDetailModalOpen}
+        event={selectedEvent}
+        onClose={() => {
+          setIsEventDetailModalOpen(false);
+          setSelectedEvent(null);
+        }}
+        onEdit={handleEventEdit}
+        onDelete={handleEventDetailDelete}
+      />
     </div>
   );
 }

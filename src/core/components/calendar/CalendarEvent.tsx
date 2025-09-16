@@ -24,6 +24,7 @@ export const CalendarEvent = ({
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    console.log("CalendarEvent clicked:", event.title, "onClick prop exists:", !!onClick);
     onClick?.(event);
   };
 
