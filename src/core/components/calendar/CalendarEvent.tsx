@@ -79,11 +79,15 @@ export const CalendarEvent = ({
     <div
       className={clsx(
         "group relative",
-        "px-2 py-1 rounded-md text-xs",
+        "px-1.5 py-0.5 rounded text-xs",
         "border border-solid",
         "cursor-pointer",
         "transition-all duration-200",
         "select-none",
+        "overflow-hidden", // Prevent content overflow
+        "w-full", // Full width within container
+        "h-4", // Fixed height for consistency
+        "flex items-center", // Center content vertically
         getColorClasses(event.color),
         isDraggable && "cursor-move",
         className
@@ -93,35 +97,28 @@ export const CalendarEvent = ({
       onMouseLeave={() => setIsHovered(false)}
       draggable={isDraggable}
       onDragStart={handleDragStart}
-      title={`${event.title}${event.description ? `\n${event.description}` : ""}`}
+      title={`${event.title}${event.description ? `\n${event.description}` : ""}${formatTime() ? `\n${formatTime()}` : ""}`}
     >
       {/* Event content */}
-      <div className="flex items-center justify-between gap-1">
-        <div className="flex-1 min-w-0">
-          {/* Event title */}
-          <div className="font-medium truncate">
+      <div className="flex items-center justify-between gap-1 w-full min-w-0">
+        <div className="flex-1 min-w-0 overflow-hidden">
+          {/* Event title - prioritize title over time in small space */}
+          <div className="font-medium truncate text-[10px] leading-none">
             {event.title}
           </div>
-          
-          {/* Event time */}
-          {formatTime() && (
-            <div className="text-[10px] opacity-75 truncate">
-              {formatTime()}
-            </div>
-          )}
         </div>
 
-        {/* Action buttons - show on hover */}
+        {/* Action buttons - show on hover, very compact */}
         {isHovered && (onEdit || onDelete) && (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5 flex-shrink-0">
             {onEdit && (
               <button
                 onClick={handleEdit}
                 className={clsx(
-                  "w-4 h-4 rounded-full",
+                  "w-3 h-3 rounded-full",
                   "flex items-center justify-center",
                   "hover:bg-black/10 transition-colors",
-                  "text-[10px]"
+                  "text-[8px] leading-none"
                 )}
                 title="Edit event"
               >
@@ -133,10 +130,10 @@ export const CalendarEvent = ({
               <button
                 onClick={handleDelete}
                 className={clsx(
-                  "w-4 h-4 rounded-full",
+                  "w-3 h-3 rounded-full",
                   "flex items-center justify-center",
                   "hover:bg-red-500 hover:text-white transition-colors",
-                  "text-[10px]"
+                  "text-[8px] leading-none"
                 )}
                 title="Delete event"
               >
@@ -152,10 +149,10 @@ export const CalendarEvent = ({
         <div
           className={clsx(
             "absolute left-0 top-0 bottom-0",
-            "w-1 rounded-l-md",
-            "bg-current opacity-30",
+            "w-0.5 rounded-l",
+            "bg-current opacity-40",
             "transition-opacity duration-200",
-            isHovered && "opacity-60"
+            isHovered && "opacity-70"
           )}
         />
       )}

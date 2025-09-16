@@ -70,7 +70,7 @@ export const CalendarGrid = ({
       </div>
 
       {/* Calendar grid */}
-      <div className="grid grid-cols-7">
+      <div className="grid grid-cols-7 relative">
         {daysToDisplay.map((day, index) => {
           const isToday = day.isSame(today, "day");
           const isSelected = selectedDate && day.isSame(selectedDate, "day");

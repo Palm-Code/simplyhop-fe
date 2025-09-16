@@ -60,6 +60,8 @@ export const CalendarCell = ({
         "cursor-pointer",
         "hover:bg-gray-50",
         "transition-colors duration-200",
+        "overflow-hidden", // Prevent overflow
+        "isolate", // Create new stacking context
         isOtherMonth && "bg-gray-50/50",
         isSelected && "bg-blue-50 border-blue-300",
         isDragOver && enableDragDrop && "bg-blue-100 border-blue-400"
@@ -76,6 +78,7 @@ export const CalendarCell = ({
           "w-6 h-6 rounded-full",
           "text-sm font-medium",
           "transition-colors duration-200",
+          "flex-shrink-0", // Prevent shrinking
           isOtherMonth && "text-gray-400",
           !isOtherMonth && !isToday && !isSelected && "text-gray-900",
           isToday && !isSelected && "bg-blue-600 text-white",
@@ -86,9 +89,15 @@ export const CalendarCell = ({
         {dayNumber}
       </div>
 
-      {/* Events */}
-      <div className="mt-1 space-y-1">
-        {events.slice(0, 3).map((event) => (
+      {/* Events Container */}
+      <div className={clsx(
+        "mt-1 space-y-0.5",
+        "flex flex-col",
+        "overflow-hidden", // Prevent events from overflowing
+        "max-h-[60px]", // Limit height for events area (24px * 2.5 events)
+        "relative" // Ensure proper stacking
+      )}>
+        {events.slice(0, 2).map((event, index) => (
           <CalendarEvent
             key={event.id}
             event={event}
@@ -96,23 +105,31 @@ export const CalendarCell = ({
             onEdit={onEventEdit}
             onDelete={onEventDelete}
             isDraggable={enableDragDrop}
-            className="text-[10px]"
+            className={clsx(
+              "text-[10px]",
+              "flex-shrink-0", // Prevent event shrinking
+              "h-4", // Fixed height for consistency
+              "leading-none"
+            )}
           />
         ))}
         
         {/* More events indicator */}
-        {events.length > 3 && (
+        {events.length > 2 && (
           <div
             className={clsx(
-              "text-xs text-gray-500 pl-1 cursor-pointer",
-              "hover:text-gray-700 transition-colors"
+              "text-[10px] text-gray-500 pl-1 cursor-pointer",
+              "hover:text-gray-700 transition-colors",
+              "flex-shrink-0 h-3",
+              "truncate leading-none",
+              "flex items-center"
             )}
             onClick={(e) => {
               e.stopPropagation();
               // Could open a modal showing all events for this date
             }}
           >
-            +{events.length - 3} more
+            +{events.length - 2} more
           </div>
         )}
       </div>
