@@ -14,7 +14,6 @@ export interface CategoryManagerProps {
 export const CategoryManager = ({
   categories,
   onCategoryCreate,
-  onCategoryUpdate,
   onCategoryDelete,
   className,
 }: CategoryManagerProps) => {
@@ -62,10 +61,6 @@ export const CategoryManager = ({
       setNewCategory({ name: "", color: "blue", description: "", icon: "" });
       setIsCreating(false);
     }
-  };
-
-  const handleUpdateCategory = (categoryId: string, field: keyof EventCategory, value: any) => {
-    onCategoryUpdate(categoryId, { [field]: value });
   };
 
   const handleDeleteCategory = (categoryId: string) => {

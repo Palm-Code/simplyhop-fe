@@ -240,13 +240,13 @@ export const PrintCalendar = ({
           <div class="subtitle">${printData.length} days • ${events.length} total events</div>
         </div>
         
-        ${view === "month" ? generateMonthGrid(printData) : generateDayList(printData)}
+        ${view === "month" ? generateMonthGrid() : generateDayList(printData)}
       </body>
       </html>
     `;
   };
 
-  const generateMonthGrid = (printData: ReturnType<typeof generatePrintData>) => {
+  const generateMonthGrid = () => {
     const startOfMonth = dayjs(currentDate).startOf("month");
     const endOfMonth = dayjs(currentDate).endOf("month");
     const startOfCalendar = startOfMonth.startOf("week");

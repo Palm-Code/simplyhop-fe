@@ -97,7 +97,7 @@ export const CalendarCell = ({
         "max-h-[60px]", // Limit height for events area (24px * 2.5 events)
         "relative" // Ensure proper stacking
       )}>
-        {events.slice(0, 2).map((event, index) => (
+        {events.slice(0, 2).map((event) => (
           <CalendarEvent
             key={event.id}
             event={event}

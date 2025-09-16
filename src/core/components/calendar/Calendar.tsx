@@ -84,7 +84,7 @@ export const Calendar = ({
   };
 
   // Keyboard navigation
-  const { shortcuts } = useKeyboardNavigation({
+  useKeyboardNavigation({
     currentDate,
     currentView,
     onDateChange: setCurrentDate,

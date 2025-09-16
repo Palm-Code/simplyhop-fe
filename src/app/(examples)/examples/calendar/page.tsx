@@ -539,7 +539,7 @@ export default function CalendarExamplePage() {
                 Scheduling Conflicts
               </h3>
               <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                <h4 className="font-medium text-orange-900 mb-2">Today's Overlapping Meetings:</h4>
+                <h4 className="font-medium text-orange-900 mb-2">Today&apos;s Overlapping Meetings:</h4>
                 <ul className="space-y-2 text-sm text-orange-800">
                   <li className="flex items-start gap-2">
                     <span className="flex-shrink-0 w-2 h-2 bg-orange-400 rounded-full mt-2"></span>
@@ -561,7 +561,7 @@ export default function CalendarExamplePage() {
               </div>
               
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <h4 className="font-medium text-red-900 mb-2">Next Week's Double Booking:</h4>
+                <h4 className="font-medium text-red-900 mb-2">Next Week&apos;s Double Booking:</h4>
                 <ul className="space-y-2 text-sm text-red-800">
                   <li className="flex items-start gap-2">
                     <span className="flex-shrink-0 w-2 h-2 bg-red-400 rounded-full mt-2"></span>
@@ -691,23 +691,23 @@ export default function CalendarExamplePage() {
               <div>
                 <strong>View Switching:</strong>
                 <ul className="mt-1 space-y-1">
-                  <li>• Press "1" for Month view</li>
-                  <li>• Press "2" for Week view</li>
-                  <li>• Press "3" for Day view</li>
+                  <li>• Press &quot;1&quot; for Month view</li>
+                  <li>• Press &quot;2&quot; for Week view</li>
+                  <li>• Press &quot;3&quot; for Day view</li>
                 </ul>
               </div>
               <div>
                 <strong>Navigation:</strong>
                 <ul className="mt-1 space-y-1">
                   <li>• Arrow keys to navigate</li>
-                  <li>• Press "T" to go to today</li>
+                  <li>• Press &quot;T&quot; to go to today</li>
                   <li>• Click mini calendar dates</li>
                 </ul>
               </div>
               <div>
                 <strong>Event Management:</strong>
                 <ul className="mt-1 space-y-1">
-                  <li>• Press "N" to create event</li>
+                  <li>• Press &quot;N&quot; to create event</li>
                   <li>• Click events to edit</li>
                   <li>• Drag events to move</li>
                 </ul>

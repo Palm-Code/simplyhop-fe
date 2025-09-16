@@ -22,7 +22,7 @@ export const ImportExport = ({
 
   // Generate iCal format
   const generateICalendar = (events: CalendarEvent[]) => {
-    let ical = [
+    const ical = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
       "PRODID:-//SimplyHop//Calendar//EN",
@@ -231,7 +231,7 @@ export const ImportExport = ({
         id: event.id || `imported-${Date.now()}-${index}`,
         date: new Date(event.date),
       }));
-    } catch (error) {
+    } catch {
       throw new Error('Invalid JSON format');
     }
   };

@@ -64,7 +64,7 @@ export const WeekView = ({
     e.dataTransfer.dropEffect = "move";
   };
 
-  const handleDrop = (e: React.DragEvent, date: Date, hour?: number) => {
+  const handleDrop = (e: React.DragEvent, date: Date) => {
     if (!enableDragDrop) return;
     e.preventDefault();
     
@@ -74,7 +74,7 @@ export const WeekView = ({
     }
   };
 
-  const handleTimeSlotClick = (date: dayjs.Dayjs, hour: number) => {
+  const handleTimeSlotClick = (date: dayjs.Dayjs) => {
     onDateSelect?.(date.toDate());
     onEventCreate?.(date.toDate());
   };
@@ -153,8 +153,8 @@ export const WeekView = ({
                     isSelected && "bg-blue-100/50"
                   )}
                   onDragOver={handleDragOver}
-                  onDrop={(e) => handleDrop(e, day.toDate(), slot.hour)}
-                  onClick={() => handleTimeSlotClick(day, slot.hour)}
+                  onDrop={(e) => handleDrop(e, day.toDate())}
+                  onClick={() => handleTimeSlotClick(day)}
                 >
                   {/* Events for this time slot */}
                   {dayEvents.map((event) => (
@@ -180,7 +180,7 @@ export const WeekView = ({
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleTimeSlotClick(day, slot.hour);
+                        handleTimeSlotClick(day);
                       }}
                       className={clsx(
                         "w-4 h-4 rounded-full",

@@ -7,7 +7,6 @@ import { CalendarEvent } from "./CalendarEvent";
 
 export const DayView = ({
   currentDate,
-  selectedDate,
   events = [],
   enableDragDrop = false,
   onDateSelect,
@@ -71,8 +70,7 @@ export const DayView = ({
     return { top, height };
   };
 
-  const handleTimeSlotClick = (hour: number, minute: number) => {
-    const timeString = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+  const handleTimeSlotClick = () => {
     onEventCreate?.(viewDate.toDate());
   };
 
@@ -82,7 +80,7 @@ export const DayView = ({
     e.dataTransfer.dropEffect = "move";
   };
 
-  const handleDrop = (e: React.DragEvent, hour: number, minute: number) => {
+  const handleDrop = (e: React.DragEvent) => {
     if (!enableDragDrop) return;
     e.preventDefault();
     
@@ -162,7 +160,7 @@ export const DayView = ({
         <div className="flex">
           {/* Time labels */}
           <div className="w-16 flex-shrink-0">
-            {timeSlots.map((slot, index) => (
+            {timeSlots.map((slot) => (
               <div
                 key={`${slot.hour}-${slot.minute}`}
                 className={clsx(
@@ -179,7 +177,7 @@ export const DayView = ({
           {/* Event area */}
           <div className="flex-1 relative border-l border-gray-200">
             {/* Grid lines */}
-            {timeSlots.map((slot, index) => (
+            {timeSlots.map((slot) => (
               <div
                 key={`grid-${slot.hour}-${slot.minute}`}
                 className={clsx(
@@ -188,8 +186,8 @@ export const DayView = ({
                   "hover:bg-gray-50 cursor-pointer group"
                 )}
                 onDragOver={handleDragOver}
-                onDrop={(e) => handleDrop(e, slot.hour, slot.minute)}
-                onClick={() => handleTimeSlotClick(slot.hour, slot.minute)}
+                onDrop={(e) => handleDrop(e)}
+                onClick={() => handleTimeSlotClick()}
               >
                 {/* Add event button - appears on hover */}
                 <div
@@ -202,7 +200,7 @@ export const DayView = ({
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleTimeSlotClick(slot.hour, slot.minute);
+                      handleTimeSlotClick();
                     }}
                     className={clsx(
                       "w-6 h-6 rounded-full",

@@ -2,7 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import dayjs from "dayjs";
-import { EventModalProps, EventFormData, CalendarEvent } from "./types";
+import { EventModalProps, EventFormData } from "./types";
 
 export const EventModal = ({
   isOpen,

@@ -81,7 +81,6 @@ export const CalendarHeader = ({
         <button
           onClick={() => {
             // Reset to today
-            const today = new Date();
             onDateClick?.();
           }}
           className={clsx(
