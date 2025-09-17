@@ -27,11 +27,7 @@ const TopNavigationMobileMenu = dynamic(
   }
 );
 
-type TopNavigationProps = {
-  mode?: "maintenance" | "default";
-};
-
-export const TopNavigation = ({ mode = "default" }: TopNavigationProps) => {
+export const TopNavigation = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();
@@ -39,7 +35,9 @@ export const TopNavigation = ({ mode = "default" }: TopNavigationProps) => {
   return (
     <nav
       className={clsx(
-        mode === "maintenance" ? "" : "fixed top-0 left-0 right-0",
+        process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true"
+          ? ""
+          : "fixed top-0 left-0 right-0",
         "w-full",
         "z-[200]"
       )}
