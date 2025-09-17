@@ -27,8 +27,8 @@ export const TopNavigationDesktopMenu = () => {
   };
 
   const isMaintenance =
-    process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE !== "true";
-    
+    process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true";
+
   const menuLink = (menu: Menu) => {
     if (!isMaintenance) {
       return menu.id !== "mitfahrt-suchen" && !isLogin
