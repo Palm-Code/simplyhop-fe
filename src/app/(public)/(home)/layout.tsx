@@ -14,29 +14,40 @@ type TripLayoutProps = {
 };
 
 export default function TripLayout({ children }: TripLayoutProps) {
+  if (process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true") {
+    return (
+      <UserProvider>
+        {/* Scrollable container that contains both modal area and footer */}
+        <div className="relative min-h-screen">
+          {/* First viewport area with modal */}
+          <div className="relative h-screen overflow-hidden">
+            <main className={clsx("w-full h-full")}>
+              <TopNavigation />
+
+              {/* maintenance mode */}
+              <div className={clsx("w-full h-full overflow-y-auto")}>
+                {children}
+              </div>
+            </main>
+
+            <ScrollMaintenanceModal />
+          </div>
+
+          <FooterApp />
+        </div>
+      </UserProvider>
+    );
+  }
   return (
     <UserProvider>
-      {/* Scrollable container that contains both modal area and footer */}
-      <div className="relative min-h-screen">
-        {/* First viewport area with modal */}
-        <div className="relative h-screen overflow-hidden">
-          <main className={clsx("w-full h-full")}>
-            <TopNavigation mode="maintenance" />
-            {/* TODO: uncomment when unmaintenance mode */}
-            {/* <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
-              {children}
-            </div> */}
-            {/* maintenance mode */}
-            <div className={clsx("w-full h-full overflow-y-auto")}>
-              {children}
-            </div>
-          </main>
+      <main className={clsx("w-full h-full")}>
+        <TopNavigation />
 
-          <ScrollMaintenanceModal />
+        <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
+          {children}
         </div>
-
         <FooterApp />
-      </div>
+      </main>
     </UserProvider>
   );
 }

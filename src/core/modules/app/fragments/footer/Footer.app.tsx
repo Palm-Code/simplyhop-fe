@@ -4,12 +4,16 @@ import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import { getDictionaries } from "../../i18n";
-import SVGIcon from "@/core/icons";
+import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { UserContext } from "../../context";
 
 export const FooterApp = () => {
   const { state } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
+
+  const isMaintenance =
+    process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true";
+
   return (
     <div
       className={clsx(
@@ -42,31 +46,36 @@ export const FooterApp = () => {
             </div>
           </Link>
 
-          <div
-            className={clsx(
-              "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1.5rem]"
-            )}
-          >
-            {/* {dictionaries.footer.top.social_media.items.map(
-              (item, itemIndex) => (
-                <Link
-                  key={itemIndex}
-                  href={item.href}
-                  className={clsx(
-                    "flex items-center justify-center",
-                    "px-[0.5rem] py-[0.5rem]",
-                    "rounded-[0.625rem]",
-                    item.id === "facebook" ? "bg-[#EFF9EC]" : "bg-[white]"
-                  )}
-                >
-                  <SVGIcon
-                    name={item.icon.name as SVGIconProps["name"]}
-                    className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
-                  />
-                </Link>
-              )
-            )} */}
-          </div>
+          {!isMaintenance && (
+            <div
+              className={clsx(
+                "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1.5rem]"
+              )}
+            >
+              {dictionaries.footer.top.social_media.items.map(
+                (item, itemIndex) => (
+                  <Link
+                    key={itemIndex}
+                    href={item.href}
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "px-[0.5rem] py-[0.5rem]",
+                      "rounded-[0.625rem]",
+                      item.id === "facebook" ? "bg-[#EFF9EC]" : "bg-[white]"
+                    )}
+                  >
+                    <SVGIcon
+                      name={item.icon.name as SVGIconProps["name"]}
+                      className={clsx(
+                        "w-[1.5rem] h-[1.5rem]",
+                        "text-[#5B5B5B]"
+                      )}
+                    />
+                  </Link>
+                )
+              )}
+            </div>
+          )}
         </div>
 
         {/* link */}
@@ -147,7 +156,7 @@ export const FooterApp = () => {
                       : !state.profile
                       ? "/login"
                       : item.href;
-                  if (item.id === "Mitfahrt suchen") {
+                  if (item.id === "Mitfahrt suchen" || !isMaintenance) {
                     return (
                       <Link
                         key={itemIndex}

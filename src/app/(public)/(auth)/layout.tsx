@@ -90,7 +90,9 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
       </div>
 
       {children}
-      <MaintenanceModal mode="fixed" />
+      {process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true" && (
+        <MaintenanceModal mode="fixed" />
+      )}
     </main>
   );
 }
