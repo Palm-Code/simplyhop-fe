@@ -14,6 +14,7 @@ import { SuccessDeleteRideNotificationMyListTrip } from "../fragments/success_de
 import { ShareRideNotificationMyListTrip } from "../fragments/share_ride_notification";
 import { CancelBookNotificationMyListTrip } from "../fragments/cancel_book_notification";
 import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_cancel_book_notification copy";
+import { RideFilterMyList } from "../fragments/ride_filter";
 
 export const MyListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -38,7 +39,7 @@ export const MyListTripContainer = () => {
           >
             <div
               className={clsx(
-                "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[2.5rem]",
+                "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2.5rem]",
                 "w-full h-full",
                 "sticky top-[90px] z-[10]",
                 "bg-[white]",
@@ -48,6 +49,7 @@ export const MyListTripContainer = () => {
               <HeaderMyListTrip />
               <React.Suspense fallback={<div />}>
                 <TabMyListTrip />
+                <RideFilterMyList />
               </React.Suspense>
             </div>
 

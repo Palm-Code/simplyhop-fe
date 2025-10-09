@@ -22,6 +22,24 @@
       }
     ]
   },
+  "filter": {
+    "ride": {
+      "items": [
+        {
+          "id": "in_progress",
+          "name": "In Bearbeitung"
+        },
+        {
+          "id": "upcoming",
+          "name": "Bevorstehend"
+        },
+        {
+          "id": "completed",
+          "name": "Fertig"
+        }
+      ]
+    }
+  },
   "list": {
     "loading": {
       "message": "Einen Moment, wir sind gleich soweit..."
