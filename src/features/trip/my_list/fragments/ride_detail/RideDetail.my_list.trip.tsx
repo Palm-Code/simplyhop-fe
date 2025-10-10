@@ -14,6 +14,7 @@ import { useGetRidesId } from "../../react_query/hooks";
 import { RideDetailCardMyListTrip } from "../../components/ride_detail_card";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
+import { CheckIcon, XIcon } from "lucide-react";
 
 export const RideDetailMyListTrip = () => {
   const dictionaries = getDictionaries();
@@ -66,6 +67,11 @@ export const RideDetailMyListTrip = () => {
       },
     });
   };
+
+  const isFinishTrip = true;
+
+  const handleClickConfirmAbsent = () => {};
+  const handleClickConfirmPresent = () => {};
 
   return (
     <AdaptiveModal
@@ -140,9 +146,99 @@ export const RideDetailMyListTrip = () => {
             <p className={clsx("text-[1.125rem] text-[black] font-bold")}>
               {dictionaries.ride_detail.title}
             </p>
-            {filteredData.booking.map((item, index) => (
-              <RideBookingListItem key={index} {...item} />
-            ))}
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                "w-full"
+              )}
+            >
+              {filteredData.booking.map((item, index) => {
+                const isPresentStatusNotNull = true;
+                const isPresent = true;
+                return (
+                  <div
+                    className={clsx(
+                      "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                      "w-full"
+                    )}
+                  >
+                    <RideBookingListItem key={index} {...item} />
+                    {isFinishTrip && (
+                      <div
+                        key={`action-${index}`}
+                        className={clsx(
+                          "grid grid-cols-2 place-content-start place-items-start gap-[0.5rem]",
+                          "w-full"
+                        )}
+                      >
+                        <button
+                          className={clsx(
+                            "w-full",
+                            "px-[0.5rem] py-[0.5rem]",
+                            "border border-[#B30606]",
+                            "rounded-[0.375rem]",
+                            "text-[1.125rem] text-[#B30606] font-semibold"
+                          )}
+                          onClick={handleClickConfirmAbsent}
+                        >
+                          {"Nicht anwesend"}
+                        </button>
+
+                        <button
+                          className={clsx(
+                            "w-full",
+                            "px-[0.5rem] py-[0.5rem]",
+                            "rounded-[0.375rem]",
+                            "bg-[#33CC33]",
+                            "text-[1.125rem] text-[#232323] font-semibold"
+                          )}
+                          onClick={handleClickConfirmPresent}
+                        >
+                          {"Anwesend"}
+                        </button>
+                      </div>
+                    )}
+                    {isPresentStatusNotNull && (
+                      <div
+                        className={clsx(
+                          "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                          "w-full"
+                        )}
+                      >
+                        <div
+                          className={clsx(
+                            "px-[0.5rem] py-[0.5rem]",
+                            "w-full",
+                            "border",
+                            isPresent ? "border-[#232323]" : "border-[#D85959]",
+                            "rounded-[0.375rem]",
+                            "text-[] font-semibold",
+                            isPresent ? "text-[#232323]" : "text-[#D85959]"
+                          )}
+                        >
+                          {isPresent ? (
+                            <CheckIcon
+                              className={clsx(
+                                "w-[1.25rem] h-[1.25rem]",
+                                "text-[#232323]"
+                              )}
+                            />
+                          ) : (
+                            <XIcon
+                              className={clsx(
+                                "w-[1.25rem] h-[1.25rem]",
+                                "text-[#D85959]"
+                              )}
+                            />
+                          )}
+                          {isPresent ? "Anwesend" : "Nicht anwesend"}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* Price */}

@@ -18,6 +18,7 @@ export interface RideBookingListItemProps {
   price?: {
     value: string;
   };
+  isFinishRide?: boolean;
 }
 
 export const RideBookingListItem = ({
