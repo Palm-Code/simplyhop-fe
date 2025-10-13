@@ -23,6 +23,7 @@ import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { GetBookingIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
+import { CompleteBookingRideCardChatTrip } from "../../components/complete_booking_ride_card";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -192,6 +193,10 @@ export const RoomChatTrip = () => {
     state.room.message.pagination.last ===
     state.room.message.pagination.current;
 
+  const handleClickViewTripDetails = () => {
+    //
+  };
+
   return (
     <InfiniteScrollWrapper
       loader={
@@ -215,6 +220,23 @@ export const RoomChatTrip = () => {
         >
           {conversationData.map((chat, chatIndex) => {
             const { type, role, sender_id, ...otherChatProps } = chat;
+            const completedType = true;
+            if (completedType) {
+              return (
+                <CompleteBookingRideCardChatTrip
+                  {...chat.booking}
+                  key={chatIndex}
+                  cta={{
+                    trip_details: {
+                      children: "View Trip Details",
+                      disabled: false,
+                      loading: false,
+                      onClick: handleClickViewTripDetails,
+                    },
+                  }}
+                />
+              );
+            }
             if (type === "offer_request" || type === "booking_request") {
               const lastOfferCardIndex = findLastIndexOfferCard(
                 conversationData,
