@@ -34,8 +34,12 @@
           "name": "Bevorstehend"
         },
         {
-          "id": "completed",
+          "id": "finish",
           "name": "Fertig"
+        },
+        {
+          "id": "complete",
+          "name": "Archive"
         }
       ]
     }
@@ -52,13 +56,36 @@
     }
   },
   "ride_detail": {
-    "title": "Details zur Fahrt",
-    "booking": {
-      "title": "Passagier"
+    "title": {
+      "upcoming": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "in_progress": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "finish": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "complete": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "default": {
+        "title": "Title",
+        "description": "Description"
+      }
+    },
+    "passenger": {
+      "title": "Passagierbestätigung",
+      "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
     }
   },
   "book_detail": {
-    "title": "Details zur Fahrt"
+    "title": "Passagierbestätigung",
+    "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
   },
   "delete_ride_notification": {
     "title": "Die Fahrt absagen?",

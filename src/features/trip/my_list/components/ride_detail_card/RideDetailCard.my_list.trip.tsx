@@ -44,6 +44,7 @@ export interface RideDetailCardMyListTripProps {
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
   };
+  shadow?: boolean;
 }
 
 export const RideDetailCardMyListTrip = ({
@@ -89,6 +90,7 @@ export const RideDetailCardMyListTrip = ({
       time: "18.30 Uhr",
     },
   },
+  shadow = true,
 }: RideDetailCardMyListTripProps) => {
   return (
     <div
@@ -101,8 +103,8 @@ export const RideDetailCardMyListTrip = ({
         "bg-[white]"
       )}
       style={{
-        backdropFilter: "blur(20px)",
-        boxShadow: "0px 0px 25px 0px #969C9640",
+        backdropFilter: shadow ? "blur(20px)" : "",
+        boxShadow: shadow ? "0px 0px 25px 0px #969C9640" : "",
       }}
     >
       {/* car */}

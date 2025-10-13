@@ -13,9 +13,15 @@ export const RideFilterMyList = () => {
   const type = searchParams.get("type");
 
   if (!!type) return null;
-  
+
   return (
-    <div className={clsx("flex items-center justify-start gap-[0.5rem]")}>
+    <div
+      className={clsx(
+        "flex items-center justify-start gap-[0.5rem]",
+        "w-full",
+        "overflow-auto"
+      )}
+    >
       {dictionaries.filter.ride.items.map((item, index) => {
         const params =
           index === 0
@@ -37,7 +43,8 @@ export const RideFilterMyList = () => {
                 ? "bg-[#33CC33]"
                 : "bg-[#F6F6F6CC]",
               "rounded-[0.75rem]",
-              "text-[0.875rem] text-[#000] font-semibold"
+              "text-[0.875rem] text-[#000] font-semibold",
+              "whitespace-nowrap"
             )}
           >
             {item.name}
