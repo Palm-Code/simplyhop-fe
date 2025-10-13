@@ -90,7 +90,15 @@ export const RideDetailMyListTrip = () => {
 
   const isRideCompleteConfirmationDisabled = false;
 
-  const handleClickConfirmCompleteRide = () => {};
+  const handleClickConfirmCompleteRide = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      payload: {
+        ...state.complete_ride_confirmation,
+        is_open: true,
+      },
+    });
+  };
   return (
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}

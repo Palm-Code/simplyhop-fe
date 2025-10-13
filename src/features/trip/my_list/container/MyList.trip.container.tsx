@@ -15,6 +15,7 @@ import { ShareRideNotificationMyListTrip } from "../fragments/share_ride_notific
 import { CancelBookNotificationMyListTrip } from "../fragments/cancel_book_notification";
 import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_cancel_book_notification copy";
 import { RideFilterMyList } from "../fragments/ride_filter";
+import { CompelteRideMyListTrip } from "../fragments/complete_ride_confirmation";
 
 export const MyListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -72,6 +73,7 @@ export const MyListTripContainer = () => {
       <ShareRideNotificationMyListTrip />
       <CancelBookNotificationMyListTrip />
       <SuccessCancelBookNotificationMyListTrip />
+      <CompelteRideMyListTrip />
     </>
   );
 };

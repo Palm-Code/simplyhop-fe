@@ -7,6 +7,7 @@ import {
 import {
   MyListTripBookReducers,
   MyListTripCancelBookNotificationReducers,
+  MyListTripCompleteRideConfirmationReducers,
   MyListTripDeleteRideNotificationReducers,
   MyListTripDetailBookNotificationReducers,
   MyListTripDetailRideNotificationReducers,
@@ -65,6 +66,9 @@ const initialState: MyListTripInitialStateType = {
   success_cancel_book_notification: {
     is_open: false,
   },
+  complete_ride_confirmation: {
+    is_open: false,
+  },
 };
 
 const MyListTripContext = createContext<{
@@ -87,6 +91,7 @@ const mainReducer = (
     detail_book_notification,
     cancel_book_notification,
     success_cancel_book_notification,
+    complete_ride_confirmation,
   }: MyListTripInitialStateType,
   action: MyListTripActions
 ) => ({
@@ -123,6 +128,10 @@ const mainReducer = (
       success_cancel_book_notification,
       action
     ),
+  complete_ride_confirmation: MyListTripCompleteRideConfirmationReducers(
+    complete_ride_confirmation,
+    action
+  ),
 });
 
 const MyListTripProvider = (props: { children: React.ReactNode }) => {
