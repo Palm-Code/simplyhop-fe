@@ -156,5 +156,52 @@
         "children": "Geschehen"
       }
     }
+  },
+  "driver_profile": {
+    "title": "Profile",
+    "summary": {
+      "items": [
+        {
+          "id": "trips",
+          "name": "Trips"
+        },
+        {
+          "id": "ratings",
+          "name": "Ratings"
+        },
+        {
+          "id": "passengers",
+          "name": "Passengers"
+        }
+      ]
+    },
+    "detail": {
+      "items": [
+        {
+          "id": "email",
+          "name": "E-Mail",
+          "icon": "Mail"
+        },
+        {
+          "id": "city",
+          "name": "Stadt",
+          "icon": "MapPin"
+        },
+        {
+          "id": "gender",
+          "name": "Geschlecht",
+          "icon": "PersonStanding"
+        }
+      ]
+    },
+
+    "cta": {
+      "delete": {
+        "children": "Chat löschen"
+      },
+      "block": {
+        "children": "Entblocken"
+      }
+    }
   }
 }

@@ -8,12 +8,20 @@ export interface RoomHeaderChatTripProps {
   avatar?: AvatarProps;
   name?: string;
   href?: string;
+  cta?: {
+    disabled?: boolean;
+    onClick?: () => void;
+  };
 }
 
 export const RoomHeaderChatTrip = ({
   avatar,
   name = "",
   href = "",
+  cta = {
+    disabled: false,
+    onClick: () => {},
+  },
 }: RoomHeaderChatTripProps) => {
   return (
     <div
@@ -30,17 +38,28 @@ export const RoomHeaderChatTrip = ({
           className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
         />
       </Link>
-      <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />
 
-      <div
+      <button
         className={clsx(
-          "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0rem]"
+          "grid grid-flow-col items-center content-center justify-items-start justify-start gap-[0.75rem]",
+          "w-full",
+          "cursor-pointer"
         )}
+        disabled={cta.disabled}
+        onClick={cta.onClick}
       >
-        <h2 className={clsx("text-[#141414] text-[1rem] font-semibold")}>
-          {name}
-        </h2>
-      </div>
+        <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />
+
+        <div
+          className={clsx(
+            "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0rem]"
+          )}
+        >
+          <h2 className={clsx("text-[#141414] text-[1rem] font-semibold")}>
+            {name}
+          </h2>
+        </div>
+      </button>
     </div>
   );
 };

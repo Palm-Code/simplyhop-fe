@@ -5,6 +5,7 @@ import {
   ChatTripRoom,
   ChatTripOffer,
   ChatTripCompletedRide,
+  ChatTripDriverProfile,
 } from "./Chat.trip.types";
 
 // List
@@ -156,6 +157,20 @@ export const ChatTripCompletedRideReducers = (
 ) => {
   switch (action.type) {
     case ChatTripActionEnum.SetCompletedRideData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DriverProfile
+export const ChatTripDriverProfileReducers = (
+  state: ChatTripDriverProfile,
+  action: ChatTripActions
+) => {
+  switch (action.type) {
+    case ChatTripActionEnum.SetDriverProfileData:
       return action.payload;
 
     default:

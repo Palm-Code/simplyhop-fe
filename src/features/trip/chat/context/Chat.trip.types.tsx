@@ -20,6 +20,7 @@ export interface ChatTripInitialStateType {
   room: ChatTripRoom;
   offer: ChatTripOffer;
   completed_ride: ChatTripCompletedRide;
+  driver_profile: ChatTripDriverProfile;
 }
 
 // State Collection Types consist of:
@@ -109,6 +110,22 @@ export interface ChatTripCompletedRide {
   rating: null | number;
 }
 
+export interface ChatTripDriverProfile {
+  is_open: boolean;
+  data: null | {
+    name: string;
+    phone: string;
+    statistic: {
+      trip: number | null;
+      ratings: null | number;
+      passengers: number | null;
+    };
+    email: string;
+    place: string;
+    gender: string;
+  };
+}
+
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
@@ -129,6 +146,9 @@ export enum ChatTripActionEnum {
 
   // CompletedRide
   SetCompletedRideData = "SetCompletedRideData",
+
+  // DriverProfile
+  SetDriverProfileData = "SetDriverProfileData",
 }
 
 // Action Collection Types
@@ -136,7 +156,8 @@ export type ChatTripActions =
   | ChatTripListActions
   | ChatTripRoomActions
   | ChatTripOfferActions
-  | ChatTripCompletedRideActions;
+  | ChatTripCompletedRideActions
+  | ChatTripDriverProfileActions;
 
 // Action Collection Types consist of:
 // List
@@ -179,3 +200,11 @@ type ChatTripCompletedRidePayload = {
 
 export type ChatTripCompletedRideActions =
   ActionMap<ChatTripCompletedRidePayload>[keyof ActionMap<ChatTripCompletedRidePayload>];
+
+// DriverProfile
+type ChatTripDriverProfilePayload = {
+  [ChatTripActionEnum.SetDriverProfileData]: ChatTripDriverProfile;
+};
+
+export type ChatTripDriverProfileActions =
+  ActionMap<ChatTripDriverProfilePayload>[keyof ActionMap<ChatTripDriverProfilePayload>];
