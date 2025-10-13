@@ -4,11 +4,8 @@ import clsx from "clsx";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
-import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
-import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { CompleteBookingRideCardChatTrip } from "../../components/complete_booking_ride_card";
 
 export const CompletedRideTripChat = () => {
