@@ -7,7 +7,7 @@ import { getDictionaries } from "../../i18n";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { useGetRidesId } from "../../react_query/hooks";
 
-export const CompelteRideMyListTrip = () => {
+export const CompletedRideMyListTrip = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();

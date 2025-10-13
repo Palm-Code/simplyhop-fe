@@ -2,7 +2,10 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
-import { BookingCardChatTrip } from "../../components/booking_card";
+import {
+  BookingCardChatTrip,
+  BookingCardChatTripProps,
+} from "../../components/booking_card";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import {
@@ -193,8 +196,17 @@ export const RoomChatTrip = () => {
     state.room.message.pagination.last ===
     state.room.message.pagination.current;
 
-  const handleClickViewTripDetails = () => {
-    //
+  const handleClickViewTripDetails = (
+    data: BookingCardChatTripProps | null
+  ) => {
+    dispatch({
+      type: ChatTripActionEnum.SetCompletedRideData,
+      payload: {
+        ...state.completed_ride,
+        booking: data,
+        is_open: true,
+      },
+    });
   };
 
   return (
@@ -220,6 +232,7 @@ export const RoomChatTrip = () => {
         >
           {conversationData.map((chat, chatIndex) => {
             const { type, role, sender_id, ...otherChatProps } = chat;
+            // TODO: type completed
             const completedType = true;
             if (completedType) {
               return (
@@ -231,7 +244,7 @@ export const RoomChatTrip = () => {
                       children: "View Trip Details",
                       disabled: false,
                       loading: false,
-                      onClick: handleClickViewTripDetails,
+                      onClick: () => handleClickViewTripDetails(chat.booking),
                     },
                   }}
                 />

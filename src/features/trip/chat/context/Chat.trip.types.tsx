@@ -19,6 +19,7 @@ export interface ChatTripInitialStateType {
   list: ChatTripList;
   room: ChatTripRoom;
   offer: ChatTripOffer;
+  completed_ride: ChatTripCompletedRide;
 }
 
 // State Collection Types consist of:
@@ -102,6 +103,12 @@ export interface ChatTripOffer {
   };
 }
 
+export interface ChatTripCompletedRide {
+  is_open: boolean;
+  booking: BookingCardChatTripProps | null;
+  rating: null | number;
+}
+
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
@@ -116,15 +123,20 @@ export enum ChatTripActionEnum {
   SetRoomMessagePaginationLast = "SetRoomMessagePaginationLast",
   SetRoomMessagePaginationIsRefetch = "SetRoomMessagePaginationIsRefetch",
   SetRoomMessagePaginationCounter = "SetRoomMessagePaginationCounter",
+
   // Offer
   SetOfferData = "SetOfferData",
+
+  // CompletedRide
+  SetCompletedRideData = "SetCompletedRideData",
 }
 
 // Action Collection Types
 export type ChatTripActions =
   | ChatTripListActions
   | ChatTripRoomActions
-  | ChatTripOfferActions;
+  | ChatTripOfferActions
+  | ChatTripCompletedRideActions;
 
 // Action Collection Types consist of:
 // List
@@ -159,3 +171,11 @@ type ChatTripOfferPayload = {
 
 export type ChatTripOfferActions =
   ActionMap<ChatTripOfferPayload>[keyof ActionMap<ChatTripOfferPayload>];
+
+// CompletedRide
+type ChatTripCompletedRidePayload = {
+  [ChatTripActionEnum.SetCompletedRideData]: ChatTripCompletedRide;
+};
+
+export type ChatTripCompletedRideActions =
+  ActionMap<ChatTripCompletedRidePayload>[keyof ActionMap<ChatTripCompletedRidePayload>];

@@ -2,6 +2,7 @@
 import React, { createContext, useReducer, Dispatch } from "react";
 import { ChatTripActions, ChatTripInitialStateType } from "./Chat.trip.types";
 import {
+  ChatTripCompletedRideReducers,
   ChatTripListReducers,
   ChatTripOfferReducers,
   ChatTripRoomReducers,
@@ -67,6 +68,12 @@ const initialState: ChatTripInitialStateType = {
     date: null,
     passenger: null,
   },
+
+  completed_ride: {
+    is_open: false,
+    booking: null,
+    rating: null,
+  },
 };
 
 const ChatTripContext = createContext<{
@@ -78,12 +85,13 @@ const ChatTripContext = createContext<{
 });
 
 const mainReducer = (
-  { list, room, offer }: ChatTripInitialStateType,
+  { list, room, offer, completed_ride }: ChatTripInitialStateType,
   action: ChatTripActions
 ) => ({
   list: ChatTripListReducers(list, action),
   room: ChatTripRoomReducers(room, action),
   offer: ChatTripOfferReducers(offer, action),
+  completed_ride: ChatTripCompletedRideReducers(completed_ride, action),
 });
 
 const ChatTripProvider = (props: { children: React.ReactNode }) => {

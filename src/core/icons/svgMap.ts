@@ -46,6 +46,7 @@ import {
   Forward,
   PieChart,
   ArrowUpRight,
+  Star,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -112,6 +113,7 @@ export const svgMap = {
   Forward,
   PieChart,
   ArrowUpRight,
+  Star,
   Facebook,
   Google,
   Whatsapp,

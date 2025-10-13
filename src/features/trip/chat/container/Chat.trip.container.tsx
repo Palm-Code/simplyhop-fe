@@ -15,6 +15,7 @@ import { ChatTripContext, useSetInitialContextValue } from "../context";
 import { RoomHeaderChatTrip } from "../components/room_header";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { FormChatTrip } from "../fragments/form";
+import { CompletedRideTripChat } from "../fragments/completed_ride";
 
 export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
@@ -128,6 +129,9 @@ export const ChatTripContainer = () => {
 
       <React.Suspense fallback={<div />}>
         <OfferChatTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <CompletedRideTripChat />
       </React.Suspense>
     </>
   );

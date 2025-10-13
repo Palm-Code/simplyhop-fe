@@ -1,7 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import Image, { ImageProps } from "next/image";
-import { SVGIconProps } from "@/core/icons";
 import {
   TravelTimeItem,
   TravelTimeItemProps,
@@ -12,21 +11,11 @@ import {
 } from "@/core/components/departure_item";
 import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
 import {
-  CarFacilityItem,
-  CarFacilityItemProps,
-} from "@/core/components/car_facility_item";
-import {
   CarPriceItem,
   CarPriceItemProps,
 } from "@/core/components/car_price_item";
-import {
-  PriceOfferedItem,
-  PriceOfferedItemProps,
-} from "@/core/components/price_offered_item/PriceOfferedItem";
-import {
-  TripNoteItem,
-  TripNoteItemProps,
-} from "@/core/components/trip_note_item";
+import { PriceOfferedItemProps } from "@/core/components/price_offered_item/PriceOfferedItem";
+import { TripNoteItemProps } from "@/core/components/trip_note_item";
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
@@ -226,7 +215,8 @@ export const CompleteBookingRideCardChatTrip = ({
                   "px-[1rem] py-[0.75rem]",
                   "rounded-[0.375rem]",
                   "text-[#232323] text-[0.875rem] font-medium",
-                  "w-full lg:w-fit"
+                  "w-full lg:w-fit",
+                  'cursor-pointer'
                 )}
                 disabled={cta.trip_details.disabled}
                 onClick={cta.trip_details.onClick}

@@ -4,6 +4,7 @@ import {
   ChatTripList,
   ChatTripRoom,
   ChatTripOffer,
+  ChatTripCompletedRide,
 } from "./Chat.trip.types";
 
 // List
@@ -141,6 +142,20 @@ export const ChatTripOfferReducers = (
 ) => {
   switch (action.type) {
     case ChatTripActionEnum.SetOfferData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// CompletedRide
+export const ChatTripCompletedRideReducers = (
+  state: ChatTripCompletedRide,
+  action: ChatTripActions
+) => {
+  switch (action.type) {
+    case ChatTripActionEnum.SetCompletedRideData:
       return action.payload;
 
     default:
