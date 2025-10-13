@@ -94,6 +94,66 @@ export const FormChatTrip = () => {
   const isLoadingSendChat = isPendingPostMessageChat;
   const isDisabledSendChat =
     isPendingPostMessageChat || state.room.booking.status !== "accepted";
+
+  // TODO: integration
+  const isBlocked = true;
+  const isUserDoBlock = false;
+  if (isBlocked && isUserDoBlock) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-2 place-content-center place-items-center gap-[1rem]",
+          "w-full",
+          "border-t border-t-[#DFDFDF]",
+          "px-[0.75rem] py-[1rem]"
+        )}
+      >
+        <button
+          className={clsx(
+            "flex items-center justify-center",
+            "w-full",
+            "px-[0.75rem] py-[0.75rem]",
+            "rounded-[6px]",
+            "bg-[white] disabled:bg-[#F6F6F6]",
+            "text-[#B30606] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
+            "border border-[#B30606]",
+            "box-border"
+          )}
+        >
+          {"Chat löschen"}
+        </button>
+        <button
+          className={clsx(
+            "flex items-center justify-center",
+            "w-full",
+            "px-[0.75rem] py-[0.75rem]",
+            "rounded-[6px]",
+            "bg-[#33CC33] disabled:bg-[#F6F6F6]",
+            "text-[#232323] disabled:text-[#A6A6A6] text-[1rem] font-semibold"
+          )}
+        >
+          {"Entblocken"}
+        </button>
+      </div>
+    );
+  }
+  if (isBlocked && !isUserDoBlock) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full",
+          "border-t border-t-[#DFDFDF]",
+          "px-[0.75rem] py-[1rem]",
+          'bg-[#F6F6F6CC]'
+        )}
+      >
+        <p className={clsx("text-[#767676] text-[1rem] font-normal")}>
+          {"Sorry, du kannst dieser Person keine Nachricht senden."}
+        </p>
+      </div>
+    );
+  }
   return (
     <div
       className={clsx(
