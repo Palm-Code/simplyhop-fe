@@ -180,11 +180,12 @@ export const CompletedRideTripChat = () => {
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
             "px-[0.75rem] py-[0.75rem]",
-            "bg-[#33CC33]",
+            "bg-[#33CC33] disabled:bg-[#F6F6F6]",
             "rounded-[0.375rem]",
-            "text-[1rem] text-[#232323] font-semibold",
+            "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
             "cursor-pointer"
           )}
+          disabled={!state.completed_ride.rating}
           onClick={handleClickConfirmRate}
         >
           {dictionaries.completed_ride.cta.primary.children}
