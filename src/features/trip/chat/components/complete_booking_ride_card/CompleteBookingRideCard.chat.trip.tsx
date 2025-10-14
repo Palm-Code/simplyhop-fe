@@ -15,7 +15,6 @@ import {
   CarPriceItemProps,
 } from "@/core/components/car_price_item";
 import { PriceOfferedItemProps } from "@/core/components/price_offered_item/PriceOfferedItem";
-import { TripNoteItemProps } from "@/core/components/trip_note_item";
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
@@ -41,7 +40,6 @@ export interface CompleteBookingRideCardChatTripProps {
     label: string;
     date: string;
   };
-  note?: TripNoteItemProps;
   cta?: {
     trip_details: null | {
       children: React.ReactNode;
@@ -94,10 +92,6 @@ export const CompleteBookingRideCardChatTrip = ({
   date = {
     label: "Datum",
     date: "24.02.25",
-  },
-  note = {
-    label: "Hinweis",
-    note: "Lorem Ipsum",
   },
   cta = {
     trip_details: {
@@ -216,7 +210,7 @@ export const CompleteBookingRideCardChatTrip = ({
                   "rounded-[0.375rem]",
                   "text-[#232323] text-[0.875rem] font-medium",
                   "w-full lg:w-fit",
-                  'cursor-pointer'
+                  "cursor-pointer"
                 )}
                 disabled={cta.trip_details.disabled}
                 onClick={cta.trip_details.onClick}
