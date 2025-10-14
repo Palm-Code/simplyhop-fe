@@ -33,6 +33,64 @@ export const DriverProfileTripChat = () => {
     //
   };
 
+  const summaryItems = dictionaries.driver_profile.summary.items.map((item) => {
+    let value = "-";
+    switch (item.id) {
+      case "trips": {
+        value =
+          state.driver_profile.data?.statistic.trip?.toLocaleString("de-DE") ??
+          "-";
+        break;
+      }
+      case "ratings": {
+        value =
+          state.driver_profile.data?.statistic.ratings?.toLocaleString(
+            "de-DE"
+          ) ?? "-";
+        break;
+      }
+      case "passengers": {
+        value =
+          state.driver_profile.data?.statistic.passengers?.toLocaleString(
+            "de-DE"
+          ) ?? "-";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    return {
+      ...item,
+      value: value,
+    };
+  });
+
+  const detailItems = dictionaries.driver_profile.detail.items.map((item) => {
+    let value = "-";
+    switch (item.id) {
+      case "email": {
+        value = state.driver_profile.data?.email ?? "-";
+        break;
+      }
+      case "city": {
+        value = state.driver_profile.data?.place ?? "-";
+        break;
+      }
+      case "gender": {
+        value = state.driver_profile.data?.gender ?? "-";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    return {
+      ...item,
+      value: value,
+    };
+  });
+
   return (
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}
@@ -117,54 +175,60 @@ export const DriverProfileTripChat = () => {
           </div>
 
           {/* summary */}
-          <div
-            className={clsx(
-              "grid place-content-center place-items-center gap-[0.5rem]",
-              "w-full",
-              "bg-[white]",
-              "px-[0.5rem] py-[0.5rem]",
-              "rounded-[0.5rem]"
-            )}
-            style={{
-              gridTemplateColumns: `repeat(${dictionaries.driver_profile.summary.items.length},1fr)`,
-            }}
-          >
-            {dictionaries.driver_profile.summary.items.map((item, index) => (
-              <div
-                key={index}
-                className={clsx(
-                  "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
-                  "w-full"
-                )}
-              >
-                <p
-                  className={clsx("text-[0.75rem] text-[#606060] font-normal")}
-                >
-                  {item.name}
-                </p>
+          {state.driver_profile.data?.type === "driver" && (
+            <div
+              className={clsx(
+                "grid place-content-center place-items-center gap-[0.5rem]",
+                "w-full",
+                "bg-[white]",
+                "px-[0.5rem] py-[0.5rem]",
+                "rounded-[0.5rem]"
+              )}
+              style={{
+                gridTemplateColumns: `repeat(${summaryItems.length},1fr)`,
+              }}
+            >
+              {summaryItems.map((item, index) => (
                 <div
+                  key={index}
                   className={clsx(
-                    "flex items-center justify-center gap-[0.5rem]"
+                    "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
+                    "w-full"
                   )}
                 >
-                  {item.id === "ratings" && (
-                    <SVGIcon
-                      name="Star"
-                      className={clsx(
-                        "w-[1rem] h-[1rem]",
-                        "fill-[#FAC248] text-[#FAC248]"
-                      )}
-                    />
-                  )}
                   <p
-                    className={clsx("text-[0.875rem] text-[#232323] font-bold")}
+                    className={clsx(
+                      "text-[0.75rem] text-[#606060] font-normal"
+                    )}
                   >
                     {item.name}
                   </p>
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center gap-[0.5rem]"
+                    )}
+                  >
+                    {item.id === "ratings" && (
+                      <SVGIcon
+                        name="Star"
+                        className={clsx(
+                          "w-[1rem] h-[1rem]",
+                          "fill-[#FAC248] text-[#FAC248]"
+                        )}
+                      />
+                    )}
+                    <p
+                      className={clsx(
+                        "text-[0.875rem] text-[#232323] font-bold"
+                      )}
+                    >
+                      {item.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* detail */}
           <div
@@ -176,7 +240,7 @@ export const DriverProfileTripChat = () => {
               "rounded-[0.5rem]"
             )}
           >
-            {dictionaries.driver_profile.detail.items.map((item, index) => (
+            {detailItems.map((item, index) => (
               <div
                 key={index}
                 className={clsx(
@@ -206,7 +270,7 @@ export const DriverProfileTripChat = () => {
                       "text-[0.875rem] text-[#232323] font-medium"
                     )}
                   >
-                    {item.name}
+                    {item.value}
                   </p>
                 </div>
               </div>

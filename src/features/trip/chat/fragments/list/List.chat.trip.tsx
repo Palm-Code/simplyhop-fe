@@ -80,6 +80,9 @@ export const ListChatTrip = () => {
       value: {
         id: data.id,
         header: {
+          user_id:
+            state.list.message.items.find((item) => item.id === data.id)
+              ?.user_id ?? null,
           avatar: {
             src:
               state.list.message.items.find((item) => item.id === data.id)

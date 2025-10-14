@@ -35,6 +35,7 @@ export interface ChatTripList {
     items: {
       id: string;
       booking_id: string;
+      user_id: number | null;
       avatar: AvatarProps;
       name: string;
       message: string;
@@ -52,6 +53,7 @@ export interface ChatTripList {
 export interface ChatTripRoom {
   id: number | null;
   header: {
+    user_id: number | null;
     name: string;
     avatar: AvatarProps;
   };
@@ -115,6 +117,7 @@ export interface ChatTripDriverProfile {
   data: null | {
     name: string;
     phone: string;
+    type: "passenger" | "driver" | null;
     statistic: {
       trip: number | null;
       ratings: null | number;

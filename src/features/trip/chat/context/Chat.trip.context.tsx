@@ -32,6 +32,7 @@ const initialState: ChatTripInitialStateType = {
       status: null,
     },
     header: {
+      user_id: null,
       avatar: {
         src: undefined,
         alt: "",

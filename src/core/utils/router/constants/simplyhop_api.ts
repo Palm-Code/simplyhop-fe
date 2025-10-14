@@ -22,6 +22,7 @@ import {
   PutRidesThirdPathPayloadRequestInterface,
   PostRidesArchivePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
+import { GetUserProfileIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 import {
   DeleteVehicleIdPathPayloadRequestInterface,
   DeleteVehicleMediaPathPayloadRequestInterface,
@@ -63,7 +64,10 @@ export const SimplyHopAPICollectionURL = {
   user_profile: {
     postCreate: () => `/api/profile`,
     getData: () => `/api/profile`,
+    getId: (path: GetUserProfileIdPathPayloadRequestInterface) =>
+      `/api/users/profile/${path.id}`,
   },
+
   vehicle_brand: {
     getList: () => `/api/vehicle-brand`,
     postCreate: () => `/api/vehicle-brand`,

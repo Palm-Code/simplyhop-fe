@@ -7,3 +7,4 @@ export * from "./usePostBookingOffer.chat.trip";
 export * from "./usePostBookingReject.chat.trip";
 export * from "./useGetBookingId.chat.trip";
 export * from "./usePostBookingRating.chat.trip";
+export * from "./useGetUserProfileId.chat.trip";

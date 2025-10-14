@@ -9,7 +9,6 @@ export interface RoomHeaderChatTripProps {
   name?: string;
   href?: string;
   cta?: {
-    disabled?: boolean;
     onClick?: () => void;
   };
 }
@@ -19,7 +18,6 @@ export const RoomHeaderChatTrip = ({
   name = "",
   href = "",
   cta = {
-    disabled: false,
     onClick: () => {},
   },
 }: RoomHeaderChatTripProps) => {
@@ -45,7 +43,6 @@ export const RoomHeaderChatTrip = ({
           "w-full",
           "cursor-pointer"
         )}
-        disabled={cta.disabled}
         onClick={cta.onClick}
       >
         <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />

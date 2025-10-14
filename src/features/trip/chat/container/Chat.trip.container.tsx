@@ -21,6 +21,7 @@ import { AppCollectionURL } from "@/core/utils/router/constants";
 import { FormChatTrip } from "../fragments/form";
 import { CompletedRideTripChat } from "../fragments/completed_ride";
 import { DriverProfileTripChat } from "../fragments/driver_profile";
+import { useGetUserProfileId } from "../react_query/hooks";
 
 export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
@@ -30,6 +31,7 @@ export const ChatTripContainer = () => {
   const { state, dispatch } = React.useContext(ChatTripContext);
 
   useSetInitialContextValue();
+  useGetUserProfileId();
 
   const handleClickProfile = () => {
     dispatch({
@@ -109,8 +111,6 @@ export const ChatTripContainer = () => {
                     avatar={state.room.header.avatar}
                     name={state.room.header.name}
                     cta={{
-                      // TODO: need integrated
-                      disabled: false,
                       onClick: handleClickProfile,
                     }}
                   />
@@ -139,8 +139,6 @@ export const ChatTripContainer = () => {
                   avatar={state.room.header.avatar}
                   name={state.room.header.name}
                   cta={{
-                    // TODO: need integrated
-                    disabled: false,
                     onClick: handleClickProfile,
                   }}
                 />
