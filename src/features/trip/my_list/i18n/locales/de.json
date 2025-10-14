@@ -34,11 +34,11 @@
           "name": "Bevorstehend"
         },
         {
-          "id": "finish",
+          "id": "finished",
           "name": "Fertig"
         },
         {
-          "id": "complete",
+          "id": "archive",
           "name": "Archive"
         }
       ]

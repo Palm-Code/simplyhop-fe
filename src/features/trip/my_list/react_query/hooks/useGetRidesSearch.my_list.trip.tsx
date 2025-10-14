@@ -28,6 +28,7 @@ export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
   const type = searchParams.get("type");
+  const rideStatus = searchParams.get("ride-status");
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { state: userState } = React.useContext(UserContext);
 
@@ -37,7 +38,7 @@ export const useGetRidesSearch = () => {
         ? undefined
         : String(userState.profile.id),
       include: "vehicle.brand,user,bookings,bookings.user",
-      departure_time__gte: dayjs().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+      status: rideStatus ?? "in_progress",
       sort: "departure_time",
       "page[number]": state.ride.pagination.current,
       "page[size]": PAGINATION.SIZE,
