@@ -7,6 +7,7 @@ import {
   PostBookingAcceptPathPayloadRequestInterface,
   PostBookingOfferPathPayloadRequestInterface,
   PostBookingRejectPathPayloadRequestInterface,
+  PostBookingRatingPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/booking";
 import { GetMessageRoomsIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 import { PutMessageRoomsMarkAsReadPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms/mark_as_read.put";
@@ -97,6 +98,8 @@ export const SimplyHopAPICollectionURL = {
       `/api/bookings/${path.id}/counter-offer`,
     postReject: (path: PostBookingRejectPathPayloadRequestInterface) =>
       `/api/bookings/${path.id}/reject`,
+    postRating: (path: PostBookingRatingPathPayloadRequestInterface) =>
+      `/api/bookings/rating/${path.ride_booking_id}`,
   },
   messages: {
     getListByRoom: (path: GetMessagesListByRoomPathPayloadRequestInterface) =>

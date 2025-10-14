@@ -37,4 +37,7 @@ export const ChatTripReactQueryKey = {
   PostBookingReject: () => {
     return ["ChatTripReactQueryKey.PostBookingReject"];
   },
+  PostBookingRating: () => {
+    return ["ChatTripReactQueryKey.PostBookingRating"];
+  },
 };

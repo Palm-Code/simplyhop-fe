@@ -7,6 +7,8 @@ import SVGIcon from "@/core/icons";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { CompleteBookingRideCardChatTrip } from "../../components/complete_booking_ride_card";
+import { usePostBookingRating } from "../../react_query/hooks";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const CompletedRideTripChat = () => {
   const dictionaries = getDictionaries();
@@ -14,6 +16,9 @@ export const CompletedRideTripChat = () => {
   const { isLg } = useTailwindBreakpoint();
   const [hoveredRating, setHoveredRating] = React.useState<number | null>(null);
   const isOpen = state.completed_ride.is_open;
+
+  const { mutate: postBookingRating, isPending: isPendingPostBookingRating } =
+    usePostBookingRating();
   const handleClose = () => {
     dispatch({
       type: ChatTripActionEnum.SetCompletedRideData,
@@ -28,7 +33,7 @@ export const CompletedRideTripChat = () => {
   if (!state.completed_ride.booking) return null;
 
   const handleClickConfirmRate = () => {
-    //
+    postBookingRating();
   };
 
   const handleClickRating = (rating: number) => {
@@ -185,9 +190,12 @@ export const CompletedRideTripChat = () => {
             "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
             "cursor-pointer"
           )}
-          disabled={!state.completed_ride.rating}
+          disabled={!state.completed_ride.rating || isPendingPostBookingRating}
           onClick={handleClickConfirmRate}
         >
+          {isPendingPostBookingRating && (
+            <MoonLoader size={20} color={"white"} />
+          )}
           {dictionaries.completed_ride.cta.primary.children}
         </button>
       </div>
