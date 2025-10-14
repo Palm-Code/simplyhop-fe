@@ -5,23 +5,25 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { getDictionaries } from "../../i18n";
 import { ChatTripContext, ChatTripActionEnum } from "../../context";
-import { usePostUserBlock } from "../../react_query/hooks";
+import { useDeleteMessageRoomsId } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 
-export const BlockConfirmationChatTrip = () => {
+export const DeleteChatConfirmationChatTrip = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();
   const { state, dispatch } = React.useContext(ChatTripContext);
 
-  const { mutate: postUserBlock, isPending: isPendingUserBlock } =
-    usePostUserBlock();
+  const {
+    mutate: deleteMessageRoomsId,
+    isPending: isPendingDeleteMessageRoomsId,
+  } = useDeleteMessageRoomsId();
 
   const handleClose = () => {
     dispatch({
-      type: ChatTripActionEnum.SetBlockConfirmationData,
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.delete_chat_confirmation,
         is_open: false,
       },
     });
@@ -29,9 +31,9 @@ export const BlockConfirmationChatTrip = () => {
 
   const handleClickCancelConfirmRideComplete = () => {
     dispatch({
-      type: ChatTripActionEnum.SetBlockConfirmationData,
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.delete_chat_confirmation,
         is_open: false,
       },
     });
@@ -39,13 +41,13 @@ export const BlockConfirmationChatTrip = () => {
 
   const handleClickOKConfirmRideComplete = async () => {
     dispatch({
-      type: ChatTripActionEnum.SetBlockConfirmationData,
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.delete_chat_confirmation,
         is_open: false,
       },
     });
-    postUserBlock();
+    deleteMessageRoomsId();
   };
 
   return (
@@ -58,7 +60,7 @@ export const BlockConfirmationChatTrip = () => {
         "overflow-hidden",
         "!px-[0rem] !py-[0rem]"
       )}
-      open={state.block_confirmation.is_open}
+      open={state.delete_chat_confirmation.is_open}
       onClose={handleClose}
     >
       <div
@@ -75,14 +77,14 @@ export const BlockConfirmationChatTrip = () => {
           )}
         >
           <p className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
-            {dictionaries.block_confirmation.title}
+            {dictionaries.delete_chat_confirmation.title}
           </p>
           <span
             className={clsx(
               "text-[1rem] text-[#5B5B5B] font-normal text-center"
             )}
           >
-            {dictionaries.block_confirmation.description}
+            {dictionaries.delete_chat_confirmation.description}
           </span>
         </div>
         {/* actions */}
@@ -106,7 +108,7 @@ export const BlockConfirmationChatTrip = () => {
             )}
             onClick={handleClickCancelConfirmRideComplete}
           >
-            {dictionaries.block_confirmation.cta.cancel.children}
+            {dictionaries.delete_chat_confirmation.cta.cancel.children}
           </button>
           <button
             className={clsx(
@@ -118,11 +120,13 @@ export const BlockConfirmationChatTrip = () => {
               "text-[1rem] text-[#FFFFFF] disabled:text-[#A6A6A6] font-semibold",
               "cursor-pointer"
             )}
-            disabled={isPendingUserBlock}
+            disabled={isPendingDeleteMessageRoomsId}
             onClick={handleClickOKConfirmRideComplete}
           >
-            {isPendingUserBlock && <MoonLoader size={20} color={"white"} />}
-            {dictionaries.block_confirmation.cta.ok.children}
+            {isPendingDeleteMessageRoomsId && (
+              <MoonLoader size={20} color={"white"} />
+            )}
+            {dictionaries.delete_chat_confirmation.cta.ok.children}
           </button>
         </div>
       </div>

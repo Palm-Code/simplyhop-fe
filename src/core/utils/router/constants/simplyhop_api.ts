@@ -10,7 +10,10 @@ import {
   PostBookingRatingPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/booking";
 import { GetMessageRoomsIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
-import { PutMessageRoomsMarkAsReadPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms/mark_as_read.put";
+import {
+  PutMessageRoomsMarkAsReadPathPayloadRequestInterface,
+  DeleteMessageRoomsIdPathPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/message_rooms";
 import {
   DeleteMessagesChatPathPayloadRequestInterface,
   GetMessagesListByRoomPathPayloadRequestInterface,
@@ -67,7 +70,10 @@ export const SimplyHopAPICollectionURL = {
     getId: (path: GetUserProfileIdPathPayloadRequestInterface) =>
       `/api/users/profile/${path.id}`,
   },
-
+  user: {
+    postBlock: () => `/api/user-block`,
+    deleteBlock: () => `/api/user-block`,
+  },
   vehicle_brand: {
     getList: () => `/api/vehicle-brand`,
     postCreate: () => `/api/vehicle-brand`,
@@ -120,6 +126,8 @@ export const SimplyHopAPICollectionURL = {
     putMarkAsRead: (
       path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface
     ) => `/api/message-rooms/${path.roomId}/mark-as-read`,
+    deleteId: (path: DeleteMessageRoomsIdPathPayloadRequestInterface) =>
+      `/api/message-rooms/${path.id}`,
   },
   payment: {
     getBillingPortal: () => `/api/payments/billing-portal`,

@@ -44,4 +44,13 @@ export const ChatTripReactQueryKey = {
   PostBookingRating: () => {
     return ["ChatTripReactQueryKey.PostBookingRating"];
   },
+  PostUserBlock: () => {
+    return ["ChatTripReactQueryKey.PostUserBlock"];
+  },
+  DeleteUserBlock: () => {
+    return ["ChatTripReactQueryKey.DeleteUserBlock"];
+  },
+  DeleteMessageRoomsId: () => {
+    return ["ChatTripReactQueryKey.DeleteMessageRoomsId"];
+  },
 };

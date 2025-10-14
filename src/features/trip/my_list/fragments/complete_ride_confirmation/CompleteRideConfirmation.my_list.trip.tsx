@@ -14,7 +14,7 @@ export const CompletedRideMyListTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   const { state, dispatch } = React.useContext(MyListTripContext);
 
-  const { mutateAsync: postRidesArchive, isPending: isPendingRidesArchive } =
+  const { mutate: postRidesArchive, isPending: isPendingRidesArchive } =
     usePostRidesArchive();
 
   const handleClose = () => {

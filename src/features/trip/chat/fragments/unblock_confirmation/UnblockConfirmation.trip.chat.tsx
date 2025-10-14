@@ -5,23 +5,23 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { getDictionaries } from "../../i18n";
 import { ChatTripContext, ChatTripActionEnum } from "../../context";
-import { usePostUserBlock } from "../../react_query/hooks";
+import { useDeleteUserBlock } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 
-export const BlockConfirmationChatTrip = () => {
+export const UnblockConfirmationChatTrip = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();
   const { state, dispatch } = React.useContext(ChatTripContext);
 
-  const { mutate: postUserBlock, isPending: isPendingUserBlock } =
-    usePostUserBlock();
+  const { mutate: deleteUserBlock, isPending: isPendingDeleteUserBlock } =
+    useDeleteUserBlock();
 
   const handleClose = () => {
     dispatch({
-      type: ChatTripActionEnum.SetBlockConfirmationData,
+      type: ChatTripActionEnum.SetUnblockConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.unblock_confirmation,
         is_open: false,
       },
     });
@@ -29,9 +29,9 @@ export const BlockConfirmationChatTrip = () => {
 
   const handleClickCancelConfirmRideComplete = () => {
     dispatch({
-      type: ChatTripActionEnum.SetBlockConfirmationData,
+      type: ChatTripActionEnum.SetUnblockConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.unblock_confirmation,
         is_open: false,
       },
     });
@@ -39,13 +39,13 @@ export const BlockConfirmationChatTrip = () => {
 
   const handleClickOKConfirmRideComplete = async () => {
     dispatch({
-      type: ChatTripActionEnum.SetBlockConfirmationData,
+      type: ChatTripActionEnum.SetUnblockConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.unblock_confirmation,
         is_open: false,
       },
     });
-    postUserBlock();
+    deleteUserBlock();
   };
 
   return (
@@ -58,7 +58,7 @@ export const BlockConfirmationChatTrip = () => {
         "overflow-hidden",
         "!px-[0rem] !py-[0rem]"
       )}
-      open={state.block_confirmation.is_open}
+      open={state.unblock_confirmation.is_open}
       onClose={handleClose}
     >
       <div
@@ -75,14 +75,14 @@ export const BlockConfirmationChatTrip = () => {
           )}
         >
           <p className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
-            {dictionaries.block_confirmation.title}
+            {dictionaries.unblock_confirmation.title}
           </p>
           <span
             className={clsx(
               "text-[1rem] text-[#5B5B5B] font-normal text-center"
             )}
           >
-            {dictionaries.block_confirmation.description}
+            {dictionaries.unblock_confirmation.description}
           </span>
         </div>
         {/* actions */}
@@ -99,30 +99,32 @@ export const BlockConfirmationChatTrip = () => {
               "px-[0.75rem] py-[0.75rem]",
               "bg-[white]",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#B30606] font-semibold",
-              "border border-[#B30606]",
+              "text-[1rem] text-[#232323] font-semibold",
+              "border border-[#464646]",
               "box-border",
               "cursor-pointer"
             )}
             onClick={handleClickCancelConfirmRideComplete}
           >
-            {dictionaries.block_confirmation.cta.cancel.children}
+            {dictionaries.unblock_confirmation.cta.cancel.children}
           </button>
           <button
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[#B30606] disabled:bg-[#F6F6F6]",
+              "bg-[#33CC33] disabled:bg-[#F6F6F6]",
+              "text-[#232323] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#FFFFFF] disabled:text-[#A6A6A6] font-semibold",
               "cursor-pointer"
             )}
-            disabled={isPendingUserBlock}
+            disabled={isPendingDeleteUserBlock}
             onClick={handleClickOKConfirmRideComplete}
           >
-            {isPendingUserBlock && <MoonLoader size={20} color={"white"} />}
-            {dictionaries.block_confirmation.cta.ok.children}
+            {isPendingDeleteUserBlock && (
+              <MoonLoader size={20} color={"white"} />
+            )}
+            {dictionaries.unblock_confirmation.cta.ok.children}
           </button>
         </div>
       </div>

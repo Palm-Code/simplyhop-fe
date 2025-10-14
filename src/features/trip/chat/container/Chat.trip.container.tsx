@@ -22,6 +22,9 @@ import { FormChatTrip } from "../fragments/form";
 import { CompletedRideTripChat } from "../fragments/completed_ride";
 import { DriverProfileTripChat } from "../fragments/driver_profile";
 import { useGetUserProfileId } from "../react_query/hooks";
+import { BlockConfirmationChatTrip } from "../fragments/block_confirmation";
+import { UnblockConfirmationChatTrip } from "../fragments/unblock_confirmation";
+import { DeleteChatConfirmationChatTrip } from "../fragments/delete_chat_confirmation";
 
 export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
@@ -158,6 +161,15 @@ export const ChatTripContainer = () => {
       </React.Suspense>
       <React.Suspense fallback={<div />}>
         <DriverProfileTripChat />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <BlockConfirmationChatTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <UnblockConfirmationChatTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <DeleteChatConfirmationChatTrip />
       </React.Suspense>
     </>
   );

@@ -24,13 +24,24 @@ export const DriverProfileTripChat = () => {
     });
   };
 
-  // TODO: need integration
   const handleClickDeleteChat = () => {
-    //
+    dispatch({
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
+      payload: {
+        ...state.delete_chat_confirmation,
+        is_open: true,
+      },
+    });
   };
 
   const handleClickBlock = () => {
-    //
+    dispatch({
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
+      payload: {
+        ...state.block_confirmation,
+        is_open: true,
+      },
+    });
   };
 
   const summaryItems = dictionaries.driver_profile.summary.items.map((item) => {

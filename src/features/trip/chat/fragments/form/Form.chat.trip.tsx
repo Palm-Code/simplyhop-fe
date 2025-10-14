@@ -99,6 +99,27 @@ export const FormChatTrip = () => {
     state.driver_profile.data?.i_blocked ||
     state.driver_profile.data?.blocked_me;
   const isUserDoBlock = state.driver_profile.data?.i_blocked;
+
+  const handleClickDeleteChat = () => {
+    dispatch({
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
+      payload: {
+        ...state.delete_chat_confirmation,
+        is_open: true,
+      },
+    });
+  };
+
+  const handleClickUnblock = () => {
+    dispatch({
+      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
+      payload: {
+        ...state.block_confirmation,
+        is_open: true,
+      },
+    });
+  };
+
   if (isBlocked && isUserDoBlock) {
     return (
       <div
@@ -120,6 +141,7 @@ export const FormChatTrip = () => {
             "border border-[#B30606]",
             "box-border"
           )}
+          onClick={handleClickDeleteChat}
         >
           {"Chat löschen"}
         </button>
@@ -132,6 +154,7 @@ export const FormChatTrip = () => {
             "bg-[#33CC33] disabled:bg-[#F6F6F6]",
             "text-[#232323] disabled:text-[#A6A6A6] text-[1rem] font-semibold"
           )}
+          onClick={handleClickUnblock}
         >
           {"Entblocken"}
         </button>
