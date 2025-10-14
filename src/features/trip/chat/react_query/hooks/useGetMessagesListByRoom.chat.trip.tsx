@@ -346,6 +346,18 @@ export const useGetMessagesListByRoom = () => {
         type: ChatTripActionEnum.SetRoomMessagePaginationLast,
         payload: data.meta.last_page,
       });
+      dispatch({
+        type: ChatTripActionEnum.SetRoomMessageIsBlocked,
+        payload: data.is_blocked,
+      });
+      dispatch({
+        type: ChatTripActionEnum.SetRoomMessageIsRated,
+        payload: data.is_rated,
+      });
+      dispatch({
+        type: ChatTripActionEnum.SetRoomMessageRating,
+        payload: data.rating,
+      });
     }
   }, [query.data, query.isFetching]);
   return query;

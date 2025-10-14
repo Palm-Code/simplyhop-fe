@@ -197,7 +197,9 @@ export const RoomChatTrip = () => {
     state.room.message.pagination.current;
 
   const handleClickViewTripDetails = (
-    data: BookingCardChatTripProps | null
+    data: BookingCardChatTripProps | null,
+    is_rated: boolean,
+    rating: number | null
   ) => {
     dispatch({
       type: ChatTripActionEnum.SetCompletedRideData,
@@ -232,8 +234,7 @@ export const RoomChatTrip = () => {
         >
           {conversationData.map((chat, chatIndex) => {
             const { type, role, sender_id, ...otherChatProps } = chat;
-            // TODO: type completed
-            const completedType = true;
+            const completedType = type === "archieve";
             if (completedType) {
               return (
                 <CompleteBookingRideCardChatTrip
@@ -244,7 +245,12 @@ export const RoomChatTrip = () => {
                       children: "View Trip Details",
                       disabled: false,
                       loading: false,
-                      onClick: () => handleClickViewTripDetails(chat.booking),
+                      onClick: () =>
+                        handleClickViewTripDetails(
+                          chat.booking,
+                          state.room.is_rated,
+                          state.room.rating
+                        ),
                     },
                   }}
                 />

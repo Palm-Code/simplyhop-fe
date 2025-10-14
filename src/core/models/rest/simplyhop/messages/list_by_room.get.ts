@@ -37,6 +37,9 @@ export interface GetMessagesListByRoomSuccessResponseInterface {
 
   redirect: null;
   meta: Meta;
+  is_blocked: boolean;
+  is_rated: boolean;
+  rating: number;
 }
 
 export interface GetMessagesListByRoomErrorResponseInterface {

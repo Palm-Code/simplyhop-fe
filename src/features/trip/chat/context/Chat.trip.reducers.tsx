@@ -130,6 +130,24 @@ export const ChatTripRoomReducers = (
         },
       };
     }
+    case ChatTripActionEnum.SetRoomMessageIsBlocked: {
+      return {
+        ...state,
+        is_blocked: action.payload,
+      };
+    }
+    case ChatTripActionEnum.SetRoomMessageIsRated: {
+      return {
+        ...state,
+        is_rated: action.payload,
+      };
+    }
+    case ChatTripActionEnum.SetRoomMessageRating: {
+      return {
+        ...state,
+        rating: action.payload,
+      };
+    }
 
     default:
       return state;

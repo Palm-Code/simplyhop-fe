@@ -54,6 +54,9 @@ const initialState: ChatTripInitialStateType = {
         value: "",
       },
     },
+    is_blocked: false,
+    is_rated: false,
+    rating: null,
   },
   offer: {
     is_open: false,
@@ -75,6 +78,7 @@ const initialState: ChatTripInitialStateType = {
     is_open: false,
     booking: null,
     rating: null,
+    is_rated: false,
   },
 
   driver_profile: {

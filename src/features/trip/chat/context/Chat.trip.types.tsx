@@ -85,6 +85,9 @@ export interface ChatTripRoom {
       value: string;
     };
   };
+  is_blocked: boolean;
+  is_rated: boolean;
+  rating: number | null;
 }
 
 export interface ChatTripOffer {
@@ -110,6 +113,7 @@ export interface ChatTripCompletedRide {
   is_open: boolean;
   booking: BookingCardChatTripProps | null;
   rating: null | number;
+  is_rated: boolean;
 }
 
 export interface ChatTripDriverProfile {
@@ -143,6 +147,9 @@ export enum ChatTripActionEnum {
   SetRoomMessagePaginationLast = "SetRoomMessagePaginationLast",
   SetRoomMessagePaginationIsRefetch = "SetRoomMessagePaginationIsRefetch",
   SetRoomMessagePaginationCounter = "SetRoomMessagePaginationCounter",
+  SetRoomMessageIsBlocked = "SetRoomMessageIsBlocked",
+  SetRoomMessageRating = "SetRoomMessageRating",
+  SetRoomMessageIsRated = "SetRoomMessageIsRated",
 
   // Offer
   SetOfferData = "SetOfferData",
@@ -183,6 +190,9 @@ type ChatTripRoomPayload = {
   [ChatTripActionEnum.SetRoomMessagePaginationLast]: ChatTripRoom["message"]["pagination"]["last"];
   [ChatTripActionEnum.SetRoomMessagePaginationIsRefetch]: ChatTripRoom["message"]["pagination"]["is_refetch"];
   [ChatTripActionEnum.SetRoomMessagePaginationCounter]: ChatTripRoom["message"]["pagination"]["counter"];
+  [ChatTripActionEnum.SetRoomMessageIsBlocked]: ChatTripRoom["is_blocked"];
+  [ChatTripActionEnum.SetRoomMessageIsRated]: ChatTripRoom["is_rated"];
+  [ChatTripActionEnum.SetRoomMessageRating]: ChatTripRoom["rating"];
 };
 
 export type ChatTripRoomActions =

@@ -95,8 +95,8 @@ export const FormChatTrip = () => {
   const isDisabledSendChat =
     isPendingPostMessageChat || state.room.booking.status !== "accepted";
 
-  // TODO: integration
-  const isBlocked = true;
+  const isBlocked = state.room.is_blocked;
+  // TODO: need integration
   const isUserDoBlock = false;
   if (isBlocked && isUserDoBlock) {
     return (
@@ -145,7 +145,7 @@ export const FormChatTrip = () => {
           "w-full",
           "border-t border-t-[#DFDFDF]",
           "px-[0.75rem] py-[1rem]",
-          'bg-[#F6F6F6CC]'
+          "bg-[#F6F6F6CC]"
         )}
       >
         <p className={clsx("text-[#767676] text-[1rem] font-normal")}>
