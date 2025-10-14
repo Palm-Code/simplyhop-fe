@@ -15,6 +15,7 @@ export type GetBookingMyParamsPayloadRequestInterface = {
   "filter[status]"?: string;
 
   include?: string;
+  ride_status?: string;
   //mandatory
   sort?: string;
   "page[number]"?: number;
