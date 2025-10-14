@@ -44,6 +44,14 @@ export const RideDetailMyListTrip = () => {
   const isOpen = state.detail_ride_notification.is_open;
 
   const handleClose = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      payload: {
+        ...state.complete_ride_confirmation,
+        is_open: false,
+        confirmed_booking: [],
+      },
+    });
     const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
     params.delete("ride_id");
     router.push(AppCollectionURL.private.myList(params.toString()), {
@@ -68,13 +76,11 @@ export const RideDetailMyListTrip = () => {
     });
   };
 
-  const isDeleteRideAvailable = true;
-  const isFinishTrip = true;
-
-  const handleClickConfirmAbsent = () => {};
-  const handleClickConfirmPresent = () => {};
-
   const rideStatus = searchParams.get("ride-status");
+
+  const isDeleteRideAvailable =
+    rideStatus !== "finished" && rideStatus !== "archive";
+  const isFinishTrip = rideStatus === "finished";
 
   const title = (
     dictionaries.ride_detail.title as {
@@ -88,7 +94,61 @@ export const RideDetailMyListTrip = () => {
     }
   )[rideStatus ?? "default"].description;
 
-  const isRideCompleteConfirmationDisabled = false;
+  const isRideCompleteConfirmationDisabled =
+    state.complete_ride_confirmation.confirmed_booking.length ===
+    filteredData.booking.length;
+
+  const handleClickConfirmAbsent = (data: { bookingId: number }) => {
+    dispatch({
+      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      payload: {
+        ...state.complete_ride_confirmation,
+        confirmed_booking: [
+          ...state.complete_ride_confirmation.confirmed_booking,
+          {
+            id: data.bookingId,
+            type: "unjoined",
+          },
+        ],
+      },
+    });
+  };
+  const handleClickConfirmPresent = (data: { bookingId: number }) => {
+    dispatch({
+      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      payload: {
+        ...state.complete_ride_confirmation,
+        confirmed_booking: [
+          ...state.complete_ride_confirmation.confirmed_booking,
+          {
+            id: data.bookingId,
+            type: "unjoined",
+          },
+        ],
+      },
+    });
+  };
+
+  const handleClickToggleConfirmation = (data: { bookingId: number }) => {
+    dispatch({
+      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      payload: {
+        ...state.complete_ride_confirmation,
+        confirmed_booking:
+          state.complete_ride_confirmation.confirmed_booking.map((item) => {
+            return {
+              ...item,
+              type:
+                data.bookingId === item.id && item.type === "joined"
+                  ? "unjoined"
+                  : data.bookingId === item.id && item.type === "unjoined"
+                  ? "joined"
+                  : item.type,
+            };
+          }),
+      },
+    });
+  };
 
   const handleClickConfirmCompleteRide = () => {
     dispatch({
@@ -227,8 +287,14 @@ export const RideDetailMyListTrip = () => {
               )}
             >
               {filteredData.booking.map((item, index) => {
-                const isPresentStatusNotNull = true;
-                const isPresent = true;
+                const isPresentStatusNotNull =
+                  state.complete_ride_confirmation.confirmed_booking
+                    .map((confirmedItem) => confirmedItem.id)
+                    .includes(item.booking?.id ?? -1);
+                const isPresent =
+                  state.complete_ride_confirmation.confirmed_booking.find(
+                    (confirmedItem) => confirmedItem.id === item.booking?.id
+                  )?.type === "joined";
                 return (
                   <div
                     className={clsx(
@@ -253,7 +319,11 @@ export const RideDetailMyListTrip = () => {
                             "rounded-[0.375rem]",
                             "text-[0.75rem] text-[#B30606] font-semibold"
                           )}
-                          onClick={handleClickConfirmAbsent}
+                          onClick={() =>
+                            handleClickConfirmAbsent({
+                              bookingId: item.booking?.id ?? -1,
+                            })
+                          }
                         >
                           {"Nicht anwesend"}
                         </button>
@@ -266,7 +336,11 @@ export const RideDetailMyListTrip = () => {
                             "bg-[#33CC33]",
                             "text-[0.75rem] text-[#232323] font-semibold"
                           )}
-                          onClick={handleClickConfirmPresent}
+                          onClick={() =>
+                            handleClickConfirmPresent({
+                              bookingId: item.booking?.id ?? -1,
+                            })
+                          }
                         >
                           {"Anwesend"}
                         </button>
@@ -279,7 +353,7 @@ export const RideDetailMyListTrip = () => {
                           "w-full"
                         )}
                       >
-                        <div
+                        <button
                           className={clsx(
                             "flex items-center justify-center",
                             "px-[0.5rem] py-[0.5rem]",
@@ -290,6 +364,11 @@ export const RideDetailMyListTrip = () => {
                             "text-[0.75rem] font-semibold",
                             isPresent ? "text-[#232323]" : "text-[#D85959]"
                           )}
+                          onClick={() =>
+                            handleClickToggleConfirmation({
+                              bookingId: item.booking?.id ?? -1,
+                            })
+                          }
                         >
                           {isPresent ? (
                             <CheckIcon
@@ -307,7 +386,7 @@ export const RideDetailMyListTrip = () => {
                             />
                           )}
                           {isPresent ? "Anwesend" : "Nicht anwesend"}
-                        </div>
+                        </button>
                       </div>
                     )}
                   </div>

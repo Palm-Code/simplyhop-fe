@@ -93,6 +93,10 @@ export interface MyListTripSuccessCancelBookNotification {
 
 export interface MyListTripCompleteRideConfirmation {
   is_open: boolean;
+  confirmed_booking: {
+    id: number;
+    type: "joined" | "unjoined";
+  }[];
 }
 
 export enum MyListTripActionEnum {

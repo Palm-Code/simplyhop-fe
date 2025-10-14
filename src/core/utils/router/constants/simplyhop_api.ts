@@ -19,6 +19,7 @@ import {
   GetRidesIdPathPayloadRequestInterface,
   PutRidesSecondPathPayloadRequestInterface,
   PutRidesThirdPathPayloadRequestInterface,
+  PostRidesArchivePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import {
   DeleteVehicleIdPathPayloadRequestInterface,
@@ -82,6 +83,8 @@ export const SimplyHopAPICollectionURL = {
       `/api/rides/third/${path.id}`,
     deleteId: (path: DeleteRidesIdPathPayloadRequestInterface) =>
       `/api/rides/${path.id}`,
+    postArchive: (path: PostRidesArchivePathPayloadRequestInterface) =>
+      `/api/rides/archive/${path.id}`,
   },
   booking: {
     postBook: () => `/api/bookings/book`,

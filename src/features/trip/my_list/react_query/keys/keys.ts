@@ -26,4 +26,7 @@ export const MyListTripReactQueryKey = {
   PostBookingReject: () => {
     return ["MyListTripReactQueryKey.PostBookingReject"];
   },
+  PostRidesArchive: () => {
+    return ["MyListTripReactQueryKey.PostRidesArchive"];
+  },
 };

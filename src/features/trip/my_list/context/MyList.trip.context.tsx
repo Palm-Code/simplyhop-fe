@@ -68,6 +68,7 @@ const initialState: MyListTripInitialStateType = {
   },
   complete_ride_confirmation: {
     is_open: false,
+    confirmed_booking: [],
   },
 };
 

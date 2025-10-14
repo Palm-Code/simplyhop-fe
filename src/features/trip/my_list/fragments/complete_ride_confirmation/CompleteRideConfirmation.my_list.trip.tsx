@@ -5,14 +5,17 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { getDictionaries } from "../../i18n";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
-import { useGetRidesId } from "../../react_query/hooks";
+import { usePostRidesArchive } from "../../react_query/hooks/usePostRidesArchive.my_list.trip";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const CompletedRideMyListTrip = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();
   const { state, dispatch } = React.useContext(MyListTripContext);
-  useGetRidesId();
+
+  const { mutateAsync: postRidesArchive, isPending: isPendingRidesArchive } =
+    usePostRidesArchive();
 
   const handleClose = () => {
     dispatch({
@@ -42,6 +45,8 @@ export const CompletedRideMyListTrip = () => {
         is_open: false,
       },
     });
+
+    postRidesArchive();
   };
 
   return (
@@ -109,13 +114,15 @@ export const CompletedRideMyListTrip = () => {
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[#33CC33]",
+              "bg-[#33CC33] disabled:bg-[#F6F6F6]",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#232323] font-semibold",
+              "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
               "cursor-pointer"
             )}
+            disabled={isPendingRidesArchive}
             onClick={handleClickOKConfirmRideComplete}
           >
+            {isPendingRidesArchive && <MoonLoader size={20} color={"white"} />}
             {dictionaries.complete_ride_confirmation.cta.ok.children}
           </button>
         </div>
