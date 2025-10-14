@@ -6,6 +6,9 @@ import {
   ChatTripOffer,
   ChatTripCompletedRide,
   ChatTripDriverProfile,
+  ChatTripBlockConfirmation,
+  ChatTripUnblockConfirmation,
+  ChatTripDeleteChatConfirmation,
 } from "./Chat.trip.types";
 
 // List
@@ -189,6 +192,48 @@ export const ChatTripDriverProfileReducers = (
 ) => {
   switch (action.type) {
     case ChatTripActionEnum.SetDriverProfileData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// BlockConfirmation
+export const ChatTripBlockConfirmationReducers = (
+  state: ChatTripBlockConfirmation,
+  action: ChatTripActions
+) => {
+  switch (action.type) {
+    case ChatTripActionEnum.SetBlockConfirmationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// UnblockConfirmation
+export const ChatTripUnblockConfirmationReducers = (
+  state: ChatTripUnblockConfirmation,
+  action: ChatTripActions
+) => {
+  switch (action.type) {
+    case ChatTripActionEnum.SetUnblockConfirmationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DeleteChatConfirmation
+export const ChatTripDeleteChatConfirmationReducers = (
+  state: ChatTripDeleteChatConfirmation,
+  action: ChatTripActions
+) => {
+  switch (action.type) {
+    case ChatTripActionEnum.SetDeleteChatConfirmationData:
       return action.payload;
 
     default:

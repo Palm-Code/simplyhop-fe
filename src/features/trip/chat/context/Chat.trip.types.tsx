@@ -21,6 +21,9 @@ export interface ChatTripInitialStateType {
   offer: ChatTripOffer;
   completed_ride: ChatTripCompletedRide;
   driver_profile: ChatTripDriverProfile;
+  block_confirmation: ChatTripBlockConfirmation;
+  unblock_confirmation: ChatTripUnblockConfirmation;
+  delete_chat_confirmation: ChatTripDeleteChatConfirmation;
 }
 
 // State Collection Types consist of:
@@ -135,6 +138,18 @@ export interface ChatTripDriverProfile {
   };
 }
 
+export interface ChatTripBlockConfirmation {
+  is_open: boolean;
+}
+
+export interface ChatTripUnblockConfirmation {
+  is_open: boolean;
+}
+
+export interface ChatTripDeleteChatConfirmation {
+  is_open: boolean;
+}
+
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
@@ -161,6 +176,15 @@ export enum ChatTripActionEnum {
 
   // DriverProfile
   SetDriverProfileData = "SetDriverProfileData",
+
+  // BlockConfirmation
+  SetBlockConfirmationData = "SetBlockConfirmationData",
+
+  // UnblockConfirmation
+  SetUnblockConfirmationData = "SetUnblockConfirmationData",
+
+  // DeleteChatConfirmation
+  SetDeleteChatConfirmationData = "SetDeleteChatConfirmationData",
 }
 
 // Action Collection Types
@@ -169,7 +193,10 @@ export type ChatTripActions =
   | ChatTripRoomActions
   | ChatTripOfferActions
   | ChatTripCompletedRideActions
-  | ChatTripDriverProfileActions;
+  | ChatTripDriverProfileActions
+  | ChatTripBlockConfirmationActions
+  | ChatTripUnblockConfirmationActions
+  | ChatTripDeleteChatConfirmationActions;
 
 // Action Collection Types consist of:
 // List
@@ -223,3 +250,27 @@ type ChatTripDriverProfilePayload = {
 
 export type ChatTripDriverProfileActions =
   ActionMap<ChatTripDriverProfilePayload>[keyof ActionMap<ChatTripDriverProfilePayload>];
+
+// BlockConfirmation
+type ChatTripBlockConfirmationPayload = {
+  [ChatTripActionEnum.SetBlockConfirmationData]: ChatTripBlockConfirmation;
+};
+
+export type ChatTripBlockConfirmationActions =
+  ActionMap<ChatTripBlockConfirmationPayload>[keyof ActionMap<ChatTripBlockConfirmationPayload>];
+
+// UnblockConfirmation
+type ChatTripUnblockConfirmationPayload = {
+  [ChatTripActionEnum.SetUnblockConfirmationData]: ChatTripUnblockConfirmation;
+};
+
+export type ChatTripUnblockConfirmationActions =
+  ActionMap<ChatTripUnblockConfirmationPayload>[keyof ActionMap<ChatTripUnblockConfirmationPayload>];
+
+// DeleteChatConfirmation
+type ChatTripDeleteChatConfirmationPayload = {
+  [ChatTripActionEnum.SetDeleteChatConfirmationData]: ChatTripDeleteChatConfirmation;
+};
+
+export type ChatTripDeleteChatConfirmationActions =
+  ActionMap<ChatTripDeleteChatConfirmationPayload>[keyof ActionMap<ChatTripDeleteChatConfirmationPayload>];

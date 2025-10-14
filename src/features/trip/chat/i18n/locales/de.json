@@ -203,5 +203,41 @@
         "children": "Entblocken"
       }
     }
+  },
+  "block_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "unblock_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "delete_chat_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
   }
 }
