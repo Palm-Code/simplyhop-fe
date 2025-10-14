@@ -1,4 +1,3 @@
-import { User } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetUserProfileIdRequestInterface extends NextApiRequest {

@@ -207,6 +207,8 @@ export const RoomChatTrip = () => {
         ...state.completed_ride,
         booking: data,
         is_open: true,
+        is_rated: is_rated,
+        rating: rating,
       },
     });
   };

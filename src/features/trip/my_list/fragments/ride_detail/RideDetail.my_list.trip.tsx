@@ -301,6 +301,7 @@ export const RideDetailMyListTrip = () => {
                       "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
                       "w-full"
                     )}
+                    key={index}
                   >
                     <RideBookingListItem key={index} {...item} />
                     {isFinishTrip && (
