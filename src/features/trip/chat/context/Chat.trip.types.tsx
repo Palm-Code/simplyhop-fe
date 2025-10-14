@@ -130,6 +130,8 @@ export interface ChatTripDriverProfile {
     email: string;
     place: string;
     gender: string;
+    i_blocked: boolean;
+    blocked_me: boolean;
   };
 }
 

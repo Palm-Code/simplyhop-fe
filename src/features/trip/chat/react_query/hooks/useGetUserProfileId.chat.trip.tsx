@@ -52,6 +52,8 @@ export const useGetUserProfileId = () => {
             email: data.data.email,
             place: data.data.city,
             gender: data.data.gender,
+            i_blocked: data.data.i_blocked,
+            blocked_me: data.data.blocked_me,
           },
         },
       });
