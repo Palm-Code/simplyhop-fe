@@ -9,14 +9,15 @@ import {
 } from "@/core/models/rest/simplyhop/message_rooms";
 import { ChatTripReactQueryKey } from "../keys";
 import { v4 as uuidv4 } from "uuid";
-import { ChatTripContext } from "../../context";
+import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { fetchDeleteMessageRoomsId } from "@/core/services/rest/simplyhop/message_rooms";
+import { queryClient } from "@/core/utils/react_query";
 
 export const useDeleteMessageRoomsId = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
 
-  const { state } = React.useContext(ChatTripContext);
+  const { state, dispatch } = React.useContext(ChatTripContext);
 
   const mutation = useMutation<
     DeleteMessageRoomsIdSuccessResponseInterface,
@@ -32,18 +33,20 @@ export const useDeleteMessageRoomsId = () => {
       return fetchDeleteMessageRoomsId(payload);
     },
     onSuccess() {
-      // TODO: need integration
-      // const payload: GetUserProfileIdPayloadRequestInterface = {
-      //   path: {
-      //     id: !state.room.header.user_id
-      //       ? "0"
-      //       : String(state.room.header.user_id),
-      //   },
-      // };
-      // queryClient.invalidateQueries({
-      //   queryKey: ChatTripReactQueryKey.GetUserProfileId(payload),
-      //   exact: true,
-      // });
+      dispatch({
+        type: ChatTripActionEnum.SetListMessagePaginationCurrent,
+        payload: 1,
+      });
+
+      dispatch({
+        type: ChatTripActionEnum.SetListMessageItems,
+        payload: [],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["ChatTripReactQueryKey.GetMessageRoomsList"],
+        exact: false,
+      });
     },
     onError(error) {
       dispatchGlobal({
