@@ -237,6 +237,7 @@ export const RoomChatTrip = () => {
           {conversationData.map((chat, chatIndex) => {
             const { type, role, sender_id, ...otherChatProps } = chat;
             const completedType = type === "archieve";
+            // const completedType = true;
             if (completedType) {
               return (
                 <CompleteBookingRideCardChatTrip

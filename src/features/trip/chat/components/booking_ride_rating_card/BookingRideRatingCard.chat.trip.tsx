@@ -10,10 +10,7 @@ import {
   DepartureItemProps,
 } from "@/core/components/departure_item";
 import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
-import {
-  CarPriceItem,
-  CarPriceItemProps,
-} from "@/core/components/car_price_item";
+
 import { PriceOfferedItemProps } from "@/core/components/price_offered_item/PriceOfferedItem";
 import CarIdentityItem, {
   CarIdentityItemProps,
@@ -24,7 +21,7 @@ import {
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
 
-export interface CompleteBookingRideCardChatTripProps {
+export interface BookingRatingRideCardChatTripProps {
   time?: string;
   driver?: {
     profile: DriverProfileLabelProps;
@@ -39,14 +36,6 @@ export interface CompleteBookingRideCardChatTripProps {
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
   };
-  price?: {
-    initial?: CarPriceItemProps;
-    offered?: PriceOfferedItemProps;
-  };
-  date?: {
-    label: string;
-    date: string;
-  };
   cta?: {
     trip_details: null | {
       children: React.ReactNode;
@@ -57,7 +46,7 @@ export interface CompleteBookingRideCardChatTripProps {
   };
 }
 
-export const CompleteBookingRideCardChatTrip = ({
+export const BookingRatingRideCardChatTrip = ({
   time = "10:30 AM",
   driver = {
     profile: {
@@ -91,21 +80,6 @@ export const CompleteBookingRideCardChatTrip = ({
       time: "18.30 Uhr",
     },
   },
-
-  price = {
-    initial: {
-      label: "Angebotspreis",
-      price: "€25.00",
-    },
-    offered: {
-      label: "Angebotener Preis",
-      price: "€25.00",
-    },
-  },
-  date = {
-    label: "Datum",
-    date: "24.02.25",
-  },
   cta = {
     trip_details: {
       children: "Angebot ablehnen",
@@ -114,7 +88,7 @@ export const CompleteBookingRideCardChatTrip = ({
       onClick: () => {},
     },
   },
-}: CompleteBookingRideCardChatTripProps) => {
+}: BookingRatingRideCardChatTripProps) => {
   return (
     <div
       className={clsx(
@@ -124,62 +98,21 @@ export const CompleteBookingRideCardChatTrip = ({
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start-content-start justify-center justify-items-center gap-[1.5rem]",
-          "w-full"
-        )}
-      >
-        <span className={clsx("text-[#A0A0A0] text-[0.75rem] font-normal")}>
-          {time}
-        </span>
-      </div>
-
-      <div
-        className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
           "w-full",
           "px-[1.5rem] py-[1rem]",
           "rounded-[0.625rem]",
-          "border border-[#EFEFEF]"
+          "border border-[#EFEFEF]",
+          "bg-[white]"
         )}
       >
-        {/* trip complete header */}
-        <div className={clsx("flex items-center justify-between", "w-full")}>
-          <div
-            className={clsx(
-              "flex items-center justify-start gap-[0.5rem]",
-              "w-full"
-            )}
-          >
-            <img src={"/images/chat/complete.svg"} />
-            <p className={clsx("text-[0.875rem] text-[#292929] font-bold")}>
-              {"Trip Complete"}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-1">
-            <span className={clsx("font-medium text-[#727272] text-[10px]")}>
-              {date.label}
-            </span>
-            <span className={clsx("font-semibold text-sm")}>{date.date}</span>
-          </div>
-        </div>
-
-        {/* divider */}
-        <div className={clsx("w-full h-[1px]", "bg-[#E9E6E6]")} />
         {/* car */}
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-start content-start justify-start justify-items-start gap-[1rem] sm:gap-[52px]",
+            "grid grid-cols-1 lg:grid-cols-[1fr_auto] items-start content-start justify-start justify-items-start gap-[1rem] sm:gap-[52px]",
             "w-full"
           )}
         >
-          <div className="grid-cols-1 gap-4 hidden sm:grid">
-            <Image
-              {...car.image}
-              alt={car.image.alt}
-              className={clsx("w-[145px]")}
-            />
-          </div>
-
           <div
             className={clsx(
               "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
@@ -189,7 +122,20 @@ export const CompleteBookingRideCardChatTrip = ({
             {/* driver */}
             <DriverProfileLabel {...driver.profile} />
             {/* identity */}
-            <CarIdentityItem {...car.identity} />
+            <div
+              className={clsx(
+                "flex sm:hidden items-center justify-center gap-[0.5rem]"
+              )}
+            >
+              <div className="grid-cols-1 gap-4">
+                <Image
+                  {...car.image}
+                  alt={car.image.alt}
+                  className={clsx("w-[145px]")}
+                />
+              </div>
+              <CarIdentityItem {...car.identity} number={null} />
+            </div>
 
             {/* routes */}
             <div
@@ -204,15 +150,30 @@ export const CompleteBookingRideCardChatTrip = ({
 
               <ArrivalItem {...routes.arrival} />
             </div>
+
+            {/* identity */}
+            <div
+              className={clsx(
+                "hidden sm:flex items-center justify-center gap-[0.5rem]"
+              )}
+            >
+              <div className="grid-cols-1 gap-4">
+                <Image
+                  {...car.image}
+                  alt={car.image.alt}
+                  className={clsx("w-[145px]")}
+                />
+              </div>
+              <CarIdentityItem {...car.identity} number={null} />
+            </div>
           </div>
-          {/* price */}
+
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full"
             )}
           >
-            <CarPriceItem {...price.offered} />
             {!!cta.trip_details && (
               <button
                 aria-label={String(cta.trip_details.children ?? "")}

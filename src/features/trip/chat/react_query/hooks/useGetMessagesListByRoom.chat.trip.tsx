@@ -114,6 +114,20 @@ export const useGetMessagesListByRoom = () => {
           message: content.message,
           booking: {
             time: dayjs(item.created_at).format("hh:mma"),
+            driver: {
+              profile: {
+                avatar: !item.driver?.avatar
+                  ? undefined
+                  : {
+                      src: item?.driver?.avatar,
+                      alt: "photo_profile",
+                    },
+                name: formatDisplayName({
+                  first_name: item.driver?.first_name,
+                  email: item.driver?.email,
+                }),
+              },
+            },
             car: {
               image: {
                 src: !item.booking?.ride?.vehicle?.image.length

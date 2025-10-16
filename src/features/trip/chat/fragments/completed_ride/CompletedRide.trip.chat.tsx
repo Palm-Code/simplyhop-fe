@@ -9,6 +9,7 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { CompleteBookingRideCardChatTrip } from "../../components/complete_booking_ride_card";
 import { usePostBookingRating } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { BookingRatingRideCardChatTrip } from "../../components/booking_ride_rating_card";
 
 export const CompletedRideTripChat = () => {
   const dictionaries = getDictionaries();
@@ -100,17 +101,17 @@ export const CompletedRideTripChat = () => {
             "bg-[#FAFDF9]"
           )}
         >
-          {/* trip summary */}
+          {/* dekstop trip summary */}
           <div
             className={clsx(
-              "flex items-center justify-between",
+              "hidden sm:flex items-center justify-between",
               "w-full",
               "px-[1rem] py-[1.5rem]",
               "bg-[white]"
             )}
           >
             <p className={clsx("text-[1rem] text-[black] font-semibold")}>
-              {dictionaries.completed_ride.title}
+              {dictionaries.completed_ride.trip_summary.title}
             </p>
 
             <div className="grid grid-cols-1 gap-1">
@@ -174,7 +175,30 @@ export const CompletedRideTripChat = () => {
             </div>
           </div>
 
-          <CompleteBookingRideCardChatTrip
+          {/* mobile trip summary */}
+          <div
+            className={clsx(
+              "flex sm:hidden items-center justify-between",
+              "w-full",
+              "px-[1rem] py-[1.5rem]",
+              "bg-[white]"
+            )}
+          >
+            <p className={clsx("text-[1rem] text-[black] font-semibold")}>
+              {dictionaries.completed_ride.trip_summary.title}
+            </p>
+
+            <div className="grid grid-cols-1 gap-1">
+              <span className={clsx("font-medium text-[#727272] text-[10px]")}>
+                {state.completed_ride.booking.date?.label}
+              </span>
+              <span className={clsx("font-semibold text-sm")}>
+                {state.completed_ride.booking.date?.date}
+              </span>
+            </div>
+          </div>
+
+          <BookingRatingRideCardChatTrip
             {...state.completed_ride.booking}
             cta={{ trip_details: null }}
           />
