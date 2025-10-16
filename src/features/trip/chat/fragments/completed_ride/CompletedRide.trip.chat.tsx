@@ -6,7 +6,6 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { CompleteBookingRideCardChatTrip } from "../../components/complete_booking_ride_card";
 import { usePostBookingRating } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { BookingRatingRideCardChatTrip } from "../../components/booking_ride_rating_card";
