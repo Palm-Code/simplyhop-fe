@@ -96,9 +96,9 @@ export const FormChatTrip = () => {
     isPendingPostMessageChat || state.room.booking.status !== "accepted";
 
   const isBlocked =
-    state.driver_profile.data?.i_blocked ||
-    state.driver_profile.data?.blocked_me;
-  const isUserDoBlock = state.driver_profile.data?.i_blocked;
+    state.user_profile.data?.i_blocked ||
+    state.user_profile.data?.blocked_me;
+  const isUserDoBlock = state.user_profile.data?.i_blocked;
 
   const handleClickDeleteChat = () => {
     dispatch({
