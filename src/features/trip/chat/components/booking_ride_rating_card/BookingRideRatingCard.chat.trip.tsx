@@ -10,8 +10,6 @@ import {
   DepartureItemProps,
 } from "@/core/components/departure_item";
 import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
-
-import { PriceOfferedItemProps } from "@/core/components/price_offered_item/PriceOfferedItem";
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
@@ -22,7 +20,6 @@ import {
 } from "@/core/components/driver_profile_label";
 
 export interface BookingRatingRideCardChatTripProps {
-  time?: string;
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -47,7 +44,6 @@ export interface BookingRatingRideCardChatTripProps {
 }
 
 export const BookingRatingRideCardChatTrip = ({
-  time = "10:30 AM",
   driver = {
     profile: {
       avatar: undefined,
