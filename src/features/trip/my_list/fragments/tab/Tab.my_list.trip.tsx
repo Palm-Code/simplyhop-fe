@@ -29,7 +29,6 @@ export const TabMyListTrip = () => {
         className={clsx(
           "flex justify-start items-center gap-[2rem]",
           "w-full",
-          "border-b-[0.5px] border-b-[#5B5B5B]",
           "overflow-x-auto"
         )}
       >
@@ -50,9 +49,9 @@ export const TabMyListTrip = () => {
               <Tab
                 className={clsx(
                   !type && itemIndex === 0
-                    ? "text-[#33CC33] font-semibold border-b-[2px] border-b-[#33CC33]"
+                    ? "text-[#232323] font-semibold border-b-[2px] border-b-[#33CC33]"
                     : !!type && item.id === type
-                    ? "text-[#33CC33] font-semibold border-b-[2px] border-b-[#33CC33]"
+                    ? "text-[#232323] font-semibold border-b-[2px] border-b-[#33CC33]"
                     : "text-[#5B5B5B]",
                   "font-normal text-[1rem] ",
                   "outline-none",

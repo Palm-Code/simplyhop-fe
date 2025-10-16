@@ -11,19 +11,40 @@ import { getDictionaries } from "../i18n";
 import { TabGroup } from "@headlessui/react";
 import { SearchChatTrip } from "../fragments/search";
 import { TabChatTrip } from "../fragments/tab";
-import { ChatTripContext, useSetInitialContextValue } from "../context";
+import {
+  ChatTripActionEnum,
+  ChatTripContext,
+  useSetInitialContextValue,
+} from "../context";
 import { RoomHeaderChatTrip } from "../components/room_header";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { FormChatTrip } from "../fragments/form";
+import { CompletedRideTripChat } from "../fragments/completed_ride";
+import { DriverProfileTripChat } from "../fragments/driver_profile";
+import { useGetUserProfileId } from "../react_query/hooks";
+import { BlockConfirmationChatTrip } from "../fragments/block_confirmation";
+import { UnblockConfirmationChatTrip } from "../fragments/unblock_confirmation";
+import { DeleteChatConfirmationChatTrip } from "../fragments/delete_chat_confirmation";
 
 export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
-  const { state } = React.useContext(ChatTripContext);
+  const { state, dispatch } = React.useContext(ChatTripContext);
 
   useSetInitialContextValue();
+  useGetUserProfileId();
+
+  const handleClickProfile = () => {
+    dispatch({
+      type: ChatTripActionEnum.SetDriverProfileData,
+      payload: {
+        ...state.driver_profile,
+        is_open: true,
+      },
+    });
+  };
   return (
     <>
       <div
@@ -92,6 +113,9 @@ export const ChatTripContainer = () => {
                     href={AppCollectionURL.private.chat()}
                     avatar={state.room.header.avatar}
                     name={state.room.header.name}
+                    cta={{
+                      onClick: handleClickProfile,
+                    }}
                   />
                   <RoomChatTrip />
                   <FormChatTrip />
@@ -117,6 +141,9 @@ export const ChatTripContainer = () => {
                   href={AppCollectionURL.private.chat()}
                   avatar={state.room.header.avatar}
                   name={state.room.header.name}
+                  cta={{
+                    onClick: handleClickProfile,
+                  }}
                 />
                 <RoomChatTrip />
                 <FormChatTrip />
@@ -128,6 +155,21 @@ export const ChatTripContainer = () => {
 
       <React.Suspense fallback={<div />}>
         <OfferChatTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <CompletedRideTripChat />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <DriverProfileTripChat />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <BlockConfirmationChatTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <UnblockConfirmationChatTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <DeleteChatConfirmationChatTrip />
       </React.Suspense>
     </>
   );

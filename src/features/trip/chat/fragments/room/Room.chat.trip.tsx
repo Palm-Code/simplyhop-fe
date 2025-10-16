@@ -2,7 +2,10 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
-import { BookingCardChatTrip } from "../../components/booking_card";
+import {
+  BookingCardChatTrip,
+  BookingCardChatTripProps,
+} from "../../components/booking_card";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import {
@@ -23,6 +26,7 @@ import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { GetBookingIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
+import { CompleteBookingRideCardChatTrip } from "../../components/complete_booking_ride_card";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -192,6 +196,23 @@ export const RoomChatTrip = () => {
     state.room.message.pagination.last ===
     state.room.message.pagination.current;
 
+  const handleClickViewTripDetails = (
+    data: BookingCardChatTripProps | null,
+    is_rated: boolean,
+    rating: number | null
+  ) => {
+    dispatch({
+      type: ChatTripActionEnum.SetCompletedRideData,
+      payload: {
+        ...state.completed_ride,
+        booking: data,
+        is_open: true,
+        is_rated: is_rated,
+        rating: rating,
+      },
+    });
+  };
+
   return (
     <InfiniteScrollWrapper
       loader={
@@ -215,6 +236,29 @@ export const RoomChatTrip = () => {
         >
           {conversationData.map((chat, chatIndex) => {
             const { type, role, sender_id, ...otherChatProps } = chat;
+            const completedType = type === "archieve";
+            // const completedType = true;
+            if (completedType) {
+              return (
+                <CompleteBookingRideCardChatTrip
+                  {...chat.booking}
+                  key={chatIndex}
+                  cta={{
+                    trip_details: {
+                      children: "View Trip Details",
+                      disabled: false,
+                      loading: false,
+                      onClick: () =>
+                        handleClickViewTripDetails(
+                          chat.booking,
+                          state.room.is_rated,
+                          state.room.rating
+                        ),
+                    },
+                  }}
+                />
+              );
+            }
             if (type === "offer_request" || type === "booking_request") {
               const lastOfferCardIndex = findLastIndexOfferCard(
                 conversationData,

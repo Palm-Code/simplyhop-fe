@@ -36,8 +36,8 @@
         "message": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a",
         "date": "Dez 16"
       },
-      "empty":{
-        "message":"Keine Nachricht"
+      "empty": {
+        "message": "Keine Nachricht"
       }
     },
     "room": {
@@ -140,6 +140,103 @@
     "cta": {
       "send": {
         "children": "Anfrage senden"
+      }
+    }
+  },
+  "completed_ride": {
+    "title": "Trip Completed",
+    "rating": {
+      "title": "How was your trip?"
+    },
+    "trip_summary": {
+      "title": "Trip Summary"
+    },
+    "cta": {
+      "primary": {
+        "children": "Geschehen"
+      }
+    }
+  },
+  "driver_profile": {
+    "title": "Profile",
+    "summary": {
+      "items": [
+        {
+          "id": "trips",
+          "name": "Trips"
+        },
+        {
+          "id": "ratings",
+          "name": "Ratings"
+        },
+        {
+          "id": "passengers",
+          "name": "Passengers"
+        }
+      ]
+    },
+    "detail": {
+      "items": [
+        {
+          "id": "email",
+          "name": "E-Mail",
+          "icon": "Mail"
+        },
+        {
+          "id": "city",
+          "name": "Stadt",
+          "icon": "MapPin"
+        },
+        {
+          "id": "gender",
+          "name": "Geschlecht",
+          "icon": "PersonStanding"
+        }
+      ]
+    },
+
+    "cta": {
+      "delete": {
+        "children": "Chat löschen"
+      },
+      "block": {
+        "children": "Entblocken"
+      }
+    }
+  },
+  "block_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "unblock_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "delete_chat_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
       }
     }
   }

@@ -26,6 +26,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   departure_time__lte?: string;
   departure_dates?: string;
   departure_date?: string;
+  status?: string;
   //mandatory
   sort?: string;
   "page[number]"?: number;

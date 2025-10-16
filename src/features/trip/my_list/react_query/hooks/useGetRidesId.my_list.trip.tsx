@@ -169,6 +169,7 @@ export const useGetRidesId = () => {
             booking: item.bookings.map((bookingItem, index) => {
               return {
                 booking: {
+                  id: bookingItem.id,
                   number: String(index + 1),
                   name: formatDisplayName({
                     first_name: bookingItem.user?.first_name,

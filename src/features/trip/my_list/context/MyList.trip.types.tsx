@@ -27,6 +27,7 @@ export interface MyListTripInitialStateType {
   cancel_book_notification: MyListTripCancelBookNotification;
   success_cancel_book_notification: MyListTripSuccessCancelBookNotification;
   share_ride_notification: MyListTripShareRideNotification;
+  complete_ride_confirmation: MyListTripCompleteRideConfirmation;
 }
 
 // State Collection Types consist of:
@@ -90,6 +91,14 @@ export interface MyListTripSuccessCancelBookNotification {
   is_open: boolean;
 }
 
+export interface MyListTripCompleteRideConfirmation {
+  is_open: boolean;
+  confirmed_booking: {
+    id: number;
+    type: "joined" | "unjoined";
+  }[];
+}
+
 export enum MyListTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
@@ -126,6 +135,9 @@ export enum MyListTripActionEnum {
 
   // SuccessCancelBookNotification
   SetSuccessCancelBookNotificationData = "SetSuccessCancelBookNotificationData",
+
+  // CompleteRideConfirmation
+  SetCompleteRideConfirmationData = "SetCompleteRideConfirmationData",
 }
 
 // Action Collection Types
@@ -139,7 +151,8 @@ export type MyListTripActions =
   | MyListTripShareRideNotificationActions
   | MyListTripDetailBookNotificationActions
   | MyListTripCancelBookNotificationActions
-  | MyListTripSuccessCancelBookNotificationActions;
+  | MyListTripSuccessCancelBookNotificationActions
+  | MyListTripCompleteRideConfirmationActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -227,3 +240,11 @@ type MyListTripSuccessCancelBookNotificationPayload = {
 
 export type MyListTripSuccessCancelBookNotificationActions =
   ActionMap<MyListTripSuccessCancelBookNotificationPayload>[keyof ActionMap<MyListTripSuccessCancelBookNotificationPayload>];
+
+// CompleteRideConfirmation
+type MyListTripCompleteRideConfirmationPayload = {
+  [MyListTripActionEnum.SetCompleteRideConfirmationData]: MyListTripCompleteRideConfirmation;
+};
+
+export type MyListTripCompleteRideConfirmationActions =
+  ActionMap<MyListTripCompleteRideConfirmationPayload>[keyof ActionMap<MyListTripCompleteRideConfirmationPayload>];

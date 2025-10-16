@@ -14,7 +14,7 @@ export const AdaptiveModalHeader = forwardRef<
         "w-full",
         "bg-[white]",
         "sticky top-[0px] z-[10]",
-        "px-[1rem] py-[1rem] lg:!px-[2rem] lg:py-[2rem]",
+        "px-[1rem] py-[1rem] lg:px-[2rem] lg:py-[2rem]",
         props.className
       )}
     >

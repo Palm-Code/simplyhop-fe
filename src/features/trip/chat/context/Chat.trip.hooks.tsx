@@ -18,6 +18,8 @@ export const useSetInitialContextValue = () => {
       await storageService<null | {
         id: number | null;
         header: {
+          user_id: number | null;
+          type: "driver" | "passenger" | null;
           name: string;
           avatar: AvatarProps;
         };
@@ -48,6 +50,7 @@ export const useSetInitialContextValue = () => {
       const chatTripRoomDetailStorage = await storageService<null | {
         id: number | null;
         header: {
+          user_id: number | null;
           name: string;
           avatar: AvatarProps;
         };
@@ -68,6 +71,7 @@ export const useSetInitialContextValue = () => {
             id: data.id,
             header: {
               ...state.room.header,
+              user_id: data.header.user_id,
               avatar: {
                 src: data.header.avatar.src,
                 alt: data.header.avatar.alt,

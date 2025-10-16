@@ -19,6 +19,11 @@ export interface ChatTripInitialStateType {
   list: ChatTripList;
   room: ChatTripRoom;
   offer: ChatTripOffer;
+  completed_ride: ChatTripCompletedRide;
+  driver_profile: ChatTripDriverProfile;
+  block_confirmation: ChatTripBlockConfirmation;
+  unblock_confirmation: ChatTripUnblockConfirmation;
+  delete_chat_confirmation: ChatTripDeleteChatConfirmation;
 }
 
 // State Collection Types consist of:
@@ -33,6 +38,7 @@ export interface ChatTripList {
     items: {
       id: string;
       booking_id: string;
+      user_id: number | null;
       avatar: AvatarProps;
       name: string;
       message: string;
@@ -50,6 +56,7 @@ export interface ChatTripList {
 export interface ChatTripRoom {
   id: number | null;
   header: {
+    user_id: number | null;
     name: string;
     avatar: AvatarProps;
   };
@@ -81,6 +88,9 @@ export interface ChatTripRoom {
       value: string;
     };
   };
+  is_blocked: boolean;
+  is_rated: boolean;
+  rating: number | null;
 }
 
 export interface ChatTripOffer {
@@ -102,6 +112,44 @@ export interface ChatTripOffer {
   };
 }
 
+export interface ChatTripCompletedRide {
+  is_open: boolean;
+  booking: BookingCardChatTripProps | null;
+  rating: null | number;
+  is_rated: boolean;
+}
+
+export interface ChatTripDriverProfile {
+  is_open: boolean;
+  data: null | {
+    name: string;
+    phone: string;
+    type: "passenger" | "driver" | null;
+    statistic: {
+      trip: number | null;
+      ratings: null | number;
+      passengers: number | null;
+    };
+    email: string;
+    place: string;
+    gender: string;
+    i_blocked: boolean;
+    blocked_me: boolean;
+  };
+}
+
+export interface ChatTripBlockConfirmation {
+  is_open: boolean;
+}
+
+export interface ChatTripUnblockConfirmation {
+  is_open: boolean;
+}
+
+export interface ChatTripDeleteChatConfirmation {
+  is_open: boolean;
+}
+
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
@@ -116,15 +164,39 @@ export enum ChatTripActionEnum {
   SetRoomMessagePaginationLast = "SetRoomMessagePaginationLast",
   SetRoomMessagePaginationIsRefetch = "SetRoomMessagePaginationIsRefetch",
   SetRoomMessagePaginationCounter = "SetRoomMessagePaginationCounter",
+  SetRoomMessageIsBlocked = "SetRoomMessageIsBlocked",
+  SetRoomMessageRating = "SetRoomMessageRating",
+  SetRoomMessageIsRated = "SetRoomMessageIsRated",
+
   // Offer
   SetOfferData = "SetOfferData",
+
+  // CompletedRide
+  SetCompletedRideData = "SetCompletedRideData",
+
+  // DriverProfile
+  SetDriverProfileData = "SetDriverProfileData",
+
+  // BlockConfirmation
+  SetBlockConfirmationData = "SetBlockConfirmationData",
+
+  // UnblockConfirmation
+  SetUnblockConfirmationData = "SetUnblockConfirmationData",
+
+  // DeleteChatConfirmation
+  SetDeleteChatConfirmationData = "SetDeleteChatConfirmationData",
 }
 
 // Action Collection Types
 export type ChatTripActions =
   | ChatTripListActions
   | ChatTripRoomActions
-  | ChatTripOfferActions;
+  | ChatTripOfferActions
+  | ChatTripCompletedRideActions
+  | ChatTripDriverProfileActions
+  | ChatTripBlockConfirmationActions
+  | ChatTripUnblockConfirmationActions
+  | ChatTripDeleteChatConfirmationActions;
 
 // Action Collection Types consist of:
 // List
@@ -147,6 +219,9 @@ type ChatTripRoomPayload = {
   [ChatTripActionEnum.SetRoomMessagePaginationLast]: ChatTripRoom["message"]["pagination"]["last"];
   [ChatTripActionEnum.SetRoomMessagePaginationIsRefetch]: ChatTripRoom["message"]["pagination"]["is_refetch"];
   [ChatTripActionEnum.SetRoomMessagePaginationCounter]: ChatTripRoom["message"]["pagination"]["counter"];
+  [ChatTripActionEnum.SetRoomMessageIsBlocked]: ChatTripRoom["is_blocked"];
+  [ChatTripActionEnum.SetRoomMessageIsRated]: ChatTripRoom["is_rated"];
+  [ChatTripActionEnum.SetRoomMessageRating]: ChatTripRoom["rating"];
 };
 
 export type ChatTripRoomActions =
@@ -159,3 +234,43 @@ type ChatTripOfferPayload = {
 
 export type ChatTripOfferActions =
   ActionMap<ChatTripOfferPayload>[keyof ActionMap<ChatTripOfferPayload>];
+
+// CompletedRide
+type ChatTripCompletedRidePayload = {
+  [ChatTripActionEnum.SetCompletedRideData]: ChatTripCompletedRide;
+};
+
+export type ChatTripCompletedRideActions =
+  ActionMap<ChatTripCompletedRidePayload>[keyof ActionMap<ChatTripCompletedRidePayload>];
+
+// DriverProfile
+type ChatTripDriverProfilePayload = {
+  [ChatTripActionEnum.SetDriverProfileData]: ChatTripDriverProfile;
+};
+
+export type ChatTripDriverProfileActions =
+  ActionMap<ChatTripDriverProfilePayload>[keyof ActionMap<ChatTripDriverProfilePayload>];
+
+// BlockConfirmation
+type ChatTripBlockConfirmationPayload = {
+  [ChatTripActionEnum.SetBlockConfirmationData]: ChatTripBlockConfirmation;
+};
+
+export type ChatTripBlockConfirmationActions =
+  ActionMap<ChatTripBlockConfirmationPayload>[keyof ActionMap<ChatTripBlockConfirmationPayload>];
+
+// UnblockConfirmation
+type ChatTripUnblockConfirmationPayload = {
+  [ChatTripActionEnum.SetUnblockConfirmationData]: ChatTripUnblockConfirmation;
+};
+
+export type ChatTripUnblockConfirmationActions =
+  ActionMap<ChatTripUnblockConfirmationPayload>[keyof ActionMap<ChatTripUnblockConfirmationPayload>];
+
+// DeleteChatConfirmation
+type ChatTripDeleteChatConfirmationPayload = {
+  [ChatTripActionEnum.SetDeleteChatConfirmationData]: ChatTripDeleteChatConfirmation;
+};
+
+export type ChatTripDeleteChatConfirmationActions =
+  ActionMap<ChatTripDeleteChatConfirmationPayload>[keyof ActionMap<ChatTripDeleteChatConfirmationPayload>];

@@ -31,9 +31,13 @@ import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
 import MoonLoader from "react-spinners/MoonLoader";
+import { DriverProfileLabelProps } from "@/core/components/driver_profile_label";
 
 export interface BookingCardChatTripProps {
   time?: string;
+  driver?: {
+    profile: DriverProfileLabelProps;
+  };
   car?: {
     image: ImageProps;
     identity?: CarIdentityItemProps;

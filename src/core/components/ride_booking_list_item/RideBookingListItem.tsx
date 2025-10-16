@@ -4,6 +4,7 @@ import SVGIcon from "@/core/icons";
 
 export interface RideBookingListItemProps {
   booking?: {
+    id: number;
     number: string;
     name: string;
   };
@@ -18,10 +19,12 @@ export interface RideBookingListItemProps {
   price?: {
     value: string;
   };
+  isFinishRide?: boolean;
 }
 
 export const RideBookingListItem = ({
   booking = {
+    id: -1,
     number: "1",
     name: "askodakos",
   },

@@ -3,6 +3,7 @@ import {
   MyListTripActions,
   MyListTripBook,
   MyListTripCancelBookNotification,
+  MyListTripCompleteRideConfirmation,
   MyListTripDeleteRideNotification,
   MyListTripDetailBookNotification,
   MyListTripDetailRideNotification,
@@ -193,6 +194,20 @@ export const MyListTripSuccessCancelBookNotificationReducers = (
 ) => {
   switch (action.type) {
     case MyListTripActionEnum.SetSuccessCancelBookNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// CompleteRideConfirmation
+export const MyListTripCompleteRideConfirmationReducers = (
+  state: MyListTripCompleteRideConfirmation,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetCompleteRideConfirmationData:
       return action.payload;
 
     default:

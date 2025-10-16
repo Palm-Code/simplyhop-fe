@@ -78,6 +78,9 @@ export const useGetMessageRoomsList = () => {
         return {
           id: String(item.id),
           booking_id: String(item.ride_booking_id),
+          user_id: !isPassenger
+            ? item.passenger?.id ?? null
+            : item.driver?.id ?? null,
           avatar: {
             src: !isPassenger ? item.passenger?.avatar : item.driver?.avatar,
             alt: isPassenger ? "passenger" : "driver",

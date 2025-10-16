@@ -4,6 +4,7 @@ import {
   GetMessageRoomsListPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/message_rooms";
 import { GetMessagesListByRoomPayloadRequestInterface } from "@/core/models/rest/simplyhop/messages";
+import { GetUserProfileIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 
 export const ChatTripReactQueryKey = {
   GetMessagesListByRoom: (
@@ -22,6 +23,9 @@ export const ChatTripReactQueryKey = {
   GetBookingId: (payload?: GetBookingIdPayloadRequestInterface) => {
     return ["ChatTripReactQueryKey.GetBookingId", [payload] as const];
   },
+  GetUserProfileId: (payload?: GetUserProfileIdPayloadRequestInterface) => {
+    return ["ChatTripReactQueryKey.GetUserProfileId", [payload] as const];
+  },
   PutMessageRoomsMarkAsRead: () => {
     return ["ChatTripReactQueryKey.PutMessageRoomsMarkAsRead"];
   },
@@ -36,5 +40,17 @@ export const ChatTripReactQueryKey = {
   },
   PostBookingReject: () => {
     return ["ChatTripReactQueryKey.PostBookingReject"];
+  },
+  PostBookingRating: () => {
+    return ["ChatTripReactQueryKey.PostBookingRating"];
+  },
+  PostUserBlock: () => {
+    return ["ChatTripReactQueryKey.PostUserBlock"];
+  },
+  DeleteUserBlock: () => {
+    return ["ChatTripReactQueryKey.DeleteUserBlock"];
+  },
+  DeleteMessageRoomsId: () => {
+    return ["ChatTripReactQueryKey.DeleteMessageRoomsId"];
   },
 };

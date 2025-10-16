@@ -23,14 +23,13 @@ export const useGetBookingMy = () => {
   const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
+  const rideStatus = searchParams.get("ride-status");
   const { state, dispatch } = React.useContext(MyListTripContext);
 
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,user,ride.user",
-      "filter[ride.departure_time__gte]": dayjs()
-        .startOf("day")
-        .format("YYYY-MM-DDTHH:mm:ss"),
+      ride_status: rideStatus ?? "in_progress",
       "filter[status]": "accepted",
       "page[number]": state.book.pagination.current,
       "page[size]": PAGINATION.SIZE,

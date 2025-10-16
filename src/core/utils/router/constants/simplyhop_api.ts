@@ -7,9 +7,13 @@ import {
   PostBookingAcceptPathPayloadRequestInterface,
   PostBookingOfferPathPayloadRequestInterface,
   PostBookingRejectPathPayloadRequestInterface,
+  PostBookingRatingPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/booking";
 import { GetMessageRoomsIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
-import { PutMessageRoomsMarkAsReadPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms/mark_as_read.put";
+import {
+  PutMessageRoomsMarkAsReadPathPayloadRequestInterface,
+  DeleteMessageRoomsIdPathPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/message_rooms";
 import {
   DeleteMessagesChatPathPayloadRequestInterface,
   GetMessagesListByRoomPathPayloadRequestInterface,
@@ -19,7 +23,9 @@ import {
   GetRidesIdPathPayloadRequestInterface,
   PutRidesSecondPathPayloadRequestInterface,
   PutRidesThirdPathPayloadRequestInterface,
+  PostRidesArchivePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
+import { GetUserProfileIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 import {
   DeleteVehicleIdPathPayloadRequestInterface,
   DeleteVehicleMediaPathPayloadRequestInterface,
@@ -61,6 +67,12 @@ export const SimplyHopAPICollectionURL = {
   user_profile: {
     postCreate: () => `/api/profile`,
     getData: () => `/api/profile`,
+    getId: (path: GetUserProfileIdPathPayloadRequestInterface) =>
+      `/api/users/profile/${path.id}`,
+  },
+  user: {
+    postBlock: () => `/api/user-block`,
+    deleteBlock: () => `/api/user-block`,
   },
   vehicle_brand: {
     getList: () => `/api/vehicle-brand`,
@@ -82,6 +94,8 @@ export const SimplyHopAPICollectionURL = {
       `/api/rides/third/${path.id}`,
     deleteId: (path: DeleteRidesIdPathPayloadRequestInterface) =>
       `/api/rides/${path.id}`,
+    postArchive: (path: PostRidesArchivePathPayloadRequestInterface) =>
+      `/api/rides/archive/${path.id}`,
   },
   booking: {
     postBook: () => `/api/bookings/book`,
@@ -94,6 +108,8 @@ export const SimplyHopAPICollectionURL = {
       `/api/bookings/${path.id}/counter-offer`,
     postReject: (path: PostBookingRejectPathPayloadRequestInterface) =>
       `/api/bookings/${path.id}/reject`,
+    postRating: (path: PostBookingRatingPathPayloadRequestInterface) =>
+      `/api/bookings/rating/${path.ride_booking_id}`,
   },
   messages: {
     getListByRoom: (path: GetMessagesListByRoomPathPayloadRequestInterface) =>
@@ -110,6 +126,8 @@ export const SimplyHopAPICollectionURL = {
     putMarkAsRead: (
       path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface
     ) => `/api/message-rooms/${path.roomId}/mark-as-read`,
+    deleteId: (path: DeleteMessageRoomsIdPathPayloadRequestInterface) =>
+      `/api/message-rooms/${path.id}`,
   },
   payment: {
     getBillingPortal: () => `/api/payments/billing-portal`,

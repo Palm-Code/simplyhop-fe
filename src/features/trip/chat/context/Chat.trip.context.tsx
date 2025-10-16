@@ -2,9 +2,14 @@
 import React, { createContext, useReducer, Dispatch } from "react";
 import { ChatTripActions, ChatTripInitialStateType } from "./Chat.trip.types";
 import {
+  ChatTripBlockConfirmationReducers,
+  ChatTripCompletedRideReducers,
+  ChatTripDeleteChatConfirmationReducers,
+  ChatTripDriverProfileReducers,
   ChatTripListReducers,
   ChatTripOfferReducers,
   ChatTripRoomReducers,
+  ChatTripUnblockConfirmationReducers,
 } from "./Chat.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 
@@ -30,6 +35,7 @@ const initialState: ChatTripInitialStateType = {
       status: null,
     },
     header: {
+      user_id: null,
       avatar: {
         src: undefined,
         alt: "",
@@ -51,6 +57,9 @@ const initialState: ChatTripInitialStateType = {
         value: "",
       },
     },
+    is_blocked: false,
+    is_rated: false,
+    rating: null,
   },
   offer: {
     is_open: false,
@@ -67,6 +76,30 @@ const initialState: ChatTripInitialStateType = {
     date: null,
     passenger: null,
   },
+
+  completed_ride: {
+    is_open: false,
+    booking: null,
+    rating: null,
+    is_rated: false,
+  },
+
+  driver_profile: {
+    is_open: false,
+    data: null,
+  },
+
+  block_confirmation: {
+    is_open: false,
+  },
+
+  unblock_confirmation: {
+    is_open: false,
+  },
+
+  delete_chat_confirmation: {
+    is_open: false,
+  },
 };
 
 const ChatTripContext = createContext<{
@@ -78,12 +111,35 @@ const ChatTripContext = createContext<{
 });
 
 const mainReducer = (
-  { list, room, offer }: ChatTripInitialStateType,
+  {
+    list,
+    room,
+    offer,
+    completed_ride,
+    driver_profile,
+    block_confirmation,
+    unblock_confirmation,
+    delete_chat_confirmation,
+  }: ChatTripInitialStateType,
   action: ChatTripActions
 ) => ({
   list: ChatTripListReducers(list, action),
   room: ChatTripRoomReducers(room, action),
   offer: ChatTripOfferReducers(offer, action),
+  completed_ride: ChatTripCompletedRideReducers(completed_ride, action),
+  driver_profile: ChatTripDriverProfileReducers(driver_profile, action),
+  block_confirmation: ChatTripBlockConfirmationReducers(
+    block_confirmation,
+    action
+  ),
+  unblock_confirmation: ChatTripUnblockConfirmationReducers(
+    unblock_confirmation,
+    action
+  ),
+  delete_chat_confirmation: ChatTripDeleteChatConfirmationReducers(
+    delete_chat_confirmation,
+    action
+  ),
 });
 
 const ChatTripProvider = (props: { children: React.ReactNode }) => {
