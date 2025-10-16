@@ -5,7 +5,7 @@ import {
   ChatTripRoom,
   ChatTripOffer,
   ChatTripCompletedRide,
-  ChatTripDriverProfile,
+  ChatTripUserProfile,
   ChatTripBlockConfirmation,
   ChatTripUnblockConfirmation,
   ChatTripDeleteChatConfirmation,
@@ -185,13 +185,13 @@ export const ChatTripCompletedRideReducers = (
   }
 };
 
-// DriverProfile
-export const ChatTripDriverProfileReducers = (
-  state: ChatTripDriverProfile,
+// UserProfile
+export const ChatTripUserProfileReducers = (
+  state: ChatTripUserProfile,
   action: ChatTripActions
 ) => {
   switch (action.type) {
-    case ChatTripActionEnum.SetDriverProfileData:
+    case ChatTripActionEnum.SetUserProfileData:
       return action.payload;
 
     default:

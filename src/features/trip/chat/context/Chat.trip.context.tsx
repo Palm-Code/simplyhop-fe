@@ -5,7 +5,7 @@ import {
   ChatTripBlockConfirmationReducers,
   ChatTripCompletedRideReducers,
   ChatTripDeleteChatConfirmationReducers,
-  ChatTripDriverProfileReducers,
+  ChatTripUserProfileReducers,
   ChatTripListReducers,
   ChatTripOfferReducers,
   ChatTripRoomReducers,
@@ -84,7 +84,7 @@ const initialState: ChatTripInitialStateType = {
     is_rated: false,
   },
 
-  driver_profile: {
+  user_profile: {
     is_open: false,
     data: null,
   },
@@ -116,7 +116,7 @@ const mainReducer = (
     room,
     offer,
     completed_ride,
-    driver_profile,
+    user_profile,
     block_confirmation,
     unblock_confirmation,
     delete_chat_confirmation,
@@ -127,7 +127,7 @@ const mainReducer = (
   room: ChatTripRoomReducers(room, action),
   offer: ChatTripOfferReducers(offer, action),
   completed_ride: ChatTripCompletedRideReducers(completed_ride, action),
-  driver_profile: ChatTripDriverProfileReducers(driver_profile, action),
+  user_profile: ChatTripUserProfileReducers(user_profile, action),
   block_confirmation: ChatTripBlockConfirmationReducers(
     block_confirmation,
     action

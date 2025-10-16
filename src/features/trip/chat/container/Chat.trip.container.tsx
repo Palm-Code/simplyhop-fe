@@ -20,7 +20,7 @@ import { RoomHeaderChatTrip } from "../components/room_header";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { FormChatTrip } from "../fragments/form";
 import { CompletedRideTripChat } from "../fragments/completed_ride";
-import { DriverProfileTripChat } from "../fragments/driver_profile";
+import { UserProfileTripChat } from "../fragments/user_profile";
 import { useGetUserProfileId } from "../react_query/hooks";
 import { BlockConfirmationChatTrip } from "../fragments/block_confirmation";
 import { UnblockConfirmationChatTrip } from "../fragments/unblock_confirmation";
@@ -38,9 +38,9 @@ export const ChatTripContainer = () => {
 
   const handleClickProfile = () => {
     dispatch({
-      type: ChatTripActionEnum.SetDriverProfileData,
+      type: ChatTripActionEnum.SetUserProfileData,
       payload: {
-        ...state.driver_profile,
+        ...state.user_profile,
         is_open: true,
       },
     });
@@ -160,7 +160,7 @@ export const ChatTripContainer = () => {
         <CompletedRideTripChat />
       </React.Suspense>
       <React.Suspense fallback={<div />}>
-        <DriverProfileTripChat />
+        <UserProfileTripChat />
       </React.Suspense>
       <React.Suspense fallback={<div />}>
         <BlockConfirmationChatTrip />

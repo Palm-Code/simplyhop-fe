@@ -8,16 +8,16 @@ import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { Avatar } from "@/core/components/avatar";
 
-export const DriverProfileTripChat = () => {
+export const UserProfileTripChat = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
   const { isLg } = useTailwindBreakpoint();
-  const isOpen = state.driver_profile.is_open;
+  const isOpen = state.user_profile.is_open;
   const handleClose = () => {
     dispatch({
-      type: ChatTripActionEnum.SetDriverProfileData,
+      type: ChatTripActionEnum.SetUserProfileData,
       payload: {
-        ...state.driver_profile,
+        ...state.user_profile,
         data: null,
         is_open: false,
       },
@@ -44,25 +44,24 @@ export const DriverProfileTripChat = () => {
     });
   };
 
-  const summaryItems = dictionaries.driver_profile.summary.items.map((item) => {
+  const summaryItems = dictionaries.user_profile.summary.items.map((item) => {
     let value = "-";
     switch (item.id) {
       case "trips": {
         value =
-          state.driver_profile.data?.statistic.trip?.toLocaleString("de-DE") ??
+          state.user_profile.data?.statistic.trip?.toLocaleString("de-DE") ??
           "-";
         break;
       }
       case "ratings": {
         value =
-          state.driver_profile.data?.statistic.ratings?.toLocaleString(
-            "de-DE"
-          ) ?? "-";
+          state.user_profile.data?.statistic.ratings?.toLocaleString("de-DE") ??
+          "-";
         break;
       }
       case "passengers": {
         value =
-          state.driver_profile.data?.statistic.passengers?.toLocaleString(
+          state.user_profile.data?.statistic.passengers?.toLocaleString(
             "de-DE"
           ) ?? "-";
         break;
@@ -77,19 +76,19 @@ export const DriverProfileTripChat = () => {
     };
   });
 
-  const detailItems = dictionaries.driver_profile.detail.items.map((item) => {
+  const detailItems = dictionaries.user_profile.detail.items.map((item) => {
     let value = "-";
     switch (item.id) {
       case "email": {
-        value = state.driver_profile.data?.email ?? "-";
+        value = state.user_profile.data?.email ?? "-";
         break;
       }
       case "city": {
-        value = state.driver_profile.data?.place ?? "-";
+        value = state.user_profile.data?.place ?? "-";
         break;
       }
       case "gender": {
-        value = state.driver_profile.data?.gender ?? "-";
+        value = state.user_profile.data?.gender ?? "-";
         break;
       }
       default: {
@@ -145,7 +144,7 @@ export const DriverProfileTripChat = () => {
               "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
             )}
           >
-            {dictionaries.driver_profile.title}
+            {dictionaries.user_profile.title}
           </h2>
         </div>
 
@@ -186,7 +185,7 @@ export const DriverProfileTripChat = () => {
           </div>
 
           {/* summary */}
-          {state.driver_profile.data?.type === "driver" && (
+          {state.user_profile.data?.type === "driver" && (
             <div
               className={clsx(
                 "grid place-content-center place-items-center gap-[0.5rem]",
@@ -313,7 +312,7 @@ export const DriverProfileTripChat = () => {
                 name={"MessageSquareDashed"}
                 className={clsx("w-[1rem] h-[1rem]", "text-[#C50707]")}
               />
-              {dictionaries.driver_profile.cta.delete.children}
+              {dictionaries.user_profile.cta.delete.children}
             </button>
             <div className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")} />
             <button
@@ -331,7 +330,7 @@ export const DriverProfileTripChat = () => {
                 name={"Ban"}
                 className={clsx("w-[1rem] h-[1rem]", "text-[#C50707]")}
               />
-              {dictionaries.driver_profile.cta.block.children}
+              {dictionaries.user_profile.cta.block.children}
             </button>
           </div>
         </div>

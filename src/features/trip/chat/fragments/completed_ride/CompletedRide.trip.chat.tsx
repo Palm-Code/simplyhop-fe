@@ -125,55 +125,57 @@ export const CompletedRideTripChat = () => {
           </div>
 
           {/* rating */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-center place-items-center w-full gap-[1rem]",
-              "w-full",
-              "px-[1rem] py-[1.5rem]",
-              "bg-[white]"
-            )}
-          >
-            <p className={clsx("text-[1rem] text-[black] font-semibold")}>
-              {dictionaries.completed_ride.rating.title}
-            </p>
-
-            {/* rating */}
+          {state.user_profile.data?.type === "driver" && (
             <div
               className={clsx(
-                "flex items-center justify-center gap-[0.75rem]",
-                "w-full"
+                "grid grid-cols-1 place-content-center place-items-center w-full gap-[1rem]",
+                "w-full",
+                "px-[1rem] py-[1.5rem]",
+                "bg-[white]"
               )}
             >
-              {Array(5)
-                .fill(0)
-                .map((_, index) => {
-                  const starNumber = index + 1;
-                  const currentRating = state.completed_ride.rating || 0;
-                  const displayRating =
-                    hoveredRating !== null ? hoveredRating : currentRating;
-                  const isStarFilled = starNumber <= displayRating;
+              <p className={clsx("text-[1rem] text-[black] font-semibold")}>
+                {dictionaries.completed_ride.rating.title}
+              </p>
 
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => handleClickRating(starNumber)}
-                      onMouseEnter={() => setHoveredRating(starNumber)}
-                      onMouseLeave={() => setHoveredRating(null)}
-                    >
-                      <SVGIcon
-                        name="Star"
-                        className={clsx(
-                          "w-[2rem] h-[2rem] transition-colors",
-                          isStarFilled
-                            ? "fill-[#FFC403] text-[#FFC403]"
-                            : "text-[#E0E0E0]"
-                        )}
-                      />
-                    </button>
-                  );
-                })}
+              {/* rating */}
+              <div
+                className={clsx(
+                  "flex items-center justify-center gap-[0.75rem]",
+                  "w-full"
+                )}
+              >
+                {Array(5)
+                  .fill(0)
+                  .map((_, index) => {
+                    const starNumber = index + 1;
+                    const currentRating = state.completed_ride.rating || 0;
+                    const displayRating =
+                      hoveredRating !== null ? hoveredRating : currentRating;
+                    const isStarFilled = starNumber <= displayRating;
+
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handleClickRating(starNumber)}
+                        onMouseEnter={() => setHoveredRating(starNumber)}
+                        onMouseLeave={() => setHoveredRating(null)}
+                      >
+                        <SVGIcon
+                          name="Star"
+                          className={clsx(
+                            "w-[2rem] h-[2rem] transition-colors",
+                            isStarFilled
+                              ? "fill-[#FFC403] text-[#FFC403]"
+                              : "text-[#E0E0E0]"
+                          )}
+                        />
+                      </button>
+                    );
+                  })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* mobile trip summary */}
           <div

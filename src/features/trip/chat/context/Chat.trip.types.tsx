@@ -20,7 +20,7 @@ export interface ChatTripInitialStateType {
   room: ChatTripRoom;
   offer: ChatTripOffer;
   completed_ride: ChatTripCompletedRide;
-  driver_profile: ChatTripDriverProfile;
+  user_profile: ChatTripUserProfile;
   block_confirmation: ChatTripBlockConfirmation;
   unblock_confirmation: ChatTripUnblockConfirmation;
   delete_chat_confirmation: ChatTripDeleteChatConfirmation;
@@ -119,7 +119,7 @@ export interface ChatTripCompletedRide {
   is_rated: boolean;
 }
 
-export interface ChatTripDriverProfile {
+export interface ChatTripUserProfile {
   is_open: boolean;
   data: null | {
     name: string;
@@ -174,8 +174,8 @@ export enum ChatTripActionEnum {
   // CompletedRide
   SetCompletedRideData = "SetCompletedRideData",
 
-  // DriverProfile
-  SetDriverProfileData = "SetDriverProfileData",
+  // UserProfile
+  SetUserProfileData = "SetUserProfileData",
 
   // BlockConfirmation
   SetBlockConfirmationData = "SetBlockConfirmationData",
@@ -193,7 +193,7 @@ export type ChatTripActions =
   | ChatTripRoomActions
   | ChatTripOfferActions
   | ChatTripCompletedRideActions
-  | ChatTripDriverProfileActions
+  | ChatTripUserProfileActions
   | ChatTripBlockConfirmationActions
   | ChatTripUnblockConfirmationActions
   | ChatTripDeleteChatConfirmationActions;
@@ -243,13 +243,13 @@ type ChatTripCompletedRidePayload = {
 export type ChatTripCompletedRideActions =
   ActionMap<ChatTripCompletedRidePayload>[keyof ActionMap<ChatTripCompletedRidePayload>];
 
-// DriverProfile
-type ChatTripDriverProfilePayload = {
-  [ChatTripActionEnum.SetDriverProfileData]: ChatTripDriverProfile;
+// UserProfile
+type ChatTripUserProfilePayload = {
+  [ChatTripActionEnum.SetUserProfileData]: ChatTripUserProfile;
 };
 
-export type ChatTripDriverProfileActions =
-  ActionMap<ChatTripDriverProfilePayload>[keyof ActionMap<ChatTripDriverProfilePayload>];
+export type ChatTripUserProfileActions =
+  ActionMap<ChatTripUserProfilePayload>[keyof ActionMap<ChatTripUserProfilePayload>];
 
 // BlockConfirmation
 type ChatTripBlockConfirmationPayload = {

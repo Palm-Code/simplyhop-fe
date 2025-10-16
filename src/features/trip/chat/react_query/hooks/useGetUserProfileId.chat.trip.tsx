@@ -34,9 +34,9 @@ export const useGetUserProfileId = () => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
       dispatch({
-        type: ChatTripActionEnum.SetDriverProfileData,
+        type: ChatTripActionEnum.SetUserProfileData,
         payload: {
-          ...state.driver_profile,
+          ...state.user_profile,
           data: {
             name: formatDisplayName({
               first_name: data.data.first_name,
