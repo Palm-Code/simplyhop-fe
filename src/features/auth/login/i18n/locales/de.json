@@ -6,13 +6,14 @@
     "header": {
       "logo": {
         "src": "/logo/simply_hop.svg",
-        "width": 170,
-        "height": 170,
+        "width": 52,
+        "height": 52,
         "alt": "logo",
         "priority": true
       }
     },
-    "title": "Login",
+    "title": "Get Started",
+    "description": "Enter your organization email address to sign in.",
     "input": {
       "email": {
         "inputProps": {
@@ -24,40 +25,12 @@
           "children": "Email",
           "required": false
         }
-      },
-      "password": {
-        "inputProps": {
-          "id": "password",
-          "placeholder": " ",
-          "type": "password"
-        },
-        "labelProps": {
-          "id": "password",
-          "children": "Passwort",
-          "required": false
-        }
       }
     },
     "cta": {
       "login": {
         "children": "Login"
       }
-    },
-    "account": {
-      "label": "Du hast noch kein Konto? ",
-      "cta": {
-        "children": "Jetzt registrieren",
-        "href": "/register"
-      }
-    },
-    "social_media": {
-      "label": "Oder melde dich über die sozialen Medien an",
-      "items": [
-        {
-          "id": "google",
-          "icon": "Google"
-        }
-      ]
     },
     "privacy_policy": {
       "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",

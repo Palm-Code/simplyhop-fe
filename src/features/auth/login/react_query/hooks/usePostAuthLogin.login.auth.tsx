@@ -38,7 +38,7 @@ export const usePostAuthLogin = () => {
       const payload: PostAuthLoginPayloadRequestInterface = {
         body: {
           email: state.form.email.value,
-          password: state.form.password.value,
+          password: "",
         },
       };
       return fetchPostAuthLogin(payload);

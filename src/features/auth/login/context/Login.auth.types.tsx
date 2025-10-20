@@ -22,9 +22,8 @@ export interface LoginAuthForm {
     value: string;
     error: FormError;
   };
-  password: {
-    value: string;
-    error: FormError;
+  error: null | {
+    code: string;
   };
 }
 

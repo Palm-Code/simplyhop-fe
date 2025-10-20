@@ -6,7 +6,8 @@ export const LoginAuthContainer = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-center place-items-center w-full h-full"
+        "grid grid-rows-1 grid-cols-1 items-stretch content-between justify-center justify-items-center w-full h-full",
+        'py-[80px]'
       )}
     >
       <FormLoginAuth />
