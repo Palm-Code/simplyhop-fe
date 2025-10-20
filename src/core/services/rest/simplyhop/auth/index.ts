@@ -7,3 +7,5 @@ export * from "./social_redirect.get";
 export * from "./change_password.post";
 export * from "./forgot_password.post";
 export * from "./reset_password.post";
+export * from "./request_otp.post";
+export * from "./verify_otp.post";

@@ -5,4 +5,10 @@ export const LoginAuthReactQueryKey = {
   GetSocialRedirect: () => {
     return ["LoginAuthReactQueryKey.GetSocialRedirect"];
   },
+  PostRequestOTP: () => {
+    return ["LoginAuthReactQueryKey.PostRequestOTP"];
+  },
+  PostVerifyOTP: () => {
+    return ["LoginAuthReactQueryKey.PostVerifyOTP"];
+  },
 };

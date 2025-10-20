@@ -8,14 +8,14 @@ import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
 import { Button } from "@/core/components/button";
 import { getError } from "@/core/utils/form";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { usePostAuthLogin } from "../../react_query/hooks";
+import { usePostAuthRequestOTP } from "../../react_query/hooks";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
-  const { mutate: postAuthLogin, isPending: isPendingPostAuthLogin } =
-    usePostAuthLogin();
+  const { mutate: postAuthRequestOTP, isPending: isPendingPostAuthRequestOTP } =
+    usePostAuthRequestOTP();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
@@ -37,15 +37,15 @@ export const FormLoginAuth = () => {
   };
 
   const handleClickLogin = async () => {
-    postAuthLogin();
+    postAuthRequestOTP();
   };
 
-  const isSubmitLoading = isPendingPostAuthLogin;
+  const isSubmitLoading = isPendingPostAuthRequestOTP;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
 
   const isSubmitDisabled =
-    isPendingPostAuthLogin || isEmailHasNoLength || isEmailInvalid;
+    isPendingPostAuthRequestOTP || isEmailHasNoLength || isEmailInvalid;
 
   return (
     <div
@@ -69,7 +69,7 @@ export const FormLoginAuth = () => {
         </p>
       </div>
 
-      {!!state.form.error && (
+      {!!state.form.error?.code && (
         <div
           className={clsx(
             "px-[1rem] py-[0.5rem]",
@@ -80,9 +80,7 @@ export const FormLoginAuth = () => {
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
-            {
-              "No user founded on this organization domain. Please ask your organization administrator"
-            }
+            {state.otp_form.error?.code}
           </span>
         </div>
       )}
