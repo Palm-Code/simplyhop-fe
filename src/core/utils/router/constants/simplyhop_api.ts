@@ -36,6 +36,8 @@ import {
 export const SimplyHopAPICollectionURL = {
   auth: {
     postLogin: () => `/api/auth/login`,
+    postRequestOTP: () => `/api/auth/request-otp`,
+    postVerifyOTP: () => `/api/auth/verify-otp`,
     postRegister: () => `/api/auth/register`,
     postForgotPassword: () => `/api/auth/forgot-password`,
     postResetPassword: () => `/api/auth/reset-password`,

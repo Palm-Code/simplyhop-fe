@@ -2,46 +2,39 @@ import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { LoginAuthReactQueryKey } from "../keys";
 import {
-  PostAuthLoginErrorResponseInterface,
-  PostAuthLoginPayloadRequestInterface,
-  PostAuthLoginSuccessResponseInterface,
+  PostAuthVerifyOTPErrorResponseInterface,
+  PostAuthVerifyOTPPayloadRequestInterface,
+  PostAuthVerifyOTPSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/auth";
-import { LoginAuthContext } from "../../context";
+import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
 import Cookies from "universal-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import { fetchPostAuthLogin } from "@/core/services/rest/simplyhop/auth";
-import {
-  GlobalActionEnum,
-  GlobalContext,
-  UserActionEnum,
-  UserContext,
-} from "@/core/modules/app/context";
-import { v4 as uuidv4 } from "uuid";
+import { fetchPostAuthVerifyOTP } from "@/core/services/rest/simplyhop/auth";
+import { UserActionEnum, UserContext } from "@/core/modules/app/context";
 import { RIDE_FILTER } from "@/core/enums";
 import { setToken } from "@/app/actions/setToken";
 
-export const usePostAuthLogin = () => {
+export const usePostAuthVerifyOTP = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
-  const { state } = React.useContext(LoginAuthContext);
+  const { state, dispatch } = React.useContext(LoginAuthContext);
   const { dispatch: dispatchUser } = React.useContext(UserContext);
-  const { state: globalState, dispatch: dispatchGlobal } =
-    React.useContext(GlobalContext);
+
   const mutation = useMutation<
-    PostAuthLoginSuccessResponseInterface,
-    PostAuthLoginErrorResponseInterface
+    PostAuthVerifyOTPSuccessResponseInterface,
+    PostAuthVerifyOTPErrorResponseInterface
   >({
-    mutationKey: LoginAuthReactQueryKey.PostLogin(),
+    mutationKey: LoginAuthReactQueryKey.PostRequestOTP(),
     mutationFn: () => {
-      const payload: PostAuthLoginPayloadRequestInterface = {
+      const payload: PostAuthVerifyOTPPayloadRequestInterface = {
         body: {
           email: state.form.email.value,
-          password: "",
+          otp: state.otp_form.otp.value,
         },
       };
-      return fetchPostAuthLogin(payload);
+      return fetchPostAuthVerifyOTP(payload);
     },
     onSuccess(data) {
       const cookies = new Cookies();
@@ -73,18 +66,13 @@ export const usePostAuthLogin = () => {
       }
     },
     onError(error) {
-      dispatchGlobal({
-        type: GlobalActionEnum.SetAlertData,
+      dispatch({
+        type: LoginAuthActionEnum.SetFormData,
         payload: {
-          ...globalState.alert,
-          items: [
-            ...globalState.alert.items,
-            {
-              id: uuidv4(),
-              variant: "error",
-              message: error.message,
-            },
-          ],
+          ...state.form,
+          error: {
+            code: error.message,
+          },
         },
       });
     },

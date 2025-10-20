@@ -4,18 +4,28 @@ import {
   LoginAuthActions,
   LoginAuthInitialStateType,
 } from "./Login.auth.types";
-import { LoginAuthFormReducers } from "./Login.auth.reducers";
+import {
+  LoginAuthFormReducers,
+  LoginAuthOTPFormReducers,
+  LoginAuthStepReducers,
+} from "./Login.auth.reducers";
 
 const initialState: LoginAuthInitialStateType = {
+  step: {
+    name: "email",
+  },
   form: {
     email: {
       value: "",
       error: null,
     },
-    password: {
+    error: null,
+  },
+  otp_form: {
+    otp: {
       value: "",
-      error: null,
     },
+    error: null,
   },
 };
 
@@ -28,10 +38,12 @@ const LoginAuthContext = createContext<{
 });
 
 const mainReducer = (
-  { form }: LoginAuthInitialStateType,
+  { step, form, otp_form }: LoginAuthInitialStateType,
   action: LoginAuthActions
 ) => ({
+  step: LoginAuthStepReducers(step, action),
   form: LoginAuthFormReducers(form, action),
+  otp_form: LoginAuthOTPFormReducers(otp_form, action),
 });
 
 const LoginAuthProvider = (props: { children: React.ReactNode }) => {
