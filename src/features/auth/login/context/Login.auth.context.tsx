@@ -12,7 +12,7 @@ import {
 
 const initialState: LoginAuthInitialStateType = {
   step: {
-    name: "otp",
+    name: "email",
   },
   form: {
     email: {

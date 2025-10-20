@@ -35,7 +35,7 @@
   },
   "otp_form": {
     "title": "Verify your login",
-    "description": "We’ve sent an email to {{email}}. Enter the code here or tap the button in the email to continue.",
+    "description": "We’ve sent an email to <strong>{{email}}</strong>. Enter the code here or tap the button in the email to continue.",
     "description_2": "If you can’t see the email, check your spam or junk folder.",
     "input": {
       "otp": {
@@ -48,6 +48,14 @@
     "cta": {
       "verify_code": {
         "children": "Verify Code"
+      }
+    },
+    "request_otp": {
+      "description": "Can't find your code?",
+      "cta": {
+        "request_otp": {
+          "children": "Request a new code."
+        }
       }
     }
   },

@@ -5,7 +5,10 @@ import { getDictionaries } from "../../i18n";
 import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
 import { Button } from "@/core/components/button";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { usePostAuthVerifyOTP } from "../../react_query/hooks";
+import {
+  usePostAuthRequestOTP,
+  usePostAuthVerifyOTP,
+} from "../../react_query/hooks";
 import { OtpField } from "@/core/components/otp_field";
 
 export const OTPFormLoginAuth = () => {
@@ -13,6 +16,8 @@ export const OTPFormLoginAuth = () => {
   const { state, dispatch } = React.useContext(LoginAuthContext);
   const { mutate: postAuthVerifyOTP, isPending: isPendingPostAuthVerifyOTP } =
     usePostAuthVerifyOTP();
+  const { mutate: postAuthRequestOTP, isPending: isPendingPostAuthRequestOTP } =
+    usePostAuthRequestOTP();
 
   const handleChangeOTP = (value: string) => {
     dispatch({
@@ -31,12 +36,19 @@ export const OTPFormLoginAuth = () => {
     postAuthVerifyOTP();
   };
 
+  const handleRequestOTP = () => {
+    postAuthRequestOTP();
+  };
+
   const isSubmitLoading = isPendingPostAuthVerifyOTP;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
 
   const isSubmitDisabled =
-    isPendingPostAuthVerifyOTP || isEmailHasNoLength || isEmailInvalid;
+    isPendingPostAuthVerifyOTP ||
+    isEmailHasNoLength ||
+    isEmailInvalid ||
+    isPendingPostAuthRequestOTP;
 
   return (
     <div
@@ -61,13 +73,17 @@ export const OTPFormLoginAuth = () => {
             "w-full"
           )}
         >
-          <p className={clsx("text-[#232323] text-[0.75rem] font-light")}>
-            {dictionaries.otp_form.description.replaceAll(
-              "{{email}}",
-              state.form.email.value
-            )}
-          </p>
-          <p className={clsx("text-[#232323] text-[0.75rem] font-light")}>
+          <p
+            className={clsx("text-[#5B5B5B] text-[1rem] font-normal")}
+            dangerouslySetInnerHTML={{
+              __html: dictionaries.otp_form.description.replaceAll(
+                "{{email}}",
+                state.form.email.value
+              ),
+            }}
+          />
+
+          <p className={clsx("text-[#5B5B5B] text-[1rem] font-normal")}>
             {dictionaries.otp_form.description_2}
           </p>
         </div>
@@ -108,6 +124,26 @@ export const OTPFormLoginAuth = () => {
           {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.otp_form.cta.verify_code.children}
         </Button>
+
+        <div
+          className={clsx(
+            "flex items-center justify-center gap-[0.25rem]",
+            "w-full"
+          )}
+        >
+          <span className={clsx("text-[#5B5B5B] text-[1rem] font-normal")}>
+            {dictionaries.otp_form.request_otp.description}
+          </span>
+          <button
+            className={clsx(
+              "cursor-pointer",
+              "text-[#33CC33] text-[1rem] font-normal"
+            )}
+            onClick={handleRequestOTP}
+          >
+            {dictionaries.otp_form.request_otp.cta.request_otp.children}
+          </button>
+        </div>
       </div>
     </div>
   );
