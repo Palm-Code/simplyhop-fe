@@ -128,9 +128,12 @@ export const FormAccountUpdateSupport = () => {
   };
 
   const handleChangePhonenumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Filter input to only allow + and numeric characters (0-9)
+    const filteredValue = e.currentTarget.value.replace(/[^+0-9]/g, '');
+    
     const errorItem = getError({
       errorItems: globalDictionaries.form.phonenumber.validations.items,
-      value: e.currentTarget.value,
+      value: filteredValue,
       type: "optional",
     });
     dispatch({
@@ -139,7 +142,7 @@ export const FormAccountUpdateSupport = () => {
         ...state.form,
         phonenumber: {
           ...state.form.phonenumber,
-          value: e.currentTarget.value,
+          value: filteredValue,
           error: errorItem,
         },
       },
