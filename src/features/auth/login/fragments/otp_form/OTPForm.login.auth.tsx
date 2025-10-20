@@ -2,35 +2,26 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
-import { Textfield } from "@/core/components/textfield";
 import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
 import { Button } from "@/core/components/button";
-import { getError } from "@/core/utils/form";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { usePostAuthVerifyOTP } from "../../react_query/hooks";
+import { OtpField } from "@/core/components/otp_field";
 
 export const OTPFormLoginAuth = () => {
   const dictionaries = getDictionaries();
-  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
   const { mutate: postAuthVerifyOTP, isPending: isPendingPostAuthVerifyOTP } =
     usePostAuthVerifyOTP();
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
-      value: e.currentTarget.value,
-    });
-
+  const handleChangeOTP = (value: string) => {
     dispatch({
-      type: LoginAuthActionEnum.SetFormData,
+      type: LoginAuthActionEnum.SetOTPFormData,
       payload: {
-        ...state.form,
-        email: {
-          ...state.form.email,
-          value: e.currentTarget.value,
-          error: errorItem,
+        ...state.otp_form,
+        otp: {
+          ...state.otp_form.otp,
+          value: value,
         },
       },
     });
@@ -104,15 +95,7 @@ export const OTPFormLoginAuth = () => {
           "w-full h-full"
         )}
       >
-        <Textfield
-          labelProps={{ ...dictionaries.form.input.email.labelProps }}
-          inputProps={{
-            ...dictionaries.form.input.email.inputProps,
-            value: state.form.email.value,
-            onChange: handleChangeEmail,
-          }}
-          error={state.form.email.error?.name}
-        />
+        <OtpField value={state.otp_form.otp.value} onChange={handleChangeOTP} />
 
         <Button
           aria-label={dictionaries.form.cta.login.children}
@@ -123,7 +106,7 @@ export const OTPFormLoginAuth = () => {
           onClick={handleClickLogin}
         >
           {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
-          {dictionaries.form.cta.login.children}
+          {dictionaries.otp_form.cta.verify_code.children}
         </Button>
       </div>
     </div>

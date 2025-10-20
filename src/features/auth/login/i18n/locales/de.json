@@ -36,7 +36,20 @@
   "otp_form": {
     "title": "Verify your login",
     "description": "We’ve sent an email to {{email}}. Enter the code here or tap the button in the email to continue.",
-    "description_2": "If you can’t see the email, check your spam or junk folder."
+    "description_2": "If you can’t see the email, check your spam or junk folder.",
+    "input": {
+      "otp": {
+        "inputProps": {
+          "id": "otp",
+          "placeholder": " "
+        }
+      }
+    },
+    "cta": {
+      "verify_code": {
+        "children": "Verify Code"
+      }
+    }
   },
   "privacy_policy": {
     "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",

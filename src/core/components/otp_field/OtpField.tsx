@@ -28,7 +28,10 @@ export const OtpField = ({
   React.useEffect(() => {
     if (value) {
       const valueArray = value.split("").slice(0, length);
-      const paddedArray = [...valueArray, ...Array(length - valueArray.length).fill("")];
+      const paddedArray = [
+        ...valueArray,
+        ...Array(length - valueArray.length).fill(""),
+      ];
       setOtpValues(paddedArray);
     }
   }, [value, length]);
@@ -54,7 +57,10 @@ export const OtpField = ({
     }
   };
 
-  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (
+    index: number,
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (e.key === "Backspace" && !otpValues[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
@@ -62,10 +68,13 @@ export const OtpField = ({
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const pasteData = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, length);
+    const pasteData = e.clipboardData
+      .getData("text")
+      .replace(/\D/g, "")
+      .slice(0, length);
     const pasteArray = pasteData.split("");
     const newOtpValues = [...Array(length).fill("")];
-    
+
     pasteArray.forEach((char, index) => {
       if (index < length) {
         newOtpValues[index] = char;
@@ -73,13 +82,13 @@ export const OtpField = ({
     });
 
     setOtpValues(newOtpValues);
-    
+
     if (onChange) {
       onChange(newOtpValues.join(""));
     }
 
     // Focus to the next empty input or last input
-    const nextEmptyIndex = newOtpValues.findIndex(val => val === "");
+    const nextEmptyIndex = newOtpValues.findIndex((val) => val === "");
     const focusIndex = nextEmptyIndex === -1 ? length - 1 : nextEmptyIndex;
     inputRefs.current[focusIndex]?.focus();
   };
@@ -103,7 +112,7 @@ export const OtpField = ({
           )}
         />
       )}
-      
+
       <div
         className={clsx(
           "flex items-center justify-center gap-[0.5rem]",
@@ -125,7 +134,7 @@ export const OtpField = ({
             onKeyDown={(e) => handleKeyDown(index, e)}
             onPaste={index === 0 ? handlePaste : undefined}
             className={clsx(
-              "w-[48px] h-[56px]",
+              "w-full h-[80px]",
               "text-center text-[1.125rem] font-medium",
               "border border-[#E2E2E2] rounded-[0.375rem]",
               "bg-white",
