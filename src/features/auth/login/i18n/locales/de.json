@@ -2,16 +2,16 @@
   "background": {
     "image_url": "/images/auth/auth-bg.png"
   },
+  "header": {
+    "logo": {
+      "src": "/logo/simply_hop.svg",
+      "width": 52,
+      "height": 52,
+      "alt": "logo",
+      "priority": true
+    }
+  },
   "form": {
-    "header": {
-      "logo": {
-        "src": "/logo/simply_hop.svg",
-        "width": 52,
-        "height": 52,
-        "alt": "logo",
-        "priority": true
-      }
-    },
     "title": "Get Started",
     "description": "Enter your organization email address to sign in.",
     "input": {
@@ -31,18 +31,23 @@
       "login": {
         "children": "Login"
       }
-    },
-    "privacy_policy": {
-      "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",
-      "credit": {
-        "logo": {
-          "src": "/logo/simply_hop.svg",
-          "width": 52,
-          "height": 14,
-          "alt": "logo"
-        },
-        "message": "Alle Rechte vorbehalten"
-      }
+    }
+  },
+  "otp_form": {
+    "title": "Verify your login",
+    "description": "We’ve sent an email to {{email}}. Enter the code here or tap the button in the email to continue.",
+    "description_2": "If you can’t see the email, check your spam or junk folder."
+  },
+  "privacy_policy": {
+    "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",
+    "credit": {
+      "logo": {
+        "src": "/logo/simply_hop.svg",
+        "width": 52,
+        "height": 14,
+        "alt": "logo"
+      },
+      "message": "Alle Rechte vorbehalten"
     }
   }
 }

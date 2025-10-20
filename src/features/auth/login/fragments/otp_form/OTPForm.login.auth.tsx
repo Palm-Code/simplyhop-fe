@@ -10,7 +10,7 @@ import { getError } from "@/core/utils/form";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { usePostAuthLogin } from "../../react_query/hooks";
 
-export const FormLoginAuth = () => {
+export const OTPFormLoginAuth = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
@@ -62,11 +62,24 @@ export const FormLoginAuth = () => {
         )}
       >
         <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
-          {dictionaries.form.title}
+          {dictionaries.otp_form.title}
         </h1>
-        <p className={clsx("text-[#232323] text-[0.75rem] font-light")}>
-          {dictionaries.form.description}
-        </p>
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start",
+            "w-full"
+          )}
+        >
+          <p className={clsx("text-[#232323] text-[0.75rem] font-light")}>
+            {dictionaries.otp_form.description.replaceAll(
+              "{{email}}",
+              state.form.email.value
+            )}
+          </p>
+          <p className={clsx("text-[#232323] text-[0.75rem] font-light")}>
+            {dictionaries.otp_form.description_2}
+          </p>
+        </div>
       </div>
 
       {!!state.form.error && (
