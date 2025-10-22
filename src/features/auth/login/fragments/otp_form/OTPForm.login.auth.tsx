@@ -40,7 +40,8 @@ export const OTPFormLoginAuth = () => {
     postAuthRequestOTP();
   };
 
-  const isSubmitLoading = isPendingPostAuthVerifyOTP;
+  const isSubmitLoading =
+    isPendingPostAuthVerifyOTP || isPendingPostAuthRequestOTP;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
 
