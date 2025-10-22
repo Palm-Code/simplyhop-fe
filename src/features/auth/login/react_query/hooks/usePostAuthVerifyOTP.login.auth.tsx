@@ -67,9 +67,9 @@ export const usePostAuthVerifyOTP = () => {
     },
     onError(error) {
       dispatch({
-        type: LoginAuthActionEnum.SetFormData,
+        type: LoginAuthActionEnum.SetOTPFormData,
         payload: {
-          ...state.form,
+          ...state.otp_form,
           error: {
             code: error.message,
           },

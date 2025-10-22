@@ -35,15 +35,27 @@ export const usePostAuthRequestOTP = () => {
       });
     },
     onError(error) {
-      dispatch({
-        type: LoginAuthActionEnum.SetFormData,
-        payload: {
-          ...state.form,
-          error: {
-            code: error.message,
+      if (state.step.name === "email") {
+        dispatch({
+          type: LoginAuthActionEnum.SetFormData,
+          payload: {
+            ...state.form,
+            error: {
+              code: error.message,
+            },
           },
-        },
-      });
+        });
+      } else {
+        dispatch({
+          type: LoginAuthActionEnum.SetOTPFormData,
+          payload: {
+            ...state.otp_form,
+            error: {
+              code: error.message,
+            },
+          },
+        });
+      }
     },
   });
   return mutation;
