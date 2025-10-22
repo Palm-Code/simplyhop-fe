@@ -98,6 +98,7 @@ export const FormLoginAuth = () => {
             value: state.form.email.value,
             onChange: handleChangeEmail,
           }}
+          disabled={isSubmitLoading}
           error={state.form.email.error?.name}
         />
 
