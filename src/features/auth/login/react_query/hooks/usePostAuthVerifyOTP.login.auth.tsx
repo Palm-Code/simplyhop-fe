@@ -37,6 +37,13 @@ export const usePostAuthVerifyOTP = () => {
       return fetchPostAuthVerifyOTP(payload);
     },
     onSuccess(data) {
+      dispatch({
+        type: LoginAuthActionEnum.SetOTPFormData,
+        payload: {
+          ...state.otp_form,
+          error: null,
+        },
+      });
       const cookies = new Cookies();
       cookies.set("token", data.data.token, { path: "/" });
       setToken(data.data.token);

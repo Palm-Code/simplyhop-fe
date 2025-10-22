@@ -33,6 +33,20 @@ export const usePostAuthRequestOTP = () => {
           name: "otp",
         },
       });
+      dispatch({
+        type: LoginAuthActionEnum.SetFormData,
+        payload: {
+          ...state.form,
+          error: null,
+        },
+      });
+      dispatch({
+        type: LoginAuthActionEnum.SetOTPFormData,
+        payload: {
+          ...state.otp_form,
+          error: null,
+        },
+      });
     },
     onError(error) {
       if (state.step.name === "email") {
