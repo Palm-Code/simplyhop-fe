@@ -45,8 +45,8 @@ export default function TripLayout({ children }: TripLayoutProps) {
 
         <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
           {children}
+          <FooterApp />
         </div>
-        <FooterApp />
       </main>
     </UserProvider>
   );
