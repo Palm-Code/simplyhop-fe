@@ -111,7 +111,11 @@ export const OTPFormLoginAuth = () => {
           "w-full h-full"
         )}
       >
-        <OtpField value={state.otp_form.otp.value} onChange={handleChangeOTP} />
+        <OtpField
+          value={state.otp_form.otp.value}
+          disabled={isSubmitLoading}
+          onChange={handleChangeOTP}
+        />
 
         <Button
           aria-label={dictionaries.form.cta.login.children}
