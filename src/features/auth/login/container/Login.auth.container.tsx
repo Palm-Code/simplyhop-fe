@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { FormLoginAuth } from "../fragments/form";
@@ -6,6 +6,7 @@ import Image from "next/image";
 import { getDictionaries } from "../i18n";
 import { LoginAuthContext } from "../context";
 import { OTPFormLoginAuth } from "../fragments/otp_form";
+import Link from "next/link";
 
 export const LoginAuthContainer = () => {
   const dictionaries = getDictionaries();
@@ -25,13 +26,16 @@ export const LoginAuthContainer = () => {
           "max-w-[508px] w-full h-full"
         )}
       >
-        <div className="w-[148px] h-[40px] flex items-center justify-center">
+        <Link
+          href={process.env.NEXT_PUBLIC_SITE_URL ?? ""}
+          className="w-[148px] h-[40px] flex items-center justify-center cursor-pointer"
+        >
           <Image
             {...dictionaries.header.logo}
             alt={dictionaries.header.logo.alt}
             className="w-[170px] h-[170px] object-contain"
           />
-        </div>
+        </Link>
 
         {state.step.name === "otp" ? <OTPFormLoginAuth /> : <FormLoginAuth />}
 
