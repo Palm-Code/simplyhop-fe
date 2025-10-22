@@ -80,7 +80,7 @@ export const FormLoginAuth = () => {
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
-            {state.otp_form.error?.code}
+            {state.form.error?.code}
           </span>
         </div>
       )}

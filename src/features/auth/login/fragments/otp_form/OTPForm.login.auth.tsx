@@ -90,7 +90,7 @@ export const OTPFormLoginAuth = () => {
         </div>
       </div>
 
-      {!!state.form.error?.code && (
+      {!!state.otp_form.error?.code && (
         <div
           className={clsx(
             "px-[1rem] py-[0.5rem]",
