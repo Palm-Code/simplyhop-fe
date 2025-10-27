@@ -37,7 +37,7 @@ export const NotificationRegistrationProfile = () => {
         is_open: false,
       },
     });
-    router.push(AppCollectionURL.public.home());
+    router.push(AppCollectionURL.private.trip());
   };
   return (
     <AdaptiveModal

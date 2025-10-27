@@ -415,7 +415,7 @@ export const FilterResultTrip = () => {
         },
       },
     });
-    router.push(AppCollectionURL.public.tripResult(params));
+    router.push(AppCollectionURL.private.tripResult(params));
   };
 
   return (

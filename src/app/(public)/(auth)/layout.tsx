@@ -29,7 +29,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   } catch {}
 
   if (res) {
-    redirect(AppCollectionURL.public.home());
+    redirect(AppCollectionURL.private.trip());
   }
 
   return (

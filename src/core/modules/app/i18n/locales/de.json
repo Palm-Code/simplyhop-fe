@@ -1,6 +1,6 @@
 {
   "logo": {
-    "href": "/",
+    "href": "/mitfahrt-suchen",
     "image": {
       "src": "/logo/simply_hop.svg",
       "width": 170,
@@ -12,7 +12,7 @@
   "footer": {
     "top": {
       "logo": {
-        "href": "/",
+        "href": "/mitfahrt-suchen",
         "image": {
           "src": "/logo/simply_hop.svg",
           "width": 170,
@@ -80,7 +80,7 @@
           {
             "id": "Mitfahrt suchen",
             "name": "Mitfahrt suchen",
-            "href": "/"
+            "href": "/mitfahrt-suchen"
           },
           {
             "id": "Mitfahrt anbieten",
@@ -156,7 +156,7 @@
       {
         "id": "mitfahrt-suchen",
         "name": "Mitfahrt suchen",
-        "href": "/",
+        "href": "/mitfahrt-suchen",
         "icon": {
           "name": "Search"
         }

@@ -65,7 +65,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
     });
     const cookies = new Cookies();
     cookies.remove("token", { path: "/" });
-    router.push(AppCollectionURL.public.home());
+    router.push(AppCollectionURL.public.login());
   };
 
   const isDeactivateDisabled = isPendingDeleteDeactivateAccount;

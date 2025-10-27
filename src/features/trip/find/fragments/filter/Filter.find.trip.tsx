@@ -396,7 +396,7 @@ export const FilterFindTrip = () => {
       params = params + carSeat;
     }
 
-    router.push(AppCollectionURL.public.tripResult(params));
+    router.push(AppCollectionURL.private.tripResult(params));
   };
 
   return (

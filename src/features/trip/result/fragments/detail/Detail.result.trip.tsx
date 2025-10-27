@@ -79,7 +79,7 @@ export const DetailResultTrip = () => {
     const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
     params.delete("ride_id");
     router.push(
-      `${AppCollectionURL.public.tripResult()}?${params.toString()}`,
+      `${AppCollectionURL.private.tripResult()}?${params.toString()}`,
       { scroll: false }
     );
   };

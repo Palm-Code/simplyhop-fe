@@ -30,7 +30,7 @@ export const DeactivateNotificationAccountUpdateSupport = () => {
     });
     const cookies = new Cookies();
     cookies.remove("token", { path: "/" });
-    router.push(AppCollectionURL.public.home());
+    router.push(AppCollectionURL.public.login());
   };
 
   const handleClickGoToHomepage = () => {
@@ -43,7 +43,7 @@ export const DeactivateNotificationAccountUpdateSupport = () => {
     });
     const cookies = new Cookies();
     cookies.remove("token", { path: "/" });
-    router.push(AppCollectionURL.public.home());
+    router.push(AppCollectionURL.public.login());
   };
   return (
     <AdaptiveModal

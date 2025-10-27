@@ -8,17 +8,14 @@ import {
 } from "@/core/models/rest/simplyhop/auth";
 import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
 import Cookies from "universal-cookie";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthVerifyOTP } from "@/core/services/rest/simplyhop/auth";
 import { UserActionEnum, UserContext } from "@/core/modules/app/context";
-import { RIDE_FILTER } from "@/core/enums";
 import { setToken } from "@/app/actions/setToken";
 
 export const usePostAuthVerifyOTP = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const { state, dispatch } = React.useContext(LoginAuthContext);
   const { dispatch: dispatchUser } = React.useContext(UserContext);
 
@@ -64,14 +61,17 @@ export const usePostAuthVerifyOTP = () => {
           is_able_to_ride: user.can_share_ride,
         },
       });
-      if (!rideId) {
-        router.push(AppCollectionURL.public.home());
+
+      if (
+        (user.is_driver && user.can_share_ride) ||
+        (!user.is_driver && user.is_profile_complete)
+      ) {
+        router.push(AppCollectionURL.private.trip());
       } else {
-        router.push(
-          AppCollectionURL.public.tripResult(searchParams.toString())
-        );
+        router.push(AppCollectionURL.private.profile_registration());
       }
     },
+
     onError(error) {
       dispatch({
         type: LoginAuthActionEnum.SetOTPFormData,

@@ -40,7 +40,7 @@ export const usePostAuthLogout = () => {
       cookies.remove("token", { path: "/" });
       await removeToken();
       router.refresh();
-      router.push(AppCollectionURL.public.home());
+      router.push(AppCollectionURL.public.login());
     },
     onError(error) {
       dispatchGlobal({

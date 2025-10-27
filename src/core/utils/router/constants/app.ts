@@ -1,16 +1,15 @@
 export const AppCollectionURL = {
   public: {
-    home: () => "/",
-    tripResult: (params?: string) =>
-      !params ? `/mitfahrt-suchen/result` : `/mitfahrt-suchen/result?${params}`,
-    login: (params?: string) => (!params ? "/login" : `/login?${params}`),
+    login: (params?: string) => (!params ? "/" : `/?${params}`),
     register: (params?: string) =>
       !params ? "/register" : `/register?${params}`,
     forgot_password: () => `/forgot-password`,
   },
   private: {
     chat: (params?: string) => (!params ? "/chat" : `/chat?${params}`),
-
+    trip: () => "/mitfahrt-suchen/result",
+    tripResult: (params?: string) =>
+      !params ? `/mitfahrt-suchen/result` : `/mitfahrt-suchen/result?${params}`,
     myList: (params?: string) =>
       !params ? `/meine-fahrten` : `/meine-fahrten?${params}`,
     myListArchive: (params?: string) =>

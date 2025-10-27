@@ -7,14 +7,12 @@ import {
   GetAuthSocialCallbackSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/auth";
 import { fetchGetAuthSocialCallback } from "@/core/services/rest/simplyhop/auth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Cookies from "universal-cookie";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserActionEnum, UserContext } from "@/core/modules/app/context";
 
 export const useGetSocialCallback = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const { dispatch: dispatchUser } = React.useContext(UserContext);
   const code = searchParams.get("code");
   const query = useQuery<
@@ -57,7 +55,7 @@ export const useGetSocialCallback = () => {
           is_able_to_ride: user.can_share_ride,
         },
       });
-      router.push(AppCollectionURL.public.home());
+      // router.push(AppCollectionURL.public.home());
     }
   }, [query.data, query.isFetching]);
   return query;

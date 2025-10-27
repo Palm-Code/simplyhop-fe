@@ -369,7 +369,7 @@ export const DetailPlanRideTrip = () => {
     if (!ridesFirst) return;
     const shareUrl = `${
       ENVIRONMENTS.SITE_URL
-    }${AppCollectionURL.public.tripResult(
+    }${AppCollectionURL.private.tripResult(
       `${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item?.id ?? ""}&${
         RIDE_FILTER.DESTINATION
       }=${state.filters.destination.selected.item?.id ?? ""}&${

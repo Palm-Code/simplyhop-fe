@@ -15,5 +15,6 @@ export interface User {
   deleted_at: string | null;
   created_at: string; //"2025-04-22 03:44:21";
   updated_at: string; //"2025-04-22 03:46:39";
+  is_profile_complete: boolean;
   profile?: UserProfile;
 }
