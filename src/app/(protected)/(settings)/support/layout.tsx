@@ -41,7 +41,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
               <div
                 className={clsx(
                   "w-full",
-                  "sticky top-[calc(90px)] z-[30]",
+                  "sticky top-0 lg:top-[calc(90px)] z-[30]",
                   "bg-[white]"
                 )}
               >
@@ -50,7 +50,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
                 </div>
               </div>
 
-              <div className={clsx("w-full", "pt-[calc(90px+2rem)]","pb-[4rem] lg:pb-[0rem]")}>
+              <div className={clsx("w-full", "pt-0 lg:pt-[calc(90px+2rem)]","pb-[4rem] lg:pb-[0rem]")}>
                 {children}
               </div>
             </Suspense>

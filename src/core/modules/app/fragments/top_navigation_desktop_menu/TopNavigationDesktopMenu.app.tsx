@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { GlobalContext } from "../../context";
 import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
+import Image from "next/image";
 
 export const TopNavigationDesktopMenu = () => {
   const { state } = React.useContext(GlobalContext);
@@ -99,57 +100,94 @@ export const TopNavigationDesktopMenu = () => {
   };
 
   return (
-    <div
+    <nav
       className={clsx(
-        "grid grid-rows-1 grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
-        "w-full"
+        process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true"
+          ? ""
+          : "fixed top-0 left-0 right-0",
+        "w-full",
+        "z-[200]",
+        "hidden lg:block"
       )}
     >
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
-          "w-full h-full"
+          "grid grid-cols-1 items-center content-center justify-center justify-items-center",
+          "w-full h-full",
+          "bg-[white]",
+          "px-[1rem]"
         )}
+        style={{ boxShadow: "0px 5px 10px 0px #0000000D" }}
       >
-        {dictionaries.menu.items.map((menu, menuIndex) => (
-          <Link
-            {...menu}
-            href={menuLink(menu)}
-            key={menuIndex}
-            title={menuTitle(menu)}
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-between justify-items-start",
+            "max-w-container w-full h-[90px]"
+          )}
+        >
+          {/* NOTES: logo */}
+          <Link href={dictionaries.logo.href}>
+            <div className="w-[170px] h-[62px] flex items-center justify-center">
+              <Image
+                {...dictionaries.logo.image}
+                className={clsx("w-[170px] h-[170px]", "object-contain")}
+              />
+            </div>
+          </Link>
+          <div
             className={clsx(
-              "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
-              "h-[90px]",
-              cursorClassName(menu),
-              textClassName(menu),
-              "text-[1rem] font-semibold text-inter",
-              borderClassName(menu)
+              "grid grid-rows-1 grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
+              "w-full"
             )}
           >
-            <SVGIcon
-              {...(menu.icon as { name: SVGIconProps["name"] })}
-              key={`svgIcon.${menuIndex}`}
-              className={clsx("w-[1rem] h-[1rem]")}
-            />
+            <div
+              className={clsx(
+                "grid grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
+                "w-full h-full"
+              )}
+            >
+              {dictionaries.menu.items.map((menu, menuIndex) => (
+                <Link
+                  {...menu}
+                  href={menuLink(menu)}
+                  key={menuIndex}
+                  title={menuTitle(menu)}
+                  className={clsx(
+                    "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
+                    "h-[90px]",
+                    cursorClassName(menu),
+                    textClassName(menu),
+                    "text-[1rem] font-semibold text-inter",
+                    borderClassName(menu)
+                  )}
+                >
+                  <SVGIcon
+                    {...(menu.icon as { name: SVGIconProps["name"] })}
+                    key={`svgIcon.${menuIndex}`}
+                    className={clsx("w-[1rem] h-[1rem]")}
+                  />
 
-            {menu.name}
-            {menu.id === "chat" && state.chat.count > 0 && (
-              <div
-                className={clsx(
-                  "flex items-center justify-center",
-                  "px-[0.5rem] py-[0.25rem]",
-                  "bg-green-500",
-                  "rounded-[1.25rem]"
-                )}
-              >
-                <p className={clsx("text-white text-[0.75rem]")}>
-                  {formatUnreadMessageNumber(state.chat.count)}
-                </p>
-              </div>
-            )}
-          </Link>
-        ))}
+                  {menu.name}
+                  {menu.id === "chat" && state.chat.count > 0 && (
+                    <div
+                      className={clsx(
+                        "flex items-center justify-center",
+                        "px-[0.5rem] py-[0.25rem]",
+                        "bg-green-500",
+                        "rounded-[1.25rem]"
+                      )}
+                    >
+                      <p className={clsx("text-white text-[0.75rem]")}>
+                        {formatUnreadMessageNumber(state.chat.count)}
+                      </p>
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };

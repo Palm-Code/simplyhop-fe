@@ -193,6 +193,40 @@
           "name": "User"
         }
       }
+    ],
+    "mobile_items": [
+      {
+        "id": "mitfahrt-suchen",
+        "name": "Finden",
+        "href": "/mitfahrt-suchen",
+        "icon": {
+          "name": "Search"
+        }
+      },
+      {
+        "id": "mitfahrt-anbieten",
+        "name": "Eintragen",
+        "href": "/mitfahrt-anbieten",
+        "icon": {
+          "name": "CarFront"
+        }
+      },
+      {
+        "id": "meine_fahrten",
+        "name": "Meine Fahrten",
+        "href": "/meine-fahrten",
+        "icon": {
+          "name": "Navigation"
+        }
+      },
+      {
+        "id": "chat",
+        "name": "Chat",
+        "href": "/chat",
+        "icon": {
+          "name": "MessageSquare"
+        }
+      }
     ]
   },
   "settings": {

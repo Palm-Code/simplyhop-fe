@@ -38,7 +38,7 @@ export const RegistrationProfileContainer = () => {
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full",
               "pt-[2rem] lg:pt-[0rem]",
-              "sticky top-[90px] lg:top-[calc(90px+2rem)] z-[30]",
+              "sticky top-0 lg:top-[calc(90px+2rem)] z-[30]",
               "bg-[white]",
               "pb-[1.5rem]"
             )}

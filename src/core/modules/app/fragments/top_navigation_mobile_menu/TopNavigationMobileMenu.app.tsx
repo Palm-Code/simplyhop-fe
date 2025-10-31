@@ -1,42 +1,23 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
+import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import Cookies from "universal-cookie";
 import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
-import { motion, AnimatePresence } from "framer-motion";
-import { useOnClickOutside } from "usehooks-ts";
 import { GlobalContext } from "../../context";
 import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+import Image from "next/image";
+import { UserIcon } from "lucide-react";
 
 export const TopNavigationMobileMenu = () => {
-  const { state } = useContext(GlobalContext);
+  const { state } = React.useContext(GlobalContext);
   const dictionaries = getDictionaries();
   const cookie = new Cookies();
   const token = cookie.get("token");
   const isLogin = !!token;
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement | null>(null);
-  useOnClickOutside(ref as any, () => {
-    setIsOpen(false);
-  });
-
-  const handleClickDropdownButton = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  const variants = {
-    hidden: { y: -20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-    exit: { y: -20, opacity: 0 },
-  };
 
   type Menu = {
     id: string;
@@ -52,9 +33,7 @@ export const TopNavigationMobileMenu = () => {
 
   const menuLink = (menu: Menu) => {
     if (!isMaintenance) {
-      return menu.id === "mitfahrt-anbieten" && !isLogin
-        ? AppCollectionURL.public.login()
-        : menu.id === "support" && !isLogin
+      return menu.id !== "mitfahrt-suchen" && !isLogin
         ? AppCollectionURL.public.login()
         : menu.href;
     }
@@ -99,68 +78,119 @@ export const TopNavigationMobileMenu = () => {
         : "text-[#5B5B5B] hover:text-green-500"
       : "text-gray-400";
   };
+
+  const borderClassName = (menu: Menu) => {
+    if (!isMaintenance) {
+      return pathname === menu.href && menu.id === "mitfahrt-anbieten"
+        ? "border-t-[0.25rem] border-t-[#333FFF]"
+        : pathname === menu.href
+        ? "border-t-[0.25rem] border-t-green-500"
+        : pathname.includes(menu.id)
+        ? "border-t-[0.25rem] border-t-green-500"
+        : menu.id === "mitfahrt-anbieten"
+        ? "border-t-[0.25rem] border-t-white hover:border-t-[0.25rem] hover:border-t-[#333FFF]"
+        : "border-t-[0.25rem] border-t-white hover:border-t-[0.25rem] hover:border-t-green-500";
+    }
+    return menu.id === "mitfahrt-suchen"
+      ? pathname === menu.href
+        ? "border-b-[0.25rem] border-b-green-500"
+        : pathname.includes(menu.id)
+        ? "border-b-[0.25rem] border-b-green-500"
+        : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500"
+      : "border-b-[0.25rem] border-b-white"; // All other menus have gray border
+  };
+
+  const isDisplayTopMobileNavigation =
+    pathname === "/mitfahrt-suchen" || pathname === "/mitfahrt-anbieten";
+
   return (
     <>
-      <button
-        aria-label={
-          isOpen ? dictionaries.menu.close_name : dictionaries.menu.name
-        }
-        name={isOpen ? dictionaries.menu.close_name : dictionaries.menu.name}
-        className={clsx("cursor-pointer", "relative")}
-        onClick={handleClickDropdownButton}
+      <div
+        className={clsx(
+          process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true"
+            ? ""
+            : "fixed top-[1.5rem] left-[1rem] right-[1rem] z-[999]",
+          isDisplayTopMobileNavigation ? "block lg:hidden" : "hidden"
+        )}
       >
-        <SVGIcon
-          name={isOpen ? "X" : "Menu"}
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
-        />
-        {!isOpen && state.chat.count > 0 && (
+        <div className={clsx("flex items-center justify-between", "w-full")}>
+          {/* Logo */}
+          <Link
+            href={dictionaries.logo.href}
+            className={clsx(
+              "flex items-center justify-center",
+              "px-[9.6px] py-[6.4px]",
+              "bg-[white]",
+              "rounded-[9.6px]"
+            )}
+          >
+            <div className="w-[71px] h-[20px] flex items-center justify-center">
+              <Image
+                {...dictionaries.logo.image}
+                className={clsx("w-[71px] h-[71px]", "object-contain")}
+              />
+            </div>
+          </Link>
+
+          <Link
+            className={clsx(
+              "w-[2rem] h-[2rem]",
+              "rounded-full",
+              "flex items-center justify-center",
+              "bg-white"
+            )}
+            href={AppCollectionURL.private.support_account()}
+          >
+            <UserIcon
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+            />
+          </Link>
+        </div>
+      </div>
+      <nav
+        className={clsx(
+          process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true"
+            ? ""
+            : "fixed bottom-0 left-0 right-0",
+          "w-full",
+          "z-[200]",
+          "block lg:hidden"
+        )}
+      >
+        <div
+          className={clsx(
+            "grid grid-cols-1 items-center content-center justify-start justify-items-start",
+            "w-full h-full",
+            "bg-[white]",
+            "px-[1rem]"
+          )}
+          style={{ boxShadow: "0px -4px 10px 0px #0315030F" }}
+        >
           <div
             className={clsx(
-              "absolute top-[-0.125rem] right-[-0.125rem]",
-              "flex items-center justify-center",
-              "w-[0.75rem] h-[0.75rem]",
-              "bg-green-500",
-              "rounded-[50%]"
-            )}
-          />
-        )}
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            ref={ref}
-            key="mobile-menu"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={variants}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={clsx(
-              "grid grid-rows-1 grid-cols-1 items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
-              "fixed top-[90px] left-0 right-0",
-              "w-full z-30 bg-white px-[1rem]"
+              "grid grid-rows-1 grid-cols-1 items-center content-center justify-start justify-items-start gap-4 lg:gap-8",
+              "w-full"
             )}
           >
             <div
               className={clsx(
-                "grid grid-cols-1 items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
+                "grid grid-cols-4 items-center content-center justify-center justify-items-center gap-4 lg:gap-8",
                 "w-full h-full"
               )}
             >
-              {dictionaries.menu.items.map((menu, menuIndex) => (
+              {dictionaries.menu.mobile_items.map((menu, menuIndex) => (
                 <Link
                   {...menu}
                   href={menuLink(menu)}
                   key={menuIndex}
                   title={menuTitle(menu)}
                   className={clsx(
-                    "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                    "h-[2.5rem]",
-                    "w-full",
+                    "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
+                    "h-[64px]",
                     cursorClassName(menu),
                     textClassName(menu),
-                    "text-[1rem] font-semibold text-inter"
+                    "text-[0.625rem] font-medium text-inter",
+                    borderClassName(menu)
                   )}
                 >
                   <SVGIcon
@@ -168,6 +198,7 @@ export const TopNavigationMobileMenu = () => {
                     key={`svgIcon.${menuIndex}`}
                     className={clsx("w-[1rem] h-[1rem]")}
                   />
+
                   {menu.name}
                   {menu.id === "chat" && state.chat.count > 0 && (
                     <div
@@ -186,9 +217,9 @@ export const TopNavigationMobileMenu = () => {
                 </Link>
               ))}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      </nav>
     </>
   );
 };
