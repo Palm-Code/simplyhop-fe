@@ -37,8 +37,9 @@ export const CTARegistrationProfile = () => {
     if (!user) return;
 
     if (state.ride_plan.form.offer_trip.selected?.id === "yes") {
-      await postVehicleCreateMy();
-      if (user.data.is_profile_complete) {
+      const vehicle = await postVehicleCreateMy();
+      if (!vehicle) return;
+      if (user.data.is_profile_complete && !!vehicle.data) {
         localStorage.setItem("new_user", "true");
       }
     }
