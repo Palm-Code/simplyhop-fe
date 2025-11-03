@@ -25,12 +25,29 @@ export const CTARegistrationProfile = () => {
     mutateAsync: postVehicleCreateMy,
     isPending: isPendingPostVehicleCreateMy,
   } = usePostVehicleCreateMy();
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("new_user");
+    }
+  }, []);
+
   const handleClickSave = async () => {
     const user = await postUserProfileCreate();
     if (!user) return;
 
     if (state.ride_plan.form.offer_trip.selected?.id === "yes") {
       await postVehicleCreateMy();
+      if (user.data.is_profile_complete) {
+        localStorage.setItem("new_user", "true");
+      }
+    }
+
+    if (
+      state.ride_plan.form.offer_trip.selected?.id === "no" &&
+      user.data.is_profile_complete
+    ) {
+      localStorage.setItem("new_user", "true");
     }
 
     dispatchUser({

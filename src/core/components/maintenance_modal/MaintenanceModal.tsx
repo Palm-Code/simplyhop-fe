@@ -1,5 +1,5 @@
 "use client";
-import { Dialog } from "@headlessui/react";
+import { Dialog, DialogTitle, DialogPanel } from "@headlessui/react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
@@ -63,7 +63,7 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
       <div 
         className="absolute inset-0 flex items-center justify-center p-2 sm:p-4"
       >
-        <Dialog.Panel
+        <DialogPanel
           className={clsx(
             "w-full max-w-4xl mx-auto",
             "bg-white rounded-xl sm:rounded-2xl shadow-2xl",
@@ -78,12 +78,12 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
             <div className="mb-4 sm:mb-6">
               <span className="text-4xl sm:text-6xl">✨</span>
             </div>
-            <Dialog.Title
+            <DialogTitle
               as="h1"
               className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-2"
             >
               Danke an unsere Community!
-            </Dialog.Title>
+            </DialogTitle>
           </div>
 
           {/* Content */}
@@ -172,7 +172,7 @@ export const MaintenanceModal = ({ mode = "scrollable" }: MaintenanceModalProps)
               </p>
             </div>
           </div>
-        </Dialog.Panel>
+        </DialogPanel>
       </div>
     </Dialog>
   );
