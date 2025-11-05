@@ -7,7 +7,7 @@ export const AppCollectionURL = {
   },
   private: {
     chat: (params?: string) => (!params ? "/chat" : `/chat?${params}`),
-    trip: () => "/mitfahrt-suchen/result",
+    trip: () => "/mitfahrt-suchen",
     tripResult: (params?: string) =>
       !params ? `/mitfahrt-suchen/result` : `/mitfahrt-suchen/result?${params}`,
     myList: (params?: string) =>
