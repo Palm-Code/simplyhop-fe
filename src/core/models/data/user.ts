@@ -16,5 +16,7 @@ export interface User {
   created_at: string; //"2025-04-22 03:44:21";
   updated_at: string; //"2025-04-22 03:46:39";
   is_profile_complete: boolean;
+  is_super_admin: boolean;
+  role: "employee" | "admin";
   profile?: UserProfile;
 }

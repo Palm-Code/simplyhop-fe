@@ -30,12 +30,14 @@ export const CarFacilityItem = ({
         {...(icon as { name: SVGIconProps["name"] })}
         className={clsx("w-[1rem] h-[1rem]", icon?.className)}
       />
-      <p
-        className={clsx("text-[0.75rem] font-medium")}
-        style={{ color: name.color }}
-      >
-        {name.label}
-      </p>
+      {!!name.label?.length && (
+        <p
+          className={clsx("text-[0.75rem] font-medium")}
+          style={{ color: name.color }}
+        >
+          {name.label}
+        </p>
+      )}
     </div>
   );
 };

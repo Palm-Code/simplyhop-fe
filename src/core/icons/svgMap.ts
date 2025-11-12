@@ -52,6 +52,10 @@ import {
   PersonStanding,
   MessageSquareDashed,
   Ban,
+  LayoutDashboard,
+  Settings,
+  HelpCircleIcon,
+  Ticket,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -124,6 +128,10 @@ export const svgMap = {
   PersonStanding,
   MessageSquareDashed,
   Ban,
+  LayoutDashboard,
+  Settings,
+  HelpCircleIcon,
+  Ticket,
   Facebook,
   Google,
   Whatsapp,

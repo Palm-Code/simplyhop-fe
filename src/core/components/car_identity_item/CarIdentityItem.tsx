@@ -14,13 +14,13 @@ export default function CarIdentityItem({
   return (
     <div
       className={clsx(
-        "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+        "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.25rem]",
         "w-full"
       )}
     >
       <div
         className={clsx(
-          "grid grid-flow-col items-start content-center justify-start justify-items-start gap-[0.375rem]",
+          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.375rem]",
           "w-full"
         )}
       >
@@ -30,7 +30,7 @@ export default function CarIdentityItem({
         />
         <p
           className={clsx(
-            "text-[black] text-[0.875rem] lg:text-[1rem] font-medium line-clamp-2",
+            "text-[black] text-[0.875rem] lg:text-[0.875rem] font-medium line-clamp-2",
             "w-full"
           )}
         >
@@ -43,13 +43,13 @@ export default function CarIdentityItem({
             className={clsx(
               "w-[0.375rem] h-[0.375rem]",
               "rounded-[50%]",
-              "bg-[#C5C5C5]"
+              "bg-[#5B5B5B]"
             )}
           />
 
           <p
             className={clsx(
-              "text-[black] text-[0.875rem] lg:text-[1rem] font-medium truncate text-ellipsis",
+              "text-[black] text-[0.875rem] lg:text-[0.875rem] font-medium truncate text-ellipsis",
               "w-full"
             )}
           >

@@ -51,6 +51,8 @@ const UserProvider = (props: { children: React.ReactNode }) => {
           is_driver: user.data?.is_driver === 1 ? true : false,
           gender: user.data?.gender ?? null,
           is_able_to_ride: user.data.can_share_ride,
+          role: user.data.role,
+          is_super_admin: user.data.is_super_admin,
         },
       });
     }

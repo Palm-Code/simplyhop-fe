@@ -230,34 +230,95 @@
     ]
   },
   "settings": {
-    "menu": {
-      "items": [
-        {
-          "id": "konto",
-          "name": "Konto",
-          "href": "/support/konto"
+    "mobile": {
+      "menu": {
+        "items": [
+          {
+            "id": "dashboard",
+            "name": "Dashboard",
+            "href": "/support/dashboard",
+            "icon": "LayoutDashboard"
+          },
+          {
+            "id": "konto",
+            "name": "Konto",
+            "href": "/support/konto",
+            "icon": "User2"
+          },
+          {
+            "id": "abonnement",
+            "name": "Abonnement",
+            "href": "/support/abonnement",
+            "icon": "Settings"
+          },
+          {
+            "id": "fahrzeuginformationen",
+            "name": "Fahrzeuginformationen",
+            "href": "/support/fahrzeuginformationen",
+            "icon": "CarFront"
+          },
+          {
+            "id": "einstellungen",
+            "name": "Einstellungen",
+            "href": "/support/einstellungen",
+            "icon": "Settings"
+          },
+          {
+            "id": "hilfe-center",
+            "name": "Hilfe-Center",
+            "href": "/support/hilfe-center",
+            "icon": "HelpCircleIcon"
+          }
+        ]
+      }
+    },
+    "desktop": {
+      "menu": {
+        "top": {
+          "items": [
+            {
+              "id": "dashboard",
+              "name": "Dashboard",
+              "href": "/support/dashboard",
+              "icon": "LayoutDashboard"
+            },
+            {
+              "id": "konto",
+              "name": "Konto",
+              "href": "/support/konto",
+              "icon": "User2"
+            },
+            {
+              "id": "abonnement",
+              "name": "Abonnement",
+              "href": "/support/abonnement",
+              "icon": "Settings"
+            },
+            {
+              "id": "fahrzeuginformationen",
+              "name": "Fahrzeuginformationen",
+              "href": "/support/fahrzeuginformationen",
+              "icon": "CarFront"
+            }
+          ]
         },
-        {
-          "id": "abonnement",
-          "name": "Abonnement",
-          "href": "/support/abonnement"
-        },
-        {
-          "id": "fahrzeuginformationen",
-          "name": "Fahrzeuginformationen",
-          "href": "/support/fahrzeuginformationen"
-        },
-        {
-          "id": "einstellungen",
-          "name": "Einstellungen",
-          "href": "/support/einstellungen"
-        },
-        {
-          "id": "hilfe-center",
-          "name": "Hilfe-Center",
-          "href": "/support/hilfe-center"
+        "bottom": {
+          "items": [
+            {
+              "id": "einstellungen",
+              "name": "Einstellungen",
+              "href": "/support/einstellungen",
+              "icon": "Settings"
+            },
+            {
+              "id": "hilfe-center",
+              "name": "Hilfe-Center",
+              "href": "/support/hilfe-center",
+              "icon": "HelpCircleIcon"
+            }
+          ]
         }
-      ]
+      }
     }
   },
   "form": {

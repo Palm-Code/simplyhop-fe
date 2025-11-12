@@ -27,6 +27,8 @@ export interface UserProfile {
   is_driver: boolean;
   gender: null | string;
   is_able_to_ride: boolean;
+  role: string; //"employee" || "admin";
+  is_super_admin: boolean; //false;
 }
 
 export enum UserActionEnum {

@@ -1,0 +1,107 @@
+{
+  "title": "Dashboard",
+  "summary": {
+    "personal": {
+      "items": [
+        {
+          "id": "Geplante Fahrten",
+          "name": "Geplante Fahrten",
+          "unit": "Fahrten",
+          "icon": "CarFront"
+        },
+        {
+          "id": "Gebuchte Fahrten",
+          "name": "Gebuchte Fahrten",
+          "unit": "Fahrten",
+          "icon": "Ticket"
+        },
+        {
+          "id": "Abgeschlossene",
+          "name": "Abgeschlossene",
+          "unit": "Fahrten",
+          "icon": "Check"
+        },
+        {
+          "id": "Bewertungen",
+          "name": "Bewertungen",
+          "unit": "von {{number}} Bewertungen",
+          "icon": "Star"
+        }
+      ]
+    },
+    "organizational_admin": {
+      "items": [
+        {
+          "id": "Geplante Fahrten",
+          "name": "Geplante Fahrten",
+          "unit": "Fahrten",
+          "icon": "CarFront"
+        },
+        {
+          "id": "Fahrer",
+          "name": "Fahrer",
+          "unit": "Fahrer",
+          "icon": "User2"
+        },
+        {
+          "id": "Abgeschlossene",
+          "name": "Abgeschlossene",
+          "unit": "Fahrten",
+          "icon": "Check"
+        },
+        {
+          "id": "Bewertungen",
+          "name": "Bewertungen",
+          "unit": "von {{number}} Bewertungen",
+          "icon": "Star"
+        }
+      ]
+    },
+    "super_admin": {
+      "items": [
+        {
+          "id": "Organisation",
+          "name": "Organisation",
+          "unit": "Organisation",
+          "icon": "Component"
+        },
+        {
+          "id": "Fahrer",
+          "name": "Fahrer",
+          "unit": "Fahrer",
+          "icon": "User2"
+        },
+        {
+          "id": "Geplante Fahrten",
+          "name": "Geplante Fahrten",
+          "unit": "Fahrten",
+          "icon": "CarFront"
+        },
+        {
+          "id": "Abgeschlossene",
+          "name": "Abgeschlossene",
+          "unit": "Fahrten",
+          "icon": "Check"
+        }
+      ]
+    }
+  },
+  "upcoming_journey": {
+    "title": "Bevorstehende Fahrten",
+    "icon": "CarFront",
+    "cta": {
+      "primary": {
+        "children": "Alle anzeigen"
+      }
+    }
+  },
+  "vehicle": {
+    "title": "Fahrzeugliste",
+    "icon": "Car",
+    "cta": {
+      "primary": {
+        "children": "Alle anzeigen"
+      }
+    }
+  }
+}

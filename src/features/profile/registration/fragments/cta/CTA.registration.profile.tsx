@@ -65,6 +65,8 @@ export const CTARegistrationProfile = () => {
         is_driver: user.data?.is_driver === 1 ? true : false,
         gender: user.data?.gender ?? null,
         is_able_to_ride: user.data.can_share_ride,
+        is_super_admin: user.data.is_super_admin,
+        role: user.data.role,
       },
     });
 

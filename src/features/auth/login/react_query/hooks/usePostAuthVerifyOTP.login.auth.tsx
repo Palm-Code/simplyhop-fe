@@ -59,6 +59,8 @@ export const usePostAuthVerifyOTP = () => {
           is_driver: user.is_driver === 1 ? true : false,
           gender: user.gender ?? null,
           is_able_to_ride: user.can_share_ride,
+          is_super_admin: user.is_super_admin,
+          role: user.role,
         },
       });
 

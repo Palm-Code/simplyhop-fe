@@ -24,7 +24,7 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
           name="Car"
           className={clsx(
             "w-[1.5rem] h-[1.5rem]",
-            "text-[#33CC33]",
+            "text-icon-primary-subdued",
             "absolute left-[50%] translate-x-[-50%]"
           )}
         />
@@ -32,7 +32,7 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
           className={clsx(
             "flex items-center justify-center",
             "w-[0.375rem] h-[0.375rem]",
-            "bg-[#33CC33]",
+            "bg-icon-primary-subdued",
             "rounded-[50%]"
           )}
         >
@@ -40,19 +40,19 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
             className={clsx(
               "flex items-center justify-center",
               "w-[3px] h-[3px]",
-              "bg-[white]",
+              "bg-white",
               "rounded-[50%]"
             )}
           />
         </div>
 
-        <div className={clsx("w-full h-[1px]", "bg-[#EEF0EB]")} />
+        <div className={clsx("w-[68px] h-[1px]", "bg-[#EEF0EB]")} />
 
         <div
           className={clsx(
             "flex items-center justify-center",
             "w-[0.375rem] h-[0.375rem]",
-            "bg-[#33CC33]",
+            "bg-icon-primary-subdued",
             "rounded-[50%]"
           )}
         />

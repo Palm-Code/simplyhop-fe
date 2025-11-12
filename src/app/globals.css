@@ -3,6 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* new design system */
+  --text-primary: #232323;
+  --text-tertiary: #767676;
+  --icon-primary-subdued: #26531a;
+  --icon-default: #767676;
+  --surface-neutral-subdued: #f6f6f6cc;
 }
 
 @theme inline {
@@ -12,8 +18,12 @@
   --max-width-container: 1344px;
   --breakpoint-container: 1344px;
 
-  --color-green-500: #33CC33;
-  --color-neutral-50: #f6f6f6;
+  /* new design system */
+  --color-text-primary: var(--text-primary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-icon-primary-subdued: var(--icon-primary-subdued);
+  --color-icon-default: var(--icon-default);
+  --color-surface-neutral-subdued: var(--surface-neutral-subdued);
 }
 
 body {
