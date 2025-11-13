@@ -13,9 +13,6 @@ import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
 
-import { Button } from "@/core/components/button";
-import Link from "next/link";
-
 export interface VehicleCardDashboardProps {
   id?: string;
 
@@ -25,13 +22,6 @@ export interface VehicleCardDashboardProps {
     facility?: {
       top: CarFacilityItemProps[];
       bottom: CarFacilityItemProps[];
-    };
-  };
-
-  cta?: {
-    ride: {
-      href: string;
-      children: React.ReactNode;
     };
   };
 }
@@ -110,13 +100,6 @@ export const VehicleCardDashboard = ({
           },
         },
       ],
-    },
-  },
-
-  cta = {
-    ride: {
-      href: "/mitfahrt-suchen/result?city_id=ChIJ2V-Mo_l1nkcRfZixfUq4DAE&origin_id=ChIJuWG8S2DfnUcRbT-8T9g5EVY&destination_id=ChIJs4qDdmLfnUcRBbJZt1DoAfs&date=2025-03-22&adult=1&children=0&ride_id=1",
-      children: "Mitfahren",
     },
   },
 }: VehicleCardDashboardProps) => {

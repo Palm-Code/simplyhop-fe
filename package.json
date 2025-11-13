@@ -14,6 +14,7 @@
     "@headlessui/react": "^2.2.0",
     "@react-google-maps/api": "^2.20.6",
     "@tanstack/react-query": "^5.69.0",
+    "@tanstack/react-table": "^8.21.3",
     "@types/gtag.js": "^0.0.20",
     "axios": "^1.8.3",
     "clsx": "^2.1.1",

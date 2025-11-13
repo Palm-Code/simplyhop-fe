@@ -2,10 +2,41 @@
 import * as React from "react";
 import clsx from "clsx";
 import { SummaryDashboard } from "../fragments/summary/Summary.dashboard";
-import { UpcomingRidesDashboard } from "../fragments/upcoming_rides";
-import { VehiclesDashboard } from "../fragments/vehicles";
+import { UserContext } from "@/core/modules/app/context";
+import { PersonalSectionsDashboard } from "../fragments/personal_sections";
+import { OrganizationalAdminSectionsDashboard } from "../fragments/organizational_admin_sections";
+import { useGetDashboardMy } from "../react_query/hooks";
 
 export const DashboardSupportContainer = () => {
+  const { state } = React.useContext(UserContext);
+  useGetDashboardMy();
+  if (state.profile?.is_super_admin) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "w-full"
+        )}
+      >
+        <SummaryDashboard />
+        <OrganizationalAdminSectionsDashboard />
+      </div>
+    );
+  }
+  if (state.profile?.role === "admin") {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "w-full"
+        )}
+      >
+        <SummaryDashboard />
+        <OrganizationalAdminSectionsDashboard />
+      </div>
+    );
+  }
+
   return (
     <div
       className={clsx(
@@ -14,15 +45,7 @@ export const DashboardSupportContainer = () => {
       )}
     >
       <SummaryDashboard />
-      <div
-        className={clsx(
-          "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1.5rem]",
-          "w-full"
-        )}
-      >
-        <UpcomingRidesDashboard />
-        <VehiclesDashboard />
-      </div>
+      <PersonalSectionsDashboard />
     </div>
   );
 };

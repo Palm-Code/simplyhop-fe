@@ -137,4 +137,9 @@ export const SimplyHopAPICollectionURL = {
     getStatus: () => `/api/payments/status`,
     postCancel: () => `/api/payments/cancel`,
   },
+  dashboard: {
+    getMy: () => `/api/dashboard/my`,
+    getOrganizationSummary: () => `/api/dashboard/organization/summary`,
+    getSuperAdminSummary: () => `/api/dashboard/superadmin/summary`,
+  },
 };

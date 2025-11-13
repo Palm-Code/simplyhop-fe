@@ -1,17 +1,27 @@
 import {
   DashboardSupportActionEnum,
   DashboardSupportActions,
-  DashboardSupportInformation,
+  DashboardSupportSummary,
 } from "./Dashboard.support.types";
 
-// Information
-export const DashboardSupportInformationReducers = (
-  state: DashboardSupportInformation,
+// Summary
+export const DashboardSupportSummaryReducers = (
+  state: DashboardSupportSummary,
   action: DashboardSupportActions
 ) => {
   switch (action.type) {
-    case DashboardSupportActionEnum.SetInformationData:
+    case DashboardSupportActionEnum.SetSummaryData:
       return action.payload;
+    case DashboardSupportActionEnum.SetSummaryPersonalData:
+      return {
+        ...state,
+        personal: action.payload,
+      };
+    case DashboardSupportActionEnum.SetSummaryOrganizationAdminData:
+      return {
+        ...state,
+        organization_admin: action.payload,
+      };
 
     default:
       return state;

@@ -3,7 +3,6 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { usePathname } from "next/navigation";
-import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import dynamic from "next/dynamic";
 import { ENVIRONMENTS } from "@/core/environments";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
@@ -25,7 +24,6 @@ const SettingTabButton = dynamic(
 export const SettingsSidebarApp = () => {
   const dictionaries = getDictionaries();
   const pathname = usePathname();
-  const { isLg } = useTailwindBreakpoint();
 
   const mobileSettingsMenu =
     ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "true"
@@ -132,13 +130,7 @@ export const SettingsSidebarApp = () => {
         </div>
       </div>
       {/* MOBILE */}
-      <div
-        className={clsx(
-          "w-full h-full",
-          "rounded-2xl",
-          "block lg:hidden"
-        )}
-      >
+      <div className={clsx("w-full h-full", "rounded-2xl", "block lg:hidden")}>
         <div
           className={clsx(
             "grid lg:grid-rows-1 grid-flow-col grid-cols-none lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",

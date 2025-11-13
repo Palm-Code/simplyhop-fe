@@ -4,15 +4,148 @@ import { getDictionaries } from "../../i18n";
 import { UserContext } from "@/core/modules/app/context";
 import { SummaryCardDashboard } from "../../components/summary_card/SummaryCard.dashboard";
 import { SVGIconProps } from "@/core/icons";
+import { DashboardSupportContext } from "../../context";
 
 export const SummaryDashboard = () => {
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
+  const { state } = React.useContext(DashboardSupportContext);
   const summaryItems = userState.profile?.is_super_admin
-    ? dictionaries.summary.super_admin.items
+    ? dictionaries.super_admin.summary.items?.map((item) => {
+        let value: string = "";
+
+        switch (item.id) {
+          case "Organisation": {
+            value =
+              state.summary.super_admin?.total_organization?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Fahrer": {
+            value =
+              state.summary.super_admin?.total_driver?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Geplante Fahrten": {
+            value =
+              state.summary.super_admin?.total_rides_planned?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Abgeschlossene": {
+            value =
+              state.summary.super_admin?.total_rides_completed?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+
+            break;
+          }
+          default:
+            break;
+        }
+        return {
+          ...item,
+          value: value,
+        };
+      }) ?? []
     : userState.profile?.role === "admin"
-    ? dictionaries.summary.organizational_admin.items
-    : dictionaries.summary.personal.items;
+    ? dictionaries.organizational_admin.summary.items?.map((item) => {
+        let value: string = "";
+        let unit: string = item.unit;
+        switch (item.id) {
+          case "Geplante Fahrten": {
+            value =
+              state.summary.organization_admin?.total_rides_planned?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Fahrer": {
+            value =
+              state.summary.organization_admin?.total_driver?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Abgeschlossene": {
+            value =
+              state.summary.organization_admin?.total_rides_completed?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Bewertungen": {
+            value =
+              state.summary.organization_admin?.average_rating?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            unit = unit.replaceAll(
+              "{{number}}",
+              state.summary.organization_admin?.total_voted_rating?.toLocaleString(
+                "de-DE"
+              ) ?? unit
+            );
+            break;
+          }
+          default:
+            break;
+        }
+        return {
+          ...item,
+          value: value,
+          unit: unit,
+        };
+      }) ?? []
+    : dictionaries.personal.summary.items?.map((item) => {
+        let value: string = "";
+        let unit: string = item.unit;
+        switch (item.id) {
+          case "Geplante Fahrten": {
+            value =
+              state.summary.personal?.total_rides_planned?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Gebuchte Fahrten": {
+            value =
+              state.summary.personal?.total_rides_booked?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Abgeschlossene": {
+            value =
+              state.summary.personal?.total_rides_completed?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          case "Bewertungen": {
+            value =
+              state.summary.personal?.average_rating?.toLocaleString("de-DE") ??
+              value;
+            unit = unit.replaceAll(
+              "{{number}}",
+              state.summary.personal?.total_voted_rating?.toLocaleString(
+                "de-DE"
+              ) ?? unit
+            );
+            break;
+          }
+          default:
+            break;
+        }
+        return {
+          ...item,
+          value: value,
+          unit: unit,
+        };
+      }) ?? [];
   return (
     <div
       className={clsx(
@@ -26,7 +159,7 @@ export const SummaryDashboard = () => {
             key={index}
             title={item.name}
             unit={item.unit}
-            value={"24"}
+            value={item.value}
             icon={item.icon as SVGIconProps["name"]}
           />
         );

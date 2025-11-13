@@ -1,3 +1,9 @@
+import {
+  GetDashboardMySuccessDataResponseInterface,
+  GetDashboardOrganizationSummarySuccessDataResponseInterface,
+  GetDashboardSuperAdminSummarySuccessDataResponseInterface,
+} from "@/core/models/rest/simplyhop/dashboard";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -11,32 +17,35 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface DashboardSupportInitialStateType {
-  information: DashboardSupportInformation;
+  summary: DashboardSupportSummary;
 }
 
 // State Collection Types consist of:
-export interface DashboardSupportInformation {
-  email: string;
-  first_name: string;
-  last_name: string;
-  city: string;
-  phonenumber: string;
-  about_me: string;
-}
+export type DashboardSupportSummary = {
+  personal: GetDashboardMySuccessDataResponseInterface | null;
+  organization_admin: GetDashboardOrganizationSummarySuccessDataResponseInterface | null;
+  super_admin: GetDashboardSuperAdminSummarySuccessDataResponseInterface | null;
+};
 
 export enum DashboardSupportActionEnum {
-  // Information
-  SetInformationData = "SetInformationData",
+  // Summary
+  SetSummaryData = "SetSummaryData",
+  SetSummaryPersonalData = "SetSummaryPersonalData",
+  SetSummaryOrganizationAdminData = "SetSummaryOrganizationAdminData",
+  SetSummarySuperAdminData = "SetSummarySuperAdminData",
 }
 
 // Action Collection Types
-export type DashboardSupportActions = DashboardSupportInformationActions;
+export type DashboardSupportActions = DashboardSupportSummaryActions;
 
 // Action Collection Types consist of:
-// Information
-type DashboardSupportInformationPayload = {
-  [DashboardSupportActionEnum.SetInformationData]: DashboardSupportInformation;
+// Summary
+type DashboardSupportSummaryPayload = {
+  [DashboardSupportActionEnum.SetSummaryData]: DashboardSupportSummary;
+  [DashboardSupportActionEnum.SetSummaryPersonalData]: DashboardSupportSummary["personal"];
+  [DashboardSupportActionEnum.SetSummaryOrganizationAdminData]: DashboardSupportSummary["organization_admin"];
+  [DashboardSupportActionEnum.SetSummarySuperAdminData]: DashboardSupportSummary["super_admin"];
 };
 
-export type DashboardSupportInformationActions =
-  ActionMap<DashboardSupportInformationPayload>[keyof ActionMap<DashboardSupportInformationPayload>];
+export type DashboardSupportSummaryActions =
+  ActionMap<DashboardSupportSummaryPayload>[keyof ActionMap<DashboardSupportSummaryPayload>];

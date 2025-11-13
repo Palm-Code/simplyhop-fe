@@ -1,7 +1,7 @@
 {
   "title": "Dashboard",
-  "summary": {
-    "personal": {
+  "personal": {
+    "summary": {
       "items": [
         {
           "id": "Geplante Fahrten",
@@ -29,7 +29,27 @@
         }
       ]
     },
-    "organizational_admin": {
+    "upcoming_rides": {
+      "title": "Bevorstehende Fahrten",
+      "icon": "CarFront",
+      "cta": {
+        "primary": {
+          "children": "Alle anzeigen"
+        }
+      }
+    },
+    "vehicles": {
+      "title": "Fahrzeugliste",
+      "icon": "Car",
+      "cta": {
+        "primary": {
+          "children": "Alle anzeigen"
+        }
+      }
+    }
+  },
+  "organizational_admin": {
+    "summary": {
       "items": [
         {
           "id": "Geplante Fahrten",
@@ -57,7 +77,27 @@
         }
       ]
     },
-    "super_admin": {
+    "upcoming_rides": {
+      "title": "Bevorstehende Fahrten",
+      "icon": "CarFront",
+      "cta": {
+        "primary": {
+          "children": "Alle anzeigen"
+        }
+      }
+    },
+    "drivers": {
+      "title": "Fahrerliste",
+      "icon": "User2",
+      "cta": {
+        "primary": {
+          "children": "Alle anzeigen"
+        }
+      }
+    }
+  },
+  "super_admin": {
+    "summary": {
       "items": [
         {
           "id": "Organisation",
@@ -84,23 +124,23 @@
           "icon": "Check"
         }
       ]
-    }
-  },
-  "upcoming_journey": {
-    "title": "Bevorstehende Fahrten",
-    "icon": "CarFront",
-    "cta": {
-      "primary": {
-        "children": "Alle anzeigen"
+    },
+    "organizations": {
+      "title": "Organisation",
+      "icon": "Component",
+      "cta": {
+        "primary": {
+          "children": "Alle anzeigen"
+        }
       }
-    }
-  },
-  "vehicle": {
-    "title": "Fahrzeugliste",
-    "icon": "Car",
-    "cta": {
-      "primary": {
-        "children": "Alle anzeigen"
+    },
+    "drivers": {
+      "title": "Fahrerliste",
+      "icon": "User2",
+      "cta": {
+        "primary": {
+          "children": "Alle anzeigen"
+        }
       }
     }
   }

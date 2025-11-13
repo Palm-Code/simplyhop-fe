@@ -11,10 +11,7 @@ import {
   DepartureItemProps,
 } from "@/core/components/departure_item";
 import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
-import {
-  CarPriceItem,
-  CarPriceItemProps,
-} from "@/core/components/car_price_item";
+
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
@@ -43,9 +40,7 @@ export interface RideCardDashboardProps {
     arrival?: ArrivalItemProps;
     passenger?: PassengerItemProps;
   };
-  price?: {
-    initial?: CarPriceItemProps;
-  };
+
   cta?: {
     share: {
       message: string;
@@ -97,12 +92,6 @@ export const RideCardDashboard = ({
     },
   },
 
-  price = {
-    initial: {
-      label: "Angebotspreis",
-      price: "€25.00",
-    },
-  },
   cta = {
     share: {
       message: "",
@@ -178,7 +167,7 @@ export const RideCardDashboard = ({
                 "w-full"
               )}
             >
-              {'Fahrzeug'}
+              {"Fahrzeug"}
             </p>
             <div
               className={clsx(
@@ -188,7 +177,10 @@ export const RideCardDashboard = ({
             >
               <Image
                 {...car.image}
-                className={clsx("w-[78px] h-[40px]", "object-center object-contain")}
+                className={clsx(
+                  "w-[78px] h-[40px]",
+                  "object-center object-contain"
+                )}
               />
 
               <CarIdentityItem {...car.identity} />
