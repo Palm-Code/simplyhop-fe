@@ -141,11 +141,20 @@ export const useGetRidesMy = () => {
                     item.eta
                   )} Uhr`,
             },
-            // TODO: need integration
             passenger: {
               label: "Passengiere",
-              adult: "1",
-              child: "0",
+              adult: item.bookings
+                .filter((bookingItem) => bookingItem.status === "accepted")
+                .reduce((acc, bookingItem) => {
+                  return acc + bookingItem.seats;
+                }, 0)
+                .toLocaleString("de-DE"),
+              child: item.bookings
+                .filter((bookingItem) => bookingItem.status === "accepted")
+                .reduce((acc, bookingItem) => {
+                  return acc + bookingItem.child_seats;
+                }, 0)
+                .toLocaleString("de-DE"),
             },
           },
 
