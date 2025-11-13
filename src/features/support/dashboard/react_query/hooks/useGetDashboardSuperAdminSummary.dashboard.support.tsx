@@ -26,9 +26,7 @@ export const useGetDashboardSuperAdminSummary = () => {
     queryFn: () => {
       return fetchGetDashboardSuperAdminSummary();
     },
-    enabled:
-      userState.profile?.role === "admin" &&
-      userState.profile.is_super_admin === false,
+    enabled: userState.profile?.is_super_admin === true,
   });
 
   React.useEffect(() => {

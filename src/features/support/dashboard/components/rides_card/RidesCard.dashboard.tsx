@@ -1,7 +1,7 @@
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
-import { RideCardDashboard } from "../ride_card";
+import { RideCardDashboard, RideCardDashboardProps } from "../ride_card";
 
 export interface RidesCardDashboardProps {
   title?: string;
@@ -11,12 +11,14 @@ export interface RidesCardDashboardProps {
       children: React.ReactNode;
     };
   };
+  rides?: RideCardDashboardProps[];
 }
 
 export const RidesCardDashboard = ({
   title = "",
   icon,
   cta,
+  rides,
 }: RidesCardDashboardProps) => {
   return (
     <div
@@ -82,7 +84,9 @@ export const RidesCardDashboard = ({
         <div
           className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
         >
-          <RideCardDashboard />
+          {rides?.map((item, index) => {
+            return <RideCardDashboard {...item} key={index} />;
+          })}
         </div>
       </div>
     </div>

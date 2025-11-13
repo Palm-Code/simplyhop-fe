@@ -4,13 +4,22 @@ import {
   DashboardSupportActions,
   DashboardSupportInitialStateType,
 } from "./Dashboard.support.types";
-import { DashboardSupportSummaryReducers } from "./Dashboard.support.reducers";
+import {
+  DashboardSupportSectionsReducers,
+  DashboardSupportSummaryReducers,
+} from "./Dashboard.support.reducers";
 
 const initialState: DashboardSupportInitialStateType = {
   summary: {
     personal: null,
     organization_admin: null,
     super_admin: null,
+  },
+  sections: {
+    personal: {
+      ride: null,
+      vehicle: null,
+    },
   },
 };
 
@@ -23,10 +32,11 @@ const DashboardSupportContext = createContext<{
 });
 
 const mainReducer = (
-  { summary }: DashboardSupportInitialStateType,
+  { summary, sections }: DashboardSupportInitialStateType,
   action: DashboardSupportActions
 ) => ({
   summary: DashboardSupportSummaryReducers(summary, action),
+  sections: DashboardSupportSectionsReducers(sections, action),
 });
 
 const DashboardSupportProvider = (props: { children: React.ReactNode }) => {

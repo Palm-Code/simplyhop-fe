@@ -3,6 +3,8 @@ import {
   GetDashboardOrganizationSummarySuccessDataResponseInterface,
   GetDashboardSuperAdminSummarySuccessDataResponseInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
+import { RideCardDashboardProps } from "../components/ride_card";
+import { VehicleCardDashboardProps } from "../components/vehicle_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -18,14 +20,26 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface DashboardSupportInitialStateType {
   summary: DashboardSupportSummary;
+  sections: DashboardSupportSections;
 }
 
 // State Collection Types consist of:
-export type DashboardSupportSummary = {
+export interface DashboardSupportSummary {
   personal: GetDashboardMySuccessDataResponseInterface | null;
   organization_admin: GetDashboardOrganizationSummarySuccessDataResponseInterface | null;
   super_admin: GetDashboardSuperAdminSummarySuccessDataResponseInterface | null;
-};
+}
+
+export interface DashboardSupportSections {
+  personal: {
+    ride: {
+      data: RideCardDashboardProps[];
+    } | null;
+    vehicle: {
+      data: VehicleCardDashboardProps[];
+    } | null;
+  };
+}
 
 export enum DashboardSupportActionEnum {
   // Summary
@@ -33,10 +47,17 @@ export enum DashboardSupportActionEnum {
   SetSummaryPersonalData = "SetSummaryPersonalData",
   SetSummaryOrganizationAdminData = "SetSummaryOrganizationAdminData",
   SetSummarySuperAdminData = "SetSummarySuperAdminData",
+
+  // Sections
+  SetSectionsData = "SetSectionsData",
+  SetSectionsPersonalRideData = "SetSectionsPersonalRideData",
+  SetSectionsPersonalVehicleData = "SetSectionsPersonalVehicleData",
 }
 
 // Action Collection Types
-export type DashboardSupportActions = DashboardSupportSummaryActions;
+export type DashboardSupportActions =
+  | DashboardSupportSummaryActions
+  | DashboardSupportSectionsActions;
 
 // Action Collection Types consist of:
 // Summary
@@ -49,3 +70,13 @@ type DashboardSupportSummaryPayload = {
 
 export type DashboardSupportSummaryActions =
   ActionMap<DashboardSupportSummaryPayload>[keyof ActionMap<DashboardSupportSummaryPayload>];
+
+// Sections
+type DashboardSupportSectionsPayload = {
+  [DashboardSupportActionEnum.SetSectionsData]: DashboardSupportSections;
+  [DashboardSupportActionEnum.SetSectionsPersonalRideData]: DashboardSupportSections["personal"]["ride"];
+  [DashboardSupportActionEnum.SetSectionsPersonalVehicleData]: DashboardSupportSections["personal"]["vehicle"];
+};
+
+export type DashboardSupportSectionsActions =
+  ActionMap<DashboardSupportSectionsPayload>[keyof ActionMap<DashboardSupportSectionsPayload>];

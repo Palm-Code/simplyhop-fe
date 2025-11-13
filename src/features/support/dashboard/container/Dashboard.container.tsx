@@ -5,11 +5,21 @@ import { SummaryDashboard } from "../fragments/summary/Summary.dashboard";
 import { UserContext } from "@/core/modules/app/context";
 import { PersonalSectionsDashboard } from "../fragments/personal_sections";
 import { OrganizationalAdminSectionsDashboard } from "../fragments/organizational_admin_sections";
-import { useGetDashboardMy } from "../react_query/hooks";
+import {
+  useGetDashboardMy,
+  useGetDashboardOrganizationSummary,
+  useGetDashboardSuperAdminSummary,
+  useGetRidesMy,
+  useGetVehicleMy,
+} from "../react_query/hooks";
 
 export const DashboardSupportContainer = () => {
   const { state } = React.useContext(UserContext);
   useGetDashboardMy();
+  useGetDashboardOrganizationSummary();
+  useGetDashboardSuperAdminSummary();
+  useGetRidesMy();
+  useGetVehicleMy();
   if (state.profile?.is_super_admin) {
     return (
       <div

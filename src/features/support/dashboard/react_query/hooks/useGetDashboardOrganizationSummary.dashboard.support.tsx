@@ -28,7 +28,7 @@ export const useGetDashboardOrganizationSummary = () => {
     },
     enabled:
       userState.profile?.role === "admin" &&
-      userState.profile.is_super_admin === false,
+      userState.profile?.is_super_admin === false,
   });
 
   React.useEffect(() => {

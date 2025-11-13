@@ -4,9 +4,11 @@ import { getDictionaries } from "../../i18n";
 import { SVGIconProps } from "@/core/icons";
 import clsx from "clsx";
 import { VehiclesCardDashboard } from "../../components/vehicles_card";
+import { DashboardSupportContext } from "../../context";
 
 export const PersonalSectionsDashboard = () => {
   const dictionaries = getDictionaries();
+  const { state } = React.useContext(DashboardSupportContext);
   return (
     <div
       className={clsx(
@@ -18,11 +20,13 @@ export const PersonalSectionsDashboard = () => {
         title={dictionaries.personal.upcoming_rides.title}
         icon={dictionaries.personal.upcoming_rides.icon as SVGIconProps["name"]}
         cta={dictionaries.personal.upcoming_rides.cta}
+        rides={state.sections.personal.ride?.data ?? undefined}
       />
       <VehiclesCardDashboard
         title={dictionaries.personal.vehicles.title}
         icon={dictionaries.personal.vehicles.icon as SVGIconProps["name"]}
         cta={dictionaries.personal.vehicles.cta}
+        vehicles={state.sections.personal.vehicle?.data ?? undefined}
       />
     </div>
   );
