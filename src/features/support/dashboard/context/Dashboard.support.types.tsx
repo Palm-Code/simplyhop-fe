@@ -39,6 +39,9 @@ export interface DashboardSupportSections {
       data: VehicleCardDashboardProps[];
     } | null;
   };
+  // organization_admin:{
+  //   ride:
+  // }
 }
 
 export enum DashboardSupportActionEnum {

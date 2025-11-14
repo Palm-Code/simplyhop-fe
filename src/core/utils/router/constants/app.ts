@@ -22,5 +22,6 @@ export const AppCollectionURL = {
     support_account: () => "/support/konto",
     support_account_edit: () => "/support/konto/edit",
     support_payment: () => "/support/abonnement",
+    support_dashboard: () => "/support/dashboard",
   },
 };

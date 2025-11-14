@@ -145,6 +145,29 @@
     "drivers": {
       "title": "Fahrerliste",
       "icon": "User2",
+      "empty": {
+        "message": ""
+      },
+      "head": {
+        "items": [
+          {
+            "id": "driver",
+            "name": "Driver"
+          },
+          {
+            "id": "rides",
+            "name": "Rides"
+          },
+          {
+            "id": "bewertungen",
+            "name": "Bewertungen"
+          },
+          {
+            "id": "passengers",
+            "name": "Passengers"
+          }
+        ]
+      },
       "cta": {
         "primary": {
           "children": "Alle anzeigen"

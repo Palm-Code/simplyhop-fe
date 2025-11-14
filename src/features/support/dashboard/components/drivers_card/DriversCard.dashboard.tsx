@@ -18,6 +18,19 @@ export const DriversCardDashboard = ({
   icon,
   cta,
 }: DriversCardDashboardProps) => {
+  // const table = useItemsTableBranchesItems();
+  // const { isFetching: isFetchingGetBranches } =
+  //   useGetPartnerBranchListWithoutPaginationPartner();
+  // const data = isFetchingGetBranches
+  //   ? Array.from({ length: 4 }, (_, i) => {
+  //       return {
+  //         name: "",
+  //         photo: "",
+  //         location: "",
+  //         type: "",
+  //       };
+  //     })
+  //   : state.branches.items;
   return (
     <div
       className={clsx(
@@ -82,7 +95,9 @@ export const DriversCardDashboard = ({
         <div
           className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
         >
-          <RideCardDashboard />
+         {/* <table className={clsx("hidden lg:table w-full")}>
+          <TableBodyPartner table={table} />
+        </table> */}
         </div>
       </div>
     </div>

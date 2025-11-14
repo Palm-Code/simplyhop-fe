@@ -63,11 +63,18 @@ export const usePostAuthVerifyOTP = () => {
           role: user.role,
         },
       });
-
-      if (
+      const isSuperAdmin = user.is_super_admin === true;
+      const isOrganizationAdmin =
+        user.role === "admin" && user.is_super_admin === false;
+      const isEmployeeProfileCompleted =
         (user.is_driver && user.can_share_ride) ||
-        (!user.is_driver && user.is_profile_complete)
-      ) {
+        (!user.is_driver && user.is_profile_complete);
+
+      if (isSuperAdmin) {
+        router.push(AppCollectionURL.private.support_dashboard());
+      } else if (isOrganizationAdmin) {
+        router.push(AppCollectionURL.private.support_dashboard());
+      } else if (isEmployeeProfileCompleted) {
         router.push(AppCollectionURL.private.trip());
       } else {
         router.push(AppCollectionURL.private.profile_registration());

@@ -12,6 +12,7 @@ import {
   useGetRidesMy,
   useGetVehicleMy,
 } from "../react_query/hooks";
+import { useGetDashboardOrganization } from "../react_query/hooks/useGetDashboardOrganization.dashboard.support";
 
 export const DashboardSupportContainer = () => {
   const { state } = React.useContext(UserContext);
@@ -20,6 +21,7 @@ export const DashboardSupportContainer = () => {
   useGetDashboardSuperAdminSummary();
   useGetRidesMy();
   useGetVehicleMy();
+  useGetDashboardOrganization();
   if (state.profile?.is_super_admin) {
     return (
       <div

@@ -141,5 +141,7 @@ export const SimplyHopAPICollectionURL = {
     getMy: () => `/api/dashboard/my`,
     getOrganizationSummary: () => `/api/dashboard/organization/summary`,
     getSuperAdminSummary: () => `/api/dashboard/superadmin/summary`,
+    getOrganization: () => `/api/dashboard/organization`,
+    getSuperAdmin: () => `/api/dashboard/superadmin`,
   },
 };
