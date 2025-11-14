@@ -6,11 +6,11 @@ import {
   DashboardSupportActionEnum,
 } from "../../context";
 
-import { fetchGetRidesMy } from "@/core/services/rest/simplyhop/rides";
+import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/rides";
 import {
-  GetRidesMyErrorResponseInterface,
-  GetRidesMyPayloadRequestInterface,
-  GetRidesMySuccessResponseInterface,
+  GetRidesSearchErrorResponseInterface,
+  GetRidesSearchPayloadRequestInterface,
+  GetRidesSearchSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
@@ -24,30 +24,37 @@ import { DashboardSupportReactQueryKey } from "../keys";
 
 dayjs.extend(utc);
 
-export const useGetRidesMy = () => {
+export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
 
-  const { state, dispatch } = React.useContext(DashboardSupportContext);
+  const { dispatch } = React.useContext(DashboardSupportContext);
   const { state: userState } = React.useContext(UserContext);
 
-  const payload: GetRidesMyPayloadRequestInterface = {
+  const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
+      "filter[user_id]":
+        userState.profile?.role === "admin"
+          ? undefined
+          : !userState.profile?.id
+          ? undefined
+          : String(userState.profile.id),
       include: "vehicle.brand,user,bookings,bookings.user",
+      status: "upcoming",
       departure_time__gte: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"), // "2025-03-31 09:30:00";
       "page[number]": 1,
       "page[size]": 1,
     },
   };
   const query = useQuery<
-    GetRidesMySuccessResponseInterface,
-    GetRidesMyErrorResponseInterface
+    GetRidesSearchSuccessResponseInterface,
+    GetRidesSearchErrorResponseInterface
   >({
-    queryKey: DashboardSupportReactQueryKey.GetRidesMy(payload),
+    queryKey: DashboardSupportReactQueryKey.GetRidesSearch(payload),
     queryFn: () => {
-      return fetchGetRidesMy(payload);
+      return fetchGetRidesSearch(payload);
     },
-    enabled: userState.profile?.is_driver,
+    enabled: !userState.profile?.is_super_admin,
   });
 
   React.useEffect(() => {
@@ -143,18 +150,20 @@ export const useGetRidesMy = () => {
             },
             passenger: {
               label: "Passengiere",
-              adult: item.bookings
-                .filter((bookingItem) => bookingItem.status === "accepted")
-                .reduce((acc, bookingItem) => {
-                  return acc + bookingItem.seats;
-                }, 0)
-                .toLocaleString("de-DE"),
-              child: item.bookings
-                .filter((bookingItem) => bookingItem.status === "accepted")
-                .reduce((acc, bookingItem) => {
-                  return acc + bookingItem.child_seats;
-                }, 0)
-                .toLocaleString("de-DE"),
+              // adult: item.bookings
+              //   .filter((bookingItem) => bookingItem.status === "accepted")
+              //   .reduce((acc, bookingItem) => {
+              //     return acc + bookingItem.seats;
+              //   }, 0)
+              //   .toLocaleString("de-DE"),
+              // child: item.bookings
+              //   .filter((bookingItem) => bookingItem.status === "accepted")
+              //   .reduce((acc, bookingItem) => {
+              //     return acc + bookingItem.child_seats;
+              //   }, 0)
+              //   .toLocaleString("de-DE"),
+              adult: "",
+              child: "",
             },
           },
 
@@ -167,13 +176,17 @@ export const useGetRidesMy = () => {
           },
         };
       });
-      dispatch({
-        type: DashboardSupportActionEnum.SetSectionsPersonalRideData,
-        payload: {
-          ...state.sections.personal.ride,
-          data: newPayload,
-        },
-      });
+      if (userState.profile?.role === "admin") {
+        dispatch({
+          type: DashboardSupportActionEnum.SetSectionsOrganizationAdminRideData,
+          payload: newPayload,
+        });
+      } else {
+        dispatch({
+          type: DashboardSupportActionEnum.SetSectionsPersonalRideData,
+          payload: newPayload,
+        });
+      }
     }
   }, [query.data, query.isFetching]);
   return query;

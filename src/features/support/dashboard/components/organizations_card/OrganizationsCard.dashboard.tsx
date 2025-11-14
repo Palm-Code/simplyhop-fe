@@ -1,7 +1,10 @@
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
-import { RideCardDashboard } from "../ride_card";
+import {
+  OrganizationCardDashboard,
+  OrganizationCardDashboardProps,
+} from "../organization_card";
 
 export interface OrganizationsCardDashboardProps {
   title?: string;
@@ -11,12 +14,16 @@ export interface OrganizationsCardDashboardProps {
       children: React.ReactNode;
     };
   };
+  organization?: OrganizationCardDashboardProps;
 }
 
 export const OrganizationsCardDashboard = ({
   title = "",
   icon,
   cta,
+  organization = {
+    table: null,
+  },
 }: OrganizationsCardDashboardProps) => {
   return (
     <div
@@ -82,7 +89,7 @@ export const OrganizationsCardDashboard = ({
         <div
           className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
         >
-          <RideCardDashboard />
+          <OrganizationCardDashboard table={organization.table} />
         </div>
       </div>
     </div>

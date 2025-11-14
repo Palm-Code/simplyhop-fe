@@ -26,7 +26,7 @@ export const PersonalSectionsDashboard = () => {
         title={dictionaries.personal.vehicles.title}
         icon={dictionaries.personal.vehicles.icon as SVGIconProps["name"]}
         cta={dictionaries.personal.vehicles.cta}
-        vehicles={state.sections.personal.vehicle?.data ?? undefined}
+        vehicles={state.sections.personal.vehicle?.data ?? []}
       />
     </div>
   );

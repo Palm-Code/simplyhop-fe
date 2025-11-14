@@ -1,6 +1,8 @@
 import {
   GetDashboardMySuccessDataResponseInterface,
+  GetDashboardOrganizationSuccessDataResponseInterface,
   GetDashboardOrganizationSummarySuccessDataResponseInterface,
+  GetDashboardSuperAdminSuccessDataResponseInterface,
   GetDashboardSuperAdminSummarySuccessDataResponseInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
 import { RideCardDashboardProps } from "../components/ride_card";
@@ -33,15 +35,49 @@ export interface DashboardSupportSummary {
 export interface DashboardSupportSections {
   personal: {
     ride: {
-      data: RideCardDashboardProps[];
-    } | null;
+      data: RideCardDashboardProps[] | null;
+    };
     vehicle: {
-      data: VehicleCardDashboardProps[];
-    } | null;
+      data: VehicleCardDashboardProps[] | null;
+    };
   };
-  // organization_admin:{
-  //   ride:
-  // }
+  organization_admin: {
+    ride: {
+      data: RideCardDashboardProps[] | null;
+    };
+    driver: {
+      data: GetDashboardOrganizationSuccessDataResponseInterface[] | null;
+      pagination: {
+        limit: number;
+        current_page: number;
+      };
+      loading: {
+        is_fetching: boolean;
+      };
+    };
+  };
+  super_admin: {
+    organization: {
+      data: GetDashboardSuperAdminSuccessDataResponseInterface[] | null;
+      pagination: {
+        limit: number;
+        current_page: number;
+      };
+      loading: {
+        is_fetching: boolean;
+      };
+    };
+    driver: {
+      data: GetDashboardOrganizationSuccessDataResponseInterface[] | null;
+      pagination: {
+        limit: number;
+        current_page: number;
+      };
+      loading: {
+        is_fetching: boolean;
+      };
+    };
+  };
 }
 
 export enum DashboardSupportActionEnum {
@@ -55,6 +91,16 @@ export enum DashboardSupportActionEnum {
   SetSectionsData = "SetSectionsData",
   SetSectionsPersonalRideData = "SetSectionsPersonalRideData",
   SetSectionsPersonalVehicleData = "SetSectionsPersonalVehicleData",
+  SetSectionsOrganizationAdminRideData = "SetSectionsOrganizationAdminRideData",
+  SetSectionsOrganizationAdminDriverData = "SetSectionsOrganizationAdminDriverData",
+  SetSectionsOrganizationAdminDriverPaginationData = "SetSectionsOrganizationAdminDriverPaginationData",
+  SetSectionsOrganizationAdminDriverLoadingData = "SetSectionsOrganizationAdminDriverLoadingData",
+  SetSectionsSuperAdminOrganizationData = "SetSectionsSuperAdminOrganizationData",
+  SetSectionsSuperAdminOrganizationPaginationData = "SetSectionsSuperAdminOrganizationPaginationData",
+  SetSectionsSuperAdminOrganizationLoadingData = "SetSectionsSuperAdminOrganizationLoadingData",
+  SetSectionsSuperAdminDriverData = "SetSectionsSuperAdminDriverData",
+  SetSectionsSuperAdminDriverPaginationData = "SetSectionsSuperAdminDriverPaginationData",
+  SetSectionsSuperAdminDriverLoadingData = "SetSectionsSuperAdminDriverLoadingData",
 }
 
 // Action Collection Types
@@ -77,8 +123,18 @@ export type DashboardSupportSummaryActions =
 // Sections
 type DashboardSupportSectionsPayload = {
   [DashboardSupportActionEnum.SetSectionsData]: DashboardSupportSections;
-  [DashboardSupportActionEnum.SetSectionsPersonalRideData]: DashboardSupportSections["personal"]["ride"];
-  [DashboardSupportActionEnum.SetSectionsPersonalVehicleData]: DashboardSupportSections["personal"]["vehicle"];
+  [DashboardSupportActionEnum.SetSectionsPersonalRideData]: DashboardSupportSections["personal"]["ride"]["data"];
+  [DashboardSupportActionEnum.SetSectionsPersonalVehicleData]: DashboardSupportSections["personal"]["vehicle"]["data"];
+  [DashboardSupportActionEnum.SetSectionsOrganizationAdminRideData]: DashboardSupportSections["organization_admin"]["ride"]["data"];
+  [DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverData]: DashboardSupportSections["organization_admin"]["driver"]["data"];
+  [DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverPaginationData]: DashboardSupportSections["organization_admin"]["driver"]["pagination"];
+  [DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverLoadingData]: DashboardSupportSections["organization_admin"]["driver"]["loading"];
+  [DashboardSupportActionEnum.SetSectionsSuperAdminOrganizationData]: DashboardSupportSections["super_admin"]["organization"]["data"];
+  [DashboardSupportActionEnum.SetSectionsSuperAdminOrganizationPaginationData]: DashboardSupportSections["super_admin"]["organization"]["pagination"];
+  [DashboardSupportActionEnum.SetSectionsSuperAdminOrganizationLoadingData]: DashboardSupportSections["super_admin"]["organization"]["loading"];
+  [DashboardSupportActionEnum.SetSectionsSuperAdminDriverData]: DashboardSupportSections["super_admin"]["driver"]["data"];
+  [DashboardSupportActionEnum.SetSectionsSuperAdminDriverPaginationData]: DashboardSupportSections["super_admin"]["driver"]["pagination"];
+  [DashboardSupportActionEnum.SetSectionsSuperAdminDriverLoadingData]: DashboardSupportSections["super_admin"]["driver"]["loading"];
 };
 
 export type DashboardSupportSectionsActions =

@@ -1,7 +1,10 @@
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
-import { RideCardDashboard } from "../ride_card";
+import {
+  DriverCardDashboard,
+  DriverCardDashboardProps,
+} from "../driver_card/DriverCard.dashboard";
 
 export interface DriversCardDashboardProps {
   title?: string;
@@ -11,26 +14,17 @@ export interface DriversCardDashboardProps {
       children: React.ReactNode;
     };
   };
+  driver?: DriverCardDashboardProps;
 }
 
 export const DriversCardDashboard = ({
   title = "",
   icon,
   cta,
+  driver = {
+    table: null,
+  },
 }: DriversCardDashboardProps) => {
-  // const table = useItemsTableBranchesItems();
-  // const { isFetching: isFetchingGetBranches } =
-  //   useGetPartnerBranchListWithoutPaginationPartner();
-  // const data = isFetchingGetBranches
-  //   ? Array.from({ length: 4 }, (_, i) => {
-  //       return {
-  //         name: "",
-  //         photo: "",
-  //         location: "",
-  //         type: "",
-  //       };
-  //     })
-  //   : state.branches.items;
   return (
     <div
       className={clsx(
@@ -95,9 +89,7 @@ export const DriversCardDashboard = ({
         <div
           className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
         >
-         {/* <table className={clsx("hidden lg:table w-full")}>
-          <TableBodyPartner table={table} />
-        </table> */}
+          <DriverCardDashboard table={driver.table} />
         </div>
       </div>
     </div>

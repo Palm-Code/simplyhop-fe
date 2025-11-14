@@ -17,8 +17,49 @@ const initialState: DashboardSupportInitialStateType = {
   },
   sections: {
     personal: {
-      ride: null,
-      vehicle: null,
+      ride: {
+        data: null,
+      },
+      vehicle: {
+        data: null,
+      },
+    },
+    organization_admin: {
+      ride: {
+        data: null,
+      },
+      driver: {
+        data: null,
+        pagination: {
+          limit: 5,
+          current_page: 1,
+        },
+        loading: {
+          is_fetching: true,
+        },
+      },
+    },
+    super_admin: {
+      organization: {
+        data: null,
+        pagination: {
+          limit: 5,
+          current_page: 1,
+        },
+        loading: {
+          is_fetching: true,
+        },
+      },
+      driver: {
+        data: null,
+        pagination: {
+          limit: 5,
+          current_page: 1,
+        },
+        loading: {
+          is_fetching: true,
+        },
+      },
     },
   },
 };

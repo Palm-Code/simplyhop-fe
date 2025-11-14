@@ -9,19 +9,23 @@ import {
   useGetDashboardMy,
   useGetDashboardOrganizationSummary,
   useGetDashboardSuperAdminSummary,
-  useGetRidesMy,
+  useGetRidesSearch,
   useGetVehicleMy,
+  useGetDashboardOrganization,
+  useGetDashboardSuperAdmin,
 } from "../react_query/hooks";
-import { useGetDashboardOrganization } from "../react_query/hooks/useGetDashboardOrganization.dashboard.support";
+import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
 
 export const DashboardSupportContainer = () => {
   const { state } = React.useContext(UserContext);
   useGetDashboardMy();
   useGetDashboardOrganizationSummary();
   useGetDashboardSuperAdminSummary();
-  useGetRidesMy();
+  useGetRidesSearch();
   useGetVehicleMy();
   useGetDashboardOrganization();
+  useGetDashboardSuperAdmin();
+ 
   if (state.profile?.is_super_admin) {
     return (
       <div
@@ -31,7 +35,7 @@ export const DashboardSupportContainer = () => {
         )}
       >
         <SummaryDashboard />
-        <OrganizationalAdminSectionsDashboard />
+        <SuperAdminSectionsDashboard />
       </div>
     );
   }
