@@ -196,12 +196,18 @@
     },
 
     "cta": {
-      "delete": {
-        "children": "Chat löschen"
-      },
-      "block": {
-        "children": "Entblocken"
-      }
+      "items": [
+        {
+          "id": "delete_chat",
+          "label": "Chat löschen",
+          "icon": "MessageSquareDashed"
+        },
+        {
+          "id": "block_user",
+          "label": "Entblocken",
+          "icon": "Ban"
+        }
+      ]
     }
   },
   "block_confirmation": {
