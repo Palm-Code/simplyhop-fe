@@ -12,6 +12,7 @@ export interface GetDashboardOrganizationPayloadRequestInterface {
 
 export type GetDashboardOrganizationParamsPayloadRequestInterface = {
   include?: string; //user
+  append?: string; //upcoming_rides
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;

@@ -11,6 +11,7 @@ export interface GetDashboardSuperAdminPayloadRequestInterface {
 
 export type GetDashboardSuperAdminParamsPayloadRequestInterface = {
   include?: string; //user
+  append?: string; //upcoming_rides
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;

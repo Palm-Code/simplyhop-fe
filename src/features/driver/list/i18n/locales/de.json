@@ -1,0 +1,33 @@
+{
+  "title": "Fahrer",
+  "filter": {
+    "search": {
+      "placeholder": "Fahrten suchen"
+    }
+  },
+  "table": {
+    "empty": {
+      "message": ""
+    },
+    "head": {
+      "items": [
+        {
+          "id": "driver",
+          "name": "Driver"
+        },
+        {
+          "id": "rides",
+          "name": "Rides"
+        },
+        {
+          "id": "bewertungen",
+          "name": "Bewertungen"
+        },
+        {
+          "id": "passengers",
+          "name": "Passengers"
+        }
+      ]
+    }
+  }
+}

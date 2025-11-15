@@ -4,10 +4,12 @@ import clsx from "clsx";
 
 export interface TableBodyProps {
   table?: Table<any> | null;
+  tdClassName?: string;
 }
 
 export const TableBody: React.FC<TableBodyProps> = ({
   table = null,
+  tdClassName,
 }: TableBodyProps) => {
   return (
     <tbody>
@@ -19,7 +21,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
                 return (
                   <td
                     key={cell.id}
-                    className={clsx("h-9 align-middle text-left")}
+                    className={clsx("h-9 align-middle text-left", tdClassName)}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
