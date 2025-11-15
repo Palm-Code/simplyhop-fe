@@ -12,7 +12,7 @@ import clsx from "clsx";
 import { DashboardSupportContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import "dayjs/locale/de";
-import { GetDashboardSuperAdminSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
+import { GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useOrganizationTableDashboard = () => {
@@ -26,7 +26,7 @@ export const useOrganizationTableDashboard = () => {
   const pageSize = state.sections.super_admin.organization.pagination.limit;
 
   const columns = useMemo<
-    ColumnDef<GetDashboardSuperAdminSuccessDataResponseInterface>[]
+    ColumnDef<GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface>[]
   >(() => {
     return headerColumns.map((item, index) => {
       return {
@@ -102,7 +102,7 @@ export const useOrganizationTableDashboard = () => {
                   "w-full"
                 )}
               >
-                {cellProps.row.original.total_passenger.toLocaleString("de-DE")}
+                {cellProps.row.original.total_driver.toLocaleString("de-DE")}
               </p>
             );
           }

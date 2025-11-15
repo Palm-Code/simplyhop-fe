@@ -3,3 +3,5 @@ export * from "./organization_summary.get";
 export * from "./super_admin_summary.get";
 export * from "./organization.get";
 export * from "./super_admin.get";
+export * from "./super_admin_per_organization.get";
+export * from "./super_admin_per_organization_id.get";

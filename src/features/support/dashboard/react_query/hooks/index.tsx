@@ -5,3 +5,4 @@ export * from "./useGetRidesSearch.dashboard.support";
 export * from "./useGetVehicleMy.dashboard.support";
 export * from "./useGetDashboardOrganization.dashboard.support";
 export * from "./useGetDashboardSuperAdmin.dashboard.support";
+export * from "./useGetDashboardSuperAdminPerOrganization.dashboard.support";

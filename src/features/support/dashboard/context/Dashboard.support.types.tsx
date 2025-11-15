@@ -2,6 +2,7 @@ import {
   GetDashboardMySuccessDataResponseInterface,
   GetDashboardOrganizationSuccessDataResponseInterface,
   GetDashboardOrganizationSummarySuccessDataResponseInterface,
+  GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface,
   GetDashboardSuperAdminSuccessDataResponseInterface,
   GetDashboardSuperAdminSummarySuccessDataResponseInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
@@ -58,7 +59,9 @@ export interface DashboardSupportSections {
   };
   super_admin: {
     organization: {
-      data: GetDashboardSuperAdminSuccessDataResponseInterface[] | null;
+      data:
+        | GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface[]
+        | null;
       pagination: {
         limit: number;
         current_page: number;
@@ -68,7 +71,7 @@ export interface DashboardSupportSections {
       };
     };
     driver: {
-      data: GetDashboardOrganizationSuccessDataResponseInterface[] | null;
+      data: GetDashboardSuperAdminSuccessDataResponseInterface[] | null;
       pagination: {
         limit: number;
         current_page: number;

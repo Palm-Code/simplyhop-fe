@@ -57,6 +57,7 @@ import {
   HelpCircleIcon,
   Ticket,
   Component,
+  Building2,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -134,6 +135,7 @@ export const svgMap = {
   HelpCircleIcon,
   Ticket,
   Component,
+  Building2,
   Facebook,
   Google,
   Whatsapp,

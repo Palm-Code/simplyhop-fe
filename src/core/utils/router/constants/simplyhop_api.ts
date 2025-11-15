@@ -9,6 +9,7 @@ import {
   PostBookingRejectPathPayloadRequestInterface,
   PostBookingRatingPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/booking";
+import { GetDashboardSuperAdminPerOrganizationIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/dashboard";
 import { GetMessageRoomsIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 import {
   PutMessageRoomsMarkAsReadPathPayloadRequestInterface,
@@ -102,6 +103,7 @@ export const SimplyHopAPICollectionURL = {
   booking: {
     postBook: () => `/api/bookings/book`,
     getMy: () => `/api/bookings/my`,
+    getList: () => `/api/bookings`,
     getId: (path: GetBookingIdPathPayloadRequestInterface) =>
       `/api/bookings/${path.id}`,
     postAccept: (path: PostBookingAcceptPathPayloadRequestInterface) =>
@@ -143,5 +145,10 @@ export const SimplyHopAPICollectionURL = {
     getSuperAdminSummary: () => `/api/dashboard/superadmin/summary`,
     getOrganization: () => `/api/dashboard/organization`,
     getSuperAdmin: () => `/api/dashboard/superadmin`,
+    getSuperAdminPerOrganization: () =>
+      `/api/dashboard/superadmin/per-organization`,
+    getSuperAdminPerOrganizationId: (
+      payload: GetDashboardSuperAdminPerOrganizationIdPathPayloadRequestInterface
+    ) => `/api/dashboard/superadmin/per-organization/${payload.id}`,
   },
 };

@@ -13,6 +13,7 @@ import {
   useGetVehicleMy,
   useGetDashboardOrganization,
   useGetDashboardSuperAdmin,
+  useGetDashboardSuperAdminPerOrganization,
 } from "../react_query/hooks";
 import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
 
@@ -25,7 +26,8 @@ export const DashboardSupportContainer = () => {
   useGetVehicleMy();
   useGetDashboardOrganization();
   useGetDashboardSuperAdmin();
- 
+  useGetDashboardSuperAdminPerOrganization();
+
   if (state.profile?.is_super_admin) {
     return (
       <div

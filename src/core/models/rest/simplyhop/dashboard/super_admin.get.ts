@@ -1,4 +1,4 @@
-import { Organization } from "@/core/models/data";
+import { User } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetDashboardSuperAdminRequestInterface extends NextApiRequest {
@@ -44,7 +44,7 @@ export interface GetDashboardSuperAdminSuccessDataResponseInterface {
   total_voted_rating: number; // 0;
   created_at: string; //"2025-11-10T08:15:22.000000Z";
   updated_at: string; // "2025-11-13T06:21:24.000000Z";
-  organization: Organization;
+  user: User;
 }
 
 export interface GetDashboardSuperAdminErrorResponseInterface {

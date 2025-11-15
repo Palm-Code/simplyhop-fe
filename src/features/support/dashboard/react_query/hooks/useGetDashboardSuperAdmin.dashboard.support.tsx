@@ -21,7 +21,7 @@ export const useGetDashboardSuperAdmin = () => {
 
   const payload: GetDashboardSuperAdminPayloadRequestInterface = {
     params: {
-      include: "organization",
+      include: "user",
       "page[number]": 1,
       "page[size]": 10,
     },
@@ -40,7 +40,7 @@ export const useGetDashboardSuperAdmin = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       dispatch({
-        type: DashboardSupportActionEnum.SetSectionsSuperAdminOrganizationData,
+        type: DashboardSupportActionEnum.SetSectionsSuperAdminDriverData,
         payload: query.data.data,
       });
     }
@@ -48,9 +48,9 @@ export const useGetDashboardSuperAdmin = () => {
 
   React.useEffect(() => {
     dispatch({
-      type: DashboardSupportActionEnum.SetSectionsSuperAdminOrganizationLoadingData,
+      type: DashboardSupportActionEnum.SetSectionsSuperAdminDriverLoadingData,
       payload: {
-        ...state.sections.super_admin.organization.loading,
+        ...state.sections.super_admin.driver.loading,
         is_fetching: query.isFetching,
       },
     });

@@ -35,45 +35,27 @@ export const useGetDashboardOrganization = () => {
       return fetchGetDashboardOrganization(payload);
     },
     enabled:
-      userState.profile?.role === "admin" ||
-      !!userState.profile?.is_super_admin,
+      userState.profile?.role === "admin" || !userState.profile?.is_super_admin,
   });
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
-      if (userState.profile?.is_super_admin) {
-        dispatch({
-          type: DashboardSupportActionEnum.SetSectionsSuperAdminDriverData,
-          payload: query.data.data,
-        });
-      } else {
-        dispatch({
-          type: DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverData,
-          payload: query.data.data,
-        });
-      }
+      dispatch({
+        type: DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverData,
+        payload: query.data.data,
+      });
     }
-  }, [query.data, query.isFetching, userState.profile?.is_super_admin]);
+  }, [query.data, query.isFetching]);
 
   React.useEffect(() => {
-    if (userState.profile?.is_super_admin) {
-      dispatch({
-        type: DashboardSupportActionEnum.SetSectionsSuperAdminDriverLoadingData,
-        payload: {
-          ...state.sections.super_admin.driver.loading,
-          is_fetching: query.isFetching,
-        },
-      });
-    } else {
-      dispatch({
-        type: DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverLoadingData,
-        payload: {
-          ...state.sections.organization_admin.driver.loading,
-          is_fetching: query.isFetching,
-        },
-      });
-    }
-  }, [query.isFetching, userState.profile?.is_super_admin]);
+    dispatch({
+      type: DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverLoadingData,
+      payload: {
+        ...state.sections.organization_admin.driver.loading,
+        is_fetching: query.isFetching,
+      },
+    });
+  }, [query.isFetching]);
 
   return query;
 };
