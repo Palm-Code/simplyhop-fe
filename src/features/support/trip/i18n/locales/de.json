@@ -1,0 +1,198 @@
+{
+  "header": {
+    "title": "Meine Fahrten",
+
+    "archive": {
+      "icon": {
+        "name": "FileClock"
+      },
+      "label": "Archive",
+      "href": "/meine-fahrten/archive"
+    }
+  },
+  "tab": {
+    "items": [
+      {
+        "id": "ride",
+        "name": "Meine angebotenen Fahrten"
+      },
+      {
+        "id": "book",
+        "name": "Meine Fahrten als Mitfahrer"
+      }
+    ]
+  },
+  "filter": {
+    "ride": {
+      "items": [
+        {
+          "id": "in_progress",
+          "name": "In Bearbeitung"
+        },
+        {
+          "id": "upcoming",
+          "name": "Bevorstehend"
+        },
+        {
+          "id": "finished",
+          "name": "Fertig"
+        },
+        {
+          "id": "archive",
+          "name": "Archive"
+        }
+      ]
+    }
+  },
+  "list": {
+    "loading": {
+      "message": "Einen Moment, wir sind gleich soweit..."
+    },
+    "empty_data": {
+      "message": "Oops! Noch keine Inhalte verfügbar."
+    },
+    "empty_search": {
+      "message": "Ups! Wir konnten keine Daten finden..."
+    }
+  },
+  "ride_detail": {
+    "title": {
+      "upcoming": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "in_progress": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "finish": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "complete": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "default": {
+        "title": "Title",
+        "description": "Description"
+      }
+    },
+    "passenger": {
+      "title": "Passagierbestätigung",
+      "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
+    }
+  },
+  "book_detail": {
+    "title": "Passagierbestätigung",
+    "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
+  },
+  "delete_ride_notification": {
+    "title": "Die Fahrt absagen?",
+    "message": "Wenn du diese Fahrt löschst, wird sie dauerhaft entfernt und kann nicht wiederhergestellt werden.",
+    "cta": {
+      "back": {
+        "children": "Zurück zu meiner Fahrt"
+      },
+      "confirm": {
+        "children": "Bestätige die Löschung"
+      }
+    }
+  },
+  "success_delete_ride_notification": {
+    "title": "Fahrt erfolgreich gelöscht.",
+    "cta": {
+      "back": {
+        "children": "Zurück"
+      }
+    }
+  },
+  "share_ride_notification": {
+    "title": "Fahrt teilen",
+    "cta": {
+      "back": {
+        "children": "Zurück",
+        "href": "/meine-fahrten"
+      }
+    },
+    "share": {
+      "label": "Teilen auf: ",
+      "example_link": "simplyhop.com/trip/2139rfkdsfns/",
+      "share_message": "Fahr mit mir – ganz einfach über SimplyHop!\n\nIch fahre von {{origin}} nach {{destination}}\n\n🕒 Abfahrt: {{departure_time}}\n\nWillst du mitfahren?\n\nJetzt Platz sichern: {{share_link}}",
+      "items": [
+        {
+          "id": "whatsapp",
+          "icon": {
+            "name": "Whatsapp"
+          },
+          "href": "https://wa.me/?text={{message}}"
+        },
+        {
+          "id": "facebook",
+          "icon": {
+            "name": "Facebook2"
+          },
+          "href": "https://www.facebook.com/sharer/sharer.php?u={{link}}"
+        },
+        {
+          "id": "twitter",
+          "icon": {
+            "name": "Twitter"
+          },
+          "href": "https://twitter.com/intent/tweet?text={{message}}"
+        },
+        {
+          "id": "telegram",
+          "icon": {
+            "name": "Telegram"
+          },
+          "href": "https://telegram.me/share/url?text={{message}}"
+        },
+        {
+          "id": "thread",
+          "icon": {
+            "name": "Thread"
+          },
+          "href": "https://threads.net/intent/post?text={{link}}"
+        }
+      ],
+      "cta": {
+        "copy": {
+          "children": "Link kopieren"
+        }
+      }
+    }
+  },
+  "cancel_book_notification": {
+    "title": "Die Fahrt absagen?",
+    "message": "Möchtest du diese Fahrt wirklich stornieren?<br />Wenn du stornierst, wirst du von der Passagierliste entfernt und musst eine neue Fahrt buchen, wenn du es dir anders überlegst.",
+    "cta": {
+      "back": {
+        "children": "Zurück"
+      },
+      "confirm": {
+        "children": "Bestätige die Löschung"
+      }
+    }
+  },
+  "success_cancel_book_notification": {
+    "title": "Fahrt erfolgreich gelöscht.",
+    "cta": {
+      "back": {
+        "children": "Zurück"
+      }
+    }
+  },
+  "complete_ride_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  }
+}

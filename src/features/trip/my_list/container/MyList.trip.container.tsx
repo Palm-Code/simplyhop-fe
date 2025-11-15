@@ -13,8 +13,8 @@ import { DeleteRideNotificationMyListTrip } from "../fragments/delete_ride_notif
 import { SuccessDeleteRideNotificationMyListTrip } from "../fragments/success_delete_ride_notification";
 import { ShareRideNotificationMyListTrip } from "../fragments/share_ride_notification";
 import { CancelBookNotificationMyListTrip } from "../fragments/cancel_book_notification";
-import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_cancel_book_notification copy";
-import { RideFilterMyList } from "../fragments/ride_filter";
+import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_cancel_book_notification";
+import { RideFilterMyListTrip } from "../fragments/ride_filter";
 import { CompletedRideMyListTrip } from "../fragments/complete_ride_confirmation";
 
 export const MyListTripContainer = () => {
@@ -50,7 +50,7 @@ export const MyListTripContainer = () => {
               <HeaderMyListTrip />
               <React.Suspense fallback={<div />}>
                 <TabMyListTrip />
-                <RideFilterMyList />
+                <RideFilterMyListTrip />
               </React.Suspense>
             </div>
 
