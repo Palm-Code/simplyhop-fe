@@ -230,51 +230,153 @@
     ]
   },
   "settings": {
-    "mobile": {
+    "super_admin": {
       "menu": {
-        "items": [
-          {
-            "id": "dashboard",
-            "name": "Dashboard",
-            "href": "/support/dashboard",
-            "icon": "LayoutDashboard"
+        "mobile": {
+          "items": [
+            {
+              "id": "dashboard",
+              "name": "Dashboard",
+              "href": "/support/dashboard",
+              "icon": "LayoutDashboard"
+            },
+            {
+              "id": "fahrer",
+              "name": "Fahrer",
+              "href": "/support/fahrer",
+              "icon": "User2"
+            },
+            {
+              "id": "fahrten",
+              "name": "Fahrten",
+              "href": "/support/fahrten",
+              "icon": "CarFront"
+            },
+            {
+              "id": "organisation",
+              "name": "Organisation",
+              "href": "/support/organisation",
+              "icon": "Building2"
+            },
+            {
+              "id": "einstellungen",
+              "name": "Einstellungen",
+              "href": "/support/einstellungen",
+              "icon": "Settings"
+            }
+          ]
+        },
+        "desktop": {
+          "top": {
+            "items": [
+              {
+                "id": "dashboard",
+                "name": "Dashboard",
+                "href": "/support/dashboard",
+                "icon": "LayoutDashboard"
+              },
+              {
+                "id": "fahrer",
+                "name": "Fahrer",
+                "href": "/support/fahrer",
+                "icon": "User2"
+              },
+              {
+                "id": "fahrten",
+                "name": "Fahrten",
+                "href": "/support/fahrten",
+                "icon": "CarFront"
+              },
+              {
+                "id": "organisation",
+                "name": "Organisation",
+                "href": "/support/organisation",
+                "icon": "Building2"
+              }
+            ]
           },
-          {
-            "id": "konto",
-            "name": "Konto",
-            "href": "/support/konto",
-            "icon": "User2"
-          },
-          {
-            "id": "abonnement",
-            "name": "Abonnement",
-            "href": "/support/abonnement",
-            "icon": "Settings"
-          },
-          {
-            "id": "fahrzeuginformationen",
-            "name": "Fahrzeuginformationen",
-            "href": "/support/fahrzeuginformationen",
-            "icon": "CarFront"
-          },
-          {
-            "id": "einstellungen",
-            "name": "Einstellungen",
-            "href": "/support/einstellungen",
-            "icon": "Settings"
-          },
-          {
-            "id": "hilfe-center",
-            "name": "Hilfe-Center",
-            "href": "/support/hilfe-center",
-            "icon": "HelpCircleIcon"
+          "bottom": {
+            "items": [
+              {
+                "id": "einstellungen",
+                "name": "Einstellungen",
+                "href": "/support/einstellungen",
+                "icon": "Settings"
+              }
+            ]
           }
-        ]
+        }
       }
     },
-    "desktop": {
+    "organization_admin": {
       "menu": {
-        "top": {
+        "mobile": {
+          "items": [
+            {
+              "id": "dashboard",
+              "name": "Dashboard",
+              "href": "/support/dashboard",
+              "icon": "LayoutDashboard"
+            },
+            {
+              "id": "fahrer",
+              "name": "Fahrer",
+              "href": "/support/fahrer",
+              "icon": "User2"
+            },
+            {
+              "id": "fahrten",
+              "name": "Fahrten",
+              "href": "/support/fahrten",
+              "icon": "CarFront"
+            },
+            {
+              "id": "einstellungen",
+              "name": "Einstellungen",
+              "href": "/support/einstellungen",
+              "icon": "Settings"
+            }
+          ]
+        },
+        "desktop": {
+          "top": {
+            "items": [
+              {
+                "id": "dashboard",
+                "name": "Dashboard",
+                "href": "/support/dashboard",
+                "icon": "LayoutDashboard"
+              },
+              {
+                "id": "fahrer",
+                "name": "Fahrer",
+                "href": "/support/fahrer",
+                "icon": "User2"
+              },
+              {
+                "id": "fahrten",
+                "name": "Fahrten",
+                "href": "/support/fahrten",
+                "icon": "CarFront"
+              }
+            ]
+          },
+          "bottom": {
+            "items": [
+              {
+                "id": "einstellungen",
+                "name": "Einstellungen",
+                "href": "/support/einstellungen",
+                "icon": "Settings"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "employee": {
+      "menu": {
+        "mobile": {
           "items": [
             {
               "id": "dashboard",
@@ -299,11 +401,7 @@
               "name": "Fahrzeuginformationen",
               "href": "/support/fahrzeuginformationen",
               "icon": "CarFront"
-            }
-          ]
-        },
-        "bottom": {
-          "items": [
+            },
             {
               "id": "einstellungen",
               "name": "Einstellungen",
@@ -317,6 +415,52 @@
               "icon": "HelpCircleIcon"
             }
           ]
+        },
+        "desktop": {
+          "top": {
+            "items": [
+              {
+                "id": "dashboard",
+                "name": "Dashboard",
+                "href": "/support/dashboard",
+                "icon": "LayoutDashboard"
+              },
+              {
+                "id": "konto",
+                "name": "Konto",
+                "href": "/support/konto",
+                "icon": "User2"
+              },
+              {
+                "id": "abonnement",
+                "name": "Abonnement",
+                "href": "/support/abonnement",
+                "icon": "Settings"
+              },
+              {
+                "id": "fahrzeuginformationen",
+                "name": "Fahrzeuginformationen",
+                "href": "/support/fahrzeuginformationen",
+                "icon": "CarFront"
+              }
+            ]
+          },
+          "bottom": {
+            "items": [
+              {
+                "id": "einstellungen",
+                "name": "Einstellungen",
+                "href": "/support/einstellungen",
+                "icon": "Settings"
+              },
+              {
+                "id": "hilfe-center",
+                "name": "Hilfe-Center",
+                "href": "/support/hilfe-center",
+                "icon": "HelpCircleIcon"
+              }
+            ]
+          }
         }
       }
     }

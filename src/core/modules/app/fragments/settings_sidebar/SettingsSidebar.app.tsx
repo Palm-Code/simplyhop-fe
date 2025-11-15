@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { ENVIRONMENTS } from "@/core/environments";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
+import { UserContext } from "../../context";
 
 const Link = dynamic(() => import("next/link"), {
   ssr: false,
@@ -24,22 +25,69 @@ const SettingTabButton = dynamic(
 export const SettingsSidebarApp = () => {
   const dictionaries = getDictionaries();
   const pathname = usePathname();
+  const { state } = React.useContext(UserContext);
+  const isSuperAdmin = state.profile?.is_super_admin;
+  const isOrganizationAdmin =
+    state.profile?.role === "admin" && !state.profile.is_super_admin;
 
-  const mobileSettingsMenu =
-    ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "true"
-      ? dictionaries.settings.mobile.menu.items
-      : dictionaries.settings.mobile.menu.items.filter(
-          (item) => item.id !== "abonnement"
-        );
-  const topDesktopSettingsMenu =
-    ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "true"
-      ? dictionaries.settings.desktop.menu.top.items
-      : dictionaries.settings.desktop.menu.top.items.filter(
-          (item) => item.id !== "abonnement"
-        );
+  const mobileSettingsMenu = React.useMemo(() => {
+    if (isSuperAdmin) {
+      return dictionaries.settings.super_admin.menu.mobile.items;
+    } else if (isOrganizationAdmin) {
+      return dictionaries.settings.organization_admin.menu.mobile.items;
+    } else if (ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "true") {
+      return dictionaries.settings.employee.menu.mobile.items;
+    } else {
+      return dictionaries.settings.employee.menu.mobile.items.filter(
+        (item) => item.id !== "abonnement"
+      );
+    }
+  }, [
+    isSuperAdmin,
+    isOrganizationAdmin,
+    dictionaries.settings.super_admin.menu.mobile.items,
+    dictionaries.settings.organization_admin.menu.mobile.items,
+    dictionaries.settings.employee.menu.mobile.items,
+    ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE,
+  ]);
 
-  const bottomDesktopSettingsMenu =
-    dictionaries.settings.desktop.menu.bottom.items;
+  const topDesktopSettingsMenu = React.useMemo(() => {
+    if (isSuperAdmin) {
+      return dictionaries.settings.super_admin.menu.desktop.top.items;
+    } else if (isOrganizationAdmin) {
+      return dictionaries.settings.organization_admin.menu.desktop.top.items;
+    } else if (ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "true") {
+      return dictionaries.settings.employee.menu.desktop.top.items;
+    } else {
+      return dictionaries.settings.employee.menu.desktop.top.items.filter(
+        (item) => item.id !== "abonnement"
+      );
+    }
+  }, [
+    isSuperAdmin,
+    isOrganizationAdmin,
+    dictionaries.settings.super_admin.menu.desktop.top.items,
+    dictionaries.settings.organization_admin.menu.desktop.top.items,
+    dictionaries.settings.employee.menu.desktop.top.items,
+    ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE,
+  ]);
+
+  const bottomDesktopSettingsMenu = React.useMemo(() => {
+    if (isSuperAdmin) {
+      return dictionaries.settings.super_admin.menu.desktop.bottom.items;
+    } else if (isOrganizationAdmin) {
+      return dictionaries.settings.organization_admin.menu.desktop.bottom.items;
+    } else {
+      return dictionaries.settings.employee.menu.desktop.bottom.items;
+    }
+  }, [
+    isSuperAdmin,
+    isOrganizationAdmin,
+    dictionaries.settings.super_admin.menu.desktop.bottom.items,
+    dictionaries.settings.organization_admin.menu.desktop.bottom.items,
+    dictionaries.settings.employee.menu.desktop.bottom.items,
+    ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE,
+  ]);
 
   return (
     <div
