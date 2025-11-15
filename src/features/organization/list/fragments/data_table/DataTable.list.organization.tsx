@@ -2,10 +2,10 @@ import * as React from "react";
 import clsx from "clsx";
 import { TableHead } from "@/core/components/table_head";
 import { TableBody } from "@/core/components/table_body";
-import { useListDriverTable } from "../../react_table/hooks";
+import { useListOrganizationTable } from "../../react_table/hooks";
 
-export const DataTableListDriver = () => {
-  const table = useListDriverTable();
+export const DataTableListOrganization = () => {
+  const table = useListOrganizationTable();
   return (
     <div
       className={clsx(

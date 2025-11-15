@@ -1,0 +1,33 @@
+{
+  "title": "Fahrer",
+  "filter": {
+    "search": {
+      "placeholder": "Fahrten suchen"
+    }
+  },
+  "table": {
+    "empty": {
+      "message": ""
+    },
+    "head": {
+      "items": [
+        {
+          "id": "organisation",
+          "name": "Organisation"
+        },
+        {
+          "id": "completed_rides",
+          "name": "Completed rides"
+        },
+        {
+          "id": "drivers",
+          "name": "Drivers"
+        },
+        {
+          "id": "upcoming_rides",
+          "name": "Upcoming Rides"
+        }
+      ]
+    }
+  }
+}

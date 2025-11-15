@@ -17,6 +17,16 @@ export const ListDriverTableReducers = (
         ...state,
         items: action.payload,
       };
+    case ListDriverActionEnum.SetTablePaginationData:
+      return {
+        ...state,
+        pagination: action.payload,
+      };
+    case ListDriverActionEnum.SetTableLoadingData:
+      return {
+        ...state,
+        loading: action.payload,
+      };
 
     default:
       return state;

@@ -12,12 +12,9 @@ import clsx from "clsx";
 import { ListDriverContext, ListDriverItem } from "../../context";
 import { getDictionaries } from "../../i18n";
 import "dayjs/locale/de";
-import { GetDashboardOrganizationSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
-import { UserContext } from "@/core/modules/app/context";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
-export const useDriverTableDashboard = () => {
-  const { state: userState } = useContext(UserContext);
+export const useListDriverTable = () => {
   const { state } = useContext(ListDriverContext);
   const dictionaries = getDictionaries();
 
@@ -27,9 +24,7 @@ export const useDriverTableDashboard = () => {
 
   const pageSize = state.table.pagination.limit;
 
-  const columns = useMemo<
-    ColumnDef<ListDriverItem>[]
-  >(() => {
+  const columns = useMemo<ColumnDef<ListDriverItem>[]>(() => {
     return headerColumns.map((item, index) => {
       return {
         accessorKey: item.id,
