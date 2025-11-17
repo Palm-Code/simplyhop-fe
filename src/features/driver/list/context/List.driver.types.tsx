@@ -1,4 +1,5 @@
 import { AvatarProps } from "@/core/components/avatar";
+import { User } from "@/core/models/data";
 import { GetDashboardSuperAdminSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -32,22 +33,7 @@ export type ListDriverTable = {
 export interface ListDriverUserProfile {
   is_open: boolean;
   user_id: string | null;
-  data: null | {
-    avatar: AvatarProps;
-    name: string;
-    phone: string;
-    type: "passenger" | "driver" | null;
-    statistic: {
-      trip: number | null;
-      ratings: null | number;
-      passengers: number | null;
-    };
-    email: string;
-    place: string;
-    gender: string;
-    i_blocked: boolean;
-    blocked_me: boolean;
-  };
+  data: null | User;
 }
 
 export type ListDriverItem = GetDashboardSuperAdminSuccessDataResponseInterface;

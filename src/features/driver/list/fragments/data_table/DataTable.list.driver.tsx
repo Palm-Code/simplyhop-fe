@@ -18,7 +18,7 @@ export const DataTableListDriver = () => {
       type: ListDriverActionEnum.SetUserProfileData,
       payload: {
         ...state.user_profile,
-        user_id: String(row.id),
+        user_id: String(row.user_id),
         is_open: true,
       },
     });

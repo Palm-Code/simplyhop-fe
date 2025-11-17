@@ -3,6 +3,7 @@ import * as React from "react";
 import { ListDriverActionEnum, ListDriverContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfileModal";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const UserProfileListDriver = () => {
   const dictionaries = getDictionaries();
@@ -39,42 +40,40 @@ export const UserProfileListDriver = () => {
   //   });
   // };
 
-  const summaryItems =
-    state.user_profile.data?.type === "passenger"
-      ? []
-      : dictionaries.user_profile.summary.items.map((item) => {
-          let value = "-";
-          switch (item.id) {
-            case "trips": {
-              value =
-                state.user_profile.data?.statistic.trip?.toLocaleString(
-                  "de-DE"
-                ) ?? "-";
-              break;
-            }
-            case "ratings": {
-              value =
-                state.user_profile.data?.statistic.ratings?.toLocaleString(
-                  "de-DE"
-                ) ?? "-";
-              break;
-            }
-            case "passengers": {
-              value =
-                state.user_profile.data?.statistic.passengers?.toLocaleString(
-                  "de-DE"
-                ) ?? "-";
-              break;
-            }
-            default: {
-              break;
-            }
+  const summaryItems = !state.user_profile.data?.is_driver
+    ? []
+    : dictionaries.user_profile.summary.items.map((item) => {
+        let value = "-";
+        switch (item.id) {
+          case "trips": {
+            value =
+              state.user_profile.data?.total_trips?.toLocaleString("de-DE") ??
+              "-";
+            break;
           }
-          return {
-            ...item,
-            value: value,
-          };
-        });
+          case "ratings": {
+            value =
+              state.user_profile.data?.average_ride_rating?.toLocaleString(
+                "de-DE"
+              ) ?? "-";
+            break;
+          }
+          case "passengers": {
+            value =
+              state.user_profile.data?.total_passengers_count?.toLocaleString(
+                "de-DE"
+              ) ?? "-";
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+        return {
+          ...item,
+          value: value,
+        };
+      });
 
   const detailItems = dictionaries.user_profile.detail.items.map((item) => {
     let value = "-";
@@ -84,7 +83,7 @@ export const UserProfileListDriver = () => {
         break;
       }
       case "city": {
-        value = state.user_profile.data?.place ?? "-";
+        value = state.user_profile.data?.city ?? "-";
         break;
       }
       case "gender": {
@@ -115,8 +114,13 @@ export const UserProfileListDriver = () => {
       onClose={handleClose}
       title={dictionaries.user_profile.title}
       user={{
-        avatar: state.user_profile.data?.avatar,
-        name: state.user_profile.data?.name ?? "-",
+        avatar: {
+          src: state.user_profile.data?.avatar,
+        },
+        name: formatDisplayName({
+          first_name: state.user_profile.data?.first_name,
+          email: state.user_profile.data?.email,
+        }),
         phone: "-",
         summary: summaryItems,
         detail: detailItems,
