@@ -168,7 +168,7 @@ export const UserProfileModal = ({
                       "flex items-center justify-center gap-[0.5rem]"
                     )}
                   >
-                    {item.id === "ratings" && item.value !== "-" && (
+                    {item.id === "ratings" && (
                       <SVGIcon
                         name="Star"
                         className={clsx(

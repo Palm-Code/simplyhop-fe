@@ -39,37 +39,42 @@ export const UserProfileTripChat = () => {
     });
   };
 
-  const summaryItems = dictionaries.user_profile.summary.items.map((item) => {
-    let value = "-";
-    switch (item.id) {
-      case "trips": {
-        value =
-          state.user_profile.data?.statistic.trip?.toLocaleString("de-DE") ??
-          "-";
-        break;
-      }
-      case "ratings": {
-        value =
-          state.user_profile.data?.statistic.ratings?.toLocaleString("de-DE") ??
-          "-";
-        break;
-      }
-      case "passengers": {
-        value =
-          state.user_profile.data?.statistic.passengers?.toLocaleString(
-            "de-DE"
-          ) ?? "-";
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-    return {
-      ...item,
-      value: value,
-    };
-  });
+  const summaryItems =
+    state.user_profile.data?.type === "passenger"
+      ? []
+      : dictionaries.user_profile.summary.items.map((item) => {
+          let value = "-";
+          switch (item.id) {
+            case "trips": {
+              value =
+                state.user_profile.data?.statistic.trip?.toLocaleString(
+                  "de-DE"
+                ) ?? "-";
+              break;
+            }
+            case "ratings": {
+              value =
+                state.user_profile.data?.statistic.ratings?.toLocaleString(
+                  "de-DE"
+                ) ?? "-";
+              break;
+            }
+            case "passengers": {
+              value =
+                state.user_profile.data?.statistic.passengers?.toLocaleString(
+                  "de-DE"
+                ) ?? "-";
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+          return {
+            ...item,
+            value: value,
+          };
+        });
 
   const detailItems = dictionaries.user_profile.detail.items.map((item) => {
     let value = "-";

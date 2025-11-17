@@ -9,6 +9,7 @@
   --icon-primary-subdued: #26531a;
   --icon-default: #767676;
   --surface-neutral-subdued: #f6f6f6cc;
+  --border-subdued: #f6f6f6;
 }
 
 @theme inline {
@@ -24,6 +25,7 @@
   --color-icon-primary-subdued: var(--icon-primary-subdued);
   --color-icon-default: var(--icon-default);
   --color-surface-neutral-subdued: var(--surface-neutral-subdued);
+  --color-border-subdued: var(--border-subdued);
 }
 
 body {

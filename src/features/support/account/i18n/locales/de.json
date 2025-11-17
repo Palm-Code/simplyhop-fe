@@ -1,5 +1,21 @@
 {
   "title": "Konto",
+  "summary": {
+    "items": [
+      {
+        "id": "trips",
+        "name": "Trips"
+      },
+      {
+        "id": "ratings",
+        "name": "Ratings"
+      },
+      {
+        "id": "passengers",
+        "name": "Passengers"
+      }
+    ]
+  },
   "information": {
     "email": {
       "name": "Email"

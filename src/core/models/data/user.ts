@@ -19,4 +19,7 @@ export interface User {
   is_super_admin: boolean;
   role: "employee" | "admin";
   profile?: UserProfile;
+  average_ride_rating: null | number; // null;
+  total_passengers_count: number; // 0;
+  total_trips: number; // 0;
 }

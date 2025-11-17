@@ -12,9 +12,41 @@ export const InformationAccountSupport = () => {
   const dictionaries = getDictionaries();
 
   const { state: userState } = React.useContext(UserContext);
-
+  const summaryItems = !userState.profile?.is_driver
+    ? []
+    : dictionaries.summary.items.map((item) => {
+        let value = "-";
+        switch (item.id) {
+          case "trips": {
+            value =
+              userState.profile?.total_trips?.toLocaleString("de-DE") ?? "-";
+            break;
+          }
+          case "ratings": {
+            value =
+              userState.profile?.average_ride_rating?.toLocaleString("de-DE") ??
+              "-";
+            break;
+          }
+          case "passengers": {
+            value =
+              userState.profile?.total_passengers_count?.toLocaleString(
+                "de-DE"
+              ) ?? "-";
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+        return {
+          ...item,
+          value: value,
+        };
+      });
   return (
     <UserInformationCard
+      summary={summaryItems}
       displayName={formatDisplayName({
         first_name: userState.profile?.first_name,
         email: userState.profile?.email,
@@ -32,11 +64,15 @@ export const InformationAccountSupport = () => {
       }}
       firstName={{
         label: dictionaries.information.first_name.name,
-        value: !userState.profile?.first_name.length ? "-" : userState.profile.first_name,
+        value: !userState.profile?.first_name.length
+          ? "-"
+          : userState.profile.first_name,
       }}
       lastName={{
         label: dictionaries.information.last_name.name,
-        value: !userState.profile?.last_name.length ? "-" : userState.profile.last_name,
+        value: !userState.profile?.last_name.length
+          ? "-"
+          : userState.profile.last_name,
       }}
       gender={{
         label: dictionaries.information.gender.name,
@@ -52,11 +88,15 @@ export const InformationAccountSupport = () => {
       }}
       phoneNumber={{
         label: dictionaries.information.phonenumber.name,
-        value: !userState.profile?.phonenumber.length ? "-" : userState.profile.phonenumber,
+        value: !userState.profile?.phonenumber.length
+          ? "-"
+          : userState.profile.phonenumber,
       }}
       aboutMe={{
         label: dictionaries.information.about_me.name,
-        value: !userState.profile?.about_me.length ? "-" : userState.profile.about_me,
+        value: !userState.profile?.about_me.length
+          ? "-"
+          : userState.profile.about_me,
       }}
     />
   );

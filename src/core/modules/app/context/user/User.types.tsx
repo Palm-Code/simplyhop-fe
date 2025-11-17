@@ -29,6 +29,9 @@ export interface UserProfile {
   is_able_to_ride: boolean;
   role: string; //"employee" || "admin";
   is_super_admin: boolean; //false;
+  average_ride_rating: null | number; // null;
+  total_passengers_count: number; // 0;
+  total_trips: number; // 0;
 }
 
 export enum UserActionEnum {

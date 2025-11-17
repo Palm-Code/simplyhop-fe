@@ -33,7 +33,6 @@ const UserProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
   const { data, refetch, isFetching } = useGetUserProfileData();
-
   useEffect(() => {
     if (!!data && !isFetching) {
       const user = data;
@@ -53,6 +52,9 @@ const UserProvider = (props: { children: React.ReactNode }) => {
           is_able_to_ride: user.data.can_share_ride,
           role: user.data.role,
           is_super_admin: user.data.is_super_admin,
+          total_trips: user.data.total_trips,
+          average_ride_rating: user.data.average_ride_rating,
+          total_passengers_count: user.data.total_passengers_count,
         },
       });
     }
