@@ -21,6 +21,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   pet_allowed?: boolean;
   include?: string;
   "filter[user_id]"?: string;
+  "filter[organization_id]"?: string;
   "filter[user.gender]"?: string;
   departure_time__gte?: string;
   departure_time__lte?: string;

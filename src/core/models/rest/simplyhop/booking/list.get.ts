@@ -14,7 +14,8 @@ export type GetBookingListParamsPayloadRequestInterface = {
   "filter[ride.departure_time__gte]"?: string;
   "filter[status]"?: string;
   "filter[user_id]"?: string;
-  
+  "filter[organization_id]"?: string;
+
   include?: string;
   ride_status?: string;
   //mandatory
