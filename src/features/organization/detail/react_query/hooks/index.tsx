@@ -1,3 +1,3 @@
-export * from "./useGetRidesSearch.detail.driver";
-export * from "./useGetOrganizationDetail.detail.driver";
-export * from "./useGetDashboardSuperAdmin.dashboard.support";
+export * from "./useGetRidesSearch.detail.organization";
+export * from "./useGetDashboardSuperAdmin.detail.organization";
+export * from "./useGetDashboardSuperAdminPerOrganizationId.detail.organization";

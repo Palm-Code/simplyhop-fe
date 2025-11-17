@@ -31,7 +31,7 @@ export const useGetRidesSearch = () => {
 
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
-      "filter[user_id]": String(id ?? "0"),
+      "filter[organization_id]": String(id ?? "0"),
       include: "vehicle.brand,user,bookings,bookings.user",
       status: "upcoming",
       departure_time__gte: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"), // "2025-03-31 09:30:00";

@@ -18,9 +18,6 @@ export interface GetDashboardSuperAdminPerOrganizationIdPathPayloadRequestInterf
 export type GetDashboardSuperAdminPerOrganizationIdParamsPayloadRequestInterface =
   {
     include?: string; //user
-    sort?: string;
-    "page[number]"?: number;
-    "page[size]"?: number;
   };
 
 export type GetDashboardSuperAdminPerOrganizationIdResponseInterface =
@@ -33,7 +30,7 @@ export interface GetDashboardSuperAdminPerOrganizationIdSuccessResponseInterface
   response_code: number;
   response_status: string;
   message: string;
-  data: GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInterface[];
+  data: GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInterface;
 
   redirect: null;
 }

@@ -1,10 +1,10 @@
-import SVGIcon, { SVGIconProps } from "@/core/icons";
+import { SVGIconProps } from "@/core/icons";
 import * as React from "react";
-import clsx from "clsx";
 import {
   DashboardVehicleCard,
   DashboardVehicleCardProps,
-} from "../../../../core/components/dashboard_vehicle_card";
+} from "@/core/components/dashboard_vehicle_card";
+import { DashboardCard } from "@/core/components/dashboard_card";
 
 export interface VehiclesCardDashboardProps {
   title?: string;
@@ -24,73 +24,10 @@ export const VehiclesCardDashboard = ({
   vehicles,
 }: VehiclesCardDashboardProps) => {
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start",
-        "w-full",
-        "px-[1px] py-[1px]",
-        "rounded-2xl"
-      )}
-      style={{
-        background:
-          "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
-      }}
-    >
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-6",
-          "w-full",
-          "px-4 py-4",
-          "bg-[white]",
-          "rounded-2xl"
-        )}
-      >
-        <div className={clsx("flex items-center justify-between", "w-full")}>
-          <div
-            className={clsx("flex items-center justify-start gap-2", "w-full")}
-          >
-            {/* icon */}
-            <div
-              className={clsx(
-                "flex items-center justify-center",
-                "rounded-full",
-                "w-6 h-6",
-                "bg-[#EFF9EC]"
-              )}
-            >
-              <SVGIcon
-                name={icon as SVGIconProps["name"]}
-                className={clsx("w-3 h-3", "text-[#26531A]")}
-              />
-            </div>
-            <p className={clsx("text-sm text-[#5B5B5B] font-semibold")}>
-              {title}
-            </p>
-          </div>
-
-          {cta && (
-            <button
-              className={clsx(
-                "flex items-center justify-center",
-                "rounded-full",
-                "bg-transparent",
-                "text-xs text-[#26531A] font-medium whitespace-nowrap",
-                "px-1 py-1"
-              )}
-            >
-              {cta?.primary.children}
-            </button>
-          )}
-        </div>
-
-        <div
-          className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
-        >
-          {vehicles?.map((item, index) => {
-            return <DashboardVehicleCard {...item} key={index} />;
-          })}
-        </div>
-      </div>
-    </div>
+    <DashboardCard title={title} icon={icon} cta={cta}>
+      {vehicles?.map((item, index) => {
+        return <DashboardVehicleCard {...item} key={index} />;
+      })}
+    </DashboardCard>
   );
 };

@@ -2,6 +2,7 @@ import { DashboardRideCardProps } from "@/core/components/dashboard_ride_card";
 import { User } from "@/core/models/data";
 import {
   GetDashboardOrganizationSuccessDataResponseInterface,
+  GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInterface,
   GetDashboardSuperAdminSuccessDataResponseInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
 
@@ -24,7 +25,7 @@ export interface DetailOrganizationInitialStateType {
 }
 
 export interface DetailOrganizationUser {
-  data: null | User;
+  data: null | GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInterface;
   loading: {
     is_fetching: boolean;
   };

@@ -5,15 +5,15 @@ import { TableHead } from "@/core/components/table_head";
 import { TableBody } from "@/core/components/table_body";
 import { Table } from "@tanstack/react-table";
 
-export interface DriverCardDashboardProps {
+export interface DashboardDriverCardProps {
   id?: string;
   table?: Table<any> | null;
 }
 
-export const DriverCardDashboard = ({
+export const DashboardDriverCard = ({
   id = "",
   table = null,
-}: DriverCardDashboardProps) => {
+}: DashboardDriverCardProps) => {
   return (
     <div
       id={id}

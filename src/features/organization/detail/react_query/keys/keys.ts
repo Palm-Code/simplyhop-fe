@@ -1,6 +1,8 @@
-import { GetDashboardSuperAdminPayloadRequestInterface } from "@/core/models/rest/simplyhop/dashboard";
+import {
+  GetDashboardSuperAdminPayloadRequestInterface,
+  GetDashboardSuperAdminPerOrganizationIdPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/dashboard";
 import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
-import { GetUserProfileIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 
 export const DetailOrganizationReactQueryKey = {
   GetRidesSearch: (payload?: GetRidesSearchPayloadRequestInterface) => {
@@ -14,9 +16,11 @@ export const DetailOrganizationReactQueryKey = {
       [payload] as const,
     ];
   },
-  GetUserProfileId: (payload?: GetUserProfileIdPayloadRequestInterface) => {
+  GetDashboardSuperAdminPerOrganizationId: (
+    payload?: GetDashboardSuperAdminPerOrganizationIdPayloadRequestInterface
+  ) => {
     return [
-      "DetailOrganizationReactQueryKey.GetUserProfileId",
+      "DetailOrganizationReactQueryKey.GetDashboardSuperAdminPerOrganizationId",
       [payload] as const,
     ];
   },
