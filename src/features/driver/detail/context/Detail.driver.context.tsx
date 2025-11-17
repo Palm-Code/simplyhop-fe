@@ -4,11 +4,30 @@ import {
   DetailDriverActions,
   DetailDriverInitialStateType,
 } from "./Detail.driver.types";
-import { DetailDriverUserReducers } from "./Detail.driver.reducers";
+import {
+  DetailDriverRideReducers,
+  DetailDriverUserReducers,
+  DetailDriverVehicleReducers,
+} from "./Detail.driver.reducers";
 
 const initialState: DetailDriverInitialStateType = {
   user: {
     data: null,
+    loading: {
+      is_fetching: true,
+    },
+  },
+  ride: {
+    data: null,
+    loading: {
+      is_fetching: true,
+    },
+  },
+  vehicle: {
+    data: null,
+    loading: {
+      is_fetching: true,
+    },
   },
 };
 
@@ -21,10 +40,12 @@ const DetailDriverContext = createContext<{
 });
 
 const mainReducer = (
-  { user }: DetailDriverInitialStateType,
+  { user, ride, vehicle }: DetailDriverInitialStateType,
   action: DetailDriverActions
 ) => ({
   user: DetailDriverUserReducers(user, action),
+  ride: DetailDriverRideReducers(ride, action),
+  vehicle: DetailDriverVehicleReducers(vehicle, action),
 });
 
 const DetailDriverProvider = (props: { children: React.ReactNode }) => {

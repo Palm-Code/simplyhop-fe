@@ -60,6 +60,7 @@ export const SimplyHopAPICollectionURL = {
     postUpdate: (path: PutVehicleUpdatePathPayloadRequestInterface) =>
       `/api/vehicle/${path.id}`,
     getMy: () => `/api/vehicle/my`,
+    getList: () => `/api/vehicle`,
     getId: (path: GetVehicleIdPathPayloadRequestInterface) =>
       `/api/vehicle/${path.id}`,
     deleteId: (path: DeleteVehicleIdPathPayloadRequestInterface) =>

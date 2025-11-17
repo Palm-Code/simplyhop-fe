@@ -1,4 +1,4 @@
-import { Meta, User, Vehicle } from "@/core/models/data";
+import { Booking, Meta, User, Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetRidesSearchRequestInterface extends NextApiRequest {
@@ -70,6 +70,7 @@ export interface GetRidesSearchSuccessResponseInterface {
     vehicle: Vehicle;
     user: User;
     url: string | null;
+    bookings: Booking[];
   }[];
 
   redirect: null;

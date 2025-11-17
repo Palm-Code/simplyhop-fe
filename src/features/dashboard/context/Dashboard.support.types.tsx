@@ -6,8 +6,8 @@ import {
   GetDashboardSuperAdminSuccessDataResponseInterface,
   GetDashboardSuperAdminSummarySuccessDataResponseInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
-import { RideCardDashboardProps } from "../../../core/components/dashboard_ride_card";
-import { VehicleCardDashboardProps } from "../../../core/components/dashboard_vehicle_card";
+import { DashboardRideCardProps } from "../../../core/components/dashboard_ride_card";
+import { DashboardVehicleCardProps } from "../../../core/components/dashboard_vehicle_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -36,15 +36,15 @@ export interface DashboardSupportSummary {
 export interface DashboardSupportSections {
   personal: {
     ride: {
-      data: RideCardDashboardProps[] | null;
+      data: DashboardRideCardProps[] | null;
     };
     vehicle: {
-      data: VehicleCardDashboardProps[] | null;
+      data: DashboardVehicleCardProps[] | null;
     };
   };
   organization_admin: {
     ride: {
-      data: RideCardDashboardProps[] | null;
+      data: DashboardRideCardProps[] | null;
     };
     driver: {
       data: GetDashboardOrganizationSuccessDataResponseInterface[] | null;
