@@ -7,26 +7,26 @@ import {
   GetRidesSearchPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
 
-export const MyListTripReactQueryKey = {
+export const ListTripReactQueryKey = {
   GetRidesSearch: (payload?: GetRidesSearchPayloadRequestInterface) => {
-    return ["MyListTripReactQueryKey.GetRidesSearch", [payload] as const];
+    return ["ListTripReactQueryKey.GetRidesSearch", [payload] as const];
   },
   GetBookingList: (payload?: GetBookingListPayloadRequestInterface) => {
-    return ["MyListTripReactQueryKey.GetBookingList", [payload] as const];
+    return ["ListTripReactQueryKey.GetBookingList", [payload] as const];
   },
   GetRidesId: (payload?: GetRidesIdPayloadRequestInterface) => {
-    return ["MyListTripReactQueryKey.GetRidesId", [payload] as const];
+    return ["ListTripReactQueryKey.GetRidesId", [payload] as const];
   },
   GetBookingId: (payload?: GetBookingIdPayloadRequestInterface) => {
-    return ["MyListTripReactQueryKey.GetBookingId", [payload] as const];
+    return ["ListTripReactQueryKey.GetBookingId", [payload] as const];
   },
   DeleteRidesId: () => {
-    return ["MyListTripReactQueryKey.DeleteRidesId"];
+    return ["ListTripReactQueryKey.DeleteRidesId"];
   },
   PostBookingReject: () => {
-    return ["MyListTripReactQueryKey.PostBookingReject"];
+    return ["ListTripReactQueryKey.PostBookingReject"];
   },
   PostRidesArchive: () => {
-    return ["MyListTripReactQueryKey.PostRidesArchive"];
+    return ["ListTripReactQueryKey.PostRidesArchive"];
   },
 };

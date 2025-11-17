@@ -1,1 +1,1 @@
-export * from "./MyList.trip.container";
+export * from "./List.trip.container";

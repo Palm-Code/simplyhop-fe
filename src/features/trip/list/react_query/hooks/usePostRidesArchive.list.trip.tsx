@@ -8,7 +8,7 @@ import {
   PostRidesArchiveSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import { fetchPostRidesArchive } from "@/core/services/rest/simplyhop/rides";
-import { MyListTripReactQueryKey } from "../keys";
+import { ListTripReactQueryKey } from "../keys";
 import { useSearchParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import { MyListTripContext } from "../../context";
@@ -35,7 +35,7 @@ export const usePostRidesArchive = () => {
     PostRidesArchiveSuccessResponseInterface,
     PostRidesArchiveErrorResponseInterface
   >({
-    mutationKey: MyListTripReactQueryKey.PostRidesArchive(),
+    mutationKey: ListTripReactQueryKey.PostRidesArchive(),
     mutationFn: () => {
       return fetchPostRidesArchive(payload);
     },

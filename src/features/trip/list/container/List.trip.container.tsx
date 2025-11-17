@@ -17,7 +17,7 @@ import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_ca
 import { RideFilterMyListTrip } from "../fragments/ride_filter";
 import { CompletedRideMyListTrip } from "../fragments/complete_ride_confirmation";
 
-export const MyListTripContainer = () => {
+export const ListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -39,10 +39,8 @@ export const MyListTripContainer = () => {
             )}
           >
             <HeaderMyListTrip />
-            <React.Suspense fallback={<div />}>
-              <TabMyListTrip />
-              <RideFilterMyListTrip />
-            </React.Suspense>
+            <TabMyListTrip />
+            <RideFilterMyListTrip />
 
             {type === "book" ? (
               <>

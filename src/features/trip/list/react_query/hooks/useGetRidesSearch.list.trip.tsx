@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { MyListTripReactQueryKey } from "../keys";
+import { ListTripReactQueryKey } from "../keys";
 
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
@@ -48,7 +48,7 @@ export const useGetRidesSearch = () => {
     GetRidesSearchSuccessResponseInterface,
     GetRidesSearchErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetRidesSearch(payload),
+    queryKey: ListTripReactQueryKey.GetRidesSearch(payload),
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },

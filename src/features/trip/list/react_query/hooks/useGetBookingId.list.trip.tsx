@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { MyListTripReactQueryKey } from "../keys";
+import { ListTripReactQueryKey } from "../keys";
 
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
@@ -34,7 +34,7 @@ export const useGetBookingId = () => {
     GetBookingIdSuccessResponseInterface,
     GetBookingIdErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetBookingId(),
+    queryKey: ListTripReactQueryKey.GetBookingId(),
     queryFn: () => {
       return fetchGetBookingId(payload);
     },

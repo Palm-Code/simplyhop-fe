@@ -1,34 +1,36 @@
 import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
-import { MyListTripReactQueryKey } from "../keys";
-import {
-  DeleteRidesIdErrorResponseInterface,
-  DeleteRidesIdPayloadRequestInterface,
-  DeleteRidesIdSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/rides";
-import { fetchDeleteRidesId } from "@/core/services/rest/simplyhop/rides";
+
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import {
+  PostBookingRejectErrorResponseInterface,
+  PostBookingRejectPayloadRequestInterface,
+  PostBookingRejectSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/booking";
+import { fetchPostBookingReject } from "@/core/services/rest/simplyhop/booking";
+import { ListTripReactQueryKey } from "../keys";
 import { useSearchParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
-export const useDeleteRidesId = () => {
+export const usePostBookingReject = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const searchParams = useSearchParams();
-  const id = searchParams.get("ride_id");
+  const bookingId = searchParams.get("booking_id");
 
-  const payload: DeleteRidesIdPayloadRequestInterface = {
+  const payload: PostBookingRejectPayloadRequestInterface = {
     path: {
-      id: String(id),
+      id: !bookingId ? "0" : String(bookingId),
     },
   };
+
   const mutation = useMutation<
-    DeleteRidesIdSuccessResponseInterface,
-    DeleteRidesIdErrorResponseInterface
+    PostBookingRejectSuccessResponseInterface,
+    PostBookingRejectErrorResponseInterface
   >({
-    mutationKey: MyListTripReactQueryKey.DeleteRidesId(),
+    mutationKey: ListTripReactQueryKey.PostBookingReject(),
     mutationFn: () => {
-      return fetchDeleteRidesId(payload);
+      return fetchPostBookingReject(payload);
     },
     onError(error) {
       dispatchGlobal({
