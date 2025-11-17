@@ -5,18 +5,24 @@ import clsx from "clsx";
 export interface TableBodyProps {
   table?: Table<any> | null;
   tdClassName?: string;
+  onRowClick?: (row: any) => void;
 }
 
 export const TableBody: React.FC<TableBodyProps> = ({
   table = null,
   tdClassName,
+  onRowClick,
 }: TableBodyProps) => {
   return (
     <tbody>
       {table !== null &&
         table.getRowModel().rows.map((row) => {
           return (
-            <tr key={row.id} role={"table-row"}>
+            <tr
+              key={row.id}
+              role={"table-row"}
+              onClick={() => onRowClick?.(row.original)}
+            >
               {row.getVisibleCells().map((cell) => {
                 return (
                   <td

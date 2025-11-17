@@ -3,51 +3,46 @@ import * as React from "react";
 import clsx from "clsx";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
-import { getDictionaries } from "../../i18n";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
-import { usePostRidesArchive } from "../../react_query/hooks/usePostRidesArchive.list.trip";
 import { MoonLoader } from "@/core/components/moon_loader";
 
-export const CompletedRideMyListTrip = () => {
-  const dictionaries = getDictionaries();
+export interface UserUnblockConfirmationProps {
+  // Modal state
+  isOpen: boolean;
+  onClose: () => void;
+  
+  // Content
+  title: string;
+  description: string;
+  
+  // Buttons
+  cancelButton: {
+    text: string;
+    onClick: () => void;
+  };
+  
+  confirmButton: {
+    text: string;
+    onClick: () => void;
+    isLoading?: boolean;
+    disabled?: boolean;
+  };
+  
+  // Optional styling
+  modalClassName?: string;
+  contentClassName?: string;
+}
 
+export const UserUnblockConfirmation = ({
+  isOpen,
+  onClose,
+  title,
+  description,
+  cancelButton,
+  confirmButton,
+  modalClassName,
+  contentClassName,
+}: UserUnblockConfirmationProps) => {
   const { isLg } = useTailwindBreakpoint();
-  const { state, dispatch } = React.useContext(MyListTripContext);
-
-  const { mutate: postRidesArchive, isPending: isPendingRidesArchive } =
-    usePostRidesArchive();
-
-  const handleClose = () => {
-    dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
-      payload: {
-        ...state.complete_ride_confirmation,
-        is_open: false,
-      },
-    });
-  };
-
-  const handleClickCancelConfirmRideComplete = () => {
-    dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
-      payload: {
-        ...state.complete_ride_confirmation,
-        is_open: false,
-      },
-    });
-  };
-
-  const handleClickOKConfirmRideComplete = () => {
-    dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
-      payload: {
-        ...state.complete_ride_confirmation,
-        is_open: false,
-      },
-    });
-
-    postRidesArchive();
-  };
 
   return (
     <AdaptiveModal
@@ -57,16 +52,18 @@ export const CompletedRideMyListTrip = () => {
         "h-[100vh] lg:!h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-hidden",
-        "!px-[0rem] !py-[0rem]"
+        "!px-[0rem] !py-[0rem]",
+        modalClassName
       )}
-      open={state.complete_ride_confirmation.is_open}
-      onClose={handleClose}
+      open={isOpen}
+      onClose={onClose}
     >
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full",
-          "!px-[2rem] !py-[2rem]"
+          "!px-[2rem] !py-[2rem]",
+          contentClassName
         )}
       >
         <div
@@ -76,16 +73,17 @@ export const CompletedRideMyListTrip = () => {
           )}
         >
           <p className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
-            {dictionaries.complete_ride_confirmation.title}
+            {title}
           </p>
           <span
             className={clsx(
               "text-[1rem] text-[#5B5B5B] font-normal text-center"
             )}
           >
-            {dictionaries.complete_ride_confirmation.description}
+            {description}
           </span>
         </div>
+        
         {/* actions */}
         <div
           className={clsx(
@@ -105,25 +103,26 @@ export const CompletedRideMyListTrip = () => {
               "box-border",
               "cursor-pointer"
             )}
-            onClick={handleClickCancelConfirmRideComplete}
+            onClick={cancelButton.onClick}
           >
-            {dictionaries.complete_ride_confirmation.cta.cancel.children}
+            {cancelButton.text}
           </button>
+          
           <button
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
               "bg-[#33CC33] disabled:bg-[#F6F6F6]",
+              "text-[#232323] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
               "cursor-pointer"
             )}
-            disabled={isPendingRidesArchive}
-            onClick={handleClickOKConfirmRideComplete}
+            disabled={confirmButton.disabled || confirmButton.isLoading}
+            onClick={confirmButton.onClick}
           >
-            {isPendingRidesArchive && <MoonLoader size={20} color={"white"} />}
-            {dictionaries.complete_ride_confirmation.cta.ok.children}
+            {confirmButton.isLoading && <MoonLoader size={20} color={"white"} />}
+            {confirmButton.text}
           </button>
         </div>
       </div>
