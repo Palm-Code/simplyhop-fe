@@ -103,6 +103,12 @@ export const DashboardVehicleCard = ({
     },
   },
 }: DashboardVehicleCardProps) => {
+  const [imageError, setImageError] = React.useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <div
       id={id}
@@ -129,7 +135,18 @@ export const DashboardVehicleCard = ({
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
           )}
         >
-          <Image {...car.image} className={clsx("w-[128px]")} />
+          {imageError ? (
+            <SVGIcon
+              name="Car"
+              className={clsx("w-[128px] h-[128px]", "text-icon-primary-subdued")}
+            />
+          ) : (
+            <Image 
+              {...car.image} 
+              className={clsx("w-[128px]")} 
+              onError={handleImageError}
+            />
+          )}
         </div>
 
         <div
