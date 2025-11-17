@@ -23,12 +23,12 @@ dayjs.extend(utc);
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
-  const { id } = useParams();
+  const { driver_id } = useParams();
   const { state, dispatch } = React.useContext(DetailDriverContext);
 
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
-      "filter[user_id]": String(id ?? "0"),
+      "filter[user_id]": String(driver_id ?? "0"),
       include: "vehicle.brand,user,bookings,bookings.user",
       status: "upcoming",
       departure_time__gte: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"), // "2025-03-31 09:30:00";
@@ -44,7 +44,7 @@ export const useGetRidesSearch = () => {
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
-    enabled: !!id,
+    enabled: !!driver_id,
   });
 
   React.useEffect(() => {

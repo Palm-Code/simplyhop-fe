@@ -1,5 +1,51 @@
 {
   "title": "Dashboard",
+  "user": {
+    "summary": {
+      "items": [
+        {
+          "id": "trips",
+          "name": "Trips"
+        },
+        {
+          "id": "ratings",
+          "name": "Ratings"
+        },
+        {
+          "id": "passengers",
+          "name": "Passengers"
+        }
+      ]
+    },
+    "information": {
+      "email": {
+        "name": "Email"
+      },
+      "first_name": {
+        "name": "Vorname"
+      },
+      "last_name": {
+        "name": "Nachname"
+      },
+      "gender": {
+        "name": "Geschlecht"
+      },
+      "city": {
+        "name": "Stadt"
+      },
+      "phonenumber": {
+        "name": "Telefon-Nummer"
+      },
+      "about_me": {
+        "name": "Über mich"
+      },
+      "cta": {
+        "edit": {
+          "children": "Anpassen"
+        }
+      }
+    }
+  },
   "upcoming_rides": {
     "title": "Bevorstehende Fahrten",
     "icon": "CarFront",

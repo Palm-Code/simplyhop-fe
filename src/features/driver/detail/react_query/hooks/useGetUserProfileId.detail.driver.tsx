@@ -13,10 +13,10 @@ import { useParams } from "next/navigation";
 
 export const useGetUserProfileId = () => {
   const { state, dispatch } = React.useContext(DetailDriverContext);
-  const { id } = useParams();
+  const { driver_id } = useParams();
   const payload: GetUserProfileIdPayloadRequestInterface = {
     path: {
-      id: String(id ?? "0"),
+      id: String(driver_id ?? "0"),
     },
   };
   const query = useQuery<
@@ -27,7 +27,7 @@ export const useGetUserProfileId = () => {
     queryFn: () => {
       return fetchGetUserProfileId(payload);
     },
-    enabled: !!id,
+    enabled: !!driver_id,
   });
 
   React.useEffect(() => {

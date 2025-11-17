@@ -17,11 +17,11 @@ import { useParams } from "next/navigation";
 export const useGetVehicleList = () => {
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(DetailDriverContext);
-  const { id } = useParams();
+  const { driver_id } = useParams();
   const payload: GetVehicleListPayloadRequestInterface = {
     params: {
       include: "brand",
-      "filter[user_id]": String(id ?? "0"),
+      "filter[user_id]": String(driver_id ?? "0"),
     },
   };
   const query = useQuery<
@@ -32,7 +32,7 @@ export const useGetVehicleList = () => {
     queryFn: () => {
       return fetchGetVehicleList(payload);
     },
-    enabled: !!id,
+    enabled: !!driver_id,
   });
 
   React.useEffect(() => {
