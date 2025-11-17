@@ -191,92 +191,96 @@ export const UserProfileModal = ({
           )}
 
           {/* detail */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-              "w-full",
-              "bg-[white]",
-              "px-[0.5rem] py-[0.5rem]",
-              "rounded-[0.5rem]"
-            )}
-          >
-            {user.detail.map((item, index) => (
-              <div
-                key={index}
-                className={clsx(
-                  "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]",
-                  "w-full"
-                )}
-              >
-                <SVGIcon
-                  name={item.icon as SVGIconProps["name"]}
-                  className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
-                />
+          {!!user.detail.length && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                "w-full",
+                "bg-[white]",
+                "px-[0.5rem] py-[0.5rem]",
+                "rounded-[0.5rem]"
+              )}
+            >
+              {user.detail.map((item, index) => (
                 <div
+                  key={index}
                   className={clsx(
-                    "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                    "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]",
                     "w-full"
                   )}
                 >
-                  <p
-                    className={clsx(
-                      "text-[0.75rem] text-[#606060] font-normal"
-                    )}
-                  >
-                    {item.name}
-                  </p>
-                  <p
-                    className={clsx(
-                      "text-[0.875rem] text-[#232323] font-medium"
-                    )}
-                  >
-                    {item.value}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* actions */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-              "w-full",
-              "bg-white",
-              "px-[0.5rem] py-[0.5rem]",
-              "rounded-[0.5rem]"
-            )}
-          >
-            {user.cta.map((item, index) => (
-              <>
-                <button
-                  key={`cta-${index}`}
-                  className={clsx(
-                    "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                    "w-full",
-                    "px-[0.75rem] py-[0.75rem]",
-                    "rounded-[0.375rem]",
-                    "text-[1rem] text-[#B30606] font-normal",
-                    "cursor-pointer"
-                  )}
-                  onClick={item.onClick}
-                >
                   <SVGIcon
                     name={item.icon as SVGIconProps["name"]}
-                    className={clsx("w-[1rem] h-[1rem]", "text-[#C50707]")}
+                    className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
                   />
-                  {item.label}
-                </button>
-
-                {index < user.cta.length - 1 && (
                   <div
-                    key={`divider-${index}`}
-                    className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")}
-                  />
-                )}
-              </>
-            ))}
-          </div>
+                    className={clsx(
+                      "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                      "w-full"
+                    )}
+                  >
+                    <p
+                      className={clsx(
+                        "text-[0.75rem] text-[#606060] font-normal"
+                      )}
+                    >
+                      {item.name}
+                    </p>
+                    <p
+                      className={clsx(
+                        "text-[0.875rem] text-[#232323] font-medium"
+                      )}
+                    >
+                      {item.value}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* actions */}
+          {!!user.cta.length && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                "w-full",
+                "bg-white",
+                "px-[0.5rem] py-[0.5rem]",
+                "rounded-[0.5rem]"
+              )}
+            >
+              {user.cta.map((item, index) => (
+                <>
+                  <button
+                    key={`cta-${index}`}
+                    className={clsx(
+                      "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
+                      "w-full",
+                      "px-[0.75rem] py-[0.75rem]",
+                      "rounded-[0.375rem]",
+                      "text-[1rem] text-[#B30606] font-normal",
+                      "cursor-pointer"
+                    )}
+                    onClick={item.onClick}
+                  >
+                    <SVGIcon
+                      name={item.icon as SVGIconProps["name"]}
+                      className={clsx("w-[1rem] h-[1rem]", "text-[#C50707]")}
+                    />
+                    {item.label}
+                  </button>
+
+                  {index < user.cta.length - 1 && (
+                    <div
+                      key={`divider-${index}`}
+                      className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")}
+                    />
+                  )}
+                </>
+              ))}
+            </div>
+          )}
         </div>
         {/*  */}
       </div>
