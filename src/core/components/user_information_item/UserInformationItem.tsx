@@ -1,15 +1,15 @@
 import * as React from "react";
 import clsx from "clsx";
 
-export interface ItemAccountSupportProps {
+export interface UserInformationItemProps {
   name?: string;
   value?: string;
 }
 
-export const ItemAccountSupport = ({
+export const UserInformationItem = ({
   name = "",
   value = "",
-}: ItemAccountSupportProps) => {
+}: UserInformationItemProps) => {
   return (
     <div
       className={clsx(

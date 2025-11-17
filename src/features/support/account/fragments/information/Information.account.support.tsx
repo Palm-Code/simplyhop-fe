@@ -47,56 +47,62 @@ export const InformationAccountSupport = () => {
   return (
     <UserInformationCard
       summary={summaryItems}
-      displayName={formatDisplayName({
-        first_name: userState.profile?.first_name,
-        email: userState.profile?.email,
-      })}
-      avatar={{
-        src: userState.profile?.avatar || undefined,
+      header={{
+        avatar: {
+          src: userState.profile?.avatar || undefined,
+        },
+        displayName: formatDisplayName({
+          first_name: userState.profile?.first_name,
+          email: userState.profile?.email,
+        }),
+        cta: {
+          text: dictionaries.information.cta.edit.children,
+          href: AppCollectionURL.private.support_account_edit(),
+        },
       }}
-      editButton={{
-        text: dictionaries.information.cta.edit.children,
-        href: AppCollectionURL.private.support_account_edit(),
-      }}
-      email={{
-        label: dictionaries.information.email.name,
-        value: !userState.profile?.email.length ? "-" : userState.profile.email,
-      }}
-      firstName={{
-        label: dictionaries.information.first_name.name,
-        value: !userState.profile?.first_name.length
-          ? "-"
-          : userState.profile.first_name,
-      }}
-      lastName={{
-        label: dictionaries.information.last_name.name,
-        value: !userState.profile?.last_name.length
-          ? "-"
-          : userState.profile.last_name,
-      }}
-      gender={{
-        label: dictionaries.information.gender.name,
-        value: !userState.profile?.gender?.length
-          ? "-"
-          : globalDictionaries.personal_information.gender.options.items.find(
-              (item) => item.id === userState.profile?.gender
-            )?.name ?? "-",
-      }}
-      city={{
-        label: dictionaries.information.city.name,
-        value: !userState.profile?.city.length ? "-" : userState.profile.city,
-      }}
-      phoneNumber={{
-        label: dictionaries.information.phonenumber.name,
-        value: !userState.profile?.phonenumber.length
-          ? "-"
-          : userState.profile.phonenumber,
-      }}
-      aboutMe={{
-        label: dictionaries.information.about_me.name,
-        value: !userState.profile?.about_me.length
-          ? "-"
-          : userState.profile.about_me,
+      detail={{
+        email: {
+          label: dictionaries.information.email.name,
+          value: !userState.profile?.email.length
+            ? "-"
+            : userState.profile.email,
+        },
+        firstName: {
+          label: dictionaries.information.first_name.name,
+          value: !userState.profile?.first_name.length
+            ? "-"
+            : userState.profile.first_name,
+        },
+        lastName: {
+          label: dictionaries.information.last_name.name,
+          value: !userState.profile?.last_name.length
+            ? "-"
+            : userState.profile.last_name,
+        },
+        gender: {
+          label: dictionaries.information.gender.name,
+          value: !userState.profile?.gender?.length
+            ? "-"
+            : globalDictionaries.personal_information.gender.options.items.find(
+                (item) => item.id === userState.profile?.gender
+              )?.name ?? "-",
+        },
+        city: {
+          label: dictionaries.information.city.name,
+          value: !userState.profile?.city.length ? "-" : userState.profile.city,
+        },
+        phoneNumber: {
+          label: dictionaries.information.phonenumber.name,
+          value: !userState.profile?.phonenumber.length
+            ? "-"
+            : userState.profile.phonenumber,
+        },
+        aboutMe: {
+          label: dictionaries.information.about_me.name,
+          value: !userState.profile?.about_me.length
+            ? "-"
+            : userState.profile.about_me,
+        },
       }}
     />
   );

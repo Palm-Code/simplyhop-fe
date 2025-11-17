@@ -2,7 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { Avatar } from "@/core/components/avatar";
-import { ItemAccountSupport } from "@/features/support/account/components/item";
+import { UserInformationItem } from "@/core/components/user_information_item";
 import SVGIcon from "@/core/icons";
 
 export interface UserInformationCardProps {
@@ -11,55 +11,55 @@ export interface UserInformationCardProps {
     id: string;
     name: string;
   }[];
-  // Avatar & Header
-  avatar?: {
-    src?: string;
-    className?: string;
+  header: {
+    avatar?: {
+      src?: string;
+      className?: string;
+    };
+    displayName: string;
+    cta: {
+      text: string;
+      href: string;
+    };
   };
+  detail: {
+    email: {
+      label: string;
+      value: string;
+    };
 
-  displayName: string;
+    firstName: {
+      label: string;
+      value: string;
+    };
 
-  // Edit Button
-  editButton: {
-    text: string;
-    href: string;
+    lastName: {
+      label: string;
+      value: string;
+    };
+
+    gender: {
+      label: string;
+      value: string;
+    };
+
+    city: {
+      label: string;
+      value: string;
+    };
+
+    phoneNumber: {
+      label: string;
+      value: string;
+    };
+
+    aboutMe: {
+      label: string;
+      value: string;
+    };
   };
 
   // User Information Fields (dengan structure label + value)
-  email: {
-    label: string;
-    value: string;
-  };
-
-  firstName: {
-    label: string;
-    value: string;
-  };
-
-  lastName: {
-    label: string;
-    value: string;
-  };
-
-  gender: {
-    label: string;
-    value: string;
-  };
-
-  city: {
-    label: string;
-    value: string;
-  };
-
-  phoneNumber: {
-    label: string;
-    value: string;
-  };
-
-  aboutMe: {
-    label: string;
-    value: string;
-  };
 
   // Optional styling props
   containerClassName?: string;
@@ -67,16 +67,8 @@ export interface UserInformationCardProps {
 
 export const UserInformationCard = ({
   summary = [],
-  avatar,
-  displayName,
-  editButton,
-  email,
-  firstName,
-  lastName,
-  gender,
-  city,
-  phoneNumber,
-  aboutMe,
+  header: { avatar, displayName, cta },
+  detail: { email, firstName, lastName, gender, city, phoneNumber, aboutMe },
   containerClassName,
 }: UserInformationCardProps) => {
   return (
@@ -108,7 +100,7 @@ export const UserInformationCard = ({
           </h2>
         </div>
 
-        <Link href={editButton.href}>
+        <Link href={cta.href}>
           <button
             className={clsx(
               "flex items-center justify-center",
@@ -119,7 +111,7 @@ export const UserInformationCard = ({
               "text-[#33CC33] text-xs font-semibold"
             )}
           >
-            {editButton.text}
+            {cta.text}
           </button>
         </Link>
       </div>
@@ -173,7 +165,7 @@ export const UserInformationCard = ({
         </div>
       )}
 
-      <ItemAccountSupport name={email.label} value={email.value} />
+      <UserInformationItem name={email.label} value={email.value} />
 
       <div
         className={clsx(
@@ -181,17 +173,17 @@ export const UserInformationCard = ({
           "w-full"
         )}
       >
-        <ItemAccountSupport name={firstName.label} value={firstName.value} />
-        <ItemAccountSupport name={lastName.label} value={lastName.value} />
+        <UserInformationItem name={firstName.label} value={firstName.value} />
+        <UserInformationItem name={lastName.label} value={lastName.value} />
       </div>
 
-      <ItemAccountSupport name={gender.label} value={gender.value} />
+      <UserInformationItem name={gender.label} value={gender.value} />
 
-      <ItemAccountSupport name={city.label} value={city.value} />
+      <UserInformationItem name={city.label} value={city.value} />
 
-      <ItemAccountSupport name={phoneNumber.label} value={phoneNumber.value} />
+      <UserInformationItem name={phoneNumber.label} value={phoneNumber.value} />
 
-      <ItemAccountSupport name={aboutMe.label} value={aboutMe.value} />
+      <UserInformationItem name={aboutMe.label} value={aboutMe.value} />
     </div>
   );
 };
