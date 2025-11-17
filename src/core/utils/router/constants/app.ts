@@ -23,5 +23,7 @@ export const AppCollectionURL = {
     support_account_edit: () => "/support/konto/edit",
     support_payment: () => "/support/abonnement",
     support_dashboard: () => "/support/dashboard",
+    driver: () => "/support/driver",
+    driverDetail: (path: { id: string }) => `/support/driver/${path.id}`,
   },
 };

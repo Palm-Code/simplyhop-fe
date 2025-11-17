@@ -32,6 +32,7 @@
   },
   "user_profile": {
     "title": "Profile",
+
     "summary": {
       "items": [
         {
@@ -69,6 +70,9 @@
     },
 
     "cta": {
+      "open": {
+        "label": "Profil öffnen"
+      },
       "items": [
         {
           "id": "delete_chat",

@@ -4,9 +4,12 @@ import { ListDriverActionEnum, ListDriverContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfileModal";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { AppCollectionURL } from "@/core/utils/router/constants";
+import { useRouter } from "next/navigation";
 
 export const UserProfileListDriver = () => {
   const dictionaries = getDictionaries();
+  const router = useRouter();
   const { state, dispatch } = React.useContext(ListDriverContext);
   const isOpen = state.user_profile.is_open;
   const handleClose = () => {
@@ -108,11 +111,25 @@ export const UserProfileListDriver = () => {
   //   };
   // });
 
+  const handleClickOpen = () => {
+    router.push(
+      AppCollectionURL.private.driverDetail({
+        id: state.user_profile.user_id ?? "",
+      })
+    );
+  };
+
   return (
     <UserProfileModal
       isOpen={isOpen}
       onClose={handleClose}
       title={dictionaries.user_profile.title}
+      cta={{
+        open: {
+          label: dictionaries.user_profile.cta.open.label,
+          onClick: handleClickOpen,
+        },
+      }}
       user={{
         avatar: {
           src: state.user_profile.data?.avatar,

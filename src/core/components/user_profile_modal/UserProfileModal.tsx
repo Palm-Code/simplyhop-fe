@@ -10,6 +10,12 @@ export interface UserProfileModalProps {
   isOpen?: boolean;
   onClose?: () => void;
   title?: string;
+  cta?: {
+    open: {
+      label: string;
+      onClick: () => void;
+    };
+  };
   user?: {
     avatar?: AvatarProps;
     name: string;
@@ -36,8 +42,8 @@ export interface UserProfileModalProps {
 export const UserProfileModal = ({
   isOpen = false,
   onClose,
-
   title,
+  cta,
   user = {
     avatar: undefined,
     name: "",
@@ -121,17 +127,43 @@ export const UserProfileModal = ({
 
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
+                "grid grid-cols-1 place-content-center place-items-center",
                 "w-full"
               )}
             >
-              <p className={clsx("text-[1rem] text-[black] font-semibold")}>
-                {user.name}
-              </p>
-              <p className={clsx("text-[0.875rem] text-[#767676] font-medium")}>
-                {user.phone}
-              </p>
+              <div
+                className={clsx(
+                  "grid grid-cols-1 place-content-center place-items-center",
+                  "w-full"
+                )}
+              >
+                <p className={clsx("text-[1rem] text-[black] font-semibold")}>
+                  {user.name}
+                </p>
+                <p
+                  className={clsx("text-[0.875rem] text-[#767676] font-medium")}
+                >
+                  {user.phone}
+                </p>
+              </div>
             </div>
+
+            {/* detail */}
+            {cta?.open && (
+              <button
+                className={clsx(
+                  "flex items-center justify-center",
+                  "px-4 py-2",
+                  "rounded-md",
+                  "bg-[#33CC33]",
+                  "text-text-primary text-xs font-semibold",
+                  "cursor-pointer"
+                )}
+                onClick={cta.open.onClick}
+              >
+                {cta.open.label}
+              </button>
+            )}
           </div>
 
           {/* summary */}
