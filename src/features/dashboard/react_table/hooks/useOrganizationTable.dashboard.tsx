@@ -14,6 +14,7 @@ import { getDictionaries } from "../../i18n";
 import "dayjs/locale/de";
 import { GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import SVGIcon from "@/core/icons";
 
 export const useOrganizationTableDashboard = () => {
   const { state } = useContext(DashboardSupportContext);
@@ -54,15 +55,31 @@ export const useOrganizationTableDashboard = () => {
                   "w-full"
                 )}
               >
-                <img
-                  src={cellProps.row.original.organization.logo}
-                  className={clsx(
-                    "w-4 h-4",
-                    "rounded-full",
-                    "object-cover object-center"
-                  )}
-                  alt={cellProps.row.original.organization.email}
-                />
+                {!cellProps.row.original.organization.logo.length ? (
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "rounded-full",
+                      "w-3 h-3",
+                      "bg-[#EFF9EC]"
+                    )}
+                  >
+                    <SVGIcon
+                      name={"Building2"}
+                      className={clsx("w-3 h-3", "text-[#26531A]")}
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={cellProps.row.original.organization.logo}
+                    className={clsx(
+                      "w-4 h-4",
+                      "rounded-full",
+                      "object-cover object-center"
+                    )}
+                    alt={cellProps.row.original.organization.email}
+                  />
+                )}
 
                 <p
                   className={clsx(

@@ -78,14 +78,10 @@ export const EventModal = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("EventModal handleSubmit called with formData:", formData);
-    
+
     if (validateForm()) {
-      console.log("Form validation passed, calling onSave with:", formData);
       onSave(formData);
       onClose();
-    } else {
-      console.log("Form validation failed, errors:", errors);
     }
   };
 
@@ -136,8 +132,18 @@ export const EventModal = ({
               onClick={onClose}
               className="text-gray-400 hover:text-gray-600 transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -152,7 +158,9 @@ export const EventModal = ({
               <input
                 type="text"
                 value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
                 className={clsx(
                   "w-full px-3 py-2 border rounded-md",
                   "focus:outline-none focus:ring-2 focus:ring-blue-500",
@@ -160,7 +168,9 @@ export const EventModal = ({
                 )}
                 placeholder="Enter event title"
               />
-              {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
+              {errors.title && (
+                <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+              )}
             </div>
 
             {/* Description */}
@@ -170,7 +180,9 @@ export const EventModal = ({
               </label>
               <textarea
                 value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter event description"
@@ -185,7 +197,9 @@ export const EventModal = ({
               <input
                 type="date"
                 value={dayjs(formData.date).format("YYYY-MM-DD")}
-                onChange={(e) => setFormData({ ...formData, date: new Date(e.target.value) })}
+                onChange={(e) =>
+                  setFormData({ ...formData, date: new Date(e.target.value) })
+                }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -196,10 +210,15 @@ export const EventModal = ({
                 type="checkbox"
                 id="allDay"
                 checked={formData.isAllDay}
-                onChange={(e) => setFormData({ ...formData, isAllDay: e.target.checked })}
+                onChange={(e) =>
+                  setFormData({ ...formData, isAllDay: e.target.checked })
+                }
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
-              <label htmlFor="allDay" className="ml-2 block text-sm text-gray-700">
+              <label
+                htmlFor="allDay"
+                className="ml-2 block text-sm text-gray-700"
+              >
                 All day event
               </label>
             </div>
@@ -214,7 +233,9 @@ export const EventModal = ({
                   <input
                     type="time"
                     value={formData.startTime}
-                    onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, startTime: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
@@ -225,14 +246,20 @@ export const EventModal = ({
                   <input
                     type="time"
                     value={formData.endTime}
-                    onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, endTime: e.target.value })
+                    }
                     className={clsx(
                       "w-full px-3 py-2 border rounded-md",
                       "focus:outline-none focus:ring-2 focus:ring-blue-500",
                       errors.endTime ? "border-red-500" : "border-gray-300"
                     )}
                   />
-                  {errors.endTime && <p className="text-red-500 text-sm mt-1">{errors.endTime}</p>}
+                  {errors.endTime && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.endTime}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -247,7 +274,9 @@ export const EventModal = ({
                   <button
                     key={color.value}
                     type="button"
-                    onClick={() => setFormData({ ...formData, color: color.value as any })}
+                    onClick={() =>
+                      setFormData({ ...formData, color: color.value as any })
+                    }
                     className={clsx(
                       "flex items-center gap-2 px-3 py-2 rounded-md text-sm",
                       "border-2 transition-colors",
@@ -256,7 +285,9 @@ export const EventModal = ({
                         : "border-gray-200 hover:border-gray-300"
                     )}
                   >
-                    <div className={clsx("w-4 h-4 rounded-full", color.color)} />
+                    <div
+                      className={clsx("w-4 h-4 rounded-full", color.color)}
+                    />
                     {color.label}
                   </button>
                 ))}
@@ -271,7 +302,9 @@ export const EventModal = ({
                 </label>
                 <select
                   value={formData.calendarId}
-                  onChange={(e) => setFormData({ ...formData, calendarId: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, calendarId: e.target.value })
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   {calendars.map((calendar) => (

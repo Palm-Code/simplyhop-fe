@@ -2,7 +2,12 @@
 import * as React from "react";
 import clsx from "clsx";
 import dayjs from "dayjs";
-import { CalendarProps, CalendarView, CalendarEvent, EventFormData } from "./types";
+import {
+  CalendarProps,
+  CalendarView,
+  CalendarEvent,
+  EventFormData,
+} from "./types";
 import { CalendarHeader } from "./CalendarHeader";
 import { CalendarGrid } from "./CalendarGrid";
 import { WeekView } from "./WeekView";
@@ -26,22 +31,26 @@ export const Calendar = ({
   className,
 }: CalendarProps) => {
   // State for current displayed date (for navigation)
-  const [currentDate, setCurrentDate] = React.useState(() => 
-    selectedDate || new Date()
+  const [currentDate, setCurrentDate] = React.useState(
+    () => selectedDate || new Date()
   );
-  
+
   // State for current view
   const [currentView, setCurrentView] = React.useState<CalendarView>(view);
-  
+
   // State for internal selected date
-  const [internalSelectedDate, setInternalSelectedDate] = React.useState<Date | undefined>(
-    selectedDate
-  );
+  const [internalSelectedDate, setInternalSelectedDate] = React.useState<
+    Date | undefined
+  >(selectedDate);
 
   // Modal states
   const [isEventModalOpen, setIsEventModalOpen] = React.useState(false);
-  const [editingEvent, setEditingEvent] = React.useState<CalendarEvent | undefined>();
-  const [modalSelectedDate, setModalSelectedDate] = React.useState<Date | undefined>();
+  const [editingEvent, setEditingEvent] = React.useState<
+    CalendarEvent | undefined
+  >();
+  const [modalSelectedDate, setModalSelectedDate] = React.useState<
+    Date | undefined
+  >();
 
   // Update current date when selectedDate prop changes
   React.useEffect(() => {
@@ -53,7 +62,7 @@ export const Calendar = ({
 
   // Navigation handlers
   const handlePrevious = () => {
-    setCurrentDate(prev => {
+    setCurrentDate((prev) => {
       if (currentView === "month") {
         return dayjs(prev).subtract(1, "month").toDate();
       } else if (currentView === "week") {
@@ -65,7 +74,7 @@ export const Calendar = ({
   };
 
   const handleNext = () => {
-    setCurrentDate(prev => {
+    setCurrentDate((prev) => {
       if (currentView === "month") {
         return dayjs(prev).add(1, "month").toDate();
       } else if (currentView === "week") {
@@ -141,25 +150,28 @@ export const Calendar = ({
   };
 
   const handleModalSave = (eventData: EventFormData) => {
-    console.log("Calendar handleModalSave called with:", eventData, "editingEvent:", editingEvent);
-    
+    console.log(
+      "Calendar handleModalSave called with:",
+      eventData,
+      "editingEvent:",
+      editingEvent
+    );
+
     if (editingEvent) {
       // Editing existing event
       const updatedEvent: CalendarEvent = {
         ...editingEvent,
         ...eventData,
       };
-      console.log("Calling onEventEdit with:", updatedEvent);
       onEventEdit?.(updatedEvent);
     } else {
       // Creating new event - use onEventSave callback
-      console.log("Calling onEventSave with:", eventData);
       onEventSave?.(eventData);
     }
   };
 
   const handleModalDelete = (eventId: string) => {
-    const eventToDelete = events.find(e => e.id === eventId);
+    const eventToDelete = events.find((e) => e.id === eventId);
     if (eventToDelete) {
       onEventDelete?.(eventToDelete);
     }
@@ -238,7 +250,7 @@ export const Calendar = ({
           onDateClick={handleToday}
           onViewChange={handleViewChange}
         />
-        
+
         {renderCalendarContent()}
       </div>
 

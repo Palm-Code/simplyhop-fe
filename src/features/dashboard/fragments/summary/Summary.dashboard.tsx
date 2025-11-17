@@ -13,7 +13,6 @@ export const SummaryDashboard = () => {
   const summaryItems = userState.profile?.is_super_admin
     ? dictionaries.super_admin.summary.items?.map((item) => {
         let value: string = "";
-
         switch (item.id) {
           case "Organisation": {
             value =
@@ -146,6 +145,7 @@ export const SummaryDashboard = () => {
           unit: unit,
         };
       }) ?? [];
+
   return (
     <div
       className={clsx(

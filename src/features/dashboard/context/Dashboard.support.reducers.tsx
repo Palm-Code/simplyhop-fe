@@ -23,6 +23,11 @@ export const DashboardSupportSummaryReducers = (
         ...state,
         organization_admin: action.payload,
       };
+    case DashboardSupportActionEnum.SetSummarySuperAdminData:
+      return {
+        ...state,
+        super_admin: action.payload,
+      };
 
     default:
       return state;

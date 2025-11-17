@@ -32,22 +32,6 @@ const addCookieConsentListeners = () => {
       }
     }
   });
-
-  // window.addEventListener("cc:onChange", (event: Event) => {
-  //   const { changedCategories } = (event as CustomEvent<CCDetail>)?.detail;
-
-  //   // if (changedCategories.includes('analytics')) {
-  //   //   if (acceptedCategory('analytics')) {
-  //   //     console.log('accepted analytics');
-  //   //   } else {
-  //   //     console.log('rejected analytics');
-  //   //   }
-  //   // }
-
-  //   // for (const category of changedCategories) {
-  //   //   return;
-  //   // }
-  // });
 };
 
 export default addCookieConsentListeners;

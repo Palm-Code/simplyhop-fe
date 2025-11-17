@@ -24,7 +24,6 @@ export const CalendarEvent = ({
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log("CalendarEvent clicked:", event.title, "onClick prop exists:", !!onClick);
     onClick?.(event);
   };
 
@@ -98,7 +97,9 @@ export const CalendarEvent = ({
       onMouseLeave={() => setIsHovered(false)}
       draggable={isDraggable}
       onDragStart={handleDragStart}
-      title={`${event.title}${event.description ? `\n${event.description}` : ""}${formatTime() ? `\n${formatTime()}` : ""}`}
+      title={`${event.title}${
+        event.description ? `\n${event.description}` : ""
+      }${formatTime() ? `\n${formatTime()}` : ""}`}
     >
       {/* Event content */}
       <div className="flex items-center justify-between gap-1 w-full min-w-0">
@@ -126,7 +127,7 @@ export const CalendarEvent = ({
                 ✎
               </button>
             )}
-            
+
             {onDelete && (
               <button
                 onClick={handleDelete}
