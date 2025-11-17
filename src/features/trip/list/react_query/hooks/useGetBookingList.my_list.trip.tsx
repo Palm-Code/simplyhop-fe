@@ -4,11 +4,11 @@ import { MyListTripReactQueryKey } from "../keys";
 
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
-import { fetchGetBookingMy } from "@/core/services/rest/simplyhop/booking";
+import { fetchGetBookingList } from "@/core/services/rest/simplyhop/booking";
 import {
-  GetBookingMyErrorResponseInterface,
-  GetBookingMyPayloadRequestInterface,
-  GetBookingMySuccessResponseInterface,
+  GetBookingListErrorResponseInterface,
+  GetBookingListPayloadRequestInterface,
+  GetBookingListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/booking";
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
@@ -19,32 +19,36 @@ import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
-export const useGetBookingMy = () => {
+export const useGetBookingList = () => {
   const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const rideStatus = searchParams.get("ride-status");
   const { state, dispatch } = React.useContext(MyListTripContext);
 
-  const payload: GetBookingMyPayloadRequestInterface = {
+  const payload: GetBookingListPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,user,ride.user",
       ride_status: rideStatus ?? "in_progress",
       "filter[status]": "accepted",
+      "filter[user_id]": !userState.profile?.id
+        ? undefined
+        : String(userState.profile.id),
       "page[number]": state.book.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
   };
   const query = useQuery<
-    GetBookingMySuccessResponseInterface,
-    GetBookingMyErrorResponseInterface
+    GetBookingListSuccessResponseInterface,
+    GetBookingListErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetBookingMy(payload),
+    queryKey: MyListTripReactQueryKey.GetBookingList(payload),
     queryFn: () => {
-      return fetchGetBookingMy(payload);
+      return fetchGetBookingList(payload);
     },
     enabled:
-      type === "book" || (userState.profile?.is_driver === false && !type),
+      (type === "book" || (userState.profile?.is_driver === false && !type)) &&
+      !!userState.profile?.id,
   });
 
   React.useEffect(() => {

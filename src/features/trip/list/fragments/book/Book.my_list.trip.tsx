@@ -2,7 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { BookingCard } from "../../../../../core/components/book_card";
-import { useGetBookingMy } from "../../react_query/hooks";
+import { useGetBookingList } from "../../react_query/hooks";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { ListErrorItem } from "@/core/components/list_error_item";
@@ -13,8 +13,8 @@ export const BookMyListTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(MyListTripContext);
 
-  const { isFetching: isFetchingGetBookingMy } = useGetBookingMy();
-  const isLoading = isFetchingGetBookingMy;
+  const { isFetching: isFetchingGetBookingList } = useGetBookingList();
+  const isLoading = isFetchingGetBookingList;
 
   if (isLoading && state.book.pagination.current === PAGINATION.NUMBER) {
     return (
