@@ -34,46 +34,43 @@ export const MyListTripContainer = () => {
         >
           <div
             className={clsx(
-              "grid grid-rows-1 grid-cols-1 place-content-start place-items-start",
+              "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2.5rem]",
               "max-w-container w-full h-full"
             )}
           >
-            <div
-              className={clsx(
-                "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2.5rem]",
-                "w-full h-full",
-                "sticky top-[90px] z-[10]",
-                "bg-[white]",
-                "pt-[3rem] pb-[2.5rem]"
-              )}
-            >
-              <HeaderMyListTrip />
-              <React.Suspense fallback={<div />}>
-                <TabMyListTrip />
-                <RideFilterMyListTrip />
-              </React.Suspense>
-            </div>
+            <HeaderMyListTrip />
+            <React.Suspense fallback={<div />}>
+              <TabMyListTrip />
+              <RideFilterMyListTrip />
+            </React.Suspense>
 
             {type === "book" ? (
-              <BookMyListTrip />
+              <>
+                <BookMyListTrip />
+                <BookDetailMyListTrip />
+                <CancelBookNotificationMyListTrip />
+                <SuccessCancelBookNotificationMyListTrip />
+              </>
             ) : !type && userState.profile?.is_driver === false ? (
-              <BookMyListTrip />
+              <>
+                <BookMyListTrip />
+                <BookDetailMyListTrip />
+                <CancelBookNotificationMyListTrip />
+                <SuccessCancelBookNotificationMyListTrip />
+              </>
             ) : (
-              <RideMyListTrip />
+              <>
+                <RideMyListTrip />
+                <RideDetailMyListTrip />
+                <DeleteRideNotificationMyListTrip />
+                <SuccessDeleteRideNotificationMyListTrip />
+                <CompletedRideMyListTrip />
+                <ShareRideNotificationMyListTrip />
+              </>
             )}
           </div>
         </div>
       </div>
-
-      <RideDetailMyListTrip />
-
-      <BookDetailMyListTrip />
-      <DeleteRideNotificationMyListTrip />
-      <SuccessDeleteRideNotificationMyListTrip />
-      <ShareRideNotificationMyListTrip />
-      <CancelBookNotificationMyListTrip />
-      <SuccessCancelBookNotificationMyListTrip />
-      <CompletedRideMyListTrip />
     </>
   );
 };

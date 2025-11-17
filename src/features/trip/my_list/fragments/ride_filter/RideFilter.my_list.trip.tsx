@@ -1,9 +1,10 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { TripFilterTabButton } from "@/core/components/trip_filter_tab_button";
 
 export const RideFilterMyListTrip = () => {
   const searchParams = useSearchParams();
@@ -30,25 +31,18 @@ export const RideFilterMyListTrip = () => {
                 ["ride-status"]: item.id,
               });
         return (
-          <Link
+          <TripFilterTabButton
             key={index}
             href={AppCollectionURL.private.myList(
               !params ? params : params.toString()
             )}
-            className={clsx(
-              "px-[1rem] py-[0.5rem]",
-              !rideStatus && index === 0
-                ? "bg-[#33CC33]"
-                : !!rideStatus && item.id === rideStatus
-                ? "bg-[#33CC33]"
-                : "bg-[#F6F6F6CC]",
-              "rounded-[0.75rem]",
-              "text-[0.875rem] text-[#000] font-semibold",
-              "whitespace-nowrap"
-            )}
+            isActive={
+              (!rideStatus && index === 0) ||
+              (!!rideStatus && item.id === rideStatus)
+            }
           >
             {item.name}
-          </Link>
+          </TripFilterTabButton>
         );
       })}
     </div>
