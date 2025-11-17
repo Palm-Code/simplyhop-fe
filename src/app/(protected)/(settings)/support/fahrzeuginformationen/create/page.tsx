@@ -1,6 +1,6 @@
 import { AlertApp } from "@/core/modules/app/fragments/alert";
-import { VehicleCreateSupportContainer } from "@/features/support/vehicle_create/container";
-import { VehicleCreateSupportProvider } from "@/features/support/vehicle_create/context";
+import { VehicleCreateSupportContainer } from "@/features/vehicle/create/container";
+import { VehicleCreateSupportProvider } from "@/features/vehicle/create/context";
 
 export default function VehicleCreateSupportPage() {
   return (

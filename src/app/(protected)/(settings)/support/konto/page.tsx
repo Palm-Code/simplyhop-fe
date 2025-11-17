@@ -1,5 +1,5 @@
-import { AccountSupportContainer } from "@/features/support/account/container";
-import { AccountSupportProvider } from "@/features/support/account/context";
+import { AccountSupportContainer } from "@/features/account/detail/container";
+import { AccountSupportProvider } from "@/features/account/detail/context";
 
 export default function AccountPage() {
   return (
