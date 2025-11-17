@@ -7,7 +7,8 @@ import { ItemAccountSupport } from "../../components/item";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { UserContext } from "@/core/modules/app/context";
-import SVGIcon from "@/core/icons";
+import { Avatar } from "@/core/components/avatar";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const InformationAccountSupport = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -32,14 +33,33 @@ export const InformationAccountSupport = () => {
           "w-full"
         )}
       >
-        <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
-          {dictionaries.title}
-        </h2>
-        <Link href={AppCollectionURL.private.support_account_edit()}>
-          <SVGIcon
-            name="Pencil"
-            className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#33CC33]")}
+        <div className={clsx("flex items-center justify-start gap-3")}>
+          <Avatar
+            src={userState.profile?.avatar}
+            variant="avatar"
+            className={clsx("w-[3rem] h-[3rem]")}
           />
+          <h2 className={clsx("text-[#292929] text-6 font-bold")}>
+            {formatDisplayName({
+              first_name: userState.profile?.first_name,
+              email: userState.profile?.email,
+            })}
+          </h2>
+        </div>
+
+        <Link href={AppCollectionURL.private.support_account_edit()}>
+          <button
+            className={clsx(
+              "flex items-center justify-center",
+              "bg-white",
+              "px-4 py-2",
+              "rounded-md",
+              "border border-[#33CC33]",
+              "text-[#33CC33] text-xs font-semibold"
+            )}
+          >
+            {dictionaries.information.cta.edit.children}
+          </button>
         </Link>
       </div>
 

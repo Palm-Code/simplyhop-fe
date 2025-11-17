@@ -1,13 +1,14 @@
 import Image from "next/image";
 import * as React from "react";
 import clsx from "clsx";
-import SVGIcon from "@/core/icons";
+import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { Skeleton } from "../skeleton";
 
 export interface AvatarProps {
   src?: string | null;
   alt?: string;
   variant?: "skeleton" | "avatar";
+  iconName?: SVGIconProps["name"];
   className?: string;
 }
 
@@ -15,6 +16,7 @@ export const Avatar = ({
   src,
   alt = "User avatar",
   variant = "avatar",
+  iconName = "User",
   className,
 }: AvatarProps) => {
   if (variant === "skeleton") {
@@ -55,7 +57,7 @@ export const Avatar = ({
       )}
       {!src && (
         <SVGIcon
-          name={"User"}
+          name={iconName}
           className={clsx("w-2/3 h-2/3", "text-[white]")}
         />
       )}
