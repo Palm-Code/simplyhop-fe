@@ -1,7 +1,7 @@
 import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
-import { BookCardMyListTripProps } from "../components/book_card";
-import { RideCardMyListTripProps } from "../components/ride_card";
-import { BookDetailCardMyListTripProps } from "../components/book_detail_card";
+import { BookingCardProps } from "@/core/components/book_card";
+import { RideCardProps } from "@/core/components/ride_card";
+import { BookingDetailCardProps } from "@/core/components/booking_detail_card";
 import { CarPriceItemProps } from "@/core/components/car_price_item";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -38,25 +38,25 @@ export interface MyListTripFilters {
 }
 
 export interface MyListTripRide {
-  data: RideCardMyListTripProps[];
+  data: RideCardProps[];
   pagination: {
     current: number;
     last: null | number;
   };
   detail:
-    | (RideCardMyListTripProps & {
+    | (RideCardProps & {
         booking: RideBookingListItemProps[];
       })
     | null;
 }
 
 export interface MyListTripBook {
-  data: BookCardMyListTripProps[];
+  data: BookingCardProps[];
   pagination: {
     current: number;
     last: null | number;
   };
-  detail: (BookDetailCardMyListTripProps & { price: CarPriceItemProps }) | null;
+  detail: (BookingDetailCardProps & { price: CarPriceItemProps }) | null;
 }
 
 export interface MyListTripDetailRideNotification {

@@ -20,13 +20,18 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
+import Link from "next/link";
 import {
   DepartureDateItem,
   DepartureDateItemProps,
 } from "@/core/components/departure_date_item";
+import SVGIcon from "@/core/icons";
 
-export interface RideDetailCardMyListTripProps {
+export interface BookingDetailCardProps {
   id?: string;
+  message?: {
+    link: string;
+  };
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -44,11 +49,13 @@ export interface RideDetailCardMyListTripProps {
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
   };
-  shadow?: boolean;
 }
 
-export const RideDetailCardMyListTrip = ({
+export const BookingDetailCard = ({
   id = "",
+  message = {
+    link: "",
+  },
   driver = {
     profile: {
       avatar: undefined,
@@ -90,8 +97,7 @@ export const RideDetailCardMyListTrip = ({
       time: "18.30 Uhr",
     },
   },
-  shadow = true,
-}: RideDetailCardMyListTripProps) => {
+}: BookingDetailCardProps) => {
   return (
     <div
       id={id}
@@ -103,8 +109,8 @@ export const RideDetailCardMyListTrip = ({
         "bg-[white]"
       )}
       style={{
-        backdropFilter: shadow ? "blur(20px)" : "",
-        boxShadow: shadow ? "0px 0px 25px 0px #969C9640" : "",
+        backdropFilter: "blur(20px)",
+        boxShadow: "0px 0px 25px 0px #969C9640",
       }}
     >
       {/* car */}
@@ -126,6 +132,12 @@ export const RideDetailCardMyListTrip = ({
               "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]"
             )}
           >
+            <Link href={message.link}>
+              <SVGIcon
+                name="MessageSquare"
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+              />
+            </Link>
             <DriverProfileLabel
               {...driver.profile}
               icon={null}

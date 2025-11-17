@@ -29,7 +29,7 @@ import Link from "next/link";
 import { DepartureDateItem } from "@/core/components/departure_date_item";
 import SVGIcon from "@/core/icons";
 
-export interface RideCardMyListTripProps {
+export interface RideCardProps {
   id?: string;
   driver?: {
     profile: DriverProfileLabelProps;
@@ -62,7 +62,7 @@ export interface RideCardMyListTripProps {
   };
 }
 
-export const RideCardMyListTrip = ({
+export const RideCard = ({
   id = "",
   driver = {
     profile: {
@@ -122,7 +122,7 @@ export const RideCardMyListTrip = ({
       onClick: () => {},
     },
   },
-}: RideCardMyListTripProps) => {
+}: RideCardProps) => {
   return (
     <div
       id={id}

@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
-import { BookDetailCardMyListTrip } from "../../components/book_detail_card";
+import { BookingDetailCard } from "@/core/components/booking_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { useGetBookingId } from "../../react_query/hooks";
@@ -125,7 +125,7 @@ export const BookDetailMyListTrip = () => {
               "px-[1rem]"
             )}
           >
-            <BookDetailCardMyListTrip {...filteredData} />
+            <BookingDetailCard {...filteredData} />
           </div>
 
           <div

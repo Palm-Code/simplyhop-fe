@@ -1,7 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
-import { BookCardMyListTrip } from "../../components/book_card";
+import { BookingCard } from "../../../../../core/components/book_card";
 import { useGetBookingMy } from "../../react_query/hooks";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
@@ -67,7 +67,7 @@ export const BookMyListTrip = () => {
         )}
       >
         {state.book.data.map((item, itemIndex) => (
-          <BookCardMyListTrip key={itemIndex} {...item} />
+          <BookingCard key={itemIndex} {...item} />
         ))}
       </div>
     </InfiniteScrollWrapper>

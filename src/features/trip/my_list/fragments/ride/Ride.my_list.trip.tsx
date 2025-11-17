@@ -1,7 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
-import { RideCardMyListTrip } from "../../components/ride_card";
+import { RideCard } from "../../../../../core/components/ride_card";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { useGetRidesSearch } from "../../react_query/hooks";
@@ -81,7 +81,7 @@ export const RideMyListTrip = () => {
         )}
       >
         {state.ride.data.map((item, itemIndex) => (
-          <RideCardMyListTrip
+          <RideCard
             key={itemIndex}
             {...item}
             cta={{

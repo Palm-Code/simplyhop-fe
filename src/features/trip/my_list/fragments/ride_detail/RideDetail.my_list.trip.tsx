@@ -11,7 +11,7 @@ import { CarPriceItem } from "@/core/components/car_price_item";
 import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { useGetRidesId } from "../../react_query/hooks";
-import { RideDetailCardMyListTrip } from "../../components/ride_detail_card";
+import { RideDetailCard } from "../../../../../core/components/ride_detail_card";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { CheckIcon, XIcon } from "lucide-react";
@@ -249,7 +249,7 @@ export const RideDetailMyListTrip = () => {
               "px-[1rem]"
             )}
           >
-            <RideDetailCardMyListTrip {...filteredData} shadow={false} />
+            <RideDetailCard {...filteredData} shadow={false} />
           </div>
           {/* Booking */}
           <div
