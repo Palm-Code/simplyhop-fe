@@ -47,6 +47,7 @@ export interface GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInter
   total_passenger: number; // 0;
   average_rating: number; //0;
   total_voted_rating: number; // 0;
+  total_driver: number; //4;
   created_at: string; //"2025-11-10T08:15:22.000000Z";
   updated_at: string; // "2025-11-13T06:21:24.000000Z";
   organization: Organization;

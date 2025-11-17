@@ -5,10 +5,10 @@ import {
   ListOrganizationContext,
 } from "../../context";
 import { getDictionaries } from "../../i18n";
-import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfileModal";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { useRouter } from "next/navigation";
+import { OrganizationProfileModal } from "@/core/components/organization_profile_modal";
 
 export const UserProfileListOrganization = () => {
   const dictionaries = getDictionaries();
@@ -101,6 +101,40 @@ export const UserProfileListOrganization = () => {
     };
   });
 
+  const statisticItems = dictionaries.user_profile.statistic.items.map(
+    (item) => {
+      let value = "-";
+      switch (item.id) {
+        case "fahrer": {
+          value =
+            state.user_profile.data?.total_driver?.toLocaleString("de-DE") ??
+            "-";
+          break;
+        }
+        case "fahrten": {
+          value =
+            state.user_profile.data?.total_rides_completed?.toLocaleString(
+              "de-DE"
+            ) ?? "-";
+          break;
+        }
+        case "kilometer": {
+          value =
+            state.user_profile.data?.total_rides_km?.toLocaleString("de-DE") ??
+            "-";
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+      return {
+        ...item,
+        value: value,
+      };
+    }
+  );
+
   // const cta = dictionaries.user_profile.cta.items.map((item) => {
   //   return {
   //     ...item,
@@ -111,14 +145,14 @@ export const UserProfileListOrganization = () => {
 
   const handleClickOpen = () => {
     router.push(
-      AppCollectionURL.private.driverDetail({
+      AppCollectionURL.private.organizationDetail({
         id: state.user_profile.user_id ?? "",
       })
     );
   };
 
   return (
-    <UserProfileModal
+    <OrganizationProfileModal
       isOpen={isOpen}
       onClose={handleClose}
       title={dictionaries.user_profile.title}
@@ -136,9 +170,10 @@ export const UserProfileListOrganization = () => {
           first_name: state.user_profile.data?.organization.name,
           email: state.user_profile.data?.organization.email,
         }),
-        phone: "-",
+        phone: state.user_profile.data?.organization.phone ?? "-",
         summary: summaryItems,
         detail: detailItems,
+        statistic: statisticItems,
         cta: [],
       }}
     />
