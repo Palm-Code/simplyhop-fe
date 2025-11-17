@@ -1,0 +1,146 @@
+"use client";
+import * as React from "react";
+import {
+  ListOrganizationActionEnum,
+  ListOrganizationContext,
+} from "../../context";
+import { getDictionaries } from "../../i18n";
+import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfileModal";
+import { formatDisplayName } from "@/core/utils/name/functions";
+import { AppCollectionURL } from "@/core/utils/router/constants";
+import { useRouter } from "next/navigation";
+
+export const UserProfileListOrganization = () => {
+  const dictionaries = getDictionaries();
+  const router = useRouter();
+  const { state, dispatch } = React.useContext(ListOrganizationContext);
+  const isOpen = state.user_profile.is_open;
+  const handleClose = () => {
+    dispatch({
+      type: ListOrganizationActionEnum.SetUserProfileData,
+      payload: {
+        ...state.user_profile,
+        data: null,
+        is_open: false,
+      },
+    });
+  };
+
+  // const handleClickDeleteChat = () => {
+  //   dispatch({
+  //     type: ListDriverActionEnum.SetDeleteChatConfirmationData,
+  //     payload: {
+  //       ...state.delete_chat_confirmation,
+  //       is_open: true,
+  //     },
+  //   });
+  // };
+
+  // const handleClickBlock = () => {
+  //   dispatch({
+  //     type: ListDriverActionEnum.SetDeleteChatConfirmationData,
+  //     payload: {
+  //       ...state.block_confirmation,
+  //       is_open: true,
+  //     },
+  //   });
+  // };
+
+  const summaryItems = dictionaries.user_profile.summary.items.map((item) => {
+    let value = "-";
+    switch (item.id) {
+      case "trips": {
+        value =
+          state.user_profile.data?.total_rides_completed?.toLocaleString(
+            "de-DE"
+          ) ?? "-";
+        break;
+      }
+      case "ratings": {
+        value =
+          state.user_profile.data?.average_rating?.toLocaleString("de-DE") ??
+          "-";
+        break;
+      }
+
+      default: {
+        break;
+      }
+    }
+    return {
+      ...item,
+      value: value,
+    };
+  });
+
+  const detailItems = dictionaries.user_profile.detail.items.map((item) => {
+    let value = "-";
+    switch (item.id) {
+      case "email": {
+        value = state.user_profile.data?.organization.email ?? "-";
+        break;
+      }
+      case "phone": {
+        value = state.user_profile.data?.organization.phone ?? "-";
+        break;
+      }
+      case "pic": {
+        value = !state.user_profile.data?.organization.responsible_person_name
+          ?.length
+          ? "-"
+          : state.user_profile.data?.organization.responsible_person_name;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    return {
+      ...item,
+      value: value,
+    };
+  });
+
+  // const cta = dictionaries.user_profile.cta.items.map((item) => {
+  //   return {
+  //     ...item,
+  //     onClick:
+  //       item.id === "delete_chat" ? handleClickDeleteChat : handleClickBlock,
+  //   };
+  // });
+
+  const handleClickOpen = () => {
+    router.push(
+      AppCollectionURL.private.driverDetail({
+        id: state.user_profile.user_id ?? "",
+      })
+    );
+  };
+
+  return (
+    <UserProfileModal
+      isOpen={isOpen}
+      onClose={handleClose}
+      title={dictionaries.user_profile.title}
+      cta={{
+        open: {
+          label: dictionaries.user_profile.cta.open.label,
+          onClick: handleClickOpen,
+        },
+      }}
+      user={{
+        avatar: {
+          src: "",
+        },
+        name: formatDisplayName({
+          first_name: state.user_profile.data?.organization.name,
+          email: state.user_profile.data?.organization.email,
+        }),
+        phone: "-",
+        summary: summaryItems,
+        detail: detailItems,
+        cta: [],
+      }}
+    />
+  );
+};

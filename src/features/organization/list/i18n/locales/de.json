@@ -29,5 +29,82 @@
         }
       ]
     }
+  },
+  "user_profile": {
+    "title": "Profile",
+
+    "summary": {
+      "items": [
+        {
+          "id": "trips",
+          "name": "Fahrten"
+        },
+        {
+          "id": "ratings",
+          "name": "Bewertungen"
+        }
+      ]
+    },
+    "detail": {
+      "items": [
+        {
+          "id": "email",
+          "name": "E-Mail",
+          "icon": "Mail"
+        },
+        {
+          "id": "city",
+          "name": "Stadt",
+          "icon": "MapPin"
+        },
+        {
+          "id": "phone",
+          "name": "Telefon",
+          "icon": "Phone"
+        },
+        {
+          "id": "pic",
+          "name": "Verantwortliche Person",
+          "icon": "User2"
+        }
+      ]
+    },
+    "detail_2": {
+      "items": [
+        {
+          "id": "fahrer",
+          "name": "Fahrer",
+          "icon": "PersonStanding"
+        },
+        {
+          "id": "fahrten",
+          "name": "Fahrten",
+          "icon": "CarFront"
+        },
+        {
+          "id": "kilometer",
+          "name": "Kilometer",
+          "icon": "Gauge"
+        }
+      ]
+    },
+
+    "cta": {
+      "open": {
+        "label": "Profil öffnen"
+      },
+      "items": [
+        {
+          "id": "delete_chat",
+          "label": "Chat löschen",
+          "icon": "MessageSquareDashed"
+        },
+        {
+          "id": "block_user",
+          "label": "Entblocken",
+          "icon": "Ban"
+        }
+      ]
+    }
   }
 }

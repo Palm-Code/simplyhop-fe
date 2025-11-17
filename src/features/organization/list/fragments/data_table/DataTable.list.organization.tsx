@@ -3,9 +3,26 @@ import clsx from "clsx";
 import { TableHead } from "@/core/components/table_head";
 import { TableBody } from "@/core/components/table_body";
 import { useListOrganizationTable } from "../../react_table/hooks";
+import {
+  ListOrganizationActionEnum,
+  ListOrganizationContext,
+  ListOrganizationItem,
+} from "../../context";
 
 export const DataTableListOrganization = () => {
+  const { state, dispatch } = React.useContext(ListOrganizationContext);
   const table = useListOrganizationTable();
+
+  const handleRowClick = (row: ListOrganizationItem) => {
+    dispatch({
+      type: ListOrganizationActionEnum.SetUserProfileData,
+      payload: {
+        ...state.user_profile,
+        user_id: String(row.organization_id),
+        is_open: true,
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -30,7 +47,11 @@ export const DataTableListOrganization = () => {
       >
         <table className={clsx("table w-full")}>
           <TableHead table={table} />
-          <TableBody table={table} tdClassName={"!h-[56px]"} />
+          <TableBody
+            table={table}
+            tdClassName={"!h-[56px]"}
+            onRowClick={handleRowClick}
+          />
         </table>
       </div>
     </div>

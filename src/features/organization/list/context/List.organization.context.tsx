@@ -4,7 +4,10 @@ import {
   ListOrganizationActions,
   ListOrganizationInitialStateType,
 } from "./List.organization.types";
-import { ListOrganizationTableReducers } from "./List.organization.reducers";
+import {
+  ListOrganizationTableReducers,
+  ListOrganizationUserProfileReducers,
+} from "./List.organization.reducers";
 
 const initialState: ListOrganizationInitialStateType = {
   table: {
@@ -17,6 +20,11 @@ const initialState: ListOrganizationInitialStateType = {
       is_fetching: true,
     },
   },
+  user_profile: {
+    is_open: false,
+    user_id: null,
+    data: null,
+  },
 };
 
 const ListOrganizationContext = createContext<{
@@ -28,10 +36,11 @@ const ListOrganizationContext = createContext<{
 });
 
 const mainReducer = (
-  { table }: ListOrganizationInitialStateType,
+  { table, user_profile }: ListOrganizationInitialStateType,
   action: ListOrganizationActions
 ) => ({
   table: ListOrganizationTableReducers(table, action),
+  user_profile: ListOrganizationUserProfileReducers(user_profile, action),
 });
 
 const ListOrganizationProvider = (props: { children: React.ReactNode }) => {

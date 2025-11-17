@@ -1,4 +1,5 @@
 import {
+  ListOrganizationUserProfile,
   ListOrganizationActionEnum,
   ListOrganizationActions,
   ListOrganizationTable,
@@ -27,6 +28,20 @@ export const ListOrganizationTableReducers = (
         ...state,
         loading: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+// UserProfile
+export const ListOrganizationUserProfileReducers = (
+  state: ListOrganizationUserProfile,
+  action: ListOrganizationActions
+) => {
+  switch (action.type) {
+    case ListOrganizationActionEnum.SetUserProfileData:
+      return action.payload;
 
     default:
       return state;
