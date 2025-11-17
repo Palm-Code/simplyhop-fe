@@ -4,7 +4,10 @@ import {
   ListDriverActions,
   ListDriverInitialStateType,
 } from "./List.driver.types";
-import { ListDriverTableReducers } from "./List.driver.reducers";
+import {
+  ListDriverTableReducers,
+  ListDriverUserProfileReducers,
+} from "./List.driver.reducers";
 
 const initialState: ListDriverInitialStateType = {
   table: {
@@ -17,6 +20,11 @@ const initialState: ListDriverInitialStateType = {
       is_fetching: true,
     },
   },
+  user_profile: {
+    is_open: false,
+    user_id: null,
+    data: null,
+  },
 };
 
 const ListDriverContext = createContext<{
@@ -28,10 +36,11 @@ const ListDriverContext = createContext<{
 });
 
 const mainReducer = (
-  { table }: ListDriverInitialStateType,
+  { table, user_profile }: ListDriverInitialStateType,
   action: ListDriverActions
 ) => ({
   table: ListDriverTableReducers(table, action),
+  user_profile: ListDriverUserProfileReducers(user_profile, action),
 });
 
 const ListDriverProvider = (props: { children: React.ReactNode }) => {

@@ -2,6 +2,7 @@ import {
   ListDriverActionEnum,
   ListDriverActions,
   ListDriverTable,
+  ListDriverUserProfile,
 } from "./List.driver.types";
 
 // Table
@@ -27,6 +28,20 @@ export const ListDriverTableReducers = (
         ...state,
         loading: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+// UserProfile
+export const ListDriverUserProfileReducers = (
+  state: ListDriverUserProfile,
+  action: ListDriverActions
+) => {
+  switch (action.type) {
+    case ListDriverActionEnum.SetUserProfileData:
+      return action.payload;
 
     default:
       return state;

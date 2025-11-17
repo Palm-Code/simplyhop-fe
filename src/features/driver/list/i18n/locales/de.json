@@ -29,5 +29,94 @@
         }
       ]
     }
+  },
+  "user_profile": {
+    "title": "Profile",
+    "summary": {
+      "items": [
+        {
+          "id": "trips",
+          "name": "Trips"
+        },
+        {
+          "id": "ratings",
+          "name": "Ratings"
+        },
+        {
+          "id": "passengers",
+          "name": "Passengers"
+        }
+      ]
+    },
+    "detail": {
+      "items": [
+        {
+          "id": "email",
+          "name": "E-Mail",
+          "icon": "Mail"
+        },
+        {
+          "id": "city",
+          "name": "Stadt",
+          "icon": "MapPin"
+        },
+        {
+          "id": "gender",
+          "name": "Geschlecht",
+          "icon": "PersonStanding"
+        }
+      ]
+    },
+
+    "cta": {
+      "items": [
+        {
+          "id": "delete_chat",
+          "label": "Chat löschen",
+          "icon": "MessageSquareDashed"
+        },
+        {
+          "id": "block_user",
+          "label": "Entblocken",
+          "icon": "Ban"
+        }
+      ]
+    }
+  },
+  "block_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "unblock_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "delete_chat_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
   }
 }

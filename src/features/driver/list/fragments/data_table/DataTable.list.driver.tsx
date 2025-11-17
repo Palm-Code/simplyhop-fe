@@ -3,9 +3,26 @@ import clsx from "clsx";
 import { TableHead } from "@/core/components/table_head";
 import { TableBody } from "@/core/components/table_body";
 import { useListDriverTable } from "../../react_table/hooks";
+import {
+  ListDriverActionEnum,
+  ListDriverContext,
+  ListDriverItem,
+} from "../../context";
 
 export const DataTableListDriver = () => {
+  const { state, dispatch } = React.useContext(ListDriverContext);
   const table = useListDriverTable();
+
+  const handleRowClick = (row: ListDriverItem) => {
+    dispatch({
+      type: ListDriverActionEnum.SetUserProfileData,
+      payload: {
+        ...state.user_profile,
+        user_id: String(row.id),
+        is_open: true,
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -30,7 +47,11 @@ export const DataTableListDriver = () => {
       >
         <table className={clsx("table w-full")}>
           <TableHead table={table} />
-          <TableBody table={table} tdClassName={"!h-[56px]"} />
+          <TableBody
+            table={table}
+            tdClassName={"!h-[56px]"}
+            onRowClick={handleRowClick}
+          />
         </table>
       </div>
     </div>

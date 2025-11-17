@@ -2,6 +2,7 @@ import {
   GetDashboardOrganizationPayloadRequestInterface,
   GetDashboardSuperAdminPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
+import { GetUserProfileIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 
 export const ListDriverReactQueryKey = {
   GetDashboardOrganization: (
@@ -19,5 +20,8 @@ export const ListDriverReactQueryKey = {
       "ListDriverReactQueryKey.GetDashboardSuperAdmin",
       [payload] as const,
     ];
+  },
+  GetUserProfileId: (payload?: GetUserProfileIdPayloadRequestInterface) => {
+    return ["ListDriverReactQueryKey.GetUserProfileId", [payload] as const];
   },
 };

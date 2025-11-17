@@ -1,3 +1,4 @@
+import { AvatarProps } from "@/core/components/avatar";
 import { GetDashboardSuperAdminSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -14,6 +15,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface ListDriverInitialStateType {
   table: ListDriverTable;
+  user_profile: ListDriverUserProfile;
 }
 
 export type ListDriverTable = {
@@ -26,18 +28,44 @@ export type ListDriverTable = {
     is_fetching: boolean;
   };
 };
-export type ListDriverItem =
-  GetDashboardSuperAdminSuccessDataResponseInterface;
+
+export interface ListDriverUserProfile {
+  is_open: boolean;
+  user_id: string | null;
+  data: null | {
+    avatar: AvatarProps;
+    name: string;
+    phone: string;
+    type: "passenger" | "driver" | null;
+    statistic: {
+      trip: number | null;
+      ratings: null | number;
+      passengers: number | null;
+    };
+    email: string;
+    place: string;
+    gender: string;
+    i_blocked: boolean;
+    blocked_me: boolean;
+  };
+}
+
+export type ListDriverItem = GetDashboardSuperAdminSuccessDataResponseInterface;
 
 export enum ListDriverActionEnum {
   SetTableData = "SetTableData",
   SetTableItemsData = "SetItemsData",
   SetTablePaginationData = "SetPaginationData",
   SetTableLoadingData = "SetLoadingData",
+
+  // UserProfile
+  SetUserProfileData = "SetUserProfileData",
 }
 
 // Action Collection Types
-export type ListDriverActions = ListDriverTableActions;
+export type ListDriverActions =
+  | ListDriverTableActions
+  | ListDriverUserProfileActions;
 
 // Action Collection Types consist of:
 
@@ -50,3 +78,11 @@ type ListDriverTablePayload = {
 };
 export type ListDriverTableActions =
   ActionMap<ListDriverTablePayload>[keyof ActionMap<ListDriverTablePayload>];
+
+// UserProfile
+type ListDriverUserProfilePayload = {
+  [ListDriverActionEnum.SetUserProfileData]: ListDriverUserProfile;
+};
+
+export type ListDriverUserProfileActions =
+  ActionMap<ListDriverUserProfilePayload>[keyof ActionMap<ListDriverUserProfilePayload>];
