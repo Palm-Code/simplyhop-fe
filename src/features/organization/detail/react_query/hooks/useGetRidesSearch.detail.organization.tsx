@@ -26,17 +26,17 @@ dayjs.extend(utc);
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
-  const { id } = useParams();
+  const { organization_id } = useParams();
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
 
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
-      "filter[organization_id]": String(id ?? "0"),
+      "filter[organization_id]": String(organization_id ?? "0"),
       include: "vehicle.brand,user,bookings,bookings.user",
       status: "upcoming",
       departure_time__gte: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"), // "2025-03-31 09:30:00";
       "page[number]": 1,
-      "page[size]": 1,
+      "page[size]": 3,
     },
   };
   const query = useQuery<
@@ -47,7 +47,7 @@ export const useGetRidesSearch = () => {
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
-    enabled: !!id,
+    enabled: !!organization_id,
   });
 
   React.useEffect(() => {
@@ -178,7 +178,7 @@ export const useGetRidesSearch = () => {
     dispatch({
       type: DetailOrganizationActionEnum.SetRideLoadingData,
       payload: {
-        ...state.user.loading,
+        ...state.ride.loading,
         is_fetching: query.isFetching,
       },
     });

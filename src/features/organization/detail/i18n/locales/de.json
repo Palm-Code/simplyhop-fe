@@ -1,5 +1,40 @@
 {
   "title": "Dashboard",
+  "profile": {
+    "summary": {
+      "items": [
+        {
+          "id": "fahrten",
+          "name": "Fahrten"
+        },
+        {
+          "id": "ratings",
+          "name": "Bewertungen"
+        }
+      ]
+    },
+    "detail": {
+      "items": [
+        {
+          "id": "email",
+          "name": "E-Mail"
+        },
+        {
+          "id": "city",
+          "name": "Stadt"
+        },
+        {
+          "id": "phone",
+          "name": "Telefon-Nummer"
+        }
+      ]
+    },
+    "cta": {
+      "edit": {
+        "children": "Anpassen"
+      }
+    }
+  },
   "upcoming_rides": {
     "title": "Bevorstehende Fahrten",
     "icon": "CarFront",
@@ -65,9 +100,34 @@
       }
     }
   },
-  "vehicles": {
-    "title": "Fahrzeugliste",
-    "icon": "Car",
+  "drivers": {
+    "title": "Fahrerliste",
+    "icon": "User2",
+    "table": {
+      "empty": {
+        "message": ""
+      },
+      "head": {
+        "items": [
+          {
+            "id": "driver",
+            "name": "Driver"
+          },
+          {
+            "id": "rides",
+            "name": "Rides"
+          },
+          {
+            "id": "bewertungen",
+            "name": "Bewertungen"
+          },
+          {
+            "id": "passengers",
+            "name": "Passengers"
+          }
+        ]
+      }
+    },
     "cta": {
       "primary": {
         "children": "Alle anzeigen"

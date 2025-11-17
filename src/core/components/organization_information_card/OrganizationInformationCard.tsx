@@ -19,7 +19,7 @@ export interface OrganizationInformationCardProps {
     displayName: string;
     cta: {
       text: string;
-      href: string;
+      onClick: () => void;
     };
   };
   detail: {
@@ -51,7 +51,7 @@ export const OrganizationInformationCard = ({
     >
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
+          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-4",
           "w-full"
         )}
       >
@@ -66,20 +66,19 @@ export const OrganizationInformationCard = ({
           </h2>
         </div>
 
-        <Link href={cta.href}>
-          <button
-            className={clsx(
-              "flex items-center justify-center",
-              "bg-white",
-              "px-4 py-2",
-              "rounded-md",
-              "border border-[#33CC33]",
-              "text-[#33CC33] text-xs font-semibold"
-            )}
-          >
-            {cta.text}
-          </button>
-        </Link>
+        <button
+          className={clsx(
+            "flex items-center justify-center",
+            "bg-white",
+            "px-4 py-2",
+            "rounded-md",
+            "border border-[#33CC33]",
+            "text-[#33CC33] text-xs font-semibold"
+          )}
+          onClick={cta.onClick}
+        >
+          {cta.text}
+        </button>
       </div>
 
       <div className={clsx("flex items-center justify-between", "w-full")}>
@@ -90,8 +89,8 @@ export const OrganizationInformationCard = ({
             <div
               key={index}
               className={clsx(
-                "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
-                "w-full"
+                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                "w-[118px]"
               )}
             >
               <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>

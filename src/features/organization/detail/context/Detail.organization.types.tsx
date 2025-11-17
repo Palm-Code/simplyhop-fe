@@ -19,12 +19,12 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface DetailOrganizationInitialStateType {
-  user: DetailOrganizationUser;
+  profile: DetailOrganizationProfile;
   ride: DetailOrganizationRide;
   driver: DetailOrganizationDriver;
 }
 
-export interface DetailOrganizationUser {
+export interface DetailOrganizationProfile {
   data: null | GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInterface;
   loading: {
     is_fetching: boolean;
@@ -53,10 +53,10 @@ export type DetailOrganizationItem =
   GetDashboardSuperAdminSuccessDataResponseInterface;
 
 export enum DetailOrganizationActionEnum {
-  // User
-  SetUserData = "SetUserData",
-  SetUserDataData = "SetUserDataData",
-  SetUserLoadingData = "SetUserLoadingData",
+  // Profile
+  SetProfileData = "SetProfileData",
+  SetProfileDataData = "SetProfileDataData",
+  SetProfileLoadingData = "SetProfileLoadingData",
 
   // Ride
   SetRideData = "SetRideData",
@@ -72,21 +72,21 @@ export enum DetailOrganizationActionEnum {
 
 // Action Collection Types
 export type DetailOrganizationActions =
-  | DetailOrganizationUserActions
+  | DetailOrganizationProfileActions
   | DetailOrganizationRideActions
   | DetailOrganizationDriverActions;
 
 // Action Collection Types consist of:
 
-// User
-type DetailOrganizationUserPayload = {
-  [DetailOrganizationActionEnum.SetUserData]: DetailOrganizationUser;
-  [DetailOrganizationActionEnum.SetUserDataData]: DetailOrganizationUser["data"];
-  [DetailOrganizationActionEnum.SetUserLoadingData]: DetailOrganizationUser["loading"];
+// Profile
+type DetailOrganizationProfilePayload = {
+  [DetailOrganizationActionEnum.SetProfileData]: DetailOrganizationProfile;
+  [DetailOrganizationActionEnum.SetProfileDataData]: DetailOrganizationProfile["data"];
+  [DetailOrganizationActionEnum.SetProfileLoadingData]: DetailOrganizationProfile["loading"];
 };
 
-export type DetailOrganizationUserActions =
-  ActionMap<DetailOrganizationUserPayload>[keyof ActionMap<DetailOrganizationUserPayload>];
+export type DetailOrganizationProfileActions =
+  ActionMap<DetailOrganizationProfilePayload>[keyof ActionMap<DetailOrganizationProfilePayload>];
 
 // Ride
 type DetailOrganizationRidePayload = {

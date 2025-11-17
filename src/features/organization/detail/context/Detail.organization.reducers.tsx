@@ -2,24 +2,24 @@ import {
   DetailOrganizationActionEnum,
   DetailOrganizationActions,
   DetailOrganizationRide,
-  DetailOrganizationUser,
+  DetailOrganizationProfile,
   DetailOrganizationDriver,
 } from "./Detail.organization.types";
 
-// User
-export const DetailOrganizationUserReducers = (
-  state: DetailOrganizationUser,
+// Profile
+export const DetailOrganizationProfileReducers = (
+  state: DetailOrganizationProfile,
   action: DetailOrganizationActions
 ) => {
   switch (action.type) {
-    case DetailOrganizationActionEnum.SetUserData:
+    case DetailOrganizationActionEnum.SetProfileData:
       return action.payload;
-    case DetailOrganizationActionEnum.SetUserDataData:
+    case DetailOrganizationActionEnum.SetProfileDataData:
       return {
         ...state,
         data: action.payload,
       };
-    case DetailOrganizationActionEnum.SetUserLoadingData:
+    case DetailOrganizationActionEnum.SetProfileLoadingData:
       return {
         ...state,
         loading: action.payload,

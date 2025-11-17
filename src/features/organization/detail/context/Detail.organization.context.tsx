@@ -6,12 +6,12 @@ import {
 } from "./Detail.organization.types";
 import {
   DetailOrganizationRideReducers,
-  DetailOrganizationUserReducers,
+  DetailOrganizationProfileReducers,
   DetailOrganizationDriverReducers,
 } from "./Detail.organization.reducers";
 
 const initialState: DetailOrganizationInitialStateType = {
-  user: {
+  profile: {
     data: null,
     loading: {
       is_fetching: true,
@@ -44,10 +44,10 @@ const DetailOrganizationContext = createContext<{
 });
 
 const mainReducer = (
-  { user, ride, driver }: DetailOrganizationInitialStateType,
+  { profile, ride, driver }: DetailOrganizationInitialStateType,
   action: DetailOrganizationActions
 ) => ({
-  user: DetailOrganizationUserReducers(user, action),
+  profile: DetailOrganizationProfileReducers(profile, action),
   ride: DetailOrganizationRideReducers(ride, action),
   driver: DetailOrganizationDriverReducers(driver, action),
 });

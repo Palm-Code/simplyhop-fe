@@ -17,11 +17,11 @@ import { useParams } from "next/navigation";
 
 export const useGetDashboardSuperAdminPerOrganizationId = () => {
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
-  const { id } = useParams();
+  const { organization_id } = useParams();
   const payload: GetDashboardSuperAdminPerOrganizationIdPayloadRequestInterface =
     {
       path: {
-        id: String(id ?? "0"),
+        id: String(organization_id ?? "0"),
       },
       params: {
         include: "organization",
@@ -38,13 +38,13 @@ export const useGetDashboardSuperAdminPerOrganizationId = () => {
     queryFn: () => {
       return fetchGetDashboardSuperAdminPerOrganizationId(payload);
     },
-    enabled: !!id,
+    enabled: !!organization_id,
   });
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       dispatch({
-        type: DetailOrganizationActionEnum.SetUserDataData,
+        type: DetailOrganizationActionEnum.SetProfileDataData,
         payload: query.data.data,
       });
     }
@@ -52,9 +52,9 @@ export const useGetDashboardSuperAdminPerOrganizationId = () => {
 
   React.useEffect(() => {
     dispatch({
-      type: DetailOrganizationActionEnum.SetUserLoadingData,
+      type: DetailOrganizationActionEnum.SetProfileLoadingData,
       payload: {
-        ...state.user.loading,
+        ...state.profile.loading,
         is_fetching: query.isFetching,
       },
     });
