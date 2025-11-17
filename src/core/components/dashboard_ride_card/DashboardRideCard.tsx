@@ -24,7 +24,7 @@ import {
   PassengerItemProps,
 } from "@/core/components/passenger_item";
 
-export interface RideCardDashboardProps {
+export interface DashboardRideCardProps {
   id?: string;
 
   car?: {
@@ -50,7 +50,7 @@ export interface RideCardDashboardProps {
   };
 }
 
-export const RideCardDashboard = ({
+export const DashboardRideCard = ({
   id = "",
   car = {
     image: {
@@ -99,7 +99,7 @@ export const RideCardDashboard = ({
       onClick: () => {},
     },
   },
-}: RideCardDashboardProps) => {
+}: DashboardRideCardProps) => {
   return (
     <div
       id={id}

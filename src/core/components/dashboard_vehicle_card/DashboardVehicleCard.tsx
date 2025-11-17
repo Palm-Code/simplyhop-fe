@@ -13,7 +13,7 @@ import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
 
-export interface VehicleCardDashboardProps {
+export interface DashboardVehicleCardProps {
   id?: string;
 
   car?: {
@@ -26,7 +26,7 @@ export interface VehicleCardDashboardProps {
   };
 }
 
-export const VehicleCardDashboard = ({
+export const DashboardVehicleCard = ({
   id = "",
 
   car = {
@@ -102,7 +102,7 @@ export const VehicleCardDashboard = ({
       ],
     },
   },
-}: VehicleCardDashboardProps) => {
+}: DashboardVehicleCardProps) => {
   return (
     <div
       id={id}

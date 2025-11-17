@@ -6,8 +6,8 @@ import {
   GetDashboardSuperAdminSuccessDataResponseInterface,
   GetDashboardSuperAdminSummarySuccessDataResponseInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
-import { RideCardDashboardProps } from "../components/ride_card";
-import { VehicleCardDashboardProps } from "../components/vehicle_card";
+import { RideCardDashboardProps } from "../../../core/components/dashboard_ride_card";
+import { VehicleCardDashboardProps } from "../../../core/components/dashboard_vehicle_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined

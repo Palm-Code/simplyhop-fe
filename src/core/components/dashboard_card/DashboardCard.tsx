@@ -1,12 +1,8 @@
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
-import {
-  DashboardVehicleCard,
-  DashboardVehicleCardProps,
-} from "../../../../core/components/dashboard_vehicle_card";
 
-export interface VehiclesCardDashboardProps {
+export interface DashboardCardProps {
   title?: string;
   icon?: SVGIconProps["name"];
   cta?: {
@@ -14,15 +10,15 @@ export interface VehiclesCardDashboardProps {
       children: React.ReactNode;
     };
   };
-  vehicles?: DashboardVehicleCardProps[];
+  children?: React.ReactNode;
 }
 
-export const VehiclesCardDashboard = ({
+export const DashboardCard = ({
   title = "",
   icon,
   cta,
-  vehicles,
-}: VehiclesCardDashboardProps) => {
+  children,
+}: DashboardCardProps) => {
   return (
     <div
       className={clsx(
@@ -83,12 +79,11 @@ export const VehiclesCardDashboard = ({
           )}
         </div>
 
+        {/* journey card */}
         <div
           className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
         >
-          {vehicles?.map((item, index) => {
-            return <DashboardVehicleCard {...item} key={index} />;
-          })}
+          {children}
         </div>
       </div>
     </div>
