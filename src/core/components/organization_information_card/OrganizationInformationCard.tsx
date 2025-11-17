@@ -2,10 +2,10 @@ import * as React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { Avatar } from "@/core/components/avatar";
-import { UserInformationItem } from "@/core/components/user_information_item";
 import SVGIcon from "@/core/icons";
+import { OrganizationInformationItem } from "../organization_information_item";
 
-export interface UserInformationCardProps {
+export interface OrganizationInformationCardProps {
   summary: {
     value: string;
     id: string;
@@ -23,54 +23,20 @@ export interface UserInformationCardProps {
     };
   };
   detail: {
-    email: {
-      label: string;
-      value: string;
-    };
-
-    firstName: {
-      label: string;
-      value: string;
-    };
-
-    lastName: {
-      label: string;
-      value: string;
-    };
-
-    gender: {
-      label: string;
-      value: string;
-    };
-
-    city: {
-      label: string;
-      value: string;
-    };
-
-    phoneNumber: {
-      label: string;
-      value: string;
-    };
-
-    aboutMe: {
-      label: string;
-      value: string;
-    };
-  };
-
-  // User Information Fields (dengan structure label + value)
+    label: string;
+    value: string;
+  }[];
 
   // Optional styling props
   containerClassName?: string;
 }
 
-export const UserInformationCard = ({
+export const OrganizationInformationCard = ({
   summary = [],
   header: { avatar, displayName, cta },
-  detail: { email, firstName, lastName, gender, city, phoneNumber, aboutMe },
+  detail = [],
   containerClassName,
-}: UserInformationCardProps) => {
+}: OrganizationInformationCardProps) => {
   return (
     <div
       className={clsx(
@@ -85,7 +51,7 @@ export const UserInformationCard = ({
     >
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
+          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
           "w-full"
         )}
       >
@@ -116,27 +82,16 @@ export const UserInformationCard = ({
         </Link>
       </div>
 
-      {/* summary */}
-      {!!summary.length && (
+      <div className={clsx("flex items-center justify-between", "w-full")}>
         <div
-          className={clsx(
-            "grid place-content-center place-items-center gap-[0.5rem]",
-            "w-full",
-            "bg-[white]",
-            "px-[0.5rem] py-[0.5rem]",
-            "rounded-[0.5rem]"
-          )}
-          style={{
-            gridTemplateColumns: `repeat(${summary.length},1fr)`,
-          }}
+          className={clsx("flex items-center justify-start gap-4", "w-full")}
         >
           {summary.map((item, index) => (
             <div
               key={index}
               className={clsx(
                 "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
-                "w-full",
-                index < summary.length - 1 && "border-r border-r-border-subdued"
+                "w-full"
               )}
             >
               <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>
@@ -163,27 +118,17 @@ export const UserInformationCard = ({
             </div>
           ))}
         </div>
-      )}
 
-      <UserInformationItem name={email.label} value={email.value} />
-
-      <div
-        className={clsx(
-          "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
-          "w-full"
-        )}
-      >
-        <UserInformationItem name={firstName.label} value={firstName.value} />
-        <UserInformationItem name={lastName.label} value={lastName.value} />
+        <div className={clsx("flex items-center justify-end gap-4", "w-full")}>
+          {detail.map((item, index) => (
+            <OrganizationInformationItem
+              key={index}
+              name={item.label}
+              value={item.value}
+            />
+          ))}
+        </div>
       </div>
-
-      <UserInformationItem name={gender.label} value={gender.value} />
-
-      <UserInformationItem name={city.label} value={city.value} />
-
-      <UserInformationItem name={phoneNumber.label} value={phoneNumber.value} />
-
-      <UserInformationItem name={aboutMe.label} value={aboutMe.value} />
     </div>
   );
 };
