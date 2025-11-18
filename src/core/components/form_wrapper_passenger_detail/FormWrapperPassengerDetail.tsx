@@ -52,7 +52,7 @@ export const FormWrapperPassengerDetail = (
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
         "px-[1rem] py-[0.75rem]",
         "min-w-[255px]",
-        "bg-[white]",
+        "bg-[white] dark:bg-[#232323]",
         "rounded-[0.625rem]"
       )}
       style={{

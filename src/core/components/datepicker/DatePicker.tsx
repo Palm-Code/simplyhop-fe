@@ -257,7 +257,7 @@ export const DatePicker = ({
           className={clsx(
             disabled ? "cursor-default" : "cursor-pointer",
             "font-medium text-[0.875rem] leading-[1.25rem]",
-            "text-[#000000] whitespace-nowrap",
+            "text-[#232323] dark:text-white whitespace-nowrap",
             "w-full",
             disabled && "!bg-[#F6F6F6]",
             inputContainerProps?.className
@@ -287,7 +287,7 @@ export const DatePicker = ({
               "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
               "w-full max-w-[306px]",
               "rounded-[0.25rem]",
-              "bg-[white]"
+              "bg-[white] dark:bg-[#232323]"
             )}
             style={{
               backdropFilter: "blur(20px)",

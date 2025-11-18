@@ -140,7 +140,7 @@ export const FormPassenger = ({
         className={clsx(
           "cursor-pointer",
           "font-medium text-[0.875rem] leading-[1.25rem]",
-          "text-[#000000] whitespace-nowrap",
+          "text-[#232323] dark:text-white whitespace-nowrap",
           "w-full"
         )}
         onClick={handleClick}
@@ -162,7 +162,7 @@ export const FormPassenger = ({
               "w-full"
             )}
           >
-            <span className={clsx("text-[#606060] text-[0.75rem] font-normal")}>
+            <span className={clsx("text-[#606060] dark:text-[#C3C3C3] text-[0.75rem] font-normal")}>
               {detail?.title}
             </span>
             <FormPassengerDetail {...detail} />

@@ -60,7 +60,7 @@ export const FormPassengerDetail = ({
               )}
             >
               <span
-                className={clsx("text-[#232323] text-[0.875rem] font-semibold")}
+                className={clsx("text-[#232323] dark:text-white text-[0.875rem] font-semibold")}
               >
                 {item.name}
               </span>
@@ -108,7 +108,7 @@ export const FormPassengerDetail = ({
                 />
               </button>
 
-              <span className={clsx("text-[black] text-[1rem] font-bold")}>
+              <span className={clsx("text-[#232323] dark:text-white text-[1rem] font-bold")}>
                 {item.value}
               </span>
 
@@ -153,7 +153,7 @@ export const FormPassengerDetail = ({
         )}
       >
         <Checkbox {...carSeatInput} />
-        <span className={clsx("text-[#2C2C2E] text-[0.75rem] font-normal")}>
+        <span className={clsx("text-[#232323] dark:text-white text-[0.75rem] font-normal")}>
           {label}
         </span>
       </div>

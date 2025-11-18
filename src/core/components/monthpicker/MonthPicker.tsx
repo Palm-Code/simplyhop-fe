@@ -123,7 +123,7 @@ export const MonthPicker = ({
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
-            "text-[15px] text-[#000000] font-medium"
+            "text-[15px] text-[#232323] dark:text-white font-medium"
           )}
           onClick={onClickYear}
         >

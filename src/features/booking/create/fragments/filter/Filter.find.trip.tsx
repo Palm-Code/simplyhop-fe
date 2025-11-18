@@ -416,7 +416,7 @@ export const FilterFindTrip = () => {
       >
         <h1
           className={clsx(
-            "text-[1.125rem] sm:text-[2rem] text-[#232323] dark:text-white font-bold"
+            "text-[1.125rem] sm:text-[1.5rem] text-[#232323] dark:text-white font-bold"
           )}
         >
           {dictionaries.filter.title}
@@ -610,24 +610,23 @@ export const FilterFindTrip = () => {
                 )}
             />
             <Button
-            aria-label={dictionaries.filter.cta.primary.children}
-            name={dictionaries.filter.cta.primary.children}
-            disabled={
-              !state.filters.origin.selected.item ||
-              !state.filters.destination.selected.item ||
-              !state.filters.date.selected ||
-              (Array.isArray(state.filters.date.selected) &&
-                state.filters.date.selected.length === 0) ||
-              !state.filters.passenger.value.length
-            }
-            onClick={handleClickSearch}
-          >
-            {dictionaries.filter.cta.primary.children}
-          </Button>
+              aria-label={dictionaries.filter.cta.primary.children}
+              name={dictionaries.filter.cta.primary.children}
+              disabled={
+                !state.filters.origin.selected.item ||
+                !state.filters.destination.selected.item ||
+                !state.filters.date.selected ||
+                (Array.isArray(state.filters.date.selected) &&
+                  state.filters.date.selected.length === 0) ||
+                !state.filters.passenger.value.length
+              }
+              onClick={handleClickSearch}
+            >
+              {dictionaries.filter.cta.primary.children}
+            </Button>
           </div>
 
           {/* button */}
-          
         </div>
       </div>
     </>

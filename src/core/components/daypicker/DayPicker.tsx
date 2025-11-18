@@ -174,7 +174,7 @@ export const DayPicker = ({
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
-            "text-[0.875rem] text-[#4A5660] font-medium"
+            "text-[0.875rem] text-[#232323] dark:text-white font-medium"
           )}
           onClick={onClickMonth}
         >
