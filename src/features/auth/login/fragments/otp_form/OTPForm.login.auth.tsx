@@ -65,7 +65,11 @@ export const OTPFormLoginAuth = () => {
           "w-full"
         )}
       >
-        <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+        <h1
+          className={clsx(
+            "text-[#292929] dark:text-white text-[1.5rem] font-bold"
+          )}
+        >
           {dictionaries.otp_form.title}
         </h1>
         <div
@@ -75,7 +79,9 @@ export const OTPFormLoginAuth = () => {
           )}
         >
           <p
-            className={clsx("text-[#5B5B5B] text-[1rem] font-normal")}
+            className={clsx(
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+            )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.otp_form.description.replaceAll(
                 "{{email}}",
@@ -84,7 +90,11 @@ export const OTPFormLoginAuth = () => {
             }}
           />
 
-          <p className={clsx("text-[#5B5B5B] text-[1rem] font-normal")}>
+          <p
+            className={clsx(
+              "text-[#5B5B5B]dark:text-[#E9E6E6] text-[1rem] font-normal"
+            )}
+          >
             {dictionaries.otp_form.description_2}
           </p>
         </div>
@@ -136,7 +146,11 @@ export const OTPFormLoginAuth = () => {
             "w-full"
           )}
         >
-          <span className={clsx("text-[#5B5B5B] text-[1rem] font-normal")}>
+          <span
+            className={clsx(
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+            )}
+          >
             {dictionaries.otp_form.request_otp.description}
           </span>
           <button

@@ -135,9 +135,9 @@ export const OtpField = ({
             onPaste={index === 0 ? handlePaste : undefined}
             className={clsx(
               "w-full h-[80px]",
-              "text-center text-[1.125rem] font-medium",
-              "border border-[#E2E2E2] rounded-[0.375rem]",
-              "bg-white",
+              "text-[#232323] dark:text-white text-center text-[2rem] font-bold",
+              "border border-[#E2E2E2] dark:border-[#464646] rounded-[0.375rem]",
+              "bg-white dark:bg-[#232323]",
               "outline-none",
               "focus:border-[#33CC33]",
               disabled && "!bg-[#F6F6F6] cursor-not-allowed",
