@@ -465,10 +465,10 @@ export const DetailPlanRideTrip = () => {
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-white")}
             />
           </button>
-          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+          <h1 className={clsx("text-[1.5rem] text-[#232323] dark:text-white font-bold")}>
             {dictionaries.detail.title}
           </h1>
         </AdaptiveModalHeader>
@@ -518,7 +518,7 @@ export const DetailPlanRideTrip = () => {
               filter: undefined,
             }}
           >
-            <p className={clsx("text-[1.5rem] text-[black] font-bold")}>
+            <p className={clsx("text-[1.5rem] text-[#232323] dark:text-white font-bold")}>
               {dictionaries.detail.plan.form.title}
             </p>
             <div
@@ -530,7 +530,7 @@ export const DetailPlanRideTrip = () => {
               <DatePicker
                 mode="multiple"
                 inputContainerProps={{
-                  className: "!border !border-[#F8F8F8]",
+                  className: "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.date.labelProps,
@@ -541,7 +541,7 @@ export const DetailPlanRideTrip = () => {
               />
               <Textfield
                 inputContainerProps={{
-                  className: "!border !border-[#F8F8F8]",
+                  className: "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.time.labelProps,
@@ -568,7 +568,7 @@ export const DetailPlanRideTrip = () => {
                   ...dictionaries.detail.plan.form.input.recurring.inputProps,
                 }}
                 inputContainerProps={{
-                  className: "!border !border-[#F8F8F8]",
+                  className: "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 info={dictionaries.detail.plan.form.input.recurring.info}
                 selected={state.detail.form.plan.recurring.selected}
@@ -581,7 +581,7 @@ export const DetailPlanRideTrip = () => {
               />
               <Textfield
                 inputContainerProps={{
-                  className: "!border !border-[#F8F8F8]",
+                  className: "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.umweg.labelProps,
@@ -603,7 +603,7 @@ export const DetailPlanRideTrip = () => {
                 inputContainerProps={{
                   className: state.detail.form.plan.seat.error?.name
                     ? "!border !border-[#DA2323]"
-                    : "!border !border-[#F8F8F8]",
+                    : "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.seat.labelProps,
@@ -620,7 +620,7 @@ export const DetailPlanRideTrip = () => {
                   className: state.detail.form.plan.available_child_seat.error
                     ?.name
                     ? "!border !border-[#DA2323]"
-                    : "!border !border-[#F8F8F8]",
+                    : "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.available_child_seat
@@ -649,7 +649,7 @@ export const DetailPlanRideTrip = () => {
                   ...dictionaries.detail.plan.form.input.shift.inputProps,
                 }}
                 inputContainerProps={{
-                  className: "!border !border-[#F8F8F8]",
+                  className: "!border !border-[#F8F8F8] dark:!border-[#464646]",
                 }}
                 info={dictionaries.detail.plan.form.input.shift.info}
                 selected={state.detail.form.plan.shift.selected}
@@ -658,13 +658,14 @@ export const DetailPlanRideTrip = () => {
               />
               <InputContainer
                 className={clsx(
-                  "!border !border-[#F8F8F8]",
+                  "!border !border-[#F8F8F8] dark:!border-[#464646]",
                   "!grid !grid-flow-col !items-center !content-center !gap-[0.5rem]"
                 )}
               >
                 <Checkbox
                   label={dictionaries.detail.plan.form.input.back_seat.label}
                   checked={state.detail.form.plan.back_seat.checked}
+                  variant="secondary"
                   onChange={handleCheckBackSeat}
                 />
               </InputContainer>
@@ -675,7 +676,7 @@ export const DetailPlanRideTrip = () => {
             </p> */}
             <TextareafieldNotes
               inputContainerProps={{
-                className: "!border !border-[#F8F8F8]",
+                className: "!border !border-[#F8F8F8] dark:!border-[#464646]",
               }}
               inputProps={{
                 ...dictionaries.detail.notes.form.input.notes.inputProps,
@@ -711,7 +712,7 @@ export const DetailPlanRideTrip = () => {
                 onChange={handleCheckTNC}
               />
               <span
-                className={clsx("text-[#232323] text-[0.875rem] font-normal")}
+                className={clsx("text-[#232323] dark:text-white text-[0.875rem] font-normal")}
                 dangerouslySetInnerHTML={{
                   __html: dictionaries.detail.tnc.label,
                 }}

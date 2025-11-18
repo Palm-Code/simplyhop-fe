@@ -24,7 +24,7 @@ export const DepartureItem = ({
       >
         <p
           className={clsx(
-            "text-[0.75rem] font-normal text-[#8C8D89] lg:truncate lg:text-ellipsis max-lg:line-clamp-2",
+            "text-[0.75rem] font-normal text-[#8C8D89] dark:text-white lg:truncate lg:text-ellipsis max-lg:line-clamp-2",
             "w-full"
           )}
         >
@@ -41,7 +41,7 @@ export const DepartureItem = ({
             name="Info"
             className={clsx(
               "w-[0.75rem] h-[0.75rem]",
-              "stroke-[#667085]",
+              "stroke-[#667085] dark:stroke-white",
               "inline-block"
             )}
           />
@@ -50,8 +50,8 @@ export const DepartureItem = ({
             place="bottom"
             variant="info"
             className={clsx(
-              "!bg-[white] !shadow-lg",
-              "!text-[#212121] !text-[0.75rem] !font-normal",
+              "!bg-[white] dark:!bg-[#232323] !shadow-lg",
+              "!text-[#212121] dark:!text-white !text-[0.75rem] !font-normal",
               "!max-w-[250px]",
               "!px-[0.75rem] !py-[0.5rem]",
               "!rounded",
@@ -64,7 +64,7 @@ export const DepartureItem = ({
 
       <p
         className={clsx(
-          "text-[0.875rem] font-semibold text-[black]"
+          "text-[0.875rem] font-semibold text-[black] dark:text-white"
         )}
       >
         {time}

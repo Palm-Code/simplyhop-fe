@@ -12,7 +12,7 @@ export const AdaptiveModalHeader = forwardRef<
       className={clsx(
         "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
         "w-full",
-        "bg-[white]",
+        "bg-[white] dark:bg-[#232323]",
         "sticky top-[0px] z-[10]",
         "px-[1rem] py-[1rem] lg:px-[2rem] lg:py-[2rem]",
         props.className

@@ -4,9 +4,13 @@ import SVGIcon from "@/core/icons";
 
 export interface TravelTimeItemProps {
   time?: string;
+  variant?: "primary" | "secondary";
 }
 
-export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
+export const TravelTimeItem = ({
+  time = "",
+  variant = "primary",
+}: TravelTimeItemProps) => {
   return (
     <div
       className={clsx(
@@ -32,7 +36,7 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
           className={clsx(
             "flex items-center justify-center",
             "w-[0.375rem] h-[0.375rem]",
-            "bg-icon-primary-subdued",
+            variant === "primary" ? "bg-icon-primary-subdued" : "bg-[#333FFF]",
             "rounded-[50%]"
           )}
         >
@@ -66,7 +70,7 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
       >
         <p
           className={clsx(
-            "text-[0.75rem] text-[#8C8D89] font-normal text-center whitespace-nowrap"
+            "text-[0.75rem] text-[#8C8D89] dark:text-white font-normal text-center whitespace-nowrap"
           )}
         >
           {time}

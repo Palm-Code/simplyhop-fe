@@ -71,7 +71,7 @@ export const PageSheet = ({
       {open && (
         <motion.div
           className={clsx(
-            "bg-[rgba(255,255,255)]",
+            "bg-white dark:bg-[#232323]",
             "inset-0",
             "fixed top-0 bottom-0 left-0 right-0",
             "h-dvh z-[1000]",

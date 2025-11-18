@@ -81,7 +81,7 @@ export const BottomSheet = ({
           {/* Bottom Sheet */}
           <motion.div
             className={clsx(
-              "bg-white z-[1000]",
+              "bg-white dark:bg-[#232323] z-[1000]",
               "rounded-tr-[1.25rem] rounded-tl-[1.25rem]",
               "w-full",
               direction === "bottom" && "fixed bottom-0 left-0 right-0",

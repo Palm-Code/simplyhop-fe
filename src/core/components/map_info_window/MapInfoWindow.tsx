@@ -26,7 +26,7 @@ export const MapInfoWindow = ({
       </p>
       <p
         className={clsx(
-          "text-[0.75rem] lg:text-[1rem] text-[#232323] font-semibold line-clamp-1 text-ellipsis"
+          "text-[0.75rem] lg:text-[1rem] text-[#232323] dark:text-white font-semibold line-clamp-1 text-ellipsis"
         )}
       >
         {description}

@@ -149,7 +149,7 @@ export const RideDetailCardPlanRideTrip = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "border border-[#EFEFEF]"
+        "border border-[#EFEFEF] dark:border-[#232323]"
       )}
       style={{
         boxShadow: "0px 0px 25px 0px #9C96961A",
@@ -201,7 +201,7 @@ export const RideDetailCardPlanRideTrip = ({
           >
             <DepartureItem {...routes.departure} />
 
-            <TravelTimeItem {...routes.travelTime} />
+            <TravelTimeItem {...routes.travelTime} variant='secondary' />
 
             <ArrivalItem {...routes.arrival} />
           </div>

@@ -35,7 +35,7 @@ export const Modal = ({
         <DialogPanel
           className={clsx(
             "w-full",
-            "bg-[#FFFFFF]",
+            "bg-[#FFFFFF] dark:bg-[#232323]",
             "rounded-[1.25rem]",
             "relative",
             className

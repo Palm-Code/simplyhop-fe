@@ -26,7 +26,7 @@ export const Button = forwardRef<
         variant === "tertiary"
           ? isLoading
             ? "text-[1rem] text-[#FFFFFF] font-medium"
-            : "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] font-medium"
+            : "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] dark:disabled:text-[#DADADA] font-medium"
           : variant === "secondary"
           ? "text-[1rem] text-[#33CC33] disabled:text-[#5B5B5B] font-medium"
           : isLoading
@@ -35,7 +35,7 @@ export const Button = forwardRef<
         variant === "tertiary"
           ? isLoading
             ? ""
-            : "hover:bg-[#333FFF] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]"
+            : "hover:bg-[#333FFF] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B] dark:disabled:hover:bg-[#5B5B5B]"
           : variant === "secondary"
           ? ""
           : isLoading
@@ -44,7 +44,7 @@ export const Button = forwardRef<
         variant === "tertiary"
           ? isLoading
             ? "border border-[#333FFF]"
-            : "border border-[#333FFF] disabled:border disabled:border-[#F6F6F6]"
+            : "border border-[#333FFF] disabled:border disabled:border-[#F6F6F6] dark:disabled:border-[#5B5B5B] dark:disabled:hover:border-[#5B5B5B]"
           : variant === "secondary"
           ? "border border-[#33CC33]"
           : isLoading

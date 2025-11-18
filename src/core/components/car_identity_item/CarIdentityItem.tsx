@@ -26,11 +26,11 @@ export default function CarIdentityItem({
       >
         <SVGIcon
           name="Car"
-          className={clsx("w-[1rem] h-[1rem]", "text-[black]")}
+          className={clsx("w-[1rem] h-[1rem]", "text-[black] dark:text-white")}
         />
         <p
           className={clsx(
-            "text-[black] text-[0.875rem] lg:text-[0.875rem] font-medium truncate text-ellipsis",
+            "text-[black] dark:text-white text-[0.875rem] lg:text-[0.875rem] font-medium truncate text-ellipsis",
             "w-full"
           )}
         >
@@ -43,13 +43,13 @@ export default function CarIdentityItem({
             className={clsx(
               "w-[0.375rem] h-[0.375rem]",
               "rounded-[50%]",
-              "bg-[#5B5B5B]"
+              "bg-[#5B5B5B] dark:bg-white"
             )}
           />
 
           <p
             className={clsx(
-              "text-[black] text-[0.875rem] lg:text-[0.875rem] font-medium truncate text-ellipsis",
+              "text-[black] dark:text-white text-[0.875rem] lg:text-[0.875rem] font-medium truncate text-ellipsis",
               "w-full"
             )}
           >

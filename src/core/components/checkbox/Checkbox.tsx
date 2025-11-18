@@ -64,7 +64,7 @@ export const Checkbox = ({
         />
       </CheckboxComponent>
       {!!label.length && (
-        <Label className={clsx("text-[0.75rem] font-normal text-[#2C2C2E]")}>
+        <Label className={clsx("text-[0.75rem] font-normal text-[#2C2C2E] dark:text-white")}>
           {label}
           {required && <span className={clsx("text-[#FF0066]")}>{"*"}</span>}
         </Label>

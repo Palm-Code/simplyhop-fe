@@ -34,11 +34,11 @@ export const DriverProfileLabel = ({
         {!!icon && (
           <SVGIcon
             {...icon}
-            className={clsx("w-[1rem] h-[1rem]", "text-[black]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[black] dark:text-white")}
           />
         )}
 
-        <p className={clsx("text-[1rem] text-[black] font-medium")}>{name}</p>
+        <p className={clsx("text-[1rem] text-[black] dark:text-white font-medium")}>{name}</p>
       </div>
     </div>
   );

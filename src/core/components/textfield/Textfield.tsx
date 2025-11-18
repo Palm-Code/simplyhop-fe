@@ -61,7 +61,7 @@ export const Textfield = ({
               ? "top-[25%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
               : "top-[50%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
             "peer-focus:top-[25%] peer-focus:text-[0.75rem] text-[0.75rem]",
-            error ? "!text-[#DA2323]" : "!text-[#5B5B5B] dark:text-[#C3C3C3]"
+            error ? "!text-[#DA2323]" : "!text-[#5B5B5B] dark:!text-[#C3C3C3]"
           )}
           onClick={() => {
             inputRef.current?.focus();

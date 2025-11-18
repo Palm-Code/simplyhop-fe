@@ -109,7 +109,7 @@ export const Dropdownfield = ({
             >
               <SVGIcon
                 name={isOpen ? "ChevronUp" : "ChevronDown"}
-                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-white")}
               />
             </div>
 
@@ -130,7 +130,7 @@ export const Dropdownfield = ({
                   name="Info"
                   className={clsx(
                     "w-[0.75rem] h-[0.75rem]",
-                    "stroke-[#667085]",
+                    "stroke-[#667085] dark:stroke-white",
                     "inline-block"
                   )}
                 />
@@ -139,8 +139,8 @@ export const Dropdownfield = ({
                   place="bottom"
                   variant="info"
                   className={clsx(
-                    "!bg-[white] !shadow-lg",
-                    "!text-[#212121] !text-[0.75rem] !font-normal",
+                    "!bg-[white] dark:!bg-[#232323] !shadow-lg",
+                    "!text-[#232323] dark:!text-white !text-[0.75rem] !font-normal",
                     "!max-w-[250px]",
                     "!px-[0.75rem] !py-[0.5rem]",
                     "!rounded",

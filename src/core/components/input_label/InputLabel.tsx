@@ -16,7 +16,7 @@ export const InputLabel = ({
       htmlFor={id}
       className={clsx(
         "absolute",
-        "text-[#606060]",
+        "text-[#606060] dark:text-[#C3C3C3]",
         "transition-all transform scale-100",
         // "peer-focus:top-[-16px] peer-focus:text-[0.75rem]",
         className

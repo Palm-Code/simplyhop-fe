@@ -12,9 +12,9 @@ export const InputPrice = forwardRef<
       type="number"
       className={clsx(
         "h-full w-[228px]",
-        "bg-[white]",
+        "bg-[white] dark:bg-[#232323]",
         "outline-none",
-        "text-[56px] text-[black] font-bold",
+        "text-[56px] text-[black] dark:text-white font-bold",
         props.className
       )}
     />
