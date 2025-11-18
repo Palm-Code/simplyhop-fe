@@ -22,4 +22,6 @@ export interface User {
   average_ride_rating: null | number; // null;
   total_passengers_count: number; // 0;
   total_trips: number; // 0;
+  i_blocked: boolean;
+  blocked_me: boolean;
 }
