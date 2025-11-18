@@ -9,7 +9,6 @@ import {
   GetUserProfileIdPayloadRequestInterface,
   GetUserProfileIdSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/user_profile";
-import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetUserProfileId = () => {
   const { state, dispatch } = React.useContext(ListDriverContext);

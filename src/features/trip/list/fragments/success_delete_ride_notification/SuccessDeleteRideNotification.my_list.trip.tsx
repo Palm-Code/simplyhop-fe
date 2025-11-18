@@ -14,7 +14,7 @@ import { queryClient } from "@/core/utils/react_query";
 import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
 import { UserContext } from "@/core/modules/app/context";
 import dayjs from "dayjs";
-import { MyListTripReactQueryKey } from "../../react_query/keys";
+import { ListTripReactQueryKey } from "../../react_query/keys";
 
 export const SuccessDeleteRideNotificationMyListTrip = () => {
   const router = useRouter();
@@ -59,7 +59,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
       },
     });
     queryClient.invalidateQueries({
-      queryKey: MyListTripReactQueryKey.GetRidesSearch(payload),
+      queryKey: ListTripReactQueryKey.GetRidesSearch(payload),
       refetchType: "all",
       type: "all",
     });
@@ -89,7 +89,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
       },
     });
     queryClient.invalidateQueries({
-      queryKey: MyListTripReactQueryKey.GetRidesSearch(payload),
+      queryKey: ListTripReactQueryKey.GetRidesSearch(payload),
       refetchType: "all",
       type: "all",
     });

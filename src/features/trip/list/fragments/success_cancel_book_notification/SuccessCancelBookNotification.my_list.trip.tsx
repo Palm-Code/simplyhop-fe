@@ -11,7 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { queryClient } from "@/core/utils/react_query";
-import { MyListTripReactQueryKey } from "../../react_query/keys";
+import { ListTripReactQueryKey } from "../../react_query/keys";
 import { GetBookingMyPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
 import dayjs from "dayjs";
 
@@ -62,7 +62,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
       type: String(type),
     });
     queryClient.invalidateQueries({
-      queryKey: MyListTripReactQueryKey.GetBookingMy(payload),
+      queryKey: ListTripReactQueryKey.GetBookingList(payload),
       refetchType: "all",
       type: "all",
     });
@@ -94,7 +94,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
       type: String(type),
     });
     queryClient.invalidateQueries({
-      queryKey: MyListTripReactQueryKey.GetBookingMy(payload),
+      queryKey: ListTripReactQueryKey.GetBookingList(payload),
       refetchType: "all",
       type: "all",
     });

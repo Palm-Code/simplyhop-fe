@@ -1,5 +1,4 @@
 import { DashboardRideCardProps } from "@/core/components/dashboard_ride_card";
-import { User } from "@/core/models/data";
 import {
   GetDashboardOrganizationSuccessDataResponseInterface,
   GetDashboardSuperAdminPerOrganizationIdSuccessDataResponseInterface,

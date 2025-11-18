@@ -55,6 +55,9 @@ export const useGetSocialCallback = () => {
           is_able_to_ride: user.can_share_ride,
           is_super_admin: user.is_super_admin,
           role: user.role,
+          total_passengers_count: user.total_passengers_count,
+          total_trips: user.total_trips,
+          average_ride_rating: user.average_ride_rating,
         },
       });
       // router.push(AppCollectionURL.public.home());

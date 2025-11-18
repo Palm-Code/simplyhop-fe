@@ -1,16 +1,12 @@
-"use client";
 import * as React from "react";
 import clsx from "clsx";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { getDictionaries } from "../../i18n";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const BadgeFindTrip = () => {
   const dictionaries = getDictionaries();
-  const pathname = usePathname();
-  const isBooking = pathname.includes("mitfahrt-suchen");
   return (
     <div className={clsx("flex items-center justify-start gap-2", "pb-2")}>
       <div

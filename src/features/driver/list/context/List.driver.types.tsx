@@ -1,4 +1,3 @@
-import { AvatarProps } from "@/core/components/avatar";
 import { User } from "@/core/models/data";
 import { GetDashboardSuperAdminSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 
