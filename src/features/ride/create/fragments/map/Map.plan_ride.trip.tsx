@@ -6,7 +6,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useMemo } from "react";
 import { ENVIRONMENTS } from "@/core/environments";
 import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { MapInfoWindow } from "@/core/components/map_info_window";
@@ -17,10 +17,11 @@ import {
   COORDINATE,
   LATITUDE_COORDINATE_MARKER_CORRECTION,
   LIBRARIES,
-  MAP_OPTIONS,
   ROUTE_BOUND_CONSTANTS,
+  createMapOptions,
 } from "@/core/utils/map/constants";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { useTheme } from "@/core/utils/theme/hooks/useTheme";
 
 export const MapPlanRideTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
@@ -28,6 +29,7 @@ export const MapPlanRideTrip = () => {
   const { state, dispatch } = useContext(PlanRideTripContext);
   const { isLg } = useTailwindBreakpoint();
   const { location: userLocation, error: userLocationError } = useGeolocation();
+  const { isDarkMode } = useTheme();
 
   if (!apiKey) {
     console.error(
@@ -41,6 +43,11 @@ export const MapPlanRideTrip = () => {
   });
 
   const mapRef = useRef<google.maps.Map | null>(null);
+
+  // Memoize map options based on mode and theme
+  const mapOptions = useMemo(() => {
+    return createMapOptions(state.map.mode, isDarkMode);
+  }, [state.map.mode, isDarkMode]);
 
   // NOTES: set user location
   useEffect(() => {
@@ -102,13 +109,7 @@ export const MapPlanRideTrip = () => {
             }
           : undefined
       }
-      options={
-        state.map.mode === "country"
-          ? MAP_OPTIONS.country
-          : state.map.mode === "coordinate"
-          ? MAP_OPTIONS.coordinate
-          : MAP_OPTIONS.route
-      }
+      options={mapOptions}
     >
       {/* User Marker */}
       {!!state.map.initial_coordinate && (
@@ -179,7 +180,7 @@ export const MapPlanRideTrip = () => {
         <Polyline
           path={state.map.polyline_path}
           options={{
-            strokeColor: "#33CC33",
+            strokeColor: isDarkMode ? "#4CAF50" : "#33CC33",
             strokeOpacity: 0.8,
             strokeWeight: 8,
           }}
