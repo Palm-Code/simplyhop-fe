@@ -36,7 +36,7 @@ export const CarPriceItem = ({
 
       <p
         className={clsx(
-          "text-[black] text-[1rem] lg:text-[1.5rem] font-bold",
+          "text-[black] dark:text-white text-[1rem] lg:text-[1.5rem] font-bold",
           priceClassName
         )}
       >

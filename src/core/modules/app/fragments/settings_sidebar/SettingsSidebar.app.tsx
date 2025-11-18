@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import { ENVIRONMENTS } from "@/core/environments";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { UserContext } from "../../context";
+import { ThemeContext } from "../../context/theme/Theme.context";
 
 const Link = dynamic(() => import("next/link"), {
   ssr: false,
@@ -26,6 +27,7 @@ export const SettingsSidebarApp = () => {
   const dictionaries = getDictionaries();
   const pathname = usePathname();
   const { state } = React.useContext(UserContext);
+  const { isDarkMode } = React.useContext(ThemeContext);
   const isSuperAdmin = state.profile?.is_super_admin;
   const isOrganizationAdmin =
     state.profile?.role === "admin" && !state.profile.is_super_admin;
@@ -102,11 +104,13 @@ export const SettingsSidebarApp = () => {
           "w-full h-full",
           "px-[1px] py-[1px]",
           "rounded-2xl",
-          "hidden lg:block"
+          "hidden lg:block",
+          "dark:border dark:border-[#464646]"
         )}
         style={{
-          background:
-            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
+          background: isDarkMode
+            ? "transparent"
+            : "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
         }}
       >
         <div
@@ -114,7 +118,7 @@ export const SettingsSidebarApp = () => {
             "flex flex-col items-start justify-start",
             "w-full h-full",
             "px-4 py-4",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#232323]",
             "rounded-2xl"
           )}
         >
@@ -151,7 +155,7 @@ export const SettingsSidebarApp = () => {
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full",
               "pt-[1rem]",
-              "border-t border-t-[#EEF3EDC7]"
+              "border-t border-t-[#EEF3EDC7] dark:border-t-[#464646]"
             )}
           >
             {bottomDesktopSettingsMenu.map((menu, index) => {

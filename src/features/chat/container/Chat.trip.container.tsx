@@ -78,7 +78,7 @@ export const ChatTripContainer = () => {
             >
               <h1
                 className={clsx(
-                  "text-[black] text-[1.125rem] lg:text-[1.5rem] font-semibold"
+                  "text-[black] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-semibold"
                 )}
               >
                 {dictionaries.title}
@@ -97,7 +97,7 @@ export const ChatTripContainer = () => {
             </div>
 
             {/* NOTES: divider */}
-            <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9]")} />
+            <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9] dark:bg-[#464646]")} />
             {/* NOTES: Room */}
 
             <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>

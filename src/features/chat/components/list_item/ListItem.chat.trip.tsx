@@ -45,7 +45,7 @@ export const ListItemChatTrip = ({
             "w-full"
           )}
         >
-          <p className={clsx("text-[1rem] text-[#141414] font-semibold")}>
+          <p className={clsx("text-[1rem] text-[#141414] dark:text-white font-semibold")}>
             {name}
           </p>
           <p

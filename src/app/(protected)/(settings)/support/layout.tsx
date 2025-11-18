@@ -42,7 +42,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
                 className={clsx(
                   "w-full lg:h-[calc(100vh-90px-2rem)]",
                   "sticky top-0 lg:top-[calc(90px)] lg:bottom-0 z-[30]",
-                  "bg-[white]"
+                  "bg-[white] dark:bg-[#232323]"
                 )}
               >
                 <div className={clsx("w-full h-full", "pt-[2rem]")}>

@@ -18,7 +18,7 @@ export const SearchField = ({ inputProps, labelProps }: SearchFieldProps) => {
       className={clsx(
         "relative",
         "!rounded-[1.25rem]",
-        "!border !border-[#E8E8E8]"
+        "!border !border-[#E8E8E8] dark:!border-[#464646]"
       )}
     >
       <Input

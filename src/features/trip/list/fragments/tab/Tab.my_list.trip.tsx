@@ -50,9 +50,9 @@ export const TabMyListTrip = () => {
               <Tab
                 className={clsx(
                   !type && itemIndex === 0
-                    ? "text-[#232323] font-semibold border-b-[2px] border-b-[#33CC33]"
+                    ? "text-[#232323] dark:text-white font-semibold border-b-[2px] border-b-[#33CC33]"
                     : !!type && item.id === type
-                    ? "text-[#232323] font-semibold border-b-[2px] border-b-[#33CC33]"
+                    ? "text-[#232323] dark:text-white font-semibold border-b-[2px] border-b-[#33CC33]"
                     : "text-[#5B5B5B]",
                   "font-normal text-[1rem] ",
                   "outline-none",

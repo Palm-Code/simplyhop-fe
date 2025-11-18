@@ -20,7 +20,7 @@ export const PriceOfferedItem = ({
       <p className={clsx("text-[#606060] text-[0.75rem] font-normal")}>
         {label}
       </p>
-      <p className={clsx("text-[black] text-[0.875rem] lg:text-[1.5rem] font-bold")}>
+      <p className={clsx("text-[black] dark:text-white text-[0.875rem] lg:text-[1.5rem] font-bold")}>
         {price}
       </p>
     </div>
