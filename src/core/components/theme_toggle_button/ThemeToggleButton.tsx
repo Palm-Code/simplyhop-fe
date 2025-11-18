@@ -1,8 +1,9 @@
 "use client";
 
-import { useTheme } from "@/core/utils/theme/hooks";
 import { Sun, Moon } from "lucide-react";
 import clsx from "clsx";
+import { useContext } from "react";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 interface ThemeToggleButtonProps {
   /**
@@ -30,7 +31,8 @@ export function ThemeToggleButton({
 }: //   size = "icon",
 //   variant = "public",
 ThemeToggleButtonProps) {
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { state, toggleTheme } = useContext(ThemeContext);
+  const isDarkMode = state.mode.is_dark;
 
   return (
     <button

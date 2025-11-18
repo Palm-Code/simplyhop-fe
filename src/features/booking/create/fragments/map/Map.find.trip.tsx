@@ -21,7 +21,7 @@ import {
   createMapOptions,
 } from "@/core/utils/map/constants";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { useTheme } from "@/core/utils/theme/hooks/useTheme";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 export const MapFindTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
@@ -29,7 +29,7 @@ export const MapFindTrip = () => {
   const { state, dispatch } = useContext(FindTripContext);
   const { isLg } = useTailwindBreakpoint();
   const { location: userLocation, error: userLocationError } = useGeolocation();
-  const { isDarkMode } = useTheme();
+  const { isDarkMode } = useContext(ThemeContext);
 
   if (!apiKey) {
     console.error(

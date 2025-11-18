@@ -5,6 +5,7 @@ import { ReactQueryProvider } from "@/core/utils/react_query";
 import { GlobalProvider, UserProvider } from "@/core/modules/app/context";
 import { ENVIRONMENTS } from "@/core/environments";
 import { AppContainer } from "@/core/modules/app/container";
+import { ThemeProvider } from "@/core/modules/app/context/theme/Theme.context";
 
 const APP_NAME = "Simply Hop";
 const APP_DEFAULT_TITLE = "Simply Hop";
@@ -97,9 +98,11 @@ export default function RootLayout({
 
       <AppContainer className={`${inter.variable} antialiased`}>
         <ReactQueryProvider>
-          <UserProvider>
-            <GlobalProvider>{children}</GlobalProvider>
-          </UserProvider>
+          <ThemeProvider>
+            <UserProvider>
+              <GlobalProvider>{children}</GlobalProvider>
+            </UserProvider>
+          </ThemeProvider>
         </ReactQueryProvider>
       </AppContainer>
     </html>
