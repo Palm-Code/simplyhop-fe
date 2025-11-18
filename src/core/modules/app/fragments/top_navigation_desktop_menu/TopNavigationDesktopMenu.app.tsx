@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
@@ -10,6 +10,7 @@ import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { GlobalContext } from "../../context";
 import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
 import Image from "next/image";
+import { ThemeToggleButton } from "@/core/components/theme_toggle_button";
 
 export const TopNavigationDesktopMenu = () => {
   const { state } = React.useContext(GlobalContext);
@@ -178,13 +179,26 @@ export const TopNavigationDesktopMenu = () => {
                         "rounded-[1.25rem]"
                       )}
                     >
-                      <p className={clsx("text-white dark:text-[#E9E6E6] text-[0.75rem]")}>
+                      <p
+                        className={clsx(
+                          "text-white dark:text-[#E9E6E6] text-[0.75rem]"
+                        )}
+                      >
                         {formatUnreadMessageNumber(state.chat.count)}
                       </p>
                     </div>
                   )}
                 </Link>
               ))}
+
+              <div
+                className={clsx(
+                  "h-[30px] w-[1px]",
+                  "bg-[#E9E6E6] dark:bg-[#E9E6E6]"
+                )}
+              />
+
+              <ThemeToggleButton />
             </div>
           </div>
         </div>
