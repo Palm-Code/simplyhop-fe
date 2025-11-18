@@ -121,7 +121,7 @@ export const TopNavigationMobileMenu = () => {
             className={clsx(
               "flex items-center justify-center",
               "px-[9.6px] py-[6.4px]",
-              "bg-[white]",
+              "bg-[white] dark:bg-[#767676]",
               "rounded-[9.6px]"
             )}
           >
@@ -143,7 +143,7 @@ export const TopNavigationMobileMenu = () => {
             href={AppCollectionURL.private.support_account()}
           >
             <UserIcon
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676] dark:text-[#F6F6F6]")}
             />
           </Link>
         </div>
