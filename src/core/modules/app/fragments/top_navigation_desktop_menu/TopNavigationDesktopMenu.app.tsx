@@ -68,15 +68,15 @@ export const TopNavigationDesktopMenu = () => {
         : pathname.includes(menu.id)
         ? "text-green-500"
         : menu.id === "mitfahrt-anbieten"
-        ? "text-[#5B5B5B] hover:text-[#333FFF]"
-        : "text-[#5B5B5B] hover:text-green-500";
+        ? "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-[#333FFF]"
+        : "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-green-500";
     }
     return menu.id === "mitfahrt-suchen"
       ? pathname === menu.href
         ? "text-green-500"
         : pathname.includes(menu.id)
         ? "text-green-500"
-        : "text-[#5B5B5B] hover:text-green-500"
+        : "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-green-500"
       : "text-gray-400";
   };
 
@@ -159,7 +159,7 @@ export const TopNavigationDesktopMenu = () => {
                     "h-[64px]",
                     cursorClassName(menu),
                     textClassName(menu),
-                    "text-[1rem] font-semibold text-inter",
+                    "text-[1rem] font-normal text-inter",
                     borderClassName(menu)
                   )}
                 >

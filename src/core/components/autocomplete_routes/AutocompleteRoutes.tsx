@@ -201,7 +201,7 @@ export const AutocompleteRoutes = ({
               }}
             />
 
-            <div className={clsx("bg-[#E0ECDC]", "w-[1px] h-full")} />
+            <div className={clsx("bg-[#E0ECDC] dark:bg-[#464646]", "w-[1px] h-full")} />
 
             <InputRoute
               inputProps={{
