@@ -55,7 +55,7 @@ export const OTPFormLoginAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[2rem]",
-        "bg-[white]",
+        "bg-[white] dark:bg-[#232323]",
         "w-full h-full"
       )}
     >

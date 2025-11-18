@@ -1,8 +1,8 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
   /* new design system */
   --text-primary: #232323;
   --text-tertiary: #767676;
@@ -12,9 +12,13 @@
   --border-subdued: #f6f6f6;
 }
 
+/* Dark mode configuration - simple test */
+.dark {
+  --background: #232323;
+}
+
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-inter: var(--font-inter);
   --max-width-container: 1344px;
   --breakpoint-container: 1344px;
@@ -30,7 +34,7 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
 

@@ -29,7 +29,7 @@
     },
     "cta": {
       "login": {
-        "children": "Login"
+        "children": "Continue"
       }
     }
   },

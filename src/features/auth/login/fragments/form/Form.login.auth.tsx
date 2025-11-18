@@ -51,7 +51,6 @@ export const FormLoginAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[2rem]",
-        "bg-[white]",
         "w-full h-full"
       )}
     >
@@ -61,10 +60,10 @@ export const FormLoginAuth = () => {
           "w-full"
         )}
       >
-        <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+        <h1 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>
           {dictionaries.form.title}
         </h1>
-        <p className={clsx("text-[#232323] text-[0.75rem] font-light")}>
+        <p className={clsx("text-[#232323] dark:text-[#E9E6E6] text-[0.75rem] font-light")}>
           {dictionaries.form.description}
         </p>
       </div>

@@ -7,6 +7,7 @@ import { getDictionaries } from "../i18n";
 import { LoginAuthContext } from "../context";
 import { OTPFormLoginAuth } from "../fragments/otp_form";
 import Link from "next/link";
+import { ThemeToggleButton } from "@/core/components/theme_toggle_button";
 
 export const LoginAuthContainer = () => {
   const dictionaries = getDictionaries();
@@ -20,22 +21,24 @@ export const LoginAuthContainer = () => {
       <div
         className={clsx(
           "grid grid-rows-[auto_1fr_auto] grid-cols-1 items-stretch content-between justify-start justify-items-start gap-[2rem]",
-          "bg-[white]",
           "px-[1rem] py-[1.5rem] sm:py-[80px]",
           "rounded-[1.25rem]",
           "max-w-[508px] w-full h-full"
         )}
       >
-        <Link
-          href={process.env.NEXT_PUBLIC_SITE_URL ?? ""}
-          className="w-[148px] h-[40px] flex items-center justify-center cursor-pointer"
-        >
-          <Image
-            {...dictionaries.header.logo}
-            alt={dictionaries.header.logo.alt}
-            className="w-[170px] h-[170px] object-contain"
-          />
-        </Link>
+        <div className={clsx("flex items-center justify-between", "w-full")}>
+          <Link
+            href={process.env.NEXT_PUBLIC_SITE_URL ?? ""}
+            className="w-[148px] h-[40px] flex items-center justify-center cursor-pointer"
+          >
+            <Image
+              {...dictionaries.header.logo}
+              alt={dictionaries.header.logo.alt}
+              className="w-[170px] h-[170px] object-contain"
+            />
+          </Link>
+          <ThemeToggleButton />
+        </div>
 
         {state.step.name === "otp" ? <OTPFormLoginAuth /> : <FormLoginAuth />}
 
@@ -48,7 +51,7 @@ export const LoginAuthContainer = () => {
         >
           <p
             className={clsx(
-              "text-[0.75rem] text-[#232323] font-light text-center"
+              "text-[0.75rem] text-[#232323] dark:text-white font-light text-center"
             )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.privacy_policy.label,
@@ -69,7 +72,7 @@ export const LoginAuthContainer = () => {
             </div>
             <p
               className={clsx(
-                "text-[0.75rem] text-[#232323] font-normal text-center"
+                "text-[0.75rem] text-[#232323] dark:text-white font-normal text-center"
               )}
               dangerouslySetInnerHTML={{
                 __html: dictionaries.privacy_policy.credit.message,

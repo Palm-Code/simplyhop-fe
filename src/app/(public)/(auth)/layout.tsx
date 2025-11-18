@@ -44,7 +44,9 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
         className={clsx(
           "hidden lg:grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
           "relative",
-          "w-full h-full"
+          "w-full h-full",
+          'px-4 py-4',
+          'box-border'
         )}
       >
         <Image
@@ -55,8 +57,9 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           priority
           quality={100}
           className={clsx(
-            "w-full h-full max-h-[100vh]",
-            "object-center object-cover"
+            "w-full h-full max-h-[calc(100vh-2rem)]",
+            "object-center object-cover",
+            'rounded-2xl'
           )}
           style={{
             background:

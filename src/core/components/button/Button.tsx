@@ -31,7 +31,7 @@ export const Button = forwardRef<
           ? "text-[1rem] text-[#33CC33] disabled:text-[#5B5B5B] font-medium"
           : isLoading
           ? "text-[1rem] text-[#232323] font-medium"
-          : "text-[1rem] text-[#232323] disabled:text-[#5B5B5B] font-medium",
+          : "text-[1rem] text-[#232323] disabled:text-[#5B5B5B] dark:disabled:text-[#DADADA] font-medium",
         variant === "tertiary"
           ? isLoading
             ? ""
@@ -40,7 +40,7 @@ export const Button = forwardRef<
           ? ""
           : isLoading
           ? ""
-          : "hover:bg-[#7BD164] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
+          : "hover:bg-[#7BD164] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B] dark:disabled:hover:bg-[#5B5B5B]",
         variant === "tertiary"
           ? isLoading
             ? "border border-[#333FFF]"
@@ -49,7 +49,7 @@ export const Button = forwardRef<
           ? "border border-[#33CC33]"
           : isLoading
           ? "border border-[#33CC33]"
-          : "border border-[#33CC33] disabled:border disabled:border-[#F6F6F6]",
+          : "border border-[#33CC33] disabled:border disabled:border-[#F6F6F6] dark:disabled:border-[#5B5B5B] dark:disabled:hover:border-[#5B5B5B]",
         "cursor-pointer disabled:cursor-default",
         className
       )}
