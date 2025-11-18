@@ -35,7 +35,7 @@ export const Radio = ({
           "outline-none",
           "w-[1.25rem] h-[1.25rem]",
           "rounded-[50%]",
-          "bg-[white]",
+          "bg-[white] dark:bg-[#232323]",
           otherProps.checked
             ? "border-[1px] border-[#33CC33]"
             : "border-[1px] border-[#98989E]",

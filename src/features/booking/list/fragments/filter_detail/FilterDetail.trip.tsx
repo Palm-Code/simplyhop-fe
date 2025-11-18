@@ -28,7 +28,7 @@ export const FilterDetailTrip = () => {
         "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
         "w-full max-w-container",
         "px-[1rem] py-[0.75rem]",
-        "bg-[#FFFFFF]",
+        "bg-[#FFFFFF] dark:bg-[#232323]",
         "rounded-[1.25rem]"
       )}
       style={{

@@ -51,13 +51,13 @@ export const ResultTripContainer = () => {
               className={clsx(
                 "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
                 "w-full",
-                "sticky top-[90px] py-[1.5rem] z-[10]",
-                "bg-[white]"
+                "sticky top-[64px] py-[1.5rem] z-[10]",
+                "bg-[white] dark:bg-[#232323]"
               )}
             >
               <h2
                 className={clsx(
-                  "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                  "text-[#232323] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
                 )}
               >
                 {dictionaries.ride.title}

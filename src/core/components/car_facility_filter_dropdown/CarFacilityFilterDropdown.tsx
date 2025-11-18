@@ -37,20 +37,20 @@ export const CarFacilityFilterDropdown = ({
         className={clsx(
           "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
           "px-[0.5rem] py-[0.25rem]",
-          "bg-[white]",
+          "bg-[white] dark:bg-[#232323]",
           "border",
           isOpen
             ? "border-[#33CC33]"
             : !!selected.length
             ? "border-[#33CC33]"
-            : "border-[#E9E6E6]",
+            : "border-[#E9E6E6] dark:border-[#464646]",
           "rounded-[1.25rem]",
           "text-[0.875rem] font-medium",
           isOpen
             ? "text-[#33CC33]"
             : !!selected.length
             ? "text-[#33CC33]"
-            : "text-[#636262]",
+            : "text-[#636262] dark:text-[#E9E6E6]",
           "cursor-pointer"
         )}
         onClick={handleClickDropdownButton}
@@ -95,7 +95,7 @@ export const CarFacilityFilterDropdown = ({
         <div
           className={clsx(
             "absolute top-[40px] left-0 right-0",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#232323]",
             "rounded-[0.75rem]",
             "max-h-[200px] w-[255px]",
             "overflow-auto",

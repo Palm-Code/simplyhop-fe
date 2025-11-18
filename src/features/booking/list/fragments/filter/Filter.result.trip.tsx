@@ -424,12 +424,12 @@ export const FilterResultTrip = () => {
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
         "w-full max-w-container",
         "px-[1rem] py-[0.75rem]",
-        "bg-[#FFFFFF]",
+        "bg-[#FFFFFF] dark:bg-[#232323CC]",
         "rounded-[1.25rem]"
       )}
       style={{
         backdropFilter: "blur(20px)",
-        boxShadow: "0px 0px 15px 0px #0A31001A",
+        boxShadow: "0px 0px 25px 0px #969C9640",
       }}
     >
       <p

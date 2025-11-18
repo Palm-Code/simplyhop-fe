@@ -475,7 +475,7 @@ export const VehicleFilterResulTrip = () => {
       className={clsx(
         "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
         "w-full",
-        "bg-[white]"
+        "bg-[white] dark:bg-[#232323]"
       )}
     >
       <div

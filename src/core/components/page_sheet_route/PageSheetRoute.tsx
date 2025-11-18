@@ -72,7 +72,7 @@ export const PageSheetRoute = ({
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full bg-white",
+          "w-full bg-white dark:bg-[#232323]",
           "px-[1rem] py-[2rem]"
         )}
       >
@@ -91,10 +91,10 @@ export const PageSheetRoute = ({
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-white")}
             />
           </button>
-          <h2 className={clsx("text-[1.125rem] text-[#292929] font-bold")}>
+          <h2 className={clsx("text-[1.125rem] text-[#232323] dark:text-[white] font-bold")}>
             {title}
           </h2>
         </div>
