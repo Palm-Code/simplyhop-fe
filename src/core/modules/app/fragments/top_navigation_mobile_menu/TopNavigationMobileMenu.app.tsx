@@ -68,15 +68,15 @@ export const TopNavigationMobileMenu = () => {
         : pathname.includes(menu.id)
         ? "text-green-500"
         : menu.id === "mitfahrt-anbieten"
-        ? "text-[#5B5B5B] hover:text-[#333FFF]"
-        : "text-[#5B5B5B] hover:text-green-500";
+        ? "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-[#333FFF]"
+        : "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-green-500";
     }
     return menu.id === "mitfahrt-suchen"
       ? pathname === menu.href
         ? "text-green-500"
         : pathname.includes(menu.id)
         ? "text-green-500"
-        : "text-[#5B5B5B] hover:text-green-500"
+        : "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-green-500"
       : "text-gray-400";
   };
 
@@ -89,15 +89,15 @@ export const TopNavigationMobileMenu = () => {
         : pathname.includes(menu.id)
         ? "border-t-[0.25rem] border-t-green-500"
         : menu.id === "mitfahrt-anbieten"
-        ? "border-t-[0.25rem] border-t-white hover:border-t-[0.25rem] hover:border-t-[#333FFF]"
-        : "border-t-[0.25rem] border-t-white hover:border-t-[0.25rem] hover:border-t-green-500";
+        ? "border-t-[0.25rem] border-t-white dark:border-t-[#232323] hover:border-t-[0.25rem] hover:border-t-[#333FFF]"
+        : "border-t-[0.25rem] border-t-white dark:border-t-[#232323] hover:border-t-[0.25rem] hover:border-t-green-500";
     }
     return menu.id === "mitfahrt-suchen"
       ? pathname === menu.href
         ? "border-b-[0.25rem] border-b-green-500"
         : pathname.includes(menu.id)
         ? "border-b-[0.25rem] border-b-green-500"
-        : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500"
+        : "border-b-[0.25rem] border-b-white dark:border-t-[#232323] hover:border-b-[0.25rem] hover:border-b-green-500"
       : "border-b-[0.25rem] border-b-white"; // All other menus have gray border
   };
 
@@ -148,6 +148,7 @@ export const TopNavigationMobileMenu = () => {
           </Link>
         </div>
       </div>
+      
       <nav
         className={clsx(
           process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true"
@@ -162,7 +163,7 @@ export const TopNavigationMobileMenu = () => {
           className={clsx(
             "grid grid-cols-1 items-center content-center justify-start justify-items-start",
             "w-full h-full",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#232323]",
             "px-[1rem]"
           )}
           style={{ boxShadow: "0px -4px 10px 0px #0315030F" }}
@@ -187,6 +188,7 @@ export const TopNavigationMobileMenu = () => {
                   title={menuTitle(menu)}
                   className={clsx(
                     "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
+                    "w-full",
                     "h-[64px]",
                     cursorClassName(menu),
                     textClassName(menu),
