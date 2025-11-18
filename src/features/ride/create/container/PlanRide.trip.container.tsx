@@ -19,15 +19,6 @@ export const PlanRideTripContainer = () => {
 
         <div
           className={clsx(
-            "absolute top-[1.5rem] left-[0px] translate-x-[1.5rem] 2xl:translate-x-[calc(1*(100vw-1344px)/2)] z-[10]",
-            "rounded-[0.5rem] lg:rounded-[1.25rem]"
-          )}
-        >
-          <BadgePlanRideTrip />
-        </div>
-
-        <div
-          className={clsx(
             "hidden md:block",
             "absolute top-[1.5rem] right-[0px] translate-x-[-1.5rem] lg:translate-x-[calc(-1*(100vw-1344px)/2)] z-[10]",
             "rounded-[0.5rem] lg:rounded-[1.25rem]"
@@ -44,7 +35,7 @@ export const PlanRideTripContainer = () => {
         >
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem] sm:gap-[0.5rem]",
               "w-[100vw] lg:w-[calc(100vw-2rem)] container:w-full container:max-w-container"
             )}
           >
@@ -57,7 +48,7 @@ export const PlanRideTripContainer = () => {
             >
               <IncompleteProfilePlaneRideTrip />
             </div>
-
+            <BadgePlanRideTrip />
             <FilterPlanRideTrip />
           </div>
         </div>

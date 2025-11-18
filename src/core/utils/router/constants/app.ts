@@ -10,6 +10,7 @@ export const AppCollectionURL = {
     trip: () => "/mitfahrt-suchen",
     tripResult: (params?: string) =>
       !params ? `/mitfahrt-suchen/result` : `/mitfahrt-suchen/result?${params}`,
+    ride: () => "/mitfahrt-anbieten",
     myList: (params?: string) =>
       !params ? `/meine-fahrten` : `/meine-fahrten?${params}`,
     myListArchive: (params?: string) =>

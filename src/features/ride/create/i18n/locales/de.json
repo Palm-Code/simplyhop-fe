@@ -1,9 +1,17 @@
 {
   "top_badge": {
-    "icon": {
-      "name": "CarFront"
+    "booking": {
+      "icon": {
+        "name": "Search"
+      },
+      "label": "Fahrt finden"
     },
-    "label": "Mitfahrt eintragen"
+    "ride": {
+      "icon": {
+        "name": "CarFront"
+      },
+      "label": "Mitfahrt eintragen "
+    }
   },
   "map": {
     "marker": {
