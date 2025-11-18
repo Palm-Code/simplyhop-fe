@@ -403,12 +403,12 @@ export const FilterFindTrip = () => {
     <>
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[1rem]",
           "w-[100vw] lg:w-[calc(100vw-2rem)] container:w-full container:max-w-container",
-          "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
-          "bg-[#FFFFFF]",
+          "px-[1rem] py-[1rem] sm:px-[1.5rem] sm:py-[1.5rem]",
+          "bg-[#FFFFFFCC] dark:bg-[#232323CC]",
           "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
-          "border border-[#D3E7CE]"
+          "border border-[#E9E6E6] dark:border-[#464646]"
         )}
         style={{
           boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
@@ -416,7 +416,7 @@ export const FilterFindTrip = () => {
       >
         <h1
           className={clsx(
-            "text-[1.125rem] sm:text-[2rem] text-[#292929] font-bold"
+            "text-[1.125rem] sm:text-[2rem] text-[#232323] dark:text-white font-bold"
           )}
         >
           {dictionaries.filter.title}
@@ -431,7 +431,7 @@ export const FilterFindTrip = () => {
           {/* form */}
           <div
             className={clsx(
-              "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+              "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
               "w-full",
               "relative"
             )}
@@ -609,10 +609,7 @@ export const FilterFindTrip = () => {
                   )
                 )}
             />
-          </div>
-
-          {/* button */}
-          <Button
+            <Button
             aria-label={dictionaries.filter.cta.primary.children}
             name={dictionaries.filter.cta.primary.children}
             disabled={
@@ -627,6 +624,10 @@ export const FilterFindTrip = () => {
           >
             {dictionaries.filter.cta.primary.children}
           </Button>
+          </div>
+
+          {/* button */}
+          
         </div>
       </div>
     </>

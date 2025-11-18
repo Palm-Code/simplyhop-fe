@@ -88,15 +88,15 @@ export const TopNavigationDesktopMenu = () => {
         : pathname.includes(menu.id)
         ? "border-b-[0.25rem] border-b-green-500"
         : menu.id === "mitfahrt-anbieten"
-        ? "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-[#333FFF]"
-        : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500";
+        ? "border-b-[0.25rem] border-b-white dark:border-b-[#232323] hover:border-b-[0.25rem] hover:border-b-[#333FFF]"
+        : "border-b-[0.25rem] border-b-white dark:border-b-[#232323] hover:border-b-[0.25rem] hover:border-b-green-500";
     }
     return menu.id === "mitfahrt-suchen"
       ? pathname === menu.href
         ? "border-b-[0.25rem] border-b-green-500"
         : pathname.includes(menu.id)
         ? "border-b-[0.25rem] border-b-green-500"
-        : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500"
+        : "border-b-[0.25rem] border-b-white dark:border-b-[#232323] hover:border-b-[0.25rem] hover:border-b-green-500"
       : "border-b-[0.25rem] border-b-white"; // All other menus have gray border
   };
 
@@ -115,7 +115,7 @@ export const TopNavigationDesktopMenu = () => {
         className={clsx(
           "grid grid-cols-1 items-center content-center justify-center justify-items-center",
           "w-full h-full",
-          "bg-[white]",
+          "bg-[white] dark:bg-[#232323]",
           "px-[1rem]"
         )}
         style={{ boxShadow: "0px 5px 10px 0px #0000000D" }}
@@ -123,12 +123,12 @@ export const TopNavigationDesktopMenu = () => {
         <div
           className={clsx(
             "grid grid-flow-col items-center content-center justify-between justify-items-start",
-            "max-w-container w-full h-[90px]"
+            "max-w-container w-full h-[64px]"
           )}
         >
           {/* NOTES: logo */}
           <Link href={dictionaries.logo.href}>
-            <div className="w-[170px] h-[62px] flex items-center justify-center">
+            <div className="w-[120px] h-[56px] flex items-center justify-center">
               <Image
                 {...dictionaries.logo.image}
                 className={clsx("w-[170px] h-[170px]", "object-contain")}
@@ -155,7 +155,7 @@ export const TopNavigationDesktopMenu = () => {
                   title={menuTitle(menu)}
                   className={clsx(
                     "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
-                    "h-[90px]",
+                    "h-[64px]",
                     cursorClassName(menu),
                     textClassName(menu),
                     "text-[1rem] font-semibold text-inter",
@@ -174,11 +174,11 @@ export const TopNavigationDesktopMenu = () => {
                       className={clsx(
                         "flex items-center justify-center",
                         "px-[0.5rem] py-[0.25rem]",
-                        "bg-green-500",
+                        "bg-green-500 dark:bg-[#232323]",
                         "rounded-[1.25rem]"
                       )}
                     >
-                      <p className={clsx("text-white text-[0.75rem]")}>
+                      <p className={clsx("text-white dark:text-[#E9E6E6] text-[0.75rem]")}>
                         {formatUnreadMessageNumber(state.chat.count)}
                       </p>
                     </div>

@@ -18,7 +18,7 @@ export default function HelpCenterLayout({ children }: HelpCenterLayoutProps) {
     <UserProvider>
       <main className={clsx("w-full min-h-screen")}>
         <TopNavigation />
-        <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
+        <div className={clsx("pt-[64px]", "w-full min-h-screen")}>
           <div
             className={clsx(
               "grid grid-cols-1 items-start content-start justify-center justify-items-center",

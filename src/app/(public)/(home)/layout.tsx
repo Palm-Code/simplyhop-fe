@@ -43,7 +43,7 @@ export default function TripLayout({ children }: TripLayoutProps) {
       <main className={clsx("w-full h-full")}>
         <TopNavigation />
 
-        <div className={clsx("pt-[90px]", "w-full h-full overflow-y-auto")}>
+        <div className={clsx("pt-[64px]", "w-full h-full overflow-y-auto")}>
           {children}
           <FooterApp />
         </div>
