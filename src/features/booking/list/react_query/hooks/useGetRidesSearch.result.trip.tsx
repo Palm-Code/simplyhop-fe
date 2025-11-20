@@ -21,6 +21,7 @@ import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 dayjs.extend(utc);
 
@@ -31,6 +32,7 @@ export const useGetRideSearch = () => {
   const searchParams = useSearchParams();
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
+  const { isDarkMode } = React.useContext(ThemeContext);
 
   const getPrimarySearchDate = () => {
     if (Array.isArray(state.filters.date.selected)) {
@@ -218,6 +220,11 @@ export const useGetRideSearch = () => {
                           ...globalDictionaries.vehicle.seat.available.icon,
                           name: globalDictionaries.vehicle.seat.available.icon
                             .name as SVGIconProps["name"],
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.seat.available.icon
+                                .darkColor
+                            : globalDictionaries.vehicle.seat.available.icon
+                                .color,
                         },
                         name: {
                           ...globalDictionaries.vehicle.seat.available.name,
@@ -232,6 +239,11 @@ export const useGetRideSearch = () => {
                                 "{{number}}",
                                 item.available_seats.toLocaleString("de-DE")
                               ),
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.seat.available.name
+                                .darkColor
+                            : globalDictionaries.vehicle.seat.available.name
+                                .color,
                         },
                       },
                     ]
@@ -253,12 +265,22 @@ export const useGetRideSearch = () => {
                           ...globalDictionaries.vehicle.luggage.available.icon,
                           name: globalDictionaries.vehicle.luggage.available
                             .icon.name as SVGIconProps["name"],
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.luggage.available.icon
+                                .darkColor
+                            : globalDictionaries.vehicle.luggage.available.icon
+                                .color,
                         },
                         name: {
                           ...globalDictionaries.vehicle.luggage.available.name,
                           label:
                             globalDictionaries.vehicle.luggage.available.name
                               .label,
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.luggage.available.name
+                                .darkColor
+                            : globalDictionaries.vehicle.luggage.available.name
+                                .color,
                         },
                       },
                     ]
@@ -283,6 +305,19 @@ export const useGetRideSearch = () => {
                           ...globalDictionaries.vehicle.smoking.allowed.icon,
                           name: globalDictionaries.vehicle.smoking.allowed.icon
                             .name as SVGIconProps["name"],
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.smoking.allowed.icon
+                                .darkColor
+                            : globalDictionaries.vehicle.smoking.allowed.icon
+                                .color,
+                        },
+                        name: {
+                          ...globalDictionaries.vehicle.smoking.allowed.name,
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.smoking.allowed.name
+                                .darkColor
+                            : globalDictionaries.vehicle.smoking.allowed.name
+                                .color,
                         },
                       },
                     ]
@@ -306,6 +341,19 @@ export const useGetRideSearch = () => {
                           ...globalDictionaries.vehicle.music.allowed.icon,
                           name: globalDictionaries.vehicle.music.allowed.icon
                             .name as SVGIconProps["name"],
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.music.allowed.icon
+                                .darkColor
+                            : globalDictionaries.vehicle.music.allowed.icon
+                                .color,
+                        },
+                        name: {
+                          ...globalDictionaries.vehicle.music.allowed.name,
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.music.allowed.name
+                                .darkColor
+                            : globalDictionaries.vehicle.music.allowed.name
+                                .color,
                         },
                       },
                     ]
@@ -329,6 +377,19 @@ export const useGetRideSearch = () => {
                           ...globalDictionaries.vehicle.pets.allowed.icon,
                           name: globalDictionaries.vehicle.pets.allowed.icon
                             .name as SVGIconProps["name"],
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.pets.allowed.icon
+                                .darkColor
+                            : globalDictionaries.vehicle.pets.allowed.icon
+                                .color,
+                        },
+                        name: {
+                          ...globalDictionaries.vehicle.pets.allowed.name,
+                          color: isDarkMode
+                            ? globalDictionaries.vehicle.pets.allowed.name
+                                .darkColor
+                            : globalDictionaries.vehicle.pets.allowed.name
+                                .color,
                         },
                       },
                     ]
@@ -371,6 +432,9 @@ export const useGetRideSearch = () => {
                 ...globalDictionaries.vehicle.umweg.label.icon,
                 name: globalDictionaries.vehicle.umweg.label.icon
                   .name as SVGIconProps["name"],
+                color: isDarkMode
+                  ? globalDictionaries.vehicle.umweg.label.icon.darkColor
+                  : globalDictionaries.vehicle.umweg.label.icon.color,
               },
             },
             arrival: {
@@ -432,6 +496,6 @@ export const useGetRideSearch = () => {
         payload: data.meta.last_page,
       });
     }
-  }, [query.data, query.isFetching]);
+  }, [query.data, query.isFetching, isDarkMode]);
   return query;
 };

@@ -260,12 +260,12 @@ export const DayPicker = ({
                 isSelected
                   ? "text-[white]"
                   : disablePast && isBefore
-                  ? "text-[#E9E6E6]"
+                  ? "text-[#E9E6E6] dark:text-[#C3C3C3]"
                   : disableToday && isToday
-                  ? "text-[#E9E6E6]"
+                  ? "text-[#E9E6E6] dark:text-[#C3C3C3]"
                   : calendarItem.isCurrentMonth && !isSelected
-                  ? "text-[#4A5660]"
-                  : "text-[#E9E6E6]",
+                  ? "text-[#4A5660] dark:text-white"
+                  : "text-[#E9E6E6] dark:text-[#C3C3C3]",
                 !calendarItem.isCurrentMonth ? "opacity-0" : "opacity-100"
               )}
               disabled={disabled}

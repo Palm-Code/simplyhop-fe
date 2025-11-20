@@ -627,7 +627,8 @@
         "text": "Umweg: {{number}} minuten",
         "icon": {
           "name": "Timer",
-          "color": "#5B5B5B"
+          "color": "#5B5B5B",
+          "darkColor": "#E9E6E6"
         }
       }
     },
@@ -648,11 +649,13 @@
         "id": "available_seat",
         "icon": {
           "name": "User",
-          "color": "#727272"
+          "color": "#727272",
+          "darkColor": "#FFFFFF"
         },
         "name": {
           "label": "{{number}} Plätze frei (Max. 2 auf der Rückbank)",
-          "color": "#727272"
+          "color": "#727272",
+          "darkColor": "#FFFFFF"
         }
       },
       "empty": {
@@ -702,11 +705,13 @@
         "id": "available_luggage",
         "icon": {
           "name": "Briefcase",
-          "color": "#727272"
+          "color": "#727272",
+          "darkColor": "#FFFFFF"
         },
         "name": {
           "label": "Gepäck erlaubt",
-          "color": "#727272"
+          "color": "#727272",
+          "darkColor": "#FFFFFF"
         }
       },
       "empty": {
@@ -740,11 +745,13 @@
         "id": "allowed_smoking",
         "icon": {
           "name": "Cigarette",
-          "color": "#727272"
+          "color": "#249124",
+          "darkColor": "#33CC33"
         },
         "name": {
           "label": "Raucher",
-          "color": "#727272"
+          "color": "#249124",
+          "darkColor": "#33CC33"
         }
       },
       "prohibited": {
@@ -778,11 +785,13 @@
         "id": "allowed_music",
         "icon": {
           "name": "Music",
-          "color": "#727272"
+          "color": "#249124",
+          "darkColor": "#33CC33"
         },
         "name": {
           "label": "Musik erlaubt",
-          "color": "#727272"
+          "color": "#249124",
+          "darkColor": "#33CC33"
         }
       },
       "prohibited": {
@@ -816,11 +825,13 @@
         "id": "allowed-pets",
         "icon": {
           "name": "Dog",
-          "color": "#727272"
+          "color": "#249124",
+          "darkColor": "#33CC33"
         },
         "name": {
           "label": "Haustiere erlaubt",
-          "color": "#727272"
+          "color": "#249124",
+          "darkColor": "#33CC33"
         }
       },
       "prohibited": {

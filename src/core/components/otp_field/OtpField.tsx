@@ -140,7 +140,7 @@ export const OtpField = ({
               "bg-white dark:bg-[#232323]",
               "outline-none",
               "focus:border-[#33CC33]",
-              disabled && "!bg-[#F6F6F6] cursor-not-allowed",
+              disabled && "!bg-[#F6F6F6] dark:!bg-[#232323] cursor-not-allowed",
               error && "!border-[#DA2323]",
               "transition-colors duration-200"
             )}

@@ -205,6 +205,7 @@ export const TopNavigationMobileMenu = () => {
                   {menu.name}
                   {menu.id === "chat" && state.chat.count > 0 && (
                     <div
+                    key={`chat-${menuIndex}`}
                       className={clsx(
                         "flex items-center justify-center",
                         "px-[0.5rem] py-[0.25rem]",

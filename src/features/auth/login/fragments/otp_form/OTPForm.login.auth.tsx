@@ -92,7 +92,7 @@ export const OTPFormLoginAuth = () => {
 
           <p
             className={clsx(
-              "text-[#5B5B5B]dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
             )}
           >
             {dictionaries.otp_form.description_2}

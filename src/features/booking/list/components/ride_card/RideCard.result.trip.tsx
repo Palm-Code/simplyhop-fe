@@ -32,7 +32,6 @@ import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 import { TravelDateItemProps } from "@/core/components/travel_date_item";
-import { DepartureDateItem } from "@/core/components/departure_date_item";
 
 export interface RideCardResultTripProps {
   id?: string;
@@ -208,7 +207,7 @@ export const RideCardResultTrip = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "border border-[#EFEFEF]"
+        "border border-[#EFEFEF] dark:border-[#464646]"
       )}
     >
       {/* car */}
@@ -230,7 +229,6 @@ export const RideCardResultTrip = ({
             )}
           >
             <DriverProfileLabel {...driver.profile} />
-            <DepartureDateItem {...routes.date} />
           </div>
 
           <div
