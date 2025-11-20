@@ -1,6 +1,8 @@
 import {
   ListDriverActionEnum,
   ListDriverActions,
+  ListDriverDeleteAccountConfirmation,
+  ListDriverDeleteChatConfirmation,
   ListDriverTable,
   ListDriverUserProfile,
 } from "./List.driver.types";
@@ -41,6 +43,34 @@ export const ListDriverUserProfileReducers = (
 ) => {
   switch (action.type) {
     case ListDriverActionEnum.SetUserProfileData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DeleteChatConfirmation
+export const ListDriverDeleteChatConfirmationReducers = (
+  state: ListDriverDeleteChatConfirmation,
+  action: ListDriverActions
+) => {
+  switch (action.type) {
+    case ListDriverActionEnum.SetDeleteChatConfirmationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DeleteAccountConfirmation
+export const ListDriverDeleteAccountConfirmationReducers = (
+  state: ListDriverDeleteAccountConfirmation,
+  action: ListDriverActions
+) => {
+  switch (action.type) {
+    case ListDriverActionEnum.SetDeleteAccountConfirmationData:
       return action.payload;
 
     default:

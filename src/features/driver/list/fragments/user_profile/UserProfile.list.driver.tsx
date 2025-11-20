@@ -6,11 +6,13 @@ import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfi
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { useRouter } from "next/navigation";
+import { UserContext } from "@/core/modules/app/context";
 
 export const UserProfileListDriver = () => {
   const dictionaries = getDictionaries();
   const router = useRouter();
   const { state, dispatch } = React.useContext(ListDriverContext);
+  const { state: userState } = React.useContext(UserContext);
   const isOpen = state.user_profile.is_open;
   const handleClose = () => {
     dispatch({
@@ -23,25 +25,29 @@ export const UserProfileListDriver = () => {
     });
   };
 
-  // const handleClickDeleteChat = () => {
-  //   dispatch({
-  //     type: ListDriverActionEnum.SetDeleteChatConfirmationData,
-  //     payload: {
-  //       ...state.delete_chat_confirmation,
-  //       is_open: true,
-  //     },
-  //   });
-  // };
+  const handleClickDeleteChat = () => {
+    dispatch({
+      type: ListDriverActionEnum.SetDeleteChatConfirmationData,
+      payload: {
+        ...state.delete_chat_confirmation,
+        is_open: true,
+      },
+    });
+  };
 
-  // const handleClickBlock = () => {
-  //   dispatch({
-  //     type: ListDriverActionEnum.SetDeleteChatConfirmationData,
-  //     payload: {
-  //       ...state.block_confirmation,
-  //       is_open: true,
-  //     },
-  //   });
-  // };
+  const handleClickDeleteAccount = () => {
+    dispatch({
+      type: ListDriverActionEnum.SetDeleteAccountConfirmationData,
+      payload: {
+        ...state.delete_account_confirmation,
+        is_open: true,
+      },
+    });
+  };
+
+  const handleClickBlockList = () => {
+    //
+  };
 
   const summaryItems = !state.user_profile.data?.is_driver
     ? []
@@ -103,13 +109,24 @@ export const UserProfileListDriver = () => {
     };
   });
 
-  // const cta = dictionaries.user_profile.cta.items.map((item) => {
-  //   return {
-  //     ...item,
-  //     onClick:
-  //       item.id === "delete_chat" ? handleClickDeleteChat : handleClickBlock,
-  //   };
-  // });
+  const cta = userState.profile?.is_super_admin
+    ? dictionaries.user_profile.cta.super_admin.items.map((item) => {
+        return {
+          ...item,
+          onClick: handleClickBlockList,
+        };
+      })
+    : dictionaries.user_profile.cta.organizational_admin.items.map((item) => {
+        return {
+          ...item,
+          onClick:
+            item.id === "delete_chat"
+              ? handleClickDeleteChat
+              : item.id === "block_list"
+              ? handleClickBlockList
+              : handleClickDeleteAccount,
+        };
+      });
 
   const handleClickOpen = () => {
     router.push(
@@ -141,7 +158,7 @@ export const UserProfileListDriver = () => {
         phone: "-",
         summary: summaryItems,
         detail: detailItems,
-        cta: [],
+        cta: cta,
       }}
     />
   );

@@ -73,45 +73,50 @@
       "open": {
         "label": "Profil öffnen"
       },
-      "items": [
-        {
-          "id": "delete_chat",
-          "label": "Chat löschen",
-          "icon": "MessageSquareDashed"
-        },
-        {
-          "id": "block_user",
-          "label": "Entblocken",
-          "icon": "Ban"
-        }
-      ]
-    }
-  },
-  "block_confirmation": {
-    "title": "Reiseende bestätigen",
-    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
-    "cta": {
-      "cancel": {
-        "children": "Erneut überprüfen"
+      "organizational_admin": {
+        "items": [
+          {
+            "id": "block_list",
+            "label": "Benutzer blockieren",
+            "icon": "UserX2"
+          }
+        ]
       },
-      "ok": {
-        "children": "Bestätigung"
+      "super_admin": {
+        "items": [
+          {
+            "id": "delete_chat",
+            "label": "Chat löschen",
+            "icon": "MessageSquareDashed"
+          },
+          {
+            "id": "block_list",
+            "label": "Benutzer löschen",
+            "icon": "UserX2"
+          },
+          {
+            "id": "delete_account",
+            "label": "Konto löschen",
+            "icon": "X"
+          }
+        ]
       }
     }
   },
-  "unblock_confirmation": {
-    "title": "Reiseende bestätigen",
-    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
-    "cta": {
-      "cancel": {
-        "children": "Erneut überprüfen"
-      },
-      "ok": {
-        "children": "Bestätigung"
-      }
-    }
-  },
+
   "delete_chat_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
+  },
+  "delete_account_confirmation": {
     "title": "Reiseende bestätigen",
     "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
     "cta": {

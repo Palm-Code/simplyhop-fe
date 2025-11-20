@@ -24,4 +24,13 @@ export const ListDriverReactQueryKey = {
   GetUserProfileId: (payload?: GetUserProfileIdPayloadRequestInterface) => {
     return ["ListDriverReactQueryKey.GetUserProfileId", [payload] as const];
   },
+  DeleteMessageRoomsUserId: () => {
+    return ["ListDriverReactQueryKey.DeleteMessageRoomsUserId"];
+  },
+  PatchUserDeactivate: () => {
+    return ["ListDriverReactQueryKey.PatchUserDeactivate"];
+  },
+  PatchUserActivate: () => {
+    return ["ListDriverReactQueryKey.PatchUserActivate"];
+  },
 };

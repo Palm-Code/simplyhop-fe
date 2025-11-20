@@ -5,6 +5,8 @@ import {
   ListDriverInitialStateType,
 } from "./List.driver.types";
 import {
+  ListDriverDeleteAccountConfirmationReducers,
+  ListDriverDeleteChatConfirmationReducers,
   ListDriverTableReducers,
   ListDriverUserProfileReducers,
 } from "./List.driver.reducers";
@@ -25,6 +27,12 @@ const initialState: ListDriverInitialStateType = {
     user_id: null,
     data: null,
   },
+  delete_chat_confirmation: {
+    is_open: false,
+  },
+  delete_account_confirmation: {
+    is_open: false,
+  },
 };
 
 const ListDriverContext = createContext<{
@@ -36,11 +44,24 @@ const ListDriverContext = createContext<{
 });
 
 const mainReducer = (
-  { table, user_profile }: ListDriverInitialStateType,
+  {
+    table,
+    user_profile,
+    delete_chat_confirmation,
+    delete_account_confirmation,
+  }: ListDriverInitialStateType,
   action: ListDriverActions
 ) => ({
   table: ListDriverTableReducers(table, action),
   user_profile: ListDriverUserProfileReducers(user_profile, action),
+  delete_chat_confirmation: ListDriverDeleteChatConfirmationReducers(
+    delete_chat_confirmation,
+    action
+  ),
+  delete_account_confirmation: ListDriverDeleteAccountConfirmationReducers(
+    delete_account_confirmation,
+    action
+  ),
 });
 
 const ListDriverProvider = (props: { children: React.ReactNode }) => {

@@ -60,6 +60,7 @@ import {
   Building2,
   Phone,
   Gauge,
+  UserX2,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -140,6 +141,7 @@ export const svgMap = {
   Building2,
   Phone,
   Gauge,
+  UserX2,
   Facebook,
   Google,
   Whatsapp,

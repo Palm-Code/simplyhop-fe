@@ -16,6 +16,8 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface ListDriverInitialStateType {
   table: ListDriverTable;
   user_profile: ListDriverUserProfile;
+  delete_chat_confirmation: ListDriverDeleteChatConfirmation;
+  delete_account_confirmation: ListDriverDeleteAccountConfirmation;
 }
 
 export type ListDriverTable = {
@@ -35,6 +37,14 @@ export interface ListDriverUserProfile {
   data: null | User;
 }
 
+export interface ListDriverDeleteChatConfirmation {
+  is_open: boolean;
+}
+
+export interface ListDriverDeleteAccountConfirmation {
+  is_open: boolean;
+}
+
 export type ListDriverItem = GetDashboardSuperAdminSuccessDataResponseInterface;
 
 export enum ListDriverActionEnum {
@@ -45,12 +55,20 @@ export enum ListDriverActionEnum {
 
   // UserProfile
   SetUserProfileData = "SetUserProfileData",
+
+  // DeleteChatConfirmation
+  SetDeleteChatConfirmationData = "SetDeleteChatConfirmationData",
+
+  // DeleteAccountConfirmation
+  SetDeleteAccountConfirmationData = "SetDeleteAccountConfirmationData",
 }
 
 // Action Collection Types
 export type ListDriverActions =
   | ListDriverTableActions
-  | ListDriverUserProfileActions;
+  | ListDriverUserProfileActions
+  | ListDriverDeleteChatConfirmationActions
+  | ListDriverDeleteAccountConfirmationActions;
 
 // Action Collection Types consist of:
 
@@ -71,3 +89,19 @@ type ListDriverUserProfilePayload = {
 
 export type ListDriverUserProfileActions =
   ActionMap<ListDriverUserProfilePayload>[keyof ActionMap<ListDriverUserProfilePayload>];
+
+// DeleteChatConfirmation
+type ListDriverDeleteChatConfirmationPayload = {
+  [ListDriverActionEnum.SetDeleteChatConfirmationData]: ListDriverDeleteChatConfirmation;
+};
+
+export type ListDriverDeleteChatConfirmationActions =
+  ActionMap<ListDriverDeleteChatConfirmationPayload>[keyof ActionMap<ListDriverDeleteChatConfirmationPayload>];
+
+// DeleteAccountConfirmation
+type ListDriverDeleteAccountConfirmationPayload = {
+  [ListDriverActionEnum.SetDeleteAccountConfirmationData]: ListDriverDeleteAccountConfirmation;
+};
+
+export type ListDriverDeleteAccountConfirmationActions =
+  ActionMap<ListDriverDeleteAccountConfirmationPayload>[keyof ActionMap<ListDriverDeleteAccountConfirmationPayload>];
