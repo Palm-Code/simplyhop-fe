@@ -70,7 +70,8 @@ export const UserProfileModal = ({
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
           "px-[0rem] sm:px-[2rem] py-[2rem]",
-          "w-full h-full"
+          "w-full h-full max-h-[80vh]",
+          "overflow-auto"
         )}
       >
         {/* header */}

@@ -85,6 +85,11 @@
           "id": "kilometer",
           "name": "Kilometer",
           "icon": "Gauge"
+        },
+        {
+          "id": "co2",
+          "name": "Eingespartes CO2",
+          "icon": "Leaf"
         }
       ]
     },
@@ -95,14 +100,9 @@
       },
       "items": [
         {
-          "id": "delete_chat",
-          "label": "Chat löschen",
-          "icon": "MessageSquareDashed"
-        },
-        {
-          "id": "block_user",
-          "label": "Entblocken",
-          "icon": "Ban"
+          "id": "delete_organization",
+          "label": "Organisation löschen",
+          "icon": "X"
         }
       ]
     }

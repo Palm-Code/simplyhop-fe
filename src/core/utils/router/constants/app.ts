@@ -26,6 +26,7 @@ export const AppCollectionURL = {
     support_dashboard: () => "/support/dashboard",
     driver: () => "/support/fahrer",
     driverDetail: (path: { id: string }) => `/support/fahrer/detail/${path.id}`,
+    dashboardTrip: () => "/support/fahrten",
     organization: () => "/support/organisation",
     organizationDetail: (path: { id: string }) =>
       `/support/organisation/detail/${path.id}`,

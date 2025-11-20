@@ -5,6 +5,7 @@ import { AdaptiveModal } from "../adaptive_modal";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { Avatar, AvatarProps } from "../avatar";
+import Link from "next/link";
 
 export interface OrganizationProfileModalProps {
   isOpen?: boolean;
@@ -36,6 +37,7 @@ export interface OrganizationProfileModalProps {
       id: string;
       name: string;
       icon: string;
+      href?: string;
     }[];
     cta: {
       label: string;
@@ -66,7 +68,7 @@ export const OrganizationProfileModal = ({
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
         "!max-w-[100vw] lg:!max-w-[584px]",
-        "h-[100vh] lg:!h-fit",
+        "max-h-[100vh] lg:!h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-hidden"
       )}
@@ -77,7 +79,8 @@ export const OrganizationProfileModal = ({
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
           "px-[0rem] sm:px-[2rem] py-[2rem]",
-          "w-full h-full"
+          "w-full h-full max-h-[80vh]",
+          "overflow-auto"
         )}
       >
         {/* header */}
@@ -278,7 +281,7 @@ export const OrganizationProfileModal = ({
             </div>
           )}
 
-           {/* statistic */}
+          {/* statistic */}
           {!!user.statistic.length && (
             <div
               className={clsx(
@@ -293,35 +296,54 @@ export const OrganizationProfileModal = ({
                 <div
                   key={index}
                   className={clsx(
-                    "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]",
+                    "flex items-center justify-between",
                     "w-full"
                   )}
                 >
-                  <SVGIcon
-                    name={item.icon as SVGIconProps["name"]}
-                    className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
-                  />
                   <div
                     className={clsx(
-                      "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                      "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]",
                       "w-full"
                     )}
                   >
-                    <p
+                    <SVGIcon
+                      name={item.icon as SVGIconProps["name"]}
+                      className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                    />
+                    <div
                       className={clsx(
-                        "text-[0.75rem] text-[#606060] font-normal"
+                        "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                        "w-full"
                       )}
                     >
-                      {item.name}
-                    </p>
-                    <p
-                      className={clsx(
-                        "text-[0.875rem] text-[#232323] font-medium"
-                      )}
-                    >
-                      {item.value}
-                    </p>
+                      <p
+                        className={clsx(
+                          "text-[0.75rem] text-[#606060] font-normal"
+                        )}
+                      >
+                        {item.name}
+                      </p>
+                      <p
+                        className={clsx(
+                          "text-[0.875rem] text-[#232323] font-medium"
+                        )}
+                      >
+                        {item.value}
+                      </p>
+                    </div>
                   </div>
+
+                  {item.href && (
+                    <Link href={item.href}>
+                      <SVGIcon
+                        name="ArrowRight"
+                        className={clsx(
+                          "w-[0.75rem] h-[0.75rem]",
+                          "text-[#767676]"
+                        )}
+                      />
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

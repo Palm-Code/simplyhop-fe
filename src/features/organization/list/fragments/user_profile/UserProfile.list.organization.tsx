@@ -26,15 +26,15 @@ export const UserProfileListOrganization = () => {
     });
   };
 
-  // const handleClickDeleteChat = () => {
-  //   dispatch({
-  //     type: ListDriverActionEnum.SetDeleteChatConfirmationData,
-  //     payload: {
-  //       ...state.delete_chat_confirmation,
-  //       is_open: true,
-  //     },
-  //   });
-  // };
+  const handleClickDeleteOrganization = () => {
+    // dispatch({
+    //   type: ListDriverActionEnum.SetDeleteChatConfirmationData,
+    //   payload: {
+    //     ...state.delete_chat_confirmation,
+    //     is_open: true,
+    //   },
+    // });
+  };
 
   // const handleClickBlock = () => {
   //   dispatch({
@@ -75,6 +75,7 @@ export const UserProfileListOrganization = () => {
 
   const detailItems = dictionaries.user_profile.detail.items.map((item) => {
     let value = "-";
+
     switch (item.id) {
       case "email": {
         value = state.user_profile.data?.organization.email ?? "-";
@@ -104,11 +105,13 @@ export const UserProfileListOrganization = () => {
   const statisticItems = dictionaries.user_profile.statistic.items.map(
     (item) => {
       let value = "-";
+      let href: undefined | string = undefined;
       switch (item.id) {
         case "fahrer": {
           value =
             state.user_profile.data?.total_driver?.toLocaleString("de-DE") ??
             "-";
+          href = AppCollectionURL.private.driver();
           break;
         }
         case "fahrten": {
@@ -116,12 +119,20 @@ export const UserProfileListOrganization = () => {
             state.user_profile.data?.total_rides_completed?.toLocaleString(
               "de-DE"
             ) ?? "-";
+          href = AppCollectionURL.private.dashboardTrip();
           break;
         }
         case "kilometer": {
           value =
             state.user_profile.data?.total_rides_km?.toLocaleString("de-DE") ??
             "-";
+          break;
+        }
+        case "co2": {
+          value =
+            state.user_profile.data?.total_rides_carbon?.toLocaleString(
+              "de-DE"
+            ) ?? "-";
           break;
         }
         default: {
@@ -131,17 +142,17 @@ export const UserProfileListOrganization = () => {
       return {
         ...item,
         value: value,
+        href: href,
       };
     }
   );
 
-  // const cta = dictionaries.user_profile.cta.items.map((item) => {
-  //   return {
-  //     ...item,
-  //     onClick:
-  //       item.id === "delete_chat" ? handleClickDeleteChat : handleClickBlock,
-  //   };
-  // });
+  const cta = dictionaries.user_profile.cta.items.map((item) => {
+    return {
+      ...item,
+      onClick: handleClickDeleteOrganization,
+    };
+  });
 
   const handleClickOpen = () => {
     router.push(
@@ -174,7 +185,7 @@ export const UserProfileListOrganization = () => {
         summary: summaryItems,
         detail: detailItems,
         statistic: statisticItems,
-        cta: [],
+        cta: cta,
       }}
     />
   );
