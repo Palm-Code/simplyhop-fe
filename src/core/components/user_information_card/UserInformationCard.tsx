@@ -19,7 +19,7 @@ export interface UserInformationCardProps {
     displayName: string;
     cta: {
       text: string;
-      href: string;
+      onClick: () => void;
     };
   };
   detail: {
@@ -100,20 +100,19 @@ export const UserInformationCard = ({
           </h2>
         </div>
 
-        <Link href={cta.href}>
-          <button
-            className={clsx(
-              "flex items-center justify-center",
-              "bg-white",
-              "px-4 py-2",
-              "rounded-md",
-              "border border-[#33CC33]",
-              "text-[#33CC33] text-xs font-semibold"
-            )}
-          >
-            {cta.text}
-          </button>
-        </Link>
+        <button
+          className={clsx(
+            "flex items-center justify-center",
+            "bg-white",
+            "px-4 py-2",
+            "rounded-md",
+            "border border-[#33CC33]",
+            "text-[#33CC33] text-xs font-semibold"
+          )}
+          onClick={cta.onClick}
+        >
+          {cta.text}
+        </button>
       </div>
 
       {/* summary */}

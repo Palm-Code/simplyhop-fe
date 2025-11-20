@@ -1,14 +1,14 @@
 "use client";
 import * as React from "react";
 import { getDictionaries } from "../../i18n";
-import { ListDriverContext, ListDriverActionEnum } from "../../context";
+import { DetailDriverContext, DetailDriverActionEnum } from "../../context";
 import { usePatchUserDeactivate } from "../../react_query/hooks";
 import { UserBlockConfirmation } from "@/core/components/user_block_confirmation";
 
-export const DeleteAccountConfirmationListDriver = () => {
+export const DeleteAccountConfirmationDetailDriver = () => {
   const dictionaries = getDictionaries();
 
-  const { state, dispatch } = React.useContext(ListDriverContext);
+  const { state, dispatch } = React.useContext(DetailDriverContext);
 
   const {
     mutate: patchUserDeactivate,
@@ -17,7 +17,7 @@ export const DeleteAccountConfirmationListDriver = () => {
 
   const handleClose = () => {
     dispatch({
-      type: ListDriverActionEnum.SetDeleteAccountConfirmationData,
+      type: DetailDriverActionEnum.SetDeleteAccountConfirmationData,
       payload: {
         ...state.delete_account_confirmation,
         is_open: false,
@@ -27,7 +27,7 @@ export const DeleteAccountConfirmationListDriver = () => {
 
   const handleClickCancelConfirmRideComplete = () => {
     dispatch({
-      type: ListDriverActionEnum.SetDeleteAccountConfirmationData,
+      type: DetailDriverActionEnum.SetDeleteAccountConfirmationData,
       payload: {
         ...state.delete_account_confirmation,
         is_open: false,
@@ -37,7 +37,7 @@ export const DeleteAccountConfirmationListDriver = () => {
 
   const handleClickOKConfirmRideComplete = async () => {
     dispatch({
-      type: ListDriverActionEnum.SetDeleteAccountConfirmationData,
+      type: DetailDriverActionEnum.SetDeleteAccountConfirmationData,
       payload: {
         ...state.delete_account_confirmation,
         is_open: false,

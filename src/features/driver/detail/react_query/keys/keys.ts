@@ -12,4 +12,10 @@ export const DetailDriverReactQueryKey = {
   GetUserProfileId: (payload?: GetUserProfileIdPayloadRequestInterface) => {
     return ["DetailDriverReactQueryKey.GetUserProfileId", [payload] as const];
   },
+  PatchUserProfile: () => {
+    return ["DetailDriverReactQueryKey.PatchUserProfile"];
+  },
+  PatchUserDeactivate: () => {
+    return ["ListDriverReactQueryKey.PatchUserDeactivate"];
+  },
 };

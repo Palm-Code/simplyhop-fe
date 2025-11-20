@@ -1,16 +1,15 @@
-'use client'
+"use client";
 import * as React from "react";
-import { DetailDriverContext } from "../../context";
+import { DetailDriverActionEnum, DetailDriverContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { UserInformationCard } from "@/core/components/user_information_card";
 import { formatDisplayName } from "@/core/utils/name/functions";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const UserDetailDriver = () => {
   const globalDictionaries = getGlobalDictionaries();
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(DetailDriverContext);
+  const { state, dispatch } = React.useContext(DetailDriverContext);
   const summaryItems = !state.user.data?.is_driver
     ? []
     : dictionaries.user.summary.items.map((item) => {
@@ -43,6 +42,39 @@ export const UserDetailDriver = () => {
           value: value,
         };
       });
+
+  const handleClickEdit = () => {
+    dispatch({
+      type: DetailDriverActionEnum.SetEditData,
+      payload: {
+        ...state.edit,
+        is_open: true,
+        form: {
+          ...state.edit.form,
+          first_name: {
+            ...state.edit.form.first_name,
+            value: state.user.data?.first_name ?? "",
+          },
+          last_name: {
+            ...state.edit.form.last_name,
+            value: state.user.data?.last_name ?? "",
+          },
+          phonenumber: {
+            ...state.edit.form.phonenumber,
+            value: state.user.data?.mobile ?? "",
+          },
+          city: {
+            ...state.edit.form.city,
+            value: state.user.data?.city ?? "",
+          },
+          about_me: {
+            ...state.edit.form.about_me,
+            value: state.user.data?.profile?.bio ?? "",
+          },
+        },
+      },
+    });
+  };
   return (
     <UserInformationCard
       summary={summaryItems}
@@ -56,7 +88,7 @@ export const UserDetailDriver = () => {
         }),
         cta: {
           text: dictionaries.user.information.cta.edit.children,
-          href: AppCollectionURL.private.support_account_edit(),
+          onClick: handleClickEdit,
         },
       }}
       detail={{

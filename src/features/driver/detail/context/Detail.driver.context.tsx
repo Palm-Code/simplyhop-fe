@@ -5,6 +5,8 @@ import {
   DetailDriverInitialStateType,
 } from "./Detail.driver.types";
 import {
+  DetailDriverDeleteAccountConfirmationReducers,
+  DetailDriverEditReducers,
   DetailDriverRideReducers,
   DetailDriverUserReducers,
   DetailDriverVehicleReducers,
@@ -29,6 +31,38 @@ const initialState: DetailDriverInitialStateType = {
       is_fetching: true,
     },
   },
+  edit: {
+    is_open: false,
+    form: {
+      first_name: {
+        value: "",
+        error: null,
+      },
+      last_name: {
+        value: "",
+        error: null,
+      },
+      city: {
+        value: "",
+        error: null,
+      },
+      phonenumber: {
+        value: "",
+        error: null,
+      },
+      about_me: {
+        value: "",
+        error: null,
+      },
+      gender: {
+        selected: null,
+        error: null,
+      },
+    },
+  },
+  delete_account_confirmation: {
+    is_open: false,
+  },
 };
 
 const DetailDriverContext = createContext<{
@@ -40,12 +74,23 @@ const DetailDriverContext = createContext<{
 });
 
 const mainReducer = (
-  { user, ride, vehicle }: DetailDriverInitialStateType,
+  {
+    user,
+    ride,
+    vehicle,
+    edit,
+    delete_account_confirmation,
+  }: DetailDriverInitialStateType,
   action: DetailDriverActions
 ) => ({
   user: DetailDriverUserReducers(user, action),
   ride: DetailDriverRideReducers(ride, action),
   vehicle: DetailDriverVehicleReducers(vehicle, action),
+  edit: DetailDriverEditReducers(edit, action),
+  delete_account_confirmation: DetailDriverDeleteAccountConfirmationReducers(
+    delete_account_confirmation,
+    action
+  ),
 });
 
 const DetailDriverProvider = (props: { children: React.ReactNode }) => {

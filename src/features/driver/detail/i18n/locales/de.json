@@ -119,5 +119,122 @@
         "children": "Alle anzeigen"
       }
     }
+  },
+  "edit": {
+    "title": "Profil bearbeiten",
+    "form": {
+      "input": {
+        "email": {
+          "inputProps": {
+            "id": "email",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "email",
+            "children": "Email",
+            "required": false
+          }
+        },
+        "first_name": {
+          "inputProps": {
+            "id": "first_name",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "first_name",
+            "children": "Vorname",
+            "required": false
+          }
+        },
+        "last_name": {
+          "inputProps": {
+            "id": "last_name",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "last_name",
+            "children": "Nachname",
+            "required": false
+          }
+        },
+        "city": {
+          "inputProps": {
+            "id": "city",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "city",
+            "children": "Stadt",
+            "required": false
+          }
+        },
+        "phonenumber": {
+          "inputProps": {
+            "id": "phonenumber",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "phonenumber",
+            "children": "Telefon-Nummer",
+            "required": false
+          }
+        },
+        "about_me": {
+          "inputProps": {
+            "id": "about_me",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "about_me",
+            "children": "Über mich",
+            "required": false
+          }
+        },
+        "gender": {
+          "inputProps": {
+            "id": "gender",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "gender",
+            "children": "Geschlecht",
+            "required": false
+          }
+        },
+        "pictures": {
+          "title": "Profilbilder",
+          "description": "Bilder hochladen, die Ihr Gesicht darstellen",
+          "form": {
+            "message": "Ziehen Sie Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
+            "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
+          },
+          "square_input": {
+            "form": {
+              "label": "+<br/>Weitere hinzufügen"
+            }
+          }
+        }
+      }
+    },
+    "cta": {
+      "save": {
+        "children": "Speichern"
+      },
+      "deactivate": {
+        "children": "Konto löschen"
+      }
+    }
+  },
+  "delete_account_confirmation": {
+    "title": "Reiseende bestätigen",
+    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "cta": {
+      "cancel": {
+        "children": "Erneut überprüfen"
+      },
+      "ok": {
+        "children": "Bestätigung"
+      }
+    }
   }
 }

@@ -9,6 +9,8 @@ import {
 } from "../react_query/hooks";
 import { RidesDetailDriver } from "../fragments/rides";
 import { VehiclesDetailDriver } from "../fragments/vehicles";
+import { EditDetailDriver } from "../fragments/edit";
+import { DeleteAccountConfirmationDetailDriver } from "../fragments/delete_account_confirmation";
 
 export const DetailDriverContainer = () => {
   useGetRidesSearch();
@@ -16,29 +18,33 @@ export const DetailDriverContainer = () => {
   useGetVehicleList();
 
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-6",
-        "w-full"
-      )}
-    >
+    <>
       <div
         className={clsx(
-          "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-6",
+          "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full"
         )}
       >
-        <UserDetailDriver />
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-6",
+            "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-6",
             "w-full"
           )}
         >
-          <RidesDetailDriver />
-          <VehiclesDetailDriver />
+          <UserDetailDriver />
+          <div
+            className={clsx(
+              "grid grid-cols-1 place-content-start place-items-start gap-6",
+              "w-full"
+            )}
+          >
+            <RidesDetailDriver />
+            <VehiclesDetailDriver />
+          </div>
         </div>
       </div>
-    </div>
+      <EditDetailDriver />
+      <DeleteAccountConfirmationDetailDriver />
+    </>
   );
 };

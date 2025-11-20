@@ -2,8 +2,10 @@ import {
   DetailDriverActionEnum,
   DetailDriverActions,
   DetailDriverRide,
+  DetailDriverEdit,
   DetailDriverUser,
   DetailDriverVehicle,
+  DetailDriverDeleteAccountConfirmation,
 } from "./Detail.driver.types";
 
 // User
@@ -72,6 +74,34 @@ export const DetailDriverVehicleReducers = (
         ...state,
         loading: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+// Edit
+export const DetailDriverEditReducers = (
+  state: DetailDriverEdit,
+  action: DetailDriverActions
+) => {
+  switch (action.type) {
+    case DetailDriverActionEnum.SetEditData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DeleteAccountConfirmation
+export const DetailDriverDeleteAccountConfirmationReducers = (
+  state: DetailDriverDeleteAccountConfirmation,
+  action: DetailDriverActions
+) => {
+  switch (action.type) {
+    case DetailDriverActionEnum.SetDeleteAccountConfirmationData:
+      return action.payload;
 
     default:
       return state;

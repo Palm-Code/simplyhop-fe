@@ -22,6 +22,7 @@ import {
   DeleteMessagesChatPathPayloadRequestInterface,
   GetMessagesListByRoomPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/messages";
+import { PatchOrganizationProfilePathPayloadRequestInterface } from "@/core/models/rest/simplyhop/organization";
 import {
   DeleteRidesIdPathPayloadRequestInterface,
   GetRidesIdPathPayloadRequestInterface,
@@ -29,7 +30,11 @@ import {
   PutRidesThirdPathPayloadRequestInterface,
   PostRidesArchivePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
-import { PatchUserDeactivatePathPayloadRequestInterface } from "@/core/models/rest/simplyhop/user";
+import {
+  PatchUserActivatePathPayloadRequestInterface,
+  PatchUserDeactivatePathPayloadRequestInterface,
+  PatchUserProfilePathPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/user";
 import { GetUserProfileIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 import {
   DeleteVehicleIdPathPayloadRequestInterface,
@@ -78,14 +83,20 @@ export const SimplyHopAPICollectionURL = {
     getId: (path: GetUserProfileIdPathPayloadRequestInterface) =>
       `/api/users/profile/${path.id}`,
   },
+  organization: {
+    patchProfile: (payload: PatchOrganizationProfilePathPayloadRequestInterface) =>
+      `/api/organizations/${payload.id}/partial-update`,
+  },
   user: {
     postBlock: () => `/api/user-block`,
     deleteBlock: () => `/api/user-block`,
     patchDeactivate: (
       payload: PatchUserDeactivatePathPayloadRequestInterface
     ) => `/api/users/${payload.id}/deactivate`,
-    patchActivate: (payload: PatchUserDeactivatePathPayloadRequestInterface) =>
+    patchActivate: (payload: PatchUserActivatePathPayloadRequestInterface) =>
       `/api/users/${payload.id}/activate`,
+    patchProfile: (payload: PatchUserProfilePathPayloadRequestInterface) =>
+      `/api/profile/${payload.id}`,
   },
   vehicle_brand: {
     getList: () => `/api/vehicle-brand`,
