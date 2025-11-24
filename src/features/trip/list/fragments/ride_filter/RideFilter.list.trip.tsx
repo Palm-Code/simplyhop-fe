@@ -2,12 +2,12 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { useSearchParams } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+import { useSearchParams, usePathname } from "next/navigation";
 import { TripFilterTabButton } from "@/core/components/trip_filter_tab_button";
 
 export const RideFilterListTrip = () => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const dictionaries = getDictionaries();
 
   const rideStatus = searchParams.get("ride-status");
@@ -33,9 +33,7 @@ export const RideFilterListTrip = () => {
         return (
           <TripFilterTabButton
             key={index}
-            href={AppCollectionURL.private.myList(
-              !params ? params : params.toString()
-            )}
+            href={!params ? pathname : `${pathname}?${params.toString()}`}
             isActive={
               (!rideStatus && index === 0) ||
               (!!rideStatus && item.id === rideStatus)
