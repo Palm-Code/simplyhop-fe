@@ -13,8 +13,6 @@ export const RideFilterListTrip = () => {
   const rideStatus = searchParams.get("ride-status");
   const type = searchParams.get("type");
 
-  if (!!type) return null;
-
   return (
     <div
       className={clsx(
@@ -24,12 +22,18 @@ export const RideFilterListTrip = () => {
       )}
     >
       {dictionaries.filter.ride.items.map((item, index) => {
-        const params =
-          index === 0
-            ? undefined
-            : new URLSearchParams({
-                ["ride-status"]: item.id,
-              });
+        let params = index === 0 ? undefined : new URLSearchParams();
+
+        if (index !== 0) {
+          params!.set("ride-status", item.id);
+          if (type) {
+            params!.set("type", type);
+          }
+        } else if (type) {
+          params = new URLSearchParams();
+          params.set("type", type);
+        }
+
         return (
           <TripFilterTabButton
             key={index}
