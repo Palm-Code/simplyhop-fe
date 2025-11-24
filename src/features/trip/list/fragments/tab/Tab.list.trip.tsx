@@ -13,19 +13,26 @@ export const TabListTrip = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
 
-  const tabList = !userState.profile?.is_driver
-    ? dictionaries.tab.items.filter((item) => item.id !== "ride")
-    : dictionaries.tab.items;
-
   const type = searchParams.get("type");
   const pathname = usePathname();
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer");
   const isTripListRoute = pathname.startsWith("/support/fahrten");
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
 
-  const isShowed = !isTripListRoute || !isOrganizationDetailRoute;
-  if (!isShowed) {
+  const tabList = isDriverDetailRoute
+    ? dictionaries.tab.items
+    : isOrganizationDetailRoute
+    ? dictionaries.tab.items.filter((item) => item.id !== "ride")
+    : // my list route
+    !userState.profile?.is_driver
+    ? dictionaries.tab.items.filter((item) => item.id !== "ride")
+    : dictionaries.tab.items;
+
+  const isShowed = !isTripListRoute && !isOrganizationDetailRoute;
+
+  if (isShowed) {
     return (
       <TabGroup
         className={clsx(
@@ -50,9 +57,7 @@ export const TabListTrip = () => {
             return (
               <Link
                 key={itemIndex}
-                href={AppCollectionURL.private.myList(
-                  !params ? params : params.toString()
-                )}
+                href={!params ? pathname : `${pathname}?${params.toString()}`}
               >
                 <Tab
                   className={clsx(

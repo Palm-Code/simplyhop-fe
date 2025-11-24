@@ -43,11 +43,11 @@
     "items": [
       {
         "id": "ride",
-        "name": "Meine angebotenen Fahrten"
+        "name": "Angebotenen Fahrten"
       },
       {
         "id": "book",
-        "name": "Meine Fahrten als Mitfahrer"
+        "name": "Gebuchte Fahrten"
       }
     ]
   },

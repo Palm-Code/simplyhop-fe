@@ -13,8 +13,9 @@ export const NavigationListTrip = () => {
   const items = isOrganizationTrip
     ? dictionaries.breadcrumb.organization.items
     : dictionaries.breadcrumb.default.items;
+  const isTripListRoute = pathname.startsWith("/support/fahrten");
 
-  const isShowed = pathname.startsWith("/support/fahrten");
+  const isShowed = isTripListRoute;
   if (isShowed) {
     return (
       <div

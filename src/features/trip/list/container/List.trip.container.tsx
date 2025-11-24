@@ -28,13 +28,10 @@ export const ListTripContainer = () => {
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
-  const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
 
   const isBookingList = isTripListRoute
     ? false
     : isOrganizationDetailRoute
-    ? false
-    : isDriverDetailRoute
     ? false
     : type === "book" || (!type && userState.profile?.is_driver === false);
 
@@ -55,12 +52,15 @@ export const ListTripContainer = () => {
             )}
           >
             <HeaderListTrip />
-            <div
-              className={clsx("flex items-center justify-between", "w-full")}
-            >
-              <NavigationListTrip />
-              <SearchListTrip />
-            </div>
+            {isTripListRoute && (
+              <div
+                className={clsx("flex items-center justify-between", "w-full")}
+              >
+                <NavigationListTrip />
+                <SearchListTrip />
+              </div>
+            )}
+
             <TabListTrip />
             <RideFilterListTrip />
 
