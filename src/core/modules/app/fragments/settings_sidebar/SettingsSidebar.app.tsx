@@ -8,6 +8,7 @@ import { ENVIRONMENTS } from "@/core/environments";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { UserContext } from "../../context";
 import { ThemeContext } from "../../context/theme/Theme.context";
+import { usePostAuthLogout } from "@/features/account/detail/react_query/hooks";
 
 const Link = dynamic(() => import("next/link"), {
   ssr: false,
@@ -91,6 +92,13 @@ export const SettingsSidebarApp = () => {
     ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE,
   ]);
 
+  const { mutate: postAuthLogout, isPending: isPendingPostAuthLogout } =
+    usePostAuthLogout();
+
+  const handleClickLogOut = () => {
+    postAuthLogout();
+  };
+
   return (
     <div
       className={clsx(
@@ -161,7 +169,14 @@ export const SettingsSidebarApp = () => {
             {bottomDesktopSettingsMenu.map((menu, index) => {
               const isSelected = pathname.includes(menu.href);
               return (
-                <Link key={index} className={clsx("w-full")} href={menu.href}>
+                <Link
+                  key={index}
+                  className={clsx("w-full")}
+                  href={menu.id === "logout" ? "" : menu.href}
+                  onClick={
+                    menu.id === "logout" ? handleClickLogOut : () => null
+                  }
+                >
                   <SettingTabButton
                     selected={isSelected}
                     className={clsx("whitespace-nowrap")}

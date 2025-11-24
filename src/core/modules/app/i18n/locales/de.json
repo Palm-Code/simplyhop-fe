@@ -302,6 +302,12 @@
                 "name": "Einstellungen",
                 "href": "/support/einstellungen",
                 "icon": "Settings"
+              },
+              {
+                "id": "logout",
+                "name": "Abmelden",
+                "href": "/logout",
+                "icon": "LogOut"
               }
             ]
           }
@@ -368,6 +374,12 @@
                 "name": "Einstellungen",
                 "href": "/support/einstellungen",
                 "icon": "Settings"
+              },
+              {
+                "id": "logout",
+                "name": "Abmelden",
+                "href": "/logout",
+                "icon": "LogOut"
               }
             ]
           }
@@ -458,6 +470,12 @@
                 "name": "Hilfe-Center",
                 "href": "/support/hilfe-center",
                 "icon": "HelpCircleIcon"
+              },
+              {
+                "id": "logout",
+                "name": "Abmelden",
+                "href": "/logout",
+                "icon": "LogOut"
               }
             ]
           }
