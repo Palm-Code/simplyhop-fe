@@ -1,25 +1,20 @@
 import { Suspense } from "react";
+import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
 import clsx from "clsx";
-import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 
-export const metadata: Metadata = {
-  title: "Settings",
-};
+import { SettingsSidebarApp } from "../../fragments/settings_sidebar";
 
-type PaymentLayoutProps = {
+type EmployeeSettingsLayoutProps = {
   children: React.ReactNode;
 };
 
-const SettingsSidebarApp = dynamic(() =>
-  import("@/core/modules/app/fragments/settings_sidebar").then(
-    (mod) => mod.SettingsSidebarApp
-  )
-);
-
-export default function AccountLayout({ children }: PaymentLayoutProps) {
+export default function EmployeeSettingsLayout({
+  children,
+}: EmployeeSettingsLayoutProps) {
   return (
     <main className={clsx("w-full min-h-screen")}>
+      <TopNavigation />
+
       <div className={clsx("w-full min-h-screen")}>
         <div
           className={clsx(
@@ -37,8 +32,8 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
             <Suspense fallback={<div />}>
               <div
                 className={clsx(
-                  "w-full lg:h-[calc(100vh-2rem)]",
-                  "sticky top-0 lg:bottom-0 z-[30]",
+                  "w-full lg:h-[calc(100vh-90px-2rem)]",
+                  "sticky top-0 lg:top-[calc(90px)] lg:bottom-0 z-[30]",
                   "bg-[white] dark:bg-[#232323]"
                 )}
               >
@@ -50,7 +45,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
               <div
                 className={clsx(
                   "w-full",
-                  "pt-[2rem]",
+                  "pt-0 lg:pt-[calc(90px+2rem)]",
                   "pb-[4rem] lg:pb-[0rem]"
                 )}
               >
