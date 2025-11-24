@@ -7,6 +7,7 @@ import {
   useGetDashboardSuperAdminPerOrganizationId,
 } from "../react_query/hooks";
 import { UserProfileListOrganization } from "../fragments/user_profile";
+import { HeaderListOrganization } from "../fragments/header";
 
 export const ListOrganizationContainer = () => {
   useGetDashboardSuperAdminPerOrganization();
@@ -19,6 +20,7 @@ export const ListOrganizationContainer = () => {
           "w-full"
         )}
       >
+        <HeaderListOrganization />
         <DataTableListOrganization />
       </div>
       <UserProfileListOrganization />

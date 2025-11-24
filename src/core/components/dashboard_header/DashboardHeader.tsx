@@ -5,9 +5,16 @@ import clsx from "clsx";
 export interface DashboardHeaderProps {
   title?: string;
   avatar?: AvatarProps;
+  name?: string;
+  role?: string;
 }
 
-export const DashboardHeader = ({ title, avatar }: DashboardHeaderProps) => {
+export const DashboardHeader = ({
+  title,
+  avatar,
+  name,
+  role,
+}: DashboardHeaderProps) => {
   return (
     <div
       className={clsx(
@@ -34,7 +41,22 @@ export const DashboardHeader = ({ title, avatar }: DashboardHeaderProps) => {
           {title}
         </h1>
 
-        <Avatar {...avatar} className={clsx("w-[2rem] h-[2rem]")} />
+        <div className={clsx("grid grid-cols-[2rem_1fr] items-center justify-end gap-[0.5rem]")}>
+          <Avatar {...avatar} className={clsx("w-[2rem] h-[2rem]")} />
+          <div
+            className={clsx(
+              "grid grid-cols-1 items-center content-center justify-start justify-items-start",
+              "w-full"
+            )}
+          >
+            <p className={clsx("text-[#232323] text-[0.75rem] font-medium")}>
+              {name}
+            </p>
+            <p className={clsx("text-[#5B5B5B] text-[0.625rem] font-normal")}>
+              {role}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

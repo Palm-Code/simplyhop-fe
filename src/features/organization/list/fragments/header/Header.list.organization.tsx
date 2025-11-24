@@ -4,7 +4,7 @@ import { getDictionaries } from "../../i18n";
 import { UserContext } from "@/core/modules/app/context";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
-export const HeaderDashboard = () => {
+export const HeaderListOrganization = () => {
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
   return (

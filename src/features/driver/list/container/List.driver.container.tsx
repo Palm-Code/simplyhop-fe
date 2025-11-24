@@ -11,6 +11,7 @@ import { UserProfileListDriver } from "../fragments/user_profile";
 import { DeleteChatConfirmationListDriver } from "../fragments/delete_chat_confirmation";
 import { DeleteAccountConfirmationListDriver } from "../fragments/delete_account_confirmation";
 import { NavigationListDriver } from "../fragments/navigation";
+import { HeaderListDriver } from "../fragments/header";
 
 export const ListDriverContainer = () => {
   useGetDashboardOrganization();
@@ -24,6 +25,7 @@ export const ListDriverContainer = () => {
           "w-full"
         )}
       >
+        <HeaderListDriver />
         <NavigationListDriver />
         <DataTableListDriver />
       </div>
