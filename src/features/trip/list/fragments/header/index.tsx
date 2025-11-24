@@ -1,1 +1,1 @@
-export * from "./Header.my_list.trip";
+export * from "./Header.list.trip";

@@ -4,22 +4,22 @@ import clsx from "clsx";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { getDictionaries } from "../../i18n";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { usePostRidesArchive } from "../../react_query/hooks/usePostRidesArchive.list.trip";
 import { MoonLoader } from "@/core/components/moon_loader";
 
-export const CompletedRideMyListTrip = () => {
+export const CompletedRideListTrip = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
 
   const { mutate: postRidesArchive, isPending: isPendingRidesArchive } =
     usePostRidesArchive();
 
   const handleClose = () => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         is_open: false,
@@ -29,7 +29,7 @@ export const CompletedRideMyListTrip = () => {
 
   const handleClickCancelConfirmRideComplete = () => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         is_open: false,
@@ -39,7 +39,7 @@ export const CompletedRideMyListTrip = () => {
 
   const handleClickOKConfirmRideComplete = () => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         is_open: false,

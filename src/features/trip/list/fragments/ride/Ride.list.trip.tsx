@@ -1,6 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { RideCard } from "../../../../../core/components/ride_card";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
@@ -9,9 +9,9 @@ import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 
-export const RideMyListTrip = () => {
+export const RideListTrip = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const { isFetching: isFetchingGetRidesMy } = useGetRidesSearch();
 
   const isLoading = isFetchingGetRidesMy;
@@ -46,7 +46,7 @@ export const RideMyListTrip = () => {
     if (isLoading) return;
 
     dispatch({
-      type: MyListTripActionEnum.SetRideDataPaginationCurrent,
+      type: ListTripActionEnum.SetRideDataPaginationCurrent,
       payload: state.ride.pagination.current + 1,
     });
   };
@@ -55,7 +55,7 @@ export const RideMyListTrip = () => {
 
   const handleClickShare = (data: { link: string; message: string }) => {
     dispatch({
-      type: MyListTripActionEnum.SetShareRideNotificationData,
+      type: ListTripActionEnum.SetShareRideNotificationData,
       payload: {
         ...state.share_ride_notification,
         is_open: true,

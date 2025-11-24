@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { Button } from "@/core/components/button";
@@ -10,14 +10,14 @@ import { CopyLinkItem } from "@/core/components/copy_link_item";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 
-export const ShareRideNotificationMyListTrip = () => {
+export const ShareRideNotificationListTrip = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.share_ride_notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: MyListTripActionEnum.SetShareRideNotificationData,
+      type: ListTripActionEnum.SetShareRideNotificationData,
       payload: {
         ...state.share_ride_notification,
         is_open: false,

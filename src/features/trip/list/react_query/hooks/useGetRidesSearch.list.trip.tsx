@@ -2,7 +2,7 @@ import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ListTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 
 import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/rides";
 import {
@@ -29,7 +29,7 @@ export const useGetRidesSearch = () => {
   const dictionaries = getDictionaries();
   const type = searchParams.get("type");
   const rideStatus = searchParams.get("ride-status");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
 
   const payload: GetRidesSearchPayloadRequestInterface = {
@@ -168,7 +168,7 @@ export const useGetRidesSearch = () => {
         };
       });
       dispatch({
-        type: MyListTripActionEnum.SetRideDataData,
+        type: ListTripActionEnum.SetRideDataData,
         payload:
           state.ride.pagination.current === 1
             ? [...newPayload]
@@ -177,7 +177,7 @@ export const useGetRidesSearch = () => {
             : [...state.ride.data, ...newPayload],
       });
       dispatch({
-        type: MyListTripActionEnum.SetRideDataPaginationLast,
+        type: ListTripActionEnum.SetRideDataPaginationLast,
         payload: data.meta.last_page,
       });
     }

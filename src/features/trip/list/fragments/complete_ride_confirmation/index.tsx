@@ -1,1 +1,1 @@
-export * from "./CompleteRideConfirmation.my_list.trip";
+export * from "./CompleteRideConfirmation.list.trip";

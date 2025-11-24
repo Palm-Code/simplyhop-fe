@@ -9,27 +9,27 @@ import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { CarPriceItem } from "@/core/components/car_price_item";
 import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { useGetRidesId } from "../../react_query/hooks";
 import { RideDetailCard } from "../../../../../core/components/ride_detail_card";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { CheckIcon, XIcon } from "lucide-react";
 
-export const RideDetailMyListTrip = () => {
+export const RideDetailListTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const rideId = searchParams.get("ride_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   useGetRidesId();
 
   const filteredData = state.ride.detail;
 
   React.useEffect(() => {
     dispatch({
-      type: MyListTripActionEnum.SetDetailRideNotificationData,
+      type: ListTripActionEnum.SetDetailRideNotificationData,
       payload: {
         ...state.detail_ride_notification,
         is_open: !!filteredData && !!rideId,
@@ -45,7 +45,7 @@ export const RideDetailMyListTrip = () => {
 
   const handleClose = () => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         is_open: false,
@@ -61,14 +61,14 @@ export const RideDetailMyListTrip = () => {
 
   const handleClickDeleteRide = () => {
     dispatch({
-      type: MyListTripActionEnum.SetDetailRideNotificationData,
+      type: ListTripActionEnum.SetDetailRideNotificationData,
       payload: {
         ...state.detail_ride_notification,
         is_open: false,
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetDeleteRideNotificationData,
+      type: ListTripActionEnum.SetDeleteRideNotificationData,
       payload: {
         ...state.delete_ride_notification,
         is_open: true,
@@ -100,7 +100,7 @@ export const RideDetailMyListTrip = () => {
 
   const handleClickConfirmAbsent = (data: { bookingId: number }) => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         confirmed_booking: [
@@ -115,7 +115,7 @@ export const RideDetailMyListTrip = () => {
   };
   const handleClickConfirmPresent = (data: { bookingId: number }) => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         confirmed_booking: [
@@ -131,7 +131,7 @@ export const RideDetailMyListTrip = () => {
 
   const handleClickToggleConfirmation = (data: { bookingId: number }) => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         confirmed_booking:
@@ -152,7 +152,7 @@ export const RideDetailMyListTrip = () => {
 
   const handleClickConfirmCompleteRide = () => {
     dispatch({
-      type: MyListTripActionEnum.SetCompleteRideConfirmationData,
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
         ...state.complete_ride_confirmation,
         is_open: true,

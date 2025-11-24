@@ -1,21 +1,21 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { HeaderMyListTrip } from "../fragments/header";
-import { TabMyListTrip } from "../fragments/tab";
+import { HeaderListTrip } from "../fragments/header";
+import { TabListTrip } from "../fragments/tab";
 import { useSearchParams } from "next/navigation";
-import { BookMyListTrip } from "../fragments/book";
-import { RideMyListTrip } from "../fragments/ride";
-import { RideDetailMyListTrip } from "../fragments/ride_detail";
-import { BookDetailMyListTrip } from "../fragments/book_detail";
+import { BookListTrip } from "../fragments/book";
+import { RideListTrip } from "../fragments/ride";
+import { RideDetailListTrip } from "../fragments/ride_detail";
+import { BookDetailListTrip } from "../fragments/book_detail";
 import { UserContext } from "@/core/modules/app/context";
-import { DeleteRideNotificationMyListTrip } from "../fragments/delete_ride_notification";
-import { SuccessDeleteRideNotificationMyListTrip } from "../fragments/success_delete_ride_notification";
-import { ShareRideNotificationMyListTrip } from "../fragments/share_ride_notification";
-import { CancelBookNotificationMyListTrip } from "../fragments/cancel_book_notification";
-import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_cancel_book_notification";
-import { RideFilterMyListTrip } from "../fragments/ride_filter";
-import { CompletedRideMyListTrip } from "../fragments/complete_ride_confirmation";
+import { DeleteRideNotificationListTrip } from "../fragments/delete_ride_notification";
+import { SuccessDeleteRideNotificationListTrip } from "../fragments/success_delete_ride_notification";
+import { ShareRideNotificationListTrip } from "../fragments/share_ride_notification";
+import { CancelBookNotificationListTrip } from "../fragments/cancel_book_notification";
+import { SuccessCancelBookNotificationListTrip } from "../fragments/success_cancel_book_notification";
+import { RideFilterListTrip } from "../fragments/ride_filter";
+import { CompletedRideListTrip } from "../fragments/complete_ride_confirmation";
 
 export const ListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -38,32 +38,32 @@ export const ListTripContainer = () => {
               "max-w-container w-full h-full"
             )}
           >
-            <HeaderMyListTrip />
-            <TabMyListTrip />
-            <RideFilterMyListTrip />
+            <HeaderListTrip />
+            <TabListTrip />
+            <RideFilterListTrip />
 
             {type === "book" ? (
               <>
-                <BookMyListTrip />
-                <BookDetailMyListTrip />
-                <CancelBookNotificationMyListTrip />
-                <SuccessCancelBookNotificationMyListTrip />
+                <BookListTrip />
+                <BookDetailListTrip />
+                <CancelBookNotificationListTrip />
+                <SuccessCancelBookNotificationListTrip />
               </>
             ) : !type && userState.profile?.is_driver === false ? (
               <>
-                <BookMyListTrip />
-                <BookDetailMyListTrip />
-                <CancelBookNotificationMyListTrip />
-                <SuccessCancelBookNotificationMyListTrip />
+                <BookListTrip />
+                <BookDetailListTrip />
+                <CancelBookNotificationListTrip />
+                <SuccessCancelBookNotificationListTrip />
               </>
             ) : (
               <>
-                <RideMyListTrip />
-                <RideDetailMyListTrip />
-                <DeleteRideNotificationMyListTrip />
-                <SuccessDeleteRideNotificationMyListTrip />
-                <CompletedRideMyListTrip />
-                <ShareRideNotificationMyListTrip />
+                <RideListTrip />
+                <RideDetailListTrip />
+                <DeleteRideNotificationListTrip />
+                <SuccessDeleteRideNotificationListTrip />
+                <CompletedRideListTrip />
+                <ShareRideNotificationListTrip />
               </>
             )}
           </div>

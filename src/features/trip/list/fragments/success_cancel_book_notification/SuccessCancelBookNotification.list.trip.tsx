@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
@@ -15,12 +15,12 @@ import { ListTripReactQueryKey } from "../../react_query/keys";
 import { GetBookingMyPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
 import dayjs from "dayjs";
 
-export const SuccessCancelBookNotificationMyListTrip = () => {
+export const SuccessCancelBookNotificationListTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.success_cancel_book_notification.is_open;
 
@@ -38,7 +38,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
 
   const handleClose = () => {
     dispatch({
-      type: MyListTripActionEnum.SetBookData,
+      type: ListTripActionEnum.SetBookData,
       payload: {
         ...state.book,
         data: [],
@@ -51,7 +51,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetSuccessCancelBookNotificationData,
+      type: ListTripActionEnum.SetSuccessCancelBookNotificationData,
       payload: {
         ...state.success_cancel_book_notification,
         is_open: false,
@@ -71,7 +71,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
 
   const handleClickGoToHomepage = () => {
     dispatch({
-      type: MyListTripActionEnum.SetBookData,
+      type: ListTripActionEnum.SetBookData,
       payload: {
         ...state.book,
         data: [],
@@ -84,7 +84,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetSuccessCancelBookNotificationData,
+      type: ListTripActionEnum.SetSuccessCancelBookNotificationData,
       payload: {
         ...state.success_cancel_book_notification,
         is_open: false,

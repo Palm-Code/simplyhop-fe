@@ -11,7 +11,7 @@ import { RidesDetailDriver } from "../fragments/rides";
 import { VehiclesDetailDriver } from "../fragments/vehicles";
 import { EditDetailDriver } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailDriver } from "../fragments/delete_account_confirmation";
-import { MyListTripProvider } from "@/features/trip/list/context";
+import { ListTripProvider } from "@/features/trip/list/context";
 import { ListTripContainer } from "@/features/trip/list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
 import { NavigationDetailDriver } from "../fragments/navigation";
@@ -47,10 +47,10 @@ export const DetailDriverContainer = () => {
             <VehiclesDetailDriver />
           </div>
         </div>
-        <MyListTripProvider>
+        <ListTripProvider>
           <ListTripContainer />
           <AlertApp />
-        </MyListTripProvider>
+        </ListTripProvider>
       </div>
       <EditDetailDriver />
       <DeleteAccountConfirmationDetailDriver />

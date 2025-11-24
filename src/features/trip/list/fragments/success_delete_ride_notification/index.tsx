@@ -1,1 +1,1 @@
-export * from "./SuccessDeleteRideNotification.my_list.trip";
+export * from "./SuccessDeleteRideNotification.list.trip";

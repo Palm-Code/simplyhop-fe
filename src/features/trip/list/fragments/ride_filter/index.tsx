@@ -1,1 +1,1 @@
-export * from "./RideFilter.my_list.trip";
+export * from "./RideFilter.list.trip";

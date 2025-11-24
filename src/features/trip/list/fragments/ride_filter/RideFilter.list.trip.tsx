@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { TripFilterTabButton } from "@/core/components/trip_filter_tab_button";
 
-export const RideFilterMyListTrip = () => {
+export const RideFilterListTrip = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
 

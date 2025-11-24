@@ -2,7 +2,7 @@ import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ListTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 
 import { fetchGetBookingList } from "@/core/services/rest/simplyhop/booking";
 import {
@@ -24,7 +24,7 @@ export const useGetBookingList = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const rideStatus = searchParams.get("ride-status");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
 
   const payload: GetBookingListPayloadRequestInterface = {
     params: {
@@ -143,7 +143,7 @@ export const useGetBookingList = () => {
         };
       });
       dispatch({
-        type: MyListTripActionEnum.SetBookDataData,
+        type: ListTripActionEnum.SetBookDataData,
         payload:
           state.book.pagination.current === 1
             ? [...newPayload]
@@ -152,7 +152,7 @@ export const useGetBookingList = () => {
             : [...state.book.data, ...newPayload],
       });
       dispatch({
-        type: MyListTripActionEnum.SetBookDataPaginationLast,
+        type: ListTripActionEnum.SetBookDataPaginationLast,
         payload: data.meta.last_page,
       });
     }

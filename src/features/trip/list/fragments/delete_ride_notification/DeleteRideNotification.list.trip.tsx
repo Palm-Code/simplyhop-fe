@@ -1,49 +1,47 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { usePostBookingReject } from "../../react_query/hooks";
+import { useDeleteRidesId } from "../../react_query/hooks";
 
-export const CancelBookNotificationMyListTrip = () => {
+export const DeleteRideNotificationListTrip = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const { isLg } = useTailwindBreakpoint();
 
-  const {
-    mutateAsync: postBookingReject,
-    isPending: isPendingPostBookingReject,
-  } = usePostBookingReject();
+  const { mutateAsync: deleteRidesId, isPending: isPendingDeleteRidesId } =
+    useDeleteRidesId();
 
-  const isOpen = state.cancel_book_notification.is_open;
+  const isOpen = state.delete_ride_notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: MyListTripActionEnum.SetCancelBookNotificationData,
+      type: ListTripActionEnum.SetDeleteRideNotificationData,
       payload: {
-        ...state.cancel_book_notification,
+        ...state.delete_ride_notification,
         is_open: false,
       },
     });
   };
 
   const handleClickDelete = async () => {
-    const res = await postBookingReject();
+    const res = await deleteRidesId();
     if (!res) return;
     dispatch({
-      type: MyListTripActionEnum.SetCancelBookNotificationData,
+      type: ListTripActionEnum.SetDeleteRideNotificationData,
       payload: {
-        ...state.cancel_book_notification,
+        ...state.delete_ride_notification,
         is_open: false,
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetSuccessDeleteRideNotificationData,
+      type: ListTripActionEnum.SetSuccessDeleteRideNotificationData,
       payload: {
-        ...state.success_cancel_book_notification,
+        ...state.success_delete_ride_notification,
         is_open: true,
       },
     });
@@ -99,7 +97,7 @@ export const CancelBookNotificationMyListTrip = () => {
           <h1
             className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
           >
-            {dictionaries.cancel_book_notification.title}
+            {dictionaries.delete_ride_notification.title}
           </h1>
         </div>
 
@@ -114,7 +112,7 @@ export const CancelBookNotificationMyListTrip = () => {
               "text-[1rem] text-[#5B5B5B] font-normal text-center"
             )}
           >
-            {dictionaries.cancel_book_notification.message}
+            {dictionaries.delete_ride_notification.message}
           </p>
         </div>
 
@@ -125,8 +123,8 @@ export const CancelBookNotificationMyListTrip = () => {
           )}
         >
           <button
-            aria-label={dictionaries.cancel_book_notification.cta.back.children}
-            name={dictionaries.cancel_book_notification.cta.back.children}
+            aria-label={dictionaries.delete_ride_notification.cta.back.children}
+            name={dictionaries.delete_ride_notification.cta.back.children}
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
@@ -135,23 +133,23 @@ export const CancelBookNotificationMyListTrip = () => {
             )}
             onClick={handleClose}
           >
-            {dictionaries.cancel_book_notification.cta.back.children}
+            {dictionaries.delete_ride_notification.cta.back.children}
           </button>
           <Button
             aria-label={
-              dictionaries.cancel_book_notification.cta.confirm.children
+              dictionaries.delete_ride_notification.cta.confirm.children
             }
-            name={dictionaries.cancel_book_notification.cta.confirm.children}
+            name={dictionaries.delete_ride_notification.cta.confirm.children}
             className={clsx(
               "py-[1rem]",
               "!bg-[#C50707]",
               "border border-[#C50707]"
             )}
-            disabled={isPendingPostBookingReject}
-            isLoading={isPendingPostBookingReject}
+            disabled={isPendingDeleteRidesId}
+            isLoading={isPendingDeleteRidesId}
             onClick={handleClickDelete}
           >
-            {dictionaries.cancel_book_notification.cta.confirm.children}
+            {dictionaries.delete_ride_notification.cta.confirm.children}
           </Button>
         </div>
       </div>

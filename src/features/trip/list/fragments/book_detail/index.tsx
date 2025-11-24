@@ -1,1 +1,1 @@
-export * from "./BookDetail.my_list.trip";
+export * from "./BookDetail.list.trip";

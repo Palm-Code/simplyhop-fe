@@ -1,25 +1,22 @@
 "use client";
 import React, { createContext, useReducer, Dispatch } from "react";
+import { ListTripActions, ListTripInitialStateType } from "./List.trip.types";
 import {
-  MyListTripActions,
-  MyListTripInitialStateType,
-} from "./MyList.trip.types";
-import {
-  MyListTripBookReducers,
-  MyListTripCancelBookNotificationReducers,
-  MyListTripCompleteRideConfirmationReducers,
-  MyListTripDeleteRideNotificationReducers,
-  MyListTripDetailBookNotificationReducers,
-  MyListTripDetailRideNotificationReducers,
-  MyListTripFiltersReducers,
-  MyListTripRideReducers,
-  MyListTripShareRideNotificationReducers,
-  MyListTripSuccessCancelBookNotificationReducers,
-  MyListTripSuccessDeleteRideNotificationReducers,
-} from "./MyList.trip.reducers";
+  ListTripBookReducers,
+  ListTripCancelBookNotificationReducers,
+  ListTripCompleteRideConfirmationReducers,
+  ListTripDeleteRideNotificationReducers,
+  ListTripDetailBookNotificationReducers,
+  ListTripDetailRideNotificationReducers,
+  ListTripFiltersReducers,
+  ListTripRideReducers,
+  ListTripShareRideNotificationReducers,
+  ListTripSuccessCancelBookNotificationReducers,
+  ListTripSuccessDeleteRideNotificationReducers,
+} from "./List.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 
-const initialState: MyListTripInitialStateType = {
+const initialState: ListTripInitialStateType = {
   filters: {
     passenger: {
       value: [],
@@ -72,9 +69,9 @@ const initialState: MyListTripInitialStateType = {
   },
 };
 
-const MyListTripContext = createContext<{
-  state: MyListTripInitialStateType;
-  dispatch: Dispatch<MyListTripActions>;
+const ListTripContext = createContext<{
+  state: ListTripInitialStateType;
+  dispatch: Dispatch<ListTripActions>;
 }>({
   state: initialState,
   dispatch: () => null,
@@ -93,56 +90,56 @@ const mainReducer = (
     cancel_book_notification,
     success_cancel_book_notification,
     complete_ride_confirmation,
-  }: MyListTripInitialStateType,
-  action: MyListTripActions
+  }: ListTripInitialStateType,
+  action: ListTripActions
 ) => ({
-  filters: MyListTripFiltersReducers(filters, action),
-  ride: MyListTripRideReducers(ride, action),
-  book: MyListTripBookReducers(book, action),
-  detail_ride_notification: MyListTripDetailRideNotificationReducers(
+  filters: ListTripFiltersReducers(filters, action),
+  ride: ListTripRideReducers(ride, action),
+  book: ListTripBookReducers(book, action),
+  detail_ride_notification: ListTripDetailRideNotificationReducers(
     detail_ride_notification,
     action
   ),
-  delete_ride_notification: MyListTripDeleteRideNotificationReducers(
+  delete_ride_notification: ListTripDeleteRideNotificationReducers(
     delete_ride_notification,
     action
   ),
   success_delete_ride_notification:
-    MyListTripSuccessDeleteRideNotificationReducers(
+    ListTripSuccessDeleteRideNotificationReducers(
       success_delete_ride_notification,
       action
     ),
-  share_ride_notification: MyListTripShareRideNotificationReducers(
+  share_ride_notification: ListTripShareRideNotificationReducers(
     share_ride_notification,
     action
   ),
-  detail_book_notification: MyListTripDetailBookNotificationReducers(
+  detail_book_notification: ListTripDetailBookNotificationReducers(
     detail_book_notification,
     action
   ),
-  cancel_book_notification: MyListTripCancelBookNotificationReducers(
+  cancel_book_notification: ListTripCancelBookNotificationReducers(
     cancel_book_notification,
     action
   ),
   success_cancel_book_notification:
-    MyListTripSuccessCancelBookNotificationReducers(
+    ListTripSuccessCancelBookNotificationReducers(
       success_cancel_book_notification,
       action
     ),
-  complete_ride_confirmation: MyListTripCompleteRideConfirmationReducers(
+  complete_ride_confirmation: ListTripCompleteRideConfirmationReducers(
     complete_ride_confirmation,
     action
   ),
 });
 
-const MyListTripProvider = (props: { children: React.ReactNode }) => {
+const ListTripProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
   return (
-    <MyListTripContext.Provider value={{ state, dispatch }}>
+    <ListTripContext.Provider value={{ state, dispatch }}>
       {props.children}
-    </MyListTripContext.Provider>
+    </ListTripContext.Provider>
   );
 };
 
-export { MyListTripProvider, MyListTripContext };
+export { ListTripProvider, ListTripContext };

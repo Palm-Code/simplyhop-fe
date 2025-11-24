@@ -1,6 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { BookingCard } from "../../../../../core/components/book_card";
 import { useGetBookingList } from "../../react_query/hooks";
 import { ListLoader } from "@/core/components/list_loader";
@@ -9,9 +9,9 @@ import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 
-export const BookMyListTrip = () => {
+export const BookListTrip = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
 
   const { isFetching: isFetchingGetBookingList } = useGetBookingList();
   const isLoading = isFetchingGetBookingList;
@@ -46,7 +46,7 @@ export const BookMyListTrip = () => {
     if (isLoading) return;
 
     dispatch({
-      type: MyListTripActionEnum.SetBookDataPaginationCurrent,
+      type: ListTripActionEnum.SetBookDataPaginationCurrent,
       payload: state.book.pagination.current + 1,
     });
   };

@@ -9,25 +9,25 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { BookingDetailCard } from "@/core/components/booking_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { useGetBookingId } from "../../react_query/hooks";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 
-export const BookDetailMyListTrip = () => {
+export const BookDetailListTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const bookingId = searchParams.get("booking_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   useGetBookingId();
 
   const filteredData = state.book.detail;
 
   React.useEffect(() => {
     dispatch({
-      type: MyListTripActionEnum.SetDetailBookNotificationData,
+      type: ListTripActionEnum.SetDetailBookNotificationData,
       payload: {
         ...state.detail_book_notification,
         is_open: !!filteredData && !!bookingId,
@@ -51,14 +51,14 @@ export const BookDetailMyListTrip = () => {
 
   const handleClickCancelBook = () => {
     dispatch({
-      type: MyListTripActionEnum.SetDetailRideNotificationData,
+      type: ListTripActionEnum.SetDetailRideNotificationData,
       payload: {
         ...state.detail_book_notification,
         is_open: false,
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetCancelBookNotificationData,
+      type: ListTripActionEnum.SetCancelBookNotificationData,
       payload: {
         ...state.cancel_book_notification,
         is_open: true,

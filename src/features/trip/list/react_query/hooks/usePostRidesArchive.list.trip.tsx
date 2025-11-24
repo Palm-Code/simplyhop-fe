@@ -11,14 +11,14 @@ import { fetchPostRidesArchive } from "@/core/services/rest/simplyhop/rides";
 import { ListTripReactQueryKey } from "../keys";
 import { useSearchParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
-import { MyListTripContext } from "../../context";
+import { ListTripContext } from "../../context";
 
 export const usePostRidesArchive = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const searchParams = useSearchParams();
   const id = searchParams.get("ride_id");
-  const { state } = React.useContext(MyListTripContext);
+  const { state } = React.useContext(ListTripContext);
 
   const payload: PostRidesArchivePayloadRequestInterface = {
     path: {

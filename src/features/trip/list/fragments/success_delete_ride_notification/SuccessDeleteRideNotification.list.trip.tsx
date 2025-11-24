@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
@@ -16,11 +16,11 @@ import { UserContext } from "@/core/modules/app/context";
 import dayjs from "dayjs";
 import { ListTripReactQueryKey } from "../../react_query/keys";
 
-export const SuccessDeleteRideNotificationMyListTrip = () => {
+export const SuccessDeleteRideNotificationListTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.success_delete_ride_notification.is_open;
 
@@ -39,7 +39,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
 
   const handleClose = () => {
     dispatch({
-      type: MyListTripActionEnum.SetRideData,
+      type: ListTripActionEnum.SetRideData,
       payload: {
         ...state.ride,
         data: [],
@@ -52,7 +52,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetSuccessDeleteRideNotificationData,
+      type: ListTripActionEnum.SetSuccessDeleteRideNotificationData,
       payload: {
         ...state.success_delete_ride_notification,
         is_open: false,
@@ -69,7 +69,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
 
   const handleClickGoToHomepage = () => {
     dispatch({
-      type: MyListTripActionEnum.SetRideData,
+      type: ListTripActionEnum.SetRideData,
       payload: {
         ...state.ride,
         data: [],
@@ -82,7 +82,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
       },
     });
     dispatch({
-      type: MyListTripActionEnum.SetSuccessDeleteRideNotificationData,
+      type: ListTripActionEnum.SetSuccessDeleteRideNotificationData,
       payload: {
         ...state.success_delete_ride_notification,
         is_open: false,

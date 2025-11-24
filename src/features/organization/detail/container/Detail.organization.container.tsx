@@ -11,7 +11,7 @@ import { RidesDetailOrganization } from "../fragments/rides";
 import { DriversDetailOrganization } from "../fragments/drivers/Drivers.detail.organization";
 import { EditDetailOrganization } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete_account_confirmation";
-import { MyListTripProvider } from "@/features/trip/list/context";
+import { ListTripProvider } from "@/features/trip/list/context";
 import { ListTripContainer } from "@/features/trip/list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
 
@@ -37,10 +37,10 @@ export const DetailOrganizationContainer = () => {
           <RidesDetailOrganization />
           <DriversDetailOrganization />
         </div>
-        <MyListTripProvider>
+        <ListTripProvider>
           <ListTripContainer />
           <AlertApp />
-        </MyListTripProvider>
+        </ListTripProvider>
       </div>
       <EditDetailOrganization />
       <DeleteAccountConfirmationDetailOrganization />

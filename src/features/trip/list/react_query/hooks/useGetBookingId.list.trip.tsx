@@ -2,7 +2,7 @@ import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ListTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 
 import { fetchGetBookingId } from "@/core/services/rest/simplyhop/booking";
 import {
@@ -19,7 +19,7 @@ import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetBookingId = () => {
   const searchParams = useSearchParams();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const id = searchParams.get("booking_id");
 
   const payload: GetBookingIdPayloadRequestInterface = {
@@ -48,7 +48,7 @@ export const useGetBookingId = () => {
       const urlSearchParams = new URLSearchParams(searchParams.toString());
       urlSearchParams.append("booking_id", String(item.id));
       dispatch({
-        type: MyListTripActionEnum.SetBookData,
+        type: ListTripActionEnum.SetBookData,
         payload: {
           ...state.book,
           detail: {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ListTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 
 import { fetchGetRidesId } from "@/core/services/rest/simplyhop/rides";
 import {
@@ -26,7 +26,7 @@ export const useGetRidesId = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ListTripContext);
   const id = searchParams.get("ride_id");
 
   const payload: GetRidesIdPayloadRequestInterface = {
@@ -75,7 +75,7 @@ export const useGetRidesId = () => {
             !item.url ? ENVIRONMENTS.SITE_URL : item.url
           );
       dispatch({
-        type: MyListTripActionEnum.SetRideData,
+        type: ListTripActionEnum.SetRideData,
         payload: {
           ...state.ride,
           detail: {
