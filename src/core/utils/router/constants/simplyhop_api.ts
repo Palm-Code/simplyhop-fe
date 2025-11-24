@@ -22,7 +22,11 @@ import {
   DeleteMessagesChatPathPayloadRequestInterface,
   GetMessagesListByRoomPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/messages";
-import { PatchOrganizationProfilePathPayloadRequestInterface } from "@/core/models/rest/simplyhop/organization";
+import {
+  PatchOrganizationActivatePathPayloadRequestInterface,
+  PatchOrganizationDeactivatePathPayloadRequestInterface,
+  PatchOrganizationProfilePathPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/organization";
 import {
   DeleteRidesIdPathPayloadRequestInterface,
   GetRidesIdPathPayloadRequestInterface,
@@ -84,8 +88,15 @@ export const SimplyHopAPICollectionURL = {
       `/api/users/profile/${path.id}`,
   },
   organization: {
-    patchProfile: (payload: PatchOrganizationProfilePathPayloadRequestInterface) =>
-      `/api/organizations/${payload.id}/partial-update`,
+    patchProfile: (
+      payload: PatchOrganizationProfilePathPayloadRequestInterface
+    ) => `/api/organizations/${payload.id}/partial-update`,
+    patchDeactivate: (
+      payload: PatchOrganizationDeactivatePathPayloadRequestInterface
+    ) => `/api/organizations/${payload.id}/deactivate`,
+    patchActivate: (
+      payload: PatchOrganizationActivatePathPayloadRequestInterface
+    ) => `/api/organizations/${payload.id}/activate`,
   },
   user: {
     postBlock: () => `/api/user-block`,

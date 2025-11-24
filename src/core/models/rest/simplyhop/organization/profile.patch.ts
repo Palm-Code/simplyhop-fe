@@ -11,19 +11,19 @@ export interface PatchOrganizationProfilePayloadRequestInterface {
   body: PatchOrganizationProfileBodyPayloadRequestInterface;
 }
 export interface PatchOrganizationProfilePathPayloadRequestInterface {
-  id: number;
+  id: string;
 }
 
 export interface PatchOrganizationProfileBodyPayloadRequestInterface {
-  first_name: string; //"John",
-  last_name: string; //"Doe",
-  city: string; //"Berlin",
-  mobile: string; //"0812345678",
-  is_driver: boolean; // true,
-  mobile_is_show: boolean; //true,
-  bio: string; //"user biography",
-  information: string; //"user information",
-  gender: string; //"male"
+  name?: string;
+  responsible_person_name?: string;
+  domain?: string;
+
+  phone?: string;
+  // unused for temp
+  email?: string;
+  logo?: string;
+  is_active?: boolean;
 }
 
 export type PatchOrganizationProfileResponseInterface = NextApiResponse<

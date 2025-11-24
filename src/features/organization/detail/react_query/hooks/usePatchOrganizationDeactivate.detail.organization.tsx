@@ -3,32 +3,32 @@ import { useMutation } from "@tanstack/react-query";
 
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import {
-  PatchUserDeactivateErrorResponseInterface,
-  PatchUserDeactivatePayloadRequestInterface,
-  PatchUserDeactivateSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/user";
-import { DetailDriverReactQueryKey } from "../keys";
+  PatchOrganizationDeactivateErrorResponseInterface,
+  PatchOrganizationDeactivatePayloadRequestInterface,
+  PatchOrganizationDeactivateSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/organization";
+import { DetailOrganizationReactQueryKey } from "../keys";
 import { v4 as uuidv4 } from "uuid";
-import { fetchPatchUserDeactivate } from "@/core/services/rest/simplyhop/user";
+import { fetchPatchOrganizationDeactivate } from "@/core/services/rest/simplyhop/organization";
 import { useParams } from "next/navigation";
 
-export const usePatchUserDeactivate = () => {
+export const usePatchOrganizationDeactivate = () => {
   const { driver_id } = useParams();
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
 
   const mutation = useMutation<
-    PatchUserDeactivateSuccessResponseInterface,
-    PatchUserDeactivateErrorResponseInterface
+    PatchOrganizationDeactivateSuccessResponseInterface,
+    PatchOrganizationDeactivateErrorResponseInterface
   >({
-    mutationKey: DetailDriverReactQueryKey.PatchUserDeactivate(),
+    mutationKey: DetailOrganizationReactQueryKey.PatchOrganizationDeactivate(),
     mutationFn: () => {
-      const payload: PatchUserDeactivatePayloadRequestInterface = {
+      const payload: PatchOrganizationDeactivatePayloadRequestInterface = {
         path: {
           id: String(driver_id ?? "0"),
         },
       };
-      return fetchPatchUserDeactivate(payload);
+      return fetchPatchOrganizationDeactivate(payload);
     },
     onSuccess() {
       dispatchGlobal({

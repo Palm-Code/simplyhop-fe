@@ -521,6 +521,17 @@
         ]
       }
     },
+    "responsible_person_name": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_name",
+            "name": "Ungültiger Name.",
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*\\s*$"
+          }
+        ]
+      }
+    },
     "city": {
       "validations": {
         "items": [

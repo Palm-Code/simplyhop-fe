@@ -9,28 +9,34 @@ import {
 import { ProfileDetailOrganization } from "../fragments/profile";
 import { RidesDetailOrganization } from "../fragments/rides";
 import { DriversDetailOrganization } from "../fragments/drivers/Drivers.detail.organization";
+import { EditDetailOrganization } from "../fragments/edit";
+import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete_account_confirmation";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
   useGetDashboardSuperAdminPerOrganizationId();
   useGetRidesSearch();
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-6",
-        "w-full"
-      )}
-    >
-      <ProfileDetailOrganization />
+    <>
       <div
         className={clsx(
-          "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-6",
+          "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full"
         )}
       >
-        <RidesDetailOrganization />
-        <DriversDetailOrganization />
+        <ProfileDetailOrganization />
+        <div
+          className={clsx(
+            "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-6",
+            "w-full"
+          )}
+        >
+          <RidesDetailOrganization />
+          <DriversDetailOrganization />
+        </div>
       </div>
-    </div>
+      <EditDetailOrganization />
+      <DeleteAccountConfirmationDetailOrganization />
+    </>
   );
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
 import clsx from "clsx";
-import Link from "next/link";
 import { Avatar } from "@/core/components/avatar";
 import { UserInformationItem } from "@/core/components/user_information_item";
 import SVGIcon from "@/core/icons";

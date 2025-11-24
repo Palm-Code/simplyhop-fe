@@ -4,6 +4,8 @@ import {
   DetailOrganizationRide,
   DetailOrganizationProfile,
   DetailOrganizationDriver,
+  DetailOrganizationEdit,
+  DetailOrganizationDeleteAccountConfirmation,
 } from "./Detail.organization.types";
 
 // Profile
@@ -72,6 +74,34 @@ export const DetailOrganizationDriverReducers = (
         ...state,
         loading: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+// Edit
+export const DetailOrganizationEditReducers = (
+  state: DetailOrganizationEdit,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetEditData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DeleteAccountConfirmation
+export const DetailOrganizationDeleteAccountConfirmationReducers = (
+  state: DetailOrganizationDeleteAccountConfirmation,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetDeleteAccountConfirmationData:
+      return action.payload;
 
     default:
       return state;

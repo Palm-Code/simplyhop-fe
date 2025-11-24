@@ -6,8 +6,10 @@ import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { UserContext } from "@/core/modules/app/context";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { UserInformationCard } from "@/core/components/user_information_card";
+import { useRouter } from "next/navigation";
 
 export const InformationAccountSupport = () => {
+  const router = useRouter();
   const globalDictionaries = getGlobalDictionaries();
   const dictionaries = getDictionaries();
 
@@ -57,7 +59,8 @@ export const InformationAccountSupport = () => {
         }),
         cta: {
           text: dictionaries.information.cta.edit.children,
-          href: AppCollectionURL.private.support_account_edit(),
+          onClick: () =>
+            router.push(AppCollectionURL.private.support_account_edit()),
         },
       }}
       detail={{

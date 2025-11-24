@@ -10,4 +10,5 @@ export interface Organization {
   updated_at: string; // "2025-09-02T12:35:41.000000Z";
   logo: string; // "";
   media: any[];
+  city: string | null;
 }

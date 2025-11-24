@@ -3,32 +3,42 @@ import { useMutation } from "@tanstack/react-query";
 
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import {
-  PatchUserDeactivateErrorResponseInterface,
-  PatchUserDeactivatePayloadRequestInterface,
-  PatchUserDeactivateSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/user";
-import { DetailDriverReactQueryKey } from "../keys";
+  PatchOrganizationProfileErrorResponseInterface,
+  PatchOrganizationProfilePayloadRequestInterface,
+  PatchOrganizationProfileSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/organization";
+import { DetailOrganizationReactQueryKey } from "../keys";
 import { v4 as uuidv4 } from "uuid";
-import { fetchPatchUserDeactivate } from "@/core/services/rest/simplyhop/user";
+import { DetailOrganizationContext } from "../../context";
+import { fetchPatchOrganizationProfile } from "@/core/services/rest/simplyhop/organization";
 import { useParams } from "next/navigation";
 
-export const usePatchUserDeactivate = () => {
+export const usePatchOrganizationProfile = () => {
   const { driver_id } = useParams();
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
 
+  const { state } = React.useContext(DetailOrganizationContext);
+
   const mutation = useMutation<
-    PatchUserDeactivateSuccessResponseInterface,
-    PatchUserDeactivateErrorResponseInterface
+    PatchOrganizationProfileSuccessResponseInterface,
+    PatchOrganizationProfileErrorResponseInterface
   >({
-    mutationKey: DetailDriverReactQueryKey.PatchUserDeactivate(),
+    mutationKey: DetailOrganizationReactQueryKey.PatchOrganizationProfile(),
     mutationFn: () => {
-      const payload: PatchUserDeactivatePayloadRequestInterface = {
+      const payload: PatchOrganizationProfilePayloadRequestInterface = {
         path: {
           id: String(driver_id ?? "0"),
         },
+        body: {
+          email: state.edit.form.email.value,
+          name: state.edit.form.name.value,
+          phone: state.edit.form.phonenumber.value,
+          responsible_person_name:
+            state.edit.form.responsible_person_name.value,
+        },
       };
-      return fetchPatchUserDeactivate(payload);
+      return fetchPatchOrganizationProfile(payload);
     },
     onSuccess() {
       dispatchGlobal({
