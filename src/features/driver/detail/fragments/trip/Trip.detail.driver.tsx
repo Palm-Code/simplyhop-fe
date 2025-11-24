@@ -5,11 +5,10 @@ import { ListTripProvider } from "@/features/trip/list/context";
 import { ListTripContainer } from "@/features/trip/list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
 import { SVGIconProps } from "@/core/icons";
-import { DetailDriverContext } from "../../context";
 
 export const TripDetailDriver = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(DetailDriverContext);
+
   return (
     <DashboardCard
       title={dictionaries.trip.title}
@@ -18,11 +17,7 @@ export const TripDetailDriver = () => {
       variant="white"
     >
       <ListTripProvider>
-        <ListTripContainer
-          user={{
-            is_driver: state.user.data?.is_driver === 1,
-          }}
-        />
+        <ListTripContainer />
         <AlertApp />
       </ListTripProvider>
     </DashboardCard>

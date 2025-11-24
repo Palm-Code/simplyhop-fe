@@ -19,13 +19,7 @@ import { CompletedRideListTrip } from "../fragments/complete_ride_confirmation";
 import { NavigationListTrip } from "../fragments/navigation";
 import { SearchListTrip } from "../fragments/search";
 
-export interface ListTripContainerProps {
-  user?: {
-    is_driver?: boolean;
-  };
-}
-
-export const ListTripContainer = ({ user }: ListTripContainerProps) => {
+export const ListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
 
   const searchParams = useSearchParams();
@@ -42,7 +36,7 @@ export const ListTripContainer = ({ user }: ListTripContainerProps) => {
     : isOrganizationDetailRoute
     ? false
     : isDriverDetailRoute
-    ? type === "book" || (!type && user?.is_driver === false)
+    ? type === "book"
     : type === "book" || (!type && userState.profile?.is_driver === false);
 
   return (
