@@ -1,5 +1,13 @@
 {
   "title": "Dashboard",
+  "breadcrumb": {
+    "items": [
+      {
+        "label": "Dashboard",
+        "href": "/support/dashboard"
+      }
+    ]
+  },
   "personal": {
     "summary": {
       "items": [

@@ -14,6 +14,7 @@ import { DeleteAccountConfirmationDetailDriver } from "../fragments/delete_accou
 import { MyListTripProvider } from "@/features/trip/list/context";
 import { ListTripContainer } from "@/features/trip/list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
+import { NavigationDetailDriver } from "../fragments/navigation";
 
 export const DetailDriverContainer = () => {
   useGetRidesSearch();
@@ -28,6 +29,7 @@ export const DetailDriverContainer = () => {
           "w-full"
         )}
       >
+        <NavigationDetailDriver />
         <div
           className={clsx(
             "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-6",

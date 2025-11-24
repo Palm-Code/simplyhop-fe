@@ -16,6 +16,7 @@ import {
   useGetDashboardSuperAdminPerOrganization,
 } from "../react_query/hooks";
 import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
+import { NavigationDashboard } from "../fragments/navigation";
 
 export const DashboardSupportContainer = () => {
   const { state } = React.useContext(UserContext);
@@ -36,6 +37,7 @@ export const DashboardSupportContainer = () => {
           "w-full"
         )}
       >
+        <NavigationDashboard />
         <SummaryDashboard />
         <SuperAdminSectionsDashboard />
       </div>
@@ -49,6 +51,7 @@ export const DashboardSupportContainer = () => {
           "w-full"
         )}
       >
+        <NavigationDashboard />
         <SummaryDashboard />
         <OrganizationalAdminSectionsDashboard />
       </div>
@@ -62,6 +65,7 @@ export const DashboardSupportContainer = () => {
         "w-full"
       )}
     >
+      <NavigationDashboard />
       <SummaryDashboard />
       <PersonalSectionsDashboard />
     </div>
