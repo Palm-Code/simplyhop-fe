@@ -20,4 +20,7 @@ export const ListOrganizationReactQueryKey = {
       [payload] as const,
     ];
   },
+  PatchOrganizationDeactivate: () => {
+    return ["DetailOrganizationReactQueryKey.PatchOrganizationDeactivate"];
+  },
 };

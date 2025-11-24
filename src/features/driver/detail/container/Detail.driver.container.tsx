@@ -13,6 +13,7 @@ import { EditDetailDriver } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailDriver } from "../fragments/delete_account_confirmation";
 import { NavigationDetailDriver } from "../fragments/navigation";
 import { TripDetailDriver } from "../fragments/trip";
+import { HeaderDetailDriver } from "../fragments/header";
 
 export const DetailDriverContainer = () => {
   useGetRidesSearch();
@@ -27,6 +28,7 @@ export const DetailDriverContainer = () => {
           "w-full"
         )}
       >
+        <HeaderDetailDriver />
         <NavigationDetailDriver />
         <div
           className={clsx(

@@ -83,7 +83,9 @@ export const UserDetailDriver = () => {
           src: state.user.data?.avatar || undefined,
         },
         displayName: formatDisplayName({
-          first_name: state.user.data?.first_name,
+          first_name: !state.user.data?.last_name
+            ? state.user.data?.first_name
+            : `${state.user.data.first_name} ${state.user.data.last_name}`,
           email: state.user.data?.email,
         }),
         cta: {

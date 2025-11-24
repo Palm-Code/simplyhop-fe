@@ -1,1 +1,1 @@
-export * from "./DeleteAccountConfirmation.list.driver";
+export * from "./DeleteAccountConfirmation.detail.organization";

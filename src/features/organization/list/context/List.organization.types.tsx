@@ -18,6 +18,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface ListOrganizationInitialStateType {
   table: ListOrganizationTable;
   user_profile: ListOrganizationUserProfile;
+  delete_account_confirmation: ListOrganizationDeleteAccountConfirmation;
 }
 
 export type ListOrganizationTable = {
@@ -40,6 +41,10 @@ export interface ListOrganizationUserProfile {
 export type ListOrganizationItem =
   GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface;
 
+export interface ListOrganizationDeleteAccountConfirmation {
+  is_open: boolean;
+}
+
 export enum ListOrganizationActionEnum {
   SetTableData = "SetTableData",
   SetTableItemsData = "SetItemsData",
@@ -48,12 +53,16 @@ export enum ListOrganizationActionEnum {
 
   // UserProfile
   SetUserProfileData = "SetUserProfileData",
+
+  // DeleteAccountConfirmation
+  SetDeleteAccountConfirmationData = "SetDeleteAccountConfirmationData",
 }
 
 // Action Collection Types
 export type ListOrganizationActions =
   | ListOrganizationTableActions
-  | ListOrganizationUserProfileActions;
+  | ListOrganizationUserProfileActions
+  | ListOrganizationDeleteAccountConfirmationActions;
 
 // Action Collection Types consist of:
 
@@ -74,3 +83,11 @@ type ListOrganizationUserProfilePayload = {
 
 export type ListOrganizationUserProfileActions =
   ActionMap<ListOrganizationUserProfilePayload>[keyof ActionMap<ListOrganizationUserProfilePayload>];
+
+// DeleteAccountConfirmation
+type ListOrganizationDeleteAccountConfirmationPayload = {
+  [ListOrganizationActionEnum.SetDeleteAccountConfirmationData]: ListOrganizationDeleteAccountConfirmation;
+};
+
+export type ListOrganizationDeleteAccountConfirmationActions =
+  ActionMap<ListOrganizationDeleteAccountConfirmationPayload>[keyof ActionMap<ListOrganizationDeleteAccountConfirmationPayload>];

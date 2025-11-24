@@ -3,6 +3,7 @@ import {
   ListOrganizationActionEnum,
   ListOrganizationActions,
   ListOrganizationTable,
+  ListOrganizationDeleteAccountConfirmation,
 } from "./List.organization.types";
 
 // Table
@@ -41,6 +42,20 @@ export const ListOrganizationUserProfileReducers = (
 ) => {
   switch (action.type) {
     case ListOrganizationActionEnum.SetUserProfileData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DeleteAccountConfirmation
+export const ListOrganizationDeleteAccountConfirmationReducers = (
+  state: ListOrganizationDeleteAccountConfirmation,
+  action: ListOrganizationActions
+) => {
+  switch (action.type) {
+    case ListOrganizationActionEnum.SetDeleteAccountConfirmationData:
       return action.payload;
 
     default:

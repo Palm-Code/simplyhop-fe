@@ -152,7 +152,9 @@ export const UserProfileListDriver = () => {
           src: state.user_profile.data?.avatar,
         },
         name: formatDisplayName({
-          first_name: state.user_profile.data?.first_name,
+          first_name: !state.user_profile.data?.last_name
+            ? state.user_profile.data?.first_name
+            : `${state.user_profile.data.first_name} ${state.user_profile.data.last_name}`,
           email: state.user_profile.data?.email,
         }),
         phone: "-",

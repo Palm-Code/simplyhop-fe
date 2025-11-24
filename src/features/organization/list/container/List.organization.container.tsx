@@ -8,6 +8,7 @@ import {
 } from "../react_query/hooks";
 import { UserProfileListOrganization } from "../fragments/user_profile";
 import { HeaderListOrganization } from "../fragments/header";
+import { DeleteAccountConfirmationListOrganization } from "../fragments/delete_account_confirmation";
 
 export const ListOrganizationContainer = () => {
   useGetDashboardSuperAdminPerOrganization();
@@ -24,6 +25,7 @@ export const ListOrganizationContainer = () => {
         <DataTableListOrganization />
       </div>
       <UserProfileListOrganization />
+      <DeleteAccountConfirmationListOrganization />
     </>
   );
 };

@@ -5,6 +5,7 @@ import {
   ListOrganizationInitialStateType,
 } from "./List.organization.types";
 import {
+  ListOrganizationDeleteAccountConfirmationReducers,
   ListOrganizationTableReducers,
   ListOrganizationUserProfileReducers,
 } from "./List.organization.reducers";
@@ -25,6 +26,9 @@ const initialState: ListOrganizationInitialStateType = {
     user_id: null,
     data: null,
   },
+  delete_account_confirmation: {
+    is_open: false,
+  },
 };
 
 const ListOrganizationContext = createContext<{
@@ -36,11 +40,20 @@ const ListOrganizationContext = createContext<{
 });
 
 const mainReducer = (
-  { table, user_profile }: ListOrganizationInitialStateType,
+  {
+    table,
+    user_profile,
+    delete_account_confirmation,
+  }: ListOrganizationInitialStateType,
   action: ListOrganizationActions
 ) => ({
   table: ListOrganizationTableReducers(table, action),
   user_profile: ListOrganizationUserProfileReducers(user_profile, action),
+  delete_account_confirmation:
+    ListOrganizationDeleteAccountConfirmationReducers(
+      delete_account_confirmation,
+      action
+    ),
 });
 
 const ListOrganizationProvider = (props: { children: React.ReactNode }) => {

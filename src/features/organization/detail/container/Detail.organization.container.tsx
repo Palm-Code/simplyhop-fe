@@ -12,6 +12,7 @@ import { DriversDetailOrganization } from "../fragments/drivers/Drivers.detail.o
 import { EditDetailOrganization } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete_account_confirmation";
 import { TripDetailOrganization } from "../fragments/trip";
+import { HeaderDetailOrganization } from "../fragments/header";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
@@ -25,6 +26,7 @@ export const DetailOrganizationContainer = () => {
           "w-full"
         )}
       >
+        <HeaderDetailOrganization />
         <ProfileDetailOrganization />
         <div
           className={clsx(
