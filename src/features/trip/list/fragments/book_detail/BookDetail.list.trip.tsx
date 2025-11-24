@@ -3,8 +3,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
-import { useRouter, useSearchParams } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { BookingDetailCard } from "@/core/components/booking_detail_card";
@@ -20,6 +19,7 @@ export const BookDetailListTrip = () => {
   const bookingId = searchParams.get("booking_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
+  const pathname = usePathname();
   const { state, dispatch } = React.useContext(ListTripContext);
   useGetBookingId();
 
@@ -44,7 +44,8 @@ export const BookDetailListTrip = () => {
   const handleClose = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete("booking_id");
-    router.push(AppCollectionURL.private.myList(params.toString()), {
+    const hasParams = params.toString().length > 0;
+    router.push(hasParams ? `${pathname}?${params.toString()}` : pathname, {
       scroll: false,
     });
   };
