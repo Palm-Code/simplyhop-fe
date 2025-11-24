@@ -8,13 +8,17 @@ import { useGetRidesSearch } from "../../react_query/hooks";
 import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { usePathname } from "next/navigation";
 
 export const RideListTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ListTripContext);
-  const { isFetching: isFetchingGetRidesMy } = useGetRidesSearch();
+  const pathname = usePathname();
+  const isDashboardTripList = pathname.startsWith("/support/fahrten");
+  const { isFetching: isFetchingGetRidesSearch } = useGetRidesSearch();
 
-  const isLoading = isFetchingGetRidesMy;
+  console.log(isDashboardTripList, pathname, "ini apa");
+  const isLoading = isFetchingGetRidesSearch;
 
   if (isLoading && state.ride.pagination.current === PAGINATION.NUMBER) {
     return (
@@ -84,6 +88,7 @@ export const RideListTrip = () => {
           <RideCard
             key={itemIndex}
             {...item}
+            price={isDashboardTripList ? undefined : item.price}
             cta={{
               detail: {
                 children: item.cta?.detail.children ?? "",

@@ -105,12 +105,13 @@ export const RideCard = ({
     },
   },
 
-  price = {
-    initial: {
-      label: "Angebotspreis",
-      price: "€25.00",
-    },
-  },
+  // price = {
+  //   initial: {
+  //     label: "Angebotspreis",
+  //     price: "€25.00",
+  //   },
+  // },
+  price,
   cta = {
     detail: {
       children: "Siehe Details",
@@ -146,8 +147,8 @@ export const RideCard = ({
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
           )}
         >
-          <DriverProfileLabel {...driver.profile} />
           <DepartureDateItem {...routes.date} />
+
           <div
             className={clsx(
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
@@ -161,7 +162,12 @@ export const RideCard = ({
         </div>
 
         {/* image */}
-        <div className={clsx("hidden lg:block")}>
+        <div
+          className={clsx(
+            "hidden lg:grid grid-cols-1 place-content-start place-items-start gap-2"
+          )}
+        >
+          <DriverProfileLabel {...driver.profile} />
           <Image {...car.image} className={clsx("w-[192px]")} />
         </div>
 
@@ -172,13 +178,13 @@ export const RideCard = ({
             "w-full max-w-[340px]"
           )}
         >
-          <div className={clsx("hidden lg:block")}>
+          <div className={clsx("hidden lg:grid grid-cols-1 w-full")}>
             <CarIdentityItem {...car.identity} />
           </div>
 
           <div
             className={clsx(
-              "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
+              "grid grid-cols-[80px_80px_80px] place-content-start place-items-start gap-[2.25rem]",
               "w-full"
             )}
           >
@@ -191,10 +197,9 @@ export const RideCard = ({
         </div>
 
         {/* price */}
-        <CarPriceItem {...price.initial} />
+        {!!price && <CarPriceItem {...price.initial} />}
 
         {/* cta */}
-
         <div
           className={clsx(
             "grid grid-flow-col items-start content-start justify-items-end justify-end gap-[1rem]"

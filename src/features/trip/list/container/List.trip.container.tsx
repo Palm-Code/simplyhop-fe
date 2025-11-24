@@ -25,10 +25,9 @@ export const ListTripContainer = () => {
   const type = searchParams.get("type");
   const pathname = usePathname();
 
-  const isBookingList =
-    pathname === "/support/fahrten"
-      ? false
-      : type === "book" || (!type && userState.profile?.is_driver === false);
+  const isBookingList = pathname.startsWith("/support/fahrten")
+    ? false
+    : type === "book" || (!type && userState.profile?.is_driver === false);
 
   return (
     <>

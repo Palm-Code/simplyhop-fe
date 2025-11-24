@@ -19,8 +19,8 @@ export const TabListTrip = () => {
 
   const type = searchParams.get("type");
   const pathname = usePathname();
-  const isRideListRoute = pathname === "/support/fahrten";
-  
+  const isRideListRoute = pathname.startsWith("/support/fahrten");
+
   if (!isRideListRoute) {
     return (
       <TabGroup
