@@ -124,6 +124,12 @@ export const RideCard = ({
     },
   },
 }: RideCardProps) => {
+  const [imageError, setImageError] = React.useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <div
       id={id}
@@ -155,7 +161,15 @@ export const RideCard = ({
             )}
           >
             <div className={clsx("block lg:hidden")}>
-              <Image {...car.image} className={clsx("w-[145px]")} />
+              {!imageError ? (
+                <Image
+                  {...car.image}
+                  className={clsx("w-[145px]")}
+                  onError={handleImageError}
+                />
+              ) : (
+                <div className={clsx("w-[145px] h-[46px]")} />
+              )}
               <CarIdentityItem {...car.identity} number={null} />
             </div>
           </div>
@@ -168,7 +182,15 @@ export const RideCard = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
-          <Image {...car.image} className={clsx("w-[192px]")} />
+          {!imageError ? (
+            <Image
+              {...car.image}
+              className={clsx("w-[192px]")}
+              onError={handleImageError}
+            />
+          ) : (
+            <div className={clsx("w-[192px] h-[61px]")} />
+          )}
         </div>
 
         {/* identity */}
