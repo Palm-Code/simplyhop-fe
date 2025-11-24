@@ -2,6 +2,43 @@
   "header": {
     "title": "Meine Fahrten"
   },
+  "breadcrumb": {
+    "default": {
+      "items": [
+        {
+          "label": "Dashboard",
+          "href": "/support/dashboard"
+        },
+        {
+          "label": "Fahrten",
+          "href": "/support/fahrten"
+        }
+      ]
+    },
+    "organization": {
+      "items": [
+        {
+          "label": "Dashboard",
+          "href": "/support/dashboard"
+        },
+        {
+          "label": "Fahrten",
+          "href": "/support/fahrten"
+        }
+      ]
+    }
+  },
+  "search": {
+    "inputProps": {
+      "id": "name",
+      "placeholder": " "
+    },
+    "labelProps": {
+      "id": "name",
+      "children": "Fahrten suchen",
+      "required": false
+    }
+  },
   "tab": {
     "items": [
       {

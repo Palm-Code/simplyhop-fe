@@ -16,6 +16,8 @@ import { CancelBookNotificationListTrip } from "../fragments/cancel_book_notific
 import { SuccessCancelBookNotificationListTrip } from "../fragments/success_cancel_book_notification";
 import { RideFilterListTrip } from "../fragments/ride_filter";
 import { CompletedRideListTrip } from "../fragments/complete_ride_confirmation";
+import { NavigationListTrip } from "../fragments/navigation";
+import { SearchListTrip } from "../fragments/search";
 
 export const ListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -39,6 +41,12 @@ export const ListTripContainer = () => {
             )}
           >
             <HeaderListTrip />
+            <div
+              className={clsx("flex items-center justify-between", "w-full")}
+            >
+              <NavigationListTrip />
+              <SearchListTrip />
+            </div>
             <TabListTrip />
             <RideFilterListTrip />
 
