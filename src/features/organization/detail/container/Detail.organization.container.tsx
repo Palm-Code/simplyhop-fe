@@ -11,9 +11,6 @@ import { RidesDetailOrganization } from "../fragments/rides";
 import { DriversDetailOrganization } from "../fragments/drivers/Drivers.detail.organization";
 import { EditDetailOrganization } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete_account_confirmation";
-import { ListTripProvider } from "@/features/trip/list/context";
-import { ListTripContainer } from "@/features/trip/list/container";
-import { AlertApp } from "@/core/modules/app/fragments/alert";
 import { TripDetailOrganization } from "../fragments/trip";
 
 export const DetailOrganizationContainer = () => {

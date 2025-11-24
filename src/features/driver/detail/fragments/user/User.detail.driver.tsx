@@ -128,7 +128,7 @@ export const UserDetailDriver = () => {
         },
         aboutMe: {
           label: dictionaries.user.information.about_me.name,
-          value: !state.user.data?.profile?.bio.length
+          value: !state.user.data?.profile?.bio?.length
             ? "-"
             : state.user.data.profile.bio,
         },

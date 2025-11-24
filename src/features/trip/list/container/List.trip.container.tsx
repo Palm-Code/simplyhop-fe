@@ -28,10 +28,13 @@ export const ListTripContainer = () => {
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
 
   const isBookingList = isTripListRoute
     ? false
     : isOrganizationDetailRoute
+    ? false
+    : isDriverDetailRoute
     ? false
     : type === "book" || (!type && userState.profile?.is_driver === false);
 

@@ -31,7 +31,7 @@
           "label": "Fahrer von {{organization_name}}",
           "href": "/support/organisation/{{organization_id}}/driver"
         },
-         {
+        {
           "label": "{{driver_name}}",
           "href": "/support/organisation/{{organization_id}}/driver/{{driver_id}}"
         }
@@ -272,6 +272,15 @@
       },
       "ok": {
         "children": "Bestätigung"
+      }
+    }
+  },
+  "trip": {
+    "title": "Bevorstehende Fahrten",
+    "icon": "CarFront",
+    "cta": {
+      "primary": {
+        "children": "Alle anzeigen"
       }
     }
   }

@@ -18,6 +18,8 @@ export const RideListTrip = () => {
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
+
   const { isFetching: isFetchingGetRidesSearch } = useGetRidesSearch();
 
   const isLoading = isFetchingGetRidesSearch;
@@ -49,7 +51,7 @@ export const RideListTrip = () => {
   }
 
   const handleLoadMore = () => {
-    if (isOrganizationDetailRoute) return;
+    if (isOrganizationDetailRoute || isDriverDetailRoute) return;
     if (isLoading) return;
 
     dispatch({
@@ -59,7 +61,8 @@ export const RideListTrip = () => {
   };
   const isEndReached =
     state.ride.pagination.last === state.ride.pagination.current ||
-    isOrganizationDetailRoute;
+    isOrganizationDetailRoute ||
+    isDriverDetailRoute;
 
   const handleClickShare = (data: { link: string; message: string }) => {
     dispatch({
@@ -96,6 +99,8 @@ export const RideListTrip = () => {
               isTripListRoute
                 ? undefined
                 : isOrganizationDetailRoute
+                ? undefined
+                : isDriverDetailRoute
                 ? undefined
                 : item.price
             }

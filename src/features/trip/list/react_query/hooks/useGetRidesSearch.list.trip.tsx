@@ -41,9 +41,8 @@ export const useGetRidesSearch = () => {
     userState.profile?.role === "admin" &&
     userState.profile.is_super_admin === true;
   const isOrganizationDetailRoute =
-    pathname.startsWith("/support/organisation/detail") &&
-    !!organization_id &&
-    !pathname.includes("list");
+    pathname.startsWith("/support/organisation/detail") && !!organization_id;
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
 
   const isEnabled = isEmployee
     ? !type && !!userState.profile?.id && userState.profile.is_driver
@@ -67,7 +66,11 @@ export const useGetRidesSearch = () => {
       status: rideStatus ?? "in_progress",
       sort: "departure_time",
       "page[number]": state.ride.pagination.current,
-      "page[size]": isOrganizationDetailRoute ? 3 : PAGINATION.SIZE,
+      "page[size]": isOrganizationDetailRoute
+        ? 3
+        : isDriverDetailRoute
+        ? 3
+        : PAGINATION.SIZE,
     },
   };
   const query = useQuery<
