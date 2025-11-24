@@ -4,7 +4,6 @@ import clsx from "clsx";
 import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 import { usePathname, useSearchParams } from "next/navigation";
 import { UserContext } from "@/core/modules/app/context";
 

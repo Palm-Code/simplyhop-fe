@@ -19,8 +19,15 @@ import { CompletedRideListTrip } from "../fragments/complete_ride_confirmation";
 import { NavigationListTrip } from "../fragments/navigation";
 import { SearchListTrip } from "../fragments/search";
 
-export const ListTripContainer = () => {
+export interface ListTripContainerProps {
+  user?: {
+    is_driver?: boolean;
+  };
+}
+
+export const ListTripContainer = ({ user }: ListTripContainerProps) => {
   const { state: userState } = React.useContext(UserContext);
+
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const pathname = usePathname();
@@ -28,11 +35,14 @@ export const ListTripContainer = () => {
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer");
 
   const isBookingList = isTripListRoute
     ? false
     : isOrganizationDetailRoute
     ? false
+    : isDriverDetailRoute
+    ? type === "book" || (!type && user?.is_driver === false)
     : type === "book" || (!type && userState.profile?.is_driver === false);
 
   return (
