@@ -58,7 +58,8 @@ export const RideListTrip = () => {
     });
   };
   const isEndReached =
-    state.ride.pagination.last === state.ride.pagination.current;
+    state.ride.pagination.last === state.ride.pagination.current ||
+    isOrganizationDetailRoute;
 
   const handleClickShare = (data: { link: string; message: string }) => {
     dispatch({
