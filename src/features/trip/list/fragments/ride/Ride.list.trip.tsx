@@ -49,6 +49,7 @@ export const RideListTrip = () => {
   }
 
   const handleLoadMore = () => {
+    if (isOrganizationDetailRoute) return;
     if (isLoading) return;
 
     dispatch({

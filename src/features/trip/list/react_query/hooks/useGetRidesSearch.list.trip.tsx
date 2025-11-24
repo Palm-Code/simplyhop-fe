@@ -40,8 +40,8 @@ export const useGetRidesSearch = () => {
   const isSuperAdmin =
     userState.profile?.role === "admin" &&
     userState.profile.is_super_admin === true;
-  const isOrganizationDetail =
-    pathname.startsWith("/support/organisation") &&
+  const isOrganizationDetailRoute =
+    pathname.startsWith("/support/organisation/detail") &&
     !!organization_id &&
     !pathname.includes("list");
 
@@ -67,7 +67,7 @@ export const useGetRidesSearch = () => {
       status: rideStatus ?? "in_progress",
       sort: "departure_time",
       "page[number]": state.ride.pagination.current,
-      "page[size]": isOrganizationDetail ? 3 : PAGINATION.SIZE,
+      "page[size]": isOrganizationDetailRoute ? 3 : PAGINATION.SIZE,
     },
   };
   const query = useQuery<
