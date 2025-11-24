@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
