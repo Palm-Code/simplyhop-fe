@@ -8,17 +8,21 @@ import { useGetRidesSearch } from "../../react_query/hooks";
 import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export const RideListTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ListTripContext);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const isTripListRoute = pathname.startsWith("/support/fahrten");
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
   const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
+  const status = searchParams.get("ride-status");
+  const inProgressStatus = !status;
+  // const inProgressStatus = status === "upcoming";
 
   const { isFetching: isFetchingGetRidesSearch } = useGetRidesSearch();
 
@@ -95,6 +99,15 @@ export const RideListTrip = () => {
           <RideCard
             key={itemIndex}
             {...item}
+            routes={{
+              ...item.routes,
+              date:
+                isOrganizationDetailRoute && inProgressStatus
+                  ? undefined
+                  : isDriverDetailRoute && inProgressStatus
+                  ? undefined
+                  : item.routes?.date,
+            }}
             price={
               isTripListRoute
                 ? undefined

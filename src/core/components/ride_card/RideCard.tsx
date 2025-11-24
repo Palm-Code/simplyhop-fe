@@ -84,10 +84,11 @@ export const RideCard = ({
   },
 
   routes = {
-    date: {
-      label: "Datum",
-      date: "24.02.25",
-    },
+    // date: {
+    //   label: "Datum",
+    //   date: "24.02.25",
+    // },
+    date: undefined,
     startTime: {
       label: "Startzeit",
       time: "17:30 Uhr",
@@ -150,10 +151,11 @@ export const RideCard = ({
       >
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
+            "grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+            routes.date ? "grid" : "grid sm:hidden"
           )}
         >
-          <DepartureDateItem {...routes.date} />
+          {routes.date && <DepartureDateItem {...routes.date} />}
 
           <div
             className={clsx(
