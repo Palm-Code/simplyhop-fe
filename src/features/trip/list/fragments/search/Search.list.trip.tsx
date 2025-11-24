@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Textfield } from "@/core/components/textfield";
 import * as React from "react";
 import { getDictionaries } from "../../i18n";
@@ -15,12 +15,12 @@ export const SearchListTrip = () => {
   const [searchValue, setSearchValue] = React.useState(
     searchParams.get("search") || ""
   );
-  
+
   const [debouncedSearchValue] = useDebounceValue(searchValue, 500);
 
   React.useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    
+
     if (debouncedSearchValue) {
       params.set("search", debouncedSearchValue);
     } else {
@@ -30,20 +30,25 @@ export const SearchListTrip = () => {
     router.push(`${pathname}?${params.toString()}`);
   }, [debouncedSearchValue, pathname, router, searchParams]);
 
-  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
+  const isShowed = pathname.startsWith("/support/fahrten");
+  
+  if (isShowed) {
+    const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchValue(e.target.value);
+    };
+    return (
+      <div className={clsx("w-[256px]")}>
+        <Textfield
+          labelProps={{ ...dictionaries.search.labelProps }}
+          inputProps={{
+            ...dictionaries.search.inputProps,
+            value: searchValue,
+            onChange: handleChangeSearch,
+          }}
+        />
+      </div>
+    );
+  }
 
-  return (
-    <div className={clsx('w-[256px]')}>
-      <Textfield
-        labelProps={{ ...dictionaries.search.labelProps }}
-        inputProps={{
-          ...dictionaries.search.inputProps,
-          value: searchValue,
-          onChange: handleChangeSearch,
-        }}
-      />
-    </div>
-  );
+  return null;
 };

@@ -11,6 +11,7 @@ export interface DashboardCardProps {
     };
   };
   children?: React.ReactNode;
+  variant?: "green" | "white";
 }
 
 export const DashboardCard = ({
@@ -18,6 +19,7 @@ export const DashboardCard = ({
   icon,
   cta,
   children,
+  variant = "green",
 }: DashboardCardProps) => {
   return (
     <div
@@ -80,11 +82,19 @@ export const DashboardCard = ({
         </div>
 
         {/* journey card */}
-        <div
-          className={clsx("bg-[#FAFDF9]", "px-4 py-4", "rounded-2xl", "w-full")}
-        >
-          {children}
-        </div>
+        {variant === "green" && (
+          <div
+            className={clsx(
+              "bg-[#FAFDF9]",
+              "px-4 py-4",
+              "rounded-2xl",
+              "w-full"
+            )}
+          >
+            {children}
+          </div>
+        )}
+        {variant === "white" && <>{children}</>}
       </div>
     </div>
   );

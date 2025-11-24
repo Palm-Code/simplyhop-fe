@@ -14,6 +14,7 @@ import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete
 import { ListTripProvider } from "@/features/trip/list/context";
 import { ListTripContainer } from "@/features/trip/list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
+import { TripDetailOrganization } from "../fragments/trip";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
@@ -37,10 +38,7 @@ export const DetailOrganizationContainer = () => {
           <RidesDetailOrganization />
           <DriversDetailOrganization />
         </div>
-        <ListTripProvider>
-          <ListTripContainer />
-          <AlertApp />
-        </ListTripProvider>
+        <TripDetailOrganization />
       </div>
       <EditDetailOrganization />
       <DeleteAccountConfirmationDetailOrganization />

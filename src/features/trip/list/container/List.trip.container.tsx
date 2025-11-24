@@ -24,8 +24,14 @@ export const ListTripContainer = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const pathname = usePathname();
+  const isTripListRoute = pathname.startsWith("/support/fahrten");
+  const isOrganizationDetailRoute = pathname.startsWith(
+    "/support/organisation/detail"
+  );
 
-  const isBookingList = pathname.startsWith("/support/fahrten")
+  const isBookingList = isTripListRoute
+    ? false
+    : isOrganizationDetailRoute
     ? false
     : type === "book" || (!type && userState.profile?.is_driver === false);
 

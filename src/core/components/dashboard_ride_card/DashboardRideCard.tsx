@@ -151,7 +151,7 @@ export const DashboardRideCard = ({
           </div>
         </div>
 
-        <div className={clsx("flex items-center justify-between", "w-full")}>
+        <div className={clsx("grid grid-cols-[80px_80px_80px] items-center justify-between", "w-full")}>
           <DepartureItem {...routes.departure} />
 
           <TravelTimeItem {...routes.travelTime} />

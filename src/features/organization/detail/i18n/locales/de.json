@@ -160,7 +160,7 @@
             "required": false
           }
         },
-       
+
         "city": {
           "inputProps": {
             "id": "city",
@@ -238,6 +238,15 @@
       },
       "ok": {
         "children": "Bestätigung"
+      }
+    }
+  },
+  "trip": {
+    "title": "Bevorstehende Fahrten",
+    "icon": "CarFront",
+    "cta": {
+      "primary": {
+        "children": "Alle anzeigen"
       }
     }
   }

@@ -10,7 +10,7 @@ import {
   GetRidesSearchPayloadRequestInterface,
   GetRidesSearchSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -29,6 +29,7 @@ export const useGetRidesSearch = () => {
   const type = searchParams.get("type");
   const rideStatus = searchParams.get("ride-status");
   const pathname = usePathname();
+  const { organization_id } = useParams();
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
 
@@ -39,6 +40,10 @@ export const useGetRidesSearch = () => {
   const isSuperAdmin =
     userState.profile?.role === "admin" &&
     userState.profile.is_super_admin === true;
+  const isOrganizationDetail =
+    pathname.startsWith("/support/organisation") &&
+    !!organization_id &&
+    !pathname.includes("list");
 
   const isEnabled = isEmployee
     ? !type && !!userState.profile?.id && userState.profile.is_driver
@@ -62,7 +67,7 @@ export const useGetRidesSearch = () => {
       status: rideStatus ?? "in_progress",
       sort: "departure_time",
       "page[number]": state.ride.pagination.current,
-      "page[size]": PAGINATION.SIZE,
+      "page[size]": isOrganizationDetail ? 3 : PAGINATION.SIZE,
     },
   };
   const query = useQuery<

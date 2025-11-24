@@ -185,11 +185,11 @@ export const RideCard = ({
           {!imageError ? (
             <Image
               {...car.image}
-              className={clsx("w-[192px]")}
+              className={clsx("w-[94px]")}
               onError={handleImageError}
             />
           ) : (
-            <div className={clsx("w-[192px] h-[61px]")} />
+            <div className={clsx("w-[94px] h-[61px]")} />
           )}
         </div>
 
