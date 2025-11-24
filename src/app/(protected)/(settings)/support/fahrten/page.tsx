@@ -1,12 +1,12 @@
 import { AlertApp } from "@/core/modules/app/fragments/alert";
-import { TripSupportContainer } from "@/features/support/trip/container/Trip.support.container";
-import { TripSupportProvider } from "@/features/support/trip/context";
+import { ListTripContainer } from "@/features/trip/list/container";
+import { MyListTripProvider } from "@/features/trip/list/context";
 
 export default function TripPage() {
   return (
-    <TripSupportProvider>
-      <TripSupportContainer />
+    <MyListTripProvider>
+      <ListTripContainer />
       <AlertApp />
-    </TripSupportProvider>
+    </MyListTripProvider>
   );
 }

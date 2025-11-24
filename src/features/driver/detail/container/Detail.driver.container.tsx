@@ -11,6 +11,9 @@ import { RidesDetailDriver } from "../fragments/rides";
 import { VehiclesDetailDriver } from "../fragments/vehicles";
 import { EditDetailDriver } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailDriver } from "../fragments/delete_account_confirmation";
+import { MyListTripProvider } from "@/features/trip/list/context";
+import { ListTripContainer } from "@/features/trip/list/container";
+import { AlertApp } from "@/core/modules/app/fragments/alert";
 
 export const DetailDriverContainer = () => {
   useGetRidesSearch();
@@ -42,6 +45,10 @@ export const DetailDriverContainer = () => {
             <VehiclesDetailDriver />
           </div>
         </div>
+        <MyListTripProvider>
+          <ListTripContainer />
+          <AlertApp />
+        </MyListTripProvider>
       </div>
       <EditDetailDriver />
       <DeleteAccountConfirmationDetailDriver />
