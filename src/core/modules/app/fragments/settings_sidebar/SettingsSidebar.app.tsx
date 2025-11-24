@@ -92,8 +92,7 @@ export const SettingsSidebarApp = () => {
     ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE,
   ]);
 
-  const { mutate: postAuthLogout, isPending: isPendingPostAuthLogout } =
-    usePostAuthLogout();
+  const { mutate: postAuthLogout } = usePostAuthLogout();
 
   const handleClickLogOut = () => {
     postAuthLogout();
