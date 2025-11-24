@@ -102,6 +102,10 @@
         "title": "Title",
         "description": "Description"
       },
+      "archive": {
+        "title": "Title",
+        "description": "Description"
+      },
       "default": {
         "title": "Title",
         "description": "Description"

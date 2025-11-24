@@ -14,7 +14,7 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
   return (
     <div className={clsx("flex items-center justify-start gap-1", "w-full")}>
       {items.map((item, index) => (
-        <>
+        <React.Fragment key={`breadcrumb-${index}`}>
           {index < items.length - 1 && (
             <Link
               key={`breadcrumb-link-${index}`}
@@ -40,7 +40,7 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
               className={clsx("w-4 h-4", "text-[#767676]")}
             />
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

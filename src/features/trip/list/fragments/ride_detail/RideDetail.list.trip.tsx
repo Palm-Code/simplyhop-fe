@@ -2,8 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { useRouter, useSearchParams } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
@@ -22,6 +21,7 @@ export const RideDetailListTrip = () => {
   const rideId = searchParams.get("ride_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
+  const pathname = usePathname();
   const { state, dispatch } = React.useContext(ListTripContext);
   useGetRidesId();
 
@@ -52,11 +52,17 @@ export const RideDetailListTrip = () => {
         confirmed_booking: [],
       },
     });
-    const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
+    const params = new URLSearchParams(searchParams.toString());
     params.delete("ride_id");
-    router.push(AppCollectionURL.private.myList(params.toString()), {
-      scroll: false,
-    });
+
+    const hasParams = params.toString().length > 0;
+
+    router.push(
+      hasParams ? `${pathname}?${params.toString()}` : pathname,
+      {
+        scroll: false,
+      }
+    );
   };
 
   const handleClickDeleteRide = () => {
@@ -82,17 +88,19 @@ export const RideDetailListTrip = () => {
     rideStatus !== "finished" && rideStatus !== "archive";
   const isFinishTrip = rideStatus === "finished";
 
-  const title = (
-    dictionaries.ride_detail.title as {
-      [key: string]: { title: string; description: string };
-    }
-  )[rideStatus ?? "default"].title;
+  const title =
+    (
+      dictionaries.ride_detail.title as {
+        [key: string]: { title: string; description: string };
+      }
+    )[rideStatus ?? "default"]?.title ?? "";
 
-  const description = (
-    dictionaries.ride_detail.title as {
-      [key: string]: { title: string; description: string };
-    }
-  )[rideStatus ?? "default"].description;
+  const description =
+    (
+      dictionaries.ride_detail.title as {
+        [key: string]: { title: string; description: string };
+      }
+    )[rideStatus ?? "default"]?.description ?? "";
 
   const isRideCompleteConfirmationDisabled =
     state.complete_ride_confirmation.confirmed_booking.length ===

@@ -10,11 +10,10 @@ import {
   GetRidesSearchPayloadRequestInterface,
   GetRidesSearchSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
@@ -29,6 +28,7 @@ export const useGetRidesSearch = () => {
   const dictionaries = getDictionaries();
   const type = searchParams.get("type");
   const rideStatus = searchParams.get("ride-status");
+  const pathname = usePathname();
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
 
@@ -178,7 +178,7 @@ export const useGetRidesSearch = () => {
           cta: {
             detail: {
               children: "Siehe Details",
-              href: AppCollectionURL.private.myList(urlSearchParams.toString()),
+              href: `${pathname}?${urlSearchParams.toString()}`,
             },
             share: {
               onClick: () => {},
