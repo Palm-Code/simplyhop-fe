@@ -6,9 +6,11 @@ import Image from "next/image";
 import { getDictionaries } from "../../i18n";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { UserContext } from "../../context";
+import { ThemeContext } from "../../context/theme/Theme.context";
 
 export const FooterApp = () => {
   const { state } = React.useContext(UserContext);
+  const { isDarkMode } = React.useContext(ThemeContext);
   const dictionaries = getDictionaries();
 
   const isMaintenance =
@@ -61,14 +63,18 @@ export const FooterApp = () => {
                       "flex items-center justify-center",
                       "px-[0.5rem] py-[0.5rem]",
                       "rounded-[0.625rem]",
-                      item.id === "facebook" ? "bg-[#EFF9EC]" : "bg-[white]"
+                      isDarkMode && item.id === "facebook"
+                        ? "bg-[#767676]"
+                        : item.id === "facebook"
+                        ? "bg-[#EFF9EC]"
+                        : "bg-[transparent]"
                     )}
                   >
                     <SVGIcon
                       name={item.icon.name as SVGIconProps["name"]}
                       className={clsx(
                         "w-[1.5rem] h-[1.5rem]",
-                        "text-[#5B5B5B]"
+                        "text-[#5B5B5B] dark:text-[#767676]"
                       )}
                     />
                   </Link>
@@ -116,14 +122,14 @@ export const FooterApp = () => {
                   >
                     <span
                       className={clsx(
-                        "text-[#232323] text-[0.875rem] font-semibold"
+                        "text-[#232323] dark:text-white text-[0.875rem] font-semibold"
                       )}
                     >
                       {item.name}
                     </span>
                     <span
                       className={clsx(
-                        "text-[#5B5B5B] text-[0.875rem] font-normal"
+                        "text-[#5B5B5B] dark:text-[#E9E6E6] text-[0.875rem] font-normal"
                       )}
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     />
@@ -140,7 +146,7 @@ export const FooterApp = () => {
               "w-full"
             )}
           >
-            <span className={clsx("text-[#232323] text-[1.125rem] font-bold")}>
+            <span className={clsx("text-[#232323] dark:text-white text-[1.125rem] font-bold")}>
               {dictionaries.footer.middle.function.title}
             </span>
             <div
@@ -162,7 +168,7 @@ export const FooterApp = () => {
                         key={itemIndex}
                         href={link}
                         className={clsx(
-                          "text-[#5B5B5B] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
+                          "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
                         )}
                       >
                         {item.name}
@@ -193,7 +199,7 @@ export const FooterApp = () => {
               "w-full"
             )}
           >
-            <span className={clsx("text-[#232323] text-[1.125rem] font-bold")}>
+            <span className={clsx("text-[#232323] dark:text-white text-[1.125rem] font-bold")}>
               {dictionaries.footer.middle.legal.title}
             </span>
             <div
@@ -206,7 +212,7 @@ export const FooterApp = () => {
                   key={itemIndex}
                   href={item.href}
                   className={clsx(
-                    "text-[#5B5B5B] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
+                    "text-[#5B5B5B] dark:text-[#E9E6E6] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
                   )}
                 >
                   {item.name}
@@ -235,9 +241,9 @@ export const FooterApp = () => {
         >
           <SVGIcon
             name="Copyright"
-            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-[#767676]")}
           />
-          <span className={clsx("text-[#767676] text-[1rem] font-normal")}>
+          <span className={clsx("text-[#767676] dark:text-[#E9E6E6] text-[1rem] font-normal")}>
             {dictionaries.footer.bottom.copyright}
           </span>
         </div>
