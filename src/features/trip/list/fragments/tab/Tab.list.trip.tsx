@@ -58,6 +58,7 @@ export const TabListTrip = () => {
               <Link
                 key={itemIndex}
                 href={!params ? pathname : `${pathname}?${params.toString()}`}
+                scroll={false}
               >
                 <Tab
                   className={clsx(

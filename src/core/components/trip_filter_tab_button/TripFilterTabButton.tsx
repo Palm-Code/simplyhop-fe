@@ -25,6 +25,7 @@ export const TripFilterTabButton = ({
         "whitespace-nowrap",
         className
       )}
+      scroll={false}
     >
       {children}
     </Link>
