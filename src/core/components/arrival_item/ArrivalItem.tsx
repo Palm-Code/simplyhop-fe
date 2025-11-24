@@ -16,7 +16,7 @@ export const ArrivalItem = ({ place = "", time = "" }: ArrivalItemProps) => {
       <div
         className={clsx(
           "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.25rem]",
-          "w-full max-w-[84px]"
+          "w-full"
         )}
       >
         <p

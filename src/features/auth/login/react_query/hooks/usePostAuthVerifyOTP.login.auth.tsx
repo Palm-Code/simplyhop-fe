@@ -64,6 +64,7 @@ export const usePostAuthVerifyOTP = () => {
           total_passengers_count: user.total_passengers_count,
           total_trips: user.total_trips,
           average_ride_rating: user.average_ride_rating,
+          organization_id: user.organization_id,
         },
       });
       const isSuperAdmin = user.is_super_admin === true;

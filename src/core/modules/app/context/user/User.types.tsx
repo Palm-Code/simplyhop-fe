@@ -32,6 +32,7 @@ export interface UserProfile {
   average_ride_rating: null | number; // null;
   total_passengers_count: number; // 0;
   total_trips: number; // 0;
+  organization_id: number;
 }
 
 export enum UserActionEnum {

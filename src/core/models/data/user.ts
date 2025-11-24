@@ -24,4 +24,5 @@ export interface User {
   total_trips: number; // 0;
   i_blocked: boolean;
   blocked_me: boolean;
+  organization_id: number;
 }

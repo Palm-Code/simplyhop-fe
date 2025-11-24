@@ -3,7 +3,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { HeaderListTrip } from "../fragments/header";
 import { TabListTrip } from "../fragments/tab";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { BookListTrip } from "../fragments/book";
 import { RideListTrip } from "../fragments/ride";
 import { RideDetailListTrip } from "../fragments/ride_detail";
@@ -23,6 +23,12 @@ export const ListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
+  const pathname = usePathname();
+
+  const isBookingList =
+    pathname === "/support/fahrten"
+      ? false
+      : type === "book" || (!type && userState.profile?.is_driver === false);
 
   return (
     <>
@@ -50,14 +56,7 @@ export const ListTripContainer = () => {
             <TabListTrip />
             <RideFilterListTrip />
 
-            {type === "book" ? (
-              <>
-                <BookListTrip />
-                <BookDetailListTrip />
-                <CancelBookNotificationListTrip />
-                <SuccessCancelBookNotificationListTrip />
-              </>
-            ) : !type && userState.profile?.is_driver === false ? (
+            {isBookingList ? (
               <>
                 <BookListTrip />
                 <BookDetailListTrip />

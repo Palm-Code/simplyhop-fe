@@ -58,6 +58,7 @@ export const useGetSocialCallback = () => {
           total_passengers_count: user.total_passengers_count,
           total_trips: user.total_trips,
           average_ride_rating: user.average_ride_rating,
+          organization_id: user.organization_id,
         },
       });
       // router.push(AppCollectionURL.public.home());

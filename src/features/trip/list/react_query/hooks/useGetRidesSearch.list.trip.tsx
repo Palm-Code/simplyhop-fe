@@ -32,11 +32,32 @@ export const useGetRidesSearch = () => {
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
 
+  const isEmployee = userState.profile?.role === "employee";
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" &&
+    userState.profile.is_super_admin === false;
+  const isSuperAdmin =
+    userState.profile?.role === "admin" &&
+    userState.profile.is_super_admin === true;
+
+  const isEnabled = isEmployee
+    ? !type && !!userState.profile?.id && userState.profile.is_driver
+    : isOrganizationAdmin
+    ? !!userState.profile?.organization_id
+    : isSuperAdmin
+    ? true
+    : false;
+
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
-      "filter[user_id]": !userState.profile?.id
-        ? undefined
-        : String(userState.profile.id),
+      "filter[user_id]":
+        !!userState.profile?.id && isEmployee
+          ? String(userState.profile.id)
+          : undefined,
+      "filter[organization_id]":
+        isOrganizationAdmin && !!userState.profile?.organization_id
+          ? String(userState.profile.organization_id)
+          : undefined,
       include: "vehicle.brand,user,bookings,bookings.user",
       status: rideStatus ?? "in_progress",
       sort: "departure_time",
@@ -52,7 +73,7 @@ export const useGetRidesSearch = () => {
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
-    enabled: !type && !!userState.profile?.id && userState.profile.is_driver,
+    enabled: isEnabled,
   });
 
   React.useEffect(() => {

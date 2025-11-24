@@ -17,6 +17,7 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
         <>
           {index < items.length - 1 && (
             <Link
+              key={`breadcrumb-link-${index}`}
               href={item.href}
               className={clsx("text-[#767676] text-xs font-normal")}
             >
@@ -25,12 +26,16 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
           )}
 
           {index === items.length - 1 && (
-            <span className={clsx("text-[#249124] text-xs font-semibold")}>
+            <span
+              key={`breadcrumb-label-${index}`}
+              className={clsx("text-[#249124] text-xs font-semibold")}
+            >
               {item.label}
             </span>
           )}
           {index < items.length - 1 && (
             <SVGIcon
+              key={`breadcrumb-icon-${index}`}
               name="ChevronRight"
               className={clsx("w-4 h-4", "text-[#767676]")}
             />
