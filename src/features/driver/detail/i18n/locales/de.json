@@ -89,7 +89,8 @@
     "icon": "CarFront",
     "cta": {
       "primary": {
-        "children": "Alle anzeigen"
+        "children": "Alle anzeigen",
+        "href": "/"
       }
     },
     "share_ride_notification": {
@@ -154,7 +155,8 @@
     "icon": "Car",
     "cta": {
       "primary": {
-        "children": "Alle anzeigen"
+        "children": "Alle anzeigen",
+        "href": "/"
       }
     }
   },
@@ -280,7 +282,8 @@
     "icon": "CarFront",
     "cta": {
       "primary": {
-        "children": "Alle anzeigen"
+        "children": "Alle anzeigen",
+        "href": "/support/fahrten"
       }
     }
   }
