@@ -29,7 +29,11 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   } catch {}
 
   if (res) {
-    redirect(AppCollectionURL.private.trip());
+    if (res?.data?.role === "admin") {
+      redirect(AppCollectionURL.private.support_dashboard());
+    } else {
+      redirect(AppCollectionURL.private.trip());
+    }
   }
 
   return (
@@ -45,8 +49,8 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           "hidden lg:grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
           "relative",
           "w-full h-full",
-          'px-4 py-4',
-          'box-border'
+          "px-4 py-4",
+          "box-border"
         )}
       >
         <Image
@@ -59,7 +63,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           className={clsx(
             "w-full h-full max-h-[calc(100vh-2rem)]",
             "object-center object-cover",
-            'rounded-2xl'
+            "rounded-2xl"
           )}
           style={{
             background:
