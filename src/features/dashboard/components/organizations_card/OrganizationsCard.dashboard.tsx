@@ -12,6 +12,7 @@ export interface OrganizationsCardDashboardProps {
   cta?: {
     primary: {
       children: React.ReactNode;
+      href: string;
     };
   };
   organization?: OrganizationCardDashboardProps;

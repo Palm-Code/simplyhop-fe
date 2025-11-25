@@ -46,7 +46,8 @@
       "icon": "CarFront",
       "cta": {
         "primary": {
-          "children": "Alle anzeigen"
+          "children": "Alle anzeigen",
+          "href": "/support/fahrten"
         }
       },
       "share_ride_notification": {
@@ -111,7 +112,8 @@
       "icon": "Car",
       "cta": {
         "primary": {
-          "children": "Alle anzeigen"
+          "children": "Alle anzeigen",
+          "href": "/support/fahrzeuginformationen"
         }
       }
     }
@@ -154,7 +156,8 @@
       "icon": "CarFront",
       "cta": {
         "primary": {
-          "children": "Alle anzeigen"
+          "children": "Alle anzeigen",
+          "href": "/support/fahrten"
         }
       }
     },
@@ -188,7 +191,8 @@
       },
       "cta": {
         "primary": {
-          "children": "Alle anzeigen"
+          "children": "Alle anzeigen",
+          "href": "/support/fahrer"
         }
       }
     }
@@ -256,7 +260,8 @@
       },
       "cta": {
         "primary": {
-          "children": "Alle anzeigen"
+          "children": "Alle anzeigen",
+          "href": "/support/organisation"
         }
       }
     },
@@ -290,7 +295,8 @@
       },
       "cta": {
         "primary": {
-          "children": "Alle anzeigen"
+          "children": "Alle anzeigen",
+          "href": "/support/fahrer"
         }
       }
     }

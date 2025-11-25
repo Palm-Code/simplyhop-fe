@@ -13,6 +13,7 @@ export interface RidesCardDashboardProps {
   cta?: {
     primary: {
       children: React.ReactNode;
+      href: string;
     };
   };
   rides?: DashboardRideCardProps[];

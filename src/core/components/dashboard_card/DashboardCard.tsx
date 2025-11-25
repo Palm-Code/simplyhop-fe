@@ -1,6 +1,7 @@
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
+import Link from "next/link";
 
 export interface DashboardCardProps {
   title?: string;
@@ -8,6 +9,7 @@ export interface DashboardCardProps {
   cta?: {
     primary: {
       children: React.ReactNode;
+      href: string;
     };
   };
   children?: React.ReactNode;
@@ -67,7 +69,7 @@ export const DashboardCard = ({
           </div>
 
           {cta && (
-            <button
+            <Link
               className={clsx(
                 "flex items-center justify-center",
                 "rounded-full",
@@ -75,9 +77,10 @@ export const DashboardCard = ({
                 "text-xs text-[#26531A] font-medium whitespace-nowrap",
                 "px-1 py-1"
               )}
+              href={cta.primary.href}
             >
-              {cta?.primary.children}
-            </button>
+              {cta.primary.children}
+            </Link>
           )}
         </div>
 

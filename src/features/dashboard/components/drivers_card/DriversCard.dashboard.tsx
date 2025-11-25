@@ -12,6 +12,7 @@ export interface DriversCardDashboardProps {
   cta?: {
     primary: {
       children: React.ReactNode;
+      href: string;
     };
   };
   driver?: DashboardDriverCardProps;
