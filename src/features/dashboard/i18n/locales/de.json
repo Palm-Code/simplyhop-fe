@@ -15,25 +15,29 @@
           "id": "Geplante Fahrten",
           "name": "Geplante Fahrten",
           "unit": "Fahrten",
-          "icon": "CarFront"
+          "icon": "CarFront",
+          "href": "/meine-fahrten"
         },
         {
           "id": "Gebuchte Fahrten",
           "name": "Gebuchte Fahrten",
           "unit": "Fahrten",
-          "icon": "Ticket"
+          "icon": "Ticket",
+          "href": "/meine-fahrten?type=book"
         },
         {
           "id": "Abgeschlossene",
           "name": "Abgeschlossene",
           "unit": "Fahrten",
-          "icon": "Check"
+          "icon": "Check",
+          "href": "/meine-fahrten?ride-status=archive"
         },
         {
           "id": "Bewertungen",
           "name": "Bewertungen",
           "unit": "von {{number}} Bewertungen",
-          "icon": "Star"
+          "icon": "Star",
+          "href": "/meine-fahrten?ride-status=archive"
         }
       ]
     },
@@ -119,25 +123,29 @@
           "id": "Geplante Fahrten",
           "name": "Geplante Fahrten",
           "unit": "Fahrten",
-          "icon": "CarFront"
+          "icon": "CarFront",
+          "href": "/support/fahrten"
         },
         {
           "id": "Fahrer",
           "name": "Fahrer",
           "unit": "Fahrer",
-          "icon": "User2"
+          "icon": "User2",
+          "href": "/support/fahrer"
         },
         {
           "id": "Abgeschlossene",
           "name": "Abgeschlossene",
           "unit": "Fahrten",
-          "icon": "Check"
+          "icon": "Check",
+          "href": "/support/fahrten"
         },
         {
           "id": "Bewertungen",
           "name": "Bewertungen",
           "unit": "von {{number}} Bewertungen",
-          "icon": "Star"
+          "icon": "Star",
+          "href": "/support/fahrten"
         }
       ]
     },
@@ -192,25 +200,29 @@
           "id": "Organisation",
           "name": "Organisation",
           "unit": "Organisation",
-          "icon": "Component"
-        },
-        {
-          "id": "Fahrer",
-          "name": "Fahrer",
-          "unit": "Fahrer",
-          "icon": "User2"
+          "icon": "Component",
+          "href": "/support/organisation"
         },
         {
           "id": "Geplante Fahrten",
           "name": "Geplante Fahrten",
           "unit": "Fahrten",
-          "icon": "CarFront"
+          "icon": "CarFront",
+          "href": "/support/fahrten"
+        },
+        {
+          "id": "Fahrer",
+          "name": "Fahrer",
+          "unit": "Fahrer",
+          "icon": "User2",
+          "href": "/support/fahrer"
         },
         {
           "id": "Abgeschlossene",
           "name": "Abgeschlossene",
           "unit": "Fahrten",
-          "icon": "Check"
+          "icon": "Check",
+          "href": "/support/fahrten"
         }
       ]
     },

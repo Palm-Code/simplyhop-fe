@@ -161,6 +161,7 @@ export const SummaryDashboard = () => {
             unit={item.unit}
             value={item.value}
             icon={item.icon as SVGIconProps["name"]}
+            href={item.href}
           />
         );
       })}

@@ -1,12 +1,14 @@
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
+import Link from "next/link";
 
 export interface SummaryCardDashboardProps {
   title?: string;
   icon?: SVGIconProps["name"];
   unit?: string;
   value?: string;
+  href?: string;
 }
 
 export const SummaryCardDashboard = ({
@@ -14,6 +16,7 @@ export const SummaryCardDashboard = ({
   title = "",
   unit = "",
   value = "",
+  href = "",
 }: SummaryCardDashboardProps) => {
   return (
     <div
@@ -60,7 +63,8 @@ export const SummaryCardDashboard = ({
             </p>
           </div>
 
-          <button
+          <Link
+            href={href}
             className={clsx(
               "flex items-center justify-center",
               "rounded-full",
@@ -72,7 +76,7 @@ export const SummaryCardDashboard = ({
               name={"ArrowRight"}
               className={clsx("w-3.5 h-3.5", "text-[#767676]")}
             />
-          </button>
+          </Link>
         </div>
 
         <div
