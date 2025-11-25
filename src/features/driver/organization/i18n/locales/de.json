@@ -1,0 +1,23 @@
+{
+  "title": "Fahrer",
+  "breadcrumb": {
+    "items": [
+      {
+        "label": "Dashboard",
+        "href": "/support/dashboard"
+      },
+      {
+        "label": "Organisation",
+        "href": "/support/organisation"
+      },
+      {
+        "label": "{{organization_name}}",
+        "href": "/support/organisation/detail/{{organization_id}}"
+      },
+      {
+        "label": "Fahrer von {{organization_name}}",
+        "href": "/support/driver/organisation/{{organization_id}}"
+      }
+    ]
+  }
+}

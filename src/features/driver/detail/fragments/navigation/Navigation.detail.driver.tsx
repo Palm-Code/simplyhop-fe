@@ -3,15 +3,26 @@ import * as React from "react";
 import clsx from "clsx";
 import { Breadcrumb } from "@/core/components/breadcrumb";
 import { getDictionaries } from "../../i18n";
-import { usePathname } from "next/navigation";
+import { formatDisplayName } from "@/core/utils/name/functions";
+import { DetailDriverContext } from "../../context";
 
 export const NavigationDetailDriver = () => {
   const dictionaries = getDictionaries();
-  const pathname = usePathname();
-  const isDefaultMode = !pathname.includes("organization");
-  const items = isDefaultMode
-    ? dictionaries.breadcrumb.default.items
-    : dictionaries.breadcrumb.organization.items;
+  const { state } = React.useContext(DetailDriverContext);
+  const items = dictionaries.breadcrumb.items.map((item) => {
+    return {
+      ...item,
+      label: item.label.replaceAll(
+        "{{driver_name}}",
+        formatDisplayName({
+          first_name: !state.user.data?.last_name
+            ? state.user.data?.first_name
+            : `${state.user.data.first_name} ${state.user.data.last_name}`,
+          email: state.user.data?.email,
+        })
+      ),
+    };
+  });
   return (
     <div
       className={clsx(

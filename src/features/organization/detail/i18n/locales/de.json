@@ -132,7 +132,7 @@
     "cta": {
       "primary": {
         "children": "Alle anzeigen",
-        "href": "/"
+        "href": "/support/fahrer/organisation/{{organization_id}}"
       }
     }
   },

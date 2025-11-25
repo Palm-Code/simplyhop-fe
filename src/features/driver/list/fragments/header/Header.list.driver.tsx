@@ -1,3 +1,4 @@
+'use client'
 import { DashboardHeader } from "@/core/components/dashboard_header";
 import * as React from "react";
 import { getDictionaries } from "../../i18n";

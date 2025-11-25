@@ -30,5 +30,10 @@ export const AppCollectionURL = {
     organization: () => "/support/organisation",
     organizationDetail: (path: { id: string }) =>
       `/support/organisation/detail/${path.id}`,
+    driverOrganizationDetail: (path: {
+      organization_id: string;
+      driver_id: string;
+    }) =>
+      `/support/fahrer/organisation/${path.organization_id}/detail/${path.driver_id}`,
   },
 };

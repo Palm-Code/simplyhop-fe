@@ -5,11 +5,12 @@ import { getDictionaries } from "../../i18n";
 import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfileModal";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { AppCollectionURL } from "@/core/utils/router/constants";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { UserContext } from "@/core/modules/app/context";
 
 export const UserProfileListDriver = () => {
   const dictionaries = getDictionaries();
+  const { organization_id } = useParams();
   const router = useRouter();
   const { state, dispatch } = React.useContext(ListDriverContext);
   const { state: userState } = React.useContext(UserContext);
@@ -129,11 +130,20 @@ export const UserProfileListDriver = () => {
       });
 
   const handleClickOpen = () => {
-    router.push(
-      AppCollectionURL.private.driverDetail({
-        id: state.user_profile.user_id ?? "",
-      })
-    );
+    if (!!organization_id) {
+      router.push(
+        AppCollectionURL.private.driverOrganizationDetail({
+          organization_id: String(organization_id),
+          driver_id: state.user_profile.user_id ?? "",
+        })
+      );
+    } else {
+      router.push(
+        AppCollectionURL.private.driverDetail({
+          id: state.user_profile.user_id ?? "",
+        })
+      );
+    }
   };
 
   return (
