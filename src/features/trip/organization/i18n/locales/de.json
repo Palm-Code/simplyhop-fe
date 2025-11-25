@@ -1,3 +1,26 @@
 {
-  "title": "Fahrten von {{name}}"
+  "title": "Fahrten von {{name}}",
+  "breadcrumb": {
+    "items": [
+      {
+        "label": "Dashboard",
+        "href": "/support/dashboard"
+      },
+      {
+        "label": "Fahrten",
+        "href": "/support/fahrten"
+      }
+    ]
+  },
+  "search": {
+    "inputProps": {
+      "id": "name",
+      "placeholder": " "
+    },
+    "labelProps": {
+      "id": "name",
+      "children": "Fahrten suchen",
+      "required": false
+    }
+  }
 }

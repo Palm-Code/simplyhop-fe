@@ -1,13 +1,13 @@
 import * as React from "react";
 import clsx from "clsx";
-import { HeaderDriverTrip } from "../fragments/header";
+import { HeaderDashboardTrip } from "../fragments/header";
 import { ListTripProvider } from "../../list/context";
 import { ListTripContainer } from "../../list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
-import { NavigationDriverTrip } from "../fragments/navigation";
-import { SearchDriverTrip } from "../fragments/search";
+import { NavigationDashboardTrip } from "../fragments/navigation";
+import { SearchDashboardTrip } from "../fragments/search";
 
-export const DriverTripContainer = () => {
+export const DashboardTripContainer = () => {
   return (
     <div
       className={clsx(
@@ -15,10 +15,10 @@ export const DriverTripContainer = () => {
         "w-full"
       )}
     >
-      <HeaderDriverTrip />
+      <HeaderDashboardTrip />
       <div className={clsx("flex items-center justify-between", "w-full")}>
-        <NavigationDriverTrip />
-        <SearchDriverTrip />
+        <NavigationDashboardTrip />
+        <SearchDashboardTrip />
       </div>
       <ListTripProvider>
         <ListTripContainer />
