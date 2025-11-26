@@ -143,12 +143,15 @@ export const TopNavigationMobileMenu = () => {
             href={AppCollectionURL.private.support_account()}
           >
             <UserIcon
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676] dark:text-[#F6F6F6]")}
+              className={clsx(
+                "w-[1.5rem] h-[1.5rem]",
+                "text-[#767676] dark:text-[#F6F6F6]"
+              )}
             />
           </Link>
         </div>
       </div>
-      
+
       <nav
         className={clsx(
           process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true"
@@ -193,21 +196,36 @@ export const TopNavigationMobileMenu = () => {
                     cursorClassName(menu),
                     textClassName(menu),
                     "text-[0.625rem] font-medium text-inter",
-                    borderClassName(menu)
+                    borderClassName(menu),
+                    "relative"
                   )}
                 >
-                  <SVGIcon
-                    {...(menu.icon as { name: SVGIconProps["name"] })}
-                    key={`svgIcon.${menuIndex}`}
-                    className={clsx("w-[1rem] h-[1rem]")}
-                  />
+                  <div className={clsx("relative")}>
+                    <SVGIcon
+                      {...(menu.icon as { name: SVGIconProps["name"] })}
+                      key={`svgIcon.${menuIndex}`}
+                      className={clsx("w-[1rem] h-[1rem]")}
+                    />
+                    {menu.id === "chat" && state.chat.count > 0 && (
+                      <div
+                        key={`chat-${menuIndex}`}
+                        className={clsx(
+                          "absolute top-[-0.125rem] right-[-0.25rem]",
+                          "flex lg:hidden items-center justify-center",
+                          "w-[8px] h-[8px]",
+                          "bg-green-500",
+                          "rounded-[1.25rem]"
+                        )}
+                      />
+                    )}
+                  </div>
 
                   {menu.name}
                   {menu.id === "chat" && state.chat.count > 0 && (
                     <div
-                    key={`chat-${menuIndex}`}
+                      key={`chat-${menuIndex}`}
                       className={clsx(
-                        "flex items-center justify-center",
+                        "hidden lg:flex items-center justify-center",
                         "px-[0.5rem] py-[0.25rem]",
                         "bg-green-500",
                         "rounded-[1.25rem]"
