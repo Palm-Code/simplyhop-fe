@@ -1,5 +1,4 @@
 import { TripCardProps } from "@/core/components/trip_card";
-import { RideCardResultTripProps } from "../components/ride_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -123,7 +122,7 @@ export interface ResultTripRides {
 
 export interface ResultTripDetail {
   is_open: boolean;
-  data: RideCardResultTripProps | null;
+  data: TripCardProps | null;
   form: {
     price_offer: {
       value: number;

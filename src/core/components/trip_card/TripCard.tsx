@@ -6,9 +6,20 @@ import TripDesktopCard, {
 } from "../trip_desktop_card/TripDesktopCard";
 import TripMobileCard from "../trip_mobile_card/TripMobileCard";
 
-export interface TripCardProps extends TripDesktopCardProps {}
+export interface TripCardProps extends TripDesktopCardProps {
+  mode?: "mobile" | "desktop" | "default";
+}
 
-export const TripCard = (props: TripCardProps) => {
+export const TripCard = ({
+  mode = "default",
+  ...otherProps
+}: TripCardProps) => {
+  if (mode === "desktop") {
+    return <TripDesktopCard {...otherProps} />;
+  }
+  if (mode === "mobile") {
+    return <TripMobileCard {...otherProps} />;
+  }
   return (
     <>
       <div
@@ -17,7 +28,7 @@ export const TripCard = (props: TripCardProps) => {
           "w-full"
         )}
       >
-        <TripDesktopCard {...props} />
+        <TripDesktopCard {...otherProps} />
       </div>
       <div
         className={clsx(
@@ -25,7 +36,7 @@ export const TripCard = (props: TripCardProps) => {
           "w-full"
         )}
       >
-        <TripMobileCard {...props} />
+        <TripMobileCard {...otherProps} />
       </div>
     </>
   );

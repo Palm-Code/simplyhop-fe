@@ -21,6 +21,7 @@ import { formatDriverLabel } from "@/core/utils/driver/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
 dayjs.extend(utc);
+dayjs.locale("de");
 
 export const useGetRidesId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -75,6 +76,9 @@ export const useGetRidesId = () => {
                   first_name: item.user.first_name,
                   email: item.user.email,
                 }),
+              },
+              rating: {
+                label: item.user.average_ride_rating?.toLocaleString("de-DE"),
               },
             },
             car: {
@@ -237,7 +241,12 @@ export const useGetRidesId = () => {
 
             routes: {
               date: {
-                label: "Datum",
+                label: !item.departure_time
+                  ? "-"
+                  : dayjs
+                      .utc(item.departure_time)
+                      .format("dddd")
+                      .replace(/^\w/, (c) => c.toUpperCase()),
                 date: !item.departure_time
                   ? "-"
                   : dayjs.utc(item.departure_time).format("DD.MM.YY"),
@@ -296,12 +305,6 @@ export const useGetRidesId = () => {
                   item.user.gender
                 ),
               ],
-            },
-            cta: {
-              ride: {
-                href: `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
-                children: "Mitfahren",
-              },
             },
           },
         },

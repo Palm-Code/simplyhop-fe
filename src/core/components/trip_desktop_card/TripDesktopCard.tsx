@@ -199,12 +199,7 @@ export default function TripDesktopCard({
       },
     ],
   },
-  cta = {
-    ride: {
-      href: "/mitfahrt-suchen/result?city_id=ChIJ2V-Mo_l1nkcRfZixfUq4DAE&origin_id=ChIJuWG8S2DfnUcRbT-8T9g5EVY&destination_id=ChIJs4qDdmLfnUcRBbJZt1DoAfs&date=2025-03-22&adult=1&children=0&ride_id=1",
-      children: "Mitfahren",
-    },
-  },
+  cta,
 }: TripDesktopCardProps) {
   return (
     <div
@@ -385,19 +380,21 @@ export default function TripDesktopCard({
           />
 
           {/* cta */}
-          <Link
-            aria-label={String(cta.ride.children ?? "")}
-            href={cta.ride.href}
-          >
-            <Button
+          {cta && (
+            <Link
               aria-label={String(cta.ride.children ?? "")}
-              name={String(cta.ride.children ?? "")}
-              className={clsx("!px-[1rem] !py-[0.5rem]", "!font-semibold")}
-              // onClick={cta.ride.onClick}
+              href={cta.ride.href}
             >
-              {cta.ride.children}
-            </Button>
-          </Link>
+              <Button
+                aria-label={String(cta.ride.children ?? "")}
+                name={String(cta.ride.children ?? "")}
+                className={clsx("!px-[1rem] !py-[0.5rem]", "!font-semibold")}
+                // onClick={cta.ride.onClick}
+              >
+                {cta.ride.children}
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

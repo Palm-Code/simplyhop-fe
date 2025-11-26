@@ -22,6 +22,7 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
+import { TripCard } from "@/core/components/trip_card";
 
 export const DetailResultTrip = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -177,7 +178,7 @@ export const DetailResultTrip = () => {
           </h1>
         </AdaptiveModalHeader>
         <AdaptiveModalContent className={clsx("lg:!py-[1rem]")}>
-          <RideDetailCardResultTrip {...detailData} />
+          <TripCard {...detailData} mode="mobile" />
 
           <PassengerCardResultTrip
             label={dictionaries.detail.passenger.label}
