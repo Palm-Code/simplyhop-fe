@@ -1,6 +1,5 @@
 import * as React from "react";
 import clsx from "clsx";
-import SVGIcon from "@/core/icons";
 
 export interface TravelTimeItemProps {
   time?: string;
@@ -14,7 +13,7 @@ export const TravelTimeItem = ({
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1rem]"
+        "grid grid-cols-1 place-content-start place-items-start"
       )}
     >
       <div
@@ -24,19 +23,11 @@ export const TravelTimeItem = ({
           "relative"
         )}
       >
-        <SVGIcon
-          name="Car"
-          className={clsx(
-            "w-[1.5rem] h-[1.5rem]",
-            "text-icon-primary-subdued",
-            "absolute left-[50%] translate-x-[-50%]"
-          )}
-        />
         <div
           className={clsx(
             "flex items-center justify-center",
             "w-[0.375rem] h-[0.375rem]",
-            variant === "primary" ? "bg-icon-primary-subdued" : "bg-[#333FFF]",
+            variant === "primary" ? "bg-[#249124] dark:bg-icon-primary-subdued" : "bg-[#333FFF]",
             "rounded-[50%]"
           )}
         >
@@ -56,7 +47,7 @@ export const TravelTimeItem = ({
           className={clsx(
             "flex items-center justify-center",
             "w-[0.375rem] h-[0.375rem]",
-            "bg-icon-primary-subdued",
+            "bg-[#249124] dark:bg-icon-primary-subdued",
             "rounded-[50%]"
           )}
         />

@@ -721,11 +721,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Gepäck erlaubt"
+              "name": "Erlaubt"
             },
             {
               "id": "false",
-              "name": "Kein Gepäck erlaubt"
+              "name": "Keinet"
             }
           ]
         }
@@ -738,7 +738,7 @@
           "darkColor": "#FFFFFF"
         },
         "name": {
-          "label": "Gepäck erlaubt",
+          "label": "Erlaubt",
           "color": "#727272",
           "darkColor": "#FFFFFF"
         }
@@ -750,7 +750,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Kein Gepäck erlaubt",
+          "label": "Keinet",
           "color": "#D41010"
         }
       }
@@ -761,11 +761,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Rauchen erlaubt"
+              "name": "Erlaubt"
             },
             {
               "id": "false",
-              "name": "Nichtraucher"
+              "name": "Keinet"
             }
           ]
         }
@@ -778,7 +778,7 @@
           "darkColor": "#33CC33"
         },
         "name": {
-          "label": "Raucher",
+          "label": "Erlaubt",
           "color": "#249124",
           "darkColor": "#33CC33"
         }
@@ -790,7 +790,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Nichtraucher",
+          "label": "Keinet",
           "color": "#D41010"
         }
       }
@@ -801,11 +801,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Fahrt mit Musik"
+              "name": "Erlaubt"
             },
             {
               "id": "false",
-              "name": "Fahrten ohne Musik"
+              "name": "Keinet"
             }
           ]
         }
@@ -818,7 +818,7 @@
           "darkColor": "#33CC33"
         },
         "name": {
-          "label": "Musik erlaubt",
+          "label": "Erlaubt",
           "color": "#249124",
           "darkColor": "#33CC33"
         }
@@ -841,11 +841,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Haustiere erlaubt"
+              "name": "Erlaubt"
             },
             {
               "id": "false",
-              "name": "Haustiere nicht erlaubt"
+              "name": "Keinet"
             }
           ]
         }
@@ -858,7 +858,7 @@
           "darkColor": "#33CC33"
         },
         "name": {
-          "label": "Haustiere erlaubt",
+          "label": "Erlaubt",
           "color": "#249124",
           "darkColor": "#33CC33"
         }
@@ -870,7 +870,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Haustiere nicht erlaubt",
+          "label": "Keinet",
           "color": "#D41010"
         }
       }

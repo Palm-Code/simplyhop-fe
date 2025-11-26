@@ -95,7 +95,7 @@ export const RideDetailCardResultTrip = ({
             color: "#D41010",
           },
           name: {
-            label: "Kein Gepäck erlaubt",
+            label: "Keinet",
             color: "#D41010",
           },
         },
@@ -108,7 +108,7 @@ export const RideDetailCardResultTrip = ({
             color: "#727272",
           },
           name: {
-            label: "Nichtraucher",
+            label: "Keinet",
             color: "#727272",
           },
         },
@@ -119,7 +119,7 @@ export const RideDetailCardResultTrip = ({
             color: "#727272",
           },
           name: {
-            label: "Musik erlaubt",
+            label: "Erlaubt",
             color: "#727272",
           },
         },
@@ -130,7 +130,7 @@ export const RideDetailCardResultTrip = ({
             color: "#727272",
           },
           name: {
-            label: "Haustiere erlaubt",
+            label: "Erlaubt",
             color: "#727272",
           },
         },

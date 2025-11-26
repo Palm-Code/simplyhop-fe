@@ -109,7 +109,7 @@ export const RideCardResultTrip = ({
             color: "#D41010",
           },
           name: {
-            label: "Kein Gepäck erlaubt",
+            label: "Keinet",
             color: "#D41010",
           },
         },
@@ -122,7 +122,7 @@ export const RideCardResultTrip = ({
             color: "#727272",
           },
           name: {
-            label: "Nichtraucher",
+            label: "Keinet",
             color: "#727272",
           },
         },
@@ -133,7 +133,7 @@ export const RideCardResultTrip = ({
             color: "#727272",
           },
           name: {
-            label: "Musik erlaubt",
+            label: "Erlaubt",
             color: "#727272",
           },
         },
@@ -144,7 +144,7 @@ export const RideCardResultTrip = ({
             color: "#727272",
           },
           name: {
-            label: "Haustiere erlaubt",
+            label: "Erlaubt",
             color: "#727272",
           },
         },
@@ -230,7 +230,7 @@ export const RideCardResultTrip = ({
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            'h-full'
+            "h-full"
           )}
         >
           <div
@@ -260,67 +260,89 @@ export const RideCardResultTrip = ({
           <div className={clsx("block")}>
             <CarIdentityItem {...car.identity} />
           </div>
-          {/* routes */}
-          <div className={clsx("w-full grid grid-cols-[auto_1fr] gap-2")}>
-            <div className={clsx("grid grid-cols-1 h-full")}>
-              <div
-                className={clsx(
-                  "lg:hidden h-[82%] grid grid-cols-1 items-start justify-start justify-items-start",
-                  "w-full",
-                  "relative"
-                )}
-              >
+
+          <div
+            className={clsx(
+              "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-2"
+            )}
+          >
+            {/* routes */}
+            <div
+              className={clsx(
+                "w-full grid grid-cols-[auto_1fr] place-content-start place-items-start gap-2"
+              )}
+            >
+              <div className={clsx("grid grid-cols-1 h-full lg:hidden")}>
                 <div
                   className={clsx(
-                    "flex items-center justify-center",
-                    "w-3 h-3 p-[3px] relative z-1",
-                    "bg-[#33CC33]",
-                    "rounded-[50%]"
+                    "lg:hidden h-[82%] grid grid-cols-1 items-start justify-start justify-items-start",
+                    "w-full",
+                    "relative"
                   )}
                 >
                   <div
                     className={clsx(
                       "flex items-center justify-center",
-                      "w-full h-full",
-                      "bg-[white]",
+                      "w-3 h-3 p-[3px] relative z-1",
+                      "bg-[#33CC33]",
+                      "rounded-[50%]"
+                    )}
+                  >
+                    <div
+                      className={clsx(
+                        "flex items-center justify-center",
+                        "w-full h-full",
+                        "bg-[white]",
+                        "rounded-[50%]"
+                      )}
+                    />
+                  </div>
+
+                  <div
+                    className={clsx(
+                      "w-[1px] h-full absolute inset-0 left-1/2 -translate-x-1/2 z-0",
+                      "bg-[#EEF0EB]"
+                    )}
+                  />
+
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center mt-auto",
+                      "w-3 h-3 relative z-[1]",
+                      "bg-[#33CC33]",
                       "rounded-[50%]"
                     )}
                   />
                 </div>
+              </div>
+              <div
+                className={clsx(
+                  "grid lg:grid-cols-[auto_auto_auto] grid-cols-1 place-content-center place-items-center lg:gap-[2.25rem] gap-4",
+                  "w-full"
+                )}
+              >
+                <DepartureItem {...routes.departure} />
 
-                <div
-                  className={clsx(
-                    "w-[1px] h-full absolute inset-0 left-1/2 -translate-x-1/2 z-0",
-                    "bg-[#EEF0EB]"
-                  )}
-                />
+                <TravelTimeItem {...routes.travelTime} />
 
-                <div
-                  className={clsx(
-                    "flex items-center justify-center mt-auto",
-                    "w-3 h-3 relative z-[1]",
-                    "bg-[#33CC33]",
-                    "rounded-[50%]"
-                  )}
-                />
+                <ArrivalItem {...routes.arrival} />
               </div>
             </div>
-            <div
-              className={clsx(
-                "grid lg:grid-cols-[auto_auto_auto] grid-cols-1 place-content-start place-items-start lg:gap-[2.25rem] gap-4",
-                "w-full"
-              )}
-            >
-              <DepartureItem {...routes.departure} />
 
-              <TravelTimeItem {...routes.travelTime} />
-
-              <ArrivalItem {...routes.arrival} />
+            {/* umweg */}
+            <div>
+              <UmwegBadge {...routes.umWeg} />
             </div>
           </div>
-
-          {/* umweg */}
-          <UmwegBadge {...routes.umWeg} />
+        </div>
+        <div
+          className={clsx(
+            "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+          )}
+        >
+          {ride.badge.map((item, itemIndex) => (
+            <RideBadge {...item} key={itemIndex} />
+          ))}
 
           {/* facility */}
           <div
@@ -357,15 +379,6 @@ export const RideCardResultTrip = ({
               ))}
             </div>
           </div>
-        </div>
-        <div
-          className={clsx(
-            "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
-          )}
-        >
-          {ride.badge.map((item, itemIndex) => (
-            <RideBadge {...item} key={itemIndex} />
-          ))}
         </div>
 
         {/* badge */}

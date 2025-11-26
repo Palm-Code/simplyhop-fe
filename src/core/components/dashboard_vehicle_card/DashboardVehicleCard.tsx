@@ -60,7 +60,7 @@ export const DashboardVehicleCard = ({
             color: "#D41010",
           },
           name: {
-            label: "Kein Gepäck erlaubt",
+            label: "Keinet",
             color: "#D41010",
           },
         },
@@ -73,7 +73,7 @@ export const DashboardVehicleCard = ({
             color: "#26531A",
           },
           name: {
-            label: "Nichtraucher",
+            label: "Keinet",
             color: "#26531A",
           },
         },
@@ -84,7 +84,7 @@ export const DashboardVehicleCard = ({
             color: "#26531A",
           },
           name: {
-            label: "Musik erlaubt",
+            label: "Erlaubt",
             color: "#26531A",
           },
         },
@@ -95,7 +95,7 @@ export const DashboardVehicleCard = ({
             color: "#26531A",
           },
           name: {
-            label: "Haustiere erlaubt",
+            label: "Erlaubt",
             color: "#26531A",
           },
         },

@@ -12,7 +12,7 @@ export const UmwegBadge = ({ label = "", icon }: UmwegBadgeProps) => {
     <div
       className={clsx(
         "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-        "bg-[#F6F6F6] dark:bg-[#767676]",
+        "bg-[#F0F0F0] dark:bg-[#767676]",
         "border border-[#E9E6E6] dark:border-[#464646]",
         "rounded-[0.375rem]",
         "px-[0.25rem] py-[0.25rem]"
