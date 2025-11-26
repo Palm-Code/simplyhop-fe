@@ -456,22 +456,11 @@ export const useGetRideSearch = () => {
 
           price: {
             initial: {
-              label: "Preis",
               price: formatEuro(item.base_price * totalPassenger),
             },
           },
           ride: {
             badge: [
-              // ...(index === 0
-              //   ? [
-              //       {
-              //         id: "bester_preis",
-              //         label: "Bester Preis",
-              //         variant: "success" as "success" | "danger",
-              //       },
-              //     ]
-              //   : []),
-
               ...formatDriverLabel(
                 globalDictionaries.personal_information.gender.options.items,
                 item.user.gender

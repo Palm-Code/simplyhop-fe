@@ -9,5 +9,5 @@ export const formatEuro = (value?: number | undefined | null): string => {
     maximumFractionDigits: 2,
   });
 
-  return `${formatted.replace(" €", "")} Euro`;
+  return `€${formatted.replace(" €", "")}`;
 };
