@@ -211,7 +211,7 @@ export default function TripMobileCard({
     >
       <div
         className={clsx(
-          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
+          "grid grid-flow-row grid-cols-1 items-center content-center justify-between justify-items-start gap-[1rem]",
           "w-full"
         )}
       >
@@ -241,10 +241,10 @@ export default function TripMobileCard({
 
           <div
             className={clsx(
-              "grid lg:grid-flow-row grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
-            <Image {...car.image} className={clsx("lg:w-[145px] w-[75px]")} />
+            <Image {...car.image} className={clsx("w-[75px]")} />
           </div>
         </div>
 
@@ -301,7 +301,7 @@ export default function TripMobileCard({
         </div>
         <div
           className={clsx(
-            "grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+            "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]"
           )}
         >
           {ride.badge.map((item, itemIndex) => (
@@ -345,30 +345,18 @@ export default function TripMobileCard({
           </div>
         </div>
 
-        {/* badge */}
-        <div
-          className={clsx(
-            "lg:hidden grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
-          )}
-        >
-          {ride.badge.map((item, itemIndex) => (
-            <RideBadge {...item} key={itemIndex} />
-          ))}
-        </div>
         {/* price */}
         <div
           className={clsx(
-            "flex flex-row lg:flex-col items-center justify-between gap-[0.5rem] lg:gap-[1rem]",
+            "flex flex-row items-center justify-between gap-[0.5rem]",
             "w-full"
           )}
         >
           <CarPriceItem
             {...price.initial}
             className={clsx(
-              "place-content-start place-items-start lg:!place-content-center lg:!place-items-center"
+              "place-content-start place-items-start"
             )}
-            priceClassName={clsx("lg:!text-[2rem]")}
-            labelClassName={clsx("lg:!text-[1.25rem]")}
           />
 
           {/* cta */}
