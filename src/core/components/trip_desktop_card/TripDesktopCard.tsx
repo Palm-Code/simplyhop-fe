@@ -3,15 +3,9 @@ import * as React from "react";
 import clsx from "clsx";
 import Image, { ImageProps } from "next/image";
 import { SVGIconProps } from "@/core/icons";
-import {
-  TravelTimeItem,
-  TravelTimeItemProps,
-} from "@/core/components/travel_time_item";
-import {
-  DepartureItem,
-  DepartureItemProps,
-} from "@/core/components/departure_item";
-import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
+import { TravelTimeItemProps } from "@/core/components/travel_time_item";
+import { DepartureItemProps } from "@/core/components/departure_item";
+import { ArrivalItemProps } from "@/core/components/arrival_item";
 import {
   CarFacilityItem,
   CarFacilityItemProps,
@@ -35,6 +29,8 @@ import { TravelDateItemProps } from "@/core/components/travel_date_item";
 import { DepartureDateItem } from "@/core/components/departure_date_item";
 import { PlaceItem } from "../place_item";
 import { TimeItem } from "../time_item";
+import { DurationItem } from "../duration_item";
+import { TravelPathItem } from "../travel_path_item";
 
 export interface TripDesktopCardProps {
   id?: string;
@@ -289,7 +285,18 @@ export default function TripDesktopCard({
                   <TimeItem time={routes.departure?.time} />
                 </div>
 
-                <TravelTimeItem {...routes.travelTime} />
+                <div
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start"
+                  )}
+                >
+                  <TravelPathItem
+                    variant={routes.travelTime?.variant}
+                    mode="horizontal"
+                  />
+
+                  <DurationItem time={routes.travelTime?.time} />
+                </div>
 
                 <div
                   className={clsx(

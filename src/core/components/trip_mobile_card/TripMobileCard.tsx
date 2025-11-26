@@ -3,15 +3,9 @@ import * as React from "react";
 import clsx from "clsx";
 import Image, { ImageProps } from "next/image";
 import { SVGIconProps } from "@/core/icons";
-import {
-  TravelTimeItem,
-  TravelTimeItemProps,
-} from "@/core/components/travel_time_item";
-import {
-  DepartureItem,
-  DepartureItemProps,
-} from "@/core/components/departure_item";
-import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
+import { TravelTimeItemProps } from "@/core/components/travel_time_item";
+import { DepartureItemProps } from "@/core/components/departure_item";
+import { ArrivalItemProps } from "@/core/components/arrival_item";
 import {
   CarFacilityItem,
   CarFacilityItemProps,
@@ -36,6 +30,7 @@ import { DepartureDateItem } from "@/core/components/departure_date_item";
 import { PlaceItem } from "../place_item";
 import { TimeItem } from "../time_item";
 import { DurationItem } from "../duration_item";
+import { TravelPathItem } from "../travel_path_item";
 
 export interface TripMobileCardProps {
   id?: string;
@@ -286,48 +281,7 @@ export default function TripMobileCard({
                 <DurationItem time={routes.travelTime?.time} />
                 <TimeItem time={routes.arrival?.time} />
               </div>
-              <div
-                className={clsx(
-                  "grid grid-cols-1 items-start justify-start justify-items-start",
-                  "w-full h-full",
-                  'py-[3px]',
-                  "relative"
-                )}
-              >
-                <div
-                  className={clsx(
-                    "flex items-center justify-center",
-                    "w-3 h-3 p-[3px] relative z-1",
-                    "bg-[#33CC33]",
-                    "rounded-[50%]"
-                  )}
-                >
-                  <div
-                    className={clsx(
-                      "flex items-center justify-center",
-                      "w-full h-full",
-                      "bg-[white]",
-                      "rounded-[50%]"
-                    )}
-                  />
-                </div>
-
-                <div
-                  className={clsx(
-                    "w-[1px] h-full absolute inset-0 left-1/2 -translate-x-1/2 z-0",
-                    "bg-[#EEF0EB]"
-                  )}
-                />
-
-                <div
-                  className={clsx(
-                    "flex items-center justify-center mt-auto",
-                    "w-3 h-3 relative z-[1]",
-                    "bg-[#33CC33]",
-                    "rounded-[50%]"
-                  )}
-                />
-              </div>
+              <TravelPathItem variant="primary" mode="vertical" />
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-center place-items-center gap-[60px]",
