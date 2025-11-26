@@ -42,7 +42,7 @@ export const TravelPathItem = ({
 
         <div
           className={clsx(
-            "w-[1px] h-[90%] absolute inset-0 left-1/2 -translate-x-1/2 z-0",
+            "w-[1px] h-[92%] top-[50%] translate-y-[-50%] absolute inset-0 left-1/2 -translate-x-1/2 z-0",
             "bg-[#EEF0EB]"
           )}
         />
