@@ -229,7 +229,8 @@ export const RideCardResultTrip = ({
         {/* rider and car */}
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+            'h-full'
           )}
         >
           <div
@@ -246,9 +247,6 @@ export const RideCardResultTrip = ({
             )}
           >
             <Image {...car.image} className={clsx("lg:w-[145px] w-[75px]")} />
-            <div className={clsx("block")}>
-              <CarIdentityItem {...car.identity} number={null} />
-            </div>
           </div>
         </div>
 
@@ -259,7 +257,9 @@ export const RideCardResultTrip = ({
           )}
         >
           {/* identity */}
-
+          <div className={clsx("block")}>
+            <CarIdentityItem {...car.identity} />
+          </div>
           {/* routes */}
           <div className={clsx("w-full grid grid-cols-[auto_1fr] gap-2")}>
             <div className={clsx("grid grid-cols-1 h-full")}>
