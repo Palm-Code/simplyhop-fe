@@ -121,8 +121,8 @@
         }
       },
       "empty": {
-        "message": "Noch kein Bevorstehende Fahrten",
-        "description": "Noch kein Bevorstehende Fahrten"
+        "message": "Noch kein Fahrzeugliste",
+        "description": "Noch kein Fahrzeugliste"
       }
     }
   },
@@ -208,8 +208,8 @@
         }
       },
       "empty": {
-        "message": "Noch kein Bevorstehende Fahrten",
-        "description": "Noch kein Bevorstehende Fahrten"
+        "message": "Noch kein Fahrerliste",
+        "description": "Noch kein Fahrerliste"
       }
     }
   },
@@ -281,8 +281,8 @@
         }
       },
       "empty": {
-        "message": "Noch kein Bevorstehende Fahrten",
-        "description": "Noch kein Bevorstehende Fahrten"
+        "message": "Noch kein Organisation",
+        "description": "Noch kein Organisation"
       }
     },
     "drivers": {
@@ -320,8 +320,8 @@
         }
       },
       "empty": {
-        "message": "Noch kein Bevorstehende Fahrten",
-        "description": "Noch kein Bevorstehende Fahrten"
+        "message": "Noch kein Fahrerliste",
+        "description": "Noch kein Fahrerliste"
       }
     }
   }
