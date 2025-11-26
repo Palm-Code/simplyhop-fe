@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { RideCardResultTrip } from "../../components/ride_card";
 import { useGetRideSearch } from "../../react_query/hooks";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { ListLoader } from "@/core/components/list_loader";
@@ -9,6 +8,7 @@ import { getDictionaries } from "../../i18n";
 import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { TripCard } from "@/core/components/trip_card";
 
 export const RidesResultTrip = () => {
   const dictionaries = getDictionaries();
@@ -71,7 +71,7 @@ export const RidesResultTrip = () => {
           )}
         >
           {state.rides.data.map((item, itemIndex) => (
-            <RideCardResultTrip {...item} key={itemIndex} />
+            <TripCard {...item} key={itemIndex} />
           ))}
         </div>
       </div>
