@@ -172,7 +172,11 @@ export const DetailResultTrip = () => {
             />
           </button>
 
-          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+          <h1
+            className={clsx(
+              "text-[1.5rem] text-[#232323] dark:text-white font-bold"
+            )}
+          >
             {dictionaries.detail.title}
           </h1>
         </AdaptiveModalHeader>
@@ -193,7 +197,7 @@ export const DetailResultTrip = () => {
 
           {!isRideByDriver && (
             <PriceInputResultTrip
-              label={"Mein Angebot"}
+              label={"Verhandlungspreis festlegen"}
               inputProps={{
                 type: "number",
                 value:
@@ -206,7 +210,17 @@ export const DetailResultTrip = () => {
           )}
 
           {!isRideByDriver && (
-            <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-clip")}>
+            <Card
+              className={clsx(
+                "!px-[0rem] !py-[0rem]",
+                "overflow-clip",
+                "!border-[#E9E6E6] dark:!border-[#464646]"
+              )}
+              style={{
+                boxShadow: undefined,
+                backdropFilter: undefined,
+              }}
+            >
               <TextareafieldNotes
                 inputContainerProps={{
                   className: clsx("!border-[0px]", "!rounded-[0px]"),

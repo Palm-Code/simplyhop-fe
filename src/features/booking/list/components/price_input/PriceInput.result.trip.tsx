@@ -16,12 +16,12 @@ export const PriceInputResultTrip = ({
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 lg:grid-cols-none grid-flow-row lg:grid-flow-col items-center content-center justify-center justify-items-center gap-[1rem]",
+        "grid grid-cols-1 grid-flow-row items-center content-center justify-center justify-items-center gap-[1rem]",
         "w-full"
       )}
     >
       {!!label && (
-        <span className={clsx("text-[1.5rem] text-[black] font-bold")}>
+        <span className={clsx("text-[0.875rem] text-[#5B5B5B] dark:text-[#DADADA] font-normal")}>
           {label}
         </span>
       )}
@@ -34,11 +34,11 @@ export const PriceInputResultTrip = ({
         <div
           className={clsx(
             "grid grid-rows-1 grid-flow-col place-content-center place-items-center gap-[0.5rem]",
-            "border-b border-b-[black]",
+            "border-b border-b-[#E9E6E6] dark:border-b-[#464646]",
             "h-[85px]"
           )}
         >
-          <span className={clsx("text-[56px] text-[black] font-bold")}>
+          <span className={clsx("text-[56px] text-[#232323] dark:text-white font-bold")}>
             {currency}
           </span>
           <InputPrice {...inputProps} />

@@ -19,6 +19,7 @@ import utc from "dayjs/plugin/utc";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 dayjs.extend(utc);
 dayjs.locale("de");
@@ -31,6 +32,7 @@ export const useGetRidesId = () => {
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
   const totalPassenger = (Number(adult) ?? 0) + (Number(children) ?? 0);
+  const { isDarkMode } = React.useContext(ThemeContext);
 
   const payload: GetRidesIdPayloadRequestInterface = {
     path: {
@@ -106,6 +108,11 @@ export const useGetRidesId = () => {
                             ...globalDictionaries.vehicle.seat.available.icon,
                             name: globalDictionaries.vehicle.seat.available.icon
                               .name as SVGIconProps["name"],
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.seat.available.icon
+                                  .darkColor
+                              : globalDictionaries.vehicle.seat.available.icon
+                                  .color,
                           },
                           name: {
                             ...globalDictionaries.vehicle.seat.available.name,
@@ -120,6 +127,11 @@ export const useGetRidesId = () => {
                                   "{{number}}",
                                   item.available_seats.toLocaleString("de-DE")
                                 ),
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.seat.available.name
+                                  .darkColor
+                              : globalDictionaries.vehicle.seat.available.name
+                                  .color,
                           },
                         },
                       ]
@@ -142,6 +154,11 @@ export const useGetRidesId = () => {
                               .icon,
                             name: globalDictionaries.vehicle.luggage.available
                               .icon.name as SVGIconProps["name"],
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.luggage.available
+                                  .icon.darkColor
+                              : globalDictionaries.vehicle.luggage.available
+                                  .icon.color,
                           },
                           name: {
                             ...globalDictionaries.vehicle.luggage.available
@@ -149,6 +166,11 @@ export const useGetRidesId = () => {
                             label:
                               globalDictionaries.vehicle.luggage.available.name
                                 .label,
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.luggage.available
+                                  .name.darkColor
+                              : globalDictionaries.vehicle.luggage.available
+                                  .name.color,
                           },
                         },
                       ]
@@ -173,6 +195,11 @@ export const useGetRidesId = () => {
                             ...globalDictionaries.vehicle.smoking.allowed.icon,
                             name: globalDictionaries.vehicle.smoking.allowed
                               .icon.name as SVGIconProps["name"],
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.smoking.allowed.icon
+                                  .darkColor
+                              : globalDictionaries.vehicle.smoking.allowed.icon
+                                  .color,
                           },
                         },
                       ]
@@ -184,6 +211,11 @@ export const useGetRidesId = () => {
                               .icon,
                             name: globalDictionaries.vehicle.smoking.prohibited
                               .icon.name as SVGIconProps["name"],
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.smoking.allowed.name
+                                  .darkColor
+                              : globalDictionaries.vehicle.smoking.allowed.name
+                                  .color,
                           },
                         },
                       ]),
@@ -197,6 +229,19 @@ export const useGetRidesId = () => {
                             ...globalDictionaries.vehicle.music.allowed.icon,
                             name: globalDictionaries.vehicle.music.allowed.icon
                               .name as SVGIconProps["name"],
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.music.allowed.icon
+                                  .darkColor
+                              : globalDictionaries.vehicle.music.allowed.icon
+                                  .color,
+                          },
+                          name: {
+                            ...globalDictionaries.vehicle.music.allowed.name,
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.music.allowed.name
+                                  .darkColor
+                              : globalDictionaries.vehicle.music.allowed.name
+                                  .color,
                           },
                         },
                       ]
@@ -220,6 +265,19 @@ export const useGetRidesId = () => {
                             ...globalDictionaries.vehicle.pets.allowed.icon,
                             name: globalDictionaries.vehicle.pets.allowed.icon
                               .name as SVGIconProps["name"],
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.pets.allowed.icon
+                                  .darkColor
+                              : globalDictionaries.vehicle.pets.allowed.icon
+                                  .color,
+                          },
+                          name: {
+                            ...globalDictionaries.vehicle.pets.allowed.name,
+                            color: isDarkMode
+                              ? globalDictionaries.vehicle.pets.allowed.name
+                                  .darkColor
+                              : globalDictionaries.vehicle.pets.allowed.name
+                                  .color,
                           },
                         },
                       ]
@@ -289,15 +347,6 @@ export const useGetRidesId = () => {
             },
             ride: {
               badge: [
-                // ...(index === 0
-                //   ? [
-                //       {
-                //         id: "bester_preis",
-                //         label: "Bester Preis",
-                //         variant: "success" as "success" | "danger",
-                //       },
-                //     ]
-                //   : []),
                 ...formatDriverLabel(
                   globalDictionaries.personal_information.gender.options.items,
                   item.user.gender
@@ -308,6 +357,6 @@ export const useGetRidesId = () => {
         },
       });
     }
-  }, [query.data, query.isFetching, totalPassenger]);
+  }, [query.data, query.isFetching, totalPassenger, isDarkMode]);
   return query;
 };

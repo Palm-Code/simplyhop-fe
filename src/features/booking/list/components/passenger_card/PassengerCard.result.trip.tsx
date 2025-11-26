@@ -14,16 +14,25 @@ export const PassengerCardResultTrip = ({
   return (
     <Card
       className={clsx(
-        "!grid-flow-col !items-center !content-center !justify-between"
+        "!grid-flow-col !items-center !content-center !justify-between",
+        "!border-[#E9E6E6] dark:!border-[#464646]"
       )}
+      style={{
+        boxShadow: undefined,
+        backdropFilter: undefined,
+      }}
     >
-      <span className={clsx("text-[#606060] text-[0.75rem] font-normal")}>
+      <span
+        className={clsx(
+          "text-[#5B5B5B] dark:text-[#DADADA] text-[0.75rem] font-normal"
+        )}
+      >
         {label}
       </span>
 
       <span
         className={clsx(
-          "text-[black] text-[0.875rem] lg:text-[1.5rem] font-bold"
+          "text-[#232323] dark:text-white text-[0.875rem] lg:text-[1.5rem] font-bold"
         )}
       >
         {passenger}
