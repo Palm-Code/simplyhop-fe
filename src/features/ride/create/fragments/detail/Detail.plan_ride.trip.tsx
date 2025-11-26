@@ -427,7 +427,10 @@ export const DetailPlanRideTrip = () => {
     isPendingRidesFirst ||
     isPendingRidesSecond ||
     isPendingRidesThird ||
-    !state.detail.form.plan.recurring.selected ||
+    (Array.isArray(state.detail.form.plan.date.selected) &&
+    state.detail.form.plan.date.selected.length > 1
+      ? false
+      : !state.detail.form.plan.recurring.selected) ||
     !state.detail.form.plan.umweg.value.length ||
     !state.detail.form.plan.seat.value.length ||
     !!state.detail.form.plan.seat.error ||
@@ -435,6 +438,7 @@ export const DetailPlanRideTrip = () => {
     !state.detail.form.other.price.value ||
     !state.detail.form.tnc.checked ||
     !!state.detail.form.plan.available_child_seat.error;
+
   const isSubmitLoading =
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
 
@@ -465,10 +469,17 @@ export const DetailPlanRideTrip = () => {
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-white")}
+              className={clsx(
+                "w-[1.5rem] h-[1.5rem]",
+                "text-[#5B5B5B] dark:text-white"
+              )}
             />
           </button>
-          <h1 className={clsx("text-[1.5rem] text-[#232323] dark:text-white font-bold")}>
+          <h1
+            className={clsx(
+              "text-[1.5rem] text-[#232323] dark:text-white font-bold"
+            )}
+          >
             {dictionaries.detail.title}
           </h1>
         </AdaptiveModalHeader>
@@ -518,7 +529,11 @@ export const DetailPlanRideTrip = () => {
               filter: undefined,
             }}
           >
-            <p className={clsx("text-[1.5rem] text-[#232323] dark:text-white font-bold")}>
+            <p
+              className={clsx(
+                "text-[1.5rem] text-[#232323] dark:text-white font-bold"
+              )}
+            >
               {dictionaries.detail.plan.form.title}
             </p>
             <div
@@ -712,7 +727,9 @@ export const DetailPlanRideTrip = () => {
                 onChange={handleCheckTNC}
               />
               <span
-                className={clsx("text-[#232323] dark:text-white text-[0.875rem] font-normal")}
+                className={clsx(
+                  "text-[#232323] dark:text-white text-[0.875rem] font-normal"
+                )}
                 dangerouslySetInnerHTML={{
                   __html: dictionaries.detail.tnc.label,
                 }}
