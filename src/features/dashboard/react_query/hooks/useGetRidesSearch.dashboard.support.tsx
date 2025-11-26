@@ -150,20 +150,18 @@ export const useGetRidesSearch = () => {
             },
             passenger: {
               label: "Passengiere",
-              // adult: item.bookings
-              //   .filter((bookingItem) => bookingItem.status === "accepted")
-              //   .reduce((acc, bookingItem) => {
-              //     return acc + bookingItem.seats;
-              //   }, 0)
-              //   .toLocaleString("de-DE"),
-              // child: item.bookings
-              //   .filter((bookingItem) => bookingItem.status === "accepted")
-              //   .reduce((acc, bookingItem) => {
-              //     return acc + bookingItem.child_seats;
-              //   }, 0)
-              //   .toLocaleString("de-DE"),
-              adult: "",
-              child: "",
+              adult: item.bookings
+                .filter((bookingItem) => bookingItem.status === "accepted")
+                .reduce((acc, bookingItem) => {
+                  return acc + bookingItem.seats;
+                }, 0)
+                .toLocaleString("de-DE"),
+              child: item.bookings
+                .filter((bookingItem) => bookingItem.status === "accepted")
+                .reduce((acc, bookingItem) => {
+                  return acc + bookingItem.child_seats;
+                }, 0)
+                .toLocaleString("de-DE"),
             },
           },
 
