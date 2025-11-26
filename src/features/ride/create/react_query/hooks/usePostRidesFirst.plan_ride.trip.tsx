@@ -17,6 +17,7 @@ export const usePostRidesFirst = () => {
   const { state } = React.useContext(PlanRideTripContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
+
   const mutation = useMutation<
     PostRidesFirstSuccessResponseInterface,
     PostRidesFirstErrorResponseInterface
@@ -34,11 +35,17 @@ export const usePostRidesFirst = () => {
             state.filters.destination.selected.lat_lng?.lng ?? 0,
           destination_name: state.filters.destination.selected.item?.name ?? "",
           eta: state.detail.distance_matrix?.duration.value ?? 0,
-          departure_time: `${dayjs(
-            Array.isArray(state.filters.date.selected)
-              ? state.filters.date.selected.join(",")
-              : state.filters.date.selected
-          ).format("YYYY-MM-DD")} ${state.filters.time.value}:00`,
+          departure_time: Array.isArray(state.filters.date.selected)
+            ? state.filters.date.selected
+                .map((item) => {
+                  return `${dayjs(item).format("YYYY-MM-DD")} ${
+                    state.filters.time.value
+                  }:00`;
+                })
+                .join(",")
+            : `${dayjs(state.filters.date.selected).format("YYYY-MM-DD")} ${
+                state.filters.time.value
+              }:00`,
         },
       };
       return fetchPostRidesFirst(payload);
