@@ -22,7 +22,7 @@ export const DriverProfileLabel = ({
     <div
       id={id}
       className={clsx(
-        "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem] lg:gap-[1.5rem]"
+        "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem] lg:gap-[1rem]"
       )}
     >
       <Avatar {...avatar} className={clsx("w-[2rem] h-[2rem]")} />

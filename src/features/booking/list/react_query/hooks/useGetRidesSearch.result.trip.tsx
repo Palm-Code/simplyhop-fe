@@ -12,6 +12,7 @@ import {
 } from "@/core/models/rest/simplyhop/rides";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import "dayjs/locale/de";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -24,6 +25,7 @@ import { formatDisplayName } from "@/core/utils/name/functions";
 import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 dayjs.extend(utc);
+dayjs.locale("de");
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -77,7 +79,6 @@ export const useGetRideSearch = () => {
       available_seats__gte: String(
         Number(String(adult ?? "0")) + Number(String(children ?? "0"))
       ),
-      // Need to be integrated
       "filter[luggage_allowed]": !state.advanced_filter.luggage.selected.length
         ? undefined
         : state.advanced_filter.luggage.selected.length === 1
@@ -117,7 +118,6 @@ export const useGetRideSearch = () => {
   const queryPayload = {
     url: fullPath,
     include: "vehicle,user,vehicle.brand,vehicle.category",
-    // Need to be integrated
     "filter[luggage_allowed]": !state.advanced_filter.luggage.selected.length
       ? undefined
       : state.advanced_filter.luggage.selected.length === 1
@@ -409,7 +409,12 @@ export const useGetRideSearch = () => {
 
           routes: {
             date: {
-              label: "Datum",
+              label: !item.departure_time
+                ? "-"
+                : dayjs
+                    .utc(item.departure_time)
+                    .format("dddd")
+                    .replace(/^\w/, (c) => c.toUpperCase()),
               date: !item.departure_time
                 ? "-"
                 : dayjs.utc(item.departure_time).format("DD.MM.YY"),

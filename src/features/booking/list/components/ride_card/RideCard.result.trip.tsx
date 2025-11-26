@@ -32,6 +32,7 @@ import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 import { TravelDateItemProps } from "@/core/components/travel_date_item";
+import { DepartureDateItem } from "@/core/components/departure_date_item";
 
 export interface RideCardResultTripProps {
   id?: string;
@@ -210,14 +211,22 @@ export const RideCardResultTrip = ({
         "border border-[#EFEFEF] dark:border-[#464646]"
       )}
     >
-      {/* car */}
       <div
         className={clsx(
           "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
           "w-full"
         )}
       >
-        {/* rider */}
+        {/* day */}
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-1",
+            "h-full"
+          )}
+        >
+          <DepartureDateItem {...routes.date} />
+        </div>
+        {/* rider and car */}
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"

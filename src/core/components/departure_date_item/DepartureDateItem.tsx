@@ -19,13 +19,13 @@ export const DepartureDateItem = ({
     >
       <p
         className={clsx(
-          "text-[0.75rem] font-normal text-[#8C8D89] truncate text-ellipsis",
+          "text-[0.75rem] font-normal text-[#5B5B5B] dark:text-[#E9E6E6] truncate text-ellipsis",
           "w-full"
         )}
       >
         {label}
       </p>
-      <p className={clsx("text-[0.875rem] font-semibold text-[black]")}>
+      <p className={clsx("text-[0.875rem] font-semibold text-[#232323] dark:text-white")}>
         {date}
       </p>
     </div>
