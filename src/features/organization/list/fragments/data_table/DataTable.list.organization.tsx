@@ -8,10 +8,14 @@ import {
   ListOrganizationContext,
   ListOrganizationItem,
 } from "../../context";
+import { getDictionaries } from "../../i18n";
+import { LoadingState } from "@/core/components/loading_state";
+import { EmptyState } from "@/core/components/empty_state";
 
 export const DataTableListOrganization = () => {
   const { state, dispatch } = React.useContext(ListOrganizationContext);
   const table = useListOrganizationTable();
+  const dictionaries = getDictionaries();
 
   const handleRowClick = (row: ListOrganizationItem) => {
     dispatch({
@@ -23,6 +27,63 @@ export const DataTableListOrganization = () => {
       },
     });
   };
+  if (state.table.loading.is_fetching) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full",
+          "px-[1px] py-[1px]",
+          "rounded-2xl"
+        )}
+        style={{
+          background:
+            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
+        }}
+      >
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-6",
+            "w-full",
+            "px-4 py-4",
+            "bg-[white]",
+            "rounded-2xl"
+          )}
+        >
+          <LoadingState />
+        </div>
+      </div>
+    );
+  }
+
+  if (!state.table.items.length) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full",
+          "px-[1px] py-[1px]",
+          "rounded-2xl"
+        )}
+        style={{
+          background:
+            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
+        }}
+      >
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-6",
+            "w-full",
+            "px-4 py-4",
+            "bg-[white]",
+            "rounded-2xl"
+          )}
+        >
+          <EmptyState {...dictionaries.table.empty} />
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       className={clsx(
