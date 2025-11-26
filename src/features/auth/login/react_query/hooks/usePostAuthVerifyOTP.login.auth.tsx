@@ -76,12 +76,16 @@ export const usePostAuthVerifyOTP = () => {
 
       if (isSuperAdmin) {
         router.push(AppCollectionURL.private.support_dashboard());
+        return
       } else if (isOrganizationAdmin) {
         router.push(AppCollectionURL.private.support_dashboard());
+        return
       } else if (isEmployeeProfileCompleted) {
         router.push(AppCollectionURL.private.trip());
+        return
       } else {
         router.push(AppCollectionURL.private.profile_registration());
+        return
       }
     },
 
