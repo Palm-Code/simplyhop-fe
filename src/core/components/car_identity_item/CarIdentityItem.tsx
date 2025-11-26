@@ -1,6 +1,5 @@
 import * as React from "react";
 import clsx from "clsx";
-import SVGIcon from "@/core/icons";
 
 export interface CarIdentityItemProps {
   name?: string;

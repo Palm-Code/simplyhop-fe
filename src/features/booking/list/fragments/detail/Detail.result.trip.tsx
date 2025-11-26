@@ -2,7 +2,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
-import { RideDetailCardResultTrip } from "../../components/ride_detail_card";
 import { getDictionaries } from "../../i18n";
 import { PriceCardResultTrip } from "../../components/price_card";
 import { TextareafieldNotes } from "@/core/components/textareafield_notes";

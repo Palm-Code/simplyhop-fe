@@ -8,7 +8,7 @@ import {
   GetRidesIdSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import { fetchGetRidesId } from "@/core/services/rest/simplyhop/rides";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { RIDE_FILTER } from "@/core/enums";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
@@ -25,7 +25,6 @@ dayjs.locale("de");
 
 export const useGetRidesId = () => {
   const globalDictionaries = getGlobalDictionaries();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const { state, dispatch } = React.useContext(ResultTripContext);
@@ -56,7 +55,6 @@ export const useGetRidesId = () => {
     if (!!query.data && !query.isFetching) {
       const item = query.data.data;
 
-      const fullPath = `${pathname}?${searchParams.toString()}`;
       dispatch({
         type: ResultTripActionEnum.SetDetailData,
         payload: {
