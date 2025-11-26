@@ -19,13 +19,13 @@ export interface GetDashboardSuperAdminSummarySuccessResponseInterface {
 }
 
 export interface GetDashboardSuperAdminSummarySuccessDataResponseInterface {
-  total_organization: number; //2;
-  total_rides_planned: number; //1;
-  total_rides_booked: number; //3;
-  total_rides_completed: number; //1;
-  average_rating: number; //0;
-  total_voted_rating: number; //0;
-  total_driver: number; //3;
+  total_organization: number | null; //2;
+  total_rides_planned: number | null; //1;
+  total_rides_booked: number | null; //3;
+  total_rides_completed: number | null; //1;
+  average_rating: number | null; //0;
+  total_voted_rating: number | null; //0;
+  total_driver: number | null; //3;
 }
 
 export interface GetDashboardSuperAdminSummaryErrorResponseInterface {

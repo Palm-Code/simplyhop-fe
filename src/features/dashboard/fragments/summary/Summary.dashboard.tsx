@@ -12,7 +12,7 @@ export const SummaryDashboard = () => {
   const { state } = React.useContext(DashboardSupportContext);
   const summaryItems = userState.profile?.is_super_admin
     ? dictionaries.super_admin.summary.items?.map((item) => {
-        let value: string = "";
+        let value: string = "0";
         switch (item.id) {
           case "Organisation": {
             value =
@@ -53,7 +53,7 @@ export const SummaryDashboard = () => {
       }) ?? []
     : userState.profile?.role === "admin"
     ? dictionaries.organizational_admin.summary.items?.map((item) => {
-        let value: string = "";
+        let value: string = "0";
         let unit: string = item.unit;
         switch (item.id) {
           case "Geplante Fahrten": {
@@ -86,7 +86,7 @@ export const SummaryDashboard = () => {
               "{{number}}",
               state.summary.organization_admin?.total_voted_rating?.toLocaleString(
                 "de-DE"
-              ) ?? unit
+              ) ?? "0"
             );
             break;
           }
@@ -100,7 +100,7 @@ export const SummaryDashboard = () => {
         };
       }) ?? []
     : dictionaries.personal.summary.items?.map((item) => {
-        let value: string = "";
+        let value: string = "0";
         let unit: string = item.unit;
         switch (item.id) {
           case "Geplante Fahrten": {
@@ -132,7 +132,7 @@ export const SummaryDashboard = () => {
               "{{number}}",
               state.summary.personal?.total_voted_rating?.toLocaleString(
                 "de-DE"
-              ) ?? unit
+              ) ?? "0"
             );
             break;
           }
