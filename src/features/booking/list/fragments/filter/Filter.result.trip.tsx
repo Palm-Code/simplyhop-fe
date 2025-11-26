@@ -448,7 +448,7 @@ export const FilterResultTrip = () => {
         {/* form */}
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_162px] place-content-start place-items-start gap-[1rem]",
+            "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_162px] place-content-center place-items-center gap-[1rem]",
             "w-full"
           )}
         >
@@ -625,7 +625,7 @@ export const FilterResultTrip = () => {
           <Button
             aria-label={dictionaries.filter.cta.primary.children}
             name={dictionaries.filter.cta.primary.children}
-            className={clsx("px-[1.25rem] py-[0.75rem]")}
+            className={clsx("!px-[55px] !py-[0.5rem]")}
             disabled={
               !state.filters.origin.selected.item ||
               !state.filters.destination.selected.item ||

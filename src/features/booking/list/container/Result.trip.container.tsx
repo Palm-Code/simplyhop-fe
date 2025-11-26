@@ -11,6 +11,7 @@ import { FilterDetailTrip } from "../fragments/filter_detail";
 import { BottomSheet } from "@/core/components/bottom_sheet";
 import { ResultTripActionEnum, ResultTripContext } from "../context";
 import { VehicleFilters } from "../fragments/vehicle_filters";
+import { useGetShifts } from "../react_query/hooks";
 
 export const ResultTripContainer = () => {
   const dictionaries = getDictionaries();
@@ -25,6 +26,7 @@ export const ResultTripContainer = () => {
       },
     });
   };
+  useGetShifts();
   return (
     <>
       <div
