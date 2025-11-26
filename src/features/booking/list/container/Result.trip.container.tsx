@@ -53,7 +53,7 @@ export const ResultTripContainer = () => {
               className={clsx(
                 "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
                 "w-full",
-                "sticky top-[64px] py-[1.5rem] z-[10]",
+                "sticky top-0 lg:top-[64px] py-[1.5rem] z-[10]",
                 "bg-[white] dark:bg-[#232323]"
               )}
             >

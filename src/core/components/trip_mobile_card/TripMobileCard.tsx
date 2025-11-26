@@ -33,6 +33,9 @@ import Link from "next/link";
 import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 import { TravelDateItemProps } from "@/core/components/travel_date_item";
 import { DepartureDateItem } from "@/core/components/departure_date_item";
+import { PlaceItem } from "../place_item";
+import { TimeItem } from "../time_item";
+import { DurationItem } from "../duration_item";
 
 export interface TripMobileCardProps {
   id?: string;
@@ -229,8 +232,8 @@ export default function TripMobileCard({
         {/* rider and car */}
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "h-full"
+            "grid grid-flow-col items-center content-center justify-items-start justify-between gap-[1.5rem]",
+            "w-full"
           )}
         >
           <div
@@ -269,63 +272,70 @@ export default function TripMobileCard({
             {/* routes */}
             <div
               className={clsx(
-                "w-full grid grid-cols-[auto_1fr] place-content-start place-items-start gap-2"
+                "w-full grid grid-cols-[auto_auto_1fr] place-content-center place-items-center gap-2"
               )}
             >
-              <div className={clsx("grid grid-cols-1 h-full lg:hidden")}>
+              <div
+                className={clsx(
+                  "grid grid-cols-1 items-stretch content-between justify- justify-items-start",
+                  "w-full h-full",
+                  "relative"
+                )}
+              >
+                <TimeItem time={routes.departure?.time} />
+                <DurationItem time={routes.travelTime?.time} />
+                <TimeItem time={routes.arrival?.time} />
+              </div>
+              <div
+                className={clsx(
+                  "grid grid-cols-1 items-start justify-start justify-items-start",
+                  "w-full h-full",
+                  'py-[3px]',
+                  "relative"
+                )}
+              >
                 <div
                   className={clsx(
-                    "lg:hidden h-[82%] grid grid-cols-1 items-start justify-start justify-items-start",
-                    "w-full",
-                    "relative"
+                    "flex items-center justify-center",
+                    "w-3 h-3 p-[3px] relative z-1",
+                    "bg-[#33CC33]",
+                    "rounded-[50%]"
                   )}
                 >
                   <div
                     className={clsx(
                       "flex items-center justify-center",
-                      "w-3 h-3 p-[3px] relative z-1",
-                      "bg-[#33CC33]",
-                      "rounded-[50%]"
-                    )}
-                  >
-                    <div
-                      className={clsx(
-                        "flex items-center justify-center",
-                        "w-full h-full",
-                        "bg-[white]",
-                        "rounded-[50%]"
-                      )}
-                    />
-                  </div>
-
-                  <div
-                    className={clsx(
-                      "w-[1px] h-full absolute inset-0 left-1/2 -translate-x-1/2 z-0",
-                      "bg-[#EEF0EB]"
-                    )}
-                  />
-
-                  <div
-                    className={clsx(
-                      "flex items-center justify-center mt-auto",
-                      "w-3 h-3 relative z-[1]",
-                      "bg-[#33CC33]",
+                      "w-full h-full",
+                      "bg-[white]",
                       "rounded-[50%]"
                     )}
                   />
                 </div>
+
+                <div
+                  className={clsx(
+                    "w-[1px] h-full absolute inset-0 left-1/2 -translate-x-1/2 z-0",
+                    "bg-[#EEF0EB]"
+                  )}
+                />
+
+                <div
+                  className={clsx(
+                    "flex items-center justify-center mt-auto",
+                    "w-3 h-3 relative z-[1]",
+                    "bg-[#33CC33]",
+                    "rounded-[50%]"
+                  )}
+                />
               </div>
               <div
                 className={clsx(
-                  "grid lg:grid-cols-[auto_auto_auto] grid-cols-1 place-content-center place-items-center lg:gap-[2.25rem] gap-4",
+                  "grid grid-cols-1 place-content-center place-items-center gap-[60px]",
                   "w-full"
                 )}
               >
-                <DepartureItem {...routes.departure} />
-
-                <TravelTimeItem {...routes.travelTime} />
-
-                <ArrivalItem {...routes.arrival} />
+                <PlaceItem place={routes.departure?.place} />
+                <PlaceItem place={routes.arrival?.place} />
               </div>
             </div>
 
@@ -337,7 +347,7 @@ export default function TripMobileCard({
         </div>
         <div
           className={clsx(
-            "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+            "grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
           )}
         >
           {ride.badge.map((item, itemIndex) => (

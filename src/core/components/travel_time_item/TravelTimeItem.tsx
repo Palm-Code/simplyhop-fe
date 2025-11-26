@@ -1,5 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
+import { DurationItem } from "../duration_item";
 
 export interface TravelTimeItemProps {
   time?: string;
@@ -12,9 +13,7 @@ export const TravelTimeItem = ({
 }: TravelTimeItemProps) => {
   return (
     <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start"
-      )}
+      className={clsx("grid grid-cols-1 place-content-start place-items-start")}
     >
       <div
         className={clsx(
@@ -27,7 +26,9 @@ export const TravelTimeItem = ({
           className={clsx(
             "flex items-center justify-center",
             "w-[0.375rem] h-[0.375rem]",
-            variant === "primary" ? "bg-[#249124] dark:bg-icon-primary-subdued" : "bg-[#333FFF]",
+            variant === "primary"
+              ? "bg-[#249124] dark:bg-icon-primary-subdued"
+              : "bg-[#333FFF]",
             "rounded-[50%]"
           )}
         >
@@ -53,20 +54,7 @@ export const TravelTimeItem = ({
         />
       </div>
 
-      <div
-        className={clsx(
-          "flex items-center justify-center gap-[0.25rem]",
-          "w-full"
-        )}
-      >
-        <p
-          className={clsx(
-            "text-[0.75rem] text-[#8C8D89] dark:text-white font-normal text-center whitespace-nowrap"
-          )}
-        >
-          {time}
-        </p>
-      </div>
+      <DurationItem time={time} />
     </div>
   );
 };

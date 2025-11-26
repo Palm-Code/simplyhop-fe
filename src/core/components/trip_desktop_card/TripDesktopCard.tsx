@@ -33,6 +33,8 @@ import Link from "next/link";
 import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 import { TravelDateItemProps } from "@/core/components/travel_date_item";
 import { DepartureDateItem } from "@/core/components/departure_date_item";
+import { PlaceItem } from "../place_item";
+import { TimeItem } from "../time_item";
 
 export interface TripDesktopCardProps {
   id?: string;
@@ -278,11 +280,25 @@ export default function TripDesktopCard({
                   "w-full"
                 )}
               >
-                <DepartureItem {...routes.departure} />
+                <div
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start"
+                  )}
+                >
+                  <PlaceItem place={routes.departure?.place} />
+                  <TimeItem time={routes.departure?.time} />
+                </div>
 
                 <TravelTimeItem {...routes.travelTime} />
 
-                <ArrivalItem {...routes.arrival} />
+                <div
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start"
+                  )}
+                >
+                  <PlaceItem place={routes.arrival?.place} />
+                  <TimeItem time={routes.arrival?.time} />
+                </div>
               </div>
             </div>
 
