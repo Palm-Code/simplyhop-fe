@@ -31,6 +31,7 @@ export const SuperAdminSectionsDashboard = () => {
         organization={{
           table: organizationTable,
         }}
+        isLoading={state.sections.super_admin.organization.loading.is_fetching}
         isEmpty={!state.sections.super_admin.organization.data?.length}
         empty={dictionaries.super_admin.organizations.empty}
       />
@@ -41,6 +42,7 @@ export const SuperAdminSectionsDashboard = () => {
         driver={{
           table: driverTable,
         }}
+        isLoading={state.sections.super_admin.driver.loading.is_fetching}
         isEmpty={!state.sections.super_admin.driver.data?.length}
         empty={dictionaries.super_admin.drivers.empty}
       />

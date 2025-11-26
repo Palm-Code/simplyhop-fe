@@ -53,6 +53,17 @@ export const DashboardSupportSectionsReducers = (
           },
         },
       };
+    case DashboardSupportActionEnum.SetSectionsPersonalRideLoadingData:
+      return {
+        ...state,
+        personal: {
+          ...state.personal,
+          ride: {
+            ...state.personal.ride,
+            loading: action.payload,
+          },
+        },
+      };
     case DashboardSupportActionEnum.SetSectionsPersonalVehicleData:
       return {
         ...state,
@@ -64,6 +75,17 @@ export const DashboardSupportSectionsReducers = (
           },
         },
       };
+    case DashboardSupportActionEnum.SetSectionsPersonalVehicleLoadingData:
+      return {
+        ...state,
+        personal: {
+          ...state.personal,
+          vehicle: {
+            ...state.personal.vehicle,
+            loading: action.payload,
+          },
+        },
+      };
     case DashboardSupportActionEnum.SetSectionsOrganizationAdminRideData:
       return {
         ...state,
@@ -72,6 +94,17 @@ export const DashboardSupportSectionsReducers = (
           ride: {
             ...state.organization_admin.ride,
             data: action.payload,
+          },
+        },
+      };
+    case DashboardSupportActionEnum.SetSectionsOrganizationAdminRideLoadingData:
+      return {
+        ...state,
+        organization_admin: {
+          ...state.organization_admin,
+          ride: {
+            ...state.organization_admin.ride,
+            loading: action.payload,
           },
         },
       };

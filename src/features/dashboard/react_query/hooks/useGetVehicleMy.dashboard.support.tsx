@@ -18,7 +18,7 @@ import { SVGIconProps } from "@/core/icons";
 
 export const useGetVehicleMy = () => {
   const globalDictionaries = getGlobalDictionaries();
-  const { dispatch } = React.useContext(DashboardSupportContext);
+  const { state, dispatch } = React.useContext(DashboardSupportContext);
 
   const payload: GetVehicleMyPayloadRequestInterface = {
     params: {
@@ -199,5 +199,15 @@ export const useGetVehicleMy = () => {
       });
     }
   }, [query.data, query.isFetching]);
+
+  React.useEffect(() => {
+    dispatch({
+      type: DashboardSupportActionEnum.SetSectionsPersonalVehicleLoadingData,
+      payload: {
+        ...state.sections.personal.vehicle.loading,
+        is_fetching: query.isFetching,
+      },
+    });
+  }, [query.isFetching]);
   return query;
 };

@@ -37,14 +37,23 @@ export interface DashboardSupportSections {
   personal: {
     ride: {
       data: DashboardRideCardProps[] | null;
+      loading: {
+        is_fetching: boolean;
+      };
     };
     vehicle: {
       data: DashboardVehicleCardProps[] | null;
+      loading: {
+        is_fetching: boolean;
+      };
     };
   };
   organization_admin: {
     ride: {
       data: DashboardRideCardProps[] | null;
+      loading: {
+        is_fetching: boolean;
+      };
     };
     driver: {
       data: GetDashboardOrganizationSuccessDataResponseInterface[] | null;
@@ -93,8 +102,11 @@ export enum DashboardSupportActionEnum {
   // Sections
   SetSectionsData = "SetSectionsData",
   SetSectionsPersonalRideData = "SetSectionsPersonalRideData",
+  SetSectionsPersonalRideLoadingData = "SetSectionsPersonalRideLoadingData",
   SetSectionsPersonalVehicleData = "SetSectionsPersonalVehicleData",
+  SetSectionsPersonalVehicleLoadingData = "SetSectionsPersonalVehicleLoadingData",
   SetSectionsOrganizationAdminRideData = "SetSectionsOrganizationAdminRideData",
+  SetSectionsOrganizationAdminRideLoadingData = "SetSectionsOrganizationAdminRideLoadingData",
   SetSectionsOrganizationAdminDriverData = "SetSectionsOrganizationAdminDriverData",
   SetSectionsOrganizationAdminDriverPaginationData = "SetSectionsOrganizationAdminDriverPaginationData",
   SetSectionsOrganizationAdminDriverLoadingData = "SetSectionsOrganizationAdminDriverLoadingData",
@@ -127,8 +139,11 @@ export type DashboardSupportSummaryActions =
 type DashboardSupportSectionsPayload = {
   [DashboardSupportActionEnum.SetSectionsData]: DashboardSupportSections;
   [DashboardSupportActionEnum.SetSectionsPersonalRideData]: DashboardSupportSections["personal"]["ride"]["data"];
+  [DashboardSupportActionEnum.SetSectionsPersonalRideLoadingData]: DashboardSupportSections["personal"]["ride"]["loading"];
   [DashboardSupportActionEnum.SetSectionsPersonalVehicleData]: DashboardSupportSections["personal"]["vehicle"]["data"];
+  [DashboardSupportActionEnum.SetSectionsPersonalVehicleLoadingData]: DashboardSupportSections["personal"]["vehicle"]["loading"];
   [DashboardSupportActionEnum.SetSectionsOrganizationAdminRideData]: DashboardSupportSections["organization_admin"]["ride"]["data"];
+  [DashboardSupportActionEnum.SetSectionsOrganizationAdminRideLoadingData]: DashboardSupportSections["organization_admin"]["ride"]["loading"];
   [DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverData]: DashboardSupportSections["organization_admin"]["driver"]["data"];
   [DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverPaginationData]: DashboardSupportSections["organization_admin"]["driver"]["pagination"];
   [DashboardSupportActionEnum.SetSectionsOrganizationAdminDriverLoadingData]: DashboardSupportSections["organization_admin"]["driver"]["loading"];

@@ -28,7 +28,7 @@ export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
 
-  const { dispatch } = React.useContext(DashboardSupportContext);
+  const { state, dispatch } = React.useContext(DashboardSupportContext);
   const { state: userState } = React.useContext(UserContext);
 
   const payload: GetRidesSearchPayloadRequestInterface = {
@@ -189,5 +189,25 @@ export const useGetRidesSearch = () => {
       }
     }
   }, [query.data, query.isFetching]);
+
+  React.useEffect(() => {
+    if (userState.profile?.role === "admin") {
+      dispatch({
+        type: DashboardSupportActionEnum.SetSectionsOrganizationAdminRideLoadingData,
+        payload: {
+          ...state.sections.organization_admin.ride.loading,
+          is_fetching: query.isFetching,
+        },
+      });
+    } else {
+      dispatch({
+        type: DashboardSupportActionEnum.SetSectionsPersonalRideLoadingData,
+        payload: {
+          ...state.sections.personal.ride.loading,
+          is_fetching: query.isFetching,
+        },
+      });
+    }
+  }, [query.isFetching]);
   return query;
 };

@@ -6,6 +6,7 @@ import {
 } from "../../../../core/components/dashboard_driver_card/DashboardDriverCard";
 import { DashboardCard } from "@/core/components/dashboard_card";
 import { EmptyState, EmptyStateProps } from "@/core/components/empty_state";
+import { LoadingState } from "@/core/components/loading_state";
 
 export interface DriversCardDashboardProps {
   title?: string;
@@ -17,6 +18,7 @@ export interface DriversCardDashboardProps {
     };
   };
   driver?: DashboardDriverCardProps;
+  isLoading?: boolean;
   isEmpty?: boolean;
   empty?: EmptyStateProps;
 }
@@ -28,9 +30,17 @@ export const DriversCardDashboard = ({
   driver = {
     table: null,
   },
+  isLoading,
   isEmpty,
   empty,
 }: DriversCardDashboardProps) => {
+  if (isLoading) {
+    return (
+      <DashboardCard title={title} icon={icon} cta={cta} variant="white">
+        <LoadingState />
+      </DashboardCard>
+    );
+  }
   if (isEmpty) {
     return (
       <DashboardCard title={title} icon={icon} cta={cta} variant={"white"}>

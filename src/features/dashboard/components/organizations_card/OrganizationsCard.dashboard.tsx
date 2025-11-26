@@ -6,6 +6,7 @@ import {
 } from "../organization_card";
 import { DashboardCard } from "@/core/components/dashboard_card";
 import { EmptyState, EmptyStateProps } from "@/core/components/empty_state";
+import { LoadingState } from "@/core/components/loading_state";
 
 export interface OrganizationsCardDashboardProps {
   title?: string;
@@ -16,6 +17,7 @@ export interface OrganizationsCardDashboardProps {
       href: string;
     };
   };
+  isLoading?: boolean;
   organization?: OrganizationCardDashboardProps;
   isEmpty?: boolean;
   empty?: EmptyStateProps;
@@ -28,9 +30,17 @@ export const OrganizationsCardDashboard = ({
   organization = {
     table: null,
   },
+  isLoading,
   isEmpty,
   empty,
 }: OrganizationsCardDashboardProps) => {
+  if (isLoading) {
+    return (
+      <DashboardCard title={title} icon={icon} cta={cta} variant="white">
+        <LoadingState />
+      </DashboardCard>
+    );
+  }
   if (isEmpty) {
     return (
       <DashboardCard title={title} icon={icon} cta={cta} variant="white">

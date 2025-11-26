@@ -26,6 +26,7 @@ export const OrganizationalAdminSectionsDashboard = () => {
         }
         cta={dictionaries.organizational_admin.upcoming_rides.cta}
         rides={state.sections.organization_admin.ride?.data ?? undefined}
+        isLoading={state.sections.organization_admin.ride.loading.is_fetching}
         isEmpty={!state.sections.organization_admin.ride.data?.length}
         empty={dictionaries.organizational_admin.upcoming_rides.empty}
       />
@@ -38,6 +39,7 @@ export const OrganizationalAdminSectionsDashboard = () => {
         driver={{
           table: driverTable,
         }}
+        isLoading={state.sections.organization_admin.driver.loading.is_fetching}
         isEmpty={!state.sections.organization_admin.driver.data?.length}
         empty={dictionaries.organizational_admin.drivers.empty}
       />

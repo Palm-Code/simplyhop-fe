@@ -19,14 +19,23 @@ const initialState: DashboardSupportInitialStateType = {
     personal: {
       ride: {
         data: null,
+        loading: {
+          is_fetching: true,
+        },
       },
       vehicle: {
         data: null,
+        loading: {
+          is_fetching: true,
+        },
       },
     },
     organization_admin: {
       ride: {
         data: null,
+        loading: {
+          is_fetching: true,
+        },
       },
       driver: {
         data: null,
