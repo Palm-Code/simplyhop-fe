@@ -177,7 +177,7 @@ export const DetailResultTrip = () => {
           </h1>
         </AdaptiveModalHeader>
         <AdaptiveModalContent className={clsx("lg:!py-[1rem]")}>
-          <TripCard {...detailData} mode="mobile" />
+          <TripCard {...detailData} variant="split" price={undefined} />
 
           <PassengerCardResultTrip
             label={dictionaries.detail.passenger.label}

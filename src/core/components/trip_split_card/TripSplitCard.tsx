@@ -26,7 +26,6 @@ import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 import { TravelDateItemProps } from "@/core/components/travel_date_item";
-import { DepartureDateItem } from "@/core/components/departure_date_item";
 import { PlaceItem } from "../place_item";
 import { TimeItem } from "../time_item";
 import { DurationItem } from "../duration_item";
@@ -35,8 +34,9 @@ import {
   DriverRatingLabel,
   DriverRatingLabelProps,
 } from "../driver_rating_label";
+import { Divider } from "../divider";
 
-export interface TripDesktopCardProps {
+export interface TripSplitCardProps {
   id?: string;
   driver?: {
     profile: DriverProfileLabelProps;
@@ -73,7 +73,7 @@ export interface TripDesktopCardProps {
   };
 }
 
-export const TripDesktopCard = ({
+export const TripSplitCard = ({
   id = "",
   driver = {
     profile: {
@@ -179,12 +179,7 @@ export const TripDesktopCard = ({
     },
   },
 
-  price = {
-    initial: {
-      label: "Angebotspreis",
-      price: "€25.00",
-    },
-  },
+  price,
   ride = {
     badge: [
       {
@@ -200,200 +195,221 @@ export const TripDesktopCard = ({
     ],
   },
   cta,
-}: TripDesktopCardProps) => {
+}: TripSplitCardProps) => {
   return (
     <div
       id={id}
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-        "w-full",
-        "px-[1.5rem] py-[1rem]",
-        "rounded-[0.625rem]",
-        "border border-[#EFEFEF] dark:border-[#464646]"
+        "grid grid-cols-1 place-content-start place-items-start gap-2",
+        "w-full"
       )}
     >
+      {/* first card */}
       <div
         className={clsx(
-          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
-          "w-full"
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "w-full",
+          "px-[1.5rem] py-[1rem]",
+          "rounded-[0.625rem]",
+          "border border-[#EFEFEF] dark:border-[#464646]"
         )}
       >
-        {/* day */}
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-1",
-            "h-full"
+            "grid grid-flow-row grid-cols-1 items-center content-center justify-between justify-items-start gap-[1rem]",
+            "w-full"
           )}
         >
-          <DepartureDateItem {...routes.date} />
-        </div>
-        {/* rider and car */}
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "h-full"
-          )}
-        >
+          {/* day */}
           <div
             className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+              "grid grid-cols-1 place-content-start place-items-start gap-1",
+              "h-full"
             )}
           >
-            <DriverProfileLabel {...driver.profile} />
-            <DriverRatingLabel {...driver.rating} />
-          </div>
-
-          <div
-            className={clsx(
-              "grid lg:grid-flow-row grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
-            )}
-          >
-            <Image {...car.image} className={clsx("lg:w-[145px] w-[75px]")} />
-          </div>
-        </div>
-
-        <div
-          className={clsx(
-            "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
-            "w-full h-full max-w-[424px]"
-          )}
-        >
-          {/* identity */}
-          <div className={clsx("block")}>
-            <CarIdentityItem {...car.identity} />
-          </div>
-
-          <div
-            className={clsx(
-              "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-2"
-            )}
-          >
-            {/* routes */}
-            <div
+            <p
               className={clsx(
-                "w-full grid grid-cols-[auto_1fr] place-content-start place-items-start gap-2"
+                "text-[1rem] font-semibold text-[#232323] dark:text-white"
               )}
             >
+              {`${routes.date?.label}, ${routes.date?.date}`}
+            </p>
+          </div>
+
+          <div
+            className={clsx(
+              "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
+              "w-full h-full"
+            )}
+          >
+            <div
+              className={clsx(
+                "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-2",
+                "w-full"
+              )}
+            >
+              {/* routes */}
               <div
                 className={clsx(
-                  "grid lg:grid-cols-[auto_auto_auto] grid-cols-1 place-content-center place-items-center lg:gap-[2.25rem] gap-4",
+                  "grid grid-cols-[auto_auto_1fr] place-content-center place-items-center gap-2",
                   "w-full"
                 )}
               >
                 <div
                   className={clsx(
-                    "grid grid-cols-1 place-content-start place-items-start"
+                    "grid grid-cols-1 items-stretch content-between justify- justify-items-start",
+                    "w-full h-full",
+                    "relative"
+                  )}
+                >
+                  <TimeItem time={routes.departure?.time} />
+                  <DurationItem time={routes.travelTime?.time} />
+                  <TimeItem time={routes.arrival?.time} />
+                </div>
+                <TravelPathItem variant="primary" mode="vertical" />
+                <div
+                  className={clsx(
+                    "grid grid-cols-1 place-content-center place-items-center gap-[60px]",
+                    "w-full"
                   )}
                 >
                   <PlaceItem place={routes.departure?.place} />
-                  <TimeItem time={routes.departure?.time} />
-                </div>
-
-                <div
-                  className={clsx(
-                    "grid grid-cols-1 place-content-start place-items-start"
-                  )}
-                >
-                  <TravelPathItem
-                    variant={routes.travelTime?.variant}
-                    mode="horizontal"
-                  />
-
-                  <DurationItem time={routes.travelTime?.time} />
-                </div>
-
-                <div
-                  className={clsx(
-                    "grid grid-cols-1 place-content-start place-items-start"
-                  )}
-                >
                   <PlaceItem place={routes.arrival?.place} />
-                  <TimeItem time={routes.arrival?.time} />
                 </div>
               </div>
-            </div>
 
-            {/* umweg */}
-            <div>
-              <UmwegBadge {...routes.umWeg} />
+              {/* umweg */}
+              <div>
+                <UmwegBadge {...routes.umWeg} />
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* second card */}
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "w-full",
+          "px-[1.5rem] py-[1rem]",
+          "rounded-[0.625rem]",
+          "border border-[#EFEFEF] dark:border-[#464646]"
+        )}
+      >
         <div
           className={clsx(
-            "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+            "grid grid-flow-row grid-cols-1 items-center content-center justify-between justify-items-start gap-[1rem]",
+            "w-full"
           )}
         >
-          {ride.badge.map((item, itemIndex) => (
-            <RideBadge {...item} key={itemIndex} />
-          ))}
-
-          {/* facility */}
+          {/* rider and car */}
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+              "grid grid-flow-col items-center content-center justify-items-start justify-between gap-[1.5rem]",
               "w-full"
             )}
           >
             <div
               className={clsx(
-                "flex flex-wrap items-center justify-start gap-[0.75rem]"
+                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
               )}
             >
-              {car.facility?.top.map((item, index) => (
-                <CarFacilityItem
-                  key={index}
-                  icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
-                  name={{ ...item.name }}
-                />
-              ))}
-            </div>
-
-            <div
-              className={clsx(
-                "flex flex-wrap items-center justify-start gap-[0.75rem]"
-              )}
-            >
-              {car.facility?.bottom.map((item, Index) => (
-                <CarFacilityItem
-                  key={Index}
-                  icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
-                  name={{ ...item.name }}
-                />
-              ))}
+              <DriverProfileLabel {...driver.profile} />
+              <DriverRatingLabel {...driver.rating} />
             </div>
           </div>
-        </div>
-
-        {/* price */}
-        <div
-          className={clsx(
-            "flex flex-row lg:flex-col items-center justify-between gap-[0.5rem] lg:gap-[1rem]",
-            "w-full"
-          )}
-        >
-          <CarPriceItem
-            {...price.initial}
+          <Divider />
+          <div
             className={clsx(
-              "place-content-start place-items-start lg:!place-content-center lg:!place-items-center"
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
-          />
+          >
+            <Image {...car.image} className={clsx("w-[75px]")} />
+            {/* identity */}
+            <div className={clsx("block")}>
+              <CarIdentityItem {...car.identity} />
+            </div>
+          </div>
 
-          {/* cta */}
-          {cta && (
-            <Link
-              aria-label={String(cta.ride.children ?? "")}
-              href={cta.ride.href}
+          <div
+            className={clsx(
+              "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]"
+            )}
+          >
+            {ride.badge.map((item, itemIndex) => (
+              <RideBadge {...item} key={itemIndex} />
+            ))}
+
+            {/* facility */}
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                "w-full"
+              )}
             >
-              <Button
-                aria-label={String(cta.ride.children ?? "")}
-                name={String(cta.ride.children ?? "")}
-                className={clsx("!px-[1rem] !py-[0.5rem]", "!font-semibold")}
-                // onClick={cta.ride.onClick}
+              <div
+                className={clsx(
+                  "flex flex-wrap items-center justify-start gap-[0.75rem]"
+                )}
               >
-                {cta.ride.children}
-              </Button>
-            </Link>
+                {car.facility?.top.map((item, index) => (
+                  <CarFacilityItem
+                    key={index}
+                    icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
+                    name={{ ...item.name }}
+                  />
+                ))}
+              </div>
+
+              <div
+                className={clsx(
+                  "flex flex-wrap items-center justify-start gap-[0.75rem]"
+                )}
+              >
+                {car.facility?.bottom.map((item, Index) => (
+                  <CarFacilityItem
+                    key={Index}
+                    icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
+                    name={{ ...item.name }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* price */}
+          {cta && price && (
+            <div
+              className={clsx(
+                "flex flex-row items-center justify-between gap-[0.5rem]",
+                "w-full"
+              )}
+            >
+              {price && (
+                <CarPriceItem
+                  {...price.initial}
+                  className={clsx("place-content-start place-items-start")}
+                />
+              )}
+
+              {/* cta */}
+              {cta && (
+                <Link
+                  aria-label={String(cta.ride.children ?? "")}
+                  href={cta.ride.href}
+                >
+                  <Button
+                    aria-label={String(cta.ride.children ?? "")}
+                    name={String(cta.ride.children ?? "")}
+                    className={clsx("!px-[1rem] !py-[0.5rem]")}
+                    // onClick={cta.ride.onClick}
+                  >
+                    {cta.ride.children}
+                  </Button>
+                </Link>
+              )}
+            </div>
           )}
         </div>
       </div>

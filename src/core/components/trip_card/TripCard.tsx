@@ -1,25 +1,25 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import TripDesktopCard, {
+import {
+  TripDesktopCard,
   TripDesktopCardProps,
 } from "../trip_desktop_card/TripDesktopCard";
-import TripMobileCard from "../trip_mobile_card/TripMobileCard";
+import { TripMobileCard } from "../trip_mobile_card/TripMobileCard";
+import { TripSplitCard } from "../trip_split_card";
 
 export interface TripCardProps extends TripDesktopCardProps {
-  mode?: "mobile" | "desktop" | "default";
+  variant?: "split" | "merge";
 }
 
 export const TripCard = ({
-  mode = "default",
+  variant = "merge",
   ...otherProps
 }: TripCardProps) => {
-  if (mode === "desktop") {
-    return <TripDesktopCard {...otherProps} />;
+  if (variant === "split") {
+    return <TripSplitCard {...otherProps} />;
   }
-  if (mode === "mobile") {
-    return <TripMobileCard {...otherProps} />;
-  }
+
   return (
     <>
       <div

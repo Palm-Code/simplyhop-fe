@@ -73,7 +73,7 @@ export interface TripMobileCardProps {
   };
 }
 
-export default function TripMobileCard({
+export const TripMobileCard = ({
   id = "",
   driver = {
     profile: {
@@ -200,7 +200,7 @@ export default function TripMobileCard({
     ],
   },
   cta,
-}: TripMobileCardProps) {
+}: TripMobileCardProps) => {
   return (
     <div
       id={id}
@@ -381,4 +381,4 @@ export default function TripMobileCard({
       </div>
     </div>
   );
-}
+};
