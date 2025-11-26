@@ -21,12 +21,16 @@ export const PersonalSectionsDashboard = () => {
         icon={dictionaries.personal.upcoming_rides.icon as SVGIconProps["name"]}
         cta={dictionaries.personal.upcoming_rides.cta}
         rides={state.sections.personal.ride?.data ?? undefined}
+        isEmpty={!state.sections.personal.ride.data?.length}
+        empty={dictionaries.personal.upcoming_rides.empty}
       />
       <VehiclesCardDashboard
         title={dictionaries.personal.vehicles.title}
         icon={dictionaries.personal.vehicles.icon as SVGIconProps["name"]}
         cta={dictionaries.personal.vehicles.cta}
         vehicles={state.sections.personal.vehicle?.data ?? []}
+        isEmpty={!state.sections.personal.vehicle.data?.length}
+        empty={dictionaries.personal.vehicles.empty}
       />
     </div>
   );

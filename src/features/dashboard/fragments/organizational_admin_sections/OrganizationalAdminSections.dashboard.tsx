@@ -26,6 +26,8 @@ export const OrganizationalAdminSectionsDashboard = () => {
         }
         cta={dictionaries.organizational_admin.upcoming_rides.cta}
         rides={state.sections.organization_admin.ride?.data ?? undefined}
+        isEmpty={!state.sections.organization_admin.ride.data?.length}
+        empty={dictionaries.organizational_admin.upcoming_rides.empty}
       />
       <DriversCardDashboard
         title={dictionaries.organizational_admin.drivers.title}
@@ -36,6 +38,8 @@ export const OrganizationalAdminSectionsDashboard = () => {
         driver={{
           table: driverTable,
         }}
+        isEmpty={!state.sections.organization_admin.driver.data?.length}
+        empty={dictionaries.organizational_admin.drivers.empty}
       />
     </div>
   );

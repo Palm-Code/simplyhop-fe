@@ -6,6 +6,7 @@ import {
   DashboardRideCardProps,
 } from "@/core/components/dashboard_ride_card";
 import { DashboardCard } from "@/core/components/dashboard_card";
+import { EmptyState, EmptyStateProps } from "@/core/components/empty_state";
 
 export interface RidesCardDashboardProps {
   title?: string;
@@ -17,6 +18,8 @@ export interface RidesCardDashboardProps {
     };
   };
   rides?: DashboardRideCardProps[];
+  isEmpty?: boolean;
+  empty?: EmptyStateProps;
 }
 
 export const RidesCardDashboard = ({
@@ -24,7 +27,16 @@ export const RidesCardDashboard = ({
   icon,
   cta,
   rides,
+  isEmpty,
+  empty,
 }: RidesCardDashboardProps) => {
+  if (isEmpty) {
+    return (
+      <DashboardCard title={title} icon={icon} cta={cta} variant="white">
+        <EmptyState {...empty} />
+      </DashboardCard>
+    );
+  }
   return (
     <DashboardCard title={title} icon={icon} cta={cta}>
       {rides?.map((item, index) => {

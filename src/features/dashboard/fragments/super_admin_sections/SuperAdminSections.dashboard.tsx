@@ -8,9 +8,11 @@ import {
   useDriverTableDashboard,
   useOrganizationTableDashboard,
 } from "../../react_table/hooks";
+import { DashboardSupportContext } from "../../context";
 
 export const SuperAdminSectionsDashboard = () => {
   const dictionaries = getDictionaries();
+  const { state } = React.useContext(DashboardSupportContext);
   const driverTable = useDriverTableDashboard();
   const organizationTable = useOrganizationTableDashboard();
   return (
@@ -29,6 +31,8 @@ export const SuperAdminSectionsDashboard = () => {
         organization={{
           table: organizationTable,
         }}
+        isEmpty={!state.sections.super_admin.organization.data?.length}
+        empty={dictionaries.super_admin.organizations.empty}
       />
       <DriversCardDashboard
         title={dictionaries.super_admin.drivers.title}
@@ -37,6 +41,8 @@ export const SuperAdminSectionsDashboard = () => {
         driver={{
           table: driverTable,
         }}
+        isEmpty={!state.sections.super_admin.driver.data?.length}
+        empty={dictionaries.super_admin.drivers.empty}
       />
     </div>
   );

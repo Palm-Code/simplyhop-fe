@@ -50,6 +50,10 @@
           "href": "/support/fahrten"
         }
       },
+      "empty": {
+        "message": "Noch kein Bevorstehende Fahrten",
+        "description": "Noch kein Bevorstehende Fahrten"
+      },
       "share_ride_notification": {
         "title": "Fahrt teilen",
         "cta": {
@@ -115,6 +119,10 @@
           "children": "Alle anzeigen",
           "href": "/support/fahrzeuginformationen"
         }
+      },
+      "empty": {
+        "message": "Noch kein Bevorstehende Fahrten",
+        "description": "Noch kein Bevorstehende Fahrten"
       }
     }
   },
@@ -159,6 +167,10 @@
           "children": "Alle anzeigen",
           "href": "/support/fahrten"
         }
+      },
+      "empty": {
+        "message": "Noch kein Bevorstehende Fahrten",
+        "description": "Noch kein Bevorstehende Fahrten"
       }
     },
     "drivers": {
@@ -194,6 +206,10 @@
           "children": "Alle anzeigen",
           "href": "/support/fahrer"
         }
+      },
+      "empty": {
+        "message": "Noch kein Bevorstehende Fahrten",
+        "description": "Noch kein Bevorstehende Fahrten"
       }
     }
   },
@@ -263,6 +279,10 @@
           "children": "Alle anzeigen",
           "href": "/support/organisation"
         }
+      },
+      "empty": {
+        "message": "Noch kein Bevorstehende Fahrten",
+        "description": "Noch kein Bevorstehende Fahrten"
       }
     },
     "drivers": {
@@ -298,6 +318,10 @@
           "children": "Alle anzeigen",
           "href": "/support/fahrer"
         }
+      },
+      "empty": {
+        "message": "Noch kein Bevorstehende Fahrten",
+        "description": "Noch kein Bevorstehende Fahrten"
       }
     }
   }
