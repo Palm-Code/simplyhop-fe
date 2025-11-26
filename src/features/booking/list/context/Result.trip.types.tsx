@@ -1,3 +1,4 @@
+import { TripCardProps } from "@/core/components/trip_card";
 import { RideCardResultTripProps } from "../components/ride_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -113,7 +114,7 @@ export interface ResultTripAdvancedFilter {
 }
 
 export interface ResultTripRides {
-  data: RideCardResultTripProps[];
+  data: TripCardProps[];
   pagination: {
     current: number;
     last: null | number;

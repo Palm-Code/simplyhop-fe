@@ -31,11 +31,16 @@ import { PlaceItem } from "../place_item";
 import { TimeItem } from "../time_item";
 import { DurationItem } from "../duration_item";
 import { TravelPathItem } from "../travel_path_item";
+import {
+  DriverRatingLabel,
+  DriverRatingLabelProps,
+} from "../driver_rating_label";
 
 export interface TripDesktopCardProps {
   id?: string;
   driver?: {
     profile: DriverProfileLabelProps;
+    rating: DriverRatingLabelProps;
   };
 
   car?: {
@@ -74,6 +79,9 @@ export default function TripDesktopCard({
     profile: {
       avatar: undefined,
       name: "Kelly",
+    },
+    rating: {
+      label: undefined,
     },
   },
   car = {
@@ -233,10 +241,11 @@ export default function TripDesktopCard({
         >
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
             <DriverProfileLabel {...driver.profile} />
+            <DriverRatingLabel {...driver.rating} />
           </div>
 
           <div

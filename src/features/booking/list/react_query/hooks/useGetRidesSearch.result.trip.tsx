@@ -192,6 +192,9 @@ export const useGetRideSearch = () => {
                 email: item.user.email,
               }),
             },
+            rating: {
+              label: item.user.average_ride_rating?.toLocaleString("de-DE"),
+            },
           },
           car: {
             image: {
