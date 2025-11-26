@@ -8,10 +8,14 @@ import {
   ListDriverContext,
   ListDriverItem,
 } from "../../context";
+import { LoadingState } from "@/core/components/loading_state";
+import { EmptyState } from "@/core/components/empty_state";
+import { getDictionaries } from "../../i18n";
 
 export const DataTableListDriver = () => {
   const { state, dispatch } = React.useContext(ListDriverContext);
   const table = useListDriverTable();
+  const dictionaries = getDictionaries();
 
   const handleRowClick = (row: ListDriverItem) => {
     dispatch({
@@ -23,6 +27,64 @@ export const DataTableListDriver = () => {
       },
     });
   };
+  if (state.table.loading.is_fetching) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full",
+          "px-[1px] py-[1px]",
+          "rounded-2xl"
+        )}
+        style={{
+          background:
+            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
+        }}
+      >
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-6",
+            "w-full",
+            "px-4 py-4",
+            "bg-[white]",
+            "rounded-2xl"
+          )}
+        >
+          <LoadingState />
+        </div>
+      </div>
+    );
+  }
+
+  if (!state.table.items.length) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full",
+          "px-[1px] py-[1px]",
+          "rounded-2xl"
+        )}
+        style={{
+          background:
+            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
+        }}
+      >
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-6",
+            "w-full",
+            "px-4 py-4",
+            "bg-[white]",
+            "rounded-2xl"
+          )}
+        >
+          <EmptyState {...dictionaries.table.empty} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={clsx(

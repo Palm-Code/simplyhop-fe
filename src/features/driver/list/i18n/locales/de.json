@@ -19,7 +19,8 @@
   },
   "table": {
     "empty": {
-      "message": ""
+      "message": "Noch kein Fahrerliste",
+      "description": "Noch kein Fahrerliste"
     },
     "head": {
       "items": [
