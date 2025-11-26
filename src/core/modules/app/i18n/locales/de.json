@@ -656,8 +656,8 @@
         "text": "Umweg: {{number}} minuten",
         "icon": {
           "name": "Timer",
-          "color": "#5B5B5B",
-          "darkColor": "#E9E6E6"
+          "color": "#767676",
+          "darkColor": "#F6F6F6"
         }
       }
     },

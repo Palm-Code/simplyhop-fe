@@ -325,6 +325,9 @@ export const useGetRidesId = () => {
                   ...globalDictionaries.vehicle.umweg.label.icon,
                   name: globalDictionaries.vehicle.umweg.label.icon
                     .name as SVGIconProps["name"],
+                  color: isDarkMode
+                    ? globalDictionaries.vehicle.umweg.label.icon.darkColor
+                    : globalDictionaries.vehicle.umweg.label.icon.color,
                 },
               },
               arrival: {
