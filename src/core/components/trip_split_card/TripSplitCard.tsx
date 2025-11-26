@@ -315,7 +315,10 @@ export const TripSplitCard = ({
                 "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
               )}
             >
-              <DriverProfileLabel {...driver.profile} />
+              <DriverProfileLabel
+                {...driver.profile}
+                nameClassName={clsx("!text-[0.875rem]")}
+              />
               <DriverRatingLabel {...driver.rating} />
             </div>
           </div>
@@ -328,7 +331,11 @@ export const TripSplitCard = ({
             <Image {...car.image} className={clsx("w-[75px]")} />
             {/* identity */}
             <div className={clsx("block")}>
-              <CarIdentityItem {...car.identity} />
+              <CarIdentityItem
+                {...car.identity}
+                nameClassName={clsx("!text-[0.875rem]")}
+                numberClassName={clsx("!text-[0.875rem]")}
+              />
             </div>
           </div>
 

@@ -4,11 +4,15 @@ import clsx from "clsx";
 export interface CarIdentityItemProps {
   name?: string;
   number?: string | null;
+  nameClassName?: string;
+  numberClassName?: string;
 }
 
 export default function CarIdentityItem({
   name = "",
   number = null,
+  nameClassName,
+  numberClassName,
 }: CarIdentityItemProps) {
   return (
     <div
@@ -26,7 +30,8 @@ export default function CarIdentityItem({
         <p
           className={clsx(
             "text-[black] dark:text-white text-[1rem] lg:text-[1rem] font-medium truncate text-ellipsis",
-            "w-full"
+            "w-full",
+            nameClassName
           )}
         >
           {name}
@@ -45,7 +50,8 @@ export default function CarIdentityItem({
           <p
             className={clsx(
               "text-[black] dark:text-white text-[1rem] lg:text-[1rem] font-medium truncate text-ellipsis",
-              "w-full"
+              "w-full",
+              numberClassName
             )}
           >
             {number}

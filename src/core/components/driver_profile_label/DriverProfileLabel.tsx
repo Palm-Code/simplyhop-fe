@@ -8,6 +8,7 @@ export interface DriverProfileLabelProps {
   avatar?: AvatarProps;
   name?: string;
   icon?: SVGIconProps | null;
+  nameClassName?: string;
 }
 
 export const DriverProfileLabel = ({
@@ -17,6 +18,7 @@ export const DriverProfileLabel = ({
   icon = {
     name: "User",
   },
+  nameClassName,
 }: DriverProfileLabelProps) => {
   return (
     <div
@@ -34,11 +36,21 @@ export const DriverProfileLabel = ({
         {!!icon && (
           <SVGIcon
             {...icon}
-            className={clsx("w-[1rem] h-[1rem]", "text-[black] dark:text-white")}
+            className={clsx(
+              "w-[1rem] h-[1rem]",
+              "text-[black] dark:text-white"
+            )}
           />
         )}
 
-        <p className={clsx("text-[1rem] text-[black] dark:text-white font-medium")}>{name}</p>
+        <p
+          className={clsx(
+            "text-[1rem] text-[black] dark:text-white font-medium",
+            nameClassName
+          )}
+        >
+          {name}
+        </p>
       </div>
     </div>
   );
