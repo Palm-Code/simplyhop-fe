@@ -1,77 +1,23 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import Image, { ImageProps } from "next/image";
-import { SVGIconProps } from "@/core/icons";
-import { TravelTimeItemProps } from "@/core/components/travel_time_item";
-import { DepartureItemProps } from "@/core/components/departure_item";
-import { ArrivalItemProps } from "@/core/components/arrival_item";
-import {
-  CarFacilityItem,
-  CarFacilityItemProps,
-} from "@/core/components/car_facility_item";
-import {
-  CarPriceItem,
-  CarPriceItemProps,
-} from "@/core/components/car_price_item";
-import CarIdentityItem, {
-  CarIdentityItemProps,
-} from "@/core/components/car_identity_item/CarIdentityItem";
-import {
-  DriverProfileLabel,
-  DriverProfileLabelProps,
-} from "@/core/components/driver_profile_label/DriverProfileLabel";
-import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
+import Image from "next/image";
+import SVGIcon, { SVGIconProps } from "@/core/icons";
+import { CarFacilityItem } from "@/core/components/car_facility_item";
+import { CarPriceItem } from "@/core/components/car_price_item";
+import CarIdentityItem from "@/core/components/car_identity_item/CarIdentityItem";
+import { DriverProfileLabel } from "@/core/components/driver_profile_label/DriverProfileLabel";
+import { RideBadge } from "@/core/components/ride_badge";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
-import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
-import { TravelDateItemProps } from "@/core/components/travel_date_item";
+import { UmwegBadge } from "@/core/components/umweg_badge";
 import { PlaceItem } from "../place_item";
 import { TimeItem } from "../time_item";
 import { DurationItem } from "../duration_item";
 import { TravelPathItem } from "../travel_path_item";
-import {
-  DriverRatingLabel,
-  DriverRatingLabelProps,
-} from "../driver_rating_label";
+import { DriverRatingLabel } from "../driver_rating_label";
 import { Divider } from "../divider";
-
-export interface TripSplitCardProps {
-  id?: string;
-  driver?: {
-    profile: DriverProfileLabelProps;
-    rating: DriverRatingLabelProps;
-  };
-
-  car?: {
-    image: ImageProps;
-    identity?: CarIdentityItemProps;
-    facility?: {
-      top: CarFacilityItemProps[];
-      bottom: CarFacilityItemProps[];
-    };
-  };
-
-  routes?: {
-    date?: TravelDateItemProps;
-    departure?: DepartureItemProps;
-    travelTime?: TravelTimeItemProps;
-    umWeg?: UmwegBadgeProps;
-    arrival?: ArrivalItemProps;
-  };
-  price?: {
-    initial?: CarPriceItemProps;
-  };
-  ride?: {
-    badge: RideBadgeProps[];
-  };
-  cta?: {
-    ride: {
-      href: string;
-      children: React.ReactNode;
-    };
-  };
-}
+import { TripCardProps } from "../trip_card";
 
 export const TripSplitCard = ({
   id = "",
@@ -80,9 +26,7 @@ export const TripSplitCard = ({
       avatar: undefined,
       name: "Kelly",
     },
-    rating: {
-      label: undefined,
-    },
+    rating: undefined,
   },
   car = {
     image: {
@@ -95,74 +39,11 @@ export const TripSplitCard = ({
       name: "Toyota Rav 4",
       number: "WOB ZK 295",
     },
-    facility: {
-      top: [
-        {
-          id: "seat",
-          icon: {
-            name: "User",
-            color: "#D41010",
-          },
-          name: {
-            label: "Letzter Platz für deine Buchung",
-            color: "#D41010",
-          },
-        },
-        {
-          id: "luggage",
-          icon: {
-            name: "Briefcase",
-            color: "#D41010",
-          },
-          name: {
-            label: "Keinet",
-            color: "#D41010",
-          },
-        },
-      ],
-      bottom: [
-        {
-          id: "cigarette-off",
-          icon: {
-            name: "CigaretteOff",
-            color: "#727272",
-          },
-          name: {
-            label: "Keinet",
-            color: "#727272",
-          },
-        },
-        {
-          id: "music",
-          icon: {
-            name: "Music",
-            color: "#727272",
-          },
-          name: {
-            label: "Erlaubt",
-            color: "#727272",
-          },
-        },
-        {
-          id: "dog",
-          icon: {
-            name: "Dog",
-            color: "#727272",
-          },
-          name: {
-            label: "Erlaubt",
-            color: "#727272",
-          },
-        },
-      ],
-    },
+    facility: undefined,
   },
 
   routes = {
-    date: {
-      label: "Datum",
-      date: "24.02.25",
-    },
+    date: undefined,
     departure: {
       place: "Munich",
       time: "17.30 Uhr",
@@ -180,22 +61,14 @@ export const TripSplitCard = ({
   },
 
   price,
-  ride = {
-    badge: [
-      {
-        id: "bester_preis",
-        label: "Bester Preis",
-        variant: "success",
-      },
-      {
-        id: "fahrerin",
-        label: "Fahrerin (W)",
-        variant: "danger",
-      },
-    ],
-  },
+  ride,
   cta,
-}: TripSplitCardProps) => {
+}: TripCardProps) => {
+  const [imageError, setImageError] = React.useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
   return (
     <div
       id={id}
@@ -221,20 +94,22 @@ export const TripSplitCard = ({
           )}
         >
           {/* day */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-1",
-              "h-full"
-            )}
-          >
-            <p
+          {routes.date && (
+            <div
               className={clsx(
-                "text-[1rem] font-semibold text-[#232323] dark:text-white"
+                "grid grid-cols-1 place-content-start place-items-start gap-1",
+                "h-full"
               )}
             >
-              {`${routes.date?.label}, ${routes.date?.date}`}
-            </p>
-          </div>
+              <p
+                className={clsx(
+                  "text-[1rem] font-semibold text-[#232323] dark:text-white"
+                )}
+              >
+                {`${routes.date?.label}, ${routes.date?.date}`}
+              </p>
+            </div>
+          )}
 
           <div
             className={clsx(
@@ -319,7 +194,7 @@ export const TripSplitCard = ({
                 {...driver.profile}
                 nameClassName={clsx("!text-[0.875rem]")}
               />
-              <DriverRatingLabel {...driver.rating} />
+              {driver.rating && <DriverRatingLabel {...driver.rating} />}
             </div>
           </div>
           <Divider />
@@ -328,7 +203,15 @@ export const TripSplitCard = ({
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
-            <Image {...car.image} className={clsx("w-[75px]")} />
+            {!imageError ? (
+              <Image
+                {...car.image}
+                className={clsx("w-[75px]")}
+                onError={handleImageError}
+              />
+            ) : (
+              <div className={clsx("w-[75px] h-[46px]")} />
+            )}
             {/* identity */}
             <div className={clsx("block")}>
               <CarIdentityItem
@@ -339,60 +222,68 @@ export const TripSplitCard = ({
             </div>
           </div>
 
-          <div
-            className={clsx(
-              "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]"
-            )}
-          >
-            {ride.badge.map((item, itemIndex) => (
-              <RideBadge {...item} key={itemIndex} />
-            ))}
-
-            {/* facility */}
+          {(car.facility || ride?.badge) && (
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                "w-full"
+                "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]"
               )}
             >
-              <div
-                className={clsx(
-                  "flex flex-wrap items-center justify-start gap-[0.75rem]"
-                )}
-              >
-                {car.facility?.top.map((item, index) => (
-                  <CarFacilityItem
-                    key={index}
-                    icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
-                    name={{ ...item.name }}
-                  />
-                ))}
-              </div>
+              {ride?.badge.map((item, itemIndex) => (
+                <RideBadge {...item} key={itemIndex} />
+              ))}
 
-              <div
-                className={clsx(
-                  "flex flex-wrap items-center justify-start gap-[0.75rem]"
-                )}
-              >
-                {car.facility?.bottom.map((item, Index) => (
-                  <CarFacilityItem
-                    key={Index}
-                    icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
-                    name={{ ...item.name }}
-                  />
-                ))}
-              </div>
+              {/* facility */}
+              {car.facility && (
+                <div
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                    "w-full"
+                  )}
+                >
+                  <div
+                    className={clsx(
+                      "flex flex-wrap items-center justify-start gap-[0.75rem]"
+                    )}
+                  >
+                    {car.facility?.top.map((item, index) => (
+                      <CarFacilityItem
+                        key={index}
+                        icon={
+                          { ...item.icon } as { name: SVGIconProps["name"] }
+                        }
+                        name={{ ...item.name }}
+                      />
+                    ))}
+                  </div>
+
+                  <div
+                    className={clsx(
+                      "flex flex-wrap items-center justify-start gap-[0.75rem]"
+                    )}
+                  >
+                    {car.facility?.bottom.map((item, Index) => (
+                      <CarFacilityItem
+                        key={Index}
+                        icon={
+                          { ...item.icon } as { name: SVGIconProps["name"] }
+                        }
+                        name={{ ...item.name }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
+          )}
 
-          {/* price */}
-          {cta && price && (
+          {(cta || price) && (
             <div
               className={clsx(
-                "flex flex-row items-center justify-between gap-[0.5rem]",
-                "w-full"
+                "flex items-center flex-row justify-between gap-[0.5rem]",
+                "w-full h-full"
               )}
             >
+              {/* price */}
               {price && (
                 <CarPriceItem
                   {...price.initial}
@@ -400,21 +291,68 @@ export const TripSplitCard = ({
                 />
               )}
 
-              {/* cta */}
-              {cta && (
+              {/* cta book */}
+              {cta?.book && (
                 <Link
-                  aria-label={String(cta.ride.children ?? "")}
-                  href={cta.ride.href}
+                  aria-label={String(cta.book.children ?? "")}
+                  href={cta.book.href}
                 >
                   <Button
-                    aria-label={String(cta.ride.children ?? "")}
-                    name={String(cta.ride.children ?? "")}
+                    aria-label={String(cta.book.children ?? "")}
+                    name={String(cta.book.children ?? "")}
                     className={clsx("!px-[1rem] !py-[0.5rem]")}
-                    // onClick={cta.ride.onClick}
+                    // onClick={cta.book.onClick}
                   >
-                    {cta.ride.children}
+                    {cta.book.children}
                   </Button>
                 </Link>
+              )}
+
+              {(cta?.share || cta?.detail) && (
+                <div
+                  className={clsx(
+                    "grid grid-flow-col items-start content-start justify-items-end justify-end gap-[1rem]"
+                  )}
+                >
+                  {cta.share && (
+                    <button
+                      aria-label={"Aktie"}
+                      name={"Aktie"}
+                      className={clsx(
+                        "flex items-center justify-center",
+                        "rounded-[50%]",
+                        "w-[2rem] h-[2rem]",
+                        "bg-[#F6F6F6]",
+                        "cursor-pointer"
+                      )}
+                      onClick={cta.share.onClick}
+                    >
+                      <SVGIcon
+                        name="Forward"
+                        className={clsx(
+                          "min-w-[22px] min-wh-[22px]",
+                          "text-[#767676]"
+                        )}
+                      />
+                    </button>
+                  )}
+                  {cta.detail && (
+                    <Link
+                      aria-label={String(cta.detail.children ?? "")}
+                      href={cta.detail.href}
+                      className={clsx("w-full")}
+                      scroll={false}
+                    >
+                      <Button
+                        aria-label={String(cta.detail.children ?? "")}
+                        name={String(cta.detail.children ?? "")}
+                        className={clsx("!px-[0.5rem] !py-[0.5rem]")}
+                      >
+                        {cta.detail.children}
+                      </Button>
+                    </Link>
+                  )}
+                </div>
               )}
             </div>
           )}

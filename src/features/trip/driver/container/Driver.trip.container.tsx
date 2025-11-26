@@ -1,13 +1,18 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { HeaderDriverTrip } from "../fragments/header";
 import { ListTripProvider } from "../../list/context";
-import { ListTripContainer } from "../../list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
 import { NavigationDriverTrip } from "../fragments/navigation";
 import { SearchDriverTrip } from "../fragments/search";
+import { TabListTrip } from "../../list/fragments/tab";
+import { RideFilterListTrip } from "../../list/fragments/ride_filter";
+import { SectionListTrip } from "../../list/fragments/section";
+import { useGetUserProfileId } from "../react_query/hooks";
 
 export const DriverTripContainer = () => {
+  useGetUserProfileId();
   return (
     <div
       className={clsx(
@@ -21,7 +26,9 @@ export const DriverTripContainer = () => {
         <SearchDriverTrip />
       </div>
       <ListTripProvider>
-        <ListTripContainer />
+        <TabListTrip />
+        <RideFilterListTrip />
+        <SectionListTrip />
         <AlertApp />
       </ListTripProvider>
     </div>

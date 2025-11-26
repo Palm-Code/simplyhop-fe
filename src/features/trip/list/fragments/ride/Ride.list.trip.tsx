@@ -1,28 +1,26 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { ListTripActionEnum, ListTripContext } from "../../context";
-import { RideCard } from "../../../../../core/components/ride_card";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { useGetRidesSearch } from "../../react_query/hooks";
-import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { LoadingState } from "@/core/components/loading_state";
+import { EmptyState } from "@/core/components/empty_state";
+import { TripCard } from "@/core/components/trip_card";
 
 export const RideListTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ListTripContext);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const isTripListRoute = pathname.startsWith("/support/fahrten");
+
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
   );
   const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
-  const status = searchParams.get("ride-status");
-  const inProgressStatus = !status;
-  // const inProgressStatus = status === "upcoming";
 
   const { isFetching: isFetchingGetRidesSearch } = useGetRidesSearch();
 
@@ -36,7 +34,7 @@ export const RideListTrip = () => {
           "w-full h-[400px]"
         )}
       >
-        <ListLoader message={dictionaries.list.loading.message} />
+        <LoadingState />
       </div>
     );
   }
@@ -49,7 +47,7 @@ export const RideListTrip = () => {
           "w-full h-[400px]"
         )}
       >
-        <ListErrorItem message={dictionaries.list.empty_data.message} />
+        <EmptyState message={dictionaries.list.empty_data.message} />
       </div>
     );
   }
@@ -96,39 +94,17 @@ export const RideListTrip = () => {
         )}
       >
         {state.ride.data.map((item, itemIndex) => (
-          <RideCard
-            key={itemIndex}
+          <TripCard
             {...item}
-            routes={{
-              ...item.routes,
-              date:
-                isOrganizationDetailRoute && inProgressStatus
-                  ? undefined
-                  : isDriverDetailRoute && inProgressStatus
-                  ? undefined
-                  : item.routes?.date,
-            }}
-            price={
-              isTripListRoute
-                ? undefined
-                : isOrganizationDetailRoute
-                ? undefined
-                : isDriverDetailRoute
-                ? undefined
-                : item.price
-            }
+            key={itemIndex}
             cta={{
-              detail: {
-                children: item.cta?.detail.children ?? "",
-                href: item.cta?.detail.href ?? "",
-              },
+              ...item.cta,
               share: {
-                message: item.cta?.share.message ?? "",
-                href: item.cta?.share.href ?? "",
+                ...item.cta?.share,
                 onClick: () =>
                   handleClickShare({
-                    link: item.cta?.share.href ?? "",
-                    message: item.cta?.share.message ?? "",
+                    link: item.cta?.share?.href ?? "",
+                    message: item.cta?.share?.message ?? "",
                   }),
               },
             }}

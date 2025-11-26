@@ -1,8 +1,8 @@
 import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
 import { BookingCardProps } from "@/core/components/book_card";
-import { RideCardProps } from "@/core/components/ride_card";
 import { BookingDetailCardProps } from "@/core/components/booking_detail_card";
 import { CarPriceItemProps } from "@/core/components/car_price_item";
+import { TripCardProps } from "@/core/components/trip_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -38,13 +38,13 @@ export interface ListTripFilters {
 }
 
 export interface ListTripRide {
-  data: RideCardProps[];
+  data: TripCardProps[];
   pagination: {
     current: number;
     last: null | number;
   };
   detail:
-    | (RideCardProps & {
+    | (TripCardProps & {
         booking: RideBookingListItemProps[];
       })
     | null;

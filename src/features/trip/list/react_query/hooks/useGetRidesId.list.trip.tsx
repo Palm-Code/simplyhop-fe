@@ -120,12 +120,12 @@ export const useGetRidesId = () => {
                   ? "-"
                   : dayjs.utc(item.departure_time).format("DD.MM.YY"),
               },
-              startTime: {
-                label: "Startzeit",
-                time: !item.departure_time
-                  ? "-"
-                  : dayjs.utc(item.departure_time).format("HH.mm [Uhr]"),
-              },
+              // startTime: {
+              //   label: "Startzeit",
+              //   time: !item.departure_time
+              //     ? "-"
+              //     : dayjs.utc(item.departure_time).format("HH.mm [Uhr]"),
+              // },
               departure: {
                 place: !item.start_name ? "-" : item.start_name,
                 time: !item.departure_time

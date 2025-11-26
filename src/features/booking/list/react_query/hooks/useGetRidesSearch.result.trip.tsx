@@ -192,9 +192,11 @@ export const useGetRideSearch = () => {
                 email: item.user.email,
               }),
             },
-            rating: {
-              label: item.user.average_ride_rating?.toLocaleString("de-DE"),
-            },
+            rating: !item.user.average_ride_rating
+              ? undefined
+              : {
+                  label: item.user.average_ride_rating.toLocaleString("de-DE"),
+                },
           },
           car: {
             image: {
@@ -471,7 +473,7 @@ export const useGetRideSearch = () => {
             ],
           },
           cta: {
-            ride: {
+            book: {
               href: `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
               children: "Mitfahren",
             },

@@ -77,9 +77,12 @@ export const useGetRidesId = () => {
                   email: item.user.email,
                 }),
               },
-              rating: {
-                label: item.user.average_ride_rating?.toLocaleString("de-DE"),
-              },
+              rating: !item.user.average_ride_rating
+                ? undefined
+                : {
+                    label:
+                      item.user.average_ride_rating.toLocaleString("de-DE"),
+                  },
             },
             car: {
               image: {

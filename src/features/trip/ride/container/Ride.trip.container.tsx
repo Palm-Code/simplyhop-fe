@@ -2,8 +2,12 @@ import * as React from "react";
 import clsx from "clsx";
 import { HeaderRideTrip } from "../fragments/header";
 import { ListTripProvider } from "../../list/context";
-import { ListTripContainer } from "../../list/container";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
+import { NavigationRideTrip } from "../fragments/navigation";
+
+import { RideFilterListTrip } from "../../list/fragments/ride_filter";
+import { RideSectionListTrip } from "../../list/fragments/ride_section";
+import { SearchListTrip } from "../../list/fragments/search";
 
 export const RideTripContainer = () => {
   return (
@@ -14,8 +18,13 @@ export const RideTripContainer = () => {
       )}
     >
       <HeaderRideTrip />
+      <div className={clsx("flex items-center justify-between", "w-full")}>
+        <NavigationRideTrip />
+        <SearchListTrip />
+      </div>
       <ListTripProvider>
-        <ListTripContainer />
+        <RideFilterListTrip />
+        <RideSectionListTrip />
         <AlertApp />
       </ListTripProvider>
     </div>

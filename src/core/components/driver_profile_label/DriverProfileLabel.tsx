@@ -45,7 +45,7 @@ export const DriverProfileLabel = ({
 
         <p
           className={clsx(
-            "text-[1rem] text-[black] dark:text-white font-medium",
+            "text-[1rem] text-[black] dark:text-white font-medium truncate text-ellipsis line-clamp-1 w-full",
             nameClassName
           )}
         >

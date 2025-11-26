@@ -1,5 +1,5 @@
 {
-  "title": "Fahrten von {{name}}",
+  "title": "Fahrten von {{organization_name}}",
   "breadcrumb": {
     "items": [
       {
@@ -7,8 +7,16 @@
         "href": "/support/dashboard"
       },
       {
-        "label": "Fahrten",
-        "href": "/support/fahrten"
+        "label": "Organisation",
+        "href": "/support/organisation"
+      },
+      {
+        "label": "{{organization_name}}",
+        "href": "/support/organisation/detail/{{organization_id}}"
+      },
+      {
+        "label": "Fahrten von {{organization_name}}",
+        "href": "/support/fahrten/organisation/{{organization_id}}"
       }
     ]
   },

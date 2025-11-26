@@ -1,5 +1,5 @@
 {
-  "title": "Fahrten von {{name}}",
+  "title": "Fahrten von {{driver_name}}",
   "breadcrumb": {
     "items": [
       {
@@ -7,8 +7,16 @@
         "href": "/support/dashboard"
       },
       {
-        "label": "Fahrten",
-        "href": "/support/fahrten"
+        "label": "Fahrer",
+        "href": "/support/fahrer"
+      },
+      {
+        "label": "{{driver_name}}",
+        "href": "/support/fahrer/detail/{{driver_id}}"
+      },
+      {
+        "label": "Fahrten von {{driver_name}}",
+        "href": "/support/fahrten/driver/{{driver_id}}"
       }
     ]
   },

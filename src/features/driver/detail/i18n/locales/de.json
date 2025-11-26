@@ -257,7 +257,7 @@
     "cta": {
       "primary": {
         "children": "Alle anzeigen",
-        "href": "/support/fahrten"
+        "href": "/support/fahrten/driver/{{driver_id}}"
       }
     }
   }

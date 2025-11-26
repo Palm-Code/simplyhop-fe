@@ -3,42 +3,13 @@ import * as React from "react";
 import clsx from "clsx";
 import { HeaderListTrip } from "../fragments/header";
 import { TabListTrip } from "../fragments/tab";
-import { usePathname, useSearchParams } from "next/navigation";
-import { BookListTrip } from "../fragments/book";
-import { RideListTrip } from "../fragments/ride";
-import { RideDetailListTrip } from "../fragments/ride_detail";
-import { BookDetailListTrip } from "../fragments/book_detail";
-import { UserContext } from "@/core/modules/app/context";
-import { DeleteRideNotificationListTrip } from "../fragments/delete_ride_notification";
-import { SuccessDeleteRideNotificationListTrip } from "../fragments/success_delete_ride_notification";
-import { ShareRideNotificationListTrip } from "../fragments/share_ride_notification";
-import { CancelBookNotificationListTrip } from "../fragments/cancel_book_notification";
-import { SuccessCancelBookNotificationListTrip } from "../fragments/success_cancel_book_notification";
+import { SectionListTrip } from "../fragments/section";
 import { RideFilterListTrip } from "../fragments/ride_filter";
-import { CompletedRideListTrip } from "../fragments/complete_ride_confirmation";
-import { NavigationListTrip } from "../fragments/navigation";
-import { SearchListTrip } from "../fragments/search";
+import { UserContext } from "@/core/modules/app/context";
+import { BookingSectionListTrip } from "../fragments/booking_section";
 
 export const ListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
-
-  const searchParams = useSearchParams();
-  const type = searchParams.get("type");
-  const pathname = usePathname();
-  const isTripListRoute = pathname.startsWith("/support/fahrten");
-  const isOrganizationDetailRoute = pathname.startsWith(
-    "/support/organisation/detail"
-  );
-  const isDriverDetailRoute = pathname.startsWith("/support/fahrer");
-
-  const isBookingList = isTripListRoute
-    ? false
-    : isOrganizationDetailRoute
-    ? false
-    : isDriverDetailRoute
-    ? type === "book"
-    : type === "book" || (!type && userState.profile?.is_driver === false);
-
   return (
     <>
       <div className={clsx("w-full h-full", "pb-[3rem]", "relative")}>
@@ -56,34 +27,13 @@ export const ListTripContainer = () => {
             )}
           >
             <HeaderListTrip />
-            {isTripListRoute && (
-              <div
-                className={clsx("flex items-center justify-between", "w-full")}
-              >
-                <NavigationListTrip />
-                <SearchListTrip />
-              </div>
-            )}
+            {userState.profile?.is_driver && <TabListTrip />}
 
-            <TabListTrip />
             <RideFilterListTrip />
-
-            {isBookingList ? (
-              <>
-                <BookListTrip />
-                <BookDetailListTrip />
-                <CancelBookNotificationListTrip />
-                <SuccessCancelBookNotificationListTrip />
-              </>
+            {userState.profile?.is_driver ? (
+              <SectionListTrip />
             ) : (
-              <>
-                <RideListTrip />
-                <RideDetailListTrip />
-                <DeleteRideNotificationListTrip />
-                <SuccessDeleteRideNotificationListTrip />
-                <CompletedRideListTrip />
-                <ShareRideNotificationListTrip />
-              </>
+              <BookingSectionListTrip />
             )}
           </div>
         </div>

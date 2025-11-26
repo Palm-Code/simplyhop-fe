@@ -4,13 +4,24 @@ import { getDictionaries } from "../../i18n";
 import { DashboardHeader } from "@/core/components/dashboard_header";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { UserContext } from "@/core/modules/app/context";
+import { DriverTripContext } from "../../context";
 
 export const HeaderDriverTrip = () => {
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
+  const { state } = React.useContext(DriverTripContext);
+
   return (
     <DashboardHeader
-      title={dictionaries.title}
+      title={dictionaries.title.replaceAll(
+        "{{driver_name}}",
+        formatDisplayName({
+          first_name: !state.user.data?.last_name
+            ? state.user.data?.first_name
+            : `${state.user.data.first_name} ${state.user.data.last_name}`,
+          email: state.user.data?.email,
+        })
+      )}
       avatar={{
         src: userState.profile?.avatar,
       }}

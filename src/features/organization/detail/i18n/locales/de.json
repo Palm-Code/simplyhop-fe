@@ -249,7 +249,7 @@
     "cta": {
       "primary": {
         "children": "Alle anzeigen",
-        "href": "/"
+        "href": "/support/fahrten/organization/{{organization_id}}"
       }
     }
   }

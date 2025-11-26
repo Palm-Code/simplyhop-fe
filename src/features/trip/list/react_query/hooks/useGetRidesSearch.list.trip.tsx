@@ -14,6 +14,7 @@ import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import "dayjs/locale/de";
 import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
@@ -22,6 +23,7 @@ import { ENVIRONMENTS } from "@/core/environments";
 import { getDictionaries } from "../../i18n";
 
 dayjs.extend(utc);
+dayjs.locale("de");
 
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
@@ -124,6 +126,9 @@ export const useGetRidesSearch = () => {
                 email: item.user.email,
               }),
             },
+            rating: {
+              label: item.user.average_ride_rating?.toLocaleString("de-DE"),
+            },
           },
           car: {
             image: {
@@ -145,12 +150,19 @@ export const useGetRidesSearch = () => {
           },
 
           routes: {
-            date: {
-              label: "Datum",
-              date: !item.departure_time
-                ? "-"
-                : dayjs.utc(item.departure_time).format("DD.MM.YY"),
-            },
+            date: !rideStatus
+              ? undefined
+              : {
+                  label: !item.departure_time
+                    ? "-"
+                    : dayjs
+                        .utc(item.departure_time)
+                        .format("dddd")
+                        .replace(/^\w/, (c) => c.toUpperCase()),
+                  date: !item.departure_time
+                    ? "-"
+                    : dayjs.utc(item.departure_time).format("DD.MM.YY"),
+                },
             startTime: {
               label: "Startzeit",
               time: !item.departure_time
@@ -177,12 +189,15 @@ export const useGetRidesSearch = () => {
             },
           },
 
-          price: {
-            initial: {
-              label: "Preis",
-              price: formatEuro(item.base_price),
-            },
-          },
+          price:
+            userState.profile?.role === "admin"
+              ? undefined
+              : {
+                  initial: {
+                    label: "Preis",
+                    price: formatEuro(item.base_price),
+                  },
+                },
           cta: {
             detail: {
               children: "Siehe Details",
