@@ -37,7 +37,7 @@ export const TabChatTrip = () => {
       className={clsx(
         "flex justify-between",
         "w-full",
-        "border-b-[0.5px] border-b-[#5B5B5B]",
+        "border-b-[0.5px] border-b-[#E9E6E6] dark:border-b-[#464646]",
         "overflow-auto"
       )}
     >
@@ -45,9 +45,9 @@ export const TabChatTrip = () => {
         <Tab
           key={itemIndex}
           className={clsx(
-            "text-[#5B5B5B] data-[selected]:text-[#33CC33] font-normal data-[selected]:font-semibold text-[1rem] ",
+            "text-[#979797] dark:text-[#C3C3C3] data-[selected]:text-[#33CC33] dark:data-[selected]:text-[#5AC53D] font-normal data-[selected]:font-semibold text-[1rem] ",
             "outline-none",
-            "data-[selected]:border-b data-[selected]:border-b-[#33CC33]",
+            "data-[selected]:border-b data-[selected]:border-b-[#33CC33] dark:data-[selected]:border-b-[#5AC53D]",
             "cursor-pointer"
           )}
           onClick={() => handleClickTab(item)}

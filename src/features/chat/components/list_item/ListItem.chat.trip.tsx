@@ -27,8 +27,11 @@ export const ListItemChatTrip = ({
       className={clsx(
         "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[1.5rem]",
         "w-full",
-        selected ? "bg-[#EFF9EC]" : "hover:bg-[#EFF9EC]",
-        "py-[0.5rem] px-[0.25rem]"
+        selected
+          ? "bg-[#F0F0F0] dark:bg-[#767676]"
+          : "hover:bg-[#F0F0F0] dark:hover:bg-[#767676]",
+        "rounded-[0.75rem]",
+        "py-[0.75rem] px-[0.75rem]"
       )}
     >
       <div
@@ -45,12 +48,16 @@ export const ListItemChatTrip = ({
             "w-full"
           )}
         >
-          <p className={clsx("text-[1rem] text-[#141414] dark:text-white font-semibold")}>
+          <p
+            className={clsx(
+              "text-[1rem] text-[#141414] dark:text-white font-semibold"
+            )}
+          >
             {name}
           </p>
           <p
             className={clsx(
-              "text-[0.875rem] text-[#4F5665] font-normal text-left",
+              "text-[0.875rem] text-[#5B5B5B] dark:text-[#DADADA] font-normal text-left",
               "line-clamp-1 text-ellipsis",
               "w-full"
             )}
@@ -66,7 +73,11 @@ export const ListItemChatTrip = ({
           "pb-[0.5rem]"
         )}
       >
-        <span className={clsx("text-[0.625rem] text-[#4F5665] font-normal")}>
+        <span
+          className={clsx(
+            "text-[0.625rem] text-[#5B5B5B] dark:text-[#DADADA] font-normal"
+          )}
+        >
           {date}
         </span>
         {isNew && (

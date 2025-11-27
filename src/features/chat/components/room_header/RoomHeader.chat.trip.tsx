@@ -3,6 +3,11 @@ import clsx from "clsx";
 import Link from "next/link";
 import SVGIcon from "@/core/icons";
 import { Avatar, AvatarProps } from "@/core/components/avatar";
+import { DriverProfileLabel } from "@/core/components/driver_profile_label";
+import {
+  DriverRatingLabel,
+  DriverRatingLabelProps,
+} from "@/core/components/driver_rating_label";
 
 export interface RoomHeaderChatTripProps {
   avatar?: AvatarProps;
@@ -11,6 +16,7 @@ export interface RoomHeaderChatTripProps {
   cta?: {
     onClick?: () => void;
   };
+  rating?: DriverRatingLabelProps;
 }
 
 export const RoomHeaderChatTrip = ({
@@ -20,6 +26,7 @@ export const RoomHeaderChatTrip = ({
   cta = {
     onClick: () => {},
   },
+  rating,
 }: RoomHeaderChatTripProps) => {
   return (
     <div
@@ -45,17 +52,16 @@ export const RoomHeaderChatTrip = ({
         )}
         onClick={cta.onClick}
       >
-        <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />
-
-        <div
-          className={clsx(
-            "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0rem]"
-          )}
-        >
-          <h2 className={clsx("text-[#141414] text-[1rem] font-semibold")}>
-            {name}
-          </h2>
-        </div>
+        <DriverProfileLabel
+          id={"id"}
+          avatar={avatar}
+          name={name}
+          icon={{
+            name: "User",
+            className: "w-4 h-4 text-[#767676]",
+          }}
+        />
+        {rating && <DriverRatingLabel {...rating} />}
       </button>
     </div>
   );

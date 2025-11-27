@@ -40,7 +40,7 @@ export const Avatar = ({
       className={clsx(
         "flex items-center justify-center",
         "rounded-[50%]",
-        "bg-[#33CC33]",
+        "bg-[#249124] dark:bg-[#33CC33]",
         "overflow-clip",
         "relative",
         className

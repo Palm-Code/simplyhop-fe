@@ -106,7 +106,7 @@ export const ChatTripContainer = () => {
                   className={clsx(
                     "grid grid-rows-[60px_1fr] pb-12 grid-cols-1 place-content-start place-items-start gap-[2rem]",
                     "w-full h-full",
-                    "bg-[white]"
+                    // "bg-[white]"
                   )}
                 >
                   <RoomHeaderChatTrip
@@ -134,7 +134,7 @@ export const ChatTripContainer = () => {
                 className={clsx(
                   "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
                   "w-full h-full",
-                  "bg-[white]"
+                  // "bg-[white]"
                 )}
               >
                 <RoomHeaderChatTrip
