@@ -11,7 +11,7 @@ export const DeleteChatConfirmationChatTrip = () => {
   const { state, dispatch } = React.useContext(ChatTripContext);
 
   const {
-    mutate: deleteMessageRoomsId,
+    mutateAsync: deleteMessageRoomsId,
     isPending: isPendingDeleteMessageRoomsId,
   } = useDeleteMessageRoomsId();
 
@@ -43,7 +43,15 @@ export const DeleteChatConfirmationChatTrip = () => {
         is_open: false,
       },
     });
-    deleteMessageRoomsId();
+    const res = await deleteMessageRoomsId();
+    if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetUserProfileData,
+      payload: {
+        ...state.user_profile,
+        is_open: false,
+      },
+    });
   };
 
   return (

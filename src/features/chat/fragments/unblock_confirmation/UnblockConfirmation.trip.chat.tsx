@@ -10,7 +10,7 @@ export const UnblockConfirmationChatTrip = () => {
 
   const { state, dispatch } = React.useContext(ChatTripContext);
 
-  const { mutate: deleteUserBlock, isPending: isPendingDeleteUserBlock } =
+  const { mutateAsync: deleteUserBlock, isPending: isPendingDeleteUserBlock } =
     useDeleteUserBlock();
 
   const handleClose = () => {
@@ -41,7 +41,15 @@ export const UnblockConfirmationChatTrip = () => {
         is_open: false,
       },
     });
-    deleteUserBlock();
+    const res = await deleteUserBlock();
+    if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetUserProfileData,
+      payload: {
+        ...state.user_profile,
+        is_open: false,
+      },
+    });
   };
 
   return (

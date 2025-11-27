@@ -10,7 +10,7 @@ export const BlockConfirmationChatTrip = () => {
 
   const { state, dispatch } = React.useContext(ChatTripContext);
 
-  const { mutate: postUserBlock, isPending: isPendingUserBlock } =
+  const { mutateAsync: postUserBlock, isPending: isPendingUserBlock } =
     usePostUserBlock();
 
   const handleClose = () => {
@@ -41,7 +41,15 @@ export const BlockConfirmationChatTrip = () => {
         is_open: false,
       },
     });
-    postUserBlock();
+    const res = await postUserBlock();
+    if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetUserProfileData,
+      payload: {
+        ...state.user_profile,
+        is_open: false,
+      },
+    });
   };
 
   return (
