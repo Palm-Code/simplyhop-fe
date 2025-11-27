@@ -112,11 +112,11 @@ export const useGetRideSearch = () => {
         : state.advanced_filter.sort.selected.id,
       "page[number]": state.rides.pagination.current,
       "page[size]": PAGINATION.SIZE,
-      // "filter[shift_id]":!state.advanced_filter.shift.selected.length
-      //   ? undefined
-      //   : state.advanced_filter.pets.selected.length === 1
-      //   ? state.advanced_filter.pets.selected[0].id === "true"
-      //   : undefined
+      "filter[shift_id]": !state.advanced_filter.shift.selected.length
+        ? undefined
+        : state.advanced_filter.pets.selected.length === 1
+        ? parseInt(state.advanced_filter.pets.selected[0].id)
+        : undefined,
     },
   };
 
