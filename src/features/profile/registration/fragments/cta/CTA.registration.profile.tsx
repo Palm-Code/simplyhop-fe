@@ -11,12 +11,12 @@ import {
   usePostVehicleCreateMy,
 } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { UserActionEnum, UserContext } from "@/core/modules/app/context";
+import { UserContext } from "@/core/modules/app/context";
 
 export const CTARegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
-  const { dispatch: dispatchUser } = React.useContext(UserContext);
+  const { refetch } = React.useContext(UserContext);
   const {
     mutateAsync: postUserProfileCreate,
     isPending: isPendingPostUserProfileCreate,
@@ -51,28 +51,7 @@ export const CTARegistrationProfile = () => {
       localStorage.setItem("new_user", "true");
     }
 
-    dispatchUser({
-      type: UserActionEnum.SetProfileData,
-      payload: {
-        id: user.data.id,
-        first_name: user.data?.first_name ?? "",
-        last_name: user.data?.last_name ?? "",
-        avatar: user.data.avatar,
-        email: user.data.email,
-        phonenumber: user.data?.mobile ?? "",
-        city: user.data?.city ?? "",
-        about_me: user.data?.profile?.bio ?? "",
-        is_driver: user.data?.is_driver === 1 ? true : false,
-        gender: user.data?.gender ?? null,
-        is_able_to_ride: user.data.can_share_ride,
-        is_super_admin: user.data.is_super_admin,
-        role: user.data.role,
-        total_passengers_count: user.data.total_passengers_count,
-        total_trips: user.data.total_trips,
-        average_ride_rating: user.data.average_ride_rating,
-        organization_id: user.data.organization_id,
-      },
-    });
+    refetch();
 
     dispatch({
       type: RegistrationProfileActionEnum.SetNotificationData,

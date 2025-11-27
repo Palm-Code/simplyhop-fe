@@ -61,6 +61,8 @@ const UserProvider = (props: { children: React.ReactNode }) => {
     }
   }, [data, isFetching]);
 
+  console.log(state.profile?.is_able_to_ride, "ini ride user context");
+
   return (
     <UserContext.Provider value={{ state, dispatch, refetch }}>
       {props.children}
