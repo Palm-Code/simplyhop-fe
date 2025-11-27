@@ -27,8 +27,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div
                 className={clsx(
                   "w-full lg:h-[calc(100vh-2rem)]",
-                  "sticky top-0 lg:bottom-0 z-[30]",
-                  "bg-[white] dark:bg-[#232323]"
+                  "sticky top-0 lg:bottom-0 z-[30]"
                 )}
               >
                 <div className={clsx("w-full h-full", "pt-[2rem]")}>

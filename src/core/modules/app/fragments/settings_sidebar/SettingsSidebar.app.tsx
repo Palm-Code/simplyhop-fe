@@ -111,8 +111,7 @@ export const SettingsSidebarApp = () => {
           "w-full h-full",
           "px-[1px] py-[1px]",
           "rounded-2xl",
-          "hidden lg:block",
-          "dark:border dark:border-[#464646]"
+          "hidden lg:block"
         )}
         style={{
           background: isDarkMode
@@ -145,10 +144,7 @@ export const SettingsSidebarApp = () => {
                   >
                     <SVGIcon
                       name={menu.icon as SVGIconProps["name"]}
-                      className={clsx(
-                        "w-4 h-4",
-                        isSelected ? "text-[#26531A]" : "text-[#767676]"
-                      )}
+                      className={clsx("w-4 h-4")}
                     />
                     {menu.name}
                   </SettingTabButton>
@@ -182,10 +178,7 @@ export const SettingsSidebarApp = () => {
                   >
                     <SVGIcon
                       name={menu.icon as SVGIconProps["name"]}
-                      className={clsx(
-                        "w-4 h-4",
-                        isSelected ? "text-[#26531A]" : "text-[#767676]"
-                      )}
+                      className={clsx("w-4 h-4")}
                     />
                     {menu.name}
                   </SettingTabButton>

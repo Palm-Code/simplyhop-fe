@@ -14,7 +14,7 @@
 
 /* Dark mode configuration - simple test */
 .dark {
-  --background: #232323;
+  --background: #292929;
 }
 
 @theme inline {
