@@ -183,9 +183,10 @@ export const FormChatTrip = () => {
         "grid-cols-[1.5rem_1fr_auto]",
         "grid items-center content-center justify-start justify-items-start gap-[0.625rem]",
         "w-full sticky bottom-0",
-        "bg-[white]",
+        "bg-[white] dark:bg-[#232323]",
         "px-[1rem] lg:px-[2.5rem] py-[1rem]",
-        "border-t border-t-[#DFDFDF]"
+        'h-[72px]',
+        "border-t border-t-[#E9E6E6] dark:border-t-[#464646]"
       )}
     >
       <div className={clsx("relative")}>

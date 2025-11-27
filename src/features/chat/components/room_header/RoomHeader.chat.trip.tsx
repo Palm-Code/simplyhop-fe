@@ -34,7 +34,9 @@ export const RoomHeaderChatTrip = ({
         "grid grid-flow-col items-center content-center justify-items-start justify-start gap-[0.75rem]",
         "w-full",
         "px-[1rem] py-[0.75rem] lg:px-[2.25rem] lg:py-[0.75rem]",
-        "border-b border-b-[#E9E9E9]"
+        "border-b border-b-[#E9E6E6] dark:border-b-[#464646]",
+        "bg-white dark:bg-[#232323]",
+        "h-20"
       )}
     >
       <Link href={href} className={clsx("block lg:hidden")}>

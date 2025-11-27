@@ -41,22 +41,30 @@ export default function RecipientMessageItemChatTrip({
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]"
             )}
           >
-            <span className={clsx("text-[#515151] text-[0.75rem] font-medium")}>
+            <span
+              className={clsx(
+                "text-[#232323] dark:text-[#FFFFFF] text-[0.75rem] font-medium"
+              )}
+            >
               {name}
             </span>
-            <span className={clsx("text-[#A0A0A0] text-[0.75rem] font-normal")}>
+            <span
+              className={clsx(
+                "text-[#5B5B5B] dark:text-[#DADADA] text-[0.75rem] font-normal"
+              )}
+            >
               {time}
             </span>
           </div>
 
           <div
             className={clsx(
-              "bg-[white]",
-              "border border-[#E7E7E7]",
+              "bg-[white] dark:bg-[#232323]",
+              "border border-[#E9E6E6] dark:border-[#464646]",
               "rounded-tr-[0.875rem] rounded-br-[0.875rem] rounded-bl-[0.875rem]",
               "px-[1.5rem] py-[1rem]",
-              "max-w-[500px]",
-              "text-[#515151] text-[1rem] font-normal"
+              "max-w-[351px]",
+              "text-[#232323] dark:text-white text-[1rem] font-normal"
             )}
           >
             {message}

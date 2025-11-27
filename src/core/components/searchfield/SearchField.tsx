@@ -47,8 +47,8 @@ export const SearchField = ({ inputProps, labelProps }: SearchFieldProps) => {
           //   ? "top-[25%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
           //   : "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.875rem] lg:text-[1rem]",
           !!value.length || !!inputProps?.value
-            ? "top-[25%] left-[0.75rem] lg:left-[3.375rem] translate-y-[-50%] text-[0.75rem]"
-            : "top-[50%] left-[0.75rem] lg:left-[3.375rem] translate-y-[-50%] text-[0.875rem] lg:text-[1rem]",
+            ? "top-[25%] left-[3.25rem] lg:left-[3.375rem] translate-y-[-50%] text-[0.75rem]"
+            : "top-[50%] left-[3.25rem] lg:left-[3.375rem] translate-y-[-50%] text-[0.875rem] lg:text-[1rem]",
           "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]"
         )}
         onClick={() => {

@@ -21,7 +21,8 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
   }, [inputProps?.disabled, isLg]);
 
   return (
-    <InputContainer className={clsx("relative [&>input]:z-20", "!border-[0px]", "!h-[48px]")}
+    <InputContainer
+      className={clsx("relative [&>input]:z-20", "!border-[0px]", "!h-[48px]")}
     >
       <Input
         {...inputProps}
@@ -47,8 +48,9 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
           inputProps?.disabled
             ? "!text-[#C7C3C3] text-[0.75rem] lg:text-[1rem]"
             : "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]",
-          inputProps?.value && inputProps?.value.toString().length > 0
-          && "!top-[25%]"
+          inputProps?.value &&
+            inputProps?.value.toString().length > 0 &&
+            "!top-[25%]"
         )}
       />
     </InputContainer>

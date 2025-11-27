@@ -50,8 +50,8 @@ export const ChatTripContainer = () => {
       <div
         className={clsx(
           "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
-          "w-full lg:h-[calc(100vh-90px)]",
-          "pb-[0.75rem] px-[1rem]",
+          "w-full lg:h-[calc(100vh-64px)]",
+          // "pb-[0.75rem] px-[1rem]",
           "relative"
         )}
       >
@@ -63,17 +63,19 @@ export const ChatTripContainer = () => {
         >
           <div
             className={clsx(
-              "grid grid-rows-1 grid-cols-1 lg:grid-cols-[420px_auto_1fr] place-content-start place-items-start gap-[2.5rem]",
-              "max-w-container w-full h-full"
+              "grid grid-rows-1 grid-cols-1 lg:grid-cols-[560px_auto_1fr] place-content-start place-items-start",
+              "w-full h-full"
             )}
           >
             {/* NOTES: List */}
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[1rem] lg:gap-[2rem]",
-                "w-full",
-                "pt-[1.5rem]",
-                "sticky top-[calc(90px+1.5rem)]"
+                "w-full h-full",
+                // "pt-[1.5rem]",
+                // "sticky top-[calc(90px+1.5rem)]",
+                "bg-white dark:bg-[#232323]",
+                "px-[1.5rem] pt-[1.5rem]"
               )}
             >
               <h1
@@ -103,6 +105,7 @@ export const ChatTripContainer = () => {
                 "bg-[#E9E9E9] dark:bg-[#464646]"
               )}
             />
+
             {/* NOTES: Room */}
 
             <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
@@ -129,9 +132,8 @@ export const ChatTripContainer = () => {
 
             <div
               className={clsx(
-                "pt-[1.5rem]",
                 !!id ? "hidden lg:block" : "hidden",
-                "w-full"
+                "w-full h-full"
               )}
             >
               <div

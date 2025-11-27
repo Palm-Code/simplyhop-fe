@@ -40,21 +40,29 @@ export default function SenderMessageItemChatTrip({
               "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[0.75rem]"
             )}
           >
-            <span className={clsx("text-[#A0A0A0] text-[0.75rem] font-normal")}>
+            <span
+              className={clsx(
+                "text-[#5B5B5B] dark:text-[#DADADA] text-[0.75rem] font-normal"
+              )}
+            >
               {time}
             </span>
-            <span className={clsx("text-[#515151] text-[0.75rem] font-medium")}>
+            <span
+              className={clsx(
+                "text-[#232323] dark:text-white text-[0.75rem] font-medium"
+              )}
+            >
               {name}
             </span>
           </div>
 
           <div
             className={clsx(
-              "bg-[#05912A]",
+              "bg-[#249124] dark:bg-[#33CC33]",
               "rounded-tl-[0.875rem] rounded-br-[0.875rem] rounded-bl-[0.875rem]",
               "px-[1.5rem] py-[1rem]",
-              "max-w-[500px]",
-              "text-[white] text-[1rem] font-normal"
+              "max-w-[351px]",
+              "text-[white] dark:text-[#232323] text-[1rem] font-normal"
             )}
           >
             {message}
