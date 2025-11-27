@@ -200,7 +200,7 @@ export const TopNavigationMobileMenu = () => {
                     "relative"
                   )}
                 >
-                  <div className={clsx("relative")}>
+                  <div key={`icon-${menuIndex}`} className={clsx("relative")}>
                     <SVGIcon
                       {...(menu.icon as { name: SVGIconProps["name"] })}
                       key={`svgIcon.${menuIndex}`}

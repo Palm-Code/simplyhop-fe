@@ -4,10 +4,12 @@ import { getDictionaries } from "../../i18n";
 import { ChatTripContext, ChatTripActionEnum } from "../../context";
 import { useDeleteMessageRoomsId } from "../../react_query/hooks";
 import { UserBlockConfirmation } from "@/core/components/user_block_confirmation";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const DeleteChatConfirmationChatTrip = () => {
   const dictionaries = getDictionaries();
-
+  const router = useRouter();
   const { state, dispatch } = React.useContext(ChatTripContext);
 
   const {
@@ -52,6 +54,7 @@ export const DeleteChatConfirmationChatTrip = () => {
         is_open: false,
       },
     });
+    router.push(AppCollectionURL.private.chat());
   };
 
   return (
