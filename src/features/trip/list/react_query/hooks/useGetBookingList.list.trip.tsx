@@ -326,6 +326,20 @@ export const useGetBookingList = () => {
             travelTime: {
               time: !item.ride?.eta ? "-" : setDurationTime(item.ride.eta),
             },
+            umWeg: {
+              label: globalDictionaries.vehicle.umweg.label.text.replaceAll(
+                "{{number}}",
+                !item.ride?.waiting_time ? "0" : item.ride?.waiting_time
+              ),
+              icon: {
+                ...globalDictionaries.vehicle.umweg.label.icon,
+                name: globalDictionaries.vehicle.umweg.label.icon
+                  .name as SVGIconProps["name"],
+                color: isDarkMode
+                  ? globalDictionaries.vehicle.umweg.label.icon.darkColor
+                  : globalDictionaries.vehicle.umweg.label.icon.color,
+              },
+            },
             arrival: {
               place: !item.ride?.destination_name
                 ? "-"
