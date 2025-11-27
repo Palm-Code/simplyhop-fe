@@ -97,7 +97,12 @@ export const ChatTripContainer = () => {
             </div>
 
             {/* NOTES: divider */}
-            <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9] dark:bg-[#464646]")} />
+            <div
+              className={clsx(
+                "w-[1px] h-full",
+                "bg-[#E9E9E9] dark:bg-[#464646]"
+              )}
+            />
             {/* NOTES: Room */}
 
             <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
@@ -105,8 +110,7 @@ export const ChatTripContainer = () => {
                 <div
                   className={clsx(
                     "grid grid-rows-[60px_1fr] pb-12 grid-cols-1 place-content-start place-items-start gap-[2rem]",
-                    "w-full h-full",
-                    // "bg-[white]"
+                    "w-full h-full"
                   )}
                 >
                   <RoomHeaderChatTrip
@@ -133,8 +137,7 @@ export const ChatTripContainer = () => {
               <div
                 className={clsx(
                   "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
-                  "w-full h-full",
-                  // "bg-[white]"
+                  "w-full h-full"
                 )}
               >
                 <RoomHeaderChatTrip

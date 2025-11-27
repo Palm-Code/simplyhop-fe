@@ -51,7 +51,7 @@ export interface ListTripRide {
 }
 
 export interface ListTripBook {
-  data: BookingCardProps[];
+  data: TripCardProps[];
   pagination: {
     current: number;
     last: null | number;

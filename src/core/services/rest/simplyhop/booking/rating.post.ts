@@ -17,7 +17,7 @@ export const fetchPostBookingRating = async (
     const token = cookies.get("token");
     const res = await axios.post(
       url,
-      {},
+      payload.body,
       {
         headers: {
           Authorization: `Bearer ${token}`,

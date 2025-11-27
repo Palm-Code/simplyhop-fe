@@ -1,13 +1,13 @@
 import * as React from "react";
 import clsx from "clsx";
 import { ListTripActionEnum, ListTripContext } from "../../context";
-import { BookingCard } from "../../../../../core/components/book_card";
 import { useGetBookingList } from "../../react_query/hooks";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { TripCard } from "@/core/components/trip_card";
 
 export const BookListTrip = () => {
   const dictionaries = getDictionaries();
@@ -67,7 +67,7 @@ export const BookListTrip = () => {
         )}
       >
         {state.book.data.map((item, itemIndex) => (
-          <BookingCard key={itemIndex} {...item} />
+          <TripCard key={itemIndex} {...item} />
         ))}
       </div>
     </InfiniteScrollWrapper>
