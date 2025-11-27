@@ -27,8 +27,8 @@ export const useDeleteUserBlock = () => {
     mutationKey: ChatTripReactQueryKey.DeleteUserBlock(),
     mutationFn: () => {
       const payload: DeleteUserBlockPayloadRequestInterface = {
-        body: {
-          blocked_user_id: state.room.header.user_id ?? -1,
+        path: {
+          id: state.room.header.user_id ?? -1,
         },
       };
       return fetchDeleteUserBlock(payload);

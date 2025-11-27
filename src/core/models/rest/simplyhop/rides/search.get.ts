@@ -32,6 +32,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;
+  "filter[shift_id]"?: number;
 };
 
 export type GetRidesSearchResponseInterface = NextApiResponse<

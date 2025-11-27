@@ -204,6 +204,11 @@
         },
         {
           "id": "block_user",
+          "label": "Blocken",
+          "icon": "Ban"
+        },
+        {
+          "id": "unblock_user",
           "label": "Entblocken",
           "icon": "Ban"
         }

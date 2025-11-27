@@ -31,9 +31,19 @@ export const UserProfileTripChat = () => {
 
   const handleClickBlock = () => {
     dispatch({
-      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
+      type: ChatTripActionEnum.SetBlockConfirmationData,
       payload: {
         ...state.block_confirmation,
+        is_open: true,
+      },
+    });
+  };
+
+  const handleClickUnblock = () => {
+    dispatch({
+      type: ChatTripActionEnum.SetUnblockConfirmationData,
+      payload: {
+        ...state.unblock_confirmation,
         is_open: true,
       },
     });
@@ -101,13 +111,45 @@ export const UserProfileTripChat = () => {
     };
   });
 
-  const cta = dictionaries.user_profile.cta.items.map((item) => {
-    return {
-      ...item,
-      onClick:
-        item.id === "delete_chat" ? handleClickDeleteChat : handleClickBlock,
-    };
-  });
+  const isBlocked =
+    state.user_profile.data?.i_blocked || state.user_profile.data?.blocked_me;
+  const isUserDoBlock = state.user_profile.data?.i_blocked;
+
+  const cta =
+    isBlocked && isUserDoBlock
+      ? dictionaries.user_profile.cta.items
+          .filter((item) => item.id !== "block_user")
+          .map((item) => {
+            return {
+              ...item,
+              onClick:
+                item.id === "delete_chat"
+                  ? handleClickDeleteChat
+                  : handleClickUnblock,
+            };
+          })
+      : isBlocked && !isUserDoBlock
+      ? dictionaries.user_profile.cta.items
+          .filter(
+            (item) => item.id !== "unblock_user" && item.id !== "block_user"
+          )
+          .map((item) => {
+            return {
+              ...item,
+              onClick: handleClickDeleteChat,
+            };
+          })
+      : dictionaries.user_profile.cta.items
+          .filter((item) => item.id !== "unblock_user")
+          .map((item) => {
+            return {
+              ...item,
+              onClick:
+                item.id === "delete_chat"
+                  ? handleClickDeleteChat
+                  : handleClickBlock,
+            };
+          });
 
   return (
     <UserProfileModal

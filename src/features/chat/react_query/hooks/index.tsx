@@ -10,4 +10,4 @@ export * from "./usePostBookingRating.chat.trip";
 export * from "./useGetUserProfileId.chat.trip";
 export * from "./usePostUserBlock.chat.trip";
 export * from "./useDeleteUserBlock.chat.trip";
-export * from "./useDeleteMessageRoomsId.chat.trip";
+export * from "./useDeleteMessageRoomsUserId.chat.trip";

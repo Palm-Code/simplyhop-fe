@@ -6,10 +6,10 @@ export interface DeleteUserBlockRequestInterface extends NextApiRequest {
 }
 
 export interface DeleteUserBlockPayloadRequestInterface {
-  body: DeleteUserBlockBodyPayloadRequestInterface;
+  path: DeleteUserBlockPathPayloadRequestInterface;
 }
-export interface DeleteUserBlockBodyPayloadRequestInterface {
-  blocked_user_id: number;
+export interface DeleteUserBlockPathPayloadRequestInterface {
+  id: number;
 }
 
 export type DeleteUserBlockResponseInterface = NextApiResponse<

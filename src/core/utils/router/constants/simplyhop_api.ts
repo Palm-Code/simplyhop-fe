@@ -35,6 +35,7 @@ import {
   PostRidesArchivePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import {
+  DeleteUserBlockPathPayloadRequestInterface,
   PatchUserActivatePathPayloadRequestInterface,
   PatchUserDeactivatePathPayloadRequestInterface,
   PatchUserProfilePathPayloadRequestInterface,
@@ -100,7 +101,8 @@ export const SimplyHopAPICollectionURL = {
   },
   user: {
     postBlock: () => `/api/user-block`,
-    deleteBlock: () => `/api/user-block`,
+    deleteBlock: (payload: DeleteUserBlockPathPayloadRequestInterface) =>
+      `/api/user-block/${payload.id}`,
     patchDeactivate: (
       payload: PatchUserDeactivatePathPayloadRequestInterface
     ) => `/api/users/${payload.id}/deactivate`,
@@ -163,7 +165,7 @@ export const SimplyHopAPICollectionURL = {
       path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface
     ) => `/api/message-rooms/${path.roomId}/mark-as-read`,
     deleteId: (path: DeleteMessageRoomsIdPathPayloadRequestInterface) =>
-      `/api/message-rooms/${path.id}`,
+      `/api/message-rooms/delete/${path.id}`,
     deleteUserId: (path: DeleteMessageRoomsUserIdPathPayloadRequestInterface) =>
       `/api/message-rooms/user/${path.user_id}`,
   },

@@ -11,7 +11,7 @@ export const fetchPostUserBlock = async (
   try {
     const url = `${
       ENVIRONMENTS.SIMPLY_HOP_API_URL
-    }${SimplyHopAPICollectionURL.user_profile.postCreate()}`;
+    }${SimplyHopAPICollectionURL.user.postBlock()}`;
 
     const cookies = new Cookies();
     const token = cookies.get("token");

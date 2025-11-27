@@ -46,6 +46,9 @@ export const usePostRidesFirst = () => {
             : `${dayjs(state.filters.date.selected).format("YYYY-MM-DD")} ${
                 state.filters.time.value
               }:00`,
+          shift_id: !state.detail.form.plan.shift.selected?.id
+            ? undefined
+            : parseInt(state.detail.form.plan.shift.selected.id),
         },
       };
       return fetchPostRidesFirst(payload);

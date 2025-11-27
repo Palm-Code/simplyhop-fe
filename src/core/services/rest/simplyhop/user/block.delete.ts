@@ -11,16 +11,14 @@ export const fetchDeleteUserBlock = async (
   try {
     const url = `${
       ENVIRONMENTS.SIMPLY_HOP_API_URL
-    }${SimplyHopAPICollectionURL.user_profile.postCreate()}`;
+    }${SimplyHopAPICollectionURL.user.deleteBlock(payload.path)}`;
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    const res = await axios(url, {
-      method: "DELETE",
+    const res = await axios.delete(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      data: payload.body,
     });
     return res.data;
   } catch (err) {

@@ -96,8 +96,7 @@ export const FormChatTrip = () => {
     isPendingPostMessageChat || state.room.booking.status !== "accepted";
 
   const isBlocked =
-    state.user_profile.data?.i_blocked ||
-    state.user_profile.data?.blocked_me;
+    state.user_profile.data?.i_blocked || state.user_profile.data?.blocked_me;
   const isUserDoBlock = state.user_profile.data?.i_blocked;
 
   const handleClickDeleteChat = () => {
@@ -112,9 +111,9 @@ export const FormChatTrip = () => {
 
   const handleClickUnblock = () => {
     dispatch({
-      type: ChatTripActionEnum.SetDeleteChatConfirmationData,
+      type: ChatTripActionEnum.SetUnblockConfirmationData,
       payload: {
-        ...state.block_confirmation,
+        ...state.unblock_confirmation,
         is_open: true,
       },
     });

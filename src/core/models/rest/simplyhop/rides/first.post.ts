@@ -19,6 +19,7 @@ export type PostRidesFirstBodyPayloadRequestInterface = {
   destination_name: string; //"Berlin",
   eta: number;
   departure_time: string; // "2025-03-31 09:30:00";
+  shift_id?: number;
 };
 
 export type PostRidesFirstResponseInterface = NextApiResponse<
