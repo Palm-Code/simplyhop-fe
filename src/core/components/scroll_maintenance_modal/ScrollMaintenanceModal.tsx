@@ -67,7 +67,7 @@ export const ScrollMaintenanceModal = () => {
                 <span className="text-xl sm:text-2xl">🚩</span>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-green-800 mb-2">
-                    Regional, ab 12-2025: Sachsen Fährt Mit (SFM)
+                    Regional, ab 01-2026: Sachsen Fährt Mit (SFM)
                   </h3>
                   <p className="text-sm sm:text-base text-green-700 font-medium mb-2 sm:mb-3">
                     Einsatzgebiet: Sachsen
@@ -89,7 +89,7 @@ export const ScrollMaintenanceModal = () => {
                 <span className="text-xl sm:text-2xl">🌍</span>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-blue-800 mb-2">
-                    Überregional, ab 12-2025: Simply Hop (SH)
+                    Überregional, ab 01-2026: Simply Hop (SH)
                   </h3>
                   <p className="text-sm sm:text-base text-blue-700 font-medium mb-2 sm:mb-3">
                     Einsatzgebiet: Deutschland, Österreich, Schweiz (DACH)
