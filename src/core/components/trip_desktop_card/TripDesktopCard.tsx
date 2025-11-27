@@ -202,8 +202,8 @@ export const TripDesktopCard = ({
           <div
             className={clsx(
               "grid grid-flow-row grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-              "w-full",
-              "w-full max-w-[320px]"
+              // "w-full",
+              "w-[320px]"
             )}
           >
             {ride?.badge.map((item, itemIndex) => (
