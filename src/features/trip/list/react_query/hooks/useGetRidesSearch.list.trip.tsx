@@ -194,7 +194,6 @@ export const useGetRidesSearch = () => {
               ? undefined
               : {
                   initial: {
-                    label: "Preis",
                     price: formatEuro(item.base_price),
                   },
                 },

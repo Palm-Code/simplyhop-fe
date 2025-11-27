@@ -51,9 +51,7 @@ export const TripMobileCard = ({
     travelTime: {
       time: "1h 15m",
     },
-    umWeg: {
-      label: "",
-    },
+    umWeg: undefined,
     arrival: {
       place: "Berlin",
       time: "18.30 Uhr",
@@ -182,9 +180,11 @@ export const TripMobileCard = ({
             </div>
 
             {/* umweg */}
-            <div>
-              <UmwegBadge {...routes.umWeg} />
-            </div>
+            {routes.umWeg && (
+              <div>
+                <UmwegBadge {...routes.umWeg} />
+              </div>
+            )}
           </div>
         </div>
         {(car.facility || ride?.badge) && (

@@ -51,9 +51,7 @@ export const TripDesktopCard = ({
     travelTime: {
       time: "1h 15m",
     },
-    umWeg: {
-      label: "",
-    },
+    umWeg: undefined,
     arrival: {
       place: "Berlin",
       time: "18.30 Uhr",
@@ -193,9 +191,11 @@ export const TripDesktopCard = ({
             </div>
 
             {/* umweg */}
-            <div>
-              <UmwegBadge {...routes.umWeg} />
-            </div>
+            {routes.umWeg && (
+              <div>
+                <UmwegBadge {...routes.umWeg} />
+              </div>
+            )}
           </div>
         </div>
         {(car.facility || ride?.badge) && (
@@ -215,7 +215,7 @@ export const TripDesktopCard = ({
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                  'w-full'
+                  "w-full"
                 )}
               >
                 <div
@@ -253,11 +253,32 @@ export const TripDesktopCard = ({
         {(cta || price) && (
           <div
             className={clsx(
-              "flex flex-col justify-between gap-[1rem]",
-              cta?.share && cta.detail ? "items-start" : "items-center",
+              "flex flex-col items-center justify-between gap-[1rem]",
               "w-full h-full"
             )}
           >
+            {cta?.share && (
+              <button
+                aria-label={"Aktie"}
+                name={"Aktie"}
+                className={clsx(
+                  "flex items-center justify-center",
+                  "rounded-[50%]",
+                  "w-[2rem] h-[2rem]",
+                  "bg-[#F6F6F6]",
+                  "cursor-pointer"
+                )}
+                onClick={cta.share.onClick}
+              >
+                <SVGIcon
+                  name="Forward"
+                  className={clsx(
+                    "min-w-[22px] min-wh-[22px]",
+                    "text-[#767676]"
+                  )}
+                />
+              </button>
+            )}
             {/* price */}
             {price && (
               <CarPriceItem
@@ -283,51 +304,21 @@ export const TripDesktopCard = ({
               </Link>
             )}
 
-            {(cta?.share || cta?.detail) && (
-              <div
-                className={clsx(
-                  "grid grid-flow-col items-start content-start justify-items-end justify-end gap-[1rem]"
-                )}
+            {cta?.detail && (
+              <Link
+                aria-label={String(cta.detail.children ?? "")}
+                href={cta.detail.href}
+                className={clsx("w-full")}
+                scroll={false}
               >
-                {cta.share && (
-                  <button
-                    aria-label={"Aktie"}
-                    name={"Aktie"}
-                    className={clsx(
-                      "flex items-center justify-center",
-                      "rounded-[50%]",
-                      "w-[2rem] h-[2rem]",
-                      "bg-[#F6F6F6]",
-                      "cursor-pointer"
-                    )}
-                    onClick={cta.share.onClick}
-                  >
-                    <SVGIcon
-                      name="Forward"
-                      className={clsx(
-                        "min-w-[22px] min-wh-[22px]",
-                        "text-[#767676]"
-                      )}
-                    />
-                  </button>
-                )}
-                {cta.detail && (
-                  <Link
-                    aria-label={String(cta.detail.children ?? "")}
-                    href={cta.detail.href}
-                    className={clsx("w-full")}
-                    scroll={false}
-                  >
-                    <Button
-                      aria-label={String(cta.detail.children ?? "")}
-                      name={String(cta.detail.children ?? "")}
-                      className={clsx("!px-[0.5rem] !py-[0.5rem]")}
-                    >
-                      {cta.detail.children}
-                    </Button>
-                  </Link>
-                )}
-              </div>
+                <Button
+                  aria-label={String(cta.detail.children ?? "")}
+                  name={String(cta.detail.children ?? "")}
+                  className={clsx("!px-[0.5rem] !py-[0.5rem]")}
+                >
+                  {cta.detail.children}
+                </Button>
+              </Link>
             )}
           </div>
         )}

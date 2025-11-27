@@ -22,9 +22,12 @@ import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
+import { getDictionaries } from "../../i18n";
+import { ENVIRONMENTS } from "@/core/environments";
 
 export const useGetBookingList = () => {
   const globalDictionaries = getGlobalDictionaries();
+  const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -63,6 +66,28 @@ export const useGetBookingList = () => {
       const newPayload = data.data.map((item) => {
         const urlSearchParams = new URLSearchParams(searchParams.toString());
         urlSearchParams.append("booking_id", String(item.id));
+        const shareMessage =
+          dictionaries.share_ride_notification.share.share_message
+            .replaceAll(
+              "{{origin}}",
+              !item.ride?.start_name ? "-" : item.ride?.start_name
+            )
+            .replaceAll(
+              "{{destination}}",
+              !item.ride?.destination_name ? "-" : item.ride?.destination_name
+            )
+            .replaceAll(
+              "{{departure_time}}",
+              !item.ride?.departure_time
+                ? "-"
+                : `${dayjs
+                    .utc(item.ride?.departure_time)
+                    .format("DD.MM.YYYY HH.mm [Uhr]")}`
+            )
+            .replaceAll(
+              "{{share_link}}",
+              !item.ride?.url ? ENVIRONMENTS.SITE_URL : item.ride?.url
+            );
         return {
           id: String(item.id),
           driver: {
@@ -356,7 +381,6 @@ export const useGetBookingList = () => {
 
           price: {
             initial: {
-              label: "Preis",
               price: formatEuro(item.offered_price),
             },
           },
@@ -372,6 +396,11 @@ export const useGetBookingList = () => {
             detail: {
               children: "Siehe Details",
               href: AppCollectionURL.private.myList(urlSearchParams.toString()),
+            },
+            share: {
+              onClick: () => {},
+              href: !item.ride?.url ? ENVIRONMENTS.SITE_URL : item.ride?.url,
+              message: shareMessage,
             },
           },
         };
