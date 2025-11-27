@@ -189,16 +189,15 @@ export const useGetRidesSearch = () => {
             },
           },
 
-          // price:
-          //   userState.profile?.role === "admin"
-          //     ? undefined
-          //     : {
-          //         initial: {
-          //           label: "Preis",
-          //           price: formatEuro(item.base_price),
-          //         },
-          //       },
-          price: undefined,
+          price:
+            userState.profile?.role === "admin"
+              ? undefined
+              : {
+                  initial: {
+                    label: "Preis",
+                    price: formatEuro(item.base_price),
+                  },
+                },
           cta: {
             detail: {
               children: "Siehe Details",
