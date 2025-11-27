@@ -2,7 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import SVGIcon from "@/core/icons";
-import { Avatar, AvatarProps } from "@/core/components/avatar";
+import { AvatarProps } from "@/core/components/avatar";
 import { DriverProfileLabel } from "@/core/components/driver_profile_label";
 import {
   DriverRatingLabel,

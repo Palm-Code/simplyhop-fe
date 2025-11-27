@@ -1,5 +1,4 @@
 import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
-import { BookingCardProps } from "@/core/components/book_card";
 import { BookingDetailCardProps } from "@/core/components/booking_detail_card";
 import { CarPriceItemProps } from "@/core/components/car_price_item";
 import { TripCardProps } from "@/core/components/trip_card";
