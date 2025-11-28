@@ -441,7 +441,7 @@ export const FilterPlanRideTrip = () => {
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[1rem]",
         "w-[100vw] lg:w-[calc(100vw-2rem)] container:w-full container:max-w-container",
         "px-[1rem] py-[1rem] sm:px-[1.5rem] sm:py-[1.5rem]",
-        "bg-[#FFFFFFCC] dark:bg-[#232323CC]",
+        "bg-[#FFFFFFCC] dark:bg-[#292929]",
         "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
         "border border-[#E9E6E6] dark:border-[#464646]"
       )}
