@@ -69,7 +69,9 @@ export const AutocompleteAuto = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer className={clsx(disabled && "!bg-[#F6F6F6]")}>
+        <InputContainer
+          className={clsx(disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]")}
+        >
           <div
             className={clsx(
               "grid grid-cols-1 justify-start justify-items-start gap-[0.5rem]",
