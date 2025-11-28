@@ -38,13 +38,13 @@ export const DropdownSelect = ({
       <DropdownSelectButton
         className={clsx(
           "!items-center !content-center",
-          "!text-[#5B5B5B] !text-[0.875rem] !font-normal"
+          "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal"
         )}
         onClick={handleClickDropdownSelectButton}
       >
         <span
           className={clsx(
-            "!text-[#5B5B5B] !text-[0.875rem] !font-normal text-ellipsis truncate w-full"
+            "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal text-ellipsis truncate w-full"
           )}
         >
           {selected?.name}
@@ -52,7 +52,7 @@ export const DropdownSelect = ({
 
         <SVGIcon
           name={isOpen ? "ChevronUp" : "ChevronDown"}
-          className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+          className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-[#DADADA]")}
         />
       </DropdownSelectButton>
       {isOpen && (
@@ -63,9 +63,9 @@ export const DropdownSelect = ({
             "grid grid-cols-1 place-content-start place-items-start",
             "px-[1rem] py-[0.75rem]",
             "min-w-[255px]",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#232323]",
             "rounded-[0.375rem]",
-            "border border-[#E2E2E2]",
+            "border border-[#E2E2E2] dark:border-[#464646]",
             "z-[10]"
           )}
         >
@@ -76,7 +76,7 @@ export const DropdownSelect = ({
               key={itemIndex}
               className={clsx(
                 "w-full",
-                "!text-[#5B5B5B] !text-[0.875rem] !font-normal text-left",
+                "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal text-left",
                 "py-[0.5rem]",
                 "cursor-pointer disabled:cursor-default"
               )}

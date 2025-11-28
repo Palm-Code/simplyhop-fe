@@ -87,7 +87,7 @@ export const DeactivateConfirmationSettingsSupport = () => {
       >
         <SVGIcon
           name="X"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
         />
       </button>
       <div
@@ -114,19 +114,19 @@ export const DeactivateConfirmationSettingsSupport = () => {
           >
             <SVGIcon
               name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black]")}
+              className={clsx("w-[5rem] h-[5rem]", "text-[black] dark:text-white")}
             />
           </div>
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
         >
           {dictionaries.deactivate_confirmation.title}
         </h1>
 
         <p
-          className={clsx("text-[1rem] text-[#888888] font-normal text-center")}
+          className={clsx("text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center")}
         >
           {dictionaries.deactivate_confirmation.message}
         </p>

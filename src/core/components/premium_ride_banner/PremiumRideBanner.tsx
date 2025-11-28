@@ -26,7 +26,7 @@ export const PremiumRideBanner = ({
         "w-full",
         "rounded-[0.625rem]",
         "px-[1rem] py-[1rem]",
-        "border border-[#33CC33]",
+        "border border-[#33CC33] dark:border-[#464646]",
         "bg-[#EFF9EC]"
       )}
     >
@@ -36,17 +36,27 @@ export const PremiumRideBanner = ({
           "w-full"
         )}
       >
-        <p className={clsx("text-[0.875rem] text-[#292929] font-bold")}>
+        <p
+          className={clsx(
+            "text-[0.875rem] text-[#232323] dark:text-white font-bold"
+          )}
+        >
           {message}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}>
+        <p
+          className={clsx(
+            "text-[0.75rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal"
+          )}
+        >
           {description}
         </p>
       </div>
 
       <Link
         href={cta.href}
-        className={clsx("text-[13px] text-[#232323] font-medium underline")}
+        className={clsx(
+          "text-[13px] text-[#232323] dark:text-white font-medium underline"
+        )}
       >
         {cta.children}
       </Link>

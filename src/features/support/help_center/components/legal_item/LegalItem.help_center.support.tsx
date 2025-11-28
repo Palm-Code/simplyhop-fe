@@ -35,10 +35,10 @@ export const LegalItemHelpCenterSupport = ({
           "w-full"
         )}
       >
-        <p className={clsx("text-[#232323CC] text-[1rem] font-medium")}>
+        <p className={clsx("text-[#232323] dark:text-white text-[1rem] font-medium")}>
           {name}
         </p>
-        <p className={clsx("text-[#606060] text-[0.875rem] font-normal")}>
+        <p className={clsx("text-[#606060] dark:text-[#C3C3C3] text-[0.875rem] font-normal")}>
           {description}
         </p>
       </div>

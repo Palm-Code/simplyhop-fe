@@ -17,7 +17,7 @@ export const LegalHelpCenterSupport = () => {
         "rounded-[1.25rem]"
       )}
     >
-      <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+      <h2 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>
         {dictionaries.legal.title}
       </h2>
       {dictionaries.legal.items.map((item, itemIndex) => {

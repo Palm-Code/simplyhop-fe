@@ -199,7 +199,7 @@ export const ChangePasswordSettingsSupport = () => {
         )}
       >
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
         >
           {dictionaries.change_password.title}
         </h1>
@@ -260,7 +260,7 @@ export const ChangePasswordSettingsSupport = () => {
               onChange={handleChangeTNC}
             />
             <span
-              className={clsx("text-[#232323] text-[0.75rem] font-light")}
+              className={clsx("text-[#232323] dark:text-white text-[0.75rem] font-light")}
               dangerouslySetInnerHTML={{
                 __html: dictionaries.change_password.tnc.label,
               }}

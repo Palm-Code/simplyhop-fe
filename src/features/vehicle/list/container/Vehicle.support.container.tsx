@@ -38,7 +38,7 @@ export const VehiclesSupportContainer = () => {
               "rounded-[1.25rem]"
             )}
           >
-            <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+            <h2 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>
               {dictionaries.title}
             </h2>
             <PremiumRideVehiclesSupport />
@@ -56,14 +56,14 @@ export const VehiclesSupportContainer = () => {
                 )}
               >
                 <h3
-                  className={clsx("text-[#292929] text-[1.125rem] font-bold")}
+                  className={clsx("text-[#232323] dark:text-white text-[1.125rem] font-bold")}
                 >
                   {dictionaries.list.title}
                 </h3>
                 {!userState.profile?.is_driver && (
                   <p
                     className={clsx(
-                      "text-[#606060] text-[0.875rem] font-normal"
+                      "text-[#606060] dark:text-[#C3C3C3] text-[0.875rem] font-normal"
                     )}
                   >
                     {dictionaries.list.is_not_driver_label}
