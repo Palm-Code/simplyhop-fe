@@ -18,7 +18,7 @@ export const AccountSupportContainer = () => {
       <NavigationDetailAccount />
       <div
         className={clsx(
-          "grid grid-cols-2 place-content-start place-items-start gap-[1.5rem]",
+          "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1.5rem]",
           "w-full"
         )}
       >
