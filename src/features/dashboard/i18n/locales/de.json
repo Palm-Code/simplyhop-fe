@@ -10,36 +10,49 @@
   },
   "personal": {
     "summary": {
-      "items": [
-        {
-          "id": "Geplante Fahrten",
-          "name": "Geplante Fahrten",
-          "unit": "Fahrten",
-          "icon": "CarFront",
-          "href": "/meine-fahrten"
-        },
-        {
-          "id": "Gebuchte Fahrten",
-          "name": "Gebuchte Fahrten",
-          "unit": "Fahrten",
-          "icon": "Ticket",
-          "href": "/meine-fahrten?type=book"
-        },
-        {
-          "id": "Abgeschlossene",
-          "name": "Abgeschlossene",
-          "unit": "Fahrten",
-          "icon": "Check",
-          "href": "/meine-fahrten?ride-status=archive"
-        },
-        {
-          "id": "Bewertungen",
-          "name": "Bewertungen",
-          "unit": "von {{number}} Bewertungen",
-          "icon": "Star",
-          "href": "/meine-fahrten?ride-status=archive"
-        }
-      ]
+      "passenger": {
+        "items": [
+          {
+            "id": "Gebuchte Fahrten",
+            "name": "Gebuchte Fahrten",
+            "unit": "Fahrten",
+            "icon": "Ticket",
+            "href": "/meine-fahrten?type=book"
+          }
+        ]
+      },
+      "driver": {
+        "items": [
+          {
+            "id": "Geplante Fahrten",
+            "name": "Geplante Fahrten",
+            "unit": "Fahrten",
+            "icon": "CarFront",
+            "href": "/meine-fahrten"
+          },
+          {
+            "id": "Gebuchte Fahrten",
+            "name": "Gebuchte Fahrten",
+            "unit": "Fahrten",
+            "icon": "Ticket",
+            "href": "/meine-fahrten?type=book"
+          },
+          {
+            "id": "Abgeschlossene",
+            "name": "Abgeschlossene",
+            "unit": "Fahrten",
+            "icon": "Check",
+            "href": "/meine-fahrten?ride-status=archive"
+          },
+          {
+            "id": "Bewertungen",
+            "name": "Bewertungen",
+            "unit": "von {{number}} Bewertungen",
+            "icon": "Star",
+            "href": "/meine-fahrten?ride-status=archive"
+          }
+        ]
+      }
     },
     "upcoming_rides": {
       "title": "Bevorstehende Fahrten",

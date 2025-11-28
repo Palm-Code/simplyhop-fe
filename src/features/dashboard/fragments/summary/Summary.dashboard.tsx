@@ -99,7 +99,28 @@ export const SummaryDashboard = () => {
           unit: unit,
         };
       }) ?? []
-    : dictionaries.personal.summary.items?.map((item) => {
+    : !userState.profile?.is_driver
+    ? dictionaries.personal.summary.passenger.items?.map((item) => {
+        let value: string = "0";
+        let unit: string = item.unit;
+        switch (item.id) {
+          case "Gebuchte Fahrten": {
+            value =
+              state.summary.personal?.total_rides_booked?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
+          default:
+            break;
+        }
+        return {
+          ...item,
+          value: value,
+          unit: unit,
+        };
+      }) ?? []
+    : dictionaries.personal.summary.driver.items?.map((item) => {
         let value: string = "0";
         let unit: string = item.unit;
         switch (item.id) {
@@ -146,10 +167,14 @@ export const SummaryDashboard = () => {
         };
       }) ?? [];
 
+  const isPassenger =
+    userState.profile?.role === "employee" && !userState.profile.is_driver;
   return (
     <div
       className={clsx(
-        "grid grid-cols-2 lg:grid-cols-4 place-content-start place-items-start gap-4",
+        isPassenger
+          ? "grid grid-cols-1 place-content-start place-items-start gap-4"
+          : "grid grid-cols-2 lg:grid-cols-4 place-content-start place-items-start gap-4",
         "w-full"
       )}
     >
