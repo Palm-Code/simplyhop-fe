@@ -5,8 +5,11 @@ import {
   DashboardVehicleCardProps,
 } from "@/core/components/dashboard_vehicle_card";
 import { DashboardCard } from "@/core/components/dashboard_card";
-import { EmptyState, EmptyStateProps } from "@/core/components/empty_state";
 import { LoadingState } from "@/core/components/loading_state";
+import {
+  VehicleEmptyState,
+  VehicleEmptyStateProps,
+} from "@/core/components/vehicle_empty_state";
 
 export interface VehiclesCardDashboardProps {
   title?: string;
@@ -20,7 +23,7 @@ export interface VehiclesCardDashboardProps {
   vehicles?: DashboardVehicleCardProps[];
   isLoading?: boolean;
   isEmpty?: boolean;
-  empty?: EmptyStateProps;
+  empty?: VehicleEmptyStateProps;
 }
 
 export const VehiclesCardDashboard = ({
@@ -42,7 +45,7 @@ export const VehiclesCardDashboard = ({
   if (isEmpty) {
     return (
       <DashboardCard title={title} icon={icon} cta={cta} variant="white">
-        <EmptyState {...empty} />
+        <VehicleEmptyState {...empty} />
       </DashboardCard>
     );
   }

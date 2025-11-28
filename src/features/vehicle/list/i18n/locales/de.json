@@ -1,5 +1,17 @@
 {
   "title": "Fahrzeuginformationen",
+  "breadcrumb": {
+    "items": [
+      {
+        "label": "Dashboard",
+        "href": "/support/dashboard"
+      },
+      {
+        "label": "Fahrzeuginformationen",
+        "href": "/support/fahrzeuginformationen"
+      }
+    ]
+  },
   "top_badge": {
     "icon": {
       "name": "Search"

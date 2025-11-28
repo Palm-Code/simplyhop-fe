@@ -134,8 +134,11 @@
         }
       },
       "empty": {
-        "message": "Noch kein Fahrzeugliste",
-        "description": "Noch kein Fahrzeugliste"
+        "message": "Noch kein Auto",
+        "description": "Bitte bestätigen Sie Ihre Bereitschaft, Fahrten als Fahrer bei SimplyHop anzubieten.",
+        "cta": {
+          "label": "Fahrten Anbieten"
+        }
       }
     }
   },

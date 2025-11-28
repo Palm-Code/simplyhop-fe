@@ -31,6 +31,10 @@ export const useGetRidesSearch = () => {
   const { state, dispatch } = React.useContext(DashboardSupportContext);
   const { state: userState } = React.useContext(UserContext);
 
+  const isPassengerEmployee =
+    userState.profile?.is_driver === false &&
+    userState.profile.role === "employee";
+
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
       "filter[user_id]":
@@ -54,7 +58,7 @@ export const useGetRidesSearch = () => {
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
-    enabled: !userState.profile?.is_super_admin,
+    enabled: !userState.profile?.is_super_admin || !isPassengerEmployee,
   });
 
   React.useEffect(() => {
@@ -179,7 +183,8 @@ export const useGetRidesSearch = () => {
           type: DashboardSupportActionEnum.SetSectionsOrganizationAdminRideData,
           payload: newPayload,
         });
-      } else {
+      }
+      if (!isPassengerEmployee) {
         dispatch({
           type: DashboardSupportActionEnum.SetSectionsPersonalRideData,
           payload: newPayload,
@@ -197,7 +202,8 @@ export const useGetRidesSearch = () => {
           is_fetching: query.isFetching,
         },
       });
-    } else {
+    }
+    if (!isPassengerEmployee) {
       dispatch({
         type: DashboardSupportActionEnum.SetSectionsPersonalRideLoadingData,
         payload: {

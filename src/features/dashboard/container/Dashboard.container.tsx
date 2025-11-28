@@ -14,6 +14,7 @@ import {
   useGetDashboardOrganization,
   useGetDashboardSuperAdmin,
   useGetDashboardSuperAdminPerOrganization,
+  useGetBookingList,
 } from "../react_query/hooks";
 import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
 import { NavigationDashboard } from "../fragments/navigation";
@@ -29,6 +30,7 @@ export const DashboardSupportContainer = () => {
   useGetDashboardOrganization();
   useGetDashboardSuperAdmin();
   useGetDashboardSuperAdminPerOrganization();
+  useGetBookingList();
 
   if (state.profile?.is_super_admin) {
     return (
@@ -68,6 +70,7 @@ export const DashboardSupportContainer = () => {
         "w-full"
       )}
     >
+      <HeaderDashboard />
       <NavigationDashboard />
       <SummaryDashboard />
       <PersonalSectionsDashboard />

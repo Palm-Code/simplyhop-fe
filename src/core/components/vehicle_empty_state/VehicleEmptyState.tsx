@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { Button } from "../button";
 
-export interface EmptyStateProps {
+export interface VehicleEmptyStateProps {
   message?: string;
   description?: string;
   cta?: {
@@ -13,7 +13,11 @@ export interface EmptyStateProps {
   };
 }
 
-export const EmptyState = ({ message, description, cta }: EmptyStateProps) => {
+export const VehicleEmptyState = ({
+  message,
+  description,
+  cta,
+}: VehicleEmptyStateProps) => {
   return (
     <div
       className={clsx(
@@ -22,14 +26,14 @@ export const EmptyState = ({ message, description, cta }: EmptyStateProps) => {
       )}
     >
       <Image
-        src={"/images/general/empty_data.svg"}
+        src={"/images/general/vehicle_empty_data.svg"}
         width={120}
         height={120}
         className={clsx("w-[120px] h-[120px]", "block dark:hidden")}
         alt={"empty-section"}
       />
       <Image
-        src={"/images/general/empty_data_dark.svg"}
+        src={"/images/general/vehicle_empty_data_dark.svg"}
         width={120}
         height={120}
         className={clsx("w-[120px] h-[120px]", "hidden dark:block")}

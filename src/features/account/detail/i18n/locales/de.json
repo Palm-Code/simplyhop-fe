@@ -1,5 +1,17 @@
 {
   "title": "Konto",
+  "breadcrumb": {
+    "items": [
+      {
+        "label": "Dashboard",
+        "href": "/support/dashboard"
+      },
+      {
+        "label": "Account",
+        "href": "/support/konto"
+      }
+    ]
+  },
   "summary": {
     "items": [
       {

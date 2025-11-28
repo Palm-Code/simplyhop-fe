@@ -1,3 +1,4 @@
+import { GetBookingListPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
 import {
   GetDashboardOrganizationPayloadRequestInterface,
   GetDashboardSuperAdminPayloadRequestInterface,
@@ -16,7 +17,10 @@ export const DashboardSupportReactQueryKey = {
     return ["DashboardSupportReactQueryKey.GetDashboardSuperAdminSummary"];
   },
   GetRidesSearch: (payload?: GetRidesSearchPayloadRequestInterface) => {
-    return ["DashboardSupportReactQueryKey.GetRidesMy", [payload] as const];
+    return ["DashboardSupportReactQueryKey.GetRidesSearch", [payload] as const];
+  },
+  GetBookingList: (payload?: GetBookingListPayloadRequestInterface) => {
+    return ["DashboardSupportReactQueryKey.GetBookingList", [payload] as const];
   },
   GetVehicleMy: () => {
     return ["DashboardSupportReactQueryKey.GetVehicleMy"];

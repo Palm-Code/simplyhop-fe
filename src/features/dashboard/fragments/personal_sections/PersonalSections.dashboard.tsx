@@ -5,10 +5,17 @@ import { SVGIconProps } from "@/core/icons";
 import clsx from "clsx";
 import { VehiclesCardDashboard } from "../../components/vehicles_card";
 import { DashboardSupportContext } from "../../context";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const PersonalSectionsDashboard = () => {
   const dictionaries = getDictionaries();
   const { state } = React.useContext(DashboardSupportContext);
+  const router = useRouter();
+
+  const handleClickCreateVehicle = () => {
+    router.push(AppCollectionURL.private.support_vehicles());
+  };
   return (
     <div
       className={clsx(
@@ -32,7 +39,13 @@ export const PersonalSectionsDashboard = () => {
         vehicles={state.sections.personal.vehicle?.data ?? []}
         isLoading={state.sections.personal.vehicle.loading.is_fetching}
         isEmpty={!state.sections.personal.vehicle.data?.length}
-        empty={dictionaries.personal.vehicles.empty}
+        empty={{
+          ...dictionaries.personal.vehicles.empty,
+          cta: {
+            ...dictionaries.personal.vehicles.empty.cta,
+            onClick: handleClickCreateVehicle,
+          },
+        }}
       />
     </div>
   );

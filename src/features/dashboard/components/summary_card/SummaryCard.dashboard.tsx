@@ -36,7 +36,7 @@ export const SummaryCardDashboard = ({
           "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full",
           "px-4 py-4",
-          "bg-[white]",
+          "bg-[white] dark:bg-[#232323]",
           "rounded-2xl"
         )}
       >
@@ -58,7 +58,7 @@ export const SummaryCardDashboard = ({
                 className={clsx("w-3 h-3", "text-[#26531A]")}
               />
             </div>
-            <p className={clsx("text-sm text-[#5B5B5B] font-normal")}>
+            <p className={clsx("text-sm text-[#5B5B5B] dark:text-[#C3C3C3] font-normal")}>
               {title}
             </p>
           </div>
@@ -74,7 +74,7 @@ export const SummaryCardDashboard = ({
           >
             <SVGIcon
               name={"ArrowRight"}
-              className={clsx("w-3.5 h-3.5", "text-[#767676]")}
+              className={clsx("w-3.5 h-3.5", "text-[#767676] dark:text-[#C3C3C3]")}
             />
           </Link>
         </div>
@@ -85,8 +85,8 @@ export const SummaryCardDashboard = ({
             "w-full"
           )}
         >
-          <p className={clsx("text-[#232323] text-2xl font-bold")}>{value}</p>
-          <span className={clsx("text-[#767676] text-sm font-normal")}>
+          <p className={clsx("text-[#232323] dark:text-white text-2xl font-bold")}>{value}</p>
+          <span className={clsx("text-[#767676] dark:text-[#C3C3C3] text-sm font-normal")}>
             {unit}
           </span>
         </div>

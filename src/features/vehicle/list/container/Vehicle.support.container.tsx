@@ -9,6 +9,8 @@ import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RidePlanFormVehiclesSupport } from "../fragments/ride_plan_form";
 import { UserContext } from "@/core/modules/app/context";
 import { PremiumRideVehiclesSupport } from "../fragments/premium_ride";
+import SettingHeader from "@/core/components/setting_header/SettingHeader";
+import { NavigationListVehicle } from "../fragments/navigation";
 
 export const VehiclesSupportContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -29,6 +31,8 @@ export const VehiclesSupportContainer = () => {
             "max-w-container w-full h-full"
           )}
         >
+          <SettingHeader title={dictionaries.title} />
+          <NavigationListVehicle />
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
@@ -39,13 +43,6 @@ export const VehiclesSupportContainer = () => {
               "bg-white dark:bg-[#232323]"
             )}
           >
-            <h2
-              className={clsx(
-                "text-[#232323] dark:text-white text-[1.5rem] font-bold"
-              )}
-            >
-              {dictionaries.title}
-            </h2>
             <PremiumRideVehiclesSupport />
             <RidePlanFormVehiclesSupport />
             <div

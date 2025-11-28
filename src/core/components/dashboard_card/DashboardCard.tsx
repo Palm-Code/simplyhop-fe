@@ -41,7 +41,7 @@ export const DashboardCard = ({
           "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full",
           "px-4 py-4",
-          "bg-[white]",
+          "bg-[white] dark:bg-[#232323]",
           "rounded-2xl"
         )}
       >
@@ -63,7 +63,7 @@ export const DashboardCard = ({
                 className={clsx("w-3 h-3", "text-[#26531A]")}
               />
             </div>
-            <p className={clsx("text-sm text-[#5B5B5B] font-semibold")}>
+            <p className={clsx("text-sm text-[#5B5B5B] dark:text-[#C3C3C3] font-semibold")}>
               {title}
             </p>
           </div>
