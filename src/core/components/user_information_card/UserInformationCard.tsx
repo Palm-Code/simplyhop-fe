@@ -78,8 +78,9 @@ export const UserInformationCard = ({
         "w-full",
         "px-[1.5rem] py-[1.5rem]",
         "relative",
-        "border border-[#D3E7CE]",
+        "border border-[#D3E7CE] dark:border-[#464646]",
         "rounded-[1.25rem]",
+        "bg-[white] dark:bg-[#232323]",
         containerClassName
       )}
     >

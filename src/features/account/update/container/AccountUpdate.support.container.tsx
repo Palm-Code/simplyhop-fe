@@ -26,10 +26,11 @@ export const AccountUpdateSupportContainer = () => {
             "px-[1.5rem] py-[1.5rem]",
             "relative",
             "border border-[#D3E7CE]",
-            "rounded-[1.25rem]"
+            "rounded-[1.25rem]",
+            'bg-white dark:bg-[#232323]'
           )}
         >
-          <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+          <h2 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>
             {dictionaries.title}
           </h2>
           <PictureFormAccountUpdateSupport />

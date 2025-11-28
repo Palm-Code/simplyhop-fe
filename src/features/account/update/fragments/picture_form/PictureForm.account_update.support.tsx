@@ -87,10 +87,10 @@ export const PictureFormAccountUpdateSupport = () => {
           "w-full"
         )}
       >
-        <p className={clsx("text-[0.875rem] text-[#232323CC] font-medium")}>
+        <p className={clsx("text-[0.875rem] text-[#232323] dark:text-white font-medium")}>
           {dictionaries.form.input.pictures.title}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>
+        <p className={clsx("text-[0.75rem] text-[#606060] dark:text-[#C3C3C3] font-normal")}>
           {dictionaries.form.input.pictures.description}
         </p>
       </div>
