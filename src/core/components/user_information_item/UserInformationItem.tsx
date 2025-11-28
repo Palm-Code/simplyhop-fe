@@ -17,10 +17,10 @@ export const UserInformationItem = ({
         "w-full"
       )}
     >
-      <p className={clsx("text-[#606060] text-[0.875rem] font-normal")}>
+      <p className={clsx("text-[#606060] dark:text-[#C3C3C3] text-[0.875rem] font-normal")}>
         {name}
       </p>
-      <p className={clsx("text-[#232323CC] text-[0.875rem] font-medium")}>
+      <p className={clsx("text-[#232323CC] dark:text-white text-[0.875rem] font-medium")}>
         {value}
       </p>
     </div>

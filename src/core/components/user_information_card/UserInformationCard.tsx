@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Avatar } from "@/core/components/avatar";
 import { UserInformationItem } from "@/core/components/user_information_item";
 import SVGIcon from "@/core/icons";
+import { Divider } from "../divider";
 
 export interface UserInformationCardProps {
   summary: {
@@ -92,9 +93,13 @@ export const UserInformationCard = ({
           <Avatar
             src={avatar?.src}
             variant="avatar"
-            className={clsx("w-[3rem] h-[3rem]", avatar?.className)}
+            className={clsx("w-[2rem] h-[2rem]", avatar?.className)}
           />
-          <h2 className={clsx("text-[#292929] text-2xl font-bold")}>
+          <h2
+            className={clsx(
+              "text-[#292929] dark:text-white text-2xl font-bold"
+            )}
+          >
             {displayName}
           </h2>
         </div>
@@ -102,17 +107,18 @@ export const UserInformationCard = ({
         <button
           className={clsx(
             "flex items-center justify-center",
-            "bg-white",
             "px-4 py-2",
             "rounded-md",
-            "border border-[#33CC33]",
-            "text-[#33CC33] text-xs font-semibold"
+            "border border-[#33CC33] dark:border-[#249124]",
+            "text-[#33CC33] dark:text-[#249124] text-xs font-semibold"
           )}
           onClick={cta.onClick}
         >
           {cta.text}
         </button>
       </div>
+
+      <Divider />
 
       {/* summary */}
       {!!summary.length && (
