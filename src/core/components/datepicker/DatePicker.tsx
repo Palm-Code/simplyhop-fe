@@ -51,7 +51,11 @@ export const DatePicker = ({
   const [currentDate, setCurrentDate] = React.useState<Date>(() => {
     if (mode === "single" && value instanceof Date) {
       return value;
-    } else if (mode === "multiple" && Array.isArray(value) && value.length > 0) {
+    } else if (
+      mode === "multiple" &&
+      Array.isArray(value) &&
+      value.length > 0
+    ) {
       return value[0];
     }
     return new Date();
@@ -140,11 +144,15 @@ export const DatePicker = ({
     } else {
       // Multiple mode logic with single-click toggle
       const dateString = data.toDateString();
-      const isAlreadySelected = selectedDates.some(d => d.toDateString() === dateString);
-      
+      const isAlreadySelected = selectedDates.some(
+        (d) => d.toDateString() === dateString
+      );
+
       if (isAlreadySelected) {
         // Single click on selected date: unselect it
-        const newSelectedDates = selectedDates.filter(d => d.toDateString() !== dateString);
+        const newSelectedDates = selectedDates.filter(
+          (d) => d.toDateString() !== dateString
+        );
         setSelectedDates(newSelectedDates);
         setCurrentDate(data);
         onSelect(newSelectedDates);
@@ -155,7 +163,7 @@ export const DatePicker = ({
           // Optionally you could replace the oldest date or show a message
           return;
         }
-        
+
         // Add to selection
         const newSelectedDates = [...selectedDates, data];
         setSelectedDates(newSelectedDates);
@@ -177,7 +185,11 @@ export const DatePicker = ({
         data.getMonth() + 1 < 10
           ? `0${data.getMonth() + 1}`
           : data.getMonth() + 1
-      }-${currentDate.getDate() < 10 ? `0${currentDate.getDate()}` : currentDate.getDate()}`
+      }-${
+        currentDate.getDate() < 10
+          ? `0${currentDate.getDate()}`
+          : currentDate.getDate()
+      }`
     );
     setCurrentDate(newDate);
     if (mode === "single") {
@@ -196,7 +208,11 @@ export const DatePicker = ({
         data.getMonth() + 1 < 10
           ? `0${data.getMonth() + 1}`
           : data.getMonth() + 1
-      }-${currentDate.getDate() < 10 ? `0${currentDate.getDate()}` : currentDate.getDate()}`
+      }-${
+        currentDate.getDate() < 10
+          ? `0${currentDate.getDate()}`
+          : currentDate.getDate()
+      }`
     );
     setCurrentDate(newDate);
     if (mode === "single") {
@@ -219,17 +235,17 @@ export const DatePicker = ({
       });
     } else {
       if (selectedDates.length === 0) {
-        return maxSelection 
+        return maxSelection
           ? `Datum auswählen (max. ${maxSelection})`
           : "Datum auswählen";
       } else if (selectedDates.length === 1) {
         return selectedDates[0].toLocaleString("de-DE", {
           day: "2-digit",
-          month: "long", 
+          month: "long",
           year: "numeric",
         });
       } else {
-        const countText = maxSelection 
+        const countText = maxSelection
           ? `${selectedDates.length}/${maxSelection} Termine ausgewählt`
           : `${selectedDates.length} Termine ausgewählt`;
         return countText;
@@ -257,9 +273,12 @@ export const DatePicker = ({
           className={clsx(
             disabled ? "cursor-default" : "cursor-pointer",
             "font-medium text-[0.875rem] leading-[1.25rem]",
-            "text-[#232323] dark:text-white whitespace-nowrap",
+            "whitespace-nowrap",
             "w-full",
-            disabled && "!bg-[#F6F6F6]",
+            disabled
+              ? "text-[#C3C3C3] dark:text-[#C3C3C3]"
+              : "text-[#232323] dark:text-white",
+            disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]",
             inputContainerProps?.className
           )}
           onClick={() => {
@@ -304,8 +323,14 @@ export const DatePicker = ({
               {isDayShow && (
                 <DayPicker
                   disablePast
-                  date={mode === "single" ? selectedDates[0] || currentDate : currentDate}
-                  selectedDates={mode === "multiple" ? selectedDates : undefined}
+                  date={
+                    mode === "single"
+                      ? selectedDates[0] || currentDate
+                      : currentDate
+                  }
+                  selectedDates={
+                    mode === "multiple" ? selectedDates : undefined
+                  }
                   maxSelection={mode === "multiple" ? maxSelection : undefined}
                   onClickMonth={handleClickMonth}
                   onClickDate={handleSelectDate}

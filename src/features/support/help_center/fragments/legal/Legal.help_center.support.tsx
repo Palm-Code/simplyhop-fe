@@ -13,8 +13,9 @@ export const LegalHelpCenterSupport = () => {
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full",
         "px-[1.5rem] py-[1.5rem]",
-        "border border-[#D3E7CE]",
-        "rounded-[1.25rem]"
+        "border border-[#D3E7CE] dark:border-[#464646]",
+        "rounded-[1.25rem]",
+        'bg-white dark:bg-[#232323]'
       )}
     >
       <h2 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>

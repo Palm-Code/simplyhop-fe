@@ -151,7 +151,7 @@ export const AutocompleteRoutes = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer className={clsx(disabled && "!bg-[#F6F6F6]")}>
+        <InputContainer className={clsx(disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]")}>
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",

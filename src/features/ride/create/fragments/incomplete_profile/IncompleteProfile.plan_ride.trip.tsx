@@ -17,12 +17,12 @@ export const IncompleteProfilePlaneRideTrip = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-items-start place-content-start gap-4",
-        "bg-[white]",
+        "bg-[white] dark:bg-[#292929]",
         "rounded-[0.5rem] lg:rounded-[1.25rem]",
         "px-[0.5rem] py-[0.5rem] lg:px-4 lg:py-4",
         "text-[1rem] lg:text-xl text-neutral-50 font-bold",
         "sm:w-full sm:max-w-[409px]",
-        "border border-[#D3E7CE]"
+        "border border-[#D3E7CE] dark:border-[#5B5B5B]"
       )}
       style={{
         backdropFilter: "blur(20px)",
@@ -35,10 +35,10 @@ export const IncompleteProfilePlaneRideTrip = () => {
           "w-full"
         )}
       >
-        <p className={clsx("text-[1rem] text-[#292929] font-bold")}>
+        <p className={clsx("text-[1rem] text-[#292929] dark:text-white font-bold")}>
           {dictionaries.badge.uncompleted.title}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#98989E] font-normal")}>
+        <p className={clsx("text-[0.75rem] text-[#98989E] dark:text-[#98989E] font-normal")}>
           {dictionaries.badge.uncompleted.description}
         </p>
       </div>

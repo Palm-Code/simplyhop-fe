@@ -36,7 +36,7 @@ export const Textfield = ({
         {...inputContainerProps}
         className={clsx(
           "relative",
-          disabled && "!bg-[#F6F6F6] dark:!bg-[#232323]",
+          disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]",
           error && "!border-[#DA2323]",
           inputContainerProps?.className
         )}

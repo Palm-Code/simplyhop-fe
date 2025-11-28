@@ -33,12 +33,17 @@ export const VehiclesSupportContainer = () => {
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full h-full",
-              "border border-[#D3E7CE]",
+              "border border-[#D3E7CE] dark:border-[#464646]",
               "px-[1.5rem] py-[1.5rem]",
-              "rounded-[1.25rem]"
+              "rounded-[1.25rem]",
+              "bg-white dark:bg-[#232323]"
             )}
           >
-            <h2 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>
+            <h2
+              className={clsx(
+                "text-[#232323] dark:text-white text-[1.5rem] font-bold"
+              )}
+            >
               {dictionaries.title}
             </h2>
             <PremiumRideVehiclesSupport />
@@ -56,7 +61,9 @@ export const VehiclesSupportContainer = () => {
                 )}
               >
                 <h3
-                  className={clsx("text-[#232323] dark:text-white text-[1.125rem] font-bold")}
+                  className={clsx(
+                    "text-[#232323] dark:text-white text-[1.125rem] font-bold"
+                  )}
                 >
                   {dictionaries.list.title}
                 </h3>
