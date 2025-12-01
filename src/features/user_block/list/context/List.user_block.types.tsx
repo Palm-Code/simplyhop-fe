@@ -14,6 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface ListUserBlockInitialStateType {
   items: ListUserBlockItems;
+  unblock_confirmation: ListUserBlockUnblockConfirmation;
 }
 
 // State Collection Types consist of:
@@ -28,16 +29,26 @@ export interface ListUserBlockItems {
   };
 }
 
+export interface ListUserBlockUnblockConfirmation {
+  is_open: boolean;
+  id: null | number;
+}
+
 export enum ListUserBlockActionEnum {
   // Items
   SetItemsData = "SetItemsData",
   SetItemsItemsData = "SetItemsItemsData",
   SetItemsLoadingData = "SetItemsLoadingData",
   SetItemsPaginationData = "SetItemsPaginationData",
+
+  // UnblockConfirmation
+  SetUnblockConfirmationData = "SetUnblockConfirmationData",
 }
 
 // Action Collection Types
-export type ListUserBlockActions = ListUserBlockItemsActions;
+export type ListUserBlockActions =
+  | ListUserBlockItemsActions
+  | ListUserBlockUnblockConfirmationActions;
 
 // Action Collection Types consist of:
 // Items
@@ -50,3 +61,11 @@ type ListUserBlockItemsPayload = {
 
 export type ListUserBlockItemsActions =
   ActionMap<ListUserBlockItemsPayload>[keyof ActionMap<ListUserBlockItemsPayload>];
+
+// UnblockConfirmation
+type ListUserBlockUnblockConfirmationPayload = {
+  [ListUserBlockActionEnum.SetUnblockConfirmationData]: ListUserBlockUnblockConfirmation;
+};
+
+export type ListUserBlockUnblockConfirmationActions =
+  ActionMap<ListUserBlockUnblockConfirmationPayload>[keyof ActionMap<ListUserBlockUnblockConfirmationPayload>];

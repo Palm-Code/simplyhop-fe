@@ -6,6 +6,7 @@ export const AppCollectionURL = {
     forgot_password: () => `/forgot-password`,
   },
   private: {
+    user_block_list: () => "/user-block",
     chat: (params?: string) => (!params ? "/chat" : `/chat?${params}`),
     trip: () => "/mitfahrt-suchen",
     tripResult: (params?: string) =>
@@ -23,6 +24,7 @@ export const AppCollectionURL = {
     support_account: () => "/support/konto",
     support_account_edit: () => "/support/konto/edit",
     support_payment: () => "/support/abonnement",
+    support_setting: () => "support/einstellungen",
     support_dashboard: () => "/support/dashboard",
     driver: () => "/support/fahrer",
     driverDetail: (path: { id: string }) => `/support/fahrer/detail/${path.id}`,

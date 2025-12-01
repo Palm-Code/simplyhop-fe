@@ -24,11 +24,11 @@ export const ItemListUserBlock = ({
     >
       <div
         className={clsx(
-          "flex items-center justify-between gap-[1rem]",
+          "grid grid-cols-[40px_1fr] items-center content-center justify-start justify-items-start gap-[1rem]",
           "w-full"
         )}
       >
-        <Avatar {...avatar} />
+        <Avatar {...avatar} className={clsx("w-[2.5rem] h-[2.5rem]")} />
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-1",
@@ -50,20 +50,21 @@ export const ItemListUserBlock = ({
             {description}
           </p>
         </div>
-
-        {cta && (
-          <button
-            className={clsx(
-              "flex items-center justify-center",
-              "px-4 py-3",
-              "text-[#249124] dark:text-[#33CC33] font-semibold text-xs"
-            )}
-            onClick={cta.onClick}
-          >
-            {cta?.children}
-          </button>
-        )}
       </div>
+
+      {cta && (
+        <button
+          className={clsx(
+            "flex items-center justify-center",
+            "px-4 py-3",
+            'cursor-pointer',
+            "text-[#249124] dark:text-[#33CC33] font-semibold text-xs"
+          )}
+          onClick={cta.onClick}
+        >
+          {cta?.children}
+        </button>
+      )}
     </div>
   );
 };

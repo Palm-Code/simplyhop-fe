@@ -18,9 +18,9 @@ export const useGetUserBlockList = () => {
 
   const payload: GetUserBlockListPayloadRequestInterface = {
     params: {
-      include: "user",
+      include: "user,blockedUser",
       "page[number]": 1,
-      "page[size]": 10,
+      "page[size]": 100,
     },
   };
   const query = useQuery<

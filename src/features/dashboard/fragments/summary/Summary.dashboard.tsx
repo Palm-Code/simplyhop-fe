@@ -102,7 +102,7 @@ export const SummaryDashboard = () => {
     : !userState.profile?.is_driver
     ? dictionaries.personal.summary.passenger.items?.map((item) => {
         let value: string = "0";
-        let unit: string = item.unit;
+        const unit: string = item.unit;
         switch (item.id) {
           case "Gebuchte Fahrten": {
             value =

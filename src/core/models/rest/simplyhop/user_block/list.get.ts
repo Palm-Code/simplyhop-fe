@@ -1,4 +1,4 @@
-import { Shift, UserBlock } from "@/core/models/data";
+import { UserBlock } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetUserBlockListRequestInterface extends NextApiRequest {

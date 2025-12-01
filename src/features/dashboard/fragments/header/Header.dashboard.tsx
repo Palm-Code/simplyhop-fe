@@ -3,7 +3,6 @@ import * as React from "react";
 import { getDictionaries } from "../../i18n";
 import { UserContext } from "@/core/modules/app/context";
 import { formatDisplayName } from "@/core/utils/name/functions";
-import clsx from "clsx";
 import SettingHeader from "@/core/components/setting_header/SettingHeader";
 
 export const HeaderDashboard = () => {

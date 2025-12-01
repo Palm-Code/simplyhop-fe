@@ -6,6 +6,8 @@ import { LoadingState } from "@/core/components/loading_state";
 import { EmptyState } from "@/core/components/empty_state";
 import { getDictionaries } from "../../i18n";
 import { ItemListUserBlock } from "../../components/item";
+import { formatDisplayName } from "@/core/utils/name/functions";
+import { User } from "@/core/models/data";
 
 export const DataTableListUserBlock = () => {
   const { state, dispatch } = React.useContext(ListUserBlockContext);
@@ -58,6 +60,17 @@ export const DataTableListUserBlock = () => {
     );
   }
 
+  const handleClickUnblock = (data: User) => {
+    dispatch({
+      type: ListUserBlockActionEnum.SetUnblockConfirmationData,
+      payload: {
+        ...state.unblock_confirmation,
+        is_open: true,
+        id: data.id,
+      },
+    });
+  };
+
   return (
     <div
       className={clsx(
@@ -75,7 +88,23 @@ export const DataTableListUserBlock = () => {
         )}
       >
         {state.items.items.map((item, index) => (
-          <ItemListUserBlock key={index} />
+          <ItemListUserBlock
+            key={index}
+            avatar={{
+              src: item.blocked_user.avatar ?? "",
+            }}
+            name={formatDisplayName({
+              first_name: item.blocked_user.first_name,
+              email: item.blocked_user.email,
+            })}
+            description={
+              "Alle Fahrten zusammen storniert, einschließlich zukünftiger Angebote."
+            }
+            cta={{
+              children: "Entsperren",
+              onClick: () => handleClickUnblock(item.blocked_user),
+            }}
+          />
         ))}
       </div>
     </div>

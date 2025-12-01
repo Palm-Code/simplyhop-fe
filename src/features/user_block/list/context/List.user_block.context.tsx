@@ -4,7 +4,10 @@ import {
   ListUserBlockActions,
   ListUserBlockInitialStateType,
 } from "./List.user_block.types";
-import { ListUserBlockItemsReducers } from "./List.user_block.reducers";
+import {
+  ListUserBlockItemsReducers,
+  ListUserBlockUnblockConfirmationReducers,
+} from "./List.user_block.reducers";
 
 const initialState: ListUserBlockInitialStateType = {
   items: {
@@ -17,6 +20,10 @@ const initialState: ListUserBlockInitialStateType = {
       is_fetching: true,
     },
   },
+  unblock_confirmation: {
+    is_open: false,
+    id: null,
+  },
 };
 
 const ListUserBlockContext = createContext<{
@@ -28,10 +35,14 @@ const ListUserBlockContext = createContext<{
 });
 
 const mainReducer = (
-  { items }: ListUserBlockInitialStateType,
+  { items, unblock_confirmation }: ListUserBlockInitialStateType,
   action: ListUserBlockActions
 ) => ({
   items: ListUserBlockItemsReducers(items, action),
+  unblock_confirmation: ListUserBlockUnblockConfirmationReducers(
+    unblock_confirmation,
+    action
+  ),
 });
 
 const ListUserBlockProvider = (props: { children: React.ReactNode }) => {

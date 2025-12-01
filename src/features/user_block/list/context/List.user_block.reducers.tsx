@@ -2,6 +2,7 @@ import {
   ListUserBlockActionEnum,
   ListUserBlockActions,
   ListUserBlockItems,
+  ListUserBlockUnblockConfirmation,
 } from "./List.user_block.types";
 
 // Items
@@ -27,6 +28,20 @@ export const ListUserBlockItemsReducers = (
         ...state,
         pagination: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+// UnblockConfirmation
+export const ListUserBlockUnblockConfirmationReducers = (
+  state: ListUserBlockUnblockConfirmation,
+  action: ListUserBlockActions
+) => {
+  switch (action.type) {
+    case ListUserBlockActionEnum.SetUnblockConfirmationData:
+      return action.payload;
 
     default:
       return state;

@@ -6,15 +6,18 @@ import {
   SettingsSupportActionEnum,
   SettingsSupportContext,
 } from "../../context";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const AccountSettingsSupport = () => {
   const dictionaries = getDictionaries();
+  const router = useRouter();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
 
   const handleClickList = (id: string) => {
     if (id === "block") {
-    }
-    if (id === "change_password") {
+      return router.push(AppCollectionURL.private.user_block_list());
+    } else if (id === "change_password") {
       dispatch({
         type: SettingsSupportActionEnum.SetChangePasswordData,
         payload: {

@@ -6,7 +6,7 @@ import { HeaderListUserBlock } from "../fragments/header";
 
 import { DataTableListUserBlock } from "../fragments/data_table";
 
-export const UserBlockListContainer = () => {
+export const ListUserBlockContainer = () => {
   useGetUserBlockList();
   return (
     <div
