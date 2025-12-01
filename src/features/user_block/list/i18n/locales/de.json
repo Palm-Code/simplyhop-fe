@@ -1,16 +1,29 @@
 {
-  "user_block": {
-    "title": "Blockierte Nutzer",
-    "items": [
-      {
-        "id": "impressum",
-        "name": "Impressum",
-        "description": "Gesetzlich vorgeschriebene Anbieterkennzeichnung.",
-        "cta": {
-          "children": "Seite öffnen",
-          "href": "/impressum"
+  "title": "Blockierte Nutzer",
+  "items": {
+    "empty": {
+      "message": "Noch kein Fahrerliste",
+      "description": "Noch kein Fahrerliste"
+    },
+    "head": {
+      "items": [
+        {
+          "id": "driver",
+          "name": "Driver"
+        },
+        {
+          "id": "rides",
+          "name": "Rides"
+        },
+        {
+          "id": "bewertungen",
+          "name": "Bewertungen"
+        },
+        {
+          "id": "passengers",
+          "name": "Passengers"
         }
-      }
-    ]
+      ]
+    }
   }
 }
