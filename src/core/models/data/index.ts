@@ -13,3 +13,4 @@ export * from "./message_content";
 export * from "./meta";
 export * from "./shift";
 export * from "./organization";
+export * from "./user_block";

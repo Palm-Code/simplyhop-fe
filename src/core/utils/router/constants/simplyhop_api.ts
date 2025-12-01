@@ -69,6 +69,9 @@ export const SimplyHopAPICollectionURL = {
   shift: {
     getList: () => `/api/shifts`,
   },
+  user_block: {
+    getList: () => `/api/user-block`,
+  },
   vehicle: {
     postCreateMy: () => `/api/vehicle/storeMy`,
     postUpdate: (path: PutVehicleUpdatePathPayloadRequestInterface) =>

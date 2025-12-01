@@ -1,0 +1,16 @@
+{
+  "user_block": {
+    "title": "Blockierte Nutzer",
+    "items": [
+      {
+        "id": "impressum",
+        "name": "Impressum",
+        "description": "Gesetzlich vorgeschriebene Anbieterkennzeichnung.",
+        "cta": {
+          "children": "Seite öffnen",
+          "href": "/impressum"
+        }
+      }
+    ]
+  }
+}
