@@ -1,15 +1,24 @@
 {
   "security": {
-    "title": "Security",
-    "detail": {
-      "name": "Passwort",
-      "description": "Das Login-Passwort trägt dazu bei, die Konto- und Kommunikationssicherheit zu gewährleisten."
-    },
-    "cta": {
-      "change_password": {
-        "children": "Passwort ändern"
+    "title": "Konto",
+    "items": [
+      {
+        "id": "block",
+        "name": "Blockierte Nutzer",
+        "description": "Liste der Benutzer, die Sie blockiert haben",
+        "cta": {
+          "children": "Siehe Liste"
+        }
+      },
+      {
+        "id": "change_password",
+        "name": "Passwort",
+        "description": "Hier kannst Du Dein Passwort ändern.",
+        "cta": {
+          "children": "Passwort ändern"
+        }
       }
-    }
+    ]
   },
   "account": {
     "title": "Konto",
