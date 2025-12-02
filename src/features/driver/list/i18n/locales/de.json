@@ -140,5 +140,8 @@
         "children": "Bestätigung"
       }
     }
+  },
+  "user_block": {
+    "title": "Blockierte Nutzer"
   }
 }

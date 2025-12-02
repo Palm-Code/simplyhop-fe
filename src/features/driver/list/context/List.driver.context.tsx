@@ -5,6 +5,7 @@ import {
   ListDriverInitialStateType,
 } from "./List.driver.types";
 import {
+  ListDriverBlockedUserReducers,
   ListDriverDeleteAccountConfirmationReducers,
   ListDriverDeleteChatConfirmationReducers,
   ListDriverTableReducers,
@@ -33,6 +34,18 @@ const initialState: ListDriverInitialStateType = {
   delete_account_confirmation: {
     is_open: false,
   },
+  blocked_user: {
+    is_open: false,
+    user_id: null,
+    items: [],
+    pagination: {
+      limit: 5,
+      current_page: 1,
+    },
+    loading: {
+      is_fetching: true,
+    },
+  },
 };
 
 const ListDriverContext = createContext<{
@@ -49,6 +62,7 @@ const mainReducer = (
     user_profile,
     delete_chat_confirmation,
     delete_account_confirmation,
+    blocked_user,
   }: ListDriverInitialStateType,
   action: ListDriverActions
 ) => ({
@@ -62,6 +76,7 @@ const mainReducer = (
     delete_account_confirmation,
     action
   ),
+  blocked_user: ListDriverBlockedUserReducers(blocked_user, action),
 });
 
 const ListDriverProvider = (props: { children: React.ReactNode }) => {

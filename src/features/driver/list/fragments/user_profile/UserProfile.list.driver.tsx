@@ -47,7 +47,16 @@ export const UserProfileListDriver = () => {
   };
 
   const handleClickBlockList = () => {
-    //
+    dispatch({
+      type: ListDriverActionEnum.SetBlockedUserData,
+      payload: {
+        ...state.blocked_user,
+
+        user_id: state.user_profile.user_id,
+        is_open: true,
+      },
+    });
+    handleClose();
   };
 
   const summaryItems = !state.user_profile.data?.is_driver

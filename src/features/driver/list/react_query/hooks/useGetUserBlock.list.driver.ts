@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { ListUserBlockContext, ListUserBlockActionEnum } from "../../context";
+import { ListDriverContext, ListDriverActionEnum } from "../../context";
 
 import { fetchGetUserBlockList } from "@/core/services/rest/simplyhop/user_block";
 import {
@@ -10,10 +10,10 @@ import {
   GetUserBlockListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/user_block";
 import { UserContext } from "@/core/modules/app/context";
-import { ListUserBlockReactQueryKey } from "../keys";
+import { ListDriverReactQueryKey } from "../keys";
 
 export const useGetUserBlockList = () => {
-  const { state, dispatch } = React.useContext(ListUserBlockContext);
+  const { state, dispatch } = React.useContext(ListDriverContext);
   const { state: userState } = React.useContext(UserContext);
 
   const payload: GetUserBlockListPayloadRequestInterface = {
@@ -28,7 +28,7 @@ export const useGetUserBlockList = () => {
     GetUserBlockListSuccessResponseInterface,
     GetUserBlockListErrorResponseInterface
   >({
-    queryKey: ListUserBlockReactQueryKey.GetUserBlockList(payload),
+    queryKey: ListDriverReactQueryKey.GetUserBlockList(payload),
     queryFn: () => {
       return fetchGetUserBlockList(payload);
     },
@@ -38,7 +38,7 @@ export const useGetUserBlockList = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       dispatch({
-        type: ListUserBlockActionEnum.SetItemsItemsData,
+        type: ListDriverActionEnum.SetBlockedUserItemsData,
         payload: query.data.data,
       });
     }
@@ -46,9 +46,9 @@ export const useGetUserBlockList = () => {
 
   React.useEffect(() => {
     dispatch({
-      type: ListUserBlockActionEnum.SetItemsLoadingData,
+      type: ListDriverActionEnum.SetBlockedUserLoadingData,
       payload: {
-        ...state.items.loading,
+        ...state.blocked_user.loading,
         is_fetching: query.isFetching,
       },
     });

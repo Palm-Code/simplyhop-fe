@@ -10,7 +10,7 @@ export interface GetUserBlockListPayloadRequestInterface {
 }
 
 export type GetUserBlockListParamsPayloadRequestInterface = {
-  "filter[userid]"?: string;
+  "filter[user_id]"?: string;
   include?: string;
   "page[number]"?: number;
   "page[size]"?: number;

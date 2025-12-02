@@ -1,4 +1,4 @@
-import { User } from "@/core/models/data";
+import { User, UserBlock } from "@/core/models/data";
 import { GetDashboardSuperAdminSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -18,6 +18,7 @@ export interface ListDriverInitialStateType {
   user_profile: ListDriverUserProfile;
   delete_chat_confirmation: ListDriverDeleteChatConfirmation;
   delete_account_confirmation: ListDriverDeleteAccountConfirmation;
+  blocked_user: ListDriverBlockedUser;
 }
 
 export type ListDriverTable = {
@@ -47,11 +48,24 @@ export interface ListDriverDeleteAccountConfirmation {
 
 export type ListDriverItem = GetDashboardSuperAdminSuccessDataResponseInterface;
 
+export type ListDriverBlockedUser = {
+  is_open: boolean;
+  user_id: string | null;
+  items: UserBlock[];
+  pagination: {
+    limit: number;
+    current_page: number;
+  };
+  loading: {
+    is_fetching: boolean;
+  };
+};
+
 export enum ListDriverActionEnum {
   SetTableData = "SetTableData",
-  SetTableItemsData = "SetItemsData",
-  SetTablePaginationData = "SetPaginationData",
-  SetTableLoadingData = "SetLoadingData",
+  SetTableItemsData = "SetTableItemsData",
+  SetTablePaginationData = "SetTablePaginationData",
+  SetTableLoadingData = "SetTableLoadingData",
 
   // UserProfile
   SetUserProfileData = "SetUserProfileData",
@@ -61,6 +75,12 @@ export enum ListDriverActionEnum {
 
   // DeleteAccountConfirmation
   SetDeleteAccountConfirmationData = "SetDeleteAccountConfirmationData",
+
+  // Blocked User
+  SetBlockedUserData = "SetBlockedUserData",
+  SetBlockedUserItemsData = "SetBlockedUserItemsData",
+  SetBlockedUserPaginationData = "SetBlockedUseraginationData",
+  SetBlockedUserLoadingData = "SetBlockedUserLoadingData",
 }
 
 // Action Collection Types
@@ -68,7 +88,8 @@ export type ListDriverActions =
   | ListDriverTableActions
   | ListDriverUserProfileActions
   | ListDriverDeleteChatConfirmationActions
-  | ListDriverDeleteAccountConfirmationActions;
+  | ListDriverDeleteAccountConfirmationActions
+  | ListDriverBlockedUserActions;
 
 // Action Collection Types consist of:
 
@@ -105,3 +126,13 @@ type ListDriverDeleteAccountConfirmationPayload = {
 
 export type ListDriverDeleteAccountConfirmationActions =
   ActionMap<ListDriverDeleteAccountConfirmationPayload>[keyof ActionMap<ListDriverDeleteAccountConfirmationPayload>];
+
+// BlockedUser
+type ListDriverBlockedUserPayload = {
+  [ListDriverActionEnum.SetBlockedUserData]: ListDriverBlockedUser;
+  [ListDriverActionEnum.SetBlockedUserItemsData]: ListDriverBlockedUser["items"];
+  [ListDriverActionEnum.SetBlockedUserPaginationData]: ListDriverBlockedUser["pagination"];
+  [ListDriverActionEnum.SetBlockedUserLoadingData]: ListDriverBlockedUser["loading"];
+};
+export type ListDriverBlockedUserActions =
+  ActionMap<ListDriverBlockedUserPayload>[keyof ActionMap<ListDriverBlockedUserPayload>];

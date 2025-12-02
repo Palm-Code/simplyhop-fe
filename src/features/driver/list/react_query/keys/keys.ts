@@ -2,6 +2,7 @@ import {
   GetDashboardOrganizationPayloadRequestInterface,
   GetDashboardSuperAdminPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
+import { GetUserBlockListPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_block";
 import { GetUserProfileIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 
 export const ListDriverReactQueryKey = {
@@ -32,5 +33,8 @@ export const ListDriverReactQueryKey = {
   },
   PatchUserActivate: () => {
     return ["ListDriverReactQueryKey.PatchUserActivate"];
+  },
+  GetUserBlockList: (payload?: GetUserBlockListPayloadRequestInterface) => {
+    return ["ListDriverReactQueryKey.GetUserBlockList", [payload] as const];
   },
 };
