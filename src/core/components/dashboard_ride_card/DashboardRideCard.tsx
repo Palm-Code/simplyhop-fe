@@ -113,7 +113,8 @@ export const DashboardRideCard = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "bg-white"
+        "bg-white dark:bg-[#232323]",
+        "border-[0.5px] border-[#E9E6E6] dark:border-[#464646]"
       )}
     >
       {/* car */}
@@ -151,7 +152,12 @@ export const DashboardRideCard = ({
           </div>
         </div>
 
-        <div className={clsx("grid grid-cols-[80px_80px_80px] items-center justify-between", "w-full")}>
+        <div
+          className={clsx(
+            "grid grid-cols-[80px_80px_80px] items-center justify-between",
+            "w-full"
+          )}
+        >
           <DepartureItem {...routes.departure} />
 
           <TravelTimeItem {...routes.travelTime} />

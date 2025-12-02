@@ -117,8 +117,8 @@ export const DashboardVehicleCard = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "border border-[#EFEFEF]",
-        "bg-white"
+        "bg-white dark:bg-[#232323]",
+        "border-[0.5px] border-[#E9E6E6] dark:border-[#464646]"
       )}
     >
       {/* car */}
@@ -138,12 +138,15 @@ export const DashboardVehicleCard = ({
           {imageError ? (
             <SVGIcon
               name="Car"
-              className={clsx("w-[128px] h-[128px]", "text-icon-primary-subdued")}
+              className={clsx(
+                "w-[128px] h-[128px]",
+                "text-icon-primary-subdued"
+              )}
             />
           ) : (
-            <Image 
-              {...car.image} 
-              className={clsx("w-[128px]")} 
+            <Image
+              {...car.image}
+              className={clsx("w-[128px]")}
               onError={handleImageError}
             />
           )}

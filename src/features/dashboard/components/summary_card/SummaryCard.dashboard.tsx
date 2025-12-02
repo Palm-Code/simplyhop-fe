@@ -21,75 +21,78 @@ export const SummaryCardDashboard = ({
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start",
+        "grid grid-cols-1 place-content-start place-items-start gap-6",
         "w-full",
-        "px-[1px] py-[1px]",
-        "rounded-2xl"
+        "px-4 py-4",
+        "bg-[white] dark:bg-[#232323]",
+        "rounded-2xl",
+        "border border-[#E9E6E6] dark:border-[#464646]"
       )}
-      style={{
-        background:
-          "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
-      }}
     >
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-6",
-          "w-full",
-          "px-4 py-4",
-          "bg-[white] dark:bg-[#232323]",
-          "rounded-2xl"
-        )}
-      >
-        <div className={clsx("flex items-center justify-between", "w-full")}>
+      <div className={clsx("flex items-center justify-between", "w-full")}>
+        <div
+          className={clsx("flex items-center justify-start gap-2", "w-full")}
+        >
+          {/* icon */}
           <div
-            className={clsx("flex items-center justify-start gap-2", "w-full")}
-          >
-            {/* icon */}
-            <div
-              className={clsx(
-                "flex items-center justify-center",
-                "rounded-full",
-                "w-6 h-6",
-                "bg-[#EFF9EC]"
-              )}
-            >
-              <SVGIcon
-                name={icon as SVGIconProps["name"]}
-                className={clsx("w-3 h-3", "text-[#26531A]")}
-              />
-            </div>
-            <p className={clsx("text-sm text-[#5B5B5B] dark:text-[#C3C3C3] font-normal")}>
-              {title}
-            </p>
-          </div>
-
-          <Link
-            href={href}
             className={clsx(
               "flex items-center justify-center",
               "rounded-full",
               "w-6 h-6",
-              "bg-transparent"
+              "bg-[#EFF9EC] dark:bg-[#26531A]"
             )}
           >
             <SVGIcon
-              name={"ArrowRight"}
-              className={clsx("w-3.5 h-3.5", "text-[#767676] dark:text-[#C3C3C3]")}
+              name={icon as SVGIconProps["name"]}
+              className={clsx("w-3 h-3", "text-[#26531A] dark:text-[#33CC33]")}
             />
-          </Link>
+          </div>
+          <p
+            className={clsx(
+              "text-sm text-[#5B5B5B] dark:text-[#DADADA] font-normal"
+            )}
+          >
+            {title}
+          </p>
         </div>
 
-        <div
+        <Link
+          href={href}
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-0",
-            "w-full"
+            "flex items-center justify-center",
+            "rounded-full",
+            "w-6 h-6",
+            "bg-transparent"
           )}
         >
-          <p className={clsx("text-[#232323] dark:text-white text-2xl font-bold")}>{value}</p>
-          <span className={clsx("text-[#767676] dark:text-[#C3C3C3] text-sm font-normal")}>
-            {unit}
-          </span>
-        </div>
+          <SVGIcon
+            name={"ArrowRight"}
+            className={clsx(
+              "w-3.5 h-3.5",
+              "text-[#767676] dark:text-[#C3C3C3]"
+            )}
+          />
+        </Link>
+      </div>
+
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-0",
+          "w-full"
+        )}
+      >
+        <p
+          className={clsx("text-[#232323] dark:text-white text-2xl font-bold")}
+        >
+          {value}
+        </p>
+        <span
+          className={clsx(
+            "text-[#767676] dark:text-[#C3C3C3] text-sm font-normal"
+          )}
+        >
+          {unit}
+        </span>
       </div>
     </div>
   );

@@ -22,7 +22,8 @@ export const DashboardDriverCard = ({
         "w-full h-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "bg-white"
+        "bg-white dark:bg-[#232323]",
+        "border-[0.5px] border-[#E9E6E6] dark:border-[#464646]"
       )}
     >
       <table className={clsx("table w-full")}>

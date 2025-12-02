@@ -14,7 +14,10 @@ export const TableHead = ({ table = null, className }: TableHeadProps) => {
         table.getHeaderGroups().map((headerGroup) => (
           <tr
             key={headerGroup.id}
-            className={clsx("border-b border-b-[#E9E6E6]", "h-9")}
+            className={clsx(
+              "border-b border-b-[#E9E6E6] dark:border-b-[#464646]",
+              "h-9"
+            )}
           >
             {headerGroup.headers.map((header) => {
               return (

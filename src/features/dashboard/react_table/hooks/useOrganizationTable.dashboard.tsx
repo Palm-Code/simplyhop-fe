@@ -38,7 +38,7 @@ export const useOrganizationTableDashboard = () => {
               className={clsx(
                 "flex items-center justify-start",
                 "w-full",
-                "text-[#606060] text-xs font-normal"
+                "text-[#606060] dark:text-[#DADADA] text-xs font-normal"
               )}
             >
               {item.name}
@@ -83,7 +83,7 @@ export const useOrganizationTableDashboard = () => {
 
                 <p
                   className={clsx(
-                    "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                    "text-[#232323] dark:text-[white] font-normal text-[0.875rem] line-clamp-2",
                     "w-full"
                   )}
                 >
@@ -100,7 +100,7 @@ export const useOrganizationTableDashboard = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#232323] dark:text-[white] font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >
@@ -115,7 +115,7 @@ export const useOrganizationTableDashboard = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#232323] dark:text-[white] font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >
@@ -128,7 +128,7 @@ export const useOrganizationTableDashboard = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#232323] dark:text-[white] font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >

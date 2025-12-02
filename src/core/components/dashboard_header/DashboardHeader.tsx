@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Avatar, AvatarProps } from "../avatar";
 import clsx from "clsx";
+import { ThemeToggleButton } from "../theme_toggle_button";
 
 export interface DashboardHeaderProps {
   title?: string;
@@ -18,30 +19,29 @@ export const DashboardHeader = ({
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start",
+        "grid grid-flow-col items-center content-center justify-between justify-items-start gap-6",
         "w-full",
-        "px-[1px] py-[1px]",
-        "rounded-2xl"
+        "px-4 py-4",
+        "bg-[white] dark:bg-[#232323]",
+        "rounded-2xl",
+        "border border-[#E9E6E6] dark:border-[#464646]"
       )}
-      style={{
-        background:
-          "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
-      }}
     >
-      <div
+      <h1
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-between justify-items-start gap-6",
-          "w-full",
-          "px-4 py-4",
-          "bg-[white]",
-          "rounded-2xl"
+          "text-[1.5rem] text-[#232323] dark:text-white font-bold"
         )}
       >
-        <h1 className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
-          {title}
-        </h1>
+        {title}
+      </h1>
 
-        <div className={clsx("grid grid-cols-[2rem_1fr] items-center justify-end gap-[0.5rem]")}>
+      <div className={clsx("flex items-center justify-center gap-4")}>
+        {/* user profile */}
+        <div
+          className={clsx(
+            "grid grid-cols-[2rem_1fr] items-center justify-end gap-[0.5rem]"
+          )}
+        >
           <Avatar {...avatar} className={clsx("w-[2rem] h-[2rem]")} />
           <div
             className={clsx(
@@ -49,14 +49,31 @@ export const DashboardHeader = ({
               "w-full"
             )}
           >
-            <p className={clsx("text-[#232323] text-[0.75rem] font-medium")}>
+            <p
+              className={clsx(
+                "text-[#232323] dark:text-white text-[0.75rem] font-medium"
+              )}
+            >
               {name}
             </p>
-            <p className={clsx("text-[#5B5B5B] text-[0.625rem] font-normal")}>
+            <p
+              className={clsx(
+                "text-[#5B5B5B] dark:text-[#DADADA] text-[0.625rem] font-normal"
+              )}
+            >
               {role}
             </p>
           </div>
         </div>
+
+        {/* divider */}
+        <div
+          className={clsx("h-[30px] w-[1px]", "bg-[#E9E6E6] dark:bg-[#E9E6E6]")}
+        />
+
+        {/* theme */}
+
+        <ThemeToggleButton />
       </div>
     </div>
   );
