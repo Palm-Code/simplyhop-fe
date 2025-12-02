@@ -19,7 +19,9 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
             <Link
               key={`breadcrumb-link-${index}`}
               href={item.href}
-              className={clsx("text-[#767676] text-xs font-normal")}
+              className={clsx(
+                "text-[#767676] dark:text-[#C3C3C3] text-xs font-normal"
+              )}
             >
               {item.label}
             </Link>
@@ -28,7 +30,9 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
           {index === items.length - 1 && (
             <span
               key={`breadcrumb-label-${index}`}
-              className={clsx("text-[#249124] text-xs font-semibold")}
+              className={clsx(
+                "text-[#249124] dark:text-[#33CC33] text-xs font-semibold"
+              )}
             >
               {item.label}
             </span>
@@ -37,7 +41,7 @@ export const Breadcrumb = ({ items = [] }: BreadcrumbProps) => {
             <SVGIcon
               key={`breadcrumb-icon-${index}`}
               name="ChevronRight"
-              className={clsx("w-4 h-4", "text-[#767676]")}
+              className={clsx("w-4 h-4", "text-[#767676] dark:text-[#F6F6F6]")}
             />
           )}
         </React.Fragment>

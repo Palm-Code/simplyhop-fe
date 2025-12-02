@@ -31,27 +31,15 @@ export const DataTableListOrganization = () => {
     return (
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start",
+          "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full",
-          "px-[1px] py-[1px]",
-          "rounded-2xl"
+          "px-4 py-4",
+          "bg-[white]",
+          "rounded-2xl",
+          "border border-[#E9E6E6] dark:border-[#464646]"
         )}
-        style={{
-          background:
-            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
-        }}
       >
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-6",
-            "w-full",
-            "px-4 py-4",
-            "bg-[white]",
-            "rounded-2xl"
-          )}
-        >
-          <LoadingState />
-        </div>
+        <LoadingState />
       </div>
     );
   }
@@ -60,61 +48,37 @@ export const DataTableListOrganization = () => {
     return (
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start",
+          "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full",
-          "px-[1px] py-[1px]",
-          "rounded-2xl"
+          "px-4 py-4",
+          "bg-[white]",
+          "rounded-2xl",
+          "border border-[#E9E6E6] dark:border-[#464646]"
         )}
-        style={{
-          background:
-            "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
-        }}
       >
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-6",
-            "w-full",
-            "px-4 py-4",
-            "bg-[white]",
-            "rounded-2xl"
-          )}
-        >
-          <EmptyState {...dictionaries.table.empty} />
-        </div>
+        <EmptyState {...dictionaries.table.empty} />
       </div>
     );
   }
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start",
+        "grid grid-cols-1 place-content-start place-items-start gap-6",
         "w-full",
-        "px-[1px] py-[1px]",
-        "rounded-2xl"
+        "px-4 py-4",
+        "bg-[white]",
+        "rounded-2xl",
+        "border border-[#E9E6E6] dark:border-[#464646]"
       )}
-      style={{
-        background:
-          "linear-gradient(172.93deg, #F3F3F3 30.07%, #EBEBEB 94.49%)",
-      }}
     >
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-6",
-          "w-full",
-          "px-4 py-4",
-          "bg-[white]",
-          "rounded-2xl"
-        )}
-      >
-        <table className={clsx("table w-full")}>
-          <TableHead table={table} />
-          <TableBody
-            table={table}
-            tdClassName={"!h-[56px]"}
-            onRowClick={handleRowClick}
-          />
-        </table>
-      </div>
+      <table className={clsx("table w-full")}>
+        <TableHead table={table} />
+        <TableBody
+          table={table}
+          tdClassName={"!h-[56px]"}
+          onRowClick={handleRowClick}
+        />
+      </table>
     </div>
   );
 };
