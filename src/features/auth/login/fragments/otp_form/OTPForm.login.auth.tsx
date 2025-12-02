@@ -18,6 +18,7 @@ export const OTPFormLoginAuth = () => {
     usePostAuthVerifyOTP();
   const { mutate: postAuthRequestOTP, isPending: isPendingPostAuthRequestOTP } =
     usePostAuthRequestOTP();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleChangeOTP = (value: string) => {
     dispatch({
@@ -33,6 +34,7 @@ export const OTPFormLoginAuth = () => {
   };
 
   const handleClickLogin = async () => {
+    setIsLoading(true);
     postAuthVerifyOTP();
   };
 
@@ -41,7 +43,7 @@ export const OTPFormLoginAuth = () => {
   };
 
   const isSubmitLoading =
-    isPendingPostAuthVerifyOTP || isPendingPostAuthRequestOTP;
+    isPendingPostAuthVerifyOTP || isPendingPostAuthRequestOTP || isLoading;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
 
@@ -49,7 +51,8 @@ export const OTPFormLoginAuth = () => {
     isPendingPostAuthVerifyOTP ||
     isEmailHasNoLength ||
     isEmailInvalid ||
-    isPendingPostAuthRequestOTP;
+    isPendingPostAuthRequestOTP ||
+    isLoading;
 
   return (
     <div
