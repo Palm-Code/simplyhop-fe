@@ -18,6 +18,7 @@ export const useGetUserBlockList = () => {
 
   const payload: GetUserBlockListPayloadRequestInterface = {
     params: {
+      "filter[userid]": String(userState.profile?.id ?? -1),
       include: "user,blockedUser",
       "page[number]": 1,
       "page[size]": 100,
@@ -31,7 +32,7 @@ export const useGetUserBlockList = () => {
     queryFn: () => {
       return fetchGetUserBlockList(payload);
     },
-    enabled: userState.profile?.is_super_admin === false,
+    enabled: !!userState.profile?.id,
   });
 
   React.useEffect(() => {
