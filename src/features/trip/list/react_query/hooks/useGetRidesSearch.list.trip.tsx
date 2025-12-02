@@ -21,6 +21,9 @@ import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { ENVIRONMENTS } from "@/core/environments";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
+import { SVGIconProps } from "@/core/icons";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 dayjs.extend(utc);
 dayjs.locale("de");
@@ -28,12 +31,14 @@ dayjs.locale("de");
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const type = searchParams.get("type");
   const rideStatus = searchParams.get("ride-status");
   const pathname = usePathname();
   const { organization_id } = useParams();
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
+  const { isDarkMode } = React.useContext(ThemeContext);
 
   const isEmployee = userState.profile?.role === "employee";
   const isOrganizationAdmin =
@@ -89,6 +94,7 @@ export const useGetRidesSearch = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
+      console.log(isSuperAdmin, "ini apa");
       const newPayload = data.data.map((item) => {
         const urlSearchParams = new URLSearchParams(searchParams.toString());
         urlSearchParams.append("ride_id", String(item.id));
@@ -147,6 +153,214 @@ export const useGetRidesSearch = () => {
                 : `${item.vehicle.brand?.title} ${item.vehicle.model}`,
               number: item.vehicle.plate_license,
             },
+            facility: isSuperAdmin
+              ? {
+                  top: [
+                    ...(!!item?.available_seats
+                      ? [
+                          {
+                            ...globalDictionaries.vehicle.seat.available,
+                            icon: {
+                              ...globalDictionaries.vehicle.seat.available.icon,
+                              name: globalDictionaries.vehicle.seat.available
+                                .icon.name as SVGIconProps["name"],
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.seat.available.icon
+                                    .darkColor
+                                : globalDictionaries.vehicle.seat.available.icon
+                                    .color,
+                            },
+                            name: {
+                              ...globalDictionaries.vehicle.seat.available.name,
+                              label: !item?.maxtwo_backseat
+                                ? globalDictionaries.vehicle.seat.available.name.label
+                                    .replaceAll(
+                                      "{{number}}",
+                                      item?.available_seats.toLocaleString(
+                                        "de-DE"
+                                      )
+                                    )
+                                    .replaceAll("(Max. 2 auf der Rückbank)", "")
+                                : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
+                                    "{{number}}",
+                                    item?.available_seats.toLocaleString(
+                                      "de-DE"
+                                    )
+                                  ),
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.seat.available.name
+                                    .darkColor
+                                : globalDictionaries.vehicle.seat.available.name
+                                    .color,
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.vehicle.seat.empty,
+                            icon: {
+                              ...globalDictionaries.vehicle.seat.empty.icon,
+                              name: globalDictionaries.vehicle.seat.empty.icon
+                                .name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+                    ...(!!item?.vehicle?.numb_of_luggages
+                      ? [
+                          {
+                            ...globalDictionaries.vehicle.luggage.available,
+                            icon: {
+                              ...globalDictionaries.vehicle.luggage.available
+                                .icon,
+                              name: globalDictionaries.vehicle.luggage.available
+                                .icon.name as SVGIconProps["name"],
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.luggage.available
+                                    .icon.darkColor
+                                : globalDictionaries.vehicle.luggage.available
+                                    .icon.color,
+                            },
+                            name: {
+                              ...globalDictionaries.vehicle.luggage.available
+                                .name,
+                              label:
+                                globalDictionaries.vehicle.luggage.available
+                                  .name.label,
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.luggage.available
+                                    .name.darkColor
+                                : globalDictionaries.vehicle.luggage.available
+                                    .name.color,
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.vehicle.luggage.empty,
+                            icon: {
+                              ...globalDictionaries.vehicle.luggage.empty.icon,
+                              name: globalDictionaries.vehicle.luggage.empty
+                                .icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+                  ],
+                  bottom: [
+                    // Smoking
+                    ...(!!item?.vehicle?.smoke_allowed
+                      ? [
+                          {
+                            ...globalDictionaries.vehicle.smoking.allowed,
+                            icon: {
+                              ...globalDictionaries.vehicle.smoking.allowed
+                                .icon,
+                              name: globalDictionaries.vehicle.smoking.allowed
+                                .icon.name as SVGIconProps["name"],
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.smoking.allowed
+                                    .icon.darkColor
+                                : globalDictionaries.vehicle.smoking.allowed
+                                    .icon.color,
+                            },
+                            name: {
+                              ...globalDictionaries.vehicle.smoking.allowed
+                                .name,
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.smoking.allowed
+                                    .name.darkColor
+                                : globalDictionaries.vehicle.smoking.allowed
+                                    .name.color,
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.vehicle.smoking.prohibited,
+                            icon: {
+                              ...globalDictionaries.vehicle.smoking.prohibited
+                                .icon,
+                              name: globalDictionaries.vehicle.smoking
+                                .prohibited.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+
+                    // Music
+                    ...(!!item?.vehicle?.music_availability
+                      ? [
+                          {
+                            ...globalDictionaries.vehicle.music.allowed,
+                            icon: {
+                              ...globalDictionaries.vehicle.music.allowed.icon,
+                              name: globalDictionaries.vehicle.music.allowed
+                                .icon.name as SVGIconProps["name"],
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.music.allowed.icon
+                                    .darkColor
+                                : globalDictionaries.vehicle.music.allowed.icon
+                                    .color,
+                            },
+                            name: {
+                              ...globalDictionaries.vehicle.music.allowed.name,
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.music.allowed.name
+                                    .darkColor
+                                : globalDictionaries.vehicle.music.allowed.name
+                                    .color,
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.vehicle.music.prohibited,
+                            icon: {
+                              ...globalDictionaries.vehicle.music.prohibited
+                                .icon,
+                              name: globalDictionaries.vehicle.music.prohibited
+                                .icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+
+                    // Pet
+                    ...(!!item?.vehicle?.pet_allowed
+                      ? [
+                          {
+                            ...globalDictionaries.vehicle.pets.allowed,
+                            icon: {
+                              ...globalDictionaries.vehicle.pets.allowed.icon,
+                              name: globalDictionaries.vehicle.pets.allowed.icon
+                                .name as SVGIconProps["name"],
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.pets.allowed.icon
+                                    .darkColor
+                                : globalDictionaries.vehicle.pets.allowed.icon
+                                    .color,
+                            },
+                            name: {
+                              ...globalDictionaries.vehicle.pets.allowed.name,
+                              color: isDarkMode
+                                ? globalDictionaries.vehicle.pets.allowed.name
+                                    .darkColor
+                                : globalDictionaries.vehicle.pets.allowed.name
+                                    .color,
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.vehicle.pets.prohibited,
+                            icon: {
+                              ...globalDictionaries.vehicle.pets.prohibited
+                                .icon,
+                              name: globalDictionaries.vehicle.pets.prohibited
+                                .icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+                  ],
+                }
+              : undefined,
           },
 
           routes: {
@@ -224,6 +438,6 @@ export const useGetRidesSearch = () => {
         payload: data.meta.last_page,
       });
     }
-  }, [query.data, query.isFetching]);
+  }, [query.data, query.isFetching, isDarkMode]);
   return query;
 };

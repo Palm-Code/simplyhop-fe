@@ -80,7 +80,7 @@ export const TripDesktopCard = ({
     >
       <div
         className={clsx(
-          "grid grid-cols-none grid-flow-col items-center content-center justify-between justify-items-start gap-[52px]",
+          "grid grid-cols-none grid-flow-col items-center content-center justify-between justify-items-start",
           "w-full"
         )}
       >
@@ -132,7 +132,8 @@ export const TripDesktopCard = ({
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
-            "h-full w-[424px]"
+            "h-full",
+            "max-w-[294px] w-full"
           )}
         >
           {/* identity */}
@@ -201,9 +202,7 @@ export const TripDesktopCard = ({
         {(car.facility || ride?.badge) && (
           <div
             className={clsx(
-              "grid grid-flow-row grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-              // "w-full",
-              "w-[320px]"
+              "grid grid-flow-row grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
             )}
           >
             {ride?.badge.map((item, itemIndex) => (
