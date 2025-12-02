@@ -75,7 +75,8 @@ export const TripDesktopCard = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "border border-[#EFEFEF] dark:border-[#464646]"
+        "border border-[#EFEFEF] dark:border-[#464646]",
+        "bg-[white] dark:bg-[#232323]"
       )}
     >
       <div
@@ -203,7 +204,7 @@ export const TripDesktopCard = ({
           <div
             className={clsx(
               "grid grid-flow-row grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-              'max-w-[212px] w-full'
+              "max-w-[212px] w-full"
             )}
           >
             {ride?.badge.map((item, itemIndex) => (
