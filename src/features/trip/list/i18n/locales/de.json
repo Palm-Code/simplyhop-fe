@@ -43,7 +43,7 @@
     "label": "Sortieren",
     "items": [
       {
-        "id": "-departure_time",
+        "id": "departure_time",
         "name": "Abfahrtszeit (absteigend)"
       },
       {
