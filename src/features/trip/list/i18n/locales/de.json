@@ -39,6 +39,27 @@
       "required": false
     }
   },
+  "sort": {
+    "label": "Sortieren",
+    "items": [
+      {
+        "id": "-departure_time",
+        "name": "Abfahrtszeit (absteigend)"
+      },
+      {
+        "id": "-departure_time",
+        "name": "Abfahrtszeit (aufsteigend)"
+      },
+      {
+        "id": "organization_id",
+        "name": "Organisationsnummer (absteigend)"
+      },
+      {
+        "id": "-organization_id",
+        "name": "Organisationsnummer (aufsteigend)"
+      }
+    ]
+  },
   "tab": {
     "items": [
       {

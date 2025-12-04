@@ -8,6 +8,7 @@ import { NavigationRideTrip } from "../fragments/navigation";
 import { RideFilterListTrip } from "../../list/fragments/ride_filter";
 import { RideSectionListTrip } from "../../list/fragments/ride_section";
 import { SearchListTrip } from "../../list/fragments/search";
+import { SortListTrip } from "../../list/fragments/sort";
 
 export const RideTripContainer = () => {
   return (
@@ -23,7 +24,13 @@ export const RideTripContainer = () => {
         <SearchListTrip />
       </div>
       <ListTripProvider>
-        <RideFilterListTrip />
+        <div
+          className={clsx("flex items-center justify-between gap-2", "w-full")}
+        >
+          <RideFilterListTrip />
+          <SortListTrip />
+        </div>
+
         <RideSectionListTrip />
         <AlertApp />
       </ListTripProvider>

@@ -39,6 +39,8 @@ export const useGetRidesSearch = () => {
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
   const { isDarkMode } = React.useContext(ThemeContext);
+  const sort = searchParams.get("sort") ?? "departure_time";
+  // const search = searchParams.get("sort");
 
   const isEmployee = userState.profile?.role === "employee";
   const isOrganizationAdmin =
@@ -71,7 +73,7 @@ export const useGetRidesSearch = () => {
           : undefined,
       include: "vehicle.brand,user,bookings,bookings.user",
       status: rideStatus ?? "in_progress",
-      sort: "departure_time",
+      sort: sort,
       "page[number]": state.ride.pagination.current,
       "page[size]": isOrganizationDetailRoute
         ? 3
@@ -94,7 +96,6 @@ export const useGetRidesSearch = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
-      console.log(isSuperAdmin, "ini apa");
       const newPayload = data.data.map((item) => {
         const urlSearchParams = new URLSearchParams(searchParams.toString());
         urlSearchParams.append("ride_id", String(item.id));
