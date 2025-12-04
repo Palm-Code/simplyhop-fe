@@ -54,7 +54,11 @@ export const RidePlanFormRegistrationProfile = () => {
         "py-[0.5rem]"
       )}
     >
-      <p className={clsx("text-[#292929] text-[1rem] font-semibold")}>
+      <p
+        className={clsx(
+          "text-[#292929] dark:text-white text-[1rem] font-semibold"
+        )}
+      >
         {dictionaries.ride_plan.form.input.offer_trip.label}
         {dictionaries.ride_plan.form.input.offer_trip.required && (
           <span className={clsx("text-[#FF0066]")}>{"*"}</span>

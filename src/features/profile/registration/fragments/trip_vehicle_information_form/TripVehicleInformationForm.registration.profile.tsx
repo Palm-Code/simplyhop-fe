@@ -78,7 +78,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
       )}
     >
       <div className={clsx("py-[0.5rem]")}>
-        <p className={clsx("text-[0.875rem] text-[#232323CC] font-medium")}>
+        <p className={clsx("text-[0.875rem] text-[#232323] dark:text-white font-medium")}>
           {dictionaries.vehicle_information.trip.title}
         </p>
       </div>

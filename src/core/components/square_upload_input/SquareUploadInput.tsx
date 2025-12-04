@@ -64,7 +64,7 @@ export const SquareUploadInput = ({
       >
         <span
           className={clsx(
-            "text-[#33CC33] text-center text-[0.625rem] font-normal"
+            "text-[#249124] dark:text-[#33CC33] text-center text-[0.625rem] font-normal"
           )}
           dangerouslySetInnerHTML={{ __html: label }}
         />

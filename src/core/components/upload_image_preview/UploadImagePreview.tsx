@@ -28,7 +28,7 @@ export const UploadImagePreview = ({
       <img
         className={clsx(
           "w-[100px] h-[100px]",
-          "border border-[#F1F1F1]",
+          "border border-[#F1F1F1] dark:border-[#464646]",
           "object-cover object-center",
           "rounded-[0.625rem]"
         )}

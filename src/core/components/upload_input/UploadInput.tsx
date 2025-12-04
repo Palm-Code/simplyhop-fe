@@ -122,7 +122,7 @@ export const UploadInput = ({
         className={clsx(
           "relative",
           "grid grid-cols-1 place-content-center place-items-center gap-y-[0.5rem]",
-          "border-[#CED4DA] border border-dashed",
+          "border-[#CED4DA] dark:border-[#464646] border border-dashed",
           "w-full rounded-[0.5rem] p-[1.75rem]"
         )}
         onDragOver={handleDragOver}
@@ -166,14 +166,14 @@ export const UploadInput = ({
           >
             <p
               className={clsx(
-                "text-[black] text-[0.875rem] font-normal text-center lg:text-left"
+                "text-[black] dark:text-white text-[0.875rem] font-normal text-center lg:text-left"
               )}
             >
               {message}
             </p>
             <p
               className={clsx(
-                "text-[#909296] text-[0.625rem] font-normal text-center lg:text-left"
+                "text-[#5B5B5B] dark:text-[#C3C3C3] text-[0.625rem] font-normal text-center lg:text-left"
               )}
             >
               {description}

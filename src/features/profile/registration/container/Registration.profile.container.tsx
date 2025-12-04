@@ -39,13 +39,12 @@ export const RegistrationProfileContainer = () => {
               "w-full",
               "pt-[2rem] lg:pt-[0rem]",
               "sticky top-0 lg:top-[calc(90px+2rem)] z-[30]",
-              "bg-[white]",
               "pb-[1.5rem]"
             )}
           >
             <h1
               className={clsx(
-                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
               {dictionaries.title}
@@ -67,7 +66,7 @@ export const RegistrationProfileContainer = () => {
                 "w-full"
               )}
             >
-              <h2 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
+              <h2 className={clsx("text-[1.5rem] text-[#292929] dark:text-white font-bold")}>
                 {dictionaries.personal_information.form.title}
               </h2>
               <PicturePersonalInformationFormRegistrationProfile />

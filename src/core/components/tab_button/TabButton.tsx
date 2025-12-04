@@ -19,11 +19,11 @@ export const TabButton = forwardRef<
           "w-full",
           selected ? "bg-[#33CC330A]" : "bg-[transparent] hover:bg-[#33CC330A]",
           selected
-            ? "text-[#232323] text-[1rem] font-semibold"
-            : "text-[#828282] text-[1rem] font-normal hover:text-[#232323] hover:text-[1rem] hover:text-semibold",
+            ? "text-[#232323] dark:text-[white] text-[1rem] font-semibold"
+            : "text-[#828282] dark:text-[#C3C3C3] text-[1rem] font-normal hover:text-[#232323] dark:hover:text-[white] hover:text-[1rem] hover:text-semibold",
           selected
-            ? "border-b border-b-[#33CC33]"
-            : "border-b border-b-[white] hover:border-b hover:border-b-[white]",
+            ? "border-b border-b-[#249124] dark:border-b-[#33CC33]"
+            : "border-b border-b-[white] dark:border-b-[#232323] hover:border-b hover:border-b-[white] dark:hover:border-b-[#232323]",
           "px-[1rem] py-[0.75rem]",
           "cursor-pointer",
           "whitespace-nowrap",
@@ -45,11 +45,11 @@ export const TabButton = forwardRef<
         selected ? "bg-[#33CC330A]" : "bg-[transparent] hover:bg-[#33CC330A]",
         "rounded-tr-[0.625rem] rounded-br-[0.625rem]",
         selected
-          ? "text-[#232323] text-[1rem] font-semibold"
-          : "text-[#828282] text-[1rem] font-normal hover:text-[#232323] hover:text-[1rem] hover:font-semibold",
+          ? "text-[#232323] dark:text-white text-[1rem] font-semibold"
+          : "text-[#828282] dark:text-[#C3C3C3] text-[1rem] font-normal hover:text-[#232323] dark:hover:text-white hover:text-[1rem] hover:font-semibold",
         selected
-          ? "border-l border-l-[#33CC33]"
-          : "border-l border-l-[white] hover:border-l hover:border-l-[#33CC33]",
+          ? "border-l border-l-[#249124] dark:border-l-[#33CC33]"
+          : "border-l border-l-[white] dark:border-l-[#232323] hover:border-l hover:border-l-[#33CC33] dark:hover:border-l-[#232323]",
         "px-[1rem] py-[0.75rem]",
         "cursor-pointer",
         "outline-none",
