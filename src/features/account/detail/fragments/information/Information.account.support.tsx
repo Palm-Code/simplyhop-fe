@@ -14,41 +14,42 @@ export const InformationAccountSupport = () => {
   const dictionaries = getDictionaries();
 
   const { state: userState } = React.useContext(UserContext);
-  const summaryItems = !userState.profile?.is_driver
-    ? []
-    : dictionaries.summary.items.map((item) => {
-        let value = "-";
-        switch (item.id) {
-          case "trips": {
-            value =
-              userState.profile?.total_trips?.toLocaleString("de-DE") ?? "-";
-            break;
-          }
-          case "ratings": {
-            value =
-              userState.profile?.average_ride_rating?.toLocaleString("de-DE") ??
-              "-";
-            break;
-          }
-          case "passengers": {
-            value =
-              userState.profile?.total_passengers_count?.toLocaleString(
-                "de-DE"
-              ) ?? "-";
-            break;
-          }
-          default: {
-            break;
-          }
-        }
-        return {
-          ...item,
-          value: value,
-        };
-      });
+  // NOTES: for this section no need to display summaryItems
+  // const summaryItems = !userState.profile?.is_driver
+  //   ? []
+  //   : dictionaries.summary.items.map((item) => {
+  //       let value = "-";
+  //       switch (item.id) {
+  //         case "trips": {
+  //           value =
+  //             userState.profile?.total_trips?.toLocaleString("de-DE") ?? "-";
+  //           break;
+  //         }
+  //         case "ratings": {
+  //           value =
+  //             userState.profile?.average_ride_rating?.toLocaleString("de-DE") ??
+  //             "-";
+  //           break;
+  //         }
+  //         case "passengers": {
+  //           value =
+  //             userState.profile?.total_passengers_count?.toLocaleString(
+  //               "de-DE"
+  //             ) ?? "-";
+  //           break;
+  //         }
+  //         default: {
+  //           break;
+  //         }
+  //       }
+  //       return {
+  //         ...item,
+  //         value: value,
+  //       };
+  //     });
   return (
     <UserInformationCard
-      summary={summaryItems}
+      summary={[]}
       header={{
         avatar: {
           src: userState.profile?.avatar || undefined,
