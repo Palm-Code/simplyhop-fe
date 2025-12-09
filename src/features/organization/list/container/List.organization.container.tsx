@@ -9,6 +9,7 @@ import {
 import { UserProfileListOrganization } from "../fragments/user_profile";
 import { HeaderListOrganization } from "../fragments/header";
 import { DeleteAccountConfirmationListOrganization } from "../fragments/delete_account_confirmation";
+import { NavigationListOrganization } from "../fragments/navigation";
 
 export const ListOrganizationContainer = () => {
   useGetDashboardSuperAdminPerOrganization();
@@ -22,6 +23,7 @@ export const ListOrganizationContainer = () => {
         )}
       >
         <HeaderListOrganization />
+        <NavigationListOrganization />
         <DataTableListOrganization />
       </div>
       <UserProfileListOrganization />

@@ -1,8 +1,26 @@
 {
   "title": "Organisation",
+  "breadcrumb": {
+    "items": [
+      {
+        "label": "Dashboard",
+        "href": "/support/dashboard"
+      },
+      {
+        "label": "Organisation",
+        "href": "/support/organisation"
+      }
+    ]
+  },
+  "cta": {
+    "add_company": {
+      "children": "Neues Unternehmen",
+      "href": "/organisation/create"
+    }
+  },
   "filter": {
     "search": {
-      "placeholder": "Fahrten suchen"
+      "placeholder": "Unternehmen suchen"
     }
   },
   "table": {
