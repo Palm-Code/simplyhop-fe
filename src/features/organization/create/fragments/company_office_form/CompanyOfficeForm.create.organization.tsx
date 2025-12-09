@@ -92,6 +92,11 @@ export const CompanyOfficeFormCreateOrganization = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     dataIndex: number
   ) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.zip_code.validations.items,
+      value: e.currentTarget.value,
+      type: "required",
+    });
     dispatch({
       type: CreateOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
@@ -105,6 +110,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
                 dataIndex === itemIndex
                   ? e.currentTarget.value
                   : item.zip_code.value,
+              error: dataIndex === itemIndex ? errorItem : item.city.error,
             },
           };
         }),
