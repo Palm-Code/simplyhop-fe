@@ -15,7 +15,7 @@ export const NavigationListOrganization = () => {
         <Link
           className={clsx(
             "flex items-center justify-start gap-2",
-            "text-[#249124] dark:text-[#33CC33] text-base font-semibold"
+            "text-[#249124] dark:text-[#33CC33] text-base font-semibold whitespace-nowrap"
           )}
           href={dictionaries.cta.add_company.href}
         >

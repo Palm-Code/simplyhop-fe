@@ -528,6 +528,28 @@
         ]
       }
     },
+    "company_name": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_name",
+            "name": "Ungültiger Name.",
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*\\s*$"
+          }
+        ]
+      }
+    },
+    "domain": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_domain",
+            "name": "Ungültige Domain.",
+            "regex": "^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$"
+          }
+        ]
+      }
+    },
     "last_name": {
       "validations": {
         "items": [
@@ -562,6 +584,17 @@
       }
     },
     "phonenumber": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_phonenumber",
+            "name": "Bitte geben Sie eine gültige Telefonnummer ein.",
+            "regex": "^(?:\\+49|0049|0)[1-9][0-9]{1,4}[ \\-]?[0-9]{3,}$"
+          }
+        ]
+      }
+    },
+    "telephone": {
       "validations": {
         "items": [
           {

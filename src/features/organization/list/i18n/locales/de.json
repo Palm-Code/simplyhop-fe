@@ -15,7 +15,7 @@
   "cta": {
     "add_company": {
       "children": "Neues Unternehmen",
-      "href": "/organisation/create"
+      "href": "/support/organisation/create"
     }
   },
   "filter": {
