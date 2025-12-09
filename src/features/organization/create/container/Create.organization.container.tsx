@@ -2,18 +2,14 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18n";
-import { PersonalInformationFormCreateOrganization } from "../fragments/personal_information_form";
 import { Divider } from "@/core/components/divider";
-import { CompanyTypeFormCreateOrganization } from "../fragments/company_type_form";
-import { GeneralVehicleInformationFormCreateOrganization } from "../fragments/general_vehicle_information_form";
-import { CreateOrganizationContext } from "../context";
-import { PictureVehicleInformationFormCreateOrganization } from "../fragments/picture_vehicle_information_form";
-import { CapacityVehicleInformationFormCreateOrganization } from "../fragments/capacity_vehicle_information_form";
-import { TripVehicleInformationFormCreateOrganization } from "../fragments/trip_vehicle_information_form";
+import { CompanyDataFormCreateOrganization } from "../fragments/company_data_form";
 import { CTACreateOrganization } from "../fragments/cta";
 import { NotificationCreateOrganization } from "../fragments/notification";
 import SVGIcon from "@/core/icons";
 import Link from "next/link";
+import { CompanyOfficeFormCreateOrganization } from "../fragments/company_office_form";
+import { CreateOrganizationContext } from "../context";
 
 export const CreateOrganizationContainer = () => {
   const dictionaries = getDictionaries();
@@ -69,47 +65,16 @@ export const CreateOrganizationContainer = () => {
                 </h2>
               </div>
 
-              <div
-                className={clsx(
-                  "grid grid-cols-1 place-content-start place-items-start gap-3",
-                  "w-full"
-                )}
-              >
-                <h2
-                  className={clsx(
-                    "text-[1rem] text-[#292929] dark:text-white font-bold"
-                  )}
-                >
-                  {dictionaries.company_data.title}
-                </h2>
-                <CompanyTypeFormCreateOrganization />
-              </div>
-
-              <PersonalInformationFormCreateOrganization />
+              <CompanyDataFormCreateOrganization />
+              {!!state.company_data.form.company_type.selected && (
+                <>
+                  <Divider />
+                  <CompanyOfficeFormCreateOrganization />
+                  <Divider />
+                  <CTACreateOrganization />
+                </>
+              )}
             </div>
-            <Divider />
-
-            {state.ride_plan.form.offer_trip.selected?.id === "yes" && (
-              <div
-                className={clsx(
-                  "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-                  "w-full"
-                )}
-              >
-                <h3
-                  className={clsx(
-                    "text-[1.5rem] text-[#292929] dark:text-white font-bold"
-                  )}
-                >
-                  {dictionaries.vehicle_information.title}
-                </h3>
-                <GeneralVehicleInformationFormCreateOrganization />
-                <PictureVehicleInformationFormCreateOrganization />
-                <CapacityVehicleInformationFormCreateOrganization />
-                <TripVehicleInformationFormCreateOrganization />
-              </div>
-            )}
-            <CTACreateOrganization />
           </div>
         </div>
       </div>

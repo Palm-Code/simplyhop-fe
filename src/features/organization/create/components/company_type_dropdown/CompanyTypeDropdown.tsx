@@ -5,17 +5,20 @@ import { useOnClickOutside } from "usehooks-ts";
 import { DropdownSelectButton } from "@/core/components/dropdown_select_button";
 
 export interface CompanyTypeDropdownProps {
-  selected?: null | { id: string; name: string };
+  selected?: null | { id: string; name: string; description: string };
   items?: {
     id: string;
     name: string;
+    description: string;
   }[];
-  onSelect?: (data: { id: string; name: string }) => void;
+  label?: string;
+  onSelect?: (data: { id: string; name: string; description: string }) => void;
 }
 
 export const CompanyTypeDropdown = ({
   selected = null,
   items = [],
+  label,
   onSelect = () => {},
 }: CompanyTypeDropdownProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -28,7 +31,11 @@ export const CompanyTypeDropdown = ({
     setIsOpen((prev) => !prev);
   };
 
-  const handleSelect = (data: { id: string; name: string }) => {
+  const handleSelect = (data: {
+    id: string;
+    name: string;
+    description: string;
+  }) => {
     onSelect(data);
     setIsOpen(false);
   };
@@ -47,7 +54,7 @@ export const CompanyTypeDropdown = ({
             "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal text-ellipsis truncate w-full"
           )}
         >
-          {selected?.name}
+          {selected?.name ?? label}
         </span>
 
         <SVGIcon
@@ -85,7 +92,27 @@ export const CompanyTypeDropdown = ({
               )}
               onClick={() => handleSelect(item)}
             >
-              {item.name}
+              <div
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-0.5",
+                  "w-full"
+                )}
+              >
+                <p
+                  className={clsx(
+                    "text-[#232323] dark:text-white text-sm font-normal"
+                  )}
+                >
+                  {item.name}
+                </p>
+                <span
+                  className={clsx(
+                    "text-[#979797] dark:text-[#C3C3C3] text-[0.625rem] font-normal"
+                  )}
+                >
+                  {item.description}
+                </span>
+              </div>
             </button>
           ))}
         </div>

@@ -9,12 +9,12 @@
           "required": true,
           "items": [
             {
-              "id": "yes",
+              "id": "domain",
               "name": "Domain",
               "description": "Das Unternehmen verwendet seine Domain (@company.com) für die Registrierung von Mitglieder"
             },
             {
-              "id": "no",
+              "id": "company_code",
               "name": "Unternehmenscode",
               "description": "Das Unternehmen verwendet einen eindeutigen Code, um die Registrierung von Mitgliedern zu identifizieren."
             }
@@ -32,19 +32,9 @@
           }
         },
         "company_code": {
-          "inputProps": {
-            "id": "company_code",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "company_code",
-            "children": "Unternehmenscode",
-            "required": true
-          },
+          "label": "Unternehmenscode",
           "cta": {
-            "get_code": {
-              "children": "Unternehmenscode generieren"
-            }
+            "children": "Unternehmenscode generieren"
           }
         },
         "admin_email": {
@@ -109,18 +99,67 @@
     }
   },
   "company_office": {
-    "title": "Unternehmensdaten",
+    "title": "Unternehmensbüro",
+    "cta": {
+      "add": {
+        "children": "Weitere Büros hinzufügen"
+      }
+    },
     "form": {
       "input": {
         "address_name": {
           "inputProps": {
             "id": "address_name",
             "placeholder": " ",
-            "helper_text": "Sie können bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
+            "helperText": "Sie können bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
           },
           "labelProps": {
             "id": "address_name",
             "children": "Adresse Name",
+            "required": true
+          }
+        },
+        "address_1": {
+          "inputProps": {
+            "id": "address_1",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "address_1",
+            "children": "Adresse",
+            "required": true
+          }
+        },
+        "address_2": {
+          "inputProps": {
+            "id": "address_2",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "address_2",
+            "children": "Adresse (Zeile 2)",
+            "required": false
+          }
+        },
+        "zip_code": {
+          "inputProps": {
+            "id": "zip_code",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "zip_code",
+            "children": "PLZ",
+            "required": true
+          }
+        },
+        "city": {
+          "inputProps": {
+            "id": "city",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "city",
+            "children": "Stadt",
             "required": true
           }
         }
@@ -461,10 +500,11 @@
     }
   },
   "notification": {
-    "title": "Kontoregistrierung abgeschlossen",
+    "title": "Willkommen bei SimplyHop!",
+    "description": "Das Unternehmenskonto ist bereit. Bitten Sie den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
     "cta": {
       "back": {
-        "children": "Zurück zur Startseite"
+        "children": "Continue"
       }
     }
   }

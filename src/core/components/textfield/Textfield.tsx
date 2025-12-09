@@ -11,6 +11,7 @@ export interface TextfieldProps {
   labelProps?: InputLabelProps;
   disabled?: boolean;
   error?: string;
+  helperText?: string;
 }
 
 export const Textfield = ({
@@ -19,6 +20,7 @@ export const Textfield = ({
   labelProps,
   disabled = false,
   error,
+  helperText,
 }: TextfieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
@@ -76,6 +78,16 @@ export const Textfield = ({
           )}
         >
           {error}
+        </span>
+      )}
+      {helperText && (
+        <span
+          className={clsx(
+            "text-[0.625rem] text-[#979797] dark:text-[#C3C3C3] font-normal",
+            "pl-[0.5rem]"
+          )}
+        >
+          {helperText}
         </span>
       )}
     </div>

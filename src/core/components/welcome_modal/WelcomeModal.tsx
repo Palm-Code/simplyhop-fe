@@ -28,7 +28,7 @@ export const WelcomeModal = () => {
     >
       {/* Backdrop covers the entire first viewport area */}
       <div
-        className="absolute inset-0 bg-[#E3E3E3] opacity-[64%]"
+        className="absolute inset-0 bg-[#E3E3E3] dark:bg-[#1F1F1F] opacity-[64%] dark:opacity-[52%]"
         aria-hidden="true"
       />
 
@@ -49,7 +49,7 @@ export const WelcomeModal = () => {
 
             <DialogTitle
               as="h1"
-              className="text-[2rem] font-bold text-[#292929] text-center"
+              className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
             >
               Willkommen bei
               <br /> SimplyHop!
@@ -57,7 +57,7 @@ export const WelcomeModal = () => {
 
             {/* Content */}
 
-            <p className="text-[1rem] text-[#5B5B5B] text-center">
+            <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
               Bereit für deine erste Fahrt? Die nächsten Schritte zeigen dir,
               wie du deine Route planst, Fahrer findest und ganz einfach
               loshüpfst. Viel Spaß beim Entdecken – los geht’s!
@@ -67,9 +67,9 @@ export const WelcomeModal = () => {
               className={clsx(
                 "flex items-center justify-center",
                 "w-full",
-                "bg-[#33CC33]",
+                "bg-[#249124] dark:bg-[#33CC33]",
                 "px-[0.75rem] py-[0.75rem]",
-                "text-[#232323] text-[1rem] font-semibold",
+                "text-white dark:text-[#232323] text-[1rem] font-semibold",
                 "rounded-[6px]"
               )}
               onClick={handleClose}

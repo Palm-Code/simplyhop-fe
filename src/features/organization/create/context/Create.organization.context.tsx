@@ -6,10 +6,8 @@ import {
 } from "./Create.organization.types";
 import {
   CreateOrganizationCompanyDataReducers,
+  CreateOrganizationCompanyOfficeReducers,
   CreateOrganizationNotificationReducers,
-  CreateOrganizationPersonalInformationReducers,
-  CreateOrganizationRidePlanReducers,
-  CreateOrganizationVehicleInformationReducers,
 } from "./Create.organization.reducers";
 
 const initialState: CreateOrganizationInitialStateType = {
@@ -50,119 +48,31 @@ const initialState: CreateOrganizationInitialStateType = {
       },
     },
   },
-  personal_information: {
-    form: {
-      email: {
-        value: "",
-        error: null,
-      },
-      first_name: {
-        value: "",
-        error: null,
-      },
-      last_name: {
-        value: "",
-        error: null,
-      },
-      city: {
-        value: "",
-        error: null,
-      },
-      phonenumber: {
-        value: "",
-        error: null,
-      },
-      about_me: {
-        value: "",
-        error: null,
-      },
-      gender: {
-        selected: null,
-        error: null,
-      },
-    },
-  },
-  ride_plan: {
-    form: {
-      offer_trip: {
-        selected: null,
-      },
-    },
-  },
-  vehicle_information: {
-    general: {
-      form: {
-        car_brand: {
-          selected: null,
-          items: [],
-          error: null,
-          query: "",
-        },
-        car_category: {
-          selected: null,
-          items: [],
-          error: null,
-          query: "",
-        },
-        car_model: {
+  company_office: {
+    form: [
+      {
+        address_name: {
           value: "",
           error: null,
         },
-        car_color: {
+        address_1: {
           value: "",
           error: null,
         },
-        license_plate: {
+        address_2: {
+          value: "",
+          error: null,
+        },
+        zip_code: {
+          value: "",
+          error: null,
+        },
+        city: {
           value: "",
           error: null,
         },
       },
-    },
-    pictures: {
-      files: [],
-    },
-    capacity: {
-      passenger_seats: {
-        form: {
-          available_seat: {
-            selected: null,
-            items: [],
-          },
-          available_car_seat: {
-            selected: null,
-            items: [],
-          },
-        },
-      },
-      luggage: {
-        form: {
-          luggage: {
-            selected: null,
-            items: [],
-          },
-          luggage_size: {
-            selected: null,
-            items: [],
-          },
-        },
-      },
-    },
-    trip: {
-      form: {
-        smoking: {
-          selected: null,
-          items: [],
-        },
-        music: {
-          selected: null,
-          items: [],
-        },
-        pet: {
-          selected: null,
-          items: [],
-        },
-      },
-    },
+    ],
   },
   notification: {
     is_open: false,
@@ -180,21 +90,14 @@ const CreateOrganizationContext = createContext<{
 const mainReducer = (
   {
     company_data,
-    personal_information,
-    ride_plan,
-    vehicle_information,
+    company_office,
     notification,
   }: CreateOrganizationInitialStateType,
   action: CreateOrganizationActions
 ) => ({
   company_data: CreateOrganizationCompanyDataReducers(company_data, action),
-  personal_information: CreateOrganizationPersonalInformationReducers(
-    personal_information,
-    action
-  ),
-  ride_plan: CreateOrganizationRidePlanReducers(ride_plan, action),
-  vehicle_information: CreateOrganizationVehicleInformationReducers(
-    vehicle_information,
+  company_office: CreateOrganizationCompanyOfficeReducers(
+    company_office,
     action
   ),
   notification: CreateOrganizationNotificationReducers(notification, action),

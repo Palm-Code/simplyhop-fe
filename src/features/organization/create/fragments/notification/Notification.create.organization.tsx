@@ -1,23 +1,17 @@
 "use client";
 import * as React from "react";
+import { Dialog, DialogTitle, DialogPanel } from "@headlessui/react";
 import clsx from "clsx";
 import {
   CreateOrganizationActionEnum,
   CreateOrganizationContext,
 } from "../../context";
-import { getDictionaries } from "../../i18n";
-import SVGIcon from "@/core/icons";
-import { Button } from "@/core/components/button";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
-import { AdaptiveModal } from "@/core/components/adaptive_modal";
-import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const NotificationCreateOrganization = () => {
-  const dictionaries = getDictionaries();
   const router = useRouter();
   const { state, dispatch } = React.useContext(CreateOrganizationContext);
-  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -29,7 +23,7 @@ export const NotificationCreateOrganization = () => {
     });
   };
 
-  const handleClickGoToHomepage = () => {
+  const handleClickContinue = () => {
     dispatch({
       type: CreateOrganizationActionEnum.SetNotificationData,
       payload: {
@@ -37,67 +31,67 @@ export const NotificationCreateOrganization = () => {
         is_open: false,
       },
     });
-    router.push(AppCollectionURL.private.trip());
+    router.push(AppCollectionURL.private.organization());
   };
   return (
-    <AdaptiveModal
-      className={clsx(
-        "!max-w-[100vw] lg:!max-w-[524px]",
-        "h-[100vh] lg:h-fit",
-        "!rounded-[0.625rem]",
-        "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
-      )}
+    <Dialog
       open={isOpen}
-      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
+      className={clsx("z-[999]", "absolute inset-0")}
     >
+      {/* Backdrop covers the entire first viewport area */}
       <div
-        className={clsx(
-          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
-          "w-full h-full lg:h-fit",
-          "overflow-auto",
-          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
-        )}
-      >
-        <div
+        className="absolute inset-0 bg-[#E3E3E3] dark:bg-[#1F1F1F] opacity-[64%] dark:opacity-[52%]"
+        aria-hidden="true"
+      />
+
+      {/* Container positioned within first viewport only */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <DialogPanel
           className={clsx(
-            "grid grid-cols-1 items-start content-start justify-center justify-items-center",
-            "w-full"
+            "w-full max-w-[523px] mx-auto",
+            "bg-white dark:bg-[#232323] rounded-0 lg:rounded-2xl shadow-2xl",
+            "p-4 sm:p-8 lg:p-12",
+            "h-screen lg:h-fit overflow-y-auto ios-safari-scroll",
+            "grid grid-cols-1 place-content-center place-items-center"
           )}
         >
-          <div
-            className={clsx(
-              "flex items-center justify-center",
-              "w-[120px] h-[120px]",
-              "rounded-[50%]",
-              "bg-[#EFF9EC]"
-            )}
-          >
-            <SVGIcon
-              name="ContrastCheckMark"
-              className={clsx("w-[5rem] h-[5rem]", "text-[#33CC33]")}
-            />
+          {/* Header */}
+          <div className="grid grid-cols-1 place-content-center place-items-center gap-[2rem]">
+            <img src={"/images/trip/welcome.svg"} />
+
+            <DialogTitle
+              as="h1"
+              className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
+            >
+              Willkommen bei
+              <br /> SimplyHop!
+            </DialogTitle>
+
+            {/* Content */}
+
+            <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
+              Bereit für deine erste Fahrt? Die nächsten Schritte zeigen dir,
+              wie du deine Route planst, Fahrer findest und ganz einfach
+              loshüpfst. Viel Spaß beim Entdecken – los geht’s!
+            </p>
+
+            <button
+              className={clsx(
+                "flex items-center justify-center",
+                "w-full",
+                "bg-[#249124] dark:bg-[#33CC33]",
+                "px-[0.75rem] py-[0.75rem]",
+                "text-white dark:text-[#232323] text-[1rem] font-semibold",
+                "rounded-[6px]"
+              )}
+              onClick={handleClickContinue}
+            >
+              {"Continue"}
+            </button>
           </div>
-        </div>
-
-        <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
-        >
-          {dictionaries.notification.title}
-        </h1>
-
-        <div className={clsx("w-full h-[1.25rem]")} />
-
-        <Button
-          aria-label={dictionaries.notification.cta.back.children}
-          name={dictionaries.notification.cta.back.children}
-          className={clsx("py-[1rem]")}
-          onClick={handleClickGoToHomepage}
-        >
-          {dictionaries.notification.cta.back.children}
-        </Button>
+        </DialogPanel>
       </div>
-    </AdaptiveModal>
+    </Dialog>
   );
 };

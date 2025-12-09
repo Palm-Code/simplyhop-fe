@@ -14,9 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface CreateOrganizationInitialStateType {
   company_data: CreateOrganizationCompanyData;
-  personal_information: CreateOrganizationPersonalInformation;
-  ride_plan: CreateOrganizationRidePlan;
-  vehicle_information: CreateOrganizationVehicleInformation;
+  company_office: CreateOrganizationCompanyOffice;
   notification: CreateOrganizationNotification;
 }
 
@@ -58,17 +56,22 @@ export interface CreateOrganizationCompanyData {
     };
   };
 }
-export interface CreateOrganizationPersonalInformation {
+
+export interface CreateOrganizationCompanyOffice {
   form: {
-    email: {
+    address_name: {
       value: string;
       error: FormError;
     };
-    first_name: {
+    address_1: {
       value: string;
       error: FormError;
     };
-    last_name: {
+    address_2: {
+      value: string;
+      error: FormError;
+    };
+    zip_code: {
       value: string;
       error: FormError;
     };
@@ -76,103 +79,7 @@ export interface CreateOrganizationPersonalInformation {
       value: string;
       error: FormError;
     };
-    phonenumber: {
-      value: string;
-      error: FormError;
-    };
-    about_me: {
-      value: string;
-      error: FormError;
-    };
-    gender: {
-      selected: null | { id: string; name: string };
-      error: FormError;
-    };
-  };
-}
-
-export interface CreateOrganizationRidePlan {
-  form: {
-    offer_trip: {
-      selected: null | { id: string; name: string };
-    };
-  };
-}
-
-export interface CreateOrganizationVehicleInformation {
-  general: {
-    form: {
-      car_brand: {
-        selected: null | { id: string; name: string };
-        items: { id: string; name: string }[];
-        error: FormError;
-        query: string;
-      };
-      car_category: {
-        selected: null | { id: string; name: string };
-        items: { id: string; name: string }[];
-        error: FormError;
-        query: string;
-      };
-      car_model: {
-        value: string;
-        error: FormError;
-      };
-      car_color: {
-        value: string;
-        error: FormError;
-      };
-      license_plate: {
-        value: string;
-        error: FormError;
-      };
-    };
-  };
-  pictures: {
-    files: ({ id: string; image_url: string } | File)[];
-  };
-  capacity: {
-    passenger_seats: {
-      form: {
-        available_seat: {
-          selected: null | { id: string; name: string };
-          items: { id: string; name: string }[];
-        };
-        available_car_seat: {
-          selected: null | { id: string; name: string };
-          items: { id: string; name: string }[];
-        };
-      };
-    };
-    luggage: {
-      form: {
-        luggage: {
-          selected: null | { id: string; name: string };
-          items: { id: string; name: string }[];
-        };
-        luggage_size: {
-          selected: null | { id: string; name: string };
-          items: { id: string; name: string }[];
-        };
-      };
-    };
-  };
-  trip: {
-    form: {
-      smoking: {
-        selected: null | { id: string; name: string };
-        items: { id: string; name: string }[];
-      };
-      music: {
-        selected: null | { id: string; name: string };
-        items: { id: string; name: string }[];
-      };
-      pet: {
-        selected: null | { id: string; name: string };
-        items: { id: string; name: string }[];
-      };
-    };
-  };
+  }[];
 }
 
 export interface CreateOrganizationNotification {
@@ -182,12 +89,8 @@ export interface CreateOrganizationNotification {
 export enum CreateOrganizationActionEnum {
   // CompanyData
   SetCompanyDataData = "SetCompanyDataData",
-  // PersonalInformation
-  SetPersonalInformationData = "SetPersonalInformationData",
-  // RidePlan
-  SetRidePlanData = "SetRidePlanData",
-  // VehicleInformation
-  SetVehicleInformationData = "SetVehicleInformationData",
+  // CompanyOffice
+  SetCompanyOfficeData = "SetCompanyOfficeData",
   // Notification
   SetNotificationData = "SetNotificationData",
 }
@@ -195,9 +98,7 @@ export enum CreateOrganizationActionEnum {
 // Action Collection Types
 export type CreateOrganizationActions =
   | CreateOrganizationCompanyDataActions
-  | CreateOrganizationPersonalInformationActions
-  | CreateOrganizationRidePlanActions
-  | CreateOrganizationVehicleInformationActions
+  | CreateOrganizationCompanyOfficeActions
   | CreateOrganizationNotificationActions;
 
 // Action Collection Types consist of:
@@ -209,29 +110,13 @@ type CreateOrganizationCompanyDataPayload = {
 export type CreateOrganizationCompanyDataActions =
   ActionMap<CreateOrganizationCompanyDataPayload>[keyof ActionMap<CreateOrganizationCompanyDataPayload>];
 
-// PersonalInformation
-type CreateOrganizationPersonalInformationPayload = {
-  [CreateOrganizationActionEnum.SetPersonalInformationData]: CreateOrganizationPersonalInformation;
+// CompanyOffice
+type CreateOrganizationCompanyOfficePayload = {
+  [CreateOrganizationActionEnum.SetCompanyOfficeData]: CreateOrganizationCompanyOffice;
 };
 
-export type CreateOrganizationPersonalInformationActions =
-  ActionMap<CreateOrganizationPersonalInformationPayload>[keyof ActionMap<CreateOrganizationPersonalInformationPayload>];
-
-// RidePlan
-type CreateOrganizationRidePlanPayload = {
-  [CreateOrganizationActionEnum.SetRidePlanData]: CreateOrganizationRidePlan;
-};
-
-export type CreateOrganizationRidePlanActions =
-  ActionMap<CreateOrganizationRidePlanPayload>[keyof ActionMap<CreateOrganizationRidePlanPayload>];
-
-// VehicleInformation
-type CreateOrganizationVehicleInformationPayload = {
-  [CreateOrganizationActionEnum.SetVehicleInformationData]: CreateOrganizationVehicleInformation;
-};
-
-export type CreateOrganizationVehicleInformationActions =
-  ActionMap<CreateOrganizationVehicleInformationPayload>[keyof ActionMap<CreateOrganizationVehicleInformationPayload>];
+export type CreateOrganizationCompanyOfficeActions =
+  ActionMap<CreateOrganizationCompanyOfficePayload>[keyof ActionMap<CreateOrganizationCompanyOfficePayload>];
 
 // Notification
 type CreateOrganizationNotificationPayload = {
