@@ -1,4 +1,5 @@
 import { FormError } from "@/core/utils/form";
+import { MapMode } from "@/core/utils/map/types";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -15,6 +16,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface CreateOrganizationInitialStateType {
   company_data: CreateOrganizationCompanyData;
   company_office: CreateOrganizationCompanyOffice;
+  pin_point: CreateOrganizationPinPoint;
   notification: CreateOrganizationNotification;
 }
 
@@ -82,6 +84,23 @@ export interface CreateOrganizationCompanyOffice {
   }[];
 }
 
+export interface CreateOrganizationPinPoint {
+  is_open: boolean;
+  location: {
+    items: { id: string; name: string }[];
+    query: string;
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
+    };
+  };
+  map: {
+    marker: boolean;
+    initial_coordinate: { lat: number; lng: number } | null;
+    mode: MapMode;
+  };
+}
+
 export interface CreateOrganizationNotification {
   is_open: boolean;
 }
@@ -91,6 +110,8 @@ export enum CreateOrganizationActionEnum {
   SetCompanyDataData = "SetCompanyDataData",
   // CompanyOffice
   SetCompanyOfficeData = "SetCompanyOfficeData",
+  // PinPoint
+  SetPinPointData = "SetPinPointData",
   // Notification
   SetNotificationData = "SetNotificationData",
 }
@@ -99,6 +120,7 @@ export enum CreateOrganizationActionEnum {
 export type CreateOrganizationActions =
   | CreateOrganizationCompanyDataActions
   | CreateOrganizationCompanyOfficeActions
+  | CreateOrganizationPinPointActions
   | CreateOrganizationNotificationActions;
 
 // Action Collection Types consist of:
@@ -117,6 +139,14 @@ type CreateOrganizationCompanyOfficePayload = {
 
 export type CreateOrganizationCompanyOfficeActions =
   ActionMap<CreateOrganizationCompanyOfficePayload>[keyof ActionMap<CreateOrganizationCompanyOfficePayload>];
+
+// PinPoint
+type CreateOrganizationPinPointPayload = {
+  [CreateOrganizationActionEnum.SetPinPointData]: CreateOrganizationPinPoint;
+};
+
+export type CreateOrganizationPinPointActions =
+  ActionMap<CreateOrganizationPinPointPayload>[keyof ActionMap<CreateOrganizationPinPointPayload>];
 
 // Notification
 type CreateOrganizationNotificationPayload = {

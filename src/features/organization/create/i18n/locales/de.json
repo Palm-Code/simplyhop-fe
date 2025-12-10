@@ -166,330 +166,6 @@
       }
     }
   },
-  "personal_information": {
-    "id": "personal-information",
-    "form": {
-      "title": "Persönliche Informationen",
-      "input": {
-        "email": {
-          "inputProps": {
-            "id": "email",
-            "placeholder": " ",
-            "disabled": true
-          },
-          "labelProps": {
-            "id": "email",
-            "children": "Email",
-            "required": false
-          }
-        },
-        "first_name": {
-          "inputProps": {
-            "id": "first_name",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "first_name",
-            "children": "Vorname",
-            "required": true
-          }
-        },
-        "last_name": {
-          "inputProps": {
-            "id": "last_name",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "last_name",
-            "children": "Nachname",
-            "required": true
-          }
-        },
-        "city": {
-          "inputProps": {
-            "id": "city",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "city",
-            "children": "Stadt",
-            "required": true
-          }
-        },
-        "phonenumber": {
-          "inputProps": {
-            "id": "phonenumber",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "phonenumber",
-            "children": "Telefon",
-            "required": true
-          }
-        },
-        "about_me": {
-          "inputProps": {
-            "id": "about_me",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "about_me",
-            "children": "Über mich",
-            "required": false
-          }
-        },
-        "gender": {
-          "inputProps": {
-            "id": "gender",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "gender",
-            "children": "Geschlecht",
-            "required": true
-          }
-        },
-        "pictures": {
-          "title": "Profilbilder",
-          "description": "Bilder hochladen, die Ihr Gesicht darstellen",
-          "form": {
-            "message": "Ziehen Sie Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
-            "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
-          },
-          "square_input": {
-            "form": {
-              "label": "+<br/>Weitere hinzufügen"
-            }
-          }
-        }
-      }
-    }
-  },
-  "ride_plan": {
-    "form": {
-      "input": {
-        "offer_trip": {
-          "label": "Möchtest du auch Fahrten über Simply Hop anbieten?",
-          "required": true,
-          "items": [
-            {
-              "id": "yes",
-              "name": "Ja, ich möchte selbst Fahrten über Simply Hop anbieten."
-            },
-            {
-              "id": "no",
-              "name": "Nein, ich möchte nur bei Fahrten mitfahren."
-            }
-          ]
-        }
-      }
-    }
-  },
-  "vehicle_information": {
-    "id": "vehicle-information",
-    "title": "Fahrzeuginformationen",
-    "general": {
-      "form": {
-        "input": {
-          "car_brand": {
-            "inputProps": {
-              "id": "car_brand",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "car_brand",
-              "children": "Automarke",
-              "required": true
-            },
-            "option": {
-              "cta": {
-                "add": {
-                  "children": "Automarke hinzufügen"
-                }
-              }
-            }
-          },
-          "car_category": {
-            "inputProps": {
-              "id": "car_category",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "car_category",
-              "children": "Auto-Kategorie",
-              "required": true
-            },
-            "option": {
-              "cta": {
-                "add": {
-                  "children": "Auto-Kategorie hinzufügen"
-                }
-              }
-            }
-          },
-          "car_model": {
-            "inputProps": {
-              "id": "car_model",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "car_model",
-              "children": "Auto-Modell",
-              "required": true
-            }
-          },
-          "car_color": {
-            "inputProps": {
-              "id": "car_color",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "car_color",
-              "children": "Farbe",
-              "required": true
-            }
-          },
-          "license_plate": {
-            "inputProps": {
-              "id": "license_plate",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "license_plate",
-              "children": "Nummernschild",
-              "required": true
-            }
-          }
-        }
-      }
-    },
-    "pictures": {
-      "title": "Fahrzeugbilder",
-      "description": "Laden Sie Bilder hoch, die Ihr Auto repräsentieren",
-      "form": {
-        "message": "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
-        "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
-      },
-      "square_input": {
-        "form": {
-          "label": "+<br/>Weitere hinzufügen"
-        }
-      }
-    },
-    "capacity": {
-      "title": "Kapazität der Fahrzeuge",
-      "description": "Die Kapazität Ihres Autos für Sitze und Gepäckstücke",
-      "passenger_seats": {
-        "title": "Fahrgastsitze",
-        "form": {
-          "input": {
-            "available_seat": {
-              "inputProps": {
-                "id": "available_seat",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "available_seat",
-                "children": "Verfügbare Plätze insgesamt",
-                "required": true
-              }
-            },
-            "available_child_seat": {
-              "inputProps": {
-                "id": "available_child_seat",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "available_child_seat",
-                "children": "Verfügbarkeit von Kindersitzen",
-                "required": true
-              }
-            },
-            "available_car_seat": {
-              "inputProps": {
-                "id": "available_car_seat",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "available_car_seat",
-                "children": "Autokindersitz verfügbar",
-                "required": true
-              }
-            }
-          }
-        }
-      },
-      "luggage": {
-        "title": "Anzahl der Gepäckstücke",
-        "form": {
-          "input": {
-            "luggage": {
-              "inputProps": {
-                "id": "luggage",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "luggage",
-                "children": "Gepäck",
-                "required": true
-              }
-            },
-            "luggage_size": {
-              "inputProps": {
-                "id": "luggage_size",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "luggage_size",
-                "children": "Größe des Gepäcks",
-                "required": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "trip": {
-      "title": "Infos zur Fahrt",
-      "form": {
-        "input": {
-          "smoking": {
-            "inputProps": {
-              "id": "smoking",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "smoking",
-              "children": "Rauchen",
-              "required": true
-            }
-          },
-          "music": {
-            "inputProps": {
-              "id": "music",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "music",
-              "children": "Musik",
-              "required": true
-            }
-          },
-          "pet": {
-            "inputProps": {
-              "id": "pet",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "pet",
-              "children": "Haustiere",
-              "required": true
-            }
-          }
-        }
-      }
-    }
-  },
   "cta": {
     "save": {
       "children": "Speichern"
@@ -505,6 +181,41 @@
     "cta": {
       "back": {
         "children": "Continue"
+      }
+    }
+  },
+  "pin_point": {
+    "title": "Den Standort markieren",
+    "cta": {
+      "back": {
+        "children": "Continue"
+      }
+    },
+    "map": {
+      "marker": {
+        "origin": {
+          "icon": {
+            "url": "/icons/map/start_point.svg"
+          }
+        },
+        "destination": {
+          "icon": {
+            "url": "/icons/map/end_point.svg"
+          }
+        }
+      },
+      "info_window": {
+        "origin": {
+          "title": "Start"
+        },
+        "destination": {
+          "title": "End"
+        }
+      },
+      "polyline": {
+        "strokeColor": "#33CC33",
+        "strokeOpacity": 0.8,
+        "strokeWeight": 8
       }
     }
   }

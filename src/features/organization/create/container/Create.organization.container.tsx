@@ -10,6 +10,7 @@ import SVGIcon from "@/core/icons";
 import Link from "next/link";
 import { CompanyOfficeFormCreateOrganization } from "../fragments/company_office_form";
 import { CreateOrganizationContext } from "../context";
+import { PinPointCreateOrganization } from "../fragments/pin_point";
 
 export const CreateOrganizationContainer = () => {
   const dictionaries = getDictionaries();
@@ -37,7 +38,6 @@ export const CreateOrganizationContainer = () => {
             )}
           >
             <div
-              id={dictionaries.personal_information.id}
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-6",
                 "w-full"
@@ -78,7 +78,7 @@ export const CreateOrganizationContainer = () => {
           </div>
         </div>
       </div>
-
+      <PinPointCreateOrganization />
       <NotificationCreateOrganization />
     </>
   );

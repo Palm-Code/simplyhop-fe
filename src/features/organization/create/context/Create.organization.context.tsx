@@ -8,6 +8,7 @@ import {
   CreateOrganizationCompanyDataReducers,
   CreateOrganizationCompanyOfficeReducers,
   CreateOrganizationNotificationReducers,
+  CreateOrganizationPinPointReducers,
 } from "./Create.organization.reducers";
 
 const initialState: CreateOrganizationInitialStateType = {
@@ -74,6 +75,22 @@ const initialState: CreateOrganizationInitialStateType = {
       },
     ],
   },
+  pin_point: {
+    is_open: false,
+    location: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
+      items: [],
+      query: "",
+    },
+    map: {
+      marker: false,
+      initial_coordinate: null,
+      mode: "country",
+    },
+  },
   notification: {
     is_open: false,
   },
@@ -91,6 +108,7 @@ const mainReducer = (
   {
     company_data,
     company_office,
+    pin_point,
     notification,
   }: CreateOrganizationInitialStateType,
   action: CreateOrganizationActions
@@ -100,6 +118,7 @@ const mainReducer = (
     company_office,
     action
   ),
+  pin_point: CreateOrganizationPinPointReducers(pin_point, action),
   notification: CreateOrganizationNotificationReducers(notification, action),
 });
 
