@@ -18,8 +18,9 @@ import {
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 import clsx from "clsx";
-import SVGIcon from "@/core/icons";
 import { PlaceAutocomplete } from "../../components/place_autocomplete";
+import { ResetLocationButton } from "../../components/reset_location_button";
+import { AddressInfoBox } from "../../components/address_info_box";
 
 export const PinPointMapCreateOrganization = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
@@ -466,66 +467,15 @@ export const PinPointMapCreateOrganization = () => {
             )}
           >
             {hasMovedFromInitial && userLocation && (
-              <button
-                onClick={handleResetToUserLocation}
-                className={clsx(
-                  "flex items-center gap-2",
-                  "px-4 py-3",
-                  "bg-[#EFF9EC] dark:bg-[#292929]",
-                  "rounded-lg",
-                  "shadow-md",
-                  "text-[0.75rem] font-bold",
-                  "text-[#326C22] dark:text-[#33CC33]",
-                  "transition-colors cursor-pointer"
-                )}
-              >
-                <SVGIcon
-                  name="Locate"
-                  className={clsx(
-                    "w-3 h-3",
-                    "text-[#326C22] dark:text-[#33CC33]"
-                  )}
-                />
-                Aktuellen Standort verwenden
-              </button>
+              <ResetLocationButton onClick={handleResetToUserLocation} />
             )}
             {addressInfo && (
-              <div
-                className={clsx(
-                  "flex items-start gap-3",
-                  "w-full",
-                  "px-4 py-3",
-                  "bg-white dark:bg-[#232323]",
-                  "border border-[#E9E6E6] dark:border-[#464646]",
-                  "rounded-lg",
-                  "shadow-md"
-                )}
-              >
-                <div className={clsx("flex flex-col gap-0.5")}>
-                  <p
-                    className={clsx(
-                      "text-base font-semibold",
-                      "text-[#232323] dark:text-white"
-                    )}
-                  >
-                    {addressInfo.street}
-                  </p>
-                  <p
-                    className={clsx(
-                      "text-[0.625rem] font-normal",
-                      "text-[#5B5B5B] dark:text-[#C3C3C3]"
-                    )}
-                  >
-                    {[
-                      addressInfo.zipcode,
-                      addressInfo.city,
-                      addressInfo.country,
-                    ]
-                      .filter(Boolean)
-                      .join(", ")}
-                  </p>
-                </div>
-              </div>
+              <AddressInfoBox
+                street={addressInfo.street}
+                zipcode={addressInfo.zipcode}
+                city={addressInfo.city}
+                country={addressInfo.country}
+              />
             )}
           </div>
         )}
