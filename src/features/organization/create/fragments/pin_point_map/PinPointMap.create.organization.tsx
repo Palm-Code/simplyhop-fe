@@ -19,6 +19,7 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
+import { PlaceAutocomplete } from "../../components/place_autocomplete";
 
 export const PinPointMapCreateOrganization = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
@@ -63,7 +64,6 @@ export const PinPointMapCreateOrganization = () => {
     const newCoordinate = { lat: newLat, lng: newLng };
 
     setHasMovedFromInitial(true);
-    console.log("📍 New Coordinates:", newCoordinate);
 
     // Get place information using Geocoding API
     try {
@@ -72,11 +72,6 @@ export const PinPointMapCreateOrganization = () => {
 
       if (result.results && result.results[0]) {
         const place = result.results[0];
-        console.log("📍 Place Info:", {
-          formatted_address: place.formatted_address,
-          place_id: place.place_id,
-          address_components: place.address_components,
-        });
 
         // Parse address components
         const addressComponents = place.address_components;
@@ -201,6 +196,99 @@ export const PinPointMapCreateOrganization = () => {
           },
         },
       });
+    }
+  };
+
+  // Handle place selection from autocomplete
+  const handlePlaceSelect = (place: google.maps.places.PlaceResult) => {
+    if (!place.geometry?.location) return;
+
+    const newCoordinate = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+    };
+
+    setHasMovedFromInitial(true);
+
+    // Parse address components
+    const addressComponents = place.address_components || [];
+
+    // Street: route or formatted_address as fallback
+    const route =
+      addressComponents.find((c) => c.types.includes("route"))?.long_name ||
+      "";
+    const streetNumber =
+      addressComponents.find((c) => c.types.includes("street_number"))
+        ?.long_name || "";
+    const sublocality =
+      addressComponents.find(
+        (c) =>
+          c.types.includes("sublocality_level_1") ||
+          c.types.includes("sublocality")
+      )?.long_name || "";
+
+    // Build street name with priority: route + number > sublocality > formatted_address
+    let fullStreet = "";
+    if (route) {
+      fullStreet = streetNumber ? `${route} ${streetNumber}` : route;
+    } else if (sublocality) {
+      fullStreet = sublocality;
+    } else {
+      // Use formatted_address as fallback for street name
+      fullStreet = (place.formatted_address || "").split(",")[0].trim();
+    }
+
+    // Zipcode: postal_code (optional)
+    const zipcode =
+      addressComponents.find((c) => c.types.includes("postal_code"))
+        ?.long_name || "";
+
+    // City: administrative_area_level_2 (Kota/Kabupaten) or locality
+    const city =
+      addressComponents.find((c) =>
+        c.types.includes("administrative_area_level_2")
+      )?.long_name ||
+      addressComponents.find((c) => c.types.includes("locality"))?.long_name ||
+      "";
+
+    // Country
+    const country =
+      addressComponents.find((c) => c.types.includes("country"))?.long_name ||
+      "";
+
+    setAddressInfo({
+      street: fullStreet,
+      zipcode,
+      city,
+      country,
+    });
+
+    // Update context with new location
+    dispatch({
+      type: CreateOrganizationActionEnum.SetPinPointData,
+      payload: {
+        ...state.pin_point,
+        location: {
+          ...state.pin_point.location,
+          selected: {
+            item: {
+              id: place.place_id || "",
+              name: place.formatted_address || "",
+            },
+            lat_lng: newCoordinate,
+          },
+        },
+        map: {
+          ...state.pin_point.map,
+          initial_coordinate: newCoordinate,
+        },
+      },
+    });
+
+    // Center map on new location
+    if (mapRef.current) {
+      mapRef.current.panTo(newCoordinate);
+      mapRef.current.setZoom(17);
     }
   };
 
@@ -329,24 +417,25 @@ export const PinPointMapCreateOrganization = () => {
   if (!isLoaded) return <div />;
 
   return (
-    <div className={clsx("relative", "w-full")}>
-      <GoogleMap
-        mapContainerStyle={PIN_POINT_MAP_CONTAINER_STYLE}
-        onLoad={(map) => {
-          mapRef.current = map;
-          setIsMapReady(true);
-        }}
-        center={
-          state.pin_point.map.mode === "country" &&
-          !!state.pin_point.map.initial_coordinate
-            ? state.pin_point.map.initial_coordinate
-            : state.pin_point.map.mode === "coordinate" &&
-              !!state.pin_point.map.initial_coordinate
-            ? state.pin_point.map.initial_coordinate
-            : undefined
-        }
-        options={mapOptions}
-      >
+    <div className={clsx("flex flex-col gap-4", "w-full")}>
+      <div className={clsx("relative", "w-full")}>
+        <GoogleMap
+          mapContainerStyle={PIN_POINT_MAP_CONTAINER_STYLE}
+          onLoad={(map) => {
+            mapRef.current = map;
+            setIsMapReady(true);
+          }}
+          center={
+            state.pin_point.map.mode === "country" &&
+            !!state.pin_point.map.initial_coordinate
+              ? state.pin_point.map.initial_coordinate
+              : state.pin_point.map.mode === "coordinate" &&
+                !!state.pin_point.map.initial_coordinate
+              ? state.pin_point.map.initial_coordinate
+              : undefined
+          }
+          options={mapOptions}
+        >
         {/* User Marker */}
         {(!!state.pin_point.location.selected.lat_lng ||
           !!state.pin_point.map.initial_coordinate) && (
@@ -433,6 +522,10 @@ export const PinPointMapCreateOrganization = () => {
           </div>
         </div>
       )}
+      </div>
+
+      {/* Place Autocomplete Search */}
+      <PlaceAutocomplete onPlaceSelect={handlePlaceSelect} isLoaded={isLoaded} />
     </div>
   );
 };
