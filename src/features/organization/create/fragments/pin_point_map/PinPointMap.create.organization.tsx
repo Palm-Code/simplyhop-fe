@@ -1,24 +1,16 @@
 "use client";
-import {
-  GoogleMap,
-  useLoadScript,
-  Polyline,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { useContext, useEffect, useRef, useMemo, useState } from "react";
 import { ENVIRONMENTS } from "@/core/environments";
 import {
   CreateOrganizationActionEnum,
   CreateOrganizationContext,
 } from "../../context";
-import { MapInfoWindow } from "@/core/components/map_info_window";
 import { getDictionaries } from "../../i18n";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
 import {
   ROUTE_BOUND_CONSTANTS,
   COORDINATE,
-  LATITUDE_COORDINATE_MARKER_CORRECTION,
   LIBRARIES,
   createMapOptions,
   PIN_POINT_MAP_CONTAINER_STYLE,
@@ -88,12 +80,21 @@ export const PinPointMapCreateOrganization = () => {
 
         // Parse address components
         const addressComponents = place.address_components;
-        
+
         // Street: route or formatted_address as fallback
-        const route = addressComponents.find((c) => c.types.includes("route"))?.long_name || "";
-        const streetNumber = addressComponents.find((c) => c.types.includes("street_number"))?.long_name || "";
-        const sublocality = addressComponents.find((c) => c.types.includes("sublocality_level_1") || c.types.includes("sublocality"))?.long_name || "";
-        
+        const route =
+          addressComponents.find((c) => c.types.includes("route"))?.long_name ||
+          "";
+        const streetNumber =
+          addressComponents.find((c) => c.types.includes("street_number"))
+            ?.long_name || "";
+        const sublocality =
+          addressComponents.find(
+            (c) =>
+              c.types.includes("sublocality_level_1") ||
+              c.types.includes("sublocality")
+          )?.long_name || "";
+
         // Build street name with priority: route + number > sublocality > formatted_address
         let fullStreet = "";
         if (route) {
@@ -102,18 +103,27 @@ export const PinPointMapCreateOrganization = () => {
           fullStreet = sublocality;
         } else {
           // Use formatted_address as fallback for street name
-          fullStreet = place.formatted_address.split(',')[0].trim();
+          fullStreet = place.formatted_address.split(",")[0].trim();
         }
-        
+
         // Zipcode: postal_code (optional)
-        const zipcode = addressComponents.find((c) => c.types.includes("postal_code"))?.long_name || "";
-        
+        const zipcode =
+          addressComponents.find((c) => c.types.includes("postal_code"))
+            ?.long_name || "";
+
         // City: administrative_area_level_2 (Kota/Kabupaten) or locality
-        const city = addressComponents.find((c) => c.types.includes("administrative_area_level_2"))?.long_name ||
-                     addressComponents.find((c) => c.types.includes("locality"))?.long_name || "";
-        
+        const city =
+          addressComponents.find((c) =>
+            c.types.includes("administrative_area_level_2")
+          )?.long_name ||
+          addressComponents.find((c) => c.types.includes("locality"))
+            ?.long_name ||
+          "";
+
         // Country
-        const country = addressComponents.find((c) => c.types.includes("country"))?.long_name || "";
+        const country =
+          addressComponents.find((c) => c.types.includes("country"))
+            ?.long_name || "";
 
         setAddressInfo({
           street: fullStreet,
@@ -241,12 +251,21 @@ export const PinPointMapCreateOrganization = () => {
           const place = results[0];
 
           const addressComponents = place.address_components;
-          
+
           // Street: route or formatted_address as fallback
-          const route = addressComponents.find((c) => c.types.includes("route"))?.long_name || "";
-          const streetNumber = addressComponents.find((c) => c.types.includes("street_number"))?.long_name || "";
-          const sublocality = addressComponents.find((c) => c.types.includes("sublocality_level_1") || c.types.includes("sublocality"))?.long_name || "";
-          
+          const route =
+            addressComponents.find((c) => c.types.includes("route"))
+              ?.long_name || "";
+          const streetNumber =
+            addressComponents.find((c) => c.types.includes("street_number"))
+              ?.long_name || "";
+          const sublocality =
+            addressComponents.find(
+              (c) =>
+                c.types.includes("sublocality_level_1") ||
+                c.types.includes("sublocality")
+            )?.long_name || "";
+
           // Build street name with priority: route + number > sublocality > formatted_address
           let fullStreet = "";
           if (route) {
@@ -255,18 +274,27 @@ export const PinPointMapCreateOrganization = () => {
             fullStreet = sublocality;
           } else {
             // Use formatted_address as fallback for street name
-            fullStreet = place.formatted_address.split(',')[0].trim();
+            fullStreet = place.formatted_address.split(",")[0].trim();
           }
-          
+
           // Zipcode: postal_code (optional)
-          const zipcode = addressComponents.find((c) => c.types.includes("postal_code"))?.long_name || "";
-          
+          const zipcode =
+            addressComponents.find((c) => c.types.includes("postal_code"))
+              ?.long_name || "";
+
           // City: administrative_area_level_2 (Kota/Kabupaten) or locality
-          const city = addressComponents.find((c) => c.types.includes("administrative_area_level_2"))?.long_name ||
-                       addressComponents.find((c) => c.types.includes("locality"))?.long_name || "";
-          
+          const city =
+            addressComponents.find((c) =>
+              c.types.includes("administrative_area_level_2")
+            )?.long_name ||
+            addressComponents.find((c) => c.types.includes("locality"))
+              ?.long_name ||
+            "";
+
           // Country
-          const country = addressComponents.find((c) => c.types.includes("country"))?.long_name || "";
+          const country =
+            addressComponents.find((c) => c.types.includes("country"))
+              ?.long_name || "";
 
           setAddressInfo({
             street: fullStreet,
@@ -277,7 +305,14 @@ export const PinPointMapCreateOrganization = () => {
         }
       });
     }
-  }, [isMapReady, isLoaded, userLocation, userLocationError, state.pin_point.location.selected.item, addressInfo]);
+  }, [
+    isMapReady,
+    isLoaded,
+    userLocation,
+    userLocationError,
+    state.pin_point.location.selected.item,
+    addressInfo,
+  ]);
 
   // NOTES: readjust map view
   useEffect(() => {
