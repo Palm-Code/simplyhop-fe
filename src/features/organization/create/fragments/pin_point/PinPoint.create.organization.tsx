@@ -33,7 +33,7 @@ export const PinPointCreateOrganization = () => {
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"
       )}
-      open={true}
+      open={isOpen}
       variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
