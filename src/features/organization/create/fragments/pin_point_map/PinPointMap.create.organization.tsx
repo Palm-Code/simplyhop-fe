@@ -215,8 +215,7 @@ export const PinPointMapCreateOrganization = () => {
 
     // Street: route or formatted_address as fallback
     const route =
-      addressComponents.find((c) => c.types.includes("route"))?.long_name ||
-      "";
+      addressComponents.find((c) => c.types.includes("route"))?.long_name || "";
     const streetNumber =
       addressComponents.find((c) => c.types.includes("street_number"))
         ?.long_name || "";
@@ -436,96 +435,107 @@ export const PinPointMapCreateOrganization = () => {
           }
           options={mapOptions}
         >
-        {/* User Marker */}
-        {(!!state.pin_point.location.selected.lat_lng ||
-          !!state.pin_point.map.initial_coordinate) && (
-          <Marker
-            position={
-              state.pin_point.location.selected.lat_lng ||
-              state.pin_point.map.initial_coordinate!
-            }
-            icon={{
-              ...dictionaries.pin_point.map.marker.origin.icon,
-              scaledSize: new window.google.maps.Size(32, 56),
-            }}
-            draggable={true}
-            onDragEnd={handleMarkerDragEnd}
-          />
-        )}
-      </GoogleMap>
-
-      {/* Reset Button - Overlay on top of map */}
-      {hasMovedFromInitial && userLocation && (
-        <button
-          onClick={handleResetToUserLocation}
-          className={clsx(
-            "absolute top-4 left-4 z-10",
-            "flex items-center gap-2",
-            "px-3 py-2",
-            "bg-white dark:bg-[#232323]",
-            "border border-[#E2E2E2] dark:border-[#464646]",
-            "rounded-lg",
-            "shadow-md",
-            "text-[0.875rem] font-medium",
-            "text-[#249124] dark:text-[#33CC33]",
-            "hover:bg-[#F5F5F5] dark:hover:bg-[#2A2A2A]",
-            "transition-colors cursor-pointer"
+          {/* User Marker */}
+          {(!!state.pin_point.location.selected.lat_lng ||
+            !!state.pin_point.map.initial_coordinate) && (
+            <Marker
+              position={
+                state.pin_point.location.selected.lat_lng ||
+                state.pin_point.map.initial_coordinate!
+              }
+              icon={{
+                ...dictionaries.pin_point.map.marker.origin.icon,
+                scaledSize: new window.google.maps.Size(32, 56),
+              }}
+              draggable={true}
+              onDragEnd={handleMarkerDragEnd}
+            />
           )}
-        >
-          <SVGIcon
-            name="Navigation"
-            className={clsx("w-4 h-4", "text-[#249124] dark:text-[#33CC33]")}
-          />
-          Aktuellen Standort verwenden
-        </button>
-      )}
+        </GoogleMap>
 
-      {/* Address Info Box - Overlay below map */}
-      {addressInfo && (
-        <div
-          className={clsx(
-            "absolute bottom-4 left-4 right-4 z-10",
-            "flex items-start gap-3",
-            "px-4 py-3",
-            "bg-white dark:bg-[#232323]",
-            "border border-[#E2E2E2] dark:border-[#464646]",
-            "rounded-lg",
-            "shadow-md"
-          )}
-        >
-          <SVGIcon
-            name="MapPin"
+        {/* Reset Button - Overlay on top of map */}
+
+        {/* Address Info Box - Overlay below map */}
+        {(addressInfo || (hasMovedFromInitial && userLocation)) && (
+          <div
             className={clsx(
-              "w-5 h-5 mt-0.5",
-              "text-[#249124] dark:text-[#33CC33]"
+              "absolute bottom-3 left-0 right-0 z-10",
+              "grid grid-cols-1 place-content-start place-items-start gap-2",
+              "w-full",
+              "px-3"
             )}
-          />
-          <div className={clsx("flex flex-col gap-1")}>
-            <p
-              className={clsx(
-                "text-[0.9375rem] font-semibold",
-                "text-[#232323] dark:text-white"
-              )}
-            >
-              {addressInfo.street}
-            </p>
-            <p
-              className={clsx(
-                "text-[0.8125rem] font-normal",
-                "text-[#606060] dark:text-[#C3C3C3]"
-              )}
-            >
-              {[addressInfo.zipcode, addressInfo.city, addressInfo.country]
-                .filter(Boolean)
-                .join(", ")}
-            </p>
+          >
+            {hasMovedFromInitial && userLocation && (
+              <button
+                onClick={handleResetToUserLocation}
+                className={clsx(
+                  "flex items-center gap-2",
+                  "px-4 py-3",
+                  "bg-[#EFF9EC] dark:bg-[#292929]",
+                  "rounded-lg",
+                  "shadow-md",
+                  "text-[0.75rem] font-bold",
+                  "text-[#326C22] dark:text-[#33CC33]",
+                  "transition-colors cursor-pointer"
+                )}
+              >
+                <SVGIcon
+                  name="Locate"
+                  className={clsx(
+                    "w-3 h-3",
+                    "text-[#326C22] dark:text-[#33CC33]"
+                  )}
+                />
+                Aktuellen Standort verwenden
+              </button>
+            )}
+            {addressInfo && (
+              <div
+                className={clsx(
+                  "flex items-start gap-3",
+                  "w-full",
+                  "px-4 py-3",
+                  "bg-white dark:bg-[#232323]",
+                  "border border-[#E9E6E6] dark:border-[#464646]",
+                  "rounded-lg",
+                  "shadow-md"
+                )}
+              >
+                <div className={clsx("flex flex-col gap-0.5")}>
+                  <p
+                    className={clsx(
+                      "text-base font-semibold",
+                      "text-[#232323] dark:text-white"
+                    )}
+                  >
+                    {addressInfo.street}
+                  </p>
+                  <p
+                    className={clsx(
+                      "text-[0.625rem] font-normal",
+                      "text-[#5B5B5B] dark:text-[#C3C3C3]"
+                    )}
+                  >
+                    {[
+                      addressInfo.zipcode,
+                      addressInfo.city,
+                      addressInfo.country,
+                    ]
+                      .filter(Boolean)
+                      .join(", ")}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        )}
       </div>
 
       {/* Place Autocomplete Search */}
-      <PlaceAutocomplete onPlaceSelect={handlePlaceSelect} isLoaded={isLoaded} />
+      <PlaceAutocomplete
+        onPlaceSelect={handlePlaceSelect}
+        isLoaded={isLoaded}
+      />
     </div>
   );
 };
