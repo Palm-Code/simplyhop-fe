@@ -92,6 +92,7 @@ export const SimplyHopAPICollectionURL = {
       `/api/users/profile/${path.id}`,
   },
   organization: {
+    postCreate: () => `/api/organizations`,
     patchProfile: (
       payload: PatchOrganizationProfilePathPayloadRequestInterface
     ) => `/api/organizations/${payload.id}/partial-update`,
