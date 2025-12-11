@@ -11,6 +11,7 @@ import Link from "next/link";
 import { CompanyOfficeFormCreateOrganization } from "../fragments/company_office_form";
 import { CreateOrganizationContext } from "../context";
 import { PinPointCreateOrganization } from "../fragments/pin_point";
+import { PinPointDeleteConfirmationCreateOrganization } from "../fragments/pin_point_delete_confirmation";
 
 export const CreateOrganizationContainer = () => {
   const dictionaries = getDictionaries();
@@ -21,20 +22,20 @@ export const CreateOrganizationContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "lg:pt-[2rem] px-[1rem]"
+          "lg:pt-8 px-4"
         )}
       >
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] lg:gap-[100px]",
+            "grid grid-cols-1 place-content-start place-items-start gap-6 lg:gap-[100px]",
             "w-full max-w-[680px]"
           )}
         >
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+              "grid grid-cols-1 place-content-start place-items-start gap-6",
               "w-full",
-              "px-[0rem] py-[0rem] lg:px-[1.5rem] lg:py-[1.5rem]"
+              "px-0 py-0 lg:px-6 lg:py-6"
             )}
           >
             <div
@@ -80,6 +81,7 @@ export const CreateOrganizationContainer = () => {
       </div>
       <PinPointCreateOrganization />
       <NotificationCreateOrganization />
+      <PinPointDeleteConfirmationCreateOrganization />
     </>
   );
 };

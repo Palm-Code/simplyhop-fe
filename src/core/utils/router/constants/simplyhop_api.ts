@@ -92,10 +92,10 @@ export const SimplyHopAPICollectionURL = {
       `/api/users/profile/${path.id}`,
   },
   organization: {
+    getGenerateCode: () => `/api/organizations/generate-code`,
     postCreate: () => `/api/organizations`,
-    putProfile: (
-      payload: PutOrganizationProfilePathPayloadRequestInterface
-    ) => `/api/organizations/${payload.id}/partial-update`,
+    putProfile: (payload: PutOrganizationProfilePathPayloadRequestInterface) =>
+      `/api/organizations/${payload.id}/partial-update`,
     patchDeactivate: (
       payload: PatchOrganizationDeactivatePathPayloadRequestInterface
     ) => `/api/organizations/${payload.id}/deactivate`,

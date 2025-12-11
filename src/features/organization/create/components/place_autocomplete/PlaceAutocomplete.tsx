@@ -147,7 +147,7 @@ export const PlaceAutocomplete = ({
               "px-4 py-3",
               "text-[#249124] dark:text-[#33CC33]",
               "text-xs font-bold",
-              "rounded-[0.375rem]",
+              "rounded-md",
               "transition-colors",
               "cursor-pointer"
             )}

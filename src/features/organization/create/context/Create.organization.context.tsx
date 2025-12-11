@@ -8,6 +8,7 @@ import {
   CreateOrganizationCompanyDataReducers,
   CreateOrganizationCompanyOfficeReducers,
   CreateOrganizationNotificationReducers,
+  CreateOrganizationPinPointDeleteConfirmationReducers,
   CreateOrganizationPinPointReducers,
 } from "./Create.organization.reducers";
 
@@ -90,11 +91,16 @@ const initialState: CreateOrganizationInitialStateType = {
           value: "",
           error: null,
         },
+        pin_point: {
+          value: null,
+        },
+        mode: "initial",
       },
     ],
   },
   pin_point: {
     is_open: false,
+    index: null,
     location: {
       selected: {
         item: null,
@@ -112,6 +118,10 @@ const initialState: CreateOrganizationInitialStateType = {
   notification: {
     is_open: false,
   },
+  pin_point_delete_confirmation: {
+    is_open: false,
+    index: null,
+  },
 };
 
 const CreateOrganizationContext = createContext<{
@@ -128,6 +138,7 @@ const mainReducer = (
     company_office,
     pin_point,
     notification,
+    pin_point_delete_confirmation,
   }: CreateOrganizationInitialStateType,
   action: CreateOrganizationActions
 ) => ({
@@ -138,6 +149,11 @@ const mainReducer = (
   ),
   pin_point: CreateOrganizationPinPointReducers(pin_point, action),
   notification: CreateOrganizationNotificationReducers(notification, action),
+  pin_point_delete_confirmation:
+    CreateOrganizationPinPointDeleteConfirmationReducers(
+      pin_point_delete_confirmation,
+      action
+    ),
 });
 
 const CreateOrganizationProvider = (props: { children: React.ReactNode }) => {

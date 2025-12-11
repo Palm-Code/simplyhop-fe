@@ -1,25 +1,24 @@
 import { InputContainer } from "@/core/components/input_container";
+import { InputLabel } from "@/core/components/input_label";
 import * as React from "react";
 import clsx from "clsx";
-import { InputLabel } from "@/core/components/input_label";
 
-export interface CompanyCodeInputProps {
+export interface PinPointInputProps {
   label?: string;
   value?: string;
   cta?: {
     children: React.ReactNode;
-    disabled: boolean;
     onClick?: () => void;
   };
   required?: boolean;
 }
 
-export const CompanyCodeInput = ({
+export const PinPointInput = ({
   label,
   value,
   cta,
   required = false,
-}: CompanyCodeInputProps) => {
+}: PinPointInputProps) => {
   const hasValue = !!value;
 
   return (
@@ -54,7 +53,7 @@ export const CompanyCodeInput = ({
             className={clsx(
               "text-[#292929] dark:text-white text-[0.875rem] font-normal",
               "truncate flex-1",
-              "pt-6"
+              'pt-6'
             )}
           >
             {value}
@@ -74,7 +73,6 @@ export const CompanyCodeInput = ({
               "ml-auto",
               hasValue && "mt-2"
             )}
-            disabled={cta.disabled}
             onClick={cta.onClick}
           >
             {cta?.children}

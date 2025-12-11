@@ -1,17 +1,21 @@
 import clsx from "clsx";
 
 export interface AddressInfoBoxProps {
-  street: string;
-  zipcode: string;
-  city: string;
-  country: string;
+  // street: string;
+  // zipcode: string;
+  // city: string;
+  // country: string;
+  name?:string;
+  description?:string
 }
 
 export const AddressInfoBox = ({
-  street,
-  zipcode,
-  city,
-  country,
+  // street,
+  // zipcode,
+  // city,
+  // country,
+  name,
+  description
 }: AddressInfoBoxProps) => {
   return (
     <div
@@ -32,7 +36,8 @@ export const AddressInfoBox = ({
             "text-[#232323] dark:text-white"
           )}
         >
-          {street}
+          {/* {street} */}
+          {name}
         </p>
         <p
           className={clsx(
@@ -40,7 +45,8 @@ export const AddressInfoBox = ({
             "text-[#5B5B5B] dark:text-[#C3C3C3]"
           )}
         >
-          {[zipcode, city, country].filter(Boolean).join(", ")}
+          {/* {[zipcode, city, country].filter(Boolean).join(", ")} */}
+          {description}
         </p>
       </div>
     </div>

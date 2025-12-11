@@ -33,6 +33,7 @@
         },
         "company_code": {
           "label": "Unternehmenscode",
+          "required": true,
           "cta": {
             "children": "Unternehmenscode generieren"
           }
@@ -149,7 +150,13 @@
     "title": "Unternehmensbüro",
     "cta": {
       "add": {
-        "children": "Weitere Büros hinzufügen"
+        "children": "weitere Standorte / Niederlassungen"
+      },
+      "save": {
+        "children": "Speichern"
+      },
+      "delete": {
+        "children": "Abbrechen"
       }
     },
     "form": {
@@ -209,13 +216,20 @@
             "children": "Stadt",
             "required": true
           }
+        },
+        "pin_point": {
+          "label": "Standort markieren",
+          "required": true,
+          "cta": {
+            "children": "Ort ändern"
+          }
         }
       }
     }
   },
   "cta": {
     "save": {
-      "children": "Speichern"
+      "children": "Unternehmen registrieren"
     },
     "back": {
       "name": "back",
@@ -236,6 +250,9 @@
     "cta": {
       "back": {
         "children": "Continue"
+      },
+      "save": {
+        "children": "Speichern"
       }
     },
     "map": {
@@ -263,6 +280,18 @@
         "strokeColor": "#33CC33",
         "strokeOpacity": 0.8,
         "strokeWeight": 8
+      }
+    }
+  },
+  "pin_point_delete_confirmation": {
+    "title": "SimplyHop Office 2 löschen?",
+    "description": "Möchten Sie diesen Standort wirklich entfernen?",
+    "cta": {
+      "cancel": {
+        "children": "Behalten"
+      },
+      "delete": {
+        "children": "Löschen"
       }
     }
   }

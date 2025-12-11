@@ -21,6 +21,7 @@ import clsx from "clsx";
 import { PlaceAutocomplete } from "../../components/place_autocomplete";
 import { ResetLocationButton } from "../../components/reset_location_button";
 import { AddressInfoBox } from "../../components/address_info_box";
+import { Button } from "@/core/components/button";
 
 export const PinPointMapCreateOrganization = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
@@ -44,12 +45,6 @@ export const PinPointMapCreateOrganization = () => {
   const mapRef = useRef<google.maps.Map | null>(null);
   const [hasMovedFromInitial, setHasMovedFromInitial] = useState(false);
   const [isMapReady, setIsMapReady] = useState(false);
-  const [addressInfo, setAddressInfo] = useState<{
-    street: string;
-    zipcode: string;
-    city: string;
-    country: string;
-  } | null>(null);
 
   // Memoize map options based on mode and theme
   const mapOptions = useMemo(() => {
@@ -121,12 +116,8 @@ export const PinPointMapCreateOrganization = () => {
           addressComponents.find((c) => c.types.includes("country"))
             ?.long_name || "";
 
-        setAddressInfo({
-          street: fullStreet,
-          zipcode,
-          city,
-          country,
-        });
+        const name = fullStreet;
+        const description = [zipcode, city, country].filter(Boolean).join(", ");
 
         // Update context with new location
         dispatch({
@@ -138,7 +129,8 @@ export const PinPointMapCreateOrganization = () => {
               selected: {
                 item: {
                   id: place.place_id,
-                  name: place.formatted_address,
+                  name: name,
+                  description: description,
                 },
                 lat_lng: newCoordinate,
               },
@@ -176,7 +168,7 @@ export const PinPointMapCreateOrganization = () => {
   const handleResetToUserLocation = () => {
     if (userLocation) {
       setHasMovedFromInitial(false);
-      setAddressInfo(null);
+      // setAddressInfo(null);
       dispatch({
         type: CreateOrganizationActionEnum.SetPinPointData,
         payload: {
@@ -255,12 +247,8 @@ export const PinPointMapCreateOrganization = () => {
       addressComponents.find((c) => c.types.includes("country"))?.long_name ||
       "";
 
-    setAddressInfo({
-      street: fullStreet,
-      zipcode,
-      city,
-      country,
-    });
+    const name = fullStreet;
+    const description = [zipcode, city, country].filter(Boolean).join(", ");
 
     // Update context with new location
     dispatch({
@@ -272,7 +260,8 @@ export const PinPointMapCreateOrganization = () => {
           selected: {
             item: {
               id: place.place_id || "",
-              name: place.formatted_address || "",
+              name: name || "",
+              description: description,
             },
             lat_lng: newCoordinate,
           },
@@ -329,8 +318,9 @@ export const PinPointMapCreateOrganization = () => {
       isLoaded &&
       userLocation &&
       !userLocationError &&
-      !state.pin_point.location.selected.item &&
-      !addressInfo
+      !state.pin_point.location.selected.item
+      // &&
+      // !addressInfo
     ) {
       const geocoder = new google.maps.Geocoder();
       geocoder.geocode({ location: userLocation }, (results, status) => {
@@ -383,11 +373,39 @@ export const PinPointMapCreateOrganization = () => {
             addressComponents.find((c) => c.types.includes("country"))
               ?.long_name || "";
 
-          setAddressInfo({
-            street: fullStreet,
-            zipcode,
-            city,
-            country,
+          const name = fullStreet;
+          const description = [zipcode, city, country]
+            .filter(Boolean)
+            .join(", ");
+
+          // Update context with new location
+          dispatch({
+            type: CreateOrganizationActionEnum.SetPinPointData,
+            payload: {
+              ...state.pin_point,
+              location: {
+                ...state.pin_point.location,
+                selected: {
+                  item: {
+                    id: place.place_id || "",
+                    name: name || "",
+                    description: description,
+                  },
+                  lat_lng: {
+                    lat: userLocation.lat,
+                    lng: userLocation.lng,
+                  },
+                },
+              },
+              map: {
+                ...state.pin_point.map,
+                initial_coordinate: {
+                  lat: userLocation.lat,
+                  lng: userLocation.lng,
+                },
+                mode: "coordinate",
+              },
+            },
           });
         }
       });
@@ -398,7 +416,7 @@ export const PinPointMapCreateOrganization = () => {
     userLocation,
     userLocationError,
     state.pin_point.location.selected.item,
-    addressInfo,
+    // addressInfo,
   ]);
 
   // NOTES: readjust map view
@@ -414,6 +432,58 @@ export const PinPointMapCreateOrganization = () => {
   }, [isLoaded, isLg, state.pin_point.map.mode]);
 
   if (!isLoaded) return <div />;
+
+  const handleClickSave = () => {
+    const id = state.pin_point.index;
+    if (id === null) return;
+
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      payload: {
+        ...state.company_office,
+        form: state.company_office.form.map((form, formIndex) => {
+          return {
+            ...form,
+            pin_point: {
+              ...form.pin_point,
+              value:
+                formIndex === id
+                  ? {
+                      lat: state.pin_point.location.selected.lat_lng?.lat ?? 0,
+                      lng: state.pin_point.location.selected.lat_lng?.lng ?? 0,
+                      location_1:
+                        state.pin_point.location.selected.item?.name ?? "",
+                      location_2:
+                        state.pin_point.location.selected.item?.description ??
+                        "",
+                    }
+                  : form.pin_point.value,
+            },
+          };
+        }),
+      },
+    });
+    dispatch({
+      type: CreateOrganizationActionEnum.SetPinPointData,
+      payload: {
+        is_open: false,
+        index: null,
+        location: {
+          selected: {
+            item: null,
+            lat_lng: null,
+          },
+          items: [],
+          query: "",
+        },
+        map: {
+          marker: false,
+          initial_coordinate: null,
+          mode: "country",
+        },
+      },
+    });
+  };
 
   return (
     <div className={clsx("flex flex-col gap-4", "w-full")}>
@@ -456,7 +526,9 @@ export const PinPointMapCreateOrganization = () => {
         {/* Reset Button - Overlay on top of map */}
 
         {/* Address Info Box - Overlay below map */}
-        {(addressInfo || (hasMovedFromInitial && userLocation)) && (
+        {/* {(addressInfo || (hasMovedFromInitial && userLocation)) && ( */}
+        {(state.pin_point.location.selected.item ||
+          (hasMovedFromInitial && userLocation)) && (
           <div
             className={clsx(
               "absolute bottom-3 left-0 right-0 z-10",
@@ -468,12 +540,11 @@ export const PinPointMapCreateOrganization = () => {
             {hasMovedFromInitial && userLocation && (
               <ResetLocationButton onClick={handleResetToUserLocation} />
             )}
-            {addressInfo && (
+
+            {state.pin_point.location.selected.item && (
               <AddressInfoBox
-                street={addressInfo.street}
-                zipcode={addressInfo.zipcode}
-                city={addressInfo.city}
-                country={addressInfo.country}
+                name={state.pin_point.location.selected.item.name}
+                description={state.pin_point.location.selected.item.description}
               />
             )}
           </div>
@@ -485,6 +556,15 @@ export const PinPointMapCreateOrganization = () => {
         onPlaceSelect={handlePlaceSelect}
         isLoaded={isLoaded}
       />
+
+      <Button
+        aria-label={dictionaries.cta.save.children}
+        name={dictionaries.cta.save.children}
+        className={clsx("py-3!")}
+        onClick={handleClickSave}
+      >
+        {dictionaries.pin_point.cta.save.children}
+      </Button>
     </div>
   );
 };

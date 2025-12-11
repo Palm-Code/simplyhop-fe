@@ -2,57 +2,33 @@ import { Button } from "@/core/components/button";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-// import {
-//   CreateOrganizationActionEnum,
-//   CreateOrganizationContext,
-// } from "../../context";
+import {
+  CreateOrganizationActionEnum,
+  CreateOrganizationContext,
+} from "../../context";
 
 import { MoonLoader } from "@/core/components/moon_loader";
-// import { UserContext } from "@/core/modules/app/context";
+import { usePostOrganizationCreate } from "../../react_query/hooks";
 
 export const CTACreateOrganization = () => {
   const dictionaries = getDictionaries();
-  // const { state, dispatch } = React.useContext(CreateOrganizationContext);
-  // const { refetch } = React.useContext(UserContext);
-  // const {
-  //   mutateAsync: postUserProfileCreate,
-  //   isPending: isPendingPostUserProfileCreate,
-  // } = usePostUserProfileCreate();
-  // const {
-  //   mutateAsync: postVehicleCreateMy,
-  //   isPending: isPendingPostVehicleCreateMy,
-  // } = usePostVehicleCreateMy();
+  const { state, dispatch } = React.useContext(CreateOrganizationContext);
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("new_user");
-    }
-  }, []);
+  const {
+    mutateAsync: postOrganizationCreate,
+    isPending: isPendingPostOrganizationCreate,
+  } = usePostOrganizationCreate();
 
   const handleClickSave = async () => {
-    // const user = await postUserProfileCreate();
-    // if (!user) return;
-    // if (state.ride_plan.form.offer_trip.selected?.id === "yes") {
-    //   const vehicle = await postVehicleCreateMy();
-    //   if (!vehicle) return;
-    //   if (user.data.is_profile_complete && !!vehicle.data) {
-    //     localStorage.setItem("new_user", "true");
-    //   }
-    // }
-    // if (
-    //   state.ride_plan.form.offer_trip.selected?.id === "no" &&
-    //   user.data.is_profile_complete
-    // ) {
-    //   localStorage.setItem("new_user", "true");
-    // }
-    // refetch();
-    // dispatch({
-    //   type: CreateOrganizationActionEnum.SetNotificationData,
-    //   payload: {
-    //     ...state.notification,
-    //     is_open: true,
-    //   },
-    // });
+    const res = await postOrganizationCreate();
+    if (!res) return;
+    dispatch({
+      type: CreateOrganizationActionEnum.SetNotificationData,
+      payload: {
+        ...state.notification,
+        is_open: true,
+      },
+    });
   };
 
   // const isPersonalFormValid =
@@ -92,15 +68,15 @@ export const CTACreateOrganization = () => {
   //   isPendingPostVehicleCreateMy;
   // const isSaveLoading =
   //   isPendingPostUserProfileCreate || isPendingPostVehicleCreateMy;
-  const isSaveDisabled = false;
-  const isSaveLoading = false;
+  const isSaveDisabled = isPendingPostOrganizationCreate;
+  const isSaveLoading = isPendingPostOrganizationCreate;
   return (
     <Button
       aria-label={dictionaries.cta.save.children}
       name={dictionaries.cta.save.children}
       disabled={isSaveDisabled}
       isLoading={isSaveLoading}
-      className={clsx("py-[1rem]")}
+      className={clsx("py-3")}
       onClick={handleClickSave}
     >
       {isSaveLoading && <MoonLoader size={20} color={"white"} />}
