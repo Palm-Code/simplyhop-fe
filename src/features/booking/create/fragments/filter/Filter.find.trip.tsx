@@ -38,8 +38,10 @@ export const FilterFindTrip = () => {
   const isDestinationCompanyOfficeChecked =
     !!state.filters.destination.company_office.checked;
   const selectedItemDestination = state.filters.destination.selected.item;
+  const companyOfficeAddreses =
+    userState.profile?.organization?.addresses ?? [];
   const companyOfficeItems =
-    userState.profile?.organization?.addresses?.map((item) => {
+    companyOfficeAddreses?.map((item) => {
       return {
         id: String(item.id),
         name: userState.profile?.organization?.name ?? "",
@@ -146,10 +148,9 @@ export const FilterFindTrip = () => {
     let lat_lng: null | { lat: number; lng: number } = null;
 
     if (isOriginCompanyOfficeChecked) {
-      const selectedOfficeAddress =
-        userState.profile?.organization?.addresses.find(
-          (item) => String(item.id) === data.id
-        );
+      const selectedOfficeAddress = companyOfficeAddreses.find(
+        (item) => String(item.id) === data.id
+      );
       if (!selectedOfficeAddress) return;
       lat_lng = {
         lat: selectedOfficeAddress.latitude,
@@ -391,10 +392,9 @@ export const FilterFindTrip = () => {
     let lat_lng: null | { lat: number; lng: number } = null;
 
     if (isDestinationCompanyOfficeChecked) {
-      const selectedOfficeAddress =
-        userState.profile?.organization?.addresses.find(
-          (item) => String(item.id) === data.id
-        );
+      const selectedOfficeAddress = companyOfficeAddreses.find(
+        (item) => String(item.id) === data.id
+      );
       if (!selectedOfficeAddress) return;
       lat_lng = {
         lat: selectedOfficeAddress.latitude,
@@ -526,15 +526,7 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          items: checked
-            ? userState.profile?.organization?.addresses?.map((item) => {
-                return {
-                  id: String(item.id),
-                  name: userState.profile?.organization?.name ?? "",
-                  description: item.address ?? "",
-                };
-              }) ?? []
-            : [],
+          items: checked ? companyOfficeItems : [],
           company_office: {
             ...state.filters.destination.company_office,
             checked: checked,
