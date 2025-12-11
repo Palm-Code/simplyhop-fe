@@ -47,6 +47,24 @@ const initialState: CreateOrganizationInitialStateType = {
           error: null,
         },
       },
+      address: {
+        address_1: {
+          value: "",
+          error: null,
+        },
+        address_2: {
+          value: "",
+          error: null,
+        },
+        zip_code: {
+          value: "",
+          error: null,
+        },
+        city: {
+          value: "",
+          error: null,
+        },
+      },
     },
   },
   company_office: {

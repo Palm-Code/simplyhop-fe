@@ -178,6 +178,94 @@ export const CompanyDataFormCreateOrganization = () => {
       },
     });
   };
+
+  const handleChangeAddress1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            address_1: {
+              ...state.company_data.form.address.address_1,
+              value: e.currentTarget.value,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeAddress2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            address_2: {
+              ...state.company_data.form.address.address_2,
+              value: e.currentTarget.value,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeZipCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.zip_code.validations.items,
+      value: e.currentTarget.value,
+      type: "required",
+    });
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            zip_code: {
+              ...state.company_data.form.address.zip_code,
+              value: e.currentTarget.value,
+              error: errorItem,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.city.validations.items,
+      value: e.currentTarget.value,
+      type: "required",
+    });
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            city: {
+              ...state.company_data.form.address.city,
+              value: e.currentTarget.value,
+              error: errorItem,
+            },
+          },
+        },
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -329,6 +417,93 @@ export const CompanyDataFormCreateOrganization = () => {
                       ?.name
                   }
                 />
+              </div>
+            </div>
+
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-1",
+                "w-full"
+              )}
+            >
+              <p
+                className={clsx(
+                  "text-[0.875rem] text-[#292929] dark:text-white font-bold"
+                )}
+              >
+                {dictionaries.company_data.form.input.address.title}
+              </p>
+
+              <div
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-3",
+                  "w-full"
+                )}
+              >
+                {/* address_1 */}
+                <Textfield
+                  labelProps={{
+                    ...dictionaries.company_data.form.input.address.address_1
+                      .labelProps,
+                  }}
+                  inputProps={{
+                    ...dictionaries.company_data.form.input.address.address_1
+                      .inputProps,
+                    value: state.company_data.form.address.address_1.value,
+                    onChange: handleChangeAddress1,
+                  }}
+                  error={state.company_data.form.address.address_1.error?.name}
+                />
+                {/* address_2 */}
+                <Textfield
+                  labelProps={{
+                    ...dictionaries.company_data.form.input.address.address_2
+                      .labelProps,
+                  }}
+                  inputProps={{
+                    ...dictionaries.company_data.form.input.address.address_2
+                      .inputProps,
+                    value: state.company_data.form.address.address_2.value,
+                    onChange: handleChangeAddress2,
+                  }}
+                  error={state.company_data.form.address.address_2.error?.name}
+                />
+
+                <div
+                  className={clsx(
+                    "grid grid-cols-2 place-content-start place-items-start gap-3",
+                    "w-full"
+                  )}
+                >
+                  {/* zip_code */}
+                  <Textfield
+                    labelProps={{
+                      ...dictionaries.company_data.form.input.address.zip_code
+                        .labelProps,
+                    }}
+                    inputProps={{
+                      ...dictionaries.company_data.form.input.address.zip_code
+                        .inputProps,
+                      value: state.company_data.form.address.zip_code.value,
+                      onChange: handleChangeZipCode,
+                    }}
+                    error={state.company_data.form.address.zip_code.error?.name}
+                  />
+                  {/* city */}
+                  <Textfield
+                    labelProps={{
+                      ...dictionaries.company_data.form.input.address.city
+                        .labelProps,
+                    }}
+                    inputProps={{
+                      ...dictionaries.company_data.form.input.address.city
+                        .inputProps,
+                      value: state.company_data.form.address.city.value,
+                      onChange: handleChangeCity,
+                    }}
+                    error={state.company_data.form.address.city.error?.name}
+                  />
+                </div>
               </div>
             </div>
           </>

@@ -56,6 +56,24 @@ export interface CreateOrganizationCompanyData {
         error: FormError;
       };
     };
+    address: {
+      address_1: {
+        value: string;
+        error: FormError;
+      };
+      address_2: {
+        value: string;
+        error: FormError;
+      };
+      zip_code: {
+        value: string;
+        error: FormError;
+      };
+      city: {
+        value: string;
+        error: FormError;
+      };
+    };
   };
 }
 

@@ -71,7 +71,7 @@
           }
         },
         "responsible_person": {
-          "title": "Verantwortliche Person",
+          "title": "Ansprechpartner",
           "first_name": {
             "inputProps": {
               "id": "first_name",
@@ -91,6 +91,53 @@
             "labelProps": {
               "id": "last_name",
               "children": "Nachname",
+              "required": true
+            }
+          }
+        },
+        "address": {
+          "title": "Hauptadresse",
+          "address_1": {
+            "inputProps": {
+              "id": "address_address_1",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_address_1",
+              "children": "Adresse",
+              "required": true
+            }
+          },
+          "address_2": {
+            "inputProps": {
+              "id": "address_address_2",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_address_2",
+              "children": "Adresse (Zeile 2)",
+              "required": false
+            }
+          },
+          "zip_code": {
+            "inputProps": {
+              "id": "address_zip_code",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_zip_code",
+              "children": "PLZ",
+              "required": true
+            }
+          },
+          "city": {
+            "inputProps": {
+              "id": "address_city",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_city",
+              "children": "Stadt",
               "required": true
             }
           }
