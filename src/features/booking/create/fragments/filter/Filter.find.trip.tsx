@@ -93,7 +93,10 @@ export const FilterFindTrip = () => {
           ...state.filters.origin,
           items: isOriginCompanyOfficeChecked
             ? !input.length
-              ? companyOfficeItems
+              ? companyOfficeItems.filter(
+                  (item) =>
+                    item.id !== state.filters.destination.selected.item?.id
+                )
               : state.filters.origin.items.filter(
                   (item) =>
                     item.name.toLowerCase().includes(input.toLowerCase()) ||
@@ -123,12 +126,17 @@ export const FilterFindTrip = () => {
             ...state.filters,
             origin: {
               ...state.filters.origin,
-              items: data.map((p) => {
-                return {
-                  id: p.place_id,
-                  name: p.description,
-                };
-              }),
+              items: data
+                .map((p) => {
+                  return {
+                    id: p.place_id,
+                    name: p.description,
+                  };
+                })
+                .filter(
+                  (item) =>
+                    item.id !== state.filters.destination.selected.item?.id
+                ),
             },
           },
         });
@@ -191,7 +199,9 @@ export const FilterFindTrip = () => {
             ...state.filters.destination.company_office,
             checked: isOriginCompanyOfficeChecked ? false : true,
           },
-          items: isOriginCompanyOfficeChecked ? [] : companyOfficeItems,
+          items: isOriginCompanyOfficeChecked
+            ? []
+            : companyOfficeItems.filter((item) => item.id !== data.id),
         },
       },
     });
@@ -244,7 +254,7 @@ export const FilterFindTrip = () => {
           },
         });
       }
-    } catch (error) {
+    } catch {
       // Fallback ke coordinate string jika reverse geocoding gagal
       const userLocationLatLng = `${userLocation.lat},${userLocation.lng}`;
       dispatch({
@@ -282,7 +292,12 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          items: checked ? companyOfficeItems : [],
+          items: checked
+            ? companyOfficeItems.filter(
+                (item) =>
+                  item.id !== state.filters.destination.selected.item?.id
+              )
+            : [],
           company_office: {
             ...state.filters.origin.company_office,
             checked: checked,
@@ -336,7 +351,9 @@ export const FilterFindTrip = () => {
           ...state.filters.destination,
           items: isDestinationCompanyOfficeChecked
             ? !input.length
-              ? companyOfficeItems
+              ? companyOfficeItems.filter(
+                  (item) => item.id !== state.filters.origin.selected.item?.id
+                )
               : state.filters.destination.items.filter(
                   (item) =>
                     item.name.toLowerCase().includes(input.toLowerCase()) ||
@@ -367,12 +384,16 @@ export const FilterFindTrip = () => {
             ...state.filters,
             destination: {
               ...state.filters.destination,
-              items: data.map((p) => {
-                return {
-                  id: p.place_id,
-                  name: p.description,
-                };
-              }),
+              items: data
+                .map((p) => {
+                  return {
+                    id: p.place_id,
+                    name: p.description,
+                  };
+                })
+                .filter(
+                  (item) => item.id !== state.filters.origin.selected.item?.id
+                ),
             },
           },
         });
@@ -436,7 +457,9 @@ export const FilterFindTrip = () => {
             ...state.filters.origin.company_office,
             checked: isDestinationCompanyOfficeChecked ? false : true,
           },
-          items: isDestinationCompanyOfficeChecked ? [] : companyOfficeItems,
+          items: isDestinationCompanyOfficeChecked
+            ? []
+            : companyOfficeItems.filter((item) => item.id !== data.id),
         },
       },
     });
@@ -489,7 +512,7 @@ export const FilterFindTrip = () => {
           },
         });
       }
-    } catch (error) {
+    } catch {
       // Fallback ke coordinate string jika reverse geocoding gagal
       const userLocationLatLng = `${userLocation.lat},${userLocation.lng}`;
       dispatch({
@@ -527,7 +550,11 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          items: checked ? companyOfficeItems : [],
+          items: checked
+            ? companyOfficeItems.filter(
+                (item) => item.id !== state.filters.origin.selected.item?.id
+              )
+            : [],
           company_office: {
             ...state.filters.destination.company_office,
             checked: checked,

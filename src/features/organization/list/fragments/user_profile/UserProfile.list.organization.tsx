@@ -86,10 +86,20 @@ export const UserProfileListOrganization = () => {
         break;
       }
       case "pic": {
-        value = !state.user_profile.data?.organization.responsible_person_name
-          ?.length
-          ? "-"
-          : state.user_profile.data?.organization.responsible_person_name;
+        value =
+          !state.user_profile.data?.organization.responsible_person_first_name
+            ?.length &&
+          !state.user_profile.data?.organization.responsible_person_last_name
+            ?.length
+            ? "-"
+            : formatDisplayName({
+                first_name: !state.user_profile.data?.organization
+                  .responsible_person_last_name
+                  ? state.user_profile.data?.organization
+                      .responsible_person_first_name ?? ""
+                  : `${state.user_profile.data?.organization.responsible_person_last_name} ${state.user_profile.data?.organization.responsible_person_last_name}`,
+                email: state.user_profile.data?.organization.email,
+              });
         break;
       }
       default: {

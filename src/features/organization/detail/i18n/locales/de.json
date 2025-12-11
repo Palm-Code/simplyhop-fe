@@ -185,15 +185,28 @@
             "required": false
           }
         },
-        "responsible_person_name": {
-          "inputProps": {
-            "id": "responsible_person_name",
-            "placeholder": " "
+        "responsible_person": {
+          "first_name": {
+            "inputProps": {
+              "id": "responsible_person_first_name",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "responsible_person_first_name",
+              "children": "Verantwortliche Person",
+              "required": false
+            }
           },
-          "labelProps": {
-            "id": "responsible_person_name",
-            "children": "Verantwortliche Person",
-            "required": false
+          "last_name": {
+            "inputProps": {
+              "id": "responsible_person_last_name",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "responsible_person_last_name",
+              "children": "Verantwortliche Person",
+              "required": false
+            }
           }
         },
         "gender": {

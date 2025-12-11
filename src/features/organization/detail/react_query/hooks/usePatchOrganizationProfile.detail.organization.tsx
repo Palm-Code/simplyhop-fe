@@ -3,17 +3,17 @@ import { useMutation } from "@tanstack/react-query";
 
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import {
-  PatchOrganizationProfileErrorResponseInterface,
-  PatchOrganizationProfilePayloadRequestInterface,
-  PatchOrganizationProfileSuccessResponseInterface,
+  PutOrganizationProfileErrorResponseInterface,
+  PutOrganizationProfilePayloadRequestInterface,
+  PutOrganizationProfileSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/organization";
 import { DetailOrganizationReactQueryKey } from "../keys";
 import { v4 as uuidv4 } from "uuid";
 import { DetailOrganizationContext } from "../../context";
-import { fetchPatchOrganizationProfile } from "@/core/services/rest/simplyhop/organization";
+import { fetchPutOrganizationProfile } from "@/core/services/rest/simplyhop/organization";
 import { useParams } from "next/navigation";
 
-export const usePatchOrganizationProfile = () => {
+export const usePutOrganizationProfile = () => {
   const { driver_id } = useParams();
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
@@ -21,12 +21,12 @@ export const usePatchOrganizationProfile = () => {
   const { state } = React.useContext(DetailOrganizationContext);
 
   const mutation = useMutation<
-    PatchOrganizationProfileSuccessResponseInterface,
-    PatchOrganizationProfileErrorResponseInterface
+    PutOrganizationProfileSuccessResponseInterface,
+    PutOrganizationProfileErrorResponseInterface
   >({
-    mutationKey: DetailOrganizationReactQueryKey.PatchOrganizationProfile(),
+    mutationKey: DetailOrganizationReactQueryKey.PutOrganizationProfile(),
     mutationFn: () => {
-      const payload: PatchOrganizationProfilePayloadRequestInterface = {
+      const payload: PutOrganizationProfilePayloadRequestInterface = {
         path: {
           id: String(driver_id ?? "0"),
         },
@@ -34,11 +34,13 @@ export const usePatchOrganizationProfile = () => {
           email: state.edit.form.email.value,
           name: state.edit.form.name.value,
           phone: state.edit.form.phonenumber.value,
-          responsible_person_name:
-            state.edit.form.responsible_person_name.value,
+          responsible_person_first_name:
+            state.edit.form.responsible_person.first_name.value,
+          responsible_person_last_name:
+            state.edit.form.responsible_person.last_name.value,
         },
       };
-      return fetchPatchOrganizationProfile(payload);
+      return fetchPutOrganizationProfile(payload);
     },
     onSuccess() {
       dispatchGlobal({

@@ -84,10 +84,20 @@ export const ProfileDetailOrganization = () => {
             ...state.edit.form.city,
             value: state.profile.data?.organization.city ?? "",
           },
-          responsible_person_name: {
-            ...state.edit.form.responsible_person_name,
-            value:
-              state.profile.data?.organization.responsible_person_name ?? "",
+          responsible_person: {
+            ...state.edit.form.responsible_person,
+            first_name: {
+              ...state.edit.form.responsible_person.first_name,
+              value:
+                state.profile.data?.organization
+                  .responsible_person_first_name ?? "",
+            },
+            last_name: {
+              ...state.edit.form.responsible_person.last_name,
+              value:
+                state.profile.data?.organization.responsible_person_last_name ??
+                "",
+            },
           },
         },
       },
@@ -98,7 +108,7 @@ export const ProfileDetailOrganization = () => {
       summary={summaryItems}
       header={{
         avatar: {
-          src: state.profile.data?.organization.logo,
+          src: state.profile.data?.organization.logo ?? "",
         },
         displayName: formatDisplayName({
           first_name: state.profile.data?.organization.name,

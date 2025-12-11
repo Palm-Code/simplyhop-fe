@@ -35,7 +35,6 @@ export const MapFindTrip = () => {
     console.error(
       "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local"
     );
-    return null;
   }
 
   const { isLoaded } = useLoadScript({

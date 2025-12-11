@@ -54,9 +54,15 @@ const initialState: DetailOrganizationInitialStateType = {
         value: "",
         error: null,
       },
-      responsible_person_name: {
-        value: "",
-        error: null,
+      responsible_person: {
+        first_name: {
+          value: "",
+          error: null,
+        },
+        last_name: {
+          value: "",
+          error: null,
+        },
       },
     },
   },

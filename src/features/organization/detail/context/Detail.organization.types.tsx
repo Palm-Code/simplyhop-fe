@@ -73,9 +73,15 @@ export interface DetailOrganizationEdit {
       value: string;
       error: FormError;
     };
-    responsible_person_name: {
-      value: string;
-      error: FormError;
+    responsible_person: {
+      first_name: {
+        value: string;
+        error: FormError;
+      };
+      last_name: {
+        value: string;
+        error: FormError;
+      };
     };
   };
 }

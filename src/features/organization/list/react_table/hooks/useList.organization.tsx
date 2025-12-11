@@ -55,7 +55,7 @@ export const useListOrganizationTable = () => {
                   "w-full"
                 )}
               >
-                {!cellProps.row.original.organization.media.length ? (
+                {!cellProps.row.original.organization.logo?.length ? (
                   <div
                     className={clsx(
                       "flex items-center justify-center",

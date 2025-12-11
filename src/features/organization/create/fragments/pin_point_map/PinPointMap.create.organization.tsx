@@ -150,7 +150,7 @@ export const PinPointMapCreateOrganization = () => {
           },
         });
       }
-    } catch (error) {
+    } catch {
       // Update coordinate only if geocoding fails
       dispatch({
         type: CreateOrganizationActionEnum.SetPinPointData,

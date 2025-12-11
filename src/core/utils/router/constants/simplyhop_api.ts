@@ -25,7 +25,7 @@ import {
 import {
   PatchOrganizationActivatePathPayloadRequestInterface,
   PatchOrganizationDeactivatePathPayloadRequestInterface,
-  PatchOrganizationProfilePathPayloadRequestInterface,
+  PutOrganizationProfilePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/organization";
 import {
   DeleteRidesIdPathPayloadRequestInterface,
@@ -93,8 +93,8 @@ export const SimplyHopAPICollectionURL = {
   },
   organization: {
     postCreate: () => `/api/organizations`,
-    patchProfile: (
-      payload: PatchOrganizationProfilePathPayloadRequestInterface
+    putProfile: (
+      payload: PutOrganizationProfilePathPayloadRequestInterface
     ) => `/api/organizations/${payload.id}/partial-update`,
     patchDeactivate: (
       payload: PatchOrganizationDeactivatePathPayloadRequestInterface

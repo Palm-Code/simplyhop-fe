@@ -14,7 +14,7 @@ import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
-import { usePatchOrganizationProfile } from "../../react_query/hooks";
+import { usePutOrganizationProfile } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { Avatar } from "@/core/components/avatar";
 import { queryClient } from "@/core/utils/react_query";
@@ -30,8 +30,8 @@ export const EditDetailOrganization = () => {
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
   const { driver_id } = useParams();
 
-  const { mutateAsync: patchUserProfile, isPending: isPendingPathUserProfile } =
-    usePatchOrganizationProfile();
+  const { mutateAsync: putUserProfile, isPending: isPendingPutUserProfile } =
+    usePutOrganizationProfile();
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
@@ -102,7 +102,7 @@ export const EditDetailOrganization = () => {
     });
   };
 
-  const handleChangeResponsiblePersonName = (
+  const handleChangeResponsiblePersonFirstName = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const errorItem = getError({
@@ -117,10 +117,41 @@ export const EditDetailOrganization = () => {
         ...state.edit,
         form: {
           ...state.edit.form,
-          responsible_person_name: {
-            ...state.edit.form.responsible_person_name,
-            value: e.currentTarget.value,
-            error: errorItem,
+          responsible_person: {
+            ...state.edit.form.responsible_person,
+            first_name: {
+              ...state.edit.form.responsible_person.first_name,
+              value: e.currentTarget.value,
+              error: errorItem,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeResponsiblePersonLastName = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const errorItem = getError({
+      errorItems:
+        globalDictionaries.form.responsible_person_name.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
+    dispatch({
+      type: DetailOrganizationActionEnum.SetEditData,
+      payload: {
+        ...state.edit,
+        form: {
+          ...state.edit.form,
+          responsible_person: {
+            ...state.edit.form.responsible_person,
+            last_name: {
+              ...state.edit.form.responsible_person.last_name,
+              value: e.currentTarget.value,
+              error: errorItem,
+            },
           },
         },
       },
@@ -139,7 +170,7 @@ export const EditDetailOrganization = () => {
   };
 
   const handleClickSave = async () => {
-    const res = await patchUserProfile();
+    const res = await putUserProfile();
     if (!res) return;
     const payload: GetUserProfileIdPayloadRequestInterface = {
       path: {
@@ -169,9 +200,10 @@ export const EditDetailOrganization = () => {
     !!state.edit.form.name.error ||
     !!state.edit.form.city.error ||
     !!state.edit.form.phonenumber.error ||
-    !!state.edit.form.responsible_person_name.error ||
-    isPendingPathUserProfile;
-  const isSubmitLoading = isPendingPathUserProfile;
+    !!state.edit.form.responsible_person.first_name.error ||
+    !!state.edit.form.responsible_person.last_name.error ||
+    isPendingPutUserProfile;
+  const isSubmitLoading = isPendingPutUserProfile;
 
   return (
     <AdaptiveModal
@@ -285,19 +317,40 @@ export const EditDetailOrganization = () => {
             />
           </div>
 
-          <Textfield
-            labelProps={{
-              ...dictionaries.edit.form.input.responsible_person_name
-                .labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.edit.form.input.responsible_person_name
-                .inputProps,
-              value: state.edit.form.responsible_person_name.value,
-              onChange: handleChangeResponsiblePersonName,
-            }}
-            error={state.edit.form.responsible_person_name.error?.name}
-          />
+          <div
+            className={clsx(
+              "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+              "w-full"
+            )}
+          >
+            <Textfield
+              labelProps={{
+                ...dictionaries.edit.form.input.responsible_person.first_name
+                  .labelProps,
+              }}
+              inputProps={{
+                ...dictionaries.edit.form.input.responsible_person.first_name
+                  .inputProps,
+                value: state.edit.form.responsible_person.first_name.value,
+                onChange: handleChangeResponsiblePersonFirstName,
+              }}
+              error={state.edit.form.responsible_person.first_name.error?.name}
+            />
+
+            <Textfield
+              labelProps={{
+                ...dictionaries.edit.form.input.responsible_person.last_name
+                  .labelProps,
+              }}
+              inputProps={{
+                ...dictionaries.edit.form.input.responsible_person.last_name
+                  .inputProps,
+                value: state.edit.form.responsible_person.last_name.value,
+                onChange: handleChangeResponsiblePersonLastName,
+              }}
+              error={state.edit.form.responsible_person.last_name.error?.name}
+            />
+          </div>
         </div>
 
         <div
