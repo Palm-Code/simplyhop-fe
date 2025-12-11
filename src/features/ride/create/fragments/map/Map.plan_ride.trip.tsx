@@ -51,31 +51,57 @@ export const MapPlanRideTrip = () => {
 
   // NOTES: set user location
   useEffect(() => {
-    if (!!userLocation && !userLocationError) {
-      const mapCoordinate = !!state.filters.origin.selected.item
-        ? state.filters.origin.selected.lat_lng
-        : userLocationError
-        ? COORDINATE.germany
-        : userLocation;
-      dispatch({
-        type: PlanRideTripActionEnum.SetMapData,
-        payload: {
-          ...state.map,
-          initial_coordinate: mapCoordinate,
-          mode: !!state.filters.origin.selected.item
-            ? "route"
-            : userLocationError
-            ? "country"
-            : "coordinate",
-          marker: !!state.filters.origin.selected.item
-            ? true
-            : userLocationError
-            ? false
-            : true,
-        },
-      });
+    // Guard: skip if userLocation is not ready yet and is not error
+    if (!userLocation && !userLocationError) return;
+
+    const mapCoordinate = !!state.filters.origin.selected.item
+      ? state.filters.origin.selected.lat_lng
+      : !!userLocationError
+      ? COORDINATE.germany
+      : userLocation;
+
+    const mode =
+      !!state.filters.origin.selected.item &&
+      !!state.filters.destination.selected.item
+        ? "route"
+        : !!userLocationError
+        ? "country"
+        : "coordinate";
+
+    // Guard: skip dispatch if value is not changed
+    if (
+      state.map.mode === mode &&
+      state.map.initial_coordinate?.lat === mapCoordinate?.lat &&
+      state.map.initial_coordinate?.lng === mapCoordinate?.lng
+    ) {
+      return;
     }
-  }, [userLocation?.lat, userLocation?.lng, userLocationError]);
+
+    dispatch({
+      type: PlanRideTripActionEnum.SetMapData,
+      payload: {
+        ...state.map,
+        initial_coordinate: mapCoordinate,
+        mode: mode,
+        marker: !!state.filters.origin.selected.item
+          ? true
+          : !!userLocationError
+          ? false
+          : true,
+      },
+    });
+  }, [
+    userLocation?.lat,
+    userLocation?.lng,
+    userLocationError,
+    state.filters.origin.selected.item,
+    state.filters.origin.selected.lat_lng,
+    state.filters.destination.selected.item,
+    state.map.mode,
+    state.map.initial_coordinate,
+    dispatch,
+  ]);
+
   // NOTES: readjust map view
   useEffect(() => {
     if (mapRef.current && state.map.mode === "route") {
