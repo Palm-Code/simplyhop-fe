@@ -730,7 +730,12 @@ export const FilterFindTrip = () => {
                     ...dictionaries.filter.form.origin.autocomplete
                       .resetLocationButton,
                     show: true,
-                    disabled: !!userLocationError,
+                    disabled:
+                      !!userLocationError ||
+                      (state.filters.destination.selected.lat_lng?.lat ===
+                        userLocation?.lat &&
+                        state.filters.destination.selected.lat_lng?.lng ===
+                          userLocation?.lng),
                     onClick: handleClickResetLocationOrigin,
                   },
                   locationSwitch: {
@@ -763,7 +768,12 @@ export const FilterFindTrip = () => {
                     ...dictionaries.filter.form.origin.autocomplete
                       .resetLocationButton,
                     show: true,
-                    disabled: !!userLocationError,
+                    disabled:
+                      !!userLocationError ||
+                      (state.filters.destination.selected.lat_lng?.lat ===
+                        userLocation?.lat &&
+                        state.filters.destination.selected.lat_lng?.lng ===
+                          userLocation?.lng),
                     onClick: handleClickResetLocationOrigin,
                   },
                   locationSwitch: {
@@ -817,7 +827,12 @@ export const FilterFindTrip = () => {
                     ...dictionaries.filter.form.destination.autocomplete
                       .resetLocationButton,
                     show: true,
-                    disabled: !!userLocationError,
+                    disabled:
+                      !!userLocationError ||
+                      (state.filters.origin.selected.lat_lng?.lat ===
+                        userLocation?.lat &&
+                        state.filters.origin.selected.lat_lng?.lng ===
+                          userLocation?.lng),
                     onClick: handleClickResetLocationDestination,
                   },
                   locationSwitch: {
@@ -849,7 +864,12 @@ export const FilterFindTrip = () => {
                     ...dictionaries.filter.form.destination.autocomplete
                       .resetLocationButton,
                     show: true,
-                    disabled: !!userLocationError,
+                    disabled:
+                      !!userLocationError ||
+                      (state.filters.origin.selected.lat_lng?.lat ===
+                        userLocation?.lat &&
+                        state.filters.origin.selected.lat_lng?.lng ===
+                          userLocation?.lng),
                     onClick: handleClickResetLocationDestination,
                   },
                   locationSwitch: {

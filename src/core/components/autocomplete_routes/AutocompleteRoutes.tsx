@@ -304,7 +304,13 @@ export const AutocompleteRoutes = ({
                       disabled={
                         origin.autocomplete.resetLocationButton?.disabled
                       }
-                      onClick={origin.autocomplete.resetLocationButton?.onClick}
+                      onClick={() => {
+                        setOriginAutocomplete({
+                          ...originAutocomplete,
+                          isOpen: false,
+                        });
+                        origin.autocomplete.resetLocationButton?.onClick?.();
+                      }}
                     >
                       {origin.autocomplete.resetLocationButton?.label}
                     </AutocompleteRouteResetLocationButton>
@@ -374,9 +380,13 @@ export const AutocompleteRoutes = ({
                       disabled={
                         destination.autocomplete.resetLocationButton?.disabled
                       }
-                      onClick={
-                        destination.autocomplete.resetLocationButton?.onClick
-                      }
+                      onClick={() => {
+                        setDestinationAutocomplete({
+                          ...destinationAutocomplete,
+                          isOpen: false,
+                        });
+                        destination.autocomplete.resetLocationButton?.onClick?.();
+                      }}
                     >
                       {destination.autocomplete.resetLocationButton?.label}
                     </AutocompleteRouteResetLocationButton>
