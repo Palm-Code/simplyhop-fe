@@ -22,6 +22,9 @@ export const useGetUserProfileData = () => {
         headers: {
           token: token ?? "",
         },
+        params: {
+          include: "organization.addresses",
+        },
       });
     },
     enabled: !!token,

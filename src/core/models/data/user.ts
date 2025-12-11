@@ -1,3 +1,4 @@
+import { Organization } from "./organization";
 import { UserProfile } from "./user_profile";
 
 export interface User {
@@ -25,4 +26,5 @@ export interface User {
   i_blocked: boolean;
   blocked_me: boolean;
   organization_id: number;
+  organization?: Organization;
 }

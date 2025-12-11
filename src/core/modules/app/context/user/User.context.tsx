@@ -56,6 +56,7 @@ const UserProvider = (props: { children: React.ReactNode }) => {
           average_ride_rating: user.data.average_ride_rating,
           total_passengers_count: user.data.total_passengers_count,
           organization_id: user.data.organization_id,
+          organization: user.data.organization,
         },
       });
     }

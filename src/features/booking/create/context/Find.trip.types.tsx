@@ -23,24 +23,30 @@ export interface FindTripFilters {
     page_sheet: {
       is_open: boolean;
     };
-    items: { id: string; name: string }[];
+    items: { id: string; name: string; description?: string }[];
     saved_items: { id: string; name: string }[];
     query: string;
     selected: {
       item: null | { id: string; name: string };
       lat_lng: null | { lat: number; lng: number };
+    };
+    company_office: {
+      selected: boolean;
     };
   };
   destination: {
     page_sheet: {
       is_open: boolean;
     };
-    items: { id: string; name: string }[];
+    items: { id: string; name: string; description?: string }[];
     saved_items: { id: string; name: string }[];
     query: string;
     selected: {
       item: null | { id: string; name: string };
       lat_lng: null | { lat: number; lng: number };
+    };
+    company_office: {
+      selected: boolean;
     };
   };
   date: {

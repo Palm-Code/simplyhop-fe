@@ -14,3 +14,5 @@ export * from "./meta";
 export * from "./shift";
 export * from "./organization";
 export * from "./user_block";
+export * from "./organization_address";
+export * from "./organization_media";

@@ -19,12 +19,16 @@ import { FormPassenger } from "@/core/components/form_passenger";
 import { FormRoutes } from "@/core/components/form_routes";
 import { storageService } from "@/core/services/storage/indexdb";
 import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
+import { UserContext } from "@/core/modules/app/context";
+import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
+  const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(FindTripContext);
   const { isLg } = useTailwindBreakpoint();
+  const { location: userLocation, error: userLocationError } = useGeolocation();
 
   useRestGooglePostRouteDirections();
 
@@ -70,12 +74,32 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          items: !input.length ? [] : state.filters.origin.items,
+          items: state.filters.origin.company_office.selected
+            ? !input.length
+              ? userState.profile?.organization?.addresses?.map((item) => {
+                  return {
+                    id: String(item.id),
+                    name: userState.profile?.organization?.name ?? "",
+                    description: item.address ?? "",
+                  };
+                }) ?? []
+              : state.filters.origin.items.filter(
+                  (item) =>
+                    item.name.toLowerCase().includes(input.toLowerCase()) ||
+                    item.description
+                      ?.toLowerCase()
+                      .includes(input.toLowerCase())
+                )
+            : !input.length
+            ? []
+            : state.filters.origin.items,
           query: input,
         },
       },
     });
     if (!input.length) return;
+
+    if (state.filters.origin.company_office.selected) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -111,17 +135,30 @@ export const FilterFindTrip = () => {
     name: string;
   }) => {
     let lat_lng: null | { lat: number; lng: number } = null;
-    try {
-      const response = await getLatLngFromPlaceId(data.id);
+
+    if (state.filters.origin.company_office.selected) {
+      const selectedOfficeAddress =
+        userState.profile?.organization?.addresses.find(
+          (item) => String(item.id) === data.id
+        );
+      if (!selectedOfficeAddress) return;
       lat_lng = {
-        lat: response.lat,
-        lng: response.lng,
+        lat: selectedOfficeAddress.latitude,
+        lng: selectedOfficeAddress.longitude,
       };
-    } catch (err) {
-      throw new Error(`Err get lat lng ${err}`);
+    } else {
+      try {
+        const response = await getLatLngFromPlaceId(data.id);
+        lat_lng = {
+          lat: response.lat,
+          lng: response.lng,
+        };
+      } catch (err) {
+        throw new Error(`Err get lat lng ${err}`);
+      }
     }
 
-    dispatch({
+    await dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
@@ -137,6 +174,101 @@ export const FilterFindTrip = () => {
             lat_lng: lat_lng,
           },
           query: !data ? "" : data.name,
+        },
+      },
+    });
+  };
+
+  const handleClickResetLocationOrigin = async () => {
+    if (!!userLocationError || !userLocation) return;
+
+    const geocoder = new google.maps.Geocoder();
+
+    try {
+      const result = await geocoder.geocode({
+        location: { lat: userLocation.lat, lng: userLocation.lng },
+      });
+
+      if (result.results && result.results[0]) {
+        const place = result.results[0];
+
+        dispatch({
+          type: FindTripActionEnum.SetFiltersData,
+          payload: {
+            ...state.filters,
+            origin: {
+              ...state.filters.origin,
+              page_sheet: {
+                ...state.filters.origin,
+                is_open: false,
+              },
+              selected: {
+                ...state.filters.origin.selected,
+                item: {
+                  id: place.place_id,
+                  name: place.formatted_address,
+                },
+                lat_lng: {
+                  lat: userLocation.lat,
+                  lng: userLocation.lng,
+                },
+              },
+              query: place.formatted_address,
+            },
+          },
+        });
+      }
+    } catch (error) {
+      // Fallback ke coordinate string jika reverse geocoding gagal
+      const userLocationLatLng = `${userLocation.lat},${userLocation.lng}`;
+      dispatch({
+        type: FindTripActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          origin: {
+            ...state.filters.origin,
+            page_sheet: {
+              ...state.filters.origin,
+              is_open: false,
+            },
+            selected: {
+              ...state.filters.origin.selected,
+              item: {
+                id: userLocationLatLng,
+                name: userLocationLatLng,
+              },
+              lat_lng: {
+                lat: userLocation.lat,
+                lng: userLocation.lng,
+              },
+            },
+            query: userLocationLatLng,
+          },
+        },
+      });
+    }
+  };
+
+  const handleSwitchLocationOrigin = (checked: boolean) => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          items: checked
+            ? userState.profile?.organization?.addresses?.map((item) => {
+                return {
+                  id: String(item.id),
+                  name: userState.profile?.organization?.name ?? "",
+                  description: item.address ?? "",
+                };
+              }) ?? []
+            : [],
+          company_office: {
+            ...state.filters.origin.company_office,
+            selected: checked,
+          },
         },
       },
     });
@@ -184,12 +316,32 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          items: !input.length ? [] : state.filters.destination.items,
+          items: state.filters.destination.company_office.selected
+            ? !input.length
+              ? userState.profile?.organization?.addresses?.map((item) => {
+                  return {
+                    id: String(item.id),
+                    name: userState.profile?.organization?.name ?? "",
+                    description: item.address ?? "",
+                  };
+                }) ?? []
+              : state.filters.destination.items.filter(
+                  (item) =>
+                    item.name.toLowerCase().includes(input.toLowerCase()) ||
+                    item.description
+                      ?.toLowerCase()
+                      .includes(input.toLowerCase())
+                )
+            : !input.length
+            ? []
+            : state.filters.destination.items,
           query: input,
         },
       },
     });
     if (!input.length) return;
+
+    if (state.filters.destination.company_office.selected) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -226,14 +378,27 @@ export const FilterFindTrip = () => {
     name: string;
   }) => {
     let lat_lng: null | { lat: number; lng: number } = null;
-    try {
-      const response = await getLatLngFromPlaceId(data.id);
+
+    if (state.filters.destination.company_office.selected) {
+      const selectedOfficeAddress =
+        userState.profile?.organization?.addresses.find(
+          (item) => String(item.id) === data.id
+        );
+      if (!selectedOfficeAddress) return;
       lat_lng = {
-        lat: response.lat,
-        lng: response.lng,
+        lat: selectedOfficeAddress.latitude,
+        lng: selectedOfficeAddress.longitude,
       };
-    } catch (err) {
-      throw new Error(`Err get lat lng ${err}`);
+    } else {
+      try {
+        const response = await getLatLngFromPlaceId(data.id);
+        lat_lng = {
+          lat: response.lat,
+          lng: response.lng,
+        };
+      } catch (err) {
+        throw new Error(`Err get lat lng ${err}`);
+      }
     }
 
     await dispatch({
@@ -252,6 +417,101 @@ export const FilterFindTrip = () => {
             lat_lng: lat_lng,
           },
           query: !data ? "" : data.name,
+        },
+      },
+    });
+  };
+
+  const handleClickResetLocationDestination = async () => {
+    if (!!userLocationError || !userLocation) return;
+
+    const geocoder = new google.maps.Geocoder();
+
+    try {
+      const result = await geocoder.geocode({
+        location: { lat: userLocation.lat, lng: userLocation.lng },
+      });
+
+      if (result.results && result.results[0]) {
+        const place = result.results[0];
+
+        dispatch({
+          type: FindTripActionEnum.SetFiltersData,
+          payload: {
+            ...state.filters,
+            destination: {
+              ...state.filters.destination,
+              page_sheet: {
+                ...state.filters.destination,
+                is_open: false,
+              },
+              selected: {
+                ...state.filters.destination.selected,
+                item: {
+                  id: place.place_id,
+                  name: place.formatted_address,
+                },
+                lat_lng: {
+                  lat: userLocation.lat,
+                  lng: userLocation.lng,
+                },
+              },
+              query: place.formatted_address,
+            },
+          },
+        });
+      }
+    } catch (error) {
+      // Fallback ke coordinate string jika reverse geocoding gagal
+      const userLocationLatLng = `${userLocation.lat},${userLocation.lng}`;
+      dispatch({
+        type: FindTripActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          destination: {
+            ...state.filters.destination,
+            page_sheet: {
+              ...state.filters.destination,
+              is_open: false,
+            },
+            selected: {
+              ...state.filters.destination.selected,
+              item: {
+                id: userLocationLatLng,
+                name: userLocationLatLng,
+              },
+              lat_lng: {
+                lat: userLocation.lat,
+                lng: userLocation.lng,
+              },
+            },
+            query: userLocationLatLng,
+          },
+        },
+      });
+    }
+  };
+
+  const handleSwitchLocationDestination = (checked: boolean) => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          items: checked
+            ? userState.profile?.organization?.addresses?.map((item) => {
+                return {
+                  id: String(item.id),
+                  name: userState.profile?.organization?.name ?? "",
+                  description: item.address ?? "",
+                };
+              }) ?? []
+            : [],
+          company_office: {
+            ...state.filters.destination.company_office,
+            selected: checked,
+          },
         },
       },
     });
@@ -406,7 +666,7 @@ export const FilterFindTrip = () => {
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[1rem]",
           "w-[100vw] lg:w-[calc(100vw-2rem)] container:w-full container:max-w-container",
           "px-[1rem] py-[1rem] sm:px-[1.5rem] sm:py-[1.5rem]",
-          "bg-[#FFFFFFCC] dark:bg-[#292929]",
+          "bg-[#FCFCFC] dark:bg-[#292929]",
           "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
           "border border-[#E9E6E6] dark:border-[#464646]"
         )}
@@ -440,11 +700,12 @@ export const FilterFindTrip = () => {
               origin={{
                 pageSheet: {
                   selected: state.filters.origin.selected.item,
-                  items:
-                    !state.filters.origin.items.length &&
-                    !state.filters.origin.query.length
-                      ? state.filters.origin.saved_items
-                      : state.filters.origin.items,
+                  items: state.filters.origin.company_office.selected
+                    ? state.filters.origin.items
+                    : !state.filters.origin.items.length &&
+                      !state.filters.origin.query.length
+                    ? state.filters.origin.saved_items
+                    : state.filters.origin.items,
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
@@ -465,6 +726,20 @@ export const FilterFindTrip = () => {
                   labelProps: {
                     ...dictionaries.filter.form.origin.labelProps,
                   },
+                  resetLocationButton: {
+                    ...dictionaries.filter.form.origin.autocomplete
+                      .resetLocationButton,
+                    show: true,
+                    disabled: !!userLocationError,
+                    onClick: handleClickResetLocationOrigin,
+                  },
+                  locationSwitch: {
+                    ...dictionaries.filter.form.origin.autocomplete
+                      .locationSwitch,
+                    show: true,
+                    checked: state.filters.origin.company_office.selected,
+                    onChange: handleSwitchLocationOrigin,
+                  },
                 },
                 autocomplete: {
                   emptyMessage:
@@ -475,13 +750,29 @@ export const FilterFindTrip = () => {
                       : dictionaries.filter.form.origin.autocomplete
                           .emptyMessage.no_result,
                   selected: state.filters.origin.selected.item,
-                  items: !state.filters.origin.items.length
+                  items: state.filters.origin.company_office.selected
+                    ? state.filters.origin.items
+                    : !state.filters.origin.items.length
                     ? state.filters.origin.saved_items
                     : state.filters.origin.items,
 
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
+                  resetLocationButton: {
+                    ...dictionaries.filter.form.origin.autocomplete
+                      .resetLocationButton,
+                    show: true,
+                    disabled: !!userLocationError,
+                    onClick: handleClickResetLocationOrigin,
+                  },
+                  locationSwitch: {
+                    ...dictionaries.filter.form.origin.autocomplete
+                      .locationSwitch,
+                    show: true,
+                    checked: state.filters.origin.company_office.selected,
+                    onChange: handleSwitchLocationOrigin,
+                  },
                 },
                 inputProps: {
                   ...dictionaries.filter.form.origin.inputProps,
@@ -505,7 +796,9 @@ export const FilterFindTrip = () => {
                       : dictionaries.filter.form.destination.autocomplete
                           .emptyMessage.no_result,
                   selected: state.filters.destination.selected.item,
-                  items: !state.filters.destination.items.length
+                  items: state.filters.destination.company_office.selected
+                    ? state.filters.destination.items
+                    : !state.filters.destination.items.length
                     ? state.filters.destination.saved_items
                     : state.filters.destination.items,
                   onQuery: (data: string) => handleQueryDestinationRoutes(data),
@@ -520,6 +813,20 @@ export const FilterFindTrip = () => {
                   labelProps: {
                     ...dictionaries.filter.form.destination.labelProps,
                   },
+                  resetLocationButton: {
+                    ...dictionaries.filter.form.destination.autocomplete
+                      .resetLocationButton,
+                    show: true,
+                    disabled: !!userLocationError,
+                    onClick: handleClickResetLocationDestination,
+                  },
+                  locationSwitch: {
+                    ...dictionaries.filter.form.destination.autocomplete
+                      .locationSwitch,
+                    show: false,
+                    checked: state.filters.destination.company_office.selected,
+                    onChange: handleSwitchLocationDestination,
+                  },
                 },
                 autocomplete: {
                   emptyMessage:
@@ -530,12 +837,28 @@ export const FilterFindTrip = () => {
                       : dictionaries.filter.form.destination.autocomplete
                           .emptyMessage.no_result,
                   selected: state.filters.destination.selected.item,
-                  items: !state.filters.destination.items.length
+                  items: state.filters.destination.company_office.selected
+                    ? state.filters.destination.items
+                    : !state.filters.destination.items.length
                     ? state.filters.destination.saved_items
                     : state.filters.destination.items,
                   onQuery: (data: string) => handleQueryDestinationRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectDestinationRoutes(data),
+                  resetLocationButton: {
+                    ...dictionaries.filter.form.destination.autocomplete
+                      .resetLocationButton,
+                    show: true,
+                    disabled: !!userLocationError,
+                    onClick: handleClickResetLocationDestination,
+                  },
+                  locationSwitch: {
+                    ...dictionaries.filter.form.destination.autocomplete
+                      .locationSwitch,
+                    show: true,
+                    checked: state.filters.destination.company_office.selected,
+                    onChange: handleSwitchLocationDestination,
+                  },
                 },
                 inputProps: {
                   ...dictionaries.filter.form.destination.inputProps,

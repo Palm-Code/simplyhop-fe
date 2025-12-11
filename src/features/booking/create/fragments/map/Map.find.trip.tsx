@@ -35,6 +35,7 @@ export const MapFindTrip = () => {
     console.error(
       "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local"
     );
+    return null;
   }
 
   const { isLoaded } = useLoadScript({
@@ -51,30 +52,30 @@ export const MapFindTrip = () => {
 
   // NOTES: set user location
   useEffect(() => {
-    if (!!userLocation && !userLocationError) {
-      const mapCoordinate = !!state.filters.origin.selected.item
-        ? state.filters.origin.selected.lat_lng
-        : userLocationError
-        ? COORDINATE.germany
-        : userLocation;
-      dispatch({
-        type: FindTripActionEnum.SetMapData,
-        payload: {
-          ...state.map,
-          initial_coordinate: mapCoordinate,
-          mode: !!state.filters.origin.selected.item
-            ? "route"
-            : userLocationError
-            ? "country"
-            : "coordinate",
-          marker: !!state.filters.origin.selected.item
-            ? true
-            : userLocationError
-            ? false
-            : true,
-        },
-      });
-    }
+    const mapCoordinate = !!state.filters.origin.selected.item
+      ? state.filters.origin.selected.lat_lng
+      : userLocationError
+      ? COORDINATE.germany
+      : userLocation;
+    const mode = !!state.filters.origin.selected.item
+      ? "route"
+      : !!userLocationError
+      ? "country"
+      : "coordinate";
+
+    dispatch({
+      type: FindTripActionEnum.SetMapData,
+      payload: {
+        ...state.map,
+        initial_coordinate: mapCoordinate,
+        mode: mode,
+        marker: !!state.filters.origin.selected.item
+          ? true
+          : userLocationError
+          ? false
+          : true,
+      },
+    });
   }, [userLocation?.lat, userLocation?.lng, userLocationError]);
   // NOTES: readjust map view
   useEffect(() => {

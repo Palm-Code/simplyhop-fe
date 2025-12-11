@@ -7,9 +7,14 @@ export interface GetUserProfileDataRequestInterface extends NextApiRequest {
 
 export interface GetUserProfileDataPayloadRequestInterface {
   headers: GetUserProfileDataHeadersPayloadRequestInterface;
+  params?: GetUserProfileDataParamsPayloadRequestInterface;
 }
 export interface GetUserProfileDataHeadersPayloadRequestInterface {
   token: string;
+}
+
+export interface GetUserProfileDataParamsPayloadRequestInterface {
+  include?: string;
 }
 
 export type GetUserProfileDataResponseInterface = NextApiResponse<

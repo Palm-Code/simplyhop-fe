@@ -19,6 +19,9 @@ const initialState: FindTripInitialStateType = {
       items: [],
       query: "",
       saved_items: [],
+      company_office: {
+        selected: false,
+      },
     },
     destination: {
       page_sheet: {
@@ -31,6 +34,9 @@ const initialState: FindTripInitialStateType = {
       query: "",
       items: [],
       saved_items: [],
+      company_office: {
+        selected: false,
+      },
     },
     date: {
       mode: "multiple",

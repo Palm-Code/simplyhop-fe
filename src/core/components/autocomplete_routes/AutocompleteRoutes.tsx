@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
-
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
 import { InputLabelProps } from "../input_label";
 import { InputContainer } from "../input_container";
 import { AutocompleteOptionsContainer } from "../autocomplete_options_container";
-import { AutocompleteOption } from "../autocomplete_option";
 import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
 import { InputRoute } from "../input_route/InputRoute";
+import { AutocompleteRouteResetLocationButton } from "../autocomplete_route_reset_location_button";
+import { AutocompleteRouteLocationSwitch } from "../autocomplete_route_location_switch";
+import { AutocompleteRouteOption } from "../autocomplete_route_option";
 
 export interface AutocompleteRoutesProps {
   disabled?: boolean;
@@ -17,12 +18,25 @@ export interface AutocompleteRoutesProps {
     labelProps?: InputLabelProps;
     autocomplete: {
       selected?: { id: string; name: string } | null;
-      items?: { id: string; name: string }[];
+      items?: { id: string; name: string; description?: string }[];
       disabled?: boolean;
       emptyMessage?: string;
       debounceQuery?: boolean;
       onSelect?: (data: { id: string; name: string }) => void;
       onQuery: (data: string) => void;
+      resetLocationButton?: {
+        show?: boolean;
+        disabled?: boolean;
+        label?: string;
+        onClick?: () => void;
+      };
+      locationSwitch?: {
+        show?: boolean;
+        disabled?: boolean;
+        label?: string;
+        checked?: boolean;
+        onChange?: (checked: boolean) => void;
+      };
     };
   };
   destination?: {
@@ -30,12 +44,25 @@ export interface AutocompleteRoutesProps {
     labelProps?: InputLabelProps;
     autocomplete: {
       selected?: { id: string; name: string } | null;
-      items?: { id: string; name: string }[];
+      items?: { id: string; name: string; description?: string }[];
       disabled?: boolean;
       emptyMessage?: string;
       debounceQuery?: boolean;
       onSelect?: (data: { id: string; name: string }) => void;
       onQuery: (data: string) => void;
+      resetLocationButton?: {
+        show?: boolean;
+        disabled?: boolean;
+        label?: string;
+        onClick?: () => void;
+      };
+      locationSwitch?: {
+        show?: boolean;
+        disabled?: boolean;
+        label?: string;
+        checked?: boolean;
+        onChange?: (checked: boolean) => void;
+      };
     };
   };
 }
@@ -151,7 +178,9 @@ export const AutocompleteRoutes = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer className={clsx(disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]")}>
+        <InputContainer
+          className={clsx(disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]")}
+        >
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",
@@ -201,7 +230,12 @@ export const AutocompleteRoutes = ({
               }}
             />
 
-            <div className={clsx("bg-[#E0ECDC] dark:bg-[#464646]", "w-[1px] h-full")} />
+            <div
+              className={clsx(
+                "bg-[#E0ECDC] dark:bg-[#464646]",
+                "w-[1px] h-full"
+              )}
+            />
 
             <InputRoute
               inputProps={{
@@ -250,20 +284,67 @@ export const AutocompleteRoutes = ({
           <AutocompleteOptionsContainer
             className={clsx(originAutocomplete.isOpen ? "inline" : "hidden")}
           >
-            {originAutocomplete.isFocus && originFilteredItems.length === 0 ? (
-              <AutocompleteEmptyBox>
-                {origin.autocomplete.emptyMessage}
-              </AutocompleteEmptyBox>
-            ) : (
-              originFilteredItems.map((item, index) => (
-                <AutocompleteOption
-                  key={index}
-                  onClick={() => handleChangeorigin(item)}
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-4",
+                "w-full",
+                "px-4 py-3"
+              )}
+            >
+              {(origin.autocomplete.resetLocationButton?.show !== false ||
+                origin.autocomplete.locationSwitch?.show) && (
+                <div
+                  className={clsx(
+                    "flex items-center justify-between",
+                    "w-full"
+                  )}
                 >
-                  {item.name}
-                </AutocompleteOption>
-              ))
-            )}
+                  {origin.autocomplete.resetLocationButton?.show !== false && (
+                    <AutocompleteRouteResetLocationButton
+                      disabled={
+                        origin.autocomplete.resetLocationButton?.disabled
+                      }
+                      onClick={origin.autocomplete.resetLocationButton?.onClick}
+                    >
+                      {origin.autocomplete.resetLocationButton?.label}
+                    </AutocompleteRouteResetLocationButton>
+                  )}
+
+                  {origin.autocomplete.locationSwitch?.show && (
+                    <AutocompleteRouteLocationSwitch
+                      disabled={origin.autocomplete.locationSwitch?.disabled}
+                      checked={
+                        origin.autocomplete.locationSwitch?.checked ?? false
+                      }
+                      onChange={origin.autocomplete.locationSwitch?.onChange}
+                    >
+                      {origin.autocomplete.locationSwitch?.label}
+                    </AutocompleteRouteLocationSwitch>
+                  )}
+                </div>
+              )}
+
+              {originAutocomplete.isFocus &&
+              originFilteredItems.length === 0 ? (
+                <AutocompleteEmptyBox className={clsx("!p-0")}>
+                  {origin.autocomplete.emptyMessage}
+                </AutocompleteEmptyBox>
+              ) : (
+                originFilteredItems.map((item, index) => (
+                  <AutocompleteRouteOption
+                    key={index}
+                    name={item.name}
+                    description={item.description}
+                    onClick={() =>
+                      handleChangeorigin({
+                        id: item.id,
+                        name: item.name,
+                      })
+                    }
+                  />
+                ))
+              )}
+            </div>
           </AutocompleteOptionsContainer>
         )}
         {!destination.autocomplete?.disabled && (
@@ -272,21 +353,75 @@ export const AutocompleteRoutes = ({
               destinationAutocomplete.isOpen ? "inline" : "hidden"
             )}
           >
-            {destinationAutocomplete.isFocus &&
-            destinationFilteredItems.length === 0 ? (
-              <AutocompleteEmptyBox>
-                {destination.autocomplete.emptyMessage}
-              </AutocompleteEmptyBox>
-            ) : (
-              destinationFilteredItems.map((item, index) => (
-                <AutocompleteOption
-                  key={index}
-                  onClick={() => handleChangedestination(item)}
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-4",
+                "w-full",
+                "px-4 py-3"
+              )}
+            >
+              {(destination.autocomplete.resetLocationButton?.show !== false ||
+                destination.autocomplete.locationSwitch?.show) && (
+                <div
+                  className={clsx(
+                    "flex items-center justify-between",
+                    "w-full"
+                  )}
                 >
-                  {item.name}
-                </AutocompleteOption>
-              ))
-            )}
+                  {destination.autocomplete.resetLocationButton?.show !==
+                    false && (
+                    <AutocompleteRouteResetLocationButton
+                      disabled={
+                        destination.autocomplete.resetLocationButton?.disabled
+                      }
+                      onClick={
+                        destination.autocomplete.resetLocationButton?.onClick
+                      }
+                    >
+                      {destination.autocomplete.resetLocationButton?.label}
+                    </AutocompleteRouteResetLocationButton>
+                  )}
+
+                  {destination.autocomplete.locationSwitch?.show && (
+                    <AutocompleteRouteLocationSwitch
+                      disabled={
+                        destination.autocomplete.locationSwitch?.disabled
+                      }
+                      checked={
+                        destination.autocomplete.locationSwitch?.checked ??
+                        false
+                      }
+                      onChange={
+                        destination.autocomplete.locationSwitch?.onChange
+                      }
+                    >
+                      {destination.autocomplete.locationSwitch?.label}
+                    </AutocompleteRouteLocationSwitch>
+                  )}
+                </div>
+              )}
+
+              {destinationAutocomplete.isFocus &&
+              destinationFilteredItems.length === 0 ? (
+                <AutocompleteEmptyBox className={clsx("!p-0")}>
+                  {destination.autocomplete.emptyMessage}
+                </AutocompleteEmptyBox>
+              ) : (
+                destinationFilteredItems.map((item, index) => (
+                  <AutocompleteRouteOption
+                    key={index}
+                    name={item.name}
+                    description={item.description}
+                    onClick={() =>
+                      handleChangedestination({
+                        id: item.id,
+                        name: item.name,
+                      })
+                    }
+                  />
+                ))
+              )}
+            </div>
           </AutocompleteOptionsContainer>
         )}
       </div>

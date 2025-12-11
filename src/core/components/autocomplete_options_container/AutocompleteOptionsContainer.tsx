@@ -14,7 +14,7 @@ export const AutocompleteOptionsContainer = forwardRef<
         "w-full",
         "max-h-[160px]",
         "overflow-auto",
-        "mt-[0.5rem]",
+        "bottom-full mb-[0.5rem]",
         "bg-[white] dark:bg-[#232323]",
         "border border-[#E2E2E2] dark:border-[#464646]",
         "focus:outline-none",

@@ -6,12 +6,14 @@ import { InputContainer } from "../input_container";
 import { Input } from "../input";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
+import { AutocompleteRouteResetLocationButton } from "../autocomplete_route_reset_location_button";
+import { AutocompleteRouteLocationSwitch } from "../autocomplete_route_location_switch";
 
 export interface PageSheetRouteProps {
   isOpen?: boolean;
   title?: string;
   selected?: { id: string; name: string } | null;
-  items?: { id: string; name: string }[];
+  items?: { id: string; name: string; description?: string }[];
   disabled?: boolean;
   debounceQuery?: boolean;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
@@ -20,6 +22,19 @@ export interface PageSheetRouteProps {
   onSelect?: (data: { id: string; name: string }) => void;
   onQuery?: (data: string) => void;
   onClose?: () => void;
+  resetLocationButton?: {
+    show?: boolean;
+    disabled?: boolean;
+    label?: string;
+    onClick?: () => void;
+  };
+  locationSwitch?: {
+    show?: boolean;
+    disabled?: boolean;
+    label?: string;
+    checked?: boolean;
+    onChange?: (checked: boolean) => void;
+  };
 }
 
 export const PageSheetRoute = ({
@@ -35,6 +50,8 @@ export const PageSheetRoute = ({
   onSelect = () => {},
   onQuery = () => {},
   onClose = () => {},
+  resetLocationButton,
+  locationSwitch,
 }: PageSheetRouteProps) => {
   const [query, setQuery] = useState("");
 
@@ -91,10 +108,17 @@ export const PageSheetRoute = ({
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-white")}
+              className={clsx(
+                "w-[1.5rem] h-[1.5rem]",
+                "text-[#5B5B5B] dark:text-white"
+              )}
             />
           </button>
-          <h2 className={clsx("text-[1.125rem] text-[#232323] dark:text-[white] font-bold")}>
+          <h2
+            className={clsx(
+              "text-[1.125rem] text-[#232323] dark:text-[white] font-bold"
+            )}
+          >
             {title}
           </h2>
         </div>
@@ -105,6 +129,35 @@ export const PageSheetRoute = ({
             "w-full"
           )}
         >
+          {/* Reset Location Button & Switch */}
+          {(resetLocationButton?.show !== false || locationSwitch?.show) && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-4",
+                "w-full"
+              )}
+            >
+              {locationSwitch?.show && (
+                <AutocompleteRouteLocationSwitch
+                  disabled={locationSwitch?.disabled}
+                  checked={locationSwitch?.checked ?? false}
+                  onChange={locationSwitch?.onChange}
+                >
+                  {locationSwitch?.label}
+                </AutocompleteRouteLocationSwitch>
+              )}
+
+              {resetLocationButton?.show !== false && (
+                <AutocompleteRouteResetLocationButton
+                  disabled={resetLocationButton?.disabled}
+                  onClick={resetLocationButton?.onClick}
+                >
+                  {resetLocationButton?.label}
+                </AutocompleteRouteResetLocationButton>
+              )}
+            </div>
+          )}
+
           <InputContainer>
             <div
               className={clsx(
@@ -195,7 +248,12 @@ export const PageSheetRoute = ({
                       ? "text-[#33CC33] font-semibold"
                       : "text-[#232323] font-normal"
                   )}
-                  onClick={() => onSelect(item)}
+                  onClick={() =>
+                    onSelect({
+                      id: item.id,
+                      name: item.name,
+                    })
+                  }
                 >
                   {item.name}
                 </button>

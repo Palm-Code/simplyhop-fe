@@ -1,3 +1,5 @@
+import { Organization } from "@/core/models/data";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -33,6 +35,7 @@ export interface UserProfile {
   total_passengers_count: number; // 0;
   total_trips: number; // 0;
   organization_id: number;
+  organization?: Organization;
 }
 
 export enum UserActionEnum {

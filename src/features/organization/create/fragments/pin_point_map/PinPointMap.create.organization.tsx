@@ -151,7 +151,6 @@ export const PinPointMapCreateOrganization = () => {
         });
       }
     } catch (error) {
-      console.error("Error getting place info:", error);
       // Update coordinate only if geocoding fails
       dispatch({
         type: CreateOrganizationActionEnum.SetPinPointData,
