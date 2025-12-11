@@ -46,6 +46,7 @@ export const FilterFindTrip = () => {
         description: item.address ?? "",
       };
     }) ?? [];
+
   const handleClickOriginRoutes = () => {
     dispatch({
       type: FindTripActionEnum.SetFiltersData,
@@ -280,15 +281,7 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          items: checked
-            ? userState.profile?.organization?.addresses?.map((item) => {
-                return {
-                  id: String(item.id),
-                  name: userState.profile?.organization?.name ?? "",
-                  description: item.address ?? "",
-                };
-              }) ?? []
-            : [],
+          items: checked ? companyOfficeItems : [],
           company_office: {
             ...state.filters.origin.company_office,
             checked: checked,
