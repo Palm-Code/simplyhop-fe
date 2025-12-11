@@ -38,11 +38,14 @@ export interface PlanRideTripFilters {
       is_open: boolean;
     };
     query: string;
-    items: { id: string; name: string }[];
+    items: { id: string; name: string; description?: string }[];
     saved_items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
       lat_lng: null | { lat: number; lng: number };
+    };
+    company_office: {
+      checked: boolean;
     };
   };
   destination: {
@@ -50,11 +53,14 @@ export interface PlanRideTripFilters {
       is_open: boolean;
     };
     query: string;
-    items: { id: string; name: string }[];
+    items: { id: string; name: string; description?: string }[];
     saved_items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
       lat_lng: null | { lat: number; lng: number };
+    };
+    company_office: {
+      checked: boolean;
     };
   };
   date: {

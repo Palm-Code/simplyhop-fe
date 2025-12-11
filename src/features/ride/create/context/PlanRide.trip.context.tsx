@@ -34,6 +34,9 @@ const initialState: PlanRideTripInitialStateType = {
       query: "",
       items: [],
       saved_items: [],
+      company_office: {
+        checked: false,
+      },
     },
     destination: {
       page_sheet: {
@@ -46,6 +49,9 @@ const initialState: PlanRideTripInitialStateType = {
       query: "",
       items: [],
       saved_items: [],
+      company_office: {
+        checked: false,
+      },
     },
     date: {
       selected: [dayjs().toDate()],

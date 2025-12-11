@@ -93,6 +93,12 @@
           "emptyMessage": {
             "no_saved_place": "Suche starten",
             "no_result": "Keine Ergebnisse gefunden."
+          },
+          "resetLocationButton": {
+            "label": "Aktuellen Standort verwenden"
+          },
+          "locationSwitch": {
+            "label": "Fahrt vom Firmensitz aus"
           }
         }
       },
@@ -111,6 +117,12 @@
           "emptyMessage": {
             "no_saved_place": "Suche starten",
             "no_result": "Keine Ergebnisse gefunden."
+          },
+          "resetLocationButton": {
+            "label": "Aktuellen Standort verwenden"
+          },
+          "locationSwitch": {
+            "label": "Fahrt vom Firmensitz aus"
           }
         }
       },

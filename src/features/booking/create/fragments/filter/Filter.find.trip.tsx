@@ -168,7 +168,7 @@ export const FilterFindTrip = () => {
       }
     }
 
-    await dispatch({
+    dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
@@ -197,7 +197,7 @@ export const FilterFindTrip = () => {
     });
   };
 
-  const handleClickResetLocationOrigin = async () => {
+  const handleClickUseUserLocationOrigin = async () => {
     if (!!userLocationError || !userLocation) return;
 
     const geocoder = new google.maps.Geocoder();
@@ -351,6 +351,7 @@ export const FilterFindTrip = () => {
         },
       },
     });
+
     if (!input.length) return;
 
     if (isDestinationCompanyOfficeChecked) return;
@@ -412,7 +413,7 @@ export const FilterFindTrip = () => {
       }
     }
 
-    await dispatch({
+    dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
@@ -441,7 +442,7 @@ export const FilterFindTrip = () => {
     });
   };
 
-  const handleClickResetLocationDestination = async () => {
+  const handleClickUseUserLocationDestination = async () => {
     if (!!userLocationError || !userLocation) return;
 
     const geocoder = new google.maps.Geocoder();
@@ -678,6 +679,14 @@ export const FilterFindTrip = () => {
     router.push(AppCollectionURL.private.tripResult(params));
   };
 
+  const isSubmitDisabled =
+    !state.filters.origin.selected.item ||
+    !state.filters.destination.selected.item ||
+    !state.filters.date.selected ||
+    (Array.isArray(state.filters.date.selected) &&
+      state.filters.date.selected.length === 0) ||
+    !state.filters.passenger.value.length;
+
   return (
     <>
       <div
@@ -757,7 +766,7 @@ export const FilterFindTrip = () => {
                           userLocation?.lng) ||
                       (!isDestinationCompanyOfficeChecked &&
                         !!selectedItemDestination),
-                    onClick: handleClickResetLocationOrigin,
+                    onClick: handleClickUseUserLocationOrigin,
                   },
                   locationSwitch: {
                     ...dictionaries.filter.form.origin.autocomplete
@@ -800,7 +809,7 @@ export const FilterFindTrip = () => {
                           userLocation?.lng) ||
                       (!isDestinationCompanyOfficeChecked &&
                         !!selectedItemDestination),
-                    onClick: handleClickResetLocationOrigin,
+                    onClick: handleClickUseUserLocationOrigin,
                   },
                   locationSwitch: {
                     ...dictionaries.filter.form.origin.autocomplete
@@ -863,7 +872,7 @@ export const FilterFindTrip = () => {
                         state.filters.origin.selected.lat_lng?.lng ===
                           userLocation?.lng) ||
                       (!isOriginCompanyOfficeChecked && !!selectedItemOrigin),
-                    onClick: handleClickResetLocationDestination,
+                    onClick: handleClickUseUserLocationDestination,
                   },
                   locationSwitch: {
                     ...dictionaries.filter.form.destination.autocomplete
@@ -903,7 +912,7 @@ export const FilterFindTrip = () => {
                         state.filters.origin.selected.lat_lng?.lng ===
                           userLocation?.lng) ||
                       (!isOriginCompanyOfficeChecked && !!selectedItemOrigin),
-                    onClick: handleClickResetLocationDestination,
+                    onClick: handleClickUseUserLocationDestination,
                   },
                   locationSwitch: {
                     ...dictionaries.filter.form.destination.autocomplete
@@ -990,14 +999,7 @@ export const FilterFindTrip = () => {
             <Button
               aria-label={dictionaries.filter.cta.primary.children}
               name={dictionaries.filter.cta.primary.children}
-              disabled={
-                !state.filters.origin.selected.item ||
-                !state.filters.destination.selected.item ||
-                !state.filters.date.selected ||
-                (Array.isArray(state.filters.date.selected) &&
-                  state.filters.date.selected.length === 0) ||
-                !state.filters.passenger.value.length
-              }
+              disabled={isSubmitDisabled}
               onClick={handleClickSearch}
             >
               {dictionaries.filter.cta.primary.children}
