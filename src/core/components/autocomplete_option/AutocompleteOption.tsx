@@ -12,6 +12,7 @@ export const AutocompleteOption = forwardRef<
       className={clsx(
         `relative cursor-pointer select-none`,
         "bg-[white] dark:bg-[#232323]",
+        "p-4",
         "text-[#232323] dark:text-white text-[0.875rem] leading-[1.25rem]",
         props.className
       )}

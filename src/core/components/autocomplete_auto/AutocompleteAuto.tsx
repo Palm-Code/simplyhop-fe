@@ -136,7 +136,7 @@ export const AutocompleteAuto = ({
                   className={clsx(
                     selected?.id === item.id
                       ? "font-bold text-[#333FFF]"
-                      : "font-normal text-[#201E2C]"
+                      : "font-normal text-[#201E2C]",
                   )}
                   onClick={() => handleChange(item)}
                 >
