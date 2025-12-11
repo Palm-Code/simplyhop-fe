@@ -31,7 +31,7 @@ export interface FindTripFilters {
       lat_lng: null | { lat: number; lng: number };
     };
     company_office: {
-      selected: boolean;
+      checked: boolean;
     };
   };
   destination: {
@@ -46,7 +46,7 @@ export interface FindTripFilters {
       lat_lng: null | { lat: number; lng: number };
     };
     company_office: {
-      selected: boolean;
+      checked: boolean;
     };
   };
   date: {

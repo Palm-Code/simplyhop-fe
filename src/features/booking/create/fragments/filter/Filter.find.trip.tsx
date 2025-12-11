@@ -21,7 +21,6 @@ import { storageService } from "@/core/services/storage/indexdb";
 import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 import { UserContext } from "@/core/modules/app/context";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
-import { stat } from "fs";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
@@ -33,11 +32,20 @@ export const FilterFindTrip = () => {
 
   useRestGooglePostRouteDirections();
 
-  const isOriginFromOffice = !!state.filters.origin.company_office.selected;
+  const isOriginCompanyOfficeChecked =
+    !!state.filters.origin.company_office.checked;
   const selectedItemOrigin = state.filters.origin.selected.item;
-  const isDestinationFromOffice =
-    !!state.filters.destination.company_office.selected;
+  const isDestinationCompanyOfficeChecked =
+    !!state.filters.destination.company_office.checked;
   const selectedItemDestination = state.filters.destination.selected.item;
+  const companyOfficeItems =
+    userState.profile?.organization?.addresses?.map((item) => {
+      return {
+        id: String(item.id),
+        name: userState.profile?.organization?.name ?? "",
+        description: item.address ?? "",
+      };
+    }) ?? [];
   const handleClickOriginRoutes = () => {
     dispatch({
       type: FindTripActionEnum.SetFiltersData,
@@ -80,15 +88,9 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          items: state.filters.origin.company_office.selected
+          items: isOriginCompanyOfficeChecked
             ? !input.length
-              ? userState.profile?.organization?.addresses?.map((item) => {
-                  return {
-                    id: String(item.id),
-                    name: userState.profile?.organization?.name ?? "",
-                    description: item.address ?? "",
-                  };
-                }) ?? []
+              ? companyOfficeItems
               : state.filters.origin.items.filter(
                   (item) =>
                     item.name.toLowerCase().includes(input.toLowerCase()) ||
@@ -105,7 +107,7 @@ export const FilterFindTrip = () => {
     });
     if (!input.length) return;
 
-    if (state.filters.origin.company_office.selected) return;
+    if (isOriginCompanyOfficeChecked) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -142,7 +144,7 @@ export const FilterFindTrip = () => {
   }) => {
     let lat_lng: null | { lat: number; lng: number } = null;
 
-    if (state.filters.origin.company_office.selected) {
+    if (isOriginCompanyOfficeChecked) {
       const selectedOfficeAddress =
         userState.profile?.organization?.addresses.find(
           (item) => String(item.id) === data.id
@@ -185,17 +187,9 @@ export const FilterFindTrip = () => {
           ...state.filters.destination,
           company_office: {
             ...state.filters.destination.company_office,
-            selected: isOriginFromOffice ? false : true,
+            checked: isOriginCompanyOfficeChecked ? false : true,
           },
-          items: isOriginFromOffice
-            ? []
-            : userState.profile?.organization?.addresses?.map((item) => {
-                return {
-                  id: String(item.id),
-                  name: userState.profile?.organization?.name ?? "",
-                  description: item.address ?? "",
-                };
-              }) ?? [],
+          items: isOriginCompanyOfficeChecked ? [] : companyOfficeItems,
         },
       },
     });
@@ -241,16 +235,9 @@ export const FilterFindTrip = () => {
               ...state.filters.destination,
               company_office: {
                 ...state.filters.destination.company_office,
-                selected: true,
+                checked: true,
               },
-              items:
-                userState.profile?.organization?.addresses?.map((item) => {
-                  return {
-                    id: String(item.id),
-                    name: userState.profile?.organization?.name ?? "",
-                    description: item.address ?? "",
-                  };
-                }) ?? [],
+              items: companyOfficeItems,
             },
           },
         });
@@ -304,7 +291,7 @@ export const FilterFindTrip = () => {
             : [],
           company_office: {
             ...state.filters.origin.company_office,
-            selected: checked,
+            checked: checked,
           },
         },
       },
@@ -353,15 +340,9 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          items: state.filters.destination.company_office.selected
+          items: isDestinationCompanyOfficeChecked
             ? !input.length
-              ? userState.profile?.organization?.addresses?.map((item) => {
-                  return {
-                    id: String(item.id),
-                    name: userState.profile?.organization?.name ?? "",
-                    description: item.address ?? "",
-                  };
-                }) ?? []
+              ? companyOfficeItems
               : state.filters.destination.items.filter(
                   (item) =>
                     item.name.toLowerCase().includes(input.toLowerCase()) ||
@@ -378,7 +359,7 @@ export const FilterFindTrip = () => {
     });
     if (!input.length) return;
 
-    if (state.filters.destination.company_office.selected) return;
+    if (isDestinationCompanyOfficeChecked) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -416,7 +397,7 @@ export const FilterFindTrip = () => {
   }) => {
     let lat_lng: null | { lat: number; lng: number } = null;
 
-    if (state.filters.destination.company_office.selected) {
+    if (isDestinationCompanyOfficeChecked) {
       const selectedOfficeAddress =
         userState.profile?.organization?.addresses.find(
           (item) => String(item.id) === data.id
@@ -459,17 +440,9 @@ export const FilterFindTrip = () => {
           ...state.filters.origin,
           company_office: {
             ...state.filters.origin.company_office,
-            selected: isDestinationFromOffice ? false : true,
+            checked: isDestinationCompanyOfficeChecked ? false : true,
           },
-          items: isDestinationFromOffice
-            ? []
-            : userState.profile?.organization?.addresses?.map((item) => {
-                return {
-                  id: String(item.id),
-                  name: userState.profile?.organization?.name ?? "",
-                  description: item.address ?? "",
-                };
-              }) ?? [],
+          items: isDestinationCompanyOfficeChecked ? [] : companyOfficeItems,
         },
       },
     });
@@ -515,16 +488,9 @@ export const FilterFindTrip = () => {
               ...state.filters.origin,
               company_office: {
                 ...state.filters.origin.company_office,
-                selected: true,
+                checked: true,
               },
-              items:
-                userState.profile?.organization?.addresses?.map((item) => {
-                  return {
-                    id: String(item.id),
-                    name: userState.profile?.organization?.name ?? "",
-                    description: item.address ?? "",
-                  };
-                }) ?? [],
+              items: companyOfficeItems,
             },
           },
         });
@@ -578,7 +544,7 @@ export const FilterFindTrip = () => {
             : [],
           company_office: {
             ...state.filters.destination.company_office,
-            selected: checked,
+            checked: checked,
           },
         },
       },
@@ -768,7 +734,7 @@ export const FilterFindTrip = () => {
               origin={{
                 pageSheet: {
                   selected: state.filters.origin.selected.item,
-                  items: state.filters.origin.company_office.selected
+                  items: isOriginCompanyOfficeChecked
                     ? state.filters.origin.items
                     : !state.filters.origin.items.length &&
                       !state.filters.origin.query.length
@@ -804,7 +770,8 @@ export const FilterFindTrip = () => {
                         userLocation?.lat &&
                         state.filters.destination.selected.lat_lng?.lng ===
                           userLocation?.lng) ||
-                      (!isDestinationFromOffice && !!selectedItemDestination),
+                      (!isDestinationCompanyOfficeChecked &&
+                        !!selectedItemDestination),
                     onClick: handleClickResetLocationOrigin,
                   },
                   locationSwitch: {
@@ -812,8 +779,9 @@ export const FilterFindTrip = () => {
                       .locationSwitch,
                     show: true,
                     disabled:
-                      !isDestinationFromOffice && !!selectedItemDestination,
-                    checked: state.filters.origin.company_office.selected,
+                      !isDestinationCompanyOfficeChecked &&
+                      !!selectedItemDestination,
+                    checked: isOriginCompanyOfficeChecked,
                     onChange: handleSwitchLocationOrigin,
                   },
                 },
@@ -826,7 +794,7 @@ export const FilterFindTrip = () => {
                       : dictionaries.filter.form.origin.autocomplete
                           .emptyMessage.no_result,
                   selected: state.filters.origin.selected.item,
-                  items: state.filters.origin.company_office.selected
+                  items: isOriginCompanyOfficeChecked
                     ? state.filters.origin.items
                     : !state.filters.origin.items.length
                     ? state.filters.origin.saved_items
@@ -845,7 +813,8 @@ export const FilterFindTrip = () => {
                         userLocation?.lat &&
                         state.filters.destination.selected.lat_lng?.lng ===
                           userLocation?.lng) ||
-                      (!isDestinationFromOffice && !!selectedItemDestination),
+                      (!isDestinationCompanyOfficeChecked &&
+                        !!selectedItemDestination),
                     onClick: handleClickResetLocationOrigin,
                   },
                   locationSwitch: {
@@ -853,8 +822,9 @@ export const FilterFindTrip = () => {
                       .locationSwitch,
                     show: true,
                     disabled:
-                      !isDestinationFromOffice && !!selectedItemDestination,
-                    checked: state.filters.origin.company_office.selected,
+                      !isDestinationCompanyOfficeChecked &&
+                      !!selectedItemDestination,
+                    checked: isOriginCompanyOfficeChecked,
                     onChange: handleSwitchLocationOrigin,
                   },
                 },
@@ -880,7 +850,7 @@ export const FilterFindTrip = () => {
                       : dictionaries.filter.form.destination.autocomplete
                           .emptyMessage.no_result,
                   selected: state.filters.destination.selected.item,
-                  items: state.filters.destination.company_office.selected
+                  items: isDestinationCompanyOfficeChecked
                     ? state.filters.destination.items
                     : !state.filters.destination.items.length
                     ? state.filters.destination.saved_items
@@ -907,15 +877,16 @@ export const FilterFindTrip = () => {
                         userLocation?.lat &&
                         state.filters.origin.selected.lat_lng?.lng ===
                           userLocation?.lng) ||
-                      (!isOriginFromOffice && !!selectedItemOrigin),
+                      (!isOriginCompanyOfficeChecked && !!selectedItemOrigin),
                     onClick: handleClickResetLocationDestination,
                   },
                   locationSwitch: {
                     ...dictionaries.filter.form.destination.autocomplete
                       .locationSwitch,
                     show: false,
-                    disabled: !isOriginFromOffice && !!selectedItemOrigin,
-                    checked: state.filters.destination.company_office.selected,
+                    disabled:
+                      !isOriginCompanyOfficeChecked && !!selectedItemOrigin,
+                    checked: isDestinationCompanyOfficeChecked,
                     onChange: handleSwitchLocationDestination,
                   },
                 },
@@ -928,7 +899,7 @@ export const FilterFindTrip = () => {
                       : dictionaries.filter.form.destination.autocomplete
                           .emptyMessage.no_result,
                   selected: state.filters.destination.selected.item,
-                  items: state.filters.destination.company_office.selected
+                  items: isDestinationCompanyOfficeChecked
                     ? state.filters.destination.items
                     : !state.filters.destination.items.length
                     ? state.filters.destination.saved_items
@@ -946,15 +917,16 @@ export const FilterFindTrip = () => {
                         userLocation?.lat &&
                         state.filters.origin.selected.lat_lng?.lng ===
                           userLocation?.lng) ||
-                      (!isOriginFromOffice && !!selectedItemOrigin),
+                      (!isOriginCompanyOfficeChecked && !!selectedItemOrigin),
                     onClick: handleClickResetLocationDestination,
                   },
                   locationSwitch: {
                     ...dictionaries.filter.form.destination.autocomplete
                       .locationSwitch,
                     show: true,
-                    disabled: !isOriginFromOffice && !!selectedItemOrigin,
-                    checked: state.filters.destination.company_office.selected,
+                    disabled:
+                      !isOriginCompanyOfficeChecked && !!selectedItemOrigin,
+                    checked: isDestinationCompanyOfficeChecked,
                     onChange: handleSwitchLocationDestination,
                   },
                 },

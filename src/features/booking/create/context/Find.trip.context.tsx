@@ -20,7 +20,7 @@ const initialState: FindTripInitialStateType = {
       query: "",
       saved_items: [],
       company_office: {
-        selected: false,
+        checked: false,
       },
     },
     destination: {
@@ -35,7 +35,7 @@ const initialState: FindTripInitialStateType = {
       items: [],
       saved_items: [],
       company_office: {
-        selected: false,
+        checked: false,
       },
     },
     date: {
