@@ -24,16 +24,16 @@ export const WelcomeModal = () => {
     <Dialog
       open={isOpen}
       onClose={handleClose}
-      className={clsx("z-[999]", "absolute inset-0")}
+      className={clsx("z-999", "relative")}
     >
       {/* Backdrop covers the entire first viewport area */}
       <div
-        className="absolute inset-0 bg-[#E3E3E3] dark:bg-[#1F1F1F] opacity-[64%] dark:opacity-[52%]"
+        className="fixed inset-0 bg-[#E3E3E3] dark:bg-[#1F1F1F] opacity-64 dark:opacity-52"
         aria-hidden="true"
       />
 
       {/* Container positioned within first viewport only */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="fixed inset-0 flex items-center justify-center">
         <DialogPanel
           className={clsx(
             "w-full max-w-[523px] mx-auto",
@@ -44,7 +44,7 @@ export const WelcomeModal = () => {
           )}
         >
           {/* Header */}
-          <div className="grid grid-cols-1 place-content-center place-items-center gap-[2rem]">
+          <div className="grid grid-cols-1 place-content-center place-items-center gap-8">
             <img src={"/images/trip/welcome.svg"} />
 
             <DialogTitle
@@ -68,9 +68,9 @@ export const WelcomeModal = () => {
                 "flex items-center justify-center",
                 "w-full",
                 "bg-[#249124] dark:bg-[#33CC33]",
-                "px-[0.75rem] py-[0.75rem]",
+                "px-3 py-3",
                 "text-white dark:text-[#232323] text-[1rem] font-semibold",
-                "rounded-[6px]"
+                "rounded-md"
               )}
               onClick={handleClose}
             >
