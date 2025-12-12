@@ -110,8 +110,8 @@ export const UserInformationCard = ({
             "flex items-center justify-center",
             "px-4 py-2",
             "rounded-md",
-            "border border-[#33CC33] dark:border-[#249124]",
-            "text-[#33CC33] dark:text-[#249124] text-xs font-semibold"
+            "border dark:border-[#33CC33] border-[#249124]",
+            "dark:text-[#33CC33] text-[#249124] text-xs font-semibold"
           )}
           onClick={cta.onClick}
         >
@@ -127,7 +127,7 @@ export const UserInformationCard = ({
           className={clsx(
             "grid place-content-center place-items-center gap-[0.5rem]",
             "w-full",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#292929]",
             "px-[0.5rem] py-[0.5rem]",
             "rounded-[0.5rem]"
           )}
@@ -144,7 +144,7 @@ export const UserInformationCard = ({
                 index < summary.length - 1 && "border-r border-r-border-subdued"
               )}
             >
-              <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>
+              <p className={clsx("text-[0.75rem] text-[#606060] dark:text-[#DADADA] font-normal")}>
                 {item.name}
               </p>
               <div
@@ -161,7 +161,7 @@ export const UserInformationCard = ({
                     )}
                   />
                 )}
-                <p className={clsx("text-[0.875rem] text-[#232323] font-bold")}>
+                <p className={clsx("text-[0.875rem] text-[#232323] dark:text-[white] font-bold")}>
                   {item.value}
                 </p>
               </div>

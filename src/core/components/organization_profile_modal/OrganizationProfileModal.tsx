@@ -165,8 +165,8 @@ export const OrganizationProfileModal = ({
                   "flex items-center justify-center",
                   "px-4 py-2",
                   "rounded-md",
-                  "bg-[#33CC33]",
-                  "text-text-primary text-xs font-semibold",
+                  "bg-[#249124] dark:bg-[#33CC33]",
+                  "text-white dark:text-text-primary text-xs font-semibold",
                   "cursor-pointer"
                 )}
                 onClick={cta.open.onClick}

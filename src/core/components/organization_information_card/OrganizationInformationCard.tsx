@@ -1,4 +1,3 @@
-import * as React from "react";
 import clsx from "clsx";
 import { Avatar } from "@/core/components/avatar";
 import SVGIcon from "@/core/icons";
@@ -75,9 +74,9 @@ export const OrganizationInformationCard = ({
             "bg-white dark:bg-[#292929]",
             "px-4 py-2",
             "rounded-md",
-            "border border-[#33CC33]",
-            "text-[#33CC33] text-xs font-semibold",
-            'cursor-pointer'
+            "border border-[#249124] dark:border-[#33CC33]",
+            "text-[#249124] dark:text-[#33CC33] text-xs font-semibold",
+            "cursor-pointer"
           )}
           onClick={cta.onClick}
         >
