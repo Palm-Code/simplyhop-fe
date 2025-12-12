@@ -139,7 +139,7 @@ export const useGetOrganizationId = () => {
             : data.addresses?.map((item) => {
                 return {
                   address_name: {
-                    value: "",
+                    value: item.name ?? "",
                     error: null,
                   },
                   address_1: {
