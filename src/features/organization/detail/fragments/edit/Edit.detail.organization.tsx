@@ -1,15 +1,11 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { Textfield } from "@/core/components/textfield";
 import { getDictionaries } from "../../i18n";
-import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import {
   DetailOrganizationActionEnum,
   DetailOrganizationContext,
 } from "../../context";
-import { UserContext } from "@/core/modules/app/context";
-import { getError } from "@/core/utils/form";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import SVGIcon from "@/core/icons";
@@ -21,142 +17,17 @@ import { queryClient } from "@/core/utils/react_query";
 import { DetailOrganizationReactQueryKey } from "../../react_query/keys";
 import { GetUserProfileIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 import { useParams } from "next/navigation";
+import { CompanyDataFormDetailOrganization } from "../company_data_form";
+import { Divider } from "@/core/components/divider";
+import { CompanyOfficeFormDetailOrganization } from "../company_office_form";
 
 export const EditDetailOrganization = () => {
   const { isLg } = useTailwindBreakpoint();
-  const globalDictionaries = getGlobalDictionaries();
   const dictionaries = getDictionaries();
-  const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
   const { driver_id } = useParams();
-
   const { mutateAsync: putUserProfile, isPending: isPendingPutUserProfile } =
     usePutOrganizationProfile();
-
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorItem = getError({
-      errorItems: globalDictionaries.form.first_name.validations.items,
-      value: e.currentTarget.value,
-      type: "optional",
-    });
-    dispatch({
-      type: DetailOrganizationActionEnum.SetEditData,
-      payload: {
-        ...state.edit,
-        form: {
-          ...state.edit.form,
-          name: {
-            ...state.edit.form.name,
-            value: e.currentTarget.value,
-            error: errorItem,
-          },
-        },
-      },
-    });
-  };
-
-  const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorItem = getError({
-      errorItems: globalDictionaries.form.city.validations.items,
-      value: e.currentTarget.value,
-      type: "optional",
-    });
-    dispatch({
-      type: DetailOrganizationActionEnum.SetEditData,
-      payload: {
-        ...state.edit,
-        form: {
-          ...state.edit.form,
-          city: {
-            ...state.edit.form.city,
-            value: e.currentTarget.value,
-            error: errorItem,
-          },
-        },
-      },
-    });
-  };
-
-  const handleChangePhonenumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Filter input to only allow + and numeric characters (0-9)
-    const filteredValue = e.currentTarget.value.replace(/[^+0-9]/g, "");
-
-    const errorItem = getError({
-      errorItems: globalDictionaries.form.phonenumber.validations.items,
-      value: filteredValue,
-      type: "optional",
-    });
-    dispatch({
-      type: DetailOrganizationActionEnum.SetEditData,
-      payload: {
-        ...state.edit,
-        form: {
-          ...state.edit.form,
-          phonenumber: {
-            ...state.edit.form.phonenumber,
-            value: filteredValue,
-            error: errorItem,
-          },
-        },
-      },
-    });
-  };
-
-  const handleChangeResponsiblePersonFirstName = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const errorItem = getError({
-      errorItems:
-        globalDictionaries.form.responsible_person_name.validations.items,
-      value: e.currentTarget.value,
-      type: "optional",
-    });
-    dispatch({
-      type: DetailOrganizationActionEnum.SetEditData,
-      payload: {
-        ...state.edit,
-        form: {
-          ...state.edit.form,
-          responsible_person: {
-            ...state.edit.form.responsible_person,
-            first_name: {
-              ...state.edit.form.responsible_person.first_name,
-              value: e.currentTarget.value,
-              error: errorItem,
-            },
-          },
-        },
-      },
-    });
-  };
-
-  const handleChangeResponsiblePersonLastName = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const errorItem = getError({
-      errorItems:
-        globalDictionaries.form.responsible_person_name.validations.items,
-      value: e.currentTarget.value,
-      type: "optional",
-    });
-    dispatch({
-      type: DetailOrganizationActionEnum.SetEditData,
-      payload: {
-        ...state.edit,
-        form: {
-          ...state.edit.form,
-          responsible_person: {
-            ...state.edit.form.responsible_person,
-            last_name: {
-              ...state.edit.form.responsible_person.last_name,
-              value: e.currentTarget.value,
-              error: errorItem,
-            },
-          },
-        },
-      },
-    });
-  };
 
   const isOpen = state.edit.is_open;
   const onClose = () => {
@@ -195,14 +66,7 @@ export const EditDetailOrganization = () => {
     });
   };
 
-  const isSubmitDisabled =
-    !!state.edit.form.email.error ||
-    !!state.edit.form.name.error ||
-    !!state.edit.form.city.error ||
-    !!state.edit.form.phonenumber.error ||
-    !!state.edit.form.responsible_person.first_name.error ||
-    !!state.edit.form.responsible_person.last_name.error ||
-    isPendingPutUserProfile;
+  const isSubmitDisabled = isPendingPutUserProfile;
   const isSubmitLoading = isPendingPutUserProfile;
 
   return (
@@ -210,9 +74,9 @@ export const EditDetailOrganization = () => {
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
         "!max-w-[100vw] lg:!max-w-[584px]",
-        "h-[100vh] lg:!h-fit",
+        "h-[100vh] lg:!h-[90vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-hidden"
+        "overflow-auto"
       )}
       open={isOpen}
       onClose={onClose}
@@ -240,7 +104,10 @@ export const EditDetailOrganization = () => {
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#767676]")}
+              className={clsx(
+                "w-[1.5rem] h-[1.5rem]",
+                "text-[#5B5B5B] dark:text-[#767676]"
+              )}
             />
           </button>
           <h2
@@ -268,89 +135,9 @@ export const EditDetailOrganization = () => {
               className={clsx("w-[3rem] h-[3rem]")}
             />
           </div>
-          <Textfield
-            labelProps={{ ...dictionaries.edit.form.input.email.labelProps }}
-            inputProps={{
-              ...dictionaries.edit.form.input.email.inputProps,
-              value: userState.profile?.email,
-            }}
-            disabled
-          />
-
-          <Textfield
-            labelProps={{
-              ...dictionaries.edit.form.input.name.labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.edit.form.input.name.inputProps,
-              value: state.edit.form.name.value,
-              onChange: handleChangeName,
-            }}
-            error={state.edit.form.name.error?.name}
-          />
-
-          <div
-            className={clsx(
-              "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-              "w-full"
-            )}
-          >
-            <Textfield
-              labelProps={{ ...dictionaries.edit.form.input.city.labelProps }}
-              inputProps={{
-                ...dictionaries.edit.form.input.city.inputProps,
-                value: state.edit.form.city.value,
-                onChange: handleChangeCity,
-              }}
-              error={state.edit.form.city.error?.name}
-            />
-            <Textfield
-              labelProps={{
-                ...dictionaries.edit.form.input.phonenumber.labelProps,
-              }}
-              inputProps={{
-                ...dictionaries.edit.form.input.phonenumber.inputProps,
-                value: state.edit.form.phonenumber.value,
-                onChange: handleChangePhonenumber,
-              }}
-              error={state.edit.form.phonenumber.error?.name}
-            />
-          </div>
-
-          <div
-            className={clsx(
-              "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-              "w-full"
-            )}
-          >
-            <Textfield
-              labelProps={{
-                ...dictionaries.edit.form.input.responsible_person.first_name
-                  .labelProps,
-              }}
-              inputProps={{
-                ...dictionaries.edit.form.input.responsible_person.first_name
-                  .inputProps,
-                value: state.edit.form.responsible_person.first_name.value,
-                onChange: handleChangeResponsiblePersonFirstName,
-              }}
-              error={state.edit.form.responsible_person.first_name.error?.name}
-            />
-
-            <Textfield
-              labelProps={{
-                ...dictionaries.edit.form.input.responsible_person.last_name
-                  .labelProps,
-              }}
-              inputProps={{
-                ...dictionaries.edit.form.input.responsible_person.last_name
-                  .inputProps,
-                value: state.edit.form.responsible_person.last_name.value,
-                onChange: handleChangeResponsiblePersonLastName,
-              }}
-              error={state.edit.form.responsible_person.last_name.error?.name}
-            />
-          </div>
+          <CompanyDataFormDetailOrganization />
+          <Divider />
+          <CompanyOfficeFormDetailOrganization />
         </div>
 
         <div

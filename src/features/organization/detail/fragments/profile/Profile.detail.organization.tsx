@@ -66,40 +66,6 @@ export const ProfileDetailOrganization = () => {
       payload: {
         ...state.edit,
         is_open: true,
-        form: {
-          ...state.edit.form,
-          email: {
-            ...state.edit.form.email,
-            value: state.profile.data?.organization.email ?? "",
-          },
-          name: {
-            ...state.edit.form.name,
-            value: state.profile.data?.organization.name ?? "",
-          },
-          phonenumber: {
-            ...state.edit.form.phonenumber,
-            value: state.profile.data?.organization.phone ?? "",
-          },
-          city: {
-            ...state.edit.form.city,
-            value: state.profile.data?.organization.city ?? "",
-          },
-          responsible_person: {
-            ...state.edit.form.responsible_person,
-            first_name: {
-              ...state.edit.form.responsible_person.first_name,
-              value:
-                state.profile.data?.organization
-                  .responsible_person_first_name ?? "",
-            },
-            last_name: {
-              ...state.edit.form.responsible_person.last_name,
-              value:
-                state.profile.data?.organization.responsible_person_last_name ??
-                "",
-            },
-          },
-        },
       },
     });
   };

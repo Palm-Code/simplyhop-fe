@@ -23,6 +23,7 @@ import {
   GetMessagesListByRoomPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/messages";
 import {
+  GetOrganizationIdPathPayloadRequestInterface,
   PatchOrganizationActivatePathPayloadRequestInterface,
   PatchOrganizationDeactivatePathPayloadRequestInterface,
   PutOrganizationProfilePathPayloadRequestInterface,
@@ -92,6 +93,8 @@ export const SimplyHopAPICollectionURL = {
       `/api/users/profile/${path.id}`,
   },
   organization: {
+    getId: (path: GetOrganizationIdPathPayloadRequestInterface) =>
+      `/api/organizations/${path.id}`,
     getGenerateCode: () => `/api/organizations/generate-code`,
     postCreate: () => `/api/organizations`,
     putProfile: (payload: PutOrganizationProfilePathPayloadRequestInterface) =>

@@ -2,8 +2,8 @@
 import * as React from "react";
 import clsx from "clsx";
 import {
-  CreateOrganizationActionEnum,
-  CreateOrganizationContext,
+  DetailOrganizationActionEnum,
+  DetailOrganizationContext,
 } from "../../context";
 import { getDictionaries } from "../../i18n";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
@@ -11,19 +11,19 @@ import { Textfield } from "@/core/components/textfield";
 import SVGIcon from "@/core/icons";
 import { getError } from "@/core/utils/form";
 import { Button } from "@/core/components/button";
-import { PinPointInput } from "../../../../../core/components/pin_point_input";
+import { PinPointInput } from "@/core/components/pin_point_input";
 
-export const CompanyOfficeFormCreateOrganization = () => {
+export const CompanyOfficeFormDetailOrganization = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
-  const { state, dispatch } = React.useContext(CreateOrganizationContext);
+  const { state, dispatch } = React.useContext(DetailOrganizationContext);
 
   const handleChangeAddressName = (
     e: React.ChangeEvent<HTMLInputElement>,
     dataIndex: number
   ) => {
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: state.company_office.form.map((item, itemIndex) => {
@@ -47,7 +47,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
     dataIndex: number
   ) => {
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: state.company_office.form.map((item, itemIndex) => {
@@ -71,7 +71,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
     dataIndex: number
   ) => {
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: state.company_office.form.map((item, itemIndex) => {
@@ -100,7 +100,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
       type: "required",
     });
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: state.company_office.form.map((item, itemIndex) => {
@@ -130,7 +130,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
       type: "required",
     });
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: state.company_office.form.map((item, itemIndex) => {
@@ -152,7 +152,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
 
   const handleClickAdd = () => {
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: [
@@ -215,7 +215,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
             const description = `Standort markieren: ${form.pin_point.value?.location_1}`;
             const handleClickEdit = () => {
               dispatch({
-                type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+                type: DetailOrganizationActionEnum.SetCompanyOfficeData,
                 payload: {
                   ...state.company_office,
                   form: state.company_office.form.map((item, index) => {
@@ -229,7 +229,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
             };
             const handleClickDelete = () => {
               dispatch({
-                type: CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData,
+                type: DetailOrganizationActionEnum.SetPinPointDeleteConfirmationData,
                 payload: {
                   ...state.pin_point_delete_confirmation,
                   is_open: true,
@@ -323,7 +323,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
 
           const handleClickPinPoint = () => {
             dispatch({
-              type: CreateOrganizationActionEnum.SetPinPointData,
+              type: DetailOrganizationActionEnum.SetPinPointData,
               payload: {
                 ...state.pin_point,
                 is_open: true,
@@ -334,7 +334,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
 
           const handleClickSave = () => {
             dispatch({
-              type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+              type: DetailOrganizationActionEnum.SetCompanyOfficeData,
               payload: {
                 ...state.company_office,
                 form: state.company_office.form.map((item, index) => {
@@ -348,7 +348,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
           };
           const handleClickDelete = () => {
             dispatch({
-              type: CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData,
+              type: DetailOrganizationActionEnum.SetPinPointDeleteConfirmationData,
               payload: {
                 ...state.pin_point_delete_confirmation,
                 is_open: true,

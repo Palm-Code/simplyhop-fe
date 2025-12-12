@@ -10,7 +10,7 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { CompanyTypeDropdown } from "../../components/company_type_dropdown";
 import { Textfield } from "@/core/components/textfield";
 import { getError } from "@/core/utils/form";
-import { CompanyCodeInput } from "../../components/company_code_input/CompanyCodeInput";
+import { CompanyCodeInput } from "../../../../../core/components/company_code_input/CompanyCodeInput";
 import { useGetOrganizationGenerateCode } from "../../react_query/hooks";
 
 export const CompanyDataFormCreateOrganization = () => {

@@ -17,8 +17,8 @@ export interface CreateOrganizationInitialStateType {
   company_data: CreateOrganizationCompanyData;
   company_office: CreateOrganizationCompanyOffice;
   pin_point: CreateOrganizationPinPoint;
-  notification: CreateOrganizationNotification;
   pin_point_delete_confirmation: CreateOrganizationPinPointDeleteConfirmation;
+  notification: CreateOrganizationNotification;
 }
 
 // State Collection Types consist of:
@@ -130,13 +130,13 @@ export interface CreateOrganizationPinPoint {
   };
 }
 
-export interface CreateOrganizationNotification {
-  is_open: boolean;
-}
-
 export interface CreateOrganizationPinPointDeleteConfirmation {
   is_open: boolean;
   index: number | null;
+}
+
+export interface CreateOrganizationNotification {
+  is_open: boolean;
 }
 
 export enum CreateOrganizationActionEnum {
@@ -146,10 +146,10 @@ export enum CreateOrganizationActionEnum {
   SetCompanyOfficeData = "SetCompanyOfficeData",
   // PinPoint
   SetPinPointData = "SetPinPointData",
-  // Notification
-  SetNotificationData = "SetNotificationData",
   // PinPointDeleteConfirmation
   SetPinPointDeleteConfirmationData = "SetPinPointDeleteConfirmationData",
+  // Notification
+  SetNotificationData = "SetNotificationData",
 }
 
 // Action Collection Types
@@ -157,8 +157,8 @@ export type CreateOrganizationActions =
   | CreateOrganizationCompanyDataActions
   | CreateOrganizationCompanyOfficeActions
   | CreateOrganizationPinPointActions
-  | CreateOrganizationNotificationActions
-  | CreateOrganizationPinPointDeleteConfirmationActions;
+  | CreateOrganizationPinPointDeleteConfirmationActions
+  | CreateOrganizationNotificationActions;
 
 // Action Collection Types consist of:
 // CompanyData
@@ -185,14 +185,6 @@ type CreateOrganizationPinPointPayload = {
 export type CreateOrganizationPinPointActions =
   ActionMap<CreateOrganizationPinPointPayload>[keyof ActionMap<CreateOrganizationPinPointPayload>];
 
-// Notification
-type CreateOrganizationNotificationPayload = {
-  [CreateOrganizationActionEnum.SetNotificationData]: CreateOrganizationNotification;
-};
-
-export type CreateOrganizationNotificationActions =
-  ActionMap<CreateOrganizationNotificationPayload>[keyof ActionMap<CreateOrganizationNotificationPayload>];
-
 // PinPointDeleteConfirmation
 type CreateOrganizationPinPointDeleteConfirmationPayload = {
   [CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData]: CreateOrganizationPinPointDeleteConfirmation;
@@ -200,3 +192,11 @@ type CreateOrganizationPinPointDeleteConfirmationPayload = {
 
 export type CreateOrganizationPinPointDeleteConfirmationActions =
   ActionMap<CreateOrganizationPinPointDeleteConfirmationPayload>[keyof ActionMap<CreateOrganizationPinPointDeleteConfirmationPayload>];
+
+// Notification
+type CreateOrganizationNotificationPayload = {
+  [CreateOrganizationActionEnum.SetNotificationData]: CreateOrganizationNotification;
+};
+
+export type CreateOrganizationNotificationActions =
+  ActionMap<CreateOrganizationNotificationPayload>[keyof ActionMap<CreateOrganizationNotificationPayload>];

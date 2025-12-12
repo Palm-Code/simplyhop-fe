@@ -50,20 +50,6 @@ export const CreateOrganizationPinPointReducers = (
   }
 };
 
-// Notification
-export const CreateOrganizationNotificationReducers = (
-  state: CreateOrganizationNotification,
-  action: CreateOrganizationActions
-) => {
-  switch (action.type) {
-    case CreateOrganizationActionEnum.SetNotificationData:
-      return action.payload;
-
-    default:
-      return state;
-  }
-};
-
 // PinPointDeleteConfirmation
 export const CreateOrganizationPinPointDeleteConfirmationReducers = (
   state: CreateOrganizationPinPointDeleteConfirmation,
@@ -71,6 +57,20 @@ export const CreateOrganizationPinPointDeleteConfirmationReducers = (
 ) => {
   switch (action.type) {
     case CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// Notification
+export const CreateOrganizationNotificationReducers = (
+  state: CreateOrganizationNotification,
+  action: CreateOrganizationActions
+) => {
+  switch (action.type) {
+    case CreateOrganizationActionEnum.SetNotificationData:
       return action.payload;
 
     default:

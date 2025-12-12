@@ -12,6 +12,7 @@ export interface CompanyCodeInputProps {
     onClick?: () => void;
   };
   required?: boolean;
+  disabled?:boolean
 }
 
 export const CompanyCodeInput = ({
@@ -19,6 +20,7 @@ export const CompanyCodeInput = ({
   value,
   cta,
   required = false,
+  disabled
 }: CompanyCodeInputProps) => {
   const hasValue = !!value;
 

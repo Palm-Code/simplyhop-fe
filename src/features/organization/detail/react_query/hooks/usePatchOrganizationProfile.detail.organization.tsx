@@ -31,13 +31,13 @@ export const usePutOrganizationProfile = () => {
           id: String(driver_id ?? "0"),
         },
         body: {
-          email: state.edit.form.email.value,
-          name: state.edit.form.name.value,
-          phone: state.edit.form.phonenumber.value,
+          email: state.company_data.form.admin_email.value,
+          name: state.company_data.form.company_name.value,
+          phone: state.company_data.form.telephone.value,
           responsible_person_first_name:
-            state.edit.form.responsible_person.first_name.value,
+            state.company_data.form.responsible_person.first_name.value,
           responsible_person_last_name:
-            state.edit.form.responsible_person.last_name.value,
+            state.company_data.form.responsible_person.last_name.value,
         },
       };
       return fetchPutOrganizationProfile(payload);

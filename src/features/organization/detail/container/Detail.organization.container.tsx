@@ -4,6 +4,7 @@ import clsx from "clsx";
 import {
   useGetDashboardSuperAdmin,
   useGetDashboardSuperAdminPerOrganizationId,
+  useGetOrganizationId,
   useGetRidesSearch,
 } from "../react_query/hooks";
 import { ProfileDetailOrganization } from "../fragments/profile";
@@ -18,6 +19,7 @@ export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
   useGetDashboardSuperAdminPerOrganizationId();
   useGetRidesSearch();
+  useGetOrganizationId();
   return (
     <>
       <div
