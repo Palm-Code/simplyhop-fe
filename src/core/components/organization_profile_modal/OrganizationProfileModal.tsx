@@ -99,12 +99,12 @@ export const OrganizationProfileModal = ({
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dadrk:text-[#767676]")}
             />
           </button>
           <h2
             className={clsx(
-              "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
             )}
           >
             {title}
@@ -116,7 +116,7 @@ export const OrganizationProfileModal = ({
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full",
-            "bg-[#F6F6F6CC]",
+            "bg-[#F6F6F6CC] dark:bg-[#292929]",
             "px-[1rem] py-[1rem]",
             "rounded-[0.5rem]"
           )}
@@ -147,11 +147,11 @@ export const OrganizationProfileModal = ({
                   "w-full"
                 )}
               >
-                <p className={clsx("text-[1rem] text-[black] font-semibold")}>
+                <p className={clsx("text-[1rem] text-[black] dark:text-[white] font-semibold")}>
                   {user.name}
                 </p>
                 <p
-                  className={clsx("text-[0.875rem] text-[#767676] font-medium")}
+                  className={clsx("text-[0.875rem] text-[#767676] dark:text-[#C3C3C3] font-medium")}
                 >
                   {user.phone}
                 </p>
@@ -182,7 +182,7 @@ export const OrganizationProfileModal = ({
               className={clsx(
                 "grid place-content-center place-items-center gap-[0.5rem]",
                 "w-full",
-                "bg-[white]",
+                "bg-[white] dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
                 "rounded-[0.5rem]"
               )}
@@ -221,7 +221,7 @@ export const OrganizationProfileModal = ({
                     )}
                     <p
                       className={clsx(
-                        "text-[0.875rem] text-[#232323] font-bold"
+                        "text-[0.875rem] text-[#232323] dark:text-[white] font-bold"
                       )}
                     >
                       {item.value}
@@ -238,7 +238,7 @@ export const OrganizationProfileModal = ({
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
                 "w-full",
-                "bg-[white]",
+                "bg-[white] dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
                 "rounded-[0.5rem]"
               )}
@@ -253,7 +253,7 @@ export const OrganizationProfileModal = ({
                 >
                   <SVGIcon
                     name={item.icon as SVGIconProps["name"]}
-                    className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                    className={clsx("w-[1rem] h-[1rem]", "text-[#767676] dark:text-[#F6F6F6]")}
                   />
                   <div
                     className={clsx(
@@ -270,7 +270,7 @@ export const OrganizationProfileModal = ({
                     </p>
                     <p
                       className={clsx(
-                        "text-[0.875rem] text-[#232323] font-medium"
+                        "text-[0.875rem] text-[#232323] dark:text-[white] font-medium"
                       )}
                     >
                       {item.value}
@@ -287,7 +287,7 @@ export const OrganizationProfileModal = ({
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
                 "w-full",
-                "bg-[white]",
+                "bg-[white] dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
                 "rounded-[0.5rem]"
               )}
@@ -308,7 +308,7 @@ export const OrganizationProfileModal = ({
                   >
                     <SVGIcon
                       name={item.icon as SVGIconProps["name"]}
-                      className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                      className={clsx("w-[1rem] h-[1rem]", "text-[#767676] dark:text-[#F6F6F6]")}
                     />
                     <div
                       className={clsx(
@@ -325,7 +325,7 @@ export const OrganizationProfileModal = ({
                       </p>
                       <p
                         className={clsx(
-                          "text-[0.875rem] text-[#232323] font-medium"
+                          "text-[0.875rem] text-[#232323] dark:text-white font-medium"
                         )}
                       >
                         {item.value}
@@ -355,7 +355,7 @@ export const OrganizationProfileModal = ({
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
                 "w-full",
-                "bg-white",
+                "bg-white dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
                 "rounded-[0.5rem]"
               )}
@@ -369,14 +369,14 @@ export const OrganizationProfileModal = ({
                       "w-full",
                       "px-[0.75rem] py-[0.75rem]",
                       "rounded-[0.375rem]",
-                      "text-[1rem] text-[#B30606] font-normal",
+                      "text-[1rem] text-[#B30606] dark:text-[#D13939] font-normal",
                       "cursor-pointer"
                     )}
                     onClick={item.onClick}
                   >
                     <SVGIcon
                       name={item.icon as SVGIconProps["name"]}
-                      className={clsx("w-[1rem] h-[1rem]", "text-[#C50707]")}
+                      className={clsx("w-[1rem] h-[1rem]", "text-[#C50707] dark:text-[#D13939]")}
                     />
                     {item.label}
                   </button>
