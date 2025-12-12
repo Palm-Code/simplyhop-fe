@@ -76,7 +76,8 @@ export const OrganizationInformationCard = ({
             "px-4 py-2",
             "rounded-md",
             "border border-[#33CC33]",
-            "text-[#33CC33] text-xs font-semibold"
+            "text-[#33CC33] text-xs font-semibold",
+            'cursor-pointer'
           )}
           onClick={cta.onClick}
         >
