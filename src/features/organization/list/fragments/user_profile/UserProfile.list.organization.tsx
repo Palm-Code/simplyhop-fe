@@ -27,24 +27,14 @@ export const UserProfileListOrganization = () => {
   };
 
   const handleClickDeleteOrganization = () => {
-    // dispatch({
-    //   type: ListDriverActionEnum.SetDeleteChatConfirmationData,
-    //   payload: {
-    //     ...state.delete_chat_confirmation,
-    //     is_open: true,
-    //   },
-    // });
+    dispatch({
+      type: ListOrganizationActionEnum.SetDeleteAccountConfirmationData,
+      payload: {
+        ...state.delete_account_confirmation,
+        is_open: true,
+      },
+    });
   };
-
-  // const handleClickBlock = () => {
-  //   dispatch({
-  //     type: ListDriverActionEnum.SetDeleteChatConfirmationData,
-  //     payload: {
-  //       ...state.block_confirmation,
-  //       is_open: true,
-  //     },
-  //   });
-  // };
 
   const summaryItems = dictionaries.user_profile.summary.items.map((item) => {
     let value = "-";
