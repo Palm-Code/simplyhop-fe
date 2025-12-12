@@ -25,7 +25,7 @@ export const useGetOrganizationId = () => {
       id: String(organization_id),
     },
     params: {
-      include: "organization.addresses",
+      include: "addresses",
     },
   };
   const query = useQuery<

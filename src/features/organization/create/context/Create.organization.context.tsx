@@ -137,8 +137,8 @@ const mainReducer = (
     company_data,
     company_office,
     pin_point,
-    notification,
     pin_point_delete_confirmation,
+    notification,
   }: CreateOrganizationInitialStateType,
   action: CreateOrganizationActions
 ) => ({
@@ -148,12 +148,12 @@ const mainReducer = (
     action
   ),
   pin_point: CreateOrganizationPinPointReducers(pin_point, action),
-  notification: CreateOrganizationNotificationReducers(notification, action),
   pin_point_delete_confirmation:
     CreateOrganizationPinPointDeleteConfirmationReducers(
       pin_point_delete_confirmation,
       action
     ),
+  notification: CreateOrganizationNotificationReducers(notification, action),
 });
 
 const CreateOrganizationProvider = (props: { children: React.ReactNode }) => {
