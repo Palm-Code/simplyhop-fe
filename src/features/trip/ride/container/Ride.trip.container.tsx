@@ -23,17 +23,29 @@ export const RideTripContainer = () => {
         <NavigationRideTrip />
         <SearchListTrip />
       </div>
-      <ListTripProvider>
-        <div
-          className={clsx("flex items-center justify-between gap-2", "w-full")}
-        >
-          <RideFilterListTrip />
-          <SortListTrip />
-        </div>
+      <div
+        className={clsx(
+          "bg-[#FAFAFA] dark:bg-[#292929]",
+          "w-full",
+          "rounded-2xl",
+          "p-4"
+        )}
+      >
+        <ListTripProvider>
+          <div
+            className={clsx(
+              "flex items-center justify-between gap-2",
+              "w-full"
+            )}
+          >
+            <RideFilterListTrip />
+            <SortListTrip />
+          </div>
 
-        <RideSectionListTrip />
-        <AlertApp />
-      </ListTripProvider>
+          <RideSectionListTrip />
+          <AlertApp />
+        </ListTripProvider>
+      </div>
     </div>
   );
 };
