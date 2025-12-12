@@ -43,7 +43,7 @@ export const OrganizationInformationCard = ({
         "w-full",
         "px-[1.5rem] py-[1.5rem]",
         "relative",
-        "border border-[#D3E7CE]",
+        "border border-[#D3E7CE] dark:border-[#464646]",
         "rounded-[1.25rem]",
         containerClassName
       )}
@@ -60,7 +60,11 @@ export const OrganizationInformationCard = ({
             variant="avatar"
             className={clsx("w-[3rem] h-[3rem]", avatar?.className)}
           />
-          <h2 className={clsx("text-[#292929] text-2xl font-bold")}>
+          <h2
+            className={clsx(
+              "text-[#292929] dark:text-white text-2xl font-bold"
+            )}
+          >
             {displayName}
           </h2>
         </div>
@@ -68,7 +72,7 @@ export const OrganizationInformationCard = ({
         <button
           className={clsx(
             "flex items-center justify-center",
-            "bg-white",
+            "bg-white dark:bg-[#292929]",
             "px-4 py-2",
             "rounded-md",
             "border border-[#33CC33]",
@@ -92,7 +96,11 @@ export const OrganizationInformationCard = ({
                 "w-[118px]"
               )}
             >
-              <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>
+              <p
+                className={clsx(
+                  "text-[0.75rem] text-[#606060] dark:text-[#DADADA] font-normal"
+                )}
+              >
                 {item.name}
               </p>
               <div
@@ -109,7 +117,11 @@ export const OrganizationInformationCard = ({
                     )}
                   />
                 )}
-                <p className={clsx("text-[0.875rem] text-[#232323] font-bold")}>
+                <p
+                  className={clsx(
+                    "text-[0.875rem] text-[#232323] dark:text-white font-bold"
+                  )}
+                >
                   {item.value}
                 </p>
               </div>

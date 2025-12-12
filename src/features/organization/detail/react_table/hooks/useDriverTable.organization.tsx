@@ -37,7 +37,7 @@ export const useDriverTableOrganization = () => {
               className={clsx(
                 "flex items-center justify-start",
                 "w-full",
-                "text-[#606060] text-xs font-normal"
+                "text-[#606060] dark:text-[#C3C3C3] text-xs font-normal"
               )}
             >
               {item.name}
@@ -66,7 +66,7 @@ export const useDriverTableOrganization = () => {
 
                 <p
                   className={clsx(
-                    "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                    "text-[#292929] dark:text-white font-normal text-[0.875rem] line-clamp-2",
                     "w-full"
                   )}
                 >
@@ -83,7 +83,7 @@ export const useDriverTableOrganization = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#292929] dark:text-white font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >
@@ -111,7 +111,7 @@ export const useDriverTableOrganization = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#292929] dark:text-white font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >
