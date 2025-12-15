@@ -101,12 +101,15 @@ export const BookDetailListTrip = () => {
             >
               <SVGIcon
                 name="ArrowLeft"
-                className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+                className={clsx(
+                  "w-[1.5rem] h-[1.5rem]",
+                  "text-[#5B5B5B] dark:text-[#DADADA]"
+                )}
               />
             </button>
             <h2
               className={clsx(
-                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-[white] text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
               {dictionaries.book_detail.title}
@@ -116,13 +119,16 @@ export const BookDetailListTrip = () => {
 
         {/* body */}
         <AdaptiveModalContent
-          className={clsx("!bg-[#FAFDF9]", "!px-[0rem] !py-[1rem]")}
+          className={clsx(
+            "bg-[#FAFDF9]! dark:bg-[#242623]!",
+            "!px-[0rem] !py-[1rem]"
+          )}
         >
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full",
-              "bg-[#FAFDF9]",
+              "bg-[#FAFDF9] dark:bg-[#242623]",
               "px-[1rem]"
             )}
           >
@@ -134,7 +140,7 @@ export const BookDetailListTrip = () => {
               "grid grid-cols-1 place-content-start place-items-start",
               "w-full",
               "px-[1rem] py-[1.5rem]",
-              "bg-[white]"
+              "bg-[white] dark:bg-[#232323]"
             )}
           >
             <CarPriceItem {...filteredData.price} />
@@ -147,7 +153,7 @@ export const BookDetailListTrip = () => {
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[1rem] py-[1.5rem]",
-              "bg-[white]",
+              "bg-[white] dark:bg-[#232323]",
               "text-[#C50707] text-[0.75rem] font-medium",
               "cursor-pointer"
             )}
