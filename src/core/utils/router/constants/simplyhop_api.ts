@@ -53,6 +53,7 @@ export const SimplyHopAPICollectionURL = {
   auth: {
     postLogin: () => `/api/auth/login`,
     postRequestOTP: () => `/api/auth/request-otp`,
+    postRequestOTPRegistration: () => `/api/auth/request-otp-registration`,
     postVerifyOTP: () => `/api/auth/verify-otp`,
     postRegister: () => `/api/auth/register`,
     postForgotPassword: () => `/api/auth/forgot-password`,
@@ -93,6 +94,7 @@ export const SimplyHopAPICollectionURL = {
       `/api/users/profile/${path.id}`,
   },
   organization: {
+    getList: () => `/api/organizations`,
     getId: (path: GetOrganizationIdPathPayloadRequestInterface) =>
       `/api/organizations/${path.id}`,
     getGenerateCode: () => `/api/organizations/generate-code`,

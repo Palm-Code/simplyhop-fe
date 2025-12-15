@@ -4,3 +4,4 @@ export * from "./deactivate.patch";
 export * from "./create.post";
 export * from "./generate_code.get";
 export * from "./id.get";
+export * from "./list.get";
