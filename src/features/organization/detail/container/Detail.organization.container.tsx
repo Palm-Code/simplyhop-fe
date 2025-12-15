@@ -15,6 +15,8 @@ import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete
 import { TripDetailOrganization } from "../fragments/trip";
 import { HeaderDetailOrganization } from "../fragments/header";
 import { NotificationDetailOrganization } from "../fragments/notification";
+import { PinPointDetailOrganization } from "../fragments/pin_point";
+import { PinPointDeleteConfirmationDetailOrganization } from "../fragments/pin_point_delete_confirmation";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
@@ -45,6 +47,8 @@ export const DetailOrganizationContainer = () => {
       <EditDetailOrganization />
       <DeleteAccountConfirmationDetailOrganization />
       <NotificationDetailOrganization />
+      <PinPointDetailOrganization />
+      <PinPointDeleteConfirmationDetailOrganization />
     </>
   );
 };

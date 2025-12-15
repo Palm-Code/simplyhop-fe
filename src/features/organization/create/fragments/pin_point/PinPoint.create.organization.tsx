@@ -49,12 +49,12 @@ export const PinPointCreateOrganization = () => {
           <button onClick={handleClose}>
             <SVGIcon
               name="ArrowLeft"
-              className={clsx("w-6 h-6", "text-[#767676]")}
+              className={clsx("w-6 h-6", "text-[#767676] dark:text-[#DADADA]")}
             />
           </button>
 
           <h1
-            className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+            className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
           >
             {dictionaries.pin_point.title}
           </h1>
