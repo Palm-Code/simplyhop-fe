@@ -56,7 +56,7 @@ export const NotificationPlanRideTrip = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#EFF9EC] dark:bg-[#23223]"
+              "bg-[#EFF9EC]"
             )}
           >
             <SVGIcon
