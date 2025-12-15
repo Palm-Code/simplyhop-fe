@@ -2,12 +2,10 @@
 import * as React from "react";
 import { DetailDriverActionEnum, DetailDriverContext } from "../../context";
 import { getDictionaries } from "../../i18n";
-import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { UserInformationCard } from "@/core/components/user_information_card";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const UserDetailDriver = () => {
-  const globalDictionaries = getGlobalDictionaries();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(DetailDriverContext);
   const summaryItems = !state.user.data?.is_driver
@@ -110,29 +108,10 @@ export const UserDetailDriver = () => {
             ? "-"
             : state.user.data.last_name,
         },
-        gender: {
-          label: dictionaries.user.information.gender.name,
-          value: !state.user.data?.gender?.length
-            ? "-"
-            : globalDictionaries.personal_information.gender.options.items.find(
-                (item) => item.id === state.user.data?.gender
-              )?.name ?? "-",
-        },
+
         city: {
           label: dictionaries.user.information.city.name,
           value: !state.user.data?.city?.length ? "-" : state.user.data.city,
-        },
-        phoneNumber: {
-          label: dictionaries.user.information.phonenumber.name,
-          value: !state.user.data?.mobile?.length
-            ? "-"
-            : state.user.data.mobile,
-        },
-        aboutMe: {
-          label: dictionaries.user.information.about_me.name,
-          value: !state.user.data?.profile?.bio?.length
-            ? "-"
-            : state.user.data.profile.bio,
         },
       }}
     />

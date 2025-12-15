@@ -38,22 +38,22 @@ export interface UserInformationCardProps {
       value: string;
     };
 
-    gender: {
+    gender?: {
       label: string;
       value: string;
     };
 
-    city: {
+    city?: {
       label: string;
       value: string;
     };
 
-    phoneNumber: {
+    phoneNumber?: {
       label: string;
       value: string;
     };
 
-    aboutMe: {
+    aboutMe?: {
       label: string;
       value: string;
     };
@@ -144,7 +144,11 @@ export const UserInformationCard = ({
                 index < summary.length - 1 && "border-r border-r-border-subdued"
               )}
             >
-              <p className={clsx("text-[0.75rem] text-[#606060] dark:text-[#DADADA] font-normal")}>
+              <p
+                className={clsx(
+                  "text-[0.75rem] text-[#606060] dark:text-[#DADADA] font-normal"
+                )}
+              >
                 {item.name}
               </p>
               <div
@@ -161,7 +165,11 @@ export const UserInformationCard = ({
                     )}
                   />
                 )}
-                <p className={clsx("text-[0.875rem] text-[#232323] dark:text-[white] font-bold")}>
+                <p
+                  className={clsx(
+                    "text-[0.875rem] text-[#232323] dark:text-[white] font-bold"
+                  )}
+                >
                   {item.value}
                 </p>
               </div>
@@ -182,13 +190,22 @@ export const UserInformationCard = ({
         <UserInformationItem name={lastName.label} value={lastName.value} />
       </div>
 
-      <UserInformationItem name={gender.label} value={gender.value} />
+      {gender && (
+        <UserInformationItem name={gender.label} value={gender.value} />
+      )}
 
-      <UserInformationItem name={city.label} value={city.value} />
+      {city && <UserInformationItem name={city.label} value={city.value} />}
 
-      <UserInformationItem name={phoneNumber.label} value={phoneNumber.value} />
+      {phoneNumber && (
+        <UserInformationItem
+          name={phoneNumber.label}
+          value={phoneNumber.value}
+        />
+      )}
 
-      <UserInformationItem name={aboutMe.label} value={aboutMe.value} />
+      {aboutMe && (
+        <UserInformationItem name={aboutMe.label} value={aboutMe.value} />
+      )}
     </div>
   );
 };
