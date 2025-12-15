@@ -505,7 +505,7 @@
     "description": "Das Unternehmenskonto ist bereit. Bitten Sie den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
     "cta": {
       "back": {
-        "children": "Continue"
+        "children": "Weiter"
       }
     }
   },
@@ -513,7 +513,7 @@
     "title": "Den Standort markieren",
     "cta": {
       "back": {
-        "children": "Continue"
+        "children": "Weiter"
       },
       "save": {
         "children": "Speichern"

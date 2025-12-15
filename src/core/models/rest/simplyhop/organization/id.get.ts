@@ -8,7 +8,7 @@ export interface GetOrganizationIdRequestInterface extends NextApiRequest {
 
 export interface GetOrganizationIdPayloadRequestInterface {
   path: GetOrganizationIdPathPayloadRequestInterface;
-  params: GetOrganizationIdParamsPayloadRequestInterface;
+  params?: GetOrganizationIdParamsPayloadRequestInterface;
 }
 
 export type GetOrganizationIdParamsPayloadRequestInterface = {

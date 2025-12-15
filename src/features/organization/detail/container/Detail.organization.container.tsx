@@ -14,6 +14,7 @@ import { EditDetailOrganization } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete_account_confirmation";
 import { TripDetailOrganization } from "../fragments/trip";
 import { HeaderDetailOrganization } from "../fragments/header";
+import { NotificationDetailOrganization } from "../fragments/notification";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
@@ -43,6 +44,7 @@ export const DetailOrganizationContainer = () => {
       </div>
       <EditDetailOrganization />
       <DeleteAccountConfirmationDetailOrganization />
+      <NotificationDetailOrganization />
     </>
   );
 };

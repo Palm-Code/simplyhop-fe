@@ -3,19 +3,16 @@ import * as React from "react";
 import { Dialog, DialogTitle, DialogPanel } from "@headlessui/react";
 import clsx from "clsx";
 import {
-  CreateOrganizationActionEnum,
-  CreateOrganizationContext,
+  DetailOrganizationActionEnum,
+  DetailOrganizationContext,
 } from "../../context";
-import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 
-export const NotificationCreateOrganization = () => {
-  const router = useRouter();
-  const { state, dispatch } = React.useContext(CreateOrganizationContext);
+export const NotificationDetailOrganization = () => {
+  const { state, dispatch } = React.useContext(DetailOrganizationContext);
   const isOpen = state.notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: CreateOrganizationActionEnum.SetNotificationData,
+      type: DetailOrganizationActionEnum.SetNotificationData,
       payload: {
         ...state.notification,
         is_open: false,
@@ -25,13 +22,12 @@ export const NotificationCreateOrganization = () => {
 
   const handleClickContinue = () => {
     dispatch({
-      type: CreateOrganizationActionEnum.SetNotificationData,
+      type: DetailOrganizationActionEnum.SetNotificationData,
       payload: {
         ...state.notification,
         is_open: false,
       },
     });
-    router.push(AppCollectionURL.private.organization());
   };
   return (
     <Dialog

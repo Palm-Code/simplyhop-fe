@@ -15,7 +15,7 @@ import { fetchPostOrganizationPartialUpdate } from "@/core/services/rest/simplyh
 import { useParams } from "next/navigation";
 
 export const usePostOrganizationPartialUpdate = () => {
-  const { driver_id } = useParams();
+  const { organization_id } = useParams();
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
 
@@ -99,7 +99,7 @@ export const usePostOrganizationPartialUpdate = () => {
 
       const payload: PostOrganizationPartialUpdatePayloadRequestInterface = {
         path: {
-          id: String(driver_id ?? "0"),
+          id: String(organization_id ?? "0"),
         },
         body: formData,
       };

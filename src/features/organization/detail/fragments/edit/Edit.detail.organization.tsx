@@ -20,12 +20,13 @@ import { useParams } from "next/navigation";
 import { CompanyDataFormDetailOrganization } from "../company_data_form";
 import { Divider } from "@/core/components/divider";
 import { CompanyOfficeFormDetailOrganization } from "../company_office_form";
+import { GetOrganizationIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/organization";
 
 export const EditDetailOrganization = () => {
   const { isLg } = useTailwindBreakpoint();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
-  const { driver_id } = useParams();
+  const { organization_id } = useParams();
   const {
     mutateAsync: postOrganizationPartialUpdate,
     isPending: isPendingPostOrganizationPartialUpdate,
@@ -45,16 +46,46 @@ export const EditDetailOrganization = () => {
   const handleClickSave = async () => {
     const res = await postOrganizationPartialUpdate();
     if (!res) return;
-    const payload: GetUserProfileIdPayloadRequestInterface = {
-      path: {
-        id: String(driver_id ?? "0"),
+    dispatch({
+      type: DetailOrganizationActionEnum.SetEditData,
+      payload: {
+        ...state.edit,
+        is_open: false,
       },
-    };
+    });
+    const dashboardSuperADminPerOrganizationIdPayload: GetUserProfileIdPayloadRequestInterface =
+      {
+        path: {
+          id: String(organization_id ?? "0"),
+        },
+      };
     queryClient.invalidateQueries({
       queryKey:
         DetailOrganizationReactQueryKey.GetDashboardSuperAdminPerOrganizationId(
-          payload
+          dashboardSuperADminPerOrganizationIdPayload
         ),
+    });
+
+    const organizationIdPayload: GetOrganizationIdPayloadRequestInterface = {
+      path: {
+        id: String(organization_id ?? "0"),
+      },
+      params: {
+        include: "addresses",
+      },
+    };
+
+    queryClient.invalidateQueries({
+      queryKey: DetailOrganizationReactQueryKey.GetOrganizationId(
+        organizationIdPayload
+      ),
+    });
+    dispatch({
+      type: DetailOrganizationActionEnum.SetNotificationData,
+      payload: {
+        ...state.notification,
+        is_open: true,
+      },
     });
   };
 
