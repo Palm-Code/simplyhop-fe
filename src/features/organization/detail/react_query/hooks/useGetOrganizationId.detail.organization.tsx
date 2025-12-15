@@ -159,17 +159,12 @@ export const useGetOrganizationId = () => {
                     error: null,
                   },
                   pin_point: {
-                    value:
-                      !!item.latitude &&
-                      !!item.longitude &&
-                      !item.location?.length
-                        ? {
-                            lat: item.latitude ?? 0,
-                            lng: item.longitude ?? 0,
-                            location_1: item.location ?? "",
-                            location_2: item.location_2 ?? "",
-                          }
-                        : null,
+                    value: {
+                      lat: item.latitude ?? 0,
+                      lng: item.longitude ?? 0,
+                      location_1: item.location ?? "",
+                      location_2: item.location_2 ?? "",
+                    },
                   },
                   mode: "view",
                   id: item.id,

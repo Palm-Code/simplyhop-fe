@@ -212,7 +212,7 @@ export const CompanyOfficeFormDetailOrganization = () => {
             const message = !form.address_2.value.length
               ? form.address_1.value
               : `${form.address_1.value} ${form.address_2.value}`;
-            const description = `Standort markieren: ${form.pin_point.value?.location_1}`;
+            const description = `Standort markieren: ${form.pin_point.value?.location_1} ${form.pin_point.value?.location_2}`;
             const handleClickEdit = () => {
               dispatch({
                 type: DetailOrganizationActionEnum.SetCompanyOfficeData,
