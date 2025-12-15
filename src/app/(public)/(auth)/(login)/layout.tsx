@@ -40,7 +40,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
     <main
       className={clsx(
         "grid grid-rows-1 grid-cols-1 2xl:grid-cols-[776px_1fr] xl:grid-cols-[776px_1fr] lg:grid-cols-[776px_1fr] place-content-center place-items-center",
-        "w-full h-full min-h-[100vh]",
+        "w-full h-full min-h-screen",
         "relative"
       )}
     >
@@ -72,18 +72,18 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
         />
         <div
           className={clsx(
-            "absolute left-[60px] bottom-[36px]",
-            "grid grid-cols-1 place-content-start place-items-start gap-[0rem]"
+            "absolute left-15 bottom-9",
+            "grid grid-cols-1 place-content-start place-items-start gap-0"
           )}
         >
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0rem]"
+              "grid grid-cols-1 place-content-start place-items-start gap-0"
             )}
           >
             <h1
               className={clsx(
-                "text-[#333FFF] xl:text-[104.6px] text-[80px] font-bold leading-[96px]"
+                "text-[#333FFF] xl:text-[104.6px] text-[80px] font-bold leading-24"
               )}
             >
               {"Simply"}

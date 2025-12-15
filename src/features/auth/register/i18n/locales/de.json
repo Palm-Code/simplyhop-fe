@@ -1,145 +1,121 @@
 {
-  "background": {
-    "image_url": "/images/auth/auth-bg.png"
+  "header": {
+    "logo": {
+      "image": {
+        "src": "/logo/simply_hop.svg",
+        "width": 52,
+        "height": 52,
+        "alt": "logo",
+        "priority": true
+      },
+      "href": "/"
+    }
   },
-  "general": {
-    "form": {
-      "header": {
-        "logo": {
-          "src": "/logo/simply_hop.svg",
-          "width": 170,
-          "height": 170,
-          "alt": "logo",
-          "priority": true
-        }
-      },
-      "title": "Kostenlos registrieren",
-      "input": {
-        "email": {
-          "inputProps": {
-            "id": "email",
-            "placeholder": " "
-          },
-          "labelProps": {
-            "id": "email",
-            "children": "Email",
-            "required": false
-          }
-        },
-        "password": {
-          "inputProps": {
-            "id": "password",
-            "placeholder": " ",
-            "type": "password"
-          },
-          "labelProps": {
-            "id": "password",
-            "children": "Passwort",
-            "required": false
-          }
-        }
-      },
+  "organization": {
+    "title": "Unternehmen auswählen",
+    "login": {
+      "message": "Sie haben bereits ein Konto?  ",
       "cta": {
-        "register": {
-          "children": "Nächster Schritt"
-        }
+        "href": "/",
+        "children": "Hier registrieren"
+      }
+    },
+    "search": {
+      "label": "Unternehmen suchen"
+    },
+    "list": {
+      "loading": {
+        "message": "Einen Moment, wir sind gleich soweit..."
       },
-      "account": {
-        "label": "Du hast bereits ein Konto? ",
-        "cta": {
-          "children": "Login",
-          "href": "/login"
-        }
+      "empty_data": {
+        "message": "Oops! Noch keine Inhalte verfügbar."
       },
-      "social_media": {
-        "label": "Oder melde dich über die sozialen Medien an",
-        "items": [
-          {
-            "id": "google",
-            "icon": "Google"
-          }
-        ]
-      },
-      "privacy_policy": {
-        "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",
-        "credit": {
-          "logo": {
-            "src": "/logo/simply_hop.svg",
-            "width": 52,
-            "height": 14,
-            "alt": "logo",
-            "quality": 100
-          },
-          "message": "Alle Rechte vorbehalten"
-        }
+      "empty_search": {
+        "message": "Ups! Wir konnten keine Daten finden..."
+      }
+    },
+    "card": {
+      "cta": {
+        "children": "Auswahlen"
       }
     }
   },
-  "password_setup": {
-    "form": {
-      "header": {
-        "logo": {
-          "src": "/logo/simply_hop.svg",
-          "width": 170,
-          "height": 170,
-          "alt": "logo",
-          "priority": true
-        }
+  "form": {
+    "title": "Registrierung bestätigen",
+    "cta": {
+      "back": {
+        "children": "Zurück"
       },
-      "title": "Passwort festlegen",
-      "input": {
-        "email": {
-          "inputProps": {
-            "id": "email",
-            "placeholder": " ",
-            "disabled": true
-          },
-          "labelProps": {
-            "id": "email",
-            "children": "Email",
-            "required": false
-          }
-        },
-        "password": {
-          "inputProps": {
-            "id": "password",
-            "placeholder": " ",
-            "type": "password"
-          },
-          "labelProps": {
-            "id": "password",
-            "children": "Passwort",
-            "required": false
-          }
-        },
-        "confirm_password": {
-          "inputProps": {
-            "id": "confirm_password",
-            "placeholder": " ",
-            "type": "password"
-          },
-          "labelProps": {
-            "id": "confirm_password",
-            "children": "Passwort bestätigen",
-            "required": false
-          }
-        }
+      "save": {
+        "children": "Speichern"
+      }
+    },
+    "organization": {
+      "inputProps": {
+        "id": "organization",
+        "placeholder": " ",
+        "type": "organization"
       },
+      "labelProps": {
+        "id": "organization",
+        "children": "Unternehmen",
+        "required": true
+      }
+    },
+    "email": {
+      "inputProps": {
+        "id": "email",
+        "placeholder": " ",
+        "type": "email"
+      },
+      "labelProps": {
+        "id": "email",
+        "children": "E-Mail",
+        "required": true
+      }
+    },
+    "company_code": {
+      "inputProps": {
+        "id": "company_code",
+        "placeholder": " ",
+        "type": "company_code"
+      },
+      "labelProps": {
+        "id": "company_code",
+        "children": "Firmen-Code",
+        "required": true
+      }
+    }
+  },
+  "otp_form": {
+    "title": "Bestätigen Sie Ihre Anmeldung",
+    "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Geben Sie den Code hier ein oder klicken Sie auf den Button in der E-Mail, um fortzufahren.",
+    "description_2": "Wenn Sie die E-Mail nicht sehen, überprüfen Sie bitte Ihren Spam- oder Junk-Ordner.",
+    "input": {
+      "otp": {
+        "inputProps": {
+          "id": "otp",
+          "placeholder": " "
+        }
+      }
+    },
+    "cta": {
+      "verify_code": {
+        "children": "Code bestätigen"
+      },
+      "back": {
+        "children": "Zurück"
+      }
+    },
+    "request_otp": {
+      "description": "Sie haben keinen Code erhalten?",
       "cta": {
-        "register": {
-          "children": "Nächster Schritt"
-        }
-      },
-      "privacy_policy": {
-        "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",
-        "credit": {
-          "logo": {
-            "src": "/logo/simply_hop.svg",
-            "width": 52,
-            "height": 14,
-            "alt": "logo"
-          },
-          "message": "Alle Rechte vorbehalten"
+        "request_otp": {
+          "children": "Fordern Sie einen neuen Code an."
+        },
+
+        "login": {
+          "children": "Code bestätigen"
         }
       }
     }

@@ -1,3 +1,3 @@
-export * from "./usePostAuthLogin.register.auth";
-export * from "./usePostAuthRegister.register.auth";
-export * from "./useGetSocialRedirect.register.auth";
+export * from "./usePostAuthRequestOTPRegister.register.auth";
+export * from "./usePostAuthVerifyOTP.register.auth";
+export * from "./useGetOrganizationList.register.auth";

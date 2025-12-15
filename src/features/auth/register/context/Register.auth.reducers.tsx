@@ -1,18 +1,19 @@
 import {
   RegisterAuthActionEnum,
   RegisterAuthActions,
-  RegisterAuthGeneral,
-  RegisterAuthPasswordSetup,
-  RegisterAuthState,
+  RegisterAuthStep,
+  RegisterAuthForm,
+  RegisterAuthOTPForm,
+  RegisterAuthOrganization,
 } from "./Register.auth.types";
 
-// State
-export const RegisterAuthStateReducers = (
-  state: RegisterAuthState,
+// Step
+export const RegisterAuthStepReducers = (
+  state: RegisterAuthStep,
   action: RegisterAuthActions
 ) => {
   switch (action.type) {
-    case RegisterAuthActionEnum.SetStateData:
+    case RegisterAuthActionEnum.SetStepData:
       return action.payload;
 
     default:
@@ -20,13 +21,42 @@ export const RegisterAuthStateReducers = (
   }
 };
 
-// General
-export const RegisterAuthGeneralReducers = (
-  state: RegisterAuthGeneral,
+// Organization
+export const RegisterAuthOrganizationReducers = (
+  state: RegisterAuthOrganization,
   action: RegisterAuthActions
 ) => {
   switch (action.type) {
-    case RegisterAuthActionEnum.SetGeneralData:
+    case RegisterAuthActionEnum.SetOrganizationData:
+      return action.payload;
+    case RegisterAuthActionEnum.SetOrganizationDataData:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case RegisterAuthActionEnum.SetOrganizationPaginationData:
+      return {
+        ...state,
+        pagination: action.payload,
+      };
+    case RegisterAuthActionEnum.SetOrganizationLoadingData:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+// Form
+export const RegisterAuthFormReducers = (
+  state: RegisterAuthForm,
+  action: RegisterAuthActions
+) => {
+  switch (action.type) {
+    case RegisterAuthActionEnum.SetFormData:
       return action.payload;
 
     default:
@@ -34,13 +64,13 @@ export const RegisterAuthGeneralReducers = (
   }
 };
 
-// PasswordSetup
-export const RegisterAuthPasswordSetupReducers = (
-  state: RegisterAuthPasswordSetup,
+// OTPForm
+export const RegisterAuthOTPFormReducers = (
+  state: RegisterAuthOTPForm,
   action: RegisterAuthActions
 ) => {
   switch (action.type) {
-    case RegisterAuthActionEnum.SetPasswordSetupData:
+    case RegisterAuthActionEnum.SetOTPFormData:
       return action.payload;
 
     default:

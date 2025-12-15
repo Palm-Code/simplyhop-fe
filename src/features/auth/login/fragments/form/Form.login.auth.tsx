@@ -9,6 +9,7 @@ import { Button } from "@/core/components/button";
 import { getError } from "@/core/utils/form";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { usePostAuthRequestOTP } from "../../react_query/hooks";
+import Link from "next/link";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
@@ -60,10 +61,18 @@ export const FormLoginAuth = () => {
           "w-full"
         )}
       >
-        <h1 className={clsx("text-[#232323] dark:text-white text-[1.5rem] font-bold")}>
+        <h1
+          className={clsx(
+            "text-[#232323] dark:text-white text-[1.5rem] font-bold"
+          )}
+        >
           {dictionaries.form.title}
         </h1>
-        <p className={clsx("text-[#232323] dark:text-[#E9E6E6] text-[0.75rem] font-light")}>
+        <p
+          className={clsx(
+            "text-[#232323] dark:text-[#E9E6E6] text-base font-light"
+          )}
+        >
           {dictionaries.form.description}
         </p>
       </div>
@@ -100,6 +109,24 @@ export const FormLoginAuth = () => {
           disabled={isSubmitLoading}
           error={state.form.email.error?.name}
         />
+
+        <div className={clsx("flex items-center justify-start", "w-full")}>
+          <span
+            className={clsx(
+              "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal"
+            )}
+          >
+            {dictionaries.form.register.message}{" "}
+          </span>
+          <Link
+            href={dictionaries.form.register.cta.href}
+            className={clsx(
+              "text-[#249124] dark:text-[#33CC33] text-base font-normal underline"
+            )}
+          >
+            {dictionaries.form.register.cta.children}
+          </Link>
+        </div>
 
         <Button
           aria-label={dictionaries.form.cta.login.children}

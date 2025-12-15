@@ -5,37 +5,46 @@ import {
   RegisterAuthInitialStateType,
 } from "./Register.auth.types";
 import {
-  RegisterAuthStateReducers,
-  RegisterAuthGeneralReducers,
-  RegisterAuthPasswordSetupReducers,
+  RegisterAuthStepReducers,
+  RegisterAuthOrganizationReducers,
+  RegisterAuthFormReducers,
+  RegisterAuthOTPFormReducers,
 } from "./Register.auth.reducers";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 const initialState: RegisterAuthInitialStateType = {
-  state: {
-    step: "general",
+  step: {
+    name: "organization",
     // step: "password_setup",
   },
-  general: {
-    email: {
-      value: "",
-      error: null,
+  organization: {
+    data: [],
+    pagination: {
+      current: PAGINATION.NUMBER,
+      last: null,
+    },
+    loading: {
+      is_fetching: true,
+      is_loading: true,
     },
   },
-  password_setup: {
+  form: {
+    organization: null,
     email: {
       value: "",
+      error: null,
     },
-    password: {
+    company_code: {
       value: "",
       error: null,
     },
-    confirm_password: {
+    error: null,
+  },
+  otp_form: {
+    otp: {
       value: "",
-      error: null,
     },
-    tnc: {
-      checked: false,
-    },
+    error: null,
   },
 };
 
@@ -48,12 +57,13 @@ const RegisterAuthContext = createContext<{
 });
 
 const mainReducer = (
-  { state, general, password_setup }: RegisterAuthInitialStateType,
+  { step, organization, form, otp_form }: RegisterAuthInitialStateType,
   action: RegisterAuthActions
 ) => ({
-  state: RegisterAuthStateReducers(state, action),
-  general: RegisterAuthGeneralReducers(general, action),
-  password_setup: RegisterAuthPasswordSetupReducers(password_setup, action),
+  step: RegisterAuthStepReducers(step, action),
+  organization: RegisterAuthOrganizationReducers(organization, action),
+  form: RegisterAuthFormReducers(form, action),
+  otp_form: RegisterAuthOTPFormReducers(otp_form, action),
 });
 
 const RegisterAuthProvider = (props: { children: React.ReactNode }) => {

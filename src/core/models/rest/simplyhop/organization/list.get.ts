@@ -1,4 +1,4 @@
-import { Booking, Meta } from "@/core/models/data";
+import { Meta, Organization } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetOrganizationListRequestInterface extends NextApiRequest {
@@ -26,7 +26,7 @@ export interface GetOrganizationListSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
-  data: Booking[];
+  data: Organization[];
 
   redirect: null;
   meta: Meta;

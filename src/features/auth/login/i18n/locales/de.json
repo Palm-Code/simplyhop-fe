@@ -12,8 +12,8 @@
     }
   },
   "form": {
-    "title": "Starten Sie jetzt",
-    "description": "Geben Sie Ihre Unternehmens-E-Mail-Adresse ein, um sich anzumelden.",
+    "title": "Einloggen",
+    "description": "Geben Sie Ihre registrierte E-Mail-Adresse ein, um sich anzumelden.",
     "input": {
       "email": {
         "inputProps": {
@@ -25,6 +25,13 @@
           "children": "E-mail",
           "required": false
         }
+      }
+    },
+    "register": {
+      "message": "Neu bei SimplyHop?",
+      "cta": {
+        "href": "/register",
+        "children": "Hier registrieren"
       }
     },
     "cta": {
