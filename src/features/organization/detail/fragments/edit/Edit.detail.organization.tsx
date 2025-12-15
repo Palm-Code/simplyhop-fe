@@ -10,7 +10,7 @@ import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
-import { usePutOrganizationProfile } from "../../react_query/hooks";
+import { usePostOrganizationPartialUpdate } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { Avatar } from "@/core/components/avatar";
 import { queryClient } from "@/core/utils/react_query";
@@ -26,8 +26,10 @@ export const EditDetailOrganization = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
   const { driver_id } = useParams();
-  const { mutateAsync: putUserProfile, isPending: isPendingPutUserProfile } =
-    usePutOrganizationProfile();
+  const {
+    mutateAsync: postOrganizationPartialUpdate,
+    isPending: isPendingPostOrganizationPartialUpdate,
+  } = usePostOrganizationPartialUpdate();
 
   const isOpen = state.edit.is_open;
   const onClose = () => {
@@ -41,7 +43,7 @@ export const EditDetailOrganization = () => {
   };
 
   const handleClickSave = async () => {
-    const res = await putUserProfile();
+    const res = await postOrganizationPartialUpdate();
     if (!res) return;
     const payload: GetUserProfileIdPayloadRequestInterface = {
       path: {
@@ -66,8 +68,8 @@ export const EditDetailOrganization = () => {
     });
   };
 
-  const isSubmitDisabled = isPendingPutUserProfile;
-  const isSubmitLoading = isPendingPutUserProfile;
+  const isSubmitDisabled = isPendingPostOrganizationPartialUpdate;
+  const isSubmitLoading = isPendingPostOrganizationPartialUpdate;
 
   return (
     <AdaptiveModal
