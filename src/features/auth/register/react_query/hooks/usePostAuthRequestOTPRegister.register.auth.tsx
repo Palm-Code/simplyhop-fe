@@ -21,6 +21,9 @@ export const usePostAuthRequestOTPRegistration = () => {
       const payload: PostAuthRequestOTPRegistrationPayloadRequestInterface = {
         body: {
           email: state.form.email.value,
+          organization_code: !state.form.organization?.organization_code
+            ? undefined
+            : state.form.company_code.value,
         },
       };
       return fetchPostAuthRequestOTPRegistration(payload);
