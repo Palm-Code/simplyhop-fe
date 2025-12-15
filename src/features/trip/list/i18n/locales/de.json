@@ -116,16 +116,16 @@
         "description": "Description"
       },
       "finished": {
-        "title": "Title",
-        "description": "Description"
+        "title": "Reise beenden",
+        "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
       },
       "complete": {
-        "title": "Title",
-        "description": "Description"
+        "title": "Reise beenden",
+        "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
       },
       "archive": {
-        "title": "Title",
-        "description": "Description"
+        "title": "Reise beenden",
+        "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
       },
       "default": {
         "title": "Title",

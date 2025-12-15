@@ -14,6 +14,7 @@ import { RideDetailCard } from "../../../../../core/components/ride_detail_card"
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { CheckIcon, XIcon } from "lucide-react";
+import { UserContext } from "@/core/modules/app/context";
 
 export const RideDetailListTrip = () => {
   const dictionaries = getDictionaries();
@@ -24,6 +25,13 @@ export const RideDetailListTrip = () => {
   const pathname = usePathname();
   const { state, dispatch } = React.useContext(ListTripContext);
   useGetRidesId();
+  const { state: userState } = React.useContext(UserContext);
+  // const isSuperAdmin = userState.profile?.is_super_admin;
+  // const isOrganizationAdmin =
+  //   userState.profile?.role === "admin" && !userState.profile.is_super_admin;
+  const isEmployee = userState.profile?.role === "employee";
+  const isShowPrice = !!userState.profile && isEmployee;
+  const isShowBooking = !!userState.profile && isEmployee;
 
   const filteredData = state.ride.detail;
 
@@ -57,12 +65,9 @@ export const RideDetailListTrip = () => {
 
     const hasParams = params.toString().length > 0;
 
-    router.push(
-      hasParams ? `${pathname}?${params.toString()}` : pathname,
-      {
-        scroll: false,
-      }
-    );
+    router.push(hasParams ? `${pathname}?${params.toString()}` : pathname, {
+      scroll: false,
+    });
   };
 
   const handleClickDeleteRide = () => {
@@ -207,7 +212,7 @@ export const RideDetailListTrip = () => {
                 className={clsx(
                   "block lg:hidden",
                   "w-[1.5rem] h-[1.5rem]",
-                  "text-[#5B5B5B]"
+                  "text-[#5B5B5B] dark:text-[#DADADA]"
                 )}
               />
               <SVGIcon
@@ -215,13 +220,13 @@ export const RideDetailListTrip = () => {
                 className={clsx(
                   "hidden lg:block",
                   "w-[1.5rem] h-[1.5rem]",
-                  "text-[#5B5B5B]"
+                  "text-[#5B5B5B] dark:text-[#DADADA]"
                 )}
               />
             </button>
             <h2
               className={clsx(
-                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
               {title}
@@ -232,7 +237,7 @@ export const RideDetailListTrip = () => {
         {/* body */}
         <AdaptiveModalContent
           className={clsx(
-            "!bg-[white]",
+            "!bg-[white] dark:bg-[#232323]!",
             "!px-[0rem] !py-[0rem]",
             "!gap-[0.5rem]",
             "!max-h-full"
@@ -242,7 +247,7 @@ export const RideDetailListTrip = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full",
-              "bg-[white]",
+              "bg-[white] dark:bg-[#232323]!",
               "px-[1rem] py-[1rem] sm:px-[1rem] sm:py-[1.5rem]",
               "text-[0.75rem] sm:text-[1rem] text-[#767676] font-normal"
             )}
@@ -253,168 +258,179 @@ export const RideDetailListTrip = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full",
-              "bg-[#FAFDF9]",
-              "px-[1rem]"
+              "bg-[#FAFDF9] dark:bg-[#242623]",
+              "p-4"
             )}
           >
             <RideDetailCard {...filteredData} shadow={false} />
           </div>
           {/* Booking */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-              "w-full",
-              "px-[1rem] py-[1rem]",
-              "bg-[white]"
-            )}
-          >
+          {isShowBooking && (
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
-                "w-full"
+                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                "w-full",
+                "px-[1rem] py-[1rem]",
+                "bg-[white] dark:bg-[#232323]"
               )}
             >
-              <p className={clsx("text-[1rem] text-[black] font-semibold")}>
-                {dictionaries.ride_detail.passenger.title}
-              </p>
-              <span
-                className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}
+              <div
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
+                  "w-full"
+                )}
               >
-                {dictionaries.ride_detail.passenger.description}
-              </span>
-            </div>
+                <p
+                  className={clsx(
+                    "text-[1rem] text-[black] dark:text-white font-semibold"
+                  )}
+                >
+                  {dictionaries.ride_detail.passenger.title}
+                </p>
+                <span
+                  className={clsx(
+                    "text-[0.75rem] text-[#5B5B5B] dark:text-[#DADADA] font-normal"
+                  )}
+                >
+                  {dictionaries.ride_detail.passenger.description}
+                </span>
+              </div>
 
-            {!!filteredData.booking.length && (
-              <div className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")} />
-            )}
-
-            <div
-              className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-                "w-full"
+              {!!filteredData.booking.length && (
+                <div className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")} />
               )}
-            >
-              {filteredData.booking.map((item, index) => {
-                const isPresentStatusNotNull =
-                  state.complete_ride_confirmation.confirmed_booking
-                    .map((confirmedItem) => confirmedItem.id)
-                    .includes(item.booking?.id ?? -1);
-                const isPresent =
-                  state.complete_ride_confirmation.confirmed_booking.find(
-                    (confirmedItem) => confirmedItem.id === item.booking?.id
-                  )?.type === "joined";
-                return (
-                  <div
-                    className={clsx(
-                      "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                      "w-full"
-                    )}
-                    key={index}
-                  >
-                    <RideBookingListItem key={index} {...item} />
-                    {isFinishTrip && (
-                      <div
-                        key={`action-${index}`}
-                        className={clsx(
-                          "grid grid-cols-2 place-content-start place-items-start gap-[0.5rem]",
-                          "w-full"
-                        )}
-                      >
-                        <button
-                          className={clsx(
-                            "w-full",
-                            "px-[0.5rem] py-[0.5rem]",
-                            "border border-[#B30606]",
-                            "rounded-[0.375rem]",
-                            "text-[0.75rem] text-[#B30606] font-semibold"
-                          )}
-                          onClick={() =>
-                            handleClickConfirmAbsent({
-                              bookingId: item.booking?.id ?? -1,
-                            })
-                          }
-                        >
-                          {"Nicht anwesend"}
-                        </button>
 
-                        <button
+              <div
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                  "w-full"
+                )}
+              >
+                {filteredData.booking.map((item, index) => {
+                  const isPresentStatusNotNull =
+                    state.complete_ride_confirmation.confirmed_booking
+                      .map((confirmedItem) => confirmedItem.id)
+                      .includes(item.booking?.id ?? -1);
+                  const isPresent =
+                    state.complete_ride_confirmation.confirmed_booking.find(
+                      (confirmedItem) => confirmedItem.id === item.booking?.id
+                    )?.type === "joined";
+                  return (
+                    <div
+                      className={clsx(
+                        "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                        "w-full"
+                      )}
+                      key={index}
+                    >
+                      <RideBookingListItem key={index} {...item} />
+                      {isFinishTrip && (
+                        <div
+                          key={`action-${index}`}
                           className={clsx(
-                            "w-full",
-                            "px-[0.5rem] py-[0.5rem]",
-                            "rounded-[0.375rem]",
-                            "bg-[#33CC33]",
-                            "text-[0.75rem] text-[#232323] font-semibold"
+                            "grid grid-cols-2 place-content-start place-items-start gap-[0.5rem]",
+                            "w-full"
                           )}
-                          onClick={() =>
-                            handleClickConfirmPresent({
-                              bookingId: item.booking?.id ?? -1,
-                            })
-                          }
                         >
-                          {"Anwesend"}
-                        </button>
-                      </div>
-                    )}
-                    {isPresentStatusNotNull && (
-                      <div
-                        className={clsx(
-                          "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                          "w-full"
-                        )}
-                      >
-                        <button
+                          <button
+                            className={clsx(
+                              "w-full",
+                              "px-[0.5rem] py-[0.5rem]",
+                              "border border-[#B30606]",
+                              "rounded-[0.375rem]",
+                              "text-[0.75rem] text-[#B30606] font-semibold"
+                            )}
+                            onClick={() =>
+                              handleClickConfirmAbsent({
+                                bookingId: item.booking?.id ?? -1,
+                              })
+                            }
+                          >
+                            {"Nicht anwesend"}
+                          </button>
+
+                          <button
+                            className={clsx(
+                              "w-full",
+                              "px-[0.5rem] py-[0.5rem]",
+                              "rounded-[0.375rem]",
+                              "bg-[#33CC33]",
+                              "text-[0.75rem] text-[#232323] dark:text-white font-semibold"
+                            )}
+                            onClick={() =>
+                              handleClickConfirmPresent({
+                                bookingId: item.booking?.id ?? -1,
+                              })
+                            }
+                          >
+                            {"Anwesend"}
+                          </button>
+                        </div>
+                      )}
+                      {isPresentStatusNotNull && (
+                        <div
                           className={clsx(
-                            "flex items-center justify-center",
-                            "px-[0.5rem] py-[0.5rem]",
-                            "w-full",
-                            "border",
-                            isPresent ? "border-[#232323]" : "border-[#D85959]",
-                            "rounded-[0.375rem]",
-                            "text-[0.75rem] font-semibold",
-                            isPresent ? "text-[#232323]" : "text-[#D85959]"
+                            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                            "w-full"
                           )}
-                          onClick={() =>
-                            handleClickToggleConfirmation({
-                              bookingId: item.booking?.id ?? -1,
-                            })
-                          }
                         >
-                          {isPresent ? (
-                            <CheckIcon
-                              className={clsx(
-                                "w-[1.25rem] h-[1.25rem]",
-                                "text-[#232323]"
-                              )}
-                            />
-                          ) : (
-                            <XIcon
-                              className={clsx(
-                                "w-[1.25rem] h-[1.25rem]",
-                                "text-[#D85959]"
-                              )}
-                            />
-                          )}
-                          {isPresent ? "Anwesend" : "Nicht anwesend"}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                          <button
+                            className={clsx(
+                              "flex items-center justify-center",
+                              "px-[0.5rem] py-[0.5rem]",
+                              "w-full",
+                              "border",
+                              isPresent
+                                ? "border-[#232323]"
+                                : "border-[#D85959]",
+                              "rounded-[0.375rem]",
+                              "text-[0.75rem] font-semibold",
+                              isPresent ? "text-[#232323]" : "text-[#D85959]"
+                            )}
+                            onClick={() =>
+                              handleClickToggleConfirmation({
+                                bookingId: item.booking?.id ?? -1,
+                              })
+                            }
+                          >
+                            {isPresent ? (
+                              <CheckIcon
+                                className={clsx(
+                                  "w-[1.25rem] h-[1.25rem]",
+                                  "text-[#232323]"
+                                )}
+                              />
+                            ) : (
+                              <XIcon
+                                className={clsx(
+                                  "w-[1.25rem] h-[1.25rem]",
+                                  "text-[#D85959]"
+                                )}
+                              />
+                            )}
+                            {isPresent ? "Anwesend" : "Nicht anwesend"}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Price */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start",
-              "w-full",
-              "px-[1rem] py-[1.5rem]",
-              "bg-[white]"
-            )}
-          >
-            <CarPriceItem {...filteredData.price?.initial} />
-          </div>
+          {isShowPrice && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start",
+                "w-full",
+                "px-[1rem] py-[1.5rem]"
+              )}
+            >
+              <CarPriceItem {...filteredData.price?.initial} />
+            </div>
+          )}
 
           {isFinishTrip && (
             <button
@@ -444,7 +460,6 @@ export const RideDetailListTrip = () => {
                 "grid grid-cols-1 place-content-center place-items-center",
                 "w-full",
                 "px-[1rem] py-[1.5rem]",
-                "bg-[white]",
                 "text-[#C50707] text-[0.75rem] font-medium",
                 "cursor-pointer"
               )}

@@ -26,7 +26,7 @@ export const RideFilterListTrip = () => {
   return (
     <div
       className={clsx(
-        "flex items-center justify-start gap-[0.5rem]",
+        "flex items-center justify-start gap-2",
         "w-full",
         "overflow-auto"
       )}
