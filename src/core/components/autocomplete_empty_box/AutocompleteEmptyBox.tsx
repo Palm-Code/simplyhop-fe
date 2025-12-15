@@ -12,7 +12,7 @@ export const AutocompleteEmptyBox = forwardRef<
       className={clsx(
         "relative cursor-default select-none",
         "p-[1rem]",
-        "text-[0.875rem] text-[#201E2C] font-normal",
+        "text-[0.875rem] text-[#201E2C] dark:text-white font-normal",
         props.className
       )}
     >
