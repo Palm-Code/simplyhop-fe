@@ -69,8 +69,10 @@ export const useListDriverTable = () => {
                   )}
                 >
                   {formatDisplayName({
-                    first_name: cellProps.row.original.user.first_name,
-                    email: cellProps.row.original.user.email,
+                    first_name: !cellProps.row.original.user?.last_name
+                      ? cellProps.row.original.user?.first_name
+                      : `${cellProps.row.original.user.first_name} ${cellProps.row.original.user.last_name}`,
+                    email: state.user_profile.data?.email,
                   })}
                 </p>
               </div>

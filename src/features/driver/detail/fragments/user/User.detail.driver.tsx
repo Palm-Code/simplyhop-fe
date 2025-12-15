@@ -108,10 +108,17 @@ export const UserDetailDriver = () => {
             ? "-"
             : state.user.data.last_name,
         },
-
         city: {
-          label: dictionaries.user.information.city.name,
-          value: !state.user.data?.city?.length ? "-" : state.user.data.city,
+          label: dictionaries.user.information.address.name,
+          value:
+            !state.user.data?.organization?.address?.length &&
+            !state.user.data?.organization?.address_line_2?.length
+              ? "-"
+              : !state.user.data?.organization?.address_line_2?.length
+              ? state.user.data?.organization?.address ?? ""
+              : !state.user.data?.organization?.address?.length
+              ? state.user.data?.organization?.address_line_2 ?? ""
+              : `${state.user.data?.organization?.address} ${state.user.data?.organization?.address_line_2}`,
         },
       }}
     />

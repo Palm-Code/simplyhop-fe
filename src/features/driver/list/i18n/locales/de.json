@@ -70,8 +70,8 @@
           "icon": "Mail"
         },
         {
-          "id": "city",
-          "name": "Stadt",
+          "id": "company_address",
+          "name": "Hauptadresse",
           "icon": "MapPin"
         },
         {

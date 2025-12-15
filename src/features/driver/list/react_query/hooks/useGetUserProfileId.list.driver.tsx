@@ -17,6 +17,9 @@ export const useGetUserProfileId = () => {
     path: {
       id: state.user_profile.user_id ?? "-1",
     },
+    params: {
+      include: "organization",
+    },
   };
   const query = useQuery<
     GetUserProfileIdSuccessResponseInterface,

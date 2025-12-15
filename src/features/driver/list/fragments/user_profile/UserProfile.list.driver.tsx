@@ -101,8 +101,16 @@ export const UserProfileListDriver = () => {
         value = state.user_profile.data?.email ?? "-";
         break;
       }
-      case "city": {
-        value = state.user_profile.data?.city ?? "-";
+      case "company_address": {
+        value =
+          !state.user_profile.data?.organization?.address?.length &&
+          !state.user_profile.data?.organization?.address_line_2?.length
+            ? "-"
+            : !state.user_profile.data?.organization?.address_line_2?.length
+            ? state.user_profile.data?.organization?.address ?? ""
+            : !state.user_profile.data?.organization?.address?.length
+            ? state.user_profile.data?.organization?.address_line_2 ?? ""
+            : `${state.user_profile.data?.organization?.address} ${state.user_profile.data?.organization?.address_line_2}`;
         break;
       }
       case "gender": {

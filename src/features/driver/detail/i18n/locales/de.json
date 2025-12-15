@@ -42,8 +42,8 @@
       "gender": {
         "name": "Geschlecht"
       },
-      "city": {
-        "name": "Stadt"
+      "address": {
+        "name": "Hauptadresse"
       },
       "phonenumber": {
         "name": "Telefon-Nummer"
