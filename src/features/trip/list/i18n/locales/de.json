@@ -108,12 +108,12 @@
   "ride_detail": {
     "title": {
       "upcoming": {
-        "title": "Title",
-        "description": "Description"
+        "title": "Reise Bevorstehend",
+        "description": ""
       },
       "in_progress": {
-        "title": "Title",
-        "description": "Description"
+        "title": "Reise In Bearbeitung",
+        "description": ""
       },
       "finished": {
         "title": "Reise beenden",

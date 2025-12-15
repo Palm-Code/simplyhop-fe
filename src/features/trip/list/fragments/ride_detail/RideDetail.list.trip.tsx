@@ -240,17 +240,20 @@ export const RideDetailListTrip = () => {
             "!max-h-full"
           )}
         >
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-              "w-full",
-              "bg-[white] dark:bg-[#232323]!",
-              "px-[1rem] py-[1rem] sm:px-[1rem] sm:py-[1.5rem]",
-              "text-[0.75rem] sm:text-[1rem] text-[#767676] font-normal"
-            )}
-          >
-            {description}
-          </div>
+          {!!description.length && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                "w-full",
+                "bg-[white] dark:bg-[#232323]!",
+                "px-[1rem] py-[1rem] sm:px-[1rem] sm:py-[1.5rem]",
+                "text-[0.75rem] sm:text-[1rem] text-[#767676] font-normal"
+              )}
+            >
+              {description}
+            </div>
+          )}
+
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
