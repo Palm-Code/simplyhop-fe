@@ -31,8 +31,8 @@ export const DetailOrganizationReactQueryKey = {
       [payload] as const,
     ];
   },
-  PutOrganizationProfile: () => {
-    return ["DetailOrganizationReactQueryKey.PutOrganizationProfile"];
+  PostOrganizationPartialUpdate: () => {
+    return ["DetailOrganizationReactQueryKey.PostOrganizationPartialUpdate"];
   },
   PatchOrganizationDeactivate: () => {
     return ["DetailOrganizationReactQueryKey.PatchOrganizationDeactivate"];

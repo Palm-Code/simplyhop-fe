@@ -1,4 +1,4 @@
-export * from "./profile.put";
+export * from "./partial_update.post";
 export * from "./activate.patch";
 export * from "./deactivate.patch";
 export * from "./create.post";
