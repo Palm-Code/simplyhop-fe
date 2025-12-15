@@ -3,8 +3,8 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { useContext, useEffect, useRef, useMemo, useState } from "react";
 import { ENVIRONMENTS } from "@/core/environments";
 import {
-  CreateOrganizationActionEnum,
-  CreateOrganizationContext,
+  DetailOrganizationActionEnum,
+  DetailOrganizationContext,
 } from "../../context";
 import { getDictionaries } from "../../i18n";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
@@ -18,15 +18,15 @@ import {
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 import clsx from "clsx";
-import { PlaceAutocomplete } from "../../../../../core/components/place_autocomplete";
-import { ResetLocationButton } from "../../../../../core/components/reset_location_button";
-import { AddressInfoBox } from "../../../../../core/components/address_info_box";
 import { Button } from "@/core/components/button";
+import { ResetLocationButton } from "@/core/components/reset_location_button";
+import { AddressInfoBox } from "@/core/components/address_info_box";
+import { PlaceAutocomplete } from "@/core/components/place_autocomplete";
 
-export const PinPointMapCreateOrganization = () => {
+export const PinPointMapDetailOrganization = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
   const dictionaries = getDictionaries();
-  const { state, dispatch } = useContext(CreateOrganizationContext);
+  const { state, dispatch } = useContext(DetailOrganizationContext);
   const { isLg } = useTailwindBreakpoint();
   const { location: userLocation, error: userLocationError } = useGeolocation();
   const { isDarkMode } = useContext(ThemeContext);
@@ -121,7 +121,7 @@ export const PinPointMapCreateOrganization = () => {
 
         // Update context with new location
         dispatch({
-          type: CreateOrganizationActionEnum.SetPinPointData,
+          type: DetailOrganizationActionEnum.SetPinPointData,
           payload: {
             ...state.pin_point,
             location: {
@@ -145,7 +145,7 @@ export const PinPointMapCreateOrganization = () => {
     } catch {
       // Update coordinate only if geocoding fails
       dispatch({
-        type: CreateOrganizationActionEnum.SetPinPointData,
+        type: DetailOrganizationActionEnum.SetPinPointData,
         payload: {
           ...state.pin_point,
           location: {
@@ -170,7 +170,7 @@ export const PinPointMapCreateOrganization = () => {
       setHasMovedFromInitial(false);
       // setAddressInfo(null);
       dispatch({
-        type: CreateOrganizationActionEnum.SetPinPointData,
+        type: DetailOrganizationActionEnum.SetPinPointData,
         payload: {
           ...state.pin_point,
           location: {
@@ -252,7 +252,7 @@ export const PinPointMapCreateOrganization = () => {
 
     // Update context with new location
     dispatch({
-      type: CreateOrganizationActionEnum.SetPinPointData,
+      type: DetailOrganizationActionEnum.SetPinPointData,
       payload: {
         ...state.pin_point,
         location: {
@@ -289,7 +289,7 @@ export const PinPointMapCreateOrganization = () => {
         ? COORDINATE.germany
         : userLocation;
       dispatch({
-        type: CreateOrganizationActionEnum.SetPinPointData,
+        type: DetailOrganizationActionEnum.SetPinPointData,
         payload: {
           ...state.pin_point,
           map: {
@@ -380,7 +380,7 @@ export const PinPointMapCreateOrganization = () => {
 
           // Update context with new location
           dispatch({
-            type: CreateOrganizationActionEnum.SetPinPointData,
+            type: DetailOrganizationActionEnum.SetPinPointData,
             payload: {
               ...state.pin_point,
               location: {
@@ -438,7 +438,7 @@ export const PinPointMapCreateOrganization = () => {
     if (id === null) return;
 
     dispatch({
-      type: CreateOrganizationActionEnum.SetCompanyOfficeData,
+      type: DetailOrganizationActionEnum.SetCompanyOfficeData,
       payload: {
         ...state.company_office,
         form: state.company_office.form.map((form, formIndex) => {
@@ -464,7 +464,7 @@ export const PinPointMapCreateOrganization = () => {
       },
     });
     dispatch({
-      type: CreateOrganizationActionEnum.SetPinPointData,
+      type: DetailOrganizationActionEnum.SetPinPointData,
       payload: {
         is_open: false,
         index: null,

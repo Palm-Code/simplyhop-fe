@@ -244,7 +244,7 @@ export const CompanyOfficeFormCreateOrganization = () => {
                   "flex items-start justify-between gap-4",
                   "w-full",
                   "px-4 py-4",
-                  "bg-[#FAFAFA] dark:bg-[#FAFAFA]",
+                  "bg-[#FAFAFA] dark:bg-[#232323]",
                   "rounded-lg"
                 )}
               >
@@ -346,13 +346,17 @@ export const CompanyOfficeFormCreateOrganization = () => {
               },
             });
           };
-          const handleClickDelete = () => {
+          const handleClickCancel = () => {
             dispatch({
-              type: CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData,
+              type: CreateOrganizationActionEnum.SetCompanyOfficeData,
               payload: {
-                ...state.pin_point_delete_confirmation,
-                is_open: true,
-                index: formIndex,
+                ...state.company_office,
+                form: state.company_office.form.map((item, index) => {
+                  return {
+                    ...item,
+                    mode: index === formIndex ? "view" : item.mode,
+                  };
+                }),
               },
             });
           };
@@ -484,9 +488,9 @@ export const CompanyOfficeFormCreateOrganization = () => {
                       "text-[#B30606] dark:text-[#B30606] text-base font-semibold",
                       "cursor-pointer"
                     )}
-                    onClick={handleClickDelete}
+                    onClick={handleClickCancel}
                   >
-                    {dictionaries.company_office.cta.delete.children}
+                    {dictionaries.company_office.cta.cancel.children}
                   </button>
                 )}
 

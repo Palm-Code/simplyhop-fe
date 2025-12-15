@@ -155,7 +155,7 @@
       "save": {
         "children": "Speichern"
       },
-      "delete": {
+      "cancel": {
         "children": "Abbrechen"
       }
     },

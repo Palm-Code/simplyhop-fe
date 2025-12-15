@@ -172,6 +172,7 @@ export const useGetOrganizationId = () => {
                         : null,
                   },
                   mode: "view",
+                  id: item.id,
                 };
               }) ?? [],
         },

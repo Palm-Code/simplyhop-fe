@@ -155,6 +155,7 @@ export interface DetailOrganizationCompanyOffice {
       } | null;
     };
     mode: "initial" | "edit" | "view";
+    id?: number;
   }[];
 }
 
