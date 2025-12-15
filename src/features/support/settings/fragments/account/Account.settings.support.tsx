@@ -8,11 +8,15 @@ import {
 } from "../../context";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserContext } from "@/core/modules/app/context";
 
 export const AccountSettingsSupport = () => {
   const dictionaries = getDictionaries();
   const router = useRouter();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
+  const { state: userState } = React.useContext(UserContext);
+  const isEmployee = userState.profile?.role === "employee";
+  const isAccountShowed = isEmployee;
 
   const handleClickList = (id: string) => {
     if (id === "block") {
@@ -108,61 +112,63 @@ export const AccountSettingsSupport = () => {
       </div>
 
       {/* account */}
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem] lg:gap-[1.5rem]",
-          "w-full"
-        )}
-      >
-        <h2
-          className={clsx(
-            "text-[#232323] dark:text-white text-[1.5rem] font-bold"
-          )}
-        >
-          {dictionaries.account.title}
-        </h2>
+      {isAccountShowed && (
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem] lg:gap-[0.25rem]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem] lg:gap-[1.5rem]",
             "w-full"
           )}
         >
+          <h2
+            className={clsx(
+              "text-[#232323] dark:text-white text-[1.5rem] font-bold"
+            )}
+          >
+            {dictionaries.account.title}
+          </h2>
           <div
             className={clsx(
-              "grid grid-cols-1 items-start content-start justify-between justify-items-start gap-[0.25rem]",
+              "grid grid-cols-1 lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem] lg:gap-[0.25rem]",
               "w-full"
             )}
           >
-            <p
+            <div
               className={clsx(
-                "text-[#5B5B5B] dark:text-[#DADADA] text-[1rem] font-medium"
+                "grid grid-cols-1 items-start content-start justify-between justify-items-start gap-[0.25rem]",
+                "w-full"
               )}
             >
-              {dictionaries.account.detail.name}
-            </p>
-            <span
-              className={clsx(
-                "text-[#979797] dark:text-[#C3C3C3] text-[0.875rem] font-normal"
-              )}
-            >
-              {dictionaries.account.detail.description}
-            </span>
-          </div>
+              <p
+                className={clsx(
+                  "text-[#5B5B5B] dark:text-[#DADADA] text-[1rem] font-medium"
+                )}
+              >
+                {dictionaries.account.detail.name}
+              </p>
+              <span
+                className={clsx(
+                  "text-[#979797] dark:text-[#C3C3C3] text-[0.875rem] font-normal"
+                )}
+              >
+                {dictionaries.account.detail.description}
+              </span>
+            </div>
 
-          <button
-            aria-label={dictionaries.account.cta.deactivate.children}
-            name={dictionaries.account.cta.deactivate.children}
-            className={clsx(
-              "px-[0rem] py-[1rem] lg:px-[1.5rem] lg:py-[1rem]",
-              "text-[#B30606] text-[0.875rem] font-medium",
-              "cursor-pointer"
-            )}
-            onClick={handleClickDeactivateAccount}
-          >
-            {dictionaries.account.cta.deactivate.children}
-          </button>
+            <button
+              aria-label={dictionaries.account.cta.deactivate.children}
+              name={dictionaries.account.cta.deactivate.children}
+              className={clsx(
+                "px-[0rem] py-[1rem] lg:px-[1.5rem] lg:py-[1rem]",
+                "text-[#B30606] text-[0.875rem] font-medium",
+                "cursor-pointer"
+              )}
+              onClick={handleClickDeactivateAccount}
+            >
+              {dictionaries.account.cta.deactivate.children}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
