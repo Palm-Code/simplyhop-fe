@@ -26,12 +26,9 @@ export const RideDetailListTrip = () => {
   const { state, dispatch } = React.useContext(ListTripContext);
   useGetRidesId();
   const { state: userState } = React.useContext(UserContext);
-  // const isSuperAdmin = userState.profile?.is_super_admin;
-  // const isOrganizationAdmin =
-  //   userState.profile?.role === "admin" && !userState.profile.is_super_admin;
   const isEmployee = userState.profile?.role === "employee";
-  const isShowPrice = !!userState.profile && isEmployee;
-  const isShowBooking = !!userState.profile && isEmployee;
+  const isShowPrice = isEmployee;
+  const isShowBooking = isEmployee;
 
   const filteredData = state.ride.detail;
 
