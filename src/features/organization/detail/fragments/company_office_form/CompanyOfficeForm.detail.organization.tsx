@@ -244,7 +244,7 @@ export const CompanyOfficeFormDetailOrganization = () => {
                   "flex items-start justify-between gap-4",
                   "w-full",
                   "px-4 py-4",
-                  "bg-[#FAFAFA] dark:bg-[#232323]",
+                  "bg-[#FAFAFA] dark:bg-[#292929]",
                   "rounded-lg"
                 )}
               >

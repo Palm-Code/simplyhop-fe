@@ -99,7 +99,45 @@ export const EditDetailOrganization = () => {
     });
   };
 
-  const isSubmitDisabled = isPendingPostOrganizationPartialUpdate;
+  const isCompanyDataValid =
+    !state.company_data.form.admin_email.error &&
+    !!state.company_data.form.admin_email.value.length &&
+    !state.company_data.form.telephone.error &&
+    !!state.company_data.form.telephone.value.length &&
+    !state.company_data.form.responsible_person.first_name.error &&
+    !!state.company_data.form.responsible_person.first_name.value.length &&
+    !state.company_data.form.responsible_person.last_name.error &&
+    !!state.company_data.form.responsible_person.last_name.value.length &&
+    !state.company_data.form.company_name.error &&
+    !!state.company_data.form.company_name.value.length &&
+    !!state.company_data.form.company_type.selected &&
+    state.company_data.form.company_type.selected.id === "domain"
+      ? !!state.company_data.form.domain.value.length &&
+        !state.company_data.form.domain.error
+      : !!state.company_data.form.company_code.value.length;
+  const completedCompanyOffice = state.company_office.form.filter(
+    (item) => item.mode === "view"
+  );
+  const isCompanyOfficeValid =
+    !!completedCompanyOffice.length &&
+    completedCompanyOffice.reduce((acc, item) => {
+      return (
+        acc &&
+        !!item.address_name.value.length &&
+        !item.address_name.error &&
+        !!item.address_1.value.length &&
+        !item.address_1.error &&
+        !!item.zip_code.value.length &&
+        !item.zip_code.error &&
+        !!item.city.value.length &&
+        !item.city.error &&
+        !!item.pin_point
+      );
+    }, true);
+  const isSubmitDisabled =
+    !isCompanyDataValid ||
+    !isCompanyOfficeValid ||
+    isPendingPostOrganizationPartialUpdate;
   const isSubmitLoading = isPendingPostOrganizationPartialUpdate;
 
   return (
