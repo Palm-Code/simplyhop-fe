@@ -26,7 +26,8 @@ export const RideTripContainer = () => {
           "bg-[#FAFAFA] dark:bg-[#292929]",
           "w-full",
           "rounded-2xl",
-          "p-4"
+          "p-4",
+          "grid grid-cols-1 place-content-start place-items-start gap-4"
         )}
       >
         <ListTripProvider>
