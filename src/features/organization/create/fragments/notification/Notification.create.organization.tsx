@@ -73,7 +73,7 @@ export const NotificationCreateOrganization = () => {
             <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
               Bereit für deine erste Fahrt? Die nächsten Schritte zeigen dir,
               wie du deine Route planst, Fahrer findest und ganz einfach
-              loshüpfst. Viel Spaß beim Entdecken – los geht’s!
+              startest. Viel Spaß beim Entdecken – los geht’s!
             </p>
 
             <button
