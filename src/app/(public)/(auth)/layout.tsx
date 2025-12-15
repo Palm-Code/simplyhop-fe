@@ -39,7 +39,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main
       className={clsx(
-        "grid grid-rows-1 grid-cols-1 2xl:grid-cols-2 xl:grid-cols-[838px_1fr] lg:grid-cols-2 place-content-center place-items-center",
+        "grid grid-rows-1 grid-cols-1 2xl:grid-cols-[776px_1fr] xl:grid-cols-[776px_1fr] lg:grid-cols-[776px_1fr] place-content-center place-items-center",
         "w-full h-full min-h-[100vh]",
         "relative"
       )}
@@ -54,10 +54,10 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
         )}
       >
         <Image
-          src={"/images/auth/auth-bg-portrait.png"}
+          src={"/images/auth/new-auth-bg-portrait.png"}
           alt="login"
-          width={1046}
-          height={597}
+          width={776}
+          height={950}
           priority
           quality={100}
           className={clsx(
@@ -67,7 +67,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           )}
           style={{
             background:
-              "linear-gradient(180deg, rgba(7, 37, 0, 0.03) 34.57%, #202D1C 137.32%)",
+              "linear-gradient(180deg, rgba(7, 37, 0, 0.03) 34.57%, #020601 103.67%)",
           }}
         />
         <div
