@@ -61,16 +61,30 @@
     ]
   },
   "tab": {
-    "items": [
-      {
-        "id": "ride",
-        "name": "Angebotenen Fahrten"
-      },
-      {
-        "id": "book",
-        "name": "Gebuchte Fahrten"
-      }
-    ]
+    "employee": {
+      "items": [
+        {
+          "id": "ride",
+          "name": "Meine angebotenen Fahrten"
+        },
+        {
+          "id": "book",
+          "name": "Meine Fahrten als Mitfahrer"
+        }
+      ]
+    },
+    "admin": {
+      "items": [
+        {
+          "id": "ride",
+          "name": "Angebotenen Fahrten"
+        },
+        {
+          "id": "book",
+          "name": "Gebuchte Fahrten"
+        }
+      ]
+    }
   },
   "filter": {
     "ride": {
