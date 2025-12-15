@@ -5,7 +5,6 @@ import { HeaderDriverTrip } from "../fragments/header";
 import { ListTripProvider } from "../../list/context";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
 import { NavigationDriverTrip } from "../fragments/navigation";
-import { SearchDriverTrip } from "../fragments/search";
 import { TabListTrip } from "../../list/fragments/tab";
 import { RideFilterListTrip } from "../../list/fragments/ride_filter";
 import { SectionListTrip } from "../../list/fragments/section";
@@ -23,7 +22,6 @@ export const DriverTripContainer = () => {
       <HeaderDriverTrip />
       <div className={clsx("flex items-center justify-between", "w-full")}>
         <NavigationDriverTrip />
-        <SearchDriverTrip />
       </div>
       <ListTripProvider>
         <TabListTrip />

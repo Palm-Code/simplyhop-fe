@@ -1,11 +1,10 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { HeaderOrganizationTrip } from "../fragments/header";
 import { ListTripProvider } from "../../list/context";
 import { AlertApp } from "@/core/modules/app/fragments/alert";
 import { NavigationOrganizationTrip } from "../fragments/navigation";
-import { SearchOrganizationTrip } from "../fragments/search";
 import { RideFilterListTrip } from "../../list/fragments/ride_filter";
 import { RideSectionListTrip } from "../../list/fragments/ride_section";
 import { useGetDashboardSuperAdminPerOrganizationId } from "../react_query/hooks";
@@ -22,7 +21,6 @@ export const OrganizationTripContainer = () => {
       <HeaderOrganizationTrip />
       <div className={clsx("flex items-center justify-between", "w-full")}>
         <NavigationOrganizationTrip />
-        <SearchOrganizationTrip />
       </div>
       <ListTripProvider>
         <RideFilterListTrip />
