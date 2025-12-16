@@ -5,18 +5,36 @@ import { getDictionaries } from "../../i18n";
 import clsx from "clsx";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useDebounceValue } from "usehooks-ts";
+import { RegisterAuthActionEnum, RegisterAuthContext } from "../../context";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const SearchRegisterAuth = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { dispatch } = React.useContext(RegisterAuthContext);
 
   const [searchValue, setSearchValue] = React.useState(
     searchParams.get("search") || ""
   );
 
   const [debouncedSearchValue] = useDebounceValue(searchValue, 500);
+
+  // Reset pagination dan clear data ketika search berubah
+  React.useEffect(() => {
+    dispatch({
+      type: RegisterAuthActionEnum.SetOrganizationPaginationData,
+      payload: {
+        current: PAGINATION.NUMBER,
+        last: null,
+      },
+    });
+    dispatch({
+      type: RegisterAuthActionEnum.SetOrganizationDataData,
+      payload: [],
+    });
+  }, [debouncedSearchValue, dispatch]);
 
   React.useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
