@@ -72,7 +72,10 @@ export const FormRegisterAuth = () => {
     }
 
     if (!isOrganizationBasedOnCompanyCode) {
-      if (!state.form.organization?.domain?.includes(state.form.email.value)) {
+      if (
+        !!state.form.organization?.domain &&
+        !state.form.email?.value?.includes(state.form.organization.domain)
+      ) {
         dispatch({
           type: RegisterAuthActionEnum.SetFormData,
           payload: {

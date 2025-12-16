@@ -110,7 +110,7 @@ export const FormLoginAuth = () => {
           error={state.form.email.error?.name}
         />
 
-        <div className={clsx("flex items-center justify-start", "w-full")}>
+        <div className={clsx("flex items-center justify-start gap-2", "w-full")}>
           <span
             className={clsx(
               "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal"

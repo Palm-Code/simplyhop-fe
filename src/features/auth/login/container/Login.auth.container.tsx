@@ -8,6 +8,7 @@ import { LoginAuthContext } from "../context";
 import { OTPFormLoginAuth } from "../fragments/otp_form";
 import Link from "next/link";
 import { ThemeToggleButton } from "@/core/components/theme_toggle_button";
+import { PrivacyPolicy } from "@/core/components/privacy_policy";
 
 export const LoginAuthContainer = () => {
   const dictionaries = getDictionaries();
@@ -42,44 +43,11 @@ export const LoginAuthContainer = () => {
 
         {state.step.name === "otp" ? <OTPFormLoginAuth /> : <FormLoginAuth />}
 
-        {/* privacy_policy */}
-        <div
-          className={clsx(
-            "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
-            "w-full"
-          )}
-        >
-          <p
-            className={clsx(
-              "text-[0.75rem] text-[#232323] dark:text-white font-light text-center"
-            )}
-            dangerouslySetInnerHTML={{
-              __html: dictionaries.privacy_policy.label,
-            }}
-          />
-
-          <div
-            className={clsx(
-              "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]"
-            )}
-          >
-            <div className="w-[52px] h-[52px] flex items-center justify-center">
-              <Image
-                {...dictionaries.header.logo}
-                alt={dictionaries.header.logo.alt}
-                className="w-[52px] h-[52px] object-contain"
-              />
-            </div>
-            <p
-              className={clsx(
-                "text-[0.75rem] text-[#232323] dark:text-white font-normal text-center"
-              )}
-              dangerouslySetInnerHTML={{
-                __html: dictionaries.privacy_policy.credit.message,
-              }}
-            />
-          </div>
-        </div>
+        <PrivacyPolicy
+          privacyLabel={dictionaries.privacy_policy.label}
+          creditMessage={dictionaries.privacy_policy.credit.message}
+          logo={dictionaries.header.logo}
+        />
       </div>
     </div>
   );

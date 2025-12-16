@@ -46,11 +46,12 @@ export const OTPFormLoginAuth = () => {
     isPendingPostAuthVerifyOTP || isPendingPostAuthRequestOTP || isLoading;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
-
+  const isOTPFilled = state.otp_form.otp.value.length === 6;
   const isSubmitDisabled =
     isPendingPostAuthVerifyOTP ||
     isEmailHasNoLength ||
     isEmailInvalid ||
+    !isOTPFilled ||
     isPendingPostAuthRequestOTP ||
     isLoading;
 

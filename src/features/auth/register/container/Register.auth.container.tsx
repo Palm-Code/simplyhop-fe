@@ -6,8 +6,11 @@ import { OTPFormRegisterAuth } from "../fragments/otp_form";
 import { FormRegisterAuth } from "../fragments/form";
 import { OrganizationRegisterAuth } from "../fragments/organization";
 import { NavigationBarRegisterAuth } from "../fragments/navigation_bar";
+import { getDictionaries } from "../i18n";
+import { PrivacyPolicy } from "@/core/components/privacy_policy";
 
 export const RegisterAuthContainer = () => {
+  const dictionaries = getDictionaries();
   const { state } = React.useContext(RegisterAuthContext);
   return (
     <div
@@ -30,10 +33,15 @@ export const RegisterAuthContainer = () => {
           >
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] w-full"
+                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] gap-8 w-full"
               )}
             >
               <OTPFormRegisterAuth />
+              <PrivacyPolicy
+                privacyLabel={dictionaries.privacy_policy.label}
+                creditMessage={dictionaries.privacy_policy.credit.message}
+                logo={dictionaries.header.logo.image}
+              />
             </div>
           </div>
         ) : state.step.name === "form" ? (
@@ -44,10 +52,15 @@ export const RegisterAuthContainer = () => {
           >
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] h-full"
+                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] gap-8 h-full"
               )}
             >
               <FormRegisterAuth />
+              <PrivacyPolicy
+                privacyLabel={dictionaries.privacy_policy.label}
+                creditMessage={dictionaries.privacy_policy.credit.message}
+                logo={dictionaries.header.logo.image}
+              />
             </div>
           </div>
         ) : (
@@ -58,10 +71,15 @@ export const RegisterAuthContainer = () => {
           >
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start w-full h-full"
+                "grid grid-cols-1 place-content-start place-items-start w-full h-full gap-8"
               )}
             >
               <OrganizationRegisterAuth />
+              <PrivacyPolicy
+                privacyLabel={dictionaries.privacy_policy.label}
+                creditMessage={dictionaries.privacy_policy.credit.message}
+                logo={dictionaries.header.logo.image}
+              />
             </div>
           </div>
         )}

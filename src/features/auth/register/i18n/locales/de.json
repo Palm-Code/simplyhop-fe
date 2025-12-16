@@ -17,7 +17,7 @@
       "message": "Sie haben bereits ein Konto?  ",
       "cta": {
         "href": "/",
-        "children": "Hier registrieren"
+        "children": "Hier anmelden"
       }
     },
     "search": {
@@ -126,6 +126,18 @@
           "children": "Code bestätigen"
         }
       }
+    }
+  },
+  "privacy_policy": {
+    "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",
+    "credit": {
+      "logo": {
+        "src": "/logo/simply_hop.svg",
+        "width": 52,
+        "height": 14,
+        "alt": "logo"
+      },
+      "message": "Alle Rechte vorbehalten"
     }
   }
 }
