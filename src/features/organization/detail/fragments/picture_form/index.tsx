@@ -1,1 +1,1 @@
-export * from "./PictureForm.create.organization";
+export * from "./PictureForm.detail.organization";
