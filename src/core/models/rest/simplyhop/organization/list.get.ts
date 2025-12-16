@@ -15,6 +15,7 @@ export type GetOrganizationListParamsPayloadRequestInterface = {
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;
+  search?: string;
 };
 
 export type GetOrganizationListResponseInterface = NextApiResponse<

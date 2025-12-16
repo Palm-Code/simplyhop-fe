@@ -14,18 +14,21 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import "dayjs/locale/de";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { useSearchParams } from "next/navigation";
 
 dayjs.extend(utc);
 dayjs.locale("de");
 
 export const useGetOrganizationList = () => {
   const { state, dispatch } = React.useContext(RegisterAuthContext);
-
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
   const payload: GetOrganizationListPayloadRequestInterface = {
     params: {
       include: "addresses",
       "page[number]": state.organization.pagination.current,
       "page[size]": 30,
+      search: search,
     },
   };
   const query = useQuery<

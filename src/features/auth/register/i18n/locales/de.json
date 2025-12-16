@@ -11,17 +11,26 @@
       "href": "/"
     }
   },
+
   "organization": {
     "title": "Unternehmen auswählen",
+    "search": {
+      "inputProps": {
+        "id": "name",
+        "placeholder": " "
+      },
+      "labelProps": {
+        "id": "name",
+        "children": "Unternehmen suchen",
+        "required": false
+      }
+    },
     "login": {
       "message": "Sie haben bereits ein Konto?  ",
       "cta": {
         "href": "/",
         "children": "Hier anmelden"
       }
-    },
-    "search": {
-      "label": "Unternehmen suchen"
     },
     "list": {
       "loading": {
