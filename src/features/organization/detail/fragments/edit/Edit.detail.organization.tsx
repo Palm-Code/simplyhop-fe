@@ -134,6 +134,7 @@ export const EditDetailOrganization = () => {
         !!item.pin_point
       );
     }, true);
+
   const isSubmitDisabled =
     !isCompanyDataValid ||
     !isCompanyOfficeValid ||

@@ -68,6 +68,7 @@ export const PictureFormDetailOrganization = () => {
       },
     });
   };
+
   return (
     <div
       className={clsx(

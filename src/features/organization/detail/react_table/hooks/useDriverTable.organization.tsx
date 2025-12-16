@@ -55,7 +55,7 @@ export const useDriverTableOrganization = () => {
                   "w-full"
                 )}
               >
-                {cellProps.row.original.user.avatar?.length ? (
+                {!cellProps.row.original.user.avatar?.length ? (
                   <div
                     className={clsx(
                       "flex items-center justify-center",

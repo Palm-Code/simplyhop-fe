@@ -15,8 +15,10 @@ import {
 import { UserContext } from "@/core/modules/app/context";
 import { DetailOrganizationReactQueryKey } from "../keys";
 import { useParams } from "next/navigation";
+import { getDictionaries } from "../../i18n";
 
 export const useGetOrganizationId = () => {
+  const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
   const { state: userState } = React.useContext(UserContext);
   const { organization_id } = useParams();
@@ -48,6 +50,16 @@ export const useGetOrganizationId = () => {
           ...state.company_data,
           form: {
             ...state.company_data.form,
+            company_type: {
+              ...state.company_data.form.domain,
+              selected: !data.organization_code
+                ? dictionaries.company_data.form.input.company_type.items.find(
+                    (item) => item.id === "domain"
+                  ) ?? null
+                : dictionaries.company_data.form.input.company_type.items.find(
+                    (item) => item.id === "company_code"
+                  ) ?? null,
+            },
             domain: {
               ...state.company_data.form.domain,
               value: data.domain ?? "",
