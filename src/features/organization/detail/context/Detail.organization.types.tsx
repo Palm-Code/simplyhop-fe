@@ -93,6 +93,9 @@ export interface DetailOrganizationCompanyData {
       value: string;
       error: FormError;
     };
+    pictures: {
+      files: ({ id: string; image_url: string } | File)[];
+    };
     responsible_person: {
       first_name: {
         value: string;

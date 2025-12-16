@@ -44,9 +44,14 @@ export const usePostOrganizationCreate = () => {
           : state.company_data.form.address.address_2.value,
         city: state.company_data.form.address.city.value,
         postal_code: state.company_data.form.address.zip_code.value,
-        logo: state.company_data.form.pictures.files.filter(
-          (item) => item instanceof File
-        )[0],
+        logo:
+          state.company_data.form.pictures.files.filter(
+            (item) => item instanceof File
+          ).length === 0
+            ? undefined
+            : state.company_data.form.pictures.files.filter(
+                (item) => item instanceof File
+              )[0],
         addresses: state.company_office.form.map((item) => {
           return {
             postal_code: item.zip_code.value,

@@ -71,6 +71,9 @@ const initialState: DetailOrganizationInitialStateType = {
         value: "",
         error: null,
       },
+      pictures: {
+        files: [],
+      },
       responsible_person: {
         first_name: {
           value: "",

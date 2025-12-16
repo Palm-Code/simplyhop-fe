@@ -68,6 +68,15 @@ export const useGetOrganizationId = () => {
               ...state.company_data.form.telephone,
               value: data.phone ?? "",
             },
+            pictures: {
+              ...state.company_data.form.pictures,
+              files: [
+                {
+                  id: data.logo ?? "",
+                  image_url: data.logo ?? "",
+                },
+              ],
+            },
             responsible_person: {
               ...state.company_data.form.responsible_person,
               first_name: {

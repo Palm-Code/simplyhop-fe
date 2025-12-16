@@ -10,6 +10,7 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { Textfield } from "@/core/components/textfield";
 import { getError } from "@/core/utils/form";
 import { CompanyCodeInput } from "@/core/components/company_code_input";
+import { PictureFormDetailOrganization } from "../picture_form";
 
 export const CompanyDataFormDetailOrganization = () => {
   const dictionaries = getDictionaries();
@@ -324,6 +325,8 @@ export const CompanyDataFormDetailOrganization = () => {
             }}
             error={state.company_data.form.telephone.error?.name}
           />
+
+          <PictureFormDetailOrganization />
 
           <div
             className={clsx(

@@ -59,6 +59,14 @@ export const usePostOrganizationPartialUpdate = () => {
             : state.company_data.form.address.address_2.value,
           city: state.company_data.form.address.city.value,
           postal_code: state.company_data.form.address.zip_code.value,
+          logo:
+            state.company_data.form.pictures.files.filter(
+              (item) => item instanceof File
+            ).length === 0
+              ? undefined
+              : state.company_data.form.pictures.files.filter(
+                  (item) => item instanceof File
+                )[0],
           addresses: state.company_office.form.map((item) => {
             return {
               postal_code: item.zip_code.value,
@@ -85,7 +93,10 @@ export const usePostOrganizationPartialUpdate = () => {
       );
 
       for (const [key, value] of Object.entries(cleanedObj)) {
-        if (Array.isArray(value)) {
+        if (value instanceof File) {
+          // Handle File objects (logo)
+          formData.append(key, value);
+        } else if (Array.isArray(value)) {
           // Handle array - either as JSON string or indexed keys
           formData.append(key, JSON.stringify(value));
         } else if (typeof value === "object" && value !== null) {
