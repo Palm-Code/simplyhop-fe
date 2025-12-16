@@ -50,6 +50,43 @@ export const FormRegisterAuth = () => {
   };
 
   const handleClickRegister = async () => {
+    const isOrganizationBasedOnCompanyCode =
+      !!state.form.organization?.organization_code;
+    if (isOrganizationBasedOnCompanyCode) {
+      if (
+        state.form.company_code.value !==
+        state.form.organization?.organization_code
+      ) {
+        dispatch({
+          type: RegisterAuthActionEnum.SetFormData,
+          payload: {
+            ...state.form,
+            error: {
+              ...state.form.error,
+              code: dictionaries.form.errors.company_code.message,
+            },
+          },
+        });
+        return;
+      }
+    }
+
+    if (!isOrganizationBasedOnCompanyCode) {
+      if (!state.form.organization?.domain?.includes(state.form.email.value)) {
+        dispatch({
+          type: RegisterAuthActionEnum.SetFormData,
+          payload: {
+            ...state.form,
+            error: {
+              ...state.form.error,
+              code: dictionaries.form.errors.domain.message,
+            },
+          },
+        });
+        return;
+      }
+    }
+
     const res = await postAuthRequestOTPRegistration();
     if (!res) return;
     dispatch({
@@ -80,8 +117,8 @@ export const FormRegisterAuth = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "px-[1rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-8",
+        "px-4",
         "rounded-[1.25rem]",
         "w-full h-full"
       )}
@@ -114,9 +151,25 @@ export const FormRegisterAuth = () => {
         {dictionaries.form.title}
       </h1>
 
+      {!!state.form.error?.code && (
+        <div
+          className={clsx(
+            "px-4 py-2",
+            "w-full",
+            "bg-[#F9E6E6]",
+            "border border-[#C50707]",
+            "rounded-md"
+          )}
+        >
+          <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
+            {state.form.error?.code}
+          </span>
+        </div>
+      )}
+
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full"
         )}
       >
@@ -148,7 +201,7 @@ export const FormRegisterAuth = () => {
         <Button
           aria-label={dictionaries.form.cta.save.children}
           name={dictionaries.form.cta.save.children}
-          className={clsx("px-[1rem] py-[0.75rem]")}
+          className={clsx("px-4 py-3")}
           disabled={isSubmitDisabled}
           onClick={handleClickRegister}
         >

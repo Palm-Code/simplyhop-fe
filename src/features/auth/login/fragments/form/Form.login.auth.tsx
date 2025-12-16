@@ -80,11 +80,11 @@ export const FormLoginAuth = () => {
       {!!state.form.error?.code && (
         <div
           className={clsx(
-            "px-[1rem] py-[0.5rem]",
+            "px-4 py-2",
             "w-full",
             "bg-[#F9E6E6]",
             "border border-[#C50707]",
-            "rounded-[0.375rem]"
+            "rounded-md"
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>

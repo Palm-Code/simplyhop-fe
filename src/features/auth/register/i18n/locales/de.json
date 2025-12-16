@@ -50,6 +50,14 @@
         "children": "Speichern"
       }
     },
+    "errors": {
+      "company_code": {
+        "message": "Der eingegebene Firmen-Code ist falsch. Bitte wenden Sie sich an den Unternehmens-Admin."
+      },
+      "domain": {
+        "message": "Ihre E-Mail-Adresse ist bei dem Unternehmen noch nicht registriert. Bitte wenden Sie sich an das Unternehmen oder versuchen Sie es mit einer anderen registrierten E-Mail-Adresse."
+      }
+    },
     "organization": {
       "inputProps": {
         "id": "organization",
