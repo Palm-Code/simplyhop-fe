@@ -14,6 +14,7 @@ export const SearchRegisterAuth = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { dispatch } = React.useContext(RegisterAuthContext);
+  const isFirstRender = React.useRef(true);
 
   const [searchValue, setSearchValue] = React.useState(
     searchParams.get("search") || ""
@@ -21,8 +22,13 @@ export const SearchRegisterAuth = () => {
 
   const [debouncedSearchValue] = useDebounceValue(searchValue, 500);
 
-  // Reset pagination dan clear data ketika search berubah
+  // Reset pagination dan clear data ketika search berubah (skip first render)
   React.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     dispatch({
       type: RegisterAuthActionEnum.SetOrganizationPaginationData,
       payload: {
@@ -34,7 +40,7 @@ export const SearchRegisterAuth = () => {
       type: RegisterAuthActionEnum.SetOrganizationDataData,
       payload: [],
     });
-  }, [debouncedSearchValue, dispatch]);
+  }, [debouncedSearchValue]);
 
   React.useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -46,7 +52,7 @@ export const SearchRegisterAuth = () => {
     }
 
     router.push(`${pathname}?${params.toString()}`);
-  }, [debouncedSearchValue, pathname, router, searchParams]);
+  }, [debouncedSearchValue, pathname, router]);
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
