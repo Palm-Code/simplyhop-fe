@@ -12,6 +12,7 @@ import { Textfield } from "@/core/components/textfield";
 import { getError } from "@/core/utils/form";
 import { CompanyCodeInput } from "../../../../../core/components/company_code_input/CompanyCodeInput";
 import { useGetOrganizationGenerateCode } from "../../react_query/hooks";
+import { PictureFormCreateOrganization } from "../picture_form";
 
 export const CompanyDataFormCreateOrganization = () => {
   const dictionaries = getDictionaries();
@@ -398,6 +399,8 @@ export const CompanyDataFormCreateOrganization = () => {
               }}
               error={state.company_data.form.telephone.error?.name}
             />
+
+            <PictureFormCreateOrganization />
 
             <div
               className={clsx(

@@ -48,6 +48,9 @@ const initialState: CreateOrganizationInitialStateType = {
           error: null,
         },
       },
+      pictures: {
+        files: [],
+      },
       address: {
         address_1: {
           value: "",

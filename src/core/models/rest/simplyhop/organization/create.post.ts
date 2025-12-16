@@ -32,6 +32,7 @@ export type PostOrganizationCreateBodyPayloadRequestInterface = {
     address: string; //"Musterstraße 123";
     location: string; //"Berlin Mitte";
   }[];
+  logo?: File;
 };
 
 export type PostOrganizationCreateResponseInterface = NextApiResponse<

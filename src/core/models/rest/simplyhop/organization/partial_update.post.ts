@@ -48,6 +48,7 @@ export interface PostOrganizationPartialUpdateBodyPayloadRequestInterface {
     location: string; //"Berlin Mitte"
     id?: number;
   }[];
+  logo?: File;
 }
 
 export type PostOrganizationPartialUpdateResponseInterface = NextApiResponse<

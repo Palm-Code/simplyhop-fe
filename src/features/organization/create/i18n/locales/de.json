@@ -71,6 +71,18 @@
             "required": true
           }
         },
+        "pictures": {
+          "title": "Firmenlogo",
+          "form": {
+            "message": "Ziehen Sie das Firmenlogo hierher oder klicken Sie, um Dateien auszuwählen.",
+            "description": "Maximale Dateigröße: 2 MB, empfohlene Höhe: 60 px."
+          },
+          "square_input": {
+            "form": {
+              "label": "+<br/>Weitere hinzufügen"
+            }
+          }
+        },
         "responsible_person": {
           "title": "Ansprechpartner",
           "first_name": {

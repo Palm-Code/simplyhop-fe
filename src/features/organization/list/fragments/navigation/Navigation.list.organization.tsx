@@ -2,8 +2,8 @@
 import clsx from "clsx";
 import { Breadcrumb } from "@/core/components/breadcrumb";
 import { getDictionaries } from "../../i18n";
-// import SVGIcon from "@/core/icons";
-// import Link from "next/link";
+import SVGIcon from "@/core/icons";
+import Link from "next/link";
 
 export const NavigationListOrganization = () => {
   const dictionaries = getDictionaries();
@@ -11,7 +11,7 @@ export const NavigationListOrganization = () => {
     <div className={clsx("flex items-center justify-between", "w-full")}>
       <Breadcrumb items={dictionaries.breadcrumb.items} />
 
-      {/* <div className={clsx("flex items-center justify-end gap-4")}>
+      <div className={clsx("flex items-center justify-end gap-4")}>
         <Link
           className={clsx(
             "flex items-center justify-start gap-2",
@@ -25,7 +25,7 @@ export const NavigationListOrganization = () => {
           />
           {dictionaries.cta.add_company.children}
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 };
