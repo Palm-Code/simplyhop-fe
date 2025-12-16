@@ -1,5 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
+import SVGIcon from "@/core/icons";
 
 export interface OrganizationCardRegisterAuthProps {
   name?: string;
@@ -17,6 +18,11 @@ export const OrganizationCardRegisterAuth = ({
   image,
   cta,
 }: OrganizationCardRegisterAuthProps) => {
+  const [imageError, setImageError] = React.useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
   return (
     <div
       className={clsx(
@@ -24,7 +30,7 @@ export const OrganizationCardRegisterAuth = ({
         "w-full h-full",
         "border border-[#EFEFEF] dark:border-[#464646]",
         "rounded-[10px]",
-        'p-4'
+        "p-4"
       )}
     >
       <div
@@ -33,7 +39,28 @@ export const OrganizationCardRegisterAuth = ({
           "w-full"
         )}
       >
-        <img src={image} className={clsx("h-15")} />
+        {imageError || !image?.length ? (
+          <div
+            className={clsx(
+              "w-15 h-15",
+              "rounded-full",
+              "flex items-center justify-center",
+              "bg-[#F0F0F0] dark:bg-[#767676]"
+            )}
+          >
+            <SVGIcon
+              name="Building2"
+              className={clsx("w-8 h-8", "text-[#249124] dark:text-[#33CC33]")}
+            />
+          </div>
+        ) : (
+          <img
+            src={image}
+            className={clsx("h-15")}
+            onError={handleImageError}
+          />
+        )}
+
         <p
           className={clsx(
             "text-[#232323] dark:text-[white] text-base font-semibold"
