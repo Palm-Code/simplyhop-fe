@@ -156,7 +156,7 @@ export const UploadInput = ({
 
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-flow-col place-content-center place-items-center gap-[0.25rem]"
+            "grid grid-cols-1 lg:grid-cols-[2rem_1fr] place-content-center place-items-center gap-[0.25rem]"
           )}
         >
           <SVGIcon name="PictureUpload" />
