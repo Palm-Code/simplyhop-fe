@@ -9,7 +9,6 @@ import {
 import { getDictionaries } from "../../i18n";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
 import {
-  ROUTE_BOUND_CONSTANTS,
   COORDINATE,
   LIBRARIES,
   createMapOptions,
@@ -288,6 +287,16 @@ export const PinPointMapDetailOrganization = () => {
         : userLocationError
         ? COORDINATE.germany
         : userLocation;
+      const mode = !!state.pin_point.location.selected.item
+        ? "coordinate"
+        : userLocationError
+        ? "country"
+        : "coordinate";
+      const marker = !!state.pin_point.location.selected.item
+        ? true
+        : userLocationError
+        ? false
+        : true;
       dispatch({
         type: DetailOrganizationActionEnum.SetPinPointData,
         payload: {
@@ -295,16 +304,8 @@ export const PinPointMapDetailOrganization = () => {
           map: {
             ...state.pin_point.map,
             initial_coordinate: mapCoordinate,
-            mode: !!state.pin_point.location.selected.item
-              ? "route"
-              : userLocationError
-              ? "country"
-              : "coordinate",
-            marker: !!state.pin_point.location.selected.item
-              ? true
-              : userLocationError
-              ? false
-              : true,
+            mode: mode,
+            marker: marker,
           },
         },
       });
@@ -319,8 +320,6 @@ export const PinPointMapDetailOrganization = () => {
       userLocation &&
       !userLocationError &&
       !state.pin_point.location.selected.item
-      // &&
-      // !addressInfo
     ) {
       const geocoder = new google.maps.Geocoder();
       geocoder.geocode({ location: userLocation }, (results, status) => {
@@ -416,20 +415,7 @@ export const PinPointMapDetailOrganization = () => {
     userLocation,
     userLocationError,
     state.pin_point.location.selected.item,
-    // addressInfo,
   ]);
-
-  // NOTES: readjust map view
-  useEffect(() => {
-    if (mapRef.current && state.pin_point.map.mode === "route") {
-      const bounds = new window.google.maps.LatLngBounds();
-
-      mapRef.current.fitBounds(
-        bounds,
-        isLg ? ROUTE_BOUND_CONSTANTS.desktop : ROUTE_BOUND_CONSTANTS.mobile
-      );
-    }
-  }, [isLoaded, isLg, state.pin_point.map.mode]);
 
   if (!isLoaded) return <div />;
 

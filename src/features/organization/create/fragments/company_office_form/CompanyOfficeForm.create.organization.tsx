@@ -328,6 +328,35 @@ export const CompanyOfficeFormCreateOrganization = () => {
                 ...state.pin_point,
                 is_open: true,
                 index: formIndex,
+                map: {
+                  ...state.pin_point.map,
+                  marker: !!form.pin_point.value ? true : false,
+                  initial_coordinate: !!form.pin_point.value
+                    ? {
+                        lat: form.pin_point.value.lat,
+                        lng: form.pin_point.value.lng,
+                      }
+                    : null,
+                  mode: !!form.pin_point.value ? "coordinate" : "country",
+                },
+                location: {
+                  ...state.pin_point.location,
+                  selected: {
+                    item: !!form.pin_point.value
+                      ? {
+                          id: form.pin_point.value.location_1,
+                          name: form.pin_point.value.location_1,
+                          description: form.pin_point.value.location_2,
+                        }
+                      : null,
+                    lat_lng: !!form.pin_point.value
+                      ? {
+                          lat: form.pin_point.value.lat,
+                          lng: form.pin_point.value.lng,
+                        }
+                      : null,
+                  },
+                },
               },
             });
           };
@@ -362,14 +391,15 @@ export const CompanyOfficeFormCreateOrganization = () => {
           };
 
           const isSaveDisabled =
-            !form.address_1.value.length &&
-            !form.address_name.value.length &&
-            !!form.address_name.error &&
-            !form.city.value.length &&
-            !!form.city.error &&
-            !form.zip_code.value.length &&
-            !!form.zip_code.error &&
+            !form.address_1.value.length ||
+            !form.address_name.value.length ||
+            !!form.address_name.error ||
+            !form.city.value.length ||
+            !!form.city.error ||
+            !form.zip_code.value.length ||
+            !!form.zip_code.error ||
             !form.pin_point.value;
+
           return (
             <div
               key={formIndex}
