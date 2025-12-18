@@ -35,7 +35,7 @@ export const NotificationPlanRideTrip = () => {
         "!px-[0rem] !py-[0rem]"
       )}
       variant={isLg ? "modal" : "page_sheet"}
-      open={true}
+      open={isOpen}
       onClose={handleClose}
     >
       <div
