@@ -14,8 +14,10 @@ import { OtpField } from "@/core/components/otp_field";
 export const OTPFormLoginAuth = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
-  const { mutate: postAuthVerifyOTP, isPending: isPendingPostAuthVerifyOTP } =
-    usePostAuthVerifyOTP();
+  const {
+    mutateAsync: postAuthVerifyOTP,
+    isPending: isPendingPostAuthVerifyOTP,
+  } = usePostAuthVerifyOTP();
   const { mutate: postAuthRequestOTP, isPending: isPendingPostAuthRequestOTP } =
     usePostAuthRequestOTP();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -35,7 +37,11 @@ export const OTPFormLoginAuth = () => {
 
   const handleClickLogin = async () => {
     setIsLoading(true);
-    postAuthVerifyOTP();
+    try {
+      await postAuthVerifyOTP();
+    } catch {
+      setIsLoading(false);
+    }
   };
 
   const handleRequestOTP = () => {
