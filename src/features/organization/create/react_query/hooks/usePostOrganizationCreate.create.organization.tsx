@@ -66,6 +66,7 @@ export const usePostOrganizationCreate = () => {
               : item.address_2.value,
             address: item.address_1.value,
             location: item.pin_point.value?.location_1 ?? "",
+            name: item.address_name,
           };
         }),
       };

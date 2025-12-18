@@ -47,6 +47,7 @@ export interface PostOrganizationPartialUpdateBodyPayloadRequestInterface {
     address: string; //"Musterstraße 123";
     location: string; //"Berlin Mitte"
     id?: number;
+    name: string;
   }[];
   logo?: File;
 }

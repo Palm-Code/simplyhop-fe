@@ -82,6 +82,7 @@ export const usePostOrganizationPartialUpdate = () => {
               address: item.address_1.value,
               location: item.pin_point.value?.location_1 ?? "",
               id: item.id,
+              name: item.address_name.value,
             };
           }),
         };
