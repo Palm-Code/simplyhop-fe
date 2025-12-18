@@ -67,7 +67,7 @@ export const DashboardCard = ({
               "flex items-center justify-center",
               "rounded-full",
               "bg-transparent",
-              "text-xs text-[#26531A] font-medium whitespace-nowrap",
+              "text-xs text-[#249124] dark:text-[#33CC33] font-medium whitespace-nowrap",
               "px-1 py-1"
             )}
             href={cta.primary.href}
