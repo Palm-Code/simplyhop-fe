@@ -20,7 +20,7 @@ export const useGetDashboardSuperAdmin = () => {
     params: {
       include: "user",
       append: "upcoming_rides",
-      "page[number]": 1,
+      "page[number]": state.table.pagination.current,
       "page[size]": 10,
     },
   };
@@ -37,9 +37,22 @@ export const useGetDashboardSuperAdmin = () => {
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
+      const newData = query.data.data;
       dispatch({
         type: ListDriverActionEnum.SetTableItemsData,
-        payload: query.data.data,
+        payload:
+          state.table.pagination.current === 1
+            ? [...newData]
+            : !newData.length
+            ? state.table.items
+            : [...state.table.items, ...newData],
+      });
+      dispatch({
+        type: ListDriverActionEnum.SetTablePaginationData,
+        payload: {
+          ...state.table.pagination,
+          last: query.data.meta.last_page,
+        },
       });
     }
   }, [query.data, query.isFetching]);

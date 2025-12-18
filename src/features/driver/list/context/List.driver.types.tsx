@@ -24,8 +24,8 @@ export interface ListDriverInitialStateType {
 export type ListDriverTable = {
   items: ListDriverItem[];
   pagination: {
-    limit: number;
-    current_page: number;
+    current: number;
+    last: null | number;
   };
   loading: {
     is_fetching: boolean;

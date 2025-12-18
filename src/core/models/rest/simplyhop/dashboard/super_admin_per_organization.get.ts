@@ -1,4 +1,5 @@
 import { Organization } from "@/core/models/data";
+import { Meta } from "@/core/models/data/meta";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetDashboardSuperAdminPerOrganizationRequestInterface
@@ -31,6 +32,7 @@ export interface GetDashboardSuperAdminPerOrganizationSuccessResponseInterface {
   data: GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface[];
 
   redirect: null;
+  meta: Meta;
 }
 
 export interface GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface {

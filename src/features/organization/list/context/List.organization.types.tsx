@@ -24,8 +24,8 @@ export interface ListOrganizationInitialStateType {
 export type ListOrganizationTable = {
   items: ListOrganizationItem[];
   pagination: {
-    limit: number;
-    current_page: number;
+    current: number;
+    last: null | number;
   };
   loading: {
     is_fetching: boolean;
