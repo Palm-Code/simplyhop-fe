@@ -13,6 +13,7 @@ import { ListDriverContext, ListDriverItem } from "../../context";
 import { getDictionaries } from "../../i18n";
 import "dayjs/locale/de";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import SVGIcon from "@/core/icons";
 
 export const useListDriverTable = () => {
   const { state } = useContext(ListDriverContext);
@@ -49,15 +50,31 @@ export const useListDriverTable = () => {
                   "w-full"
                 )}
               >
-                <img
-                  src={cellProps.row.original.user.avatar ?? ""}
-                  className={clsx(
-                    "w-4 h-4",
-                    "rounded-full",
-                    "object-cover object-center"
-                  )}
-                  alt={cellProps.row.original.user.email}
-                />
+                {!cellProps.row.original.user.avatar?.length ? (
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "rounded-full",
+                      "w-4 h-4",
+                      "bg-[#EFF9EC]"
+                    )}
+                  >
+                    <SVGIcon
+                      name={"User2"}
+                      className={clsx("w-3 h-3", "text-[#26531A]")}
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={cellProps.row.original.user.avatar ?? ""}
+                    className={clsx(
+                      "w-4 h-4",
+                      "rounded-full",
+                      "object-cover object-center"
+                    )}
+                    alt={cellProps.row.original.user.email}
+                  />
+                )}
 
                 <p
                   className={clsx(
