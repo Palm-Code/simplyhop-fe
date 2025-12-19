@@ -29,6 +29,7 @@ export const RideDetailListTrip = () => {
   const isEmployee = userState.profile?.role === "employee";
   const isShowPrice = isEmployee;
   const isShowBooking = isEmployee;
+  const isDriver = userState.profile?.is_driver;
 
   const filteredData = state.ride.detail;
 
@@ -87,7 +88,7 @@ export const RideDetailListTrip = () => {
   const rideStatus = searchParams.get("ride-status");
 
   const isDeleteRideAvailable =
-    rideStatus !== "finished" && rideStatus !== "archive";
+    rideStatus !== "finished" && rideStatus !== "archive" && isDriver;
   const isFinishTrip = rideStatus === "finished";
 
   const title =
