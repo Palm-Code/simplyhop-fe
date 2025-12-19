@@ -22,6 +22,7 @@ export interface GetDashboardOrganizationSummarySuccessDataResponseInterface {
   total_rides_planned: number | null; //1;
   total_rides_booked: number | null; //2;
   total_rides_completed: number | null; //1;
+  total_rides_carbon: number | null;
   average_rating: number | null; //0;
   total_voted_rating: number | null; //0;
   total_driver: number | null; //2;
