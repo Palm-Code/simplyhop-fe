@@ -41,8 +41,8 @@ export const FormRegisterAuth = () => {
       type: RegisterAuthActionEnum.SetFormData,
       payload: {
         ...state.form,
-        email: {
-          ...state.form.email,
+        company_code: {
+          ...state.form.company_code,
           value: e.currentTarget.value,
         },
       },
