@@ -37,7 +37,7 @@ export const WelcomeModal = () => {
         <DialogPanel
           className={clsx(
             "w-full max-w-[523px] mx-auto",
-            "bg-white rounded-0 lg:rounded-2xl shadow-2xl",
+            "bg-white dark:bg-[#232323] rounded-0 lg:rounded-2xl shadow-2xl",
             "p-4 sm:p-8 lg:p-12",
             "h-screen lg:h-fit overflow-y-auto ios-safari-scroll",
             "grid grid-cols-1 place-content-center place-items-center"
