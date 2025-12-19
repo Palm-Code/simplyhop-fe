@@ -14,6 +14,7 @@ import { LIBRARIES } from "@/core/utils/map/constants";
 import { getDictionaries } from "../i18n";
 import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 import { storageService } from "@/core/services/storage/indexdb";
+import { UserContext } from "@/core/modules/app/context";
 
 export const useRideFilterResultTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
@@ -27,6 +28,9 @@ export const useRideFilterResultTrip = () => {
   const carSeat = searchParams.get(RIDE_FILTER.CAR_SEAT);
 
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const { state: userState } = React.useContext(UserContext);
+  const companyOfficeAddreses =
+    userState.profile?.organization?.addresses ?? [];
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
     libraries: LIBRARIES,
@@ -118,35 +122,69 @@ export const useRideFilterResultTrip = () => {
     let carSeatData: boolean = false;
 
     if (originId) {
-      const { data, lat_lng } = await setOriginRoutesFromParams({
-        id: originId,
-      });
-      if (!!data && !!lat_lng) {
-        originData = data;
-        originLatLng = lat_lng;
+      const isCompanyAddressId = !isNaN(parseInt(originId));
+      if (isCompanyAddressId) {
+        const selectedCompanyAddress = companyOfficeAddreses.find(
+          (item) => String(item.id) === originId
+        );
+        if (!!selectedCompanyAddress) {
+          originData = {
+            id: String(selectedCompanyAddress.id),
+            name: selectedCompanyAddress.name ?? "",
+          };
+          originLatLng = {
+            lat: selectedCompanyAddress.latitude,
+            lng: selectedCompanyAddress.longitude,
+          };
+        }
+      } else {
+        const { data, lat_lng } = await setOriginRoutesFromParams({
+          id: originId,
+        });
+        if (!!data && !!lat_lng) {
+          originData = data;
+          originLatLng = lat_lng;
+        }
       }
     }
 
     if (destinationId) {
-      const { data, lat_lng } = await setDestinationRoutesFromParams({
-        id: destinationId,
-      });
-      if (!!data && !!lat_lng) {
-        destinationData = data;
-        destinationLatLng = lat_lng;
+      const isCompanyAddressId = !isNaN(parseInt(destinationId));
+      if (isCompanyAddressId) {
+        const selectedCompanyAddress = companyOfficeAddreses.find(
+          (item) => String(item.id) === destinationId
+        );
+        if (!!selectedCompanyAddress) {
+          destinationData = {
+            id: String(selectedCompanyAddress.id),
+            name: selectedCompanyAddress.name ?? "",
+          };
+          destinationLatLng = {
+            lat: selectedCompanyAddress.latitude,
+            lng: selectedCompanyAddress.longitude,
+          };
+        }
+      } else {
+        const { data, lat_lng } = await setDestinationRoutesFromParams({
+          id: destinationId,
+        });
+        if (!!data && !!lat_lng) {
+          destinationData = data;
+          destinationLatLng = lat_lng;
+        }
       }
     }
 
     if (date) {
       // Parse multiple dates from comma-separated string
-      const dateStrings = date.split(',').map(d => d.trim());
+      const dateStrings = date.split(",").map((d) => d.trim());
       dateData = dateStrings
-        .map(dateStr => {
+        .map((dateStr) => {
           const parsedDate = new Date(dateStr);
           return isNaN(parsedDate.getTime()) ? null : parsedDate;
         })
         .filter(Boolean) as Date[];
-      
+
       // If no valid dates parsed, default to today
       if (dateData.length === 0) {
         dateData = [new Date()];
