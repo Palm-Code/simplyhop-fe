@@ -21,5 +21,11 @@
         "<br />"
       ]
     }
-  ]
+  ],
+  "image": {
+    "alt": "eu",
+    "src": "/logo/eu.jpg",
+    "width": 1165,
+    "height": 565
+  }
 }
