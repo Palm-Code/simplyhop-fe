@@ -15,10 +15,16 @@ import { UserIcon } from "lucide-react";
 export const TopNavigationMobileMenu = () => {
   const { state } = React.useContext(GlobalContext);
   const dictionaries = getDictionaries();
-  const cookie = new Cookies();
-  const token = cookie.get("token");
-  const isLogin = !!token;
   const pathname = usePathname();
+  
+  const [isLogin, setIsLogin] = React.useState(false);
+
+  React.useEffect(() => {
+    // Check auth status only on client-side after hydration
+    const cookie = new Cookies();
+    const token = cookie.get("token");
+    setIsLogin(!!token);
+  }, []);
 
   type Menu = {
     id: string;
@@ -185,7 +191,6 @@ export const TopNavigationMobileMenu = () => {
             >
               {dictionaries.menu.mobile_items.map((menu, menuIndex) => (
                 <Link
-                  {...menu}
                   href={menuLink(menu)}
                   key={menuIndex}
                   title={menuTitle(menu)}
@@ -200,15 +205,13 @@ export const TopNavigationMobileMenu = () => {
                     "relative"
                   )}
                 >
-                  <div key={`icon-${menuIndex}`} className={clsx("relative")}>
+                  <div className={clsx("relative")}>
                     <SVGIcon
                       {...(menu.icon as { name: SVGIconProps["name"] })}
-                      key={`svgIcon.${menuIndex}`}
                       className={clsx("w-[1rem] h-[1rem]")}
                     />
                     {menu.id === "chat" && state.chat.count > 0 && (
                       <div
-                        key={`chat-${menuIndex}`}
                         className={clsx(
                           "absolute top-[-0.125rem] right-[-0.25rem]",
                           "flex lg:hidden items-center justify-center",
@@ -223,7 +226,6 @@ export const TopNavigationMobileMenu = () => {
                   {menu.name}
                   {menu.id === "chat" && state.chat.count > 0 && (
                     <div
-                      key={`chat-${menuIndex}`}
                       className={clsx(
                         "hidden lg:flex items-center justify-center",
                         "px-[0.5rem] py-[0.25rem]",
