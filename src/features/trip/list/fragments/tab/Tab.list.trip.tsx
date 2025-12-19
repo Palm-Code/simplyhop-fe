@@ -21,7 +21,7 @@ export const TabListTrip = () => {
   const tabList = isPassenger
     ? dictionaries.tab.employee.items.filter((item) => item.id === "book")
     : isDriver
-    ? dictionaries.tab.employee.items.filter((item) => item.id === "book")
+    ? dictionaries.tab.employee.items
     : dictionaries.tab.admin.items;
 
   return (
