@@ -89,7 +89,7 @@ export const RideDetailListTrip = () => {
 
   const isDeleteRideAvailable =
     rideStatus !== "finished" && rideStatus !== "archive" && isDriver;
-  const isFinishTrip = rideStatus === "finished";
+  const isFinishTrip = rideStatus === "finished" && isDriver;
 
   const title =
     (
