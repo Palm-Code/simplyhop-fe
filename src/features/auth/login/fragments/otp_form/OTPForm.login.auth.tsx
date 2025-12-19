@@ -157,7 +157,7 @@ export const OTPFormLoginAuth = () => {
         >
           <span
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal whitespace-nowrap"
             )}
           >
             {dictionaries.otp_form.request_otp.description}
@@ -165,7 +165,7 @@ export const OTPFormLoginAuth = () => {
           <button
             className={clsx(
               "cursor-pointer",
-              "text-[#33CC33] text-[1rem] font-normal"
+              "text-[#33CC33] text-[1rem] font-normal whitespace-nowrap"
             )}
             onClick={handleRequestOTP}
           >
