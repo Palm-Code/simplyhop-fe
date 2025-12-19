@@ -8,6 +8,7 @@ export interface UploadInputProps {
   onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
   message?: string;
   description?: string;
+  multiple?: boolean;
 }
 
 export const UploadInput = ({
@@ -15,6 +16,7 @@ export const UploadInput = ({
   onChange = () => {},
   message = "",
   description = "",
+  multiple = true,
 }: UploadInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -147,14 +149,14 @@ export const UploadInput = ({
           type="file"
           id="`inputFile`"
           className={clsx("sr-only")}
-          multiple={true}
+          multiple={multiple}
           accept={"image/jpeg, image/jpg, image/png, .pdf"}
           onChange={handleChangeUpload}
         />
 
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-flow-col place-content-center place-items-center gap-[0.25rem]"
+            "grid grid-cols-1 lg:grid-cols-[2rem_1fr] place-content-center place-items-center gap-[0.25rem]"
           )}
         >
           <SVGIcon name="PictureUpload" />

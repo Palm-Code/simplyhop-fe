@@ -90,6 +90,13 @@ export const SummaryDashboard = () => {
             );
             break;
           }
+          case "Eingespartes CO2": {
+            value =
+              state.summary.organization_admin?.total_rides_carbon?.toLocaleString(
+                "de-DE"
+              ) ?? value;
+            break;
+          }
           default:
             break;
         }
@@ -169,11 +176,15 @@ export const SummaryDashboard = () => {
 
   const isPassenger =
     userState.profile?.role === "employee" && !userState.profile.is_driver;
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" && !userState.profile.is_super_admin;
   return (
     <div
       className={clsx(
         isPassenger
           ? "grid grid-cols-1 place-content-start place-items-start gap-4"
+          : isOrganizationAdmin
+          ? "grid grid-cols-2 lg:grid-cols-5 place-content-start place-items-start gap-4"
           : "grid grid-cols-2 lg:grid-cols-4 place-content-start place-items-start gap-4",
         "w-full"
       )}
@@ -186,7 +197,7 @@ export const SummaryDashboard = () => {
             unit={item.unit}
             value={item.value}
             icon={item.icon as SVGIconProps["name"]}
-            href={item.href}
+            href={item?.href}
           />
         );
       })}

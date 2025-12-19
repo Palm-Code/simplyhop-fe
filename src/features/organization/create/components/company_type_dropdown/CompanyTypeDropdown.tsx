@@ -44,14 +44,14 @@ export const CompanyTypeDropdown = ({
     <div ref={ref} className={clsx("relative", "w-full")}>
       <DropdownSelectButton
         className={clsx(
-          "!items-center !content-center",
-          "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal"
+          "items-center! content-center!",
+          "text-[#5B5B5B]! dark:text-[#DADADA]! text-[0.875rem]! font-normal!"
         )}
         onClick={handleClickDropdownSelectButton}
       >
         <span
           className={clsx(
-            "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal text-ellipsis truncate w-full"
+            "text-[#5B5B5B]! dark:text-[#DADADA]! text-[0.875rem]! font-normal! text-ellipsis truncate w-full"
           )}
         >
           {selected?.name ?? label}
@@ -59,10 +59,7 @@ export const CompanyTypeDropdown = ({
 
         <SVGIcon
           name={isOpen ? "ChevronUp" : "ChevronDown"}
-          className={clsx(
-            "w-[1rem] h-[1rem]",
-            "text-[#5B5B5B] dark:text-[#DADADA]"
-          )}
+          className={clsx("w-4 h-4", "text-[#5B5B5B] dark:text-[#DADADA]")}
         />
       </DropdownSelectButton>
       {isOpen && (
@@ -71,12 +68,12 @@ export const CompanyTypeDropdown = ({
             "absolute",
             "top-[60px] left-0 right-0",
             "grid grid-cols-1 place-content-start place-items-start",
-            "px-[1rem] py-[0.75rem]",
+            "px-4 py-4",
             "min-w-[255px]",
             "bg-[white] dark:bg-[#232323]",
-            "rounded-[0.375rem]",
+            "rounded-md",
             "border border-[#E2E2E2] dark:border-[#464646]",
-            "z-[10]"
+            "z-99"
           )}
         >
           {items.map((item, itemIndex) => (
@@ -86,8 +83,8 @@ export const CompanyTypeDropdown = ({
               key={itemIndex}
               className={clsx(
                 "w-full",
-                "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal text-left",
-                "py-[0.5rem]",
+                "text-[#5B5B5B]! dark:text-[#DADADA]! text-[0.875rem]! font-normal! text-left",
+                "py-2",
                 "cursor-pointer disabled:cursor-default"
               )}
               onClick={() => handleSelect(item)}

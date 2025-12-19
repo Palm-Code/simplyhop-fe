@@ -33,6 +33,7 @@
         },
         "company_code": {
           "label": "Unternehmenscode",
+          "required": true,
           "cta": {
             "children": "Unternehmenscode generieren"
           }
@@ -70,8 +71,20 @@
             "required": true
           }
         },
+        "pictures": {
+          "title": "Firmenlogo",
+          "form": {
+            "message": "Ziehen Sie das Firmenlogo hierher oder klicken Sie, um Dateien auszuwählen.",
+            "description": "Maximale Dateigröße: 2 MB, empfohlene Höhe: 60 px."
+          },
+          "square_input": {
+            "form": {
+              "label": "+<br/>Weitere hinzufügen"
+            }
+          }
+        },
         "responsible_person": {
-          "title": "Verantwortliche Person",
+          "title": "Ansprechpartner",
           "first_name": {
             "inputProps": {
               "id": "first_name",
@@ -94,6 +107,53 @@
               "required": true
             }
           }
+        },
+        "address": {
+          "title": "Hauptadresse",
+          "address_1": {
+            "inputProps": {
+              "id": "address_address_1",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_address_1",
+              "children": "Adresse",
+              "required": true
+            }
+          },
+          "address_2": {
+            "inputProps": {
+              "id": "address_address_2",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_address_2",
+              "children": "Adresse (Zeile 2)",
+              "required": false
+            }
+          },
+          "zip_code": {
+            "inputProps": {
+              "id": "address_zip_code",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_zip_code",
+              "children": "PLZ",
+              "required": true
+            }
+          },
+          "city": {
+            "inputProps": {
+              "id": "address_city",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_city",
+              "children": "Stadt",
+              "required": true
+            }
+          }
         }
       }
     }
@@ -102,7 +162,13 @@
     "title": "Unternehmensbüro",
     "cta": {
       "add": {
-        "children": "Weitere Büros hinzufügen"
+        "children": "weitere Standorte / Niederlassungen"
+      },
+      "save": {
+        "children": "Speichern"
+      },
+      "cancel": {
+        "children": "Abbrechen"
       }
     },
     "form": {
@@ -162,13 +228,20 @@
             "children": "Stadt",
             "required": true
           }
+        },
+        "pin_point": {
+          "label": "Standort markieren",
+          "required": true,
+          "cta": {
+            "children": "Ort ändern"
+          }
         }
       }
     }
   },
   "cta": {
     "save": {
-      "children": "Speichern"
+      "children": "Unternehmen registrieren"
     },
     "back": {
       "name": "back",
@@ -180,7 +253,7 @@
     "description": "Das Unternehmenskonto ist bereit. Bitten Sie den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
     "cta": {
       "back": {
-        "children": "Continue"
+        "children": "Weiter"
       }
     }
   },
@@ -188,7 +261,10 @@
     "title": "Den Standort markieren",
     "cta": {
       "back": {
-        "children": "Continue"
+        "children": "Weiter"
+      },
+      "save": {
+        "children": "Speichern"
       }
     },
     "map": {
@@ -216,6 +292,18 @@
         "strokeColor": "#33CC33",
         "strokeOpacity": 0.8,
         "strokeWeight": 8
+      }
+    }
+  },
+  "pin_point_delete_confirmation": {
+    "title": "SimplyHop Office 2 löschen?",
+    "description": "Möchten Sie diesen Standort wirklich entfernen?",
+    "cta": {
+      "cancel": {
+        "children": "Behalten"
+      },
+      "delete": {
+        "children": "Löschen"
       }
     }
   }

@@ -49,30 +49,32 @@ export const SummaryCardDashboard = ({
           </div>
           <p
             className={clsx(
-              "text-sm text-[#5B5B5B] dark:text-[#DADADA] font-normal"
+              "text-sm text-[#5B5B5B] dark:text-[#DADADA] font-normal whitespace-nowrap"
             )}
           >
             {title}
           </p>
         </div>
 
-        <Link
-          href={href}
-          className={clsx(
-            "flex items-center justify-center",
-            "rounded-full",
-            "w-6 h-6",
-            "bg-transparent"
-          )}
-        >
-          <SVGIcon
-            name={"ArrowRight"}
+        {href && (
+          <Link
+            href={href}
             className={clsx(
-              "w-3.5 h-3.5",
-              "text-[#767676] dark:text-[#C3C3C3]"
+              "flex items-center justify-center",
+              "rounded-full",
+              "w-6 h-6",
+              "bg-transparent"
             )}
-          />
-        </Link>
+          >
+            <SVGIcon
+              name={"ArrowRight"}
+              className={clsx(
+                "w-3.5 h-3.5",
+                "text-[#767676] dark:text-[#C3C3C3]"
+              )}
+            />
+          </Link>
+        )}
       </div>
 
       <div

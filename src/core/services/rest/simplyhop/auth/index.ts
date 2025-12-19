@@ -9,3 +9,4 @@ export * from "./forgot_password.post";
 export * from "./reset_password.post";
 export * from "./request_otp.post";
 export * from "./verify_otp.post";
+export * from "./request_otp_registration.post";

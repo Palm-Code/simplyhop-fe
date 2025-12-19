@@ -71,13 +71,18 @@ export const NotificationResultTrip = () => {
           >
             <SVGIcon
               name="Check"
-              className={clsx("w-[5rem] h-[5rem]", "text-[#33CC33]")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[#249124] dark:text-[#33CC33]"
+              )}
             />
           </div>
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx(
+            "text-[1.5rem] text-[black] darK:text-white font-bold text-center"
+          )}
         >
           {dictionaries.notification.title}
         </h1>

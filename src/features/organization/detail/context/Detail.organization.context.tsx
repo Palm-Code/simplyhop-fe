@@ -10,6 +10,11 @@ import {
   DetailOrganizationDriverReducers,
   DetailOrganizationEditReducers,
   DetailOrganizationDeleteAccountConfirmationReducers,
+  DetailOrganizationCompanyDataReducers,
+  DetailOrganizationCompanyOfficeReducers,
+  DetailOrganizationPinPointReducers,
+  DetailOrganizationPinPointDeleteConfirmationReducers,
+  DetailOrganizationNotificationReducers,
 } from "./Detail.organization.reducers";
 
 const initialState: DetailOrganizationInitialStateType = {
@@ -35,24 +40,39 @@ const initialState: DetailOrganizationInitialStateType = {
       current_page: 1,
     },
   },
+  delete_account_confirmation: {
+    is_open: false,
+  },
   edit: {
     is_open: false,
+  },
+  company_data: {
     form: {
-      email: {
+      company_type: {
+        selected: null,
+      },
+      domain: {
         value: "",
         error: null,
       },
-      name: {
+      company_code: {
         value: "",
         error: null,
       },
-      city: {
+      admin_email: {
         value: "",
         error: null,
       },
-      phonenumber: {
+      company_name: {
         value: "",
         error: null,
+      },
+      telephone: {
+        value: "",
+        error: null,
+      },
+      pictures: {
+        files: [],
       },
       responsible_person: {
         first_name: {
@@ -64,10 +84,79 @@ const initialState: DetailOrganizationInitialStateType = {
           error: null,
         },
       },
+      address: {
+        address_1: {
+          value: "",
+          error: null,
+        },
+        address_2: {
+          value: "",
+          error: null,
+        },
+        zip_code: {
+          value: "",
+          error: null,
+        },
+        city: {
+          value: "",
+          error: null,
+        },
+      },
     },
   },
-  delete_account_confirmation: {
+  company_office: {
+    form: [
+      {
+        address_name: {
+          value: "",
+          error: null,
+        },
+        address_1: {
+          value: "",
+          error: null,
+        },
+        address_2: {
+          value: "",
+          error: null,
+        },
+        zip_code: {
+          value: "",
+          error: null,
+        },
+        city: {
+          value: "",
+          error: null,
+        },
+        pin_point: {
+          value: null,
+        },
+        mode: "initial",
+      },
+    ],
+  },
+  pin_point: {
     is_open: false,
+    index: null,
+    location: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
+      items: [],
+      query: "",
+    },
+    map: {
+      marker: false,
+      initial_coordinate: null,
+      mode: "country",
+    },
+  },
+  notification: {
+    is_open: false,
+  },
+  pin_point_delete_confirmation: {
+    is_open: false,
+    index: null,
   },
 };
 
@@ -84,8 +173,13 @@ const mainReducer = (
     profile,
     ride,
     driver,
-    edit,
     delete_account_confirmation,
+    edit,
+    company_data,
+    company_office,
+    pin_point,
+    pin_point_delete_confirmation,
+    notification,
   }: DetailOrganizationInitialStateType,
   action: DetailOrganizationActions
 ) => ({
@@ -98,6 +192,18 @@ const mainReducer = (
       delete_account_confirmation,
       action
     ),
+  company_data: DetailOrganizationCompanyDataReducers(company_data, action),
+  company_office: DetailOrganizationCompanyOfficeReducers(
+    company_office,
+    action
+  ),
+  pin_point: DetailOrganizationPinPointReducers(pin_point, action),
+  pin_point_delete_confirmation:
+    DetailOrganizationPinPointDeleteConfirmationReducers(
+      pin_point_delete_confirmation,
+      action
+    ),
+  notification: DetailOrganizationNotificationReducers(notification, action),
 });
 
 const DetailOrganizationProvider = (props: { children: React.ReactNode }) => {

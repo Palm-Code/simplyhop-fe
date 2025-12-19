@@ -5,6 +5,7 @@ import {
   CreateOrganizationCompanyOffice,
   CreateOrganizationNotification,
   CreateOrganizationPinPoint,
+  CreateOrganizationPinPointDeleteConfirmation,
 } from "./Create.organization.types";
 
 // CompanyData
@@ -42,6 +43,20 @@ export const CreateOrganizationPinPointReducers = (
 ) => {
   switch (action.type) {
     case CreateOrganizationActionEnum.SetPinPointData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// PinPointDeleteConfirmation
+export const CreateOrganizationPinPointDeleteConfirmationReducers = (
+  state: CreateOrganizationPinPointDeleteConfirmation,
+  action: CreateOrganizationActions
+) => {
+  switch (action.type) {
+    case CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData:
       return action.payload;
 
     default:

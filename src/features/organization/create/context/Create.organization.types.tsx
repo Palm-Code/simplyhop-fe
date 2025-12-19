@@ -17,6 +17,7 @@ export interface CreateOrganizationInitialStateType {
   company_data: CreateOrganizationCompanyData;
   company_office: CreateOrganizationCompanyOffice;
   pin_point: CreateOrganizationPinPoint;
+  pin_point_delete_confirmation: CreateOrganizationPinPointDeleteConfirmation;
   notification: CreateOrganizationNotification;
 }
 
@@ -46,12 +47,33 @@ export interface CreateOrganizationCompanyData {
       value: string;
       error: FormError;
     };
+    pictures: {
+      files: ({ id: string; image_url: string } | File)[];
+    };
     responsible_person: {
       first_name: {
         value: string;
         error: FormError;
       };
       last_name: {
+        value: string;
+        error: FormError;
+      };
+    };
+    address: {
+      address_1: {
+        value: string;
+        error: FormError;
+      };
+      address_2: {
+        value: string;
+        error: FormError;
+      };
+      zip_code: {
+        value: string;
+        error: FormError;
+      };
+      city: {
         value: string;
         error: FormError;
       };
@@ -81,16 +103,26 @@ export interface CreateOrganizationCompanyOffice {
       value: string;
       error: FormError;
     };
+    pin_point: {
+      value: {
+        lat: number;
+        lng: number;
+        location_1: string;
+        location_2: string;
+      } | null;
+    };
+    mode: "initial" | "edit" | "view";
   }[];
 }
 
 export interface CreateOrganizationPinPoint {
   is_open: boolean;
+  index: number | null;
   location: {
     items: { id: string; name: string }[];
     query: string;
     selected: {
-      item: null | { id: string; name: string };
+      item: null | { id: string; name: string; description: string };
       lat_lng: null | { lat: number; lng: number };
     };
   };
@@ -99,6 +131,11 @@ export interface CreateOrganizationPinPoint {
     initial_coordinate: { lat: number; lng: number } | null;
     mode: MapMode;
   };
+}
+
+export interface CreateOrganizationPinPointDeleteConfirmation {
+  is_open: boolean;
+  index: number | null;
 }
 
 export interface CreateOrganizationNotification {
@@ -112,6 +149,8 @@ export enum CreateOrganizationActionEnum {
   SetCompanyOfficeData = "SetCompanyOfficeData",
   // PinPoint
   SetPinPointData = "SetPinPointData",
+  // PinPointDeleteConfirmation
+  SetPinPointDeleteConfirmationData = "SetPinPointDeleteConfirmationData",
   // Notification
   SetNotificationData = "SetNotificationData",
 }
@@ -121,6 +160,7 @@ export type CreateOrganizationActions =
   | CreateOrganizationCompanyDataActions
   | CreateOrganizationCompanyOfficeActions
   | CreateOrganizationPinPointActions
+  | CreateOrganizationPinPointDeleteConfirmationActions
   | CreateOrganizationNotificationActions;
 
 // Action Collection Types consist of:
@@ -147,6 +187,14 @@ type CreateOrganizationPinPointPayload = {
 
 export type CreateOrganizationPinPointActions =
   ActionMap<CreateOrganizationPinPointPayload>[keyof ActionMap<CreateOrganizationPinPointPayload>];
+
+// PinPointDeleteConfirmation
+type CreateOrganizationPinPointDeleteConfirmationPayload = {
+  [CreateOrganizationActionEnum.SetPinPointDeleteConfirmationData]: CreateOrganizationPinPointDeleteConfirmation;
+};
+
+export type CreateOrganizationPinPointDeleteConfirmationActions =
+  ActionMap<CreateOrganizationPinPointDeleteConfirmationPayload>[keyof ActionMap<CreateOrganizationPinPointDeleteConfirmationPayload>];
 
 // Notification
 type CreateOrganizationNotificationPayload = {

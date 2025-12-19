@@ -28,6 +28,9 @@ const initialState: ResultTripInitialStateType = {
       query: "",
       items: [],
       saved_items: [],
+      company_office: {
+        checked: false,
+      },
     },
     destination: {
       page_sheet: {
@@ -40,6 +43,9 @@ const initialState: ResultTripInitialStateType = {
       query: "",
       items: [],
       saved_items: [],
+      company_office: {
+        checked: false,
+      },
     },
     date: {
       mode: "multiple",

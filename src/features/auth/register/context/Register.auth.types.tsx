@@ -1,3 +1,4 @@
+import { Organization } from "@/core/models/data";
 import { FormError } from "@/core/utils/form";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -13,75 +14,105 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface RegisterAuthInitialStateType {
-  state: RegisterAuthState;
-  general: RegisterAuthGeneral;
-  password_setup: RegisterAuthPasswordSetup;
+  step: RegisterAuthStep;
+  organization: RegisterAuthOrganization;
+  form: RegisterAuthForm;
+  otp_form: RegisterAuthOTPForm;
 }
 
 // State Collection Types consist of:
-export interface RegisterAuthState {
-  step: "general" | "password_setup";
+export interface RegisterAuthStep {
+  name: "organization" | "form" | "otp";
 }
-export interface RegisterAuthGeneral {
+
+export interface RegisterAuthOrganization {
+  data: Organization[];
+  pagination: {
+    current: number;
+    last: null | number;
+  };
+  loading: {
+    is_fetching: boolean;
+    is_loading: boolean;
+  };
+}
+export interface RegisterAuthForm {
+  organization: Organization | null;
   email: {
     value: string;
     error: FormError;
+  };
+  company_code: {
+    value: string;
+    error: FormError;
+  };
+  error: null | {
+    code: string;
   };
 }
 
-export interface RegisterAuthPasswordSetup {
-  email: {
+export interface RegisterAuthOTPForm {
+  otp: {
     value: string;
   };
-  password: {
-    value: string;
-    error: FormError;
-  };
-  confirm_password: {
-    value: string;
-    error: FormError;
-  };
-  tnc: {
-    checked: boolean;
+  error: null | {
+    code: string;
   };
 }
 
 export enum RegisterAuthActionEnum {
-  // State
-  SetStateData = "SetStateData",
-  // General
-  SetGeneralData = "SetGeneralData",
-  // PasswordSetup
-  SetPasswordSetupData = "SetPasswordSetupData",
+  // Step
+  SetStepData = "SetStepData",
+  // Organization
+  SetOrganizationData = "SetOrganizationData",
+  SetOrganizationDataData = "SetOrganizationDataData",
+  SetOrganizationPaginationData = "SetOrganizationPaginationData",
+  SetOrganizationLoadingData = "SetOrganizationLoadingData",
+  // Form
+  SetFormData = "SetFormData",
+  // OTPForm
+  SetOTPFormData = "SetOTPFormData",
 }
 
 // Action Collection Types
 export type RegisterAuthActions =
-  | RegisterAuthStateActions
-  | RegisterAuthGeneralActions
-  | RegisterAuthPasswordSetupActions;
+  | RegisterAuthStepActions
+  | RegisterAuthOrganizationActions
+  | RegisterAuthFormActions
+  | RegisterAuthOTPFormActions;
 
 // Action Collection Types consist of:
-// State
-type RegisterAuthStatePayload = {
-  [RegisterAuthActionEnum.SetStateData]: RegisterAuthState;
+// Step
+type RegisterAuthStepPayload = {
+  [RegisterAuthActionEnum.SetStepData]: RegisterAuthStep;
 };
 
-export type RegisterAuthStateActions =
-  ActionMap<RegisterAuthStatePayload>[keyof ActionMap<RegisterAuthStatePayload>];
+export type RegisterAuthStepActions =
+  ActionMap<RegisterAuthStepPayload>[keyof ActionMap<RegisterAuthStepPayload>];
 
-// General
-type RegisterAuthGeneralPayload = {
-  [RegisterAuthActionEnum.SetGeneralData]: RegisterAuthGeneral;
+// Organization
+type RegisterAuthOrganizationPayload = {
+  [RegisterAuthActionEnum.SetOrganizationData]: RegisterAuthOrganization;
+  [RegisterAuthActionEnum.SetOrganizationDataData]: RegisterAuthOrganization["data"];
+  [RegisterAuthActionEnum.SetOrganizationPaginationData]: RegisterAuthOrganization["pagination"];
+  [RegisterAuthActionEnum.SetOrganizationLoadingData]: RegisterAuthOrganization["loading"];
 };
 
-export type RegisterAuthGeneralActions =
-  ActionMap<RegisterAuthGeneralPayload>[keyof ActionMap<RegisterAuthGeneralPayload>];
+export type RegisterAuthOrganizationActions =
+  ActionMap<RegisterAuthOrganizationPayload>[keyof ActionMap<RegisterAuthOrganizationPayload>];
 
-// PasswordSetup
-type RegisterAuthPasswordSetupPayload = {
-  [RegisterAuthActionEnum.SetPasswordSetupData]: RegisterAuthPasswordSetup;
+// Form
+type RegisterAuthFormPayload = {
+  [RegisterAuthActionEnum.SetFormData]: RegisterAuthForm;
 };
 
-export type RegisterAuthPasswordSetupActions =
-  ActionMap<RegisterAuthPasswordSetupPayload>[keyof ActionMap<RegisterAuthPasswordSetupPayload>];
+export type RegisterAuthFormActions =
+  ActionMap<RegisterAuthFormPayload>[keyof ActionMap<RegisterAuthFormPayload>];
+
+// OTPForm
+type RegisterAuthOTPFormPayload = {
+  [RegisterAuthActionEnum.SetOTPFormData]: RegisterAuthOTPForm;
+};
+
+export type RegisterAuthOTPFormActions =
+  ActionMap<RegisterAuthOTPFormPayload>[keyof ActionMap<RegisterAuthOTPFormPayload>];

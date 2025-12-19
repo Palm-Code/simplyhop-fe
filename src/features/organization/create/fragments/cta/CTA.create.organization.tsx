@@ -2,105 +2,83 @@ import { Button } from "@/core/components/button";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-// import {
-//   CreateOrganizationActionEnum,
-//   CreateOrganizationContext,
-// } from "../../context";
+import {
+  CreateOrganizationActionEnum,
+  CreateOrganizationContext,
+} from "../../context";
 
 import { MoonLoader } from "@/core/components/moon_loader";
-// import { UserContext } from "@/core/modules/app/context";
+import { usePostOrganizationCreate } from "../../react_query/hooks";
 
 export const CTACreateOrganization = () => {
   const dictionaries = getDictionaries();
-  // const { state, dispatch } = React.useContext(CreateOrganizationContext);
-  // const { refetch } = React.useContext(UserContext);
-  // const {
-  //   mutateAsync: postUserProfileCreate,
-  //   isPending: isPendingPostUserProfileCreate,
-  // } = usePostUserProfileCreate();
-  // const {
-  //   mutateAsync: postVehicleCreateMy,
-  //   isPending: isPendingPostVehicleCreateMy,
-  // } = usePostVehicleCreateMy();
+  const { state, dispatch } = React.useContext(CreateOrganizationContext);
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("new_user");
-    }
-  }, []);
+  const {
+    mutateAsync: postOrganizationCreate,
+    isPending: isPendingPostOrganizationCreate,
+  } = usePostOrganizationCreate();
 
   const handleClickSave = async () => {
-    // const user = await postUserProfileCreate();
-    // if (!user) return;
-    // if (state.ride_plan.form.offer_trip.selected?.id === "yes") {
-    //   const vehicle = await postVehicleCreateMy();
-    //   if (!vehicle) return;
-    //   if (user.data.is_profile_complete && !!vehicle.data) {
-    //     localStorage.setItem("new_user", "true");
-    //   }
-    // }
-    // if (
-    //   state.ride_plan.form.offer_trip.selected?.id === "no" &&
-    //   user.data.is_profile_complete
-    // ) {
-    //   localStorage.setItem("new_user", "true");
-    // }
-    // refetch();
-    // dispatch({
-    //   type: CreateOrganizationActionEnum.SetNotificationData,
-    //   payload: {
-    //     ...state.notification,
-    //     is_open: true,
-    //   },
-    // });
+    const res = await postOrganizationCreate();
+    if (!res) return;
+    dispatch({
+      type: CreateOrganizationActionEnum.SetNotificationData,
+      payload: {
+        ...state.notification,
+        is_open: true,
+      },
+    });
   };
 
-  // const isPersonalFormValid =
-  //   !!state.personal_information.form.first_name.value.length &&
-  //   !state.personal_information.form.first_name.error &&
-  //   !!state.personal_information.form.last_name.value.length &&
-  //   !state.personal_information.form.last_name.error &&
-  //   !!state.personal_information.form.gender.selected &&
-  //   !state.personal_information.form.gender.error &&
-  //   !!state.personal_information.form.city.value.length &&
-  //   !state.personal_information.form.city.error &&
-  //   !!state.personal_information.form.phonenumber.value.length &&
-  //   !state.personal_information.form.phonenumber.error;
+  const isCompanyDataValid =
+    !state.company_data.form.admin_email.error &&
+    !!state.company_data.form.admin_email.value.length &&
+    !state.company_data.form.telephone.error &&
+    !!state.company_data.form.telephone.value.length &&
+    !state.company_data.form.responsible_person.first_name.error &&
+    !!state.company_data.form.responsible_person.first_name.value.length &&
+    !state.company_data.form.responsible_person.last_name.error &&
+    !!state.company_data.form.responsible_person.last_name.value.length &&
+    !state.company_data.form.company_name.error &&
+    !!state.company_data.form.company_name.value.length &&
+    !!state.company_data.form.company_type.selected &&
+    state.company_data.form.company_type.selected.id === "domain"
+      ? !!state.company_data.form.domain.value.length &&
+        !state.company_data.form.domain.error
+      : !!state.company_data.form.company_code.value.length;
+  const completedCompanyOffice = state.company_office.form.filter(
+    (item) => item.mode === "view"
+  );
+  const isCompanyOfficeValid =
+    !!completedCompanyOffice.length &&
+    completedCompanyOffice.reduce((acc, item) => {
+      return (
+        acc &&
+        !!item.address_name.value.length &&
+        !item.address_name.error &&
+        !!item.address_1.value.length &&
+        !item.address_1.error &&
+        !!item.zip_code.value.length &&
+        !item.zip_code.error &&
+        !!item.city.value.length &&
+        !item.city.error &&
+        !!item.pin_point
+      );
+    }, true);
+  const isSaveDisabled =
+    !isCompanyDataValid ||
+    !isCompanyOfficeValid ||
+    isPendingPostOrganizationCreate;
+  const isSaveLoading = isPendingPostOrganizationCreate;
 
-  // const isVehicleFormValid =
-  //   state.ride_plan.form.offer_trip.selected?.id === "no"
-  //     ? true
-  //     : !!state.vehicle_information.general.form.car_brand.selected &&
-  //       !!state.vehicle_information.general.form.car_category.selected &&
-  //       !!state.vehicle_information.general.form.car_model.value.length &&
-  //       !!state.vehicle_information.general.form.license_plate.value.length &&
-  //       !!state.vehicle_information.capacity.passenger_seats.form.available_seat
-  //         .selected &&
-  //       !!state.vehicle_information.capacity.passenger_seats.form
-  //         .available_car_seat.selected &&
-  //       !!state.vehicle_information.capacity.luggage.form.luggage.selected &&
-  //       !!state.vehicle_information.capacity.luggage.form.luggage_size
-  //         .selected &&
-  //       !!state.vehicle_information.trip.form.smoking.selected &&
-  //       !!state.vehicle_information.trip.form.music.selected &&
-  //       !!state.vehicle_information.trip.form.pet.selected;
-
-  // const isSaveDisabled =
-  //   !isPersonalFormValid ||
-  //   !isVehicleFormValid ||
-  //   isPendingPostUserProfileCreate ||
-  //   isPendingPostVehicleCreateMy;
-  // const isSaveLoading =
-  //   isPendingPostUserProfileCreate || isPendingPostVehicleCreateMy;
-  const isSaveDisabled = false;
-  const isSaveLoading = false;
   return (
     <Button
       aria-label={dictionaries.cta.save.children}
       name={dictionaries.cta.save.children}
       disabled={isSaveDisabled}
       isLoading={isSaveLoading}
-      className={clsx("py-[1rem]")}
+      className={clsx("py-3")}
       onClick={handleClickSave}
     >
       {isSaveLoading && <MoonLoader size={20} color={"white"} />}

@@ -46,7 +46,7 @@ export const FilterPlanRideTrip = () => {
     companyOfficeAddreses?.map((item) => {
       return {
         id: String(item.id),
-        name: userState.profile?.organization?.name ?? "",
+        name: item.name ?? "",
         description: item.address ?? "",
       };
     }) ?? [];

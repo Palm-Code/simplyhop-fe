@@ -18,12 +18,13 @@ export const TripFilterTabButton = ({
     <Link
       {...linkProps}
       className={clsx(
-        "px-[1rem] py-[0.5rem]",
+        "px-[0.5rem] py-[0.5rem]",
+        'border',
         isActive
-          ? "bg-[#249124] dark:bg-[#33CC33]"
-          : "bg-[#F6F6F6CC] dark:bg-[#767676]",
+          ? "bg-[#249124] dark:bg-[#33CC33] text-[white] dark:text-[#232323] border-[#249124] dark:border-[#33CC33]"
+          : "bg-[#F0F0F0] dark:bg-[#232323] text-[#5B5B5B] dark:text-[#DADADA] border-[#E9E6E6] dark:border-[#464646]",
         "rounded-[0.75rem]",
-        "text-[0.875rem] text-[#000] font-semibold",
+        "text-[0.875rem] font-semibold",
         "whitespace-nowrap",
         className
       )}

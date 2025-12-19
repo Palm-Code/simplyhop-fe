@@ -1,11 +1,18 @@
+import { GetOrganizationListPayloadRequestInterface } from "@/core/models/rest/simplyhop/organization";
+
 export const RegisterAuthReactQueryKey = {
-  PostRegister: () => {
-    return ["RegisterAuthReactQueryKey.PostRegister"];
+  GetOrganizationList: (
+    payload?: GetOrganizationListPayloadRequestInterface
+  ) => {
+    return [
+      "RegisterAuthReactQueryKey.GetOrganizationList",
+      [payload] as const,
+    ];
   },
-  PostLogin: () => {
-    return ["RegisterAuthReactQueryKey.PostLogin"];
+  PostRequestOTP: () => {
+    return ["RegisterAuthReactQueryKey.PostRequestOTP"];
   },
-  GetSocialRedirect: () => {
-    return ["RegisterAuthReactQueryKey.GetSocialRedirect"];
+  PostVerifyOTP: () => {
+    return ["RegisterAuthReactQueryKey.PostVerifyOTP"];
   },
 };

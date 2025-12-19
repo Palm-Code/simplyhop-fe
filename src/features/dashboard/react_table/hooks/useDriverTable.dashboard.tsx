@@ -15,6 +15,7 @@ import "dayjs/locale/de";
 import { GetDashboardOrganizationSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 import { UserContext } from "@/core/modules/app/context";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import SVGIcon from "@/core/icons";
 
 export const useDriverTableDashboard = () => {
   const { state: userState } = useContext(UserContext);
@@ -84,15 +85,31 @@ export const useDriverTableDashboard = () => {
                   "w-full"
                 )}
               >
-                <img
-                  src={cellProps.row.original.user.avatar ?? ""}
-                  className={clsx(
-                    "w-4 h-4",
-                    "rounded-full",
-                    "object-cover object-center"
-                  )}
-                  alt={cellProps.row.original.user.email}
-                />
+                {!cellProps.row.original.user.avatar?.length ? (
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "rounded-full",
+                      "w-3 h-3",
+                      "bg-[#EFF9EC]"
+                    )}
+                  >
+                    <SVGIcon
+                      name={"User2"}
+                      className={clsx("w-2 h-2", "text-[#26531A]")}
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={cellProps.row.original.user.avatar ?? ""}
+                    className={clsx(
+                      "w-4 h-4",
+                      "rounded-full",
+                      "object-cover object-center"
+                    )}
+                    alt={cellProps.row.original.user.email}
+                  />
+                )}
 
                 <p
                   className={clsx(

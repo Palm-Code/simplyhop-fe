@@ -1,4 +1,5 @@
 import { User } from "@/core/models/data";
+import { Meta } from "@/core/models/data/meta";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetDashboardSuperAdminRequestInterface extends NextApiRequest {
@@ -29,6 +30,7 @@ export interface GetDashboardSuperAdminSuccessResponseInterface {
   data: GetDashboardSuperAdminSuccessDataResponseInterface[];
 
   redirect: null;
+  meta: Meta;
 }
 
 export interface GetDashboardSuperAdminSuccessDataResponseInterface {

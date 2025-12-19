@@ -1,7 +1,5 @@
-import * as React from "react";
 import clsx from "clsx";
 import { UserDetailDriver } from "../user";
-import { RidesDetailDriver } from "../rides";
 import { VehiclesDetailDriver } from "../vehicles";
 import { TripDetailDriver } from "../trip";
 import { EditDetailDriver } from "../edit";
@@ -37,7 +35,6 @@ export const ContentDetailDriver = () => {
               "w-full"
             )}
           >
-            <RidesDetailDriver />
             <VehiclesDetailDriver />
           </div>
         </div>

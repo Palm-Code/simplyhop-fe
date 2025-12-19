@@ -93,6 +93,18 @@ export const useGetRidesSearch = () => {
     enabled: isEnabled,
   });
 
+  // Reset pagination when rideStatus or type changes
+  React.useEffect(() => {
+    dispatch({
+      type: ListTripActionEnum.SetRideDataPaginationCurrent,
+      payload: PAGINATION.NUMBER,
+    });
+    dispatch({
+      type: ListTripActionEnum.SetRideDataData,
+      payload: [],
+    });
+  }, [rideStatus, type]);
+
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;

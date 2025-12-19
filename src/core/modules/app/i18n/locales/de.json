@@ -241,6 +241,12 @@
               "icon": "LayoutDashboard"
             },
             {
+              "id": "organisation",
+              "name": "Organisation",
+              "href": "/support/organisation",
+              "icon": "Building2"
+            },
+            {
               "id": "fahrer",
               "name": "Fahrer",
               "href": "/support/fahrer",
@@ -251,12 +257,6 @@
               "name": "Fahrten",
               "href": "/support/fahrten",
               "icon": "CarFront"
-            },
-            {
-              "id": "organisation",
-              "name": "Organisation",
-              "href": "/support/organisation",
-              "icon": "Building2"
             },
             {
               "id": "einstellungen",
@@ -276,6 +276,12 @@
                 "icon": "LayoutDashboard"
               },
               {
+                "id": "organisation",
+                "name": "Organisation",
+                "href": "/support/organisation",
+                "icon": "Building2"
+              },
+              {
                 "id": "fahrer",
                 "name": "Fahrer",
                 "href": "/support/fahrer",
@@ -286,12 +292,6 @@
                 "name": "Fahrten",
                 "href": "/support/fahrten",
                 "icon": "CarFront"
-              },
-              {
-                "id": "organisation",
-                "name": "Organisation",
-                "href": "/support/organisation",
-                "icon": "Building2"
               }
             ]
           },

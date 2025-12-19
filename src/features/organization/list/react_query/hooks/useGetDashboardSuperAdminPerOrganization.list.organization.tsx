@@ -23,7 +23,7 @@ export const useGetDashboardSuperAdminPerOrganization = () => {
     {
       params: {
         include: "organization",
-        "page[number]": 1,
+        "page[number]": state.table.pagination.current,
         "page[size]": 10,
       },
     };
@@ -43,9 +43,22 @@ export const useGetDashboardSuperAdminPerOrganization = () => {
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
+      const newData = query.data.data;
       dispatch({
         type: ListOrganizationActionEnum.SetTableItemsData,
-        payload: query.data.data,
+        payload:
+          state.table.pagination.current === 1
+            ? [...newData]
+            : !newData.length
+            ? state.table.items
+            : [...state.table.items, ...newData],
+      });
+      dispatch({
+        type: ListOrganizationActionEnum.SetTablePaginationData,
+        payload: {
+          ...state.table.pagination,
+          last: query.data.meta.last_page,
+        },
       });
     }
   }, [query.data, query.isFetching]);

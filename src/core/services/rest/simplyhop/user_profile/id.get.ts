@@ -19,6 +19,7 @@ export const fetchGetUserProfileId = async (
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      params: payload?.params,
     });
     return res.data;
   } catch (err) {

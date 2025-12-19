@@ -2,6 +2,7 @@ import {
   GetDashboardSuperAdminPayloadRequestInterface,
   GetDashboardSuperAdminPerOrganizationIdPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/dashboard";
+import { GetOrganizationIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/organization";
 import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
 
 export const DetailOrganizationReactQueryKey = {
@@ -24,8 +25,14 @@ export const DetailOrganizationReactQueryKey = {
       [payload] as const,
     ];
   },
-  PutOrganizationProfile: () => {
-    return ["DetailOrganizationReactQueryKey.PutOrganizationProfile"];
+  GetOrganizationId: (payload?: GetOrganizationIdPayloadRequestInterface) => {
+    return [
+      "DetailOrganizationReactQueryKey.GetOrganizationId",
+      [payload] as const,
+    ];
+  },
+  PostOrganizationPartialUpdate: () => {
+    return ["DetailOrganizationReactQueryKey.PostOrganizationPartialUpdate"];
   },
   PatchOrganizationDeactivate: () => {
     return ["DetailOrganizationReactQueryKey.PatchOrganizationDeactivate"];

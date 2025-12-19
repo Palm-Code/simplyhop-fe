@@ -11,6 +11,9 @@ import {
 import { LoadingState } from "@/core/components/loading_state";
 import { EmptyState } from "@/core/components/empty_state";
 import { getDictionaries } from "../../i18n";
+import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
+import { ListLoader } from "@/core/components/list_loader";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const DataTableListDriver = () => {
   const { state, dispatch } = React.useContext(ListDriverContext);
@@ -27,7 +30,26 @@ export const DataTableListDriver = () => {
       },
     });
   };
-  if (state.table.loading.is_fetching) {
+
+  const handleLoadMore = () => {
+    if (state.table.loading.is_fetching) return;
+
+    dispatch({
+      type: ListDriverActionEnum.SetTablePaginationData,
+      payload: {
+        ...state.table.pagination,
+        current: state.table.pagination.current + 1,
+      },
+    });
+  };
+
+  const isEndReached =
+    state.table.pagination.last === state.table.pagination.current;
+
+  if (
+    state.table.loading.is_fetching &&
+    state.table.pagination.current === PAGINATION.NUMBER
+  ) {
     return (
       <div
         className={clsx(
@@ -44,7 +66,7 @@ export const DataTableListDriver = () => {
     );
   }
 
-  if (!state.table.items.length) {
+  if (!state.table.items.length && !state.table.loading.is_fetching) {
     return (
       <div
         className={clsx(
@@ -62,24 +84,31 @@ export const DataTableListDriver = () => {
   }
 
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-6",
-        "w-full",
-        "px-4 py-4",
-        "bg-[white] dark:bg-[#232323]",
-        "rounded-2xl",
-        "border border-[#E9E6E6] dark:border-[#464646]"
-      )}
+    <InfiniteScrollWrapper
+      loader={<ListLoader message="Lade weitere Fahrer..." />}
+      isPaused={state.table.loading.is_fetching}
+      isEndReached={isEndReached}
+      onLoadMore={handleLoadMore}
     >
-      <table className={clsx("table w-full")}>
-        <TableHead table={table} />
-        <TableBody
-          table={table}
-          tdClassName={"!h-[56px]"}
-          onRowClick={handleRowClick}
-        />
-      </table>
-    </div>
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-6",
+          "w-full",
+          "px-4 py-4",
+          "bg-[white] dark:bg-[#232323]",
+          "rounded-2xl",
+          "border border-[#E9E6E6] dark:border-[#464646]"
+        )}
+      >
+        <table className={clsx("table w-full")}>
+          <TableHead table={table} />
+          <TableBody
+            table={table}
+            tdClassName={"!h-[56px]"}
+            onRowClick={handleRowClick}
+          />
+        </table>
+      </div>
+    </InfiniteScrollWrapper>
   );
 };

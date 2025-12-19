@@ -140,14 +140,14 @@
     "title": "Profil bearbeiten",
     "form": {
       "input": {
-        "email": {
+        "admin_email": {
           "inputProps": {
             "id": "email",
             "placeholder": " "
           },
           "labelProps": {
             "id": "email",
-            "children": "Email",
+            "children": "Admin Email",
             "required": false
           }
         },
@@ -262,7 +262,312 @@
     "cta": {
       "primary": {
         "children": "Alle anzeigen",
-        "href": "/support/fahrten/organization/{{organization_id}}"
+        "href": "/support/fahrten/organisation/{{organization_id}}"
+      }
+    }
+  },
+
+  "company_data": {
+    "title": "Unternehmensdaten",
+    "form": {
+      "input": {
+        "company_type": {
+          "label": "Identifier",
+          "required": true,
+          "items": [
+            {
+              "id": "domain",
+              "name": "Domain",
+              "description": "Das Unternehmen verwendet seine Domain (@company.com) für die Registrierung von Mitglieder"
+            },
+            {
+              "id": "company_code",
+              "name": "Unternehmenscode",
+              "description": "Das Unternehmen verwendet einen eindeutigen Code, um die Registrierung von Mitgliedern zu identifizieren."
+            }
+          ]
+        },
+        "domain": {
+          "inputProps": {
+            "id": "domain",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "domain",
+            "children": "Domain",
+            "required": true
+          }
+        },
+        "company_code": {
+          "label": "Unternehmenscode",
+          "required": true
+        },
+        "admin_email": {
+          "inputProps": {
+            "id": "admin_email",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "admin_email",
+            "children": "Admin Email",
+            "required": true
+          }
+        },
+        "company_name": {
+          "inputProps": {
+            "id": "company_name",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "company_name",
+            "children": "Firmenname",
+            "required": true
+          }
+        },
+        "telephone": {
+          "inputProps": {
+            "id": "telephone",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "telephone",
+            "children": "Telefon",
+            "required": true
+          }
+        },
+        "pictures": {
+          "title": "Firmenlogo",
+          "form": {
+            "message": "Ziehen Sie das Firmenlogo hierher oder klicken Sie, um Dateien auszuwählen.",
+            "description": "Maximale Dateigröße: 2 MB, empfohlene Höhe: 60 px."
+          },
+          "square_input": {
+            "form": {
+              "label": "+<br/>Weitere hinzufügen"
+            }
+          }
+        },
+        "responsible_person": {
+          "title": "Ansprechpartner",
+          "first_name": {
+            "inputProps": {
+              "id": "first_name",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "first_name",
+              "children": "Vorname",
+              "required": true
+            }
+          },
+          "last_name": {
+            "inputProps": {
+              "id": "last_name",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "last_name",
+              "children": "Nachname",
+              "required": true
+            }
+          }
+        },
+        "address": {
+          "title": "Hauptadresse",
+          "address_1": {
+            "inputProps": {
+              "id": "address_address_1",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_address_1",
+              "children": "Adresse",
+              "required": true
+            }
+          },
+          "address_2": {
+            "inputProps": {
+              "id": "address_address_2",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_address_2",
+              "children": "Adresse (Zeile 2)",
+              "required": false
+            }
+          },
+          "zip_code": {
+            "inputProps": {
+              "id": "address_zip_code",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_zip_code",
+              "children": "PLZ",
+              "required": true
+            }
+          },
+          "city": {
+            "inputProps": {
+              "id": "address_city",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "address_city",
+              "children": "Stadt",
+              "required": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "company_office": {
+    "title": "Unternehmensbüro",
+    "cta": {
+      "add": {
+        "children": "weitere Standorte / Niederlassungen"
+      },
+      "save": {
+        "children": "Speichern"
+      },
+      "cancel": {
+        "children": "Abbrechen"
+      }
+    },
+    "form": {
+      "input": {
+        "address_name": {
+          "inputProps": {
+            "id": "address_name",
+            "placeholder": " ",
+            "helperText": "Sie können bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
+          },
+          "labelProps": {
+            "id": "address_name",
+            "children": "Adresse Name",
+            "required": true
+          }
+        },
+        "address_1": {
+          "inputProps": {
+            "id": "address_1",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "address_1",
+            "children": "Adresse",
+            "required": true
+          }
+        },
+        "address_2": {
+          "inputProps": {
+            "id": "address_2",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "address_2",
+            "children": "Adresse (Zeile 2)",
+            "required": false
+          }
+        },
+        "zip_code": {
+          "inputProps": {
+            "id": "zip_code",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "zip_code",
+            "children": "PLZ",
+            "required": true
+          }
+        },
+        "city": {
+          "inputProps": {
+            "id": "city",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "city",
+            "children": "Stadt",
+            "required": true
+          }
+        },
+        "pin_point": {
+          "label": "Standort markieren",
+          "required": true,
+          "cta": {
+            "children": "Ort ändern"
+          }
+        }
+      }
+    }
+  },
+  "cta": {
+    "save": {
+      "children": "Unternehmen registrieren"
+    },
+    "back": {
+      "name": "back",
+      "href": "/support/organisation"
+    }
+  },
+  "notification": {
+    "title": "Willkommen bei SimplyHop!",
+    "description": "Das Unternehmenskonto ist bereit. Bitten Sie den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
+    "cta": {
+      "back": {
+        "children": "Weiter"
+      }
+    }
+  },
+  "pin_point": {
+    "title": "Den Standort markieren",
+    "cta": {
+      "back": {
+        "children": "Weiter"
+      },
+      "save": {
+        "children": "Speichern"
+      }
+    },
+    "map": {
+      "marker": {
+        "origin": {
+          "icon": {
+            "url": "/icons/map/start_point.svg"
+          }
+        },
+        "destination": {
+          "icon": {
+            "url": "/icons/map/end_point.svg"
+          }
+        }
+      },
+      "info_window": {
+        "origin": {
+          "title": "Start"
+        },
+        "destination": {
+          "title": "End"
+        }
+      },
+      "polyline": {
+        "strokeColor": "#33CC33",
+        "strokeOpacity": 0.8,
+        "strokeWeight": 8
+      }
+    }
+  },
+  "pin_point_delete_confirmation": {
+    "title": "SimplyHop Office 2 löschen?",
+    "description": "Möchten Sie diesen Standort wirklich entfernen?",
+    "cta": {
+      "cancel": {
+        "children": "Behalten"
+      },
+      "delete": {
+        "children": "Löschen"
       }
     }
   }

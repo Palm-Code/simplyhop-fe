@@ -4,6 +4,7 @@ import clsx from "clsx";
 import {
   useGetDashboardSuperAdmin,
   useGetDashboardSuperAdminPerOrganizationId,
+  useGetOrganizationId,
   useGetRidesSearch,
 } from "../react_query/hooks";
 import { ProfileDetailOrganization } from "../fragments/profile";
@@ -13,11 +14,15 @@ import { EditDetailOrganization } from "../fragments/edit";
 import { DeleteAccountConfirmationDetailOrganization } from "../fragments/delete_account_confirmation";
 import { TripDetailOrganization } from "../fragments/trip";
 import { HeaderDetailOrganization } from "../fragments/header";
+import { NotificationDetailOrganization } from "../fragments/notification";
+import { PinPointDetailOrganization } from "../fragments/pin_point";
+import { PinPointDeleteConfirmationDetailOrganization } from "../fragments/pin_point_delete_confirmation";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
   useGetDashboardSuperAdminPerOrganizationId();
   useGetRidesSearch();
+  useGetOrganizationId();
   return (
     <>
       <div
@@ -41,6 +46,9 @@ export const DetailOrganizationContainer = () => {
       </div>
       <EditDetailOrganization />
       <DeleteAccountConfirmationDetailOrganization />
+      <NotificationDetailOrganization />
+      <PinPointDetailOrganization />
+      <PinPointDeleteConfirmationDetailOrganization />
     </>
   );
 };

@@ -4,7 +4,6 @@ import {
   SortingState,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -14,6 +13,7 @@ import { ListDriverContext, ListDriverItem } from "../../context";
 import { getDictionaries } from "../../i18n";
 import "dayjs/locale/de";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import SVGIcon from "@/core/icons";
 
 export const useListDriverTable = () => {
   const { state } = useContext(ListDriverContext);
@@ -22,8 +22,6 @@ export const useListDriverTable = () => {
   const headerColumns = dictionaries.table.head.items;
 
   const tableData = state.table.items;
-
-  const pageSize = state.table.pagination.limit;
 
   const columns = useMemo<ColumnDef<ListDriverItem>[]>(() => {
     return headerColumns.map((item, index) => {
@@ -52,15 +50,31 @@ export const useListDriverTable = () => {
                   "w-full"
                 )}
               >
-                <img
-                  src={cellProps.row.original.user.avatar ?? ""}
-                  className={clsx(
-                    "w-4 h-4",
-                    "rounded-full",
-                    "object-cover object-center"
-                  )}
-                  alt={cellProps.row.original.user.email}
-                />
+                {!cellProps.row.original.user.avatar?.length ? (
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "rounded-full",
+                      "w-4 h-4",
+                      "bg-[#EFF9EC]"
+                    )}
+                  >
+                    <SVGIcon
+                      name={"User2"}
+                      className={clsx("w-3 h-3", "text-[#26531A]")}
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={cellProps.row.original.user.avatar ?? ""}
+                    className={clsx(
+                      "w-4 h-4",
+                      "rounded-full",
+                      "object-cover object-center"
+                    )}
+                    alt={cellProps.row.original.user.email}
+                  />
+                )}
 
                 <p
                   className={clsx(
@@ -69,8 +83,10 @@ export const useListDriverTable = () => {
                   )}
                 >
                   {formatDisplayName({
-                    first_name: cellProps.row.original.user.first_name,
-                    email: cellProps.row.original.user.email,
+                    first_name: !cellProps.row.original.user?.last_name
+                      ? cellProps.row.original.user?.first_name
+                      : `${cellProps.row.original.user.first_name} ${cellProps.row.original.user.last_name}`,
+                    email: state.user_profile.data?.email,
                   })}
                 </p>
               </div>
@@ -130,18 +146,11 @@ export const useListDriverTable = () => {
     columns: columns,
     state: {
       sorting: sorting,
-      pagination: {
-        pageIndex: 0,
-        pageSize: pageSize,
-      },
     },
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
-    paginateExpandedRows: false,
-    autoResetPageIndex: false,
     debugTable: false,
   });
 };

@@ -7,7 +7,6 @@ import { NavigationRideTrip } from "../fragments/navigation";
 
 import { RideFilterListTrip } from "../../list/fragments/ride_filter";
 import { RideSectionListTrip } from "../../list/fragments/ride_section";
-import { SearchListTrip } from "../../list/fragments/search";
 import { SortListTrip } from "../../list/fragments/sort";
 
 export const RideTripContainer = () => {
@@ -21,19 +20,31 @@ export const RideTripContainer = () => {
       <HeaderRideTrip />
       <div className={clsx("flex items-center justify-between", "w-full")}>
         <NavigationRideTrip />
-        <SearchListTrip />
       </div>
-      <ListTripProvider>
-        <div
-          className={clsx("flex items-center justify-between gap-2", "w-full")}
-        >
-          <RideFilterListTrip />
-          <SortListTrip />
-        </div>
+      <div
+        className={clsx(
+          "bg-[#FAFAFA] dark:bg-[#292929]",
+          "w-full",
+          "rounded-2xl",
+          "p-4",
+          "grid grid-cols-1 place-content-start place-items-start gap-4"
+        )}
+      >
+        <ListTripProvider>
+          <div
+            className={clsx(
+              "flex items-center justify-between gap-2",
+              "w-full"
+            )}
+          >
+            <RideFilterListTrip />
+            <SortListTrip />
+          </div>
 
-        <RideSectionListTrip />
-        <AlertApp />
-      </ListTripProvider>
+          <RideSectionListTrip />
+          <AlertApp />
+        </ListTripProvider>
+      </div>
     </div>
   );
 };

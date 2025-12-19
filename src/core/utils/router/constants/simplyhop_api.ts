@@ -23,9 +23,10 @@ import {
   GetMessagesListByRoomPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/messages";
 import {
+  GetOrganizationIdPathPayloadRequestInterface,
   PatchOrganizationActivatePathPayloadRequestInterface,
   PatchOrganizationDeactivatePathPayloadRequestInterface,
-  PutOrganizationProfilePathPayloadRequestInterface,
+  PostOrganizationPartialUpdatePathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/organization";
 import {
   DeleteRidesIdPathPayloadRequestInterface,
@@ -52,6 +53,7 @@ export const SimplyHopAPICollectionURL = {
   auth: {
     postLogin: () => `/api/auth/login`,
     postRequestOTP: () => `/api/auth/request-otp`,
+    postRequestOTPRegistration: () => `/api/auth/request-otp-registration`,
     postVerifyOTP: () => `/api/auth/verify-otp`,
     postRegister: () => `/api/auth/register`,
     postForgotPassword: () => `/api/auth/forgot-password`,
@@ -92,9 +94,13 @@ export const SimplyHopAPICollectionURL = {
       `/api/users/profile/${path.id}`,
   },
   organization: {
+    getList: () => `/api/organizations`,
+    getId: (path: GetOrganizationIdPathPayloadRequestInterface) =>
+      `/api/organizations/${path.id}`,
+    getGenerateCode: () => `/api/organizations/generate-code`,
     postCreate: () => `/api/organizations`,
-    putProfile: (
-      payload: PutOrganizationProfilePathPayloadRequestInterface
+    postPartialUpdate: (
+      payload: PostOrganizationPartialUpdatePathPayloadRequestInterface
     ) => `/api/organizations/${payload.id}/partial-update`,
     patchDeactivate: (
       payload: PatchOrganizationDeactivatePathPayloadRequestInterface

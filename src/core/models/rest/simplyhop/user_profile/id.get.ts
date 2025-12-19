@@ -7,9 +7,14 @@ export interface GetUserProfileIdRequestInterface extends NextApiRequest {
 
 export interface GetUserProfileIdPayloadRequestInterface {
   path: GetUserProfileIdPathPayloadRequestInterface;
+  params?: GetUserProfileIdParamsPayloadRequestInterface;
 }
 export interface GetUserProfileIdPathPayloadRequestInterface {
   id: string;
+}
+
+export interface GetUserProfileIdParamsPayloadRequestInterface {
+  include?: string;
 }
 
 export type GetUserProfileIdResponseInterface = NextApiResponse<

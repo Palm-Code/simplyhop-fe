@@ -5,6 +5,7 @@ import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { UserContext } from "@/core/modules/app/context";
 
 export const TabListTrip = () => {
   const searchParams = useSearchParams();
@@ -12,16 +13,16 @@ export const TabListTrip = () => {
 
   const type = searchParams.get("type");
   const pathname = usePathname();
+  const { state: userState } = React.useContext(UserContext);
 
-  // const tabList = isDriverDetailRoute
-  //   ? dictionaries.tab.items
-  //   : isOrganizationDetailRoute
-  //   ? dictionaries.tab.items.filter((item) => item.id !== "ride")
-  //   : // my list route
-  //   !userState.profile?.is_driver
-  //   ? dictionaries.tab.items.filter((item) => item.id !== "ride")
-  //   : dictionaries.tab.items;
-  const tabList = dictionaries.tab.items;
+  const isEmployee = userState.profile?.role === "employee";
+  const isDriver = isEmployee && !!userState.profile?.is_driver;
+  const isPassenger = isEmployee && !userState.profile?.is_driver;
+  const tabList = isPassenger
+    ? dictionaries.tab.employee.items.filter((item) => item.id === "book")
+    : isDriver
+    ? dictionaries.tab.employee.items
+    : dictionaries.tab.admin.items;
 
   return (
     <TabGroup

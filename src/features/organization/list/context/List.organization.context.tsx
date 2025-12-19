@@ -14,8 +14,8 @@ const initialState: ListOrganizationInitialStateType = {
   table: {
     items: [],
     pagination: {
-      limit: 5,
-      current_page: 1,
+      current: 1,
+      last: null,
     },
     loading: {
       is_fetching: true,

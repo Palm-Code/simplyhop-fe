@@ -3,7 +3,6 @@ import {
   SortingState,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -23,8 +22,6 @@ export const useListOrganizationTable = () => {
   const headerColumns = dictionaries.table.head.items;
 
   const tableData = state.table.items;
-
-  const pageSize = state.table.pagination.limit;
 
   const columns = useMemo<
     ColumnDef<GetDashboardSuperAdminPerOrganizationSuccessDataResponseInterface>[]
@@ -152,18 +149,11 @@ export const useListOrganizationTable = () => {
     columns: columns,
     state: {
       sorting: sorting,
-      pagination: {
-        pageIndex: 0,
-        pageSize: pageSize,
-      },
     },
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
-    paginateExpandedRows: false,
-    autoResetPageIndex: false,
     debugTable: false,
   });
 };

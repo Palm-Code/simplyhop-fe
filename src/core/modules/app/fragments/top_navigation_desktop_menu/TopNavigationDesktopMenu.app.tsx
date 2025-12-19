@@ -150,7 +150,6 @@ export const TopNavigationDesktopMenu = () => {
             >
               {dictionaries.menu.items.map((menu, menuIndex) => (
                 <Link
-                  {...menu}
                   href={menuLink(menu)}
                   key={menuIndex}
                   title={menuTitle(menu)}
@@ -165,7 +164,6 @@ export const TopNavigationDesktopMenu = () => {
                 >
                   <SVGIcon
                     {...(menu.icon as { name: SVGIconProps["name"] })}
-                    key={`svgIcon.${menuIndex}`}
                     className={clsx("w-[1rem] h-[1rem]")}
                   />
 

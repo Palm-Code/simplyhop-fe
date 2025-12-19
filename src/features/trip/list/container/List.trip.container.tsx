@@ -23,7 +23,8 @@ export const ListTripContainer = () => {
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2.5rem]",
-              "max-w-container w-full h-full"
+              "max-w-container w-full h-full",
+              'py-4'
             )}
           >
             <HeaderListTrip />

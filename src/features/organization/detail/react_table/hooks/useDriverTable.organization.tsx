@@ -14,6 +14,7 @@ import { getDictionaries } from "../../i18n";
 import "dayjs/locale/de";
 import { GetDashboardOrganizationSuccessDataResponseInterface } from "@/core/models/rest/simplyhop/dashboard";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import SVGIcon from "@/core/icons";
 
 export const useDriverTableOrganization = () => {
   const { state } = useContext(DetailOrganizationContext);
@@ -37,7 +38,7 @@ export const useDriverTableOrganization = () => {
               className={clsx(
                 "flex items-center justify-start",
                 "w-full",
-                "text-[#606060] text-xs font-normal"
+                "text-[#606060] dark:text-[#C3C3C3] text-xs font-normal"
               )}
             >
               {item.name}
@@ -54,19 +55,35 @@ export const useDriverTableOrganization = () => {
                   "w-full"
                 )}
               >
-                <img
-                  src={cellProps.row.original.user.avatar ?? ""}
-                  className={clsx(
-                    "w-4 h-4",
-                    "rounded-full",
-                    "object-cover object-center"
-                  )}
-                  alt={cellProps.row.original.user.email}
-                />
+                {!cellProps.row.original.user.avatar?.length ? (
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "w-4 h-4",
+                      "bg-[#EFF9ECC7]",
+                      "rounded-full"
+                    )}
+                  >
+                    <SVGIcon
+                      name="User2"
+                      className={clsx("w-2.5 h-2.5", "text-[#26531A]")}
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={cellProps.row.original.user.avatar ?? ""}
+                    className={clsx(
+                      "w-4 h-4",
+                      "rounded-full",
+                      "object-cover object-center"
+                    )}
+                    alt={cellProps.row.original.user.email}
+                  />
+                )}
 
                 <p
                   className={clsx(
-                    "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                    "text-[#292929] dark:text-white font-normal text-[0.875rem] line-clamp-2",
                     "w-full"
                   )}
                 >
@@ -83,7 +100,7 @@ export const useDriverTableOrganization = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#292929] dark:text-white font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >
@@ -111,7 +128,7 @@ export const useDriverTableOrganization = () => {
               <p
                 key={index}
                 className={clsx(
-                  "text-[#292929] font-normal text-[0.875rem] line-clamp-2",
+                  "text-[#292929] dark:text-white font-normal text-[0.875rem] line-clamp-2",
                   "w-full"
                 )}
               >

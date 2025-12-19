@@ -60,6 +60,18 @@ export const useGetBookingList = () => {
       !!userState.profile?.id,
   });
 
+  // Reset pagination when rideStatus or type changes
+  React.useEffect(() => {
+    dispatch({
+      type: ListTripActionEnum.SetBookDataPaginationCurrent,
+      payload: PAGINATION.NUMBER,
+    });
+    dispatch({
+      type: ListTripActionEnum.SetBookDataData,
+      payload: [],
+    });
+  }, [rideStatus, type]);
+
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;

@@ -66,7 +66,7 @@ export const useOrganizationTableDashboard = () => {
                   >
                     <SVGIcon
                       name={"Building2"}
-                      className={clsx("w-3 h-3", "text-[#26531A]")}
+                      className={clsx("w-2 h-2", "text-[#26531A]")}
                     />
                   </div>
                 ) : (

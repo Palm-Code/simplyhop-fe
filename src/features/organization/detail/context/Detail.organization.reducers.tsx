@@ -6,6 +6,11 @@ import {
   DetailOrganizationDriver,
   DetailOrganizationEdit,
   DetailOrganizationDeleteAccountConfirmation,
+  DetailOrganizationCompanyData,
+  DetailOrganizationCompanyOffice,
+  DetailOrganizationPinPoint,
+  DetailOrganizationPinPointDeleteConfirmation,
+  DetailOrganizationNotification,
 } from "./Detail.organization.types";
 
 // Profile
@@ -80,6 +85,20 @@ export const DetailOrganizationDriverReducers = (
   }
 };
 
+// DeleteAccountConfirmation
+export const DetailOrganizationDeleteAccountConfirmationReducers = (
+  state: DetailOrganizationDeleteAccountConfirmation,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetDeleteAccountConfirmationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
 // Edit
 export const DetailOrganizationEditReducers = (
   state: DetailOrganizationEdit,
@@ -94,13 +113,69 @@ export const DetailOrganizationEditReducers = (
   }
 };
 
-// DeleteAccountConfirmation
-export const DetailOrganizationDeleteAccountConfirmationReducers = (
-  state: DetailOrganizationDeleteAccountConfirmation,
+// CompanyData
+export const DetailOrganizationCompanyDataReducers = (
+  state: DetailOrganizationCompanyData,
   action: DetailOrganizationActions
 ) => {
   switch (action.type) {
-    case DetailOrganizationActionEnum.SetDeleteAccountConfirmationData:
+    case DetailOrganizationActionEnum.SetCompanyDataData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// CompanyOffice
+export const DetailOrganizationCompanyOfficeReducers = (
+  state: DetailOrganizationCompanyOffice,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetCompanyOfficeData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// PinPoint
+export const DetailOrganizationPinPointReducers = (
+  state: DetailOrganizationPinPoint,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetPinPointData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// PinPointDeleteConfirmation
+export const DetailOrganizationPinPointDeleteConfirmationReducers = (
+  state: DetailOrganizationPinPointDeleteConfirmation,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetPinPointDeleteConfirmationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// Notification
+export const DetailOrganizationNotificationReducers = (
+  state: DetailOrganizationNotification,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetNotificationData:
       return action.payload;
 
     default:

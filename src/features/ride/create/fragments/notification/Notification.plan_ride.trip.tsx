@@ -61,14 +61,17 @@ export const NotificationPlanRideTrip = () => {
           >
             <SVGIcon
               name="ContrastCheckMark"
-              className={clsx("w-[5rem] h-[5rem]", "text-[#33CC33]")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[#249124] dark:text-[#33CC33]"
+              )}
             />
           </div>
         </div>
 
         <h1
           className={clsx(
-            "text-[2rem] lg:text-[1.5rem] text-[black] font-bold text-center"
+            "text-[2rem] lg:text-[1.5rem] text-[black] dark:text-white font-bold text-center"
           )}
         >
           {dictionaries.notification.title}
@@ -79,7 +82,11 @@ export const NotificationPlanRideTrip = () => {
             "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-center justify-items-center gap-[1rem]"
           )}
         >
-          <span className={clsx("text-[#98989E] text-[0.875rem] font-normal")}>
+          <span
+            className={clsx(
+              "text-[#98989E] dark:text-[#DADADA] text-[0.875rem] font-normal"
+            )}
+          >
             {dictionaries.notification.share.label}
           </span>
           <div
@@ -104,7 +111,8 @@ export const NotificationPlanRideTrip = () => {
                   "flex items-center justify-center",
                   "w-[2rem] h-[2rem]",
                   "rounded-[50%]",
-                  "bg-[white]"
+                  "bg-[white] dark:bg-transparent",
+                  "border-[0.67px] border-white dark:border-[#464646]"
                 )}
               >
                 <SVGIcon name={item.icon.name as SVGIconProps["name"]} />

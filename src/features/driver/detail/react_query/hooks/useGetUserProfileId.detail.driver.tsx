@@ -18,6 +18,9 @@ export const useGetUserProfileId = () => {
     path: {
       id: String(driver_id ?? "0"),
     },
+    params: {
+      include: "organization",
+    },
   };
   const query = useQuery<
     GetUserProfileIdSuccessResponseInterface,

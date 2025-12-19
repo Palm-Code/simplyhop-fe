@@ -8,6 +8,7 @@ import {
   CreateOrganizationCompanyDataReducers,
   CreateOrganizationCompanyOfficeReducers,
   CreateOrganizationNotificationReducers,
+  CreateOrganizationPinPointDeleteConfirmationReducers,
   CreateOrganizationPinPointReducers,
 } from "./Create.organization.reducers";
 
@@ -47,6 +48,27 @@ const initialState: CreateOrganizationInitialStateType = {
           error: null,
         },
       },
+      pictures: {
+        files: [],
+      },
+      address: {
+        address_1: {
+          value: "",
+          error: null,
+        },
+        address_2: {
+          value: "",
+          error: null,
+        },
+        zip_code: {
+          value: "",
+          error: null,
+        },
+        city: {
+          value: "",
+          error: null,
+        },
+      },
     },
   },
   company_office: {
@@ -72,11 +94,16 @@ const initialState: CreateOrganizationInitialStateType = {
           value: "",
           error: null,
         },
+        pin_point: {
+          value: null,
+        },
+        mode: "initial",
       },
     ],
   },
   pin_point: {
     is_open: false,
+    index: null,
     location: {
       selected: {
         item: null,
@@ -94,6 +121,10 @@ const initialState: CreateOrganizationInitialStateType = {
   notification: {
     is_open: false,
   },
+  pin_point_delete_confirmation: {
+    is_open: false,
+    index: null,
+  },
 };
 
 const CreateOrganizationContext = createContext<{
@@ -109,6 +140,7 @@ const mainReducer = (
     company_data,
     company_office,
     pin_point,
+    pin_point_delete_confirmation,
     notification,
   }: CreateOrganizationInitialStateType,
   action: CreateOrganizationActions
@@ -119,6 +151,11 @@ const mainReducer = (
     action
   ),
   pin_point: CreateOrganizationPinPointReducers(pin_point, action),
+  pin_point_delete_confirmation:
+    CreateOrganizationPinPointDeleteConfirmationReducers(
+      pin_point_delete_confirmation,
+      action
+    ),
   notification: CreateOrganizationNotificationReducers(notification, action),
 });
 

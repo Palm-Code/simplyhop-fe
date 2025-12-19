@@ -8,7 +8,6 @@ import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RidePlanFormVehiclesSupport } from "../fragments/ride_plan_form";
 import { UserContext } from "@/core/modules/app/context";
-import { PremiumRideVehiclesSupport } from "../fragments/premium_ride";
 import SettingHeader from "@/core/components/setting_header/SettingHeader";
 import { NavigationListVehicle } from "../fragments/navigation";
 
@@ -43,7 +42,6 @@ export const VehiclesSupportContainer = () => {
               "bg-white dark:bg-[#232323]"
             )}
           >
-            <PremiumRideVehiclesSupport />
             <RidePlanFormVehiclesSupport />
             <div
               className={clsx(

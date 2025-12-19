@@ -12,4 +12,5 @@ export interface OrganizationAddress {
   is_primary: boolean; //false;
   created_at: string | null; //null;
   updated_at: string | null; //null;
+  name: string | null;
 }

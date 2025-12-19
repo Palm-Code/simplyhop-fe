@@ -172,6 +172,12 @@
           "unit": "von {{number}} Bewertungen",
           "icon": "Star",
           "href": "/support/fahrten"
+        },
+        {
+          "id": "Eingespartes CO2",
+          "name": "Eingespartes CO2",
+          "unit": "Kilograms",
+          "icon": "Leaf"
         }
       ]
     },

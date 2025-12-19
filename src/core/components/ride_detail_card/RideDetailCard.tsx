@@ -100,7 +100,7 @@ export const RideDetailCard = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "bg-[white]"
+        "bg-[white] dark:bg-[#232323]"
       )}
       style={{
         backdropFilter: shadow ? "blur(20px)" : "",

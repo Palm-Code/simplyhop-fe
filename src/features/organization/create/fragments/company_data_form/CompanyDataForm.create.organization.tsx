@@ -10,12 +10,18 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { CompanyTypeDropdown } from "../../components/company_type_dropdown";
 import { Textfield } from "@/core/components/textfield";
 import { getError } from "@/core/utils/form";
-import { CompanyCodeInput } from "../../components/company_code_input/CompanyCodeInput";
+import { CompanyCodeInput } from "../../../../../core/components/company_code_input/CompanyCodeInput";
+import { useGetOrganizationGenerateCode } from "../../react_query/hooks";
+import { PictureFormCreateOrganization } from "../picture_form";
 
 export const CompanyDataFormCreateOrganization = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(CreateOrganizationContext);
+  const {
+    mutateAsync: getOrganizationGenerateCode,
+    isPending: isPendingGetOrganizationGenerateCode,
+  } = useGetOrganizationGenerateCode();
 
   const handleSelectCompanyType = (data: {
     id: string;
@@ -31,6 +37,22 @@ export const CompanyDataFormCreateOrganization = () => {
           company_type: {
             ...state.company_data.form.company_type,
             selected: data,
+          },
+          domain: {
+            ...state.company_data.form.domain,
+            value:
+              state.company_data.form.company_type.selected?.id === data.id &&
+              data.id === "domain"
+                ? state.company_data.form.domain.value
+                : "",
+          },
+          company_code: {
+            ...state.company_data.form.company_code,
+            value:
+              state.company_data.form.company_type.selected?.id === data.id &&
+              data.id === "company_code"
+                ? state.company_data.form.company_code.value
+                : "",
           },
         },
       },
@@ -59,8 +81,22 @@ export const CompanyDataFormCreateOrganization = () => {
     });
   };
 
-  const handleClickGenerateCompanyCode = () => {
-    //
+  const handleClickGenerateCompanyCode = async () => {
+    const res = await getOrganizationGenerateCode();
+    if (!res) return;
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          company_code: {
+            ...state.company_data.form.company_code,
+            value: res.organization_code,
+          },
+        },
+      },
+    });
   };
 
   const handleChangeAdminEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -178,6 +214,94 @@ export const CompanyDataFormCreateOrganization = () => {
       },
     });
   };
+
+  const handleChangeAddress1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            address_1: {
+              ...state.company_data.form.address.address_1,
+              value: e.currentTarget.value,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeAddress2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            address_2: {
+              ...state.company_data.form.address.address_2,
+              value: e.currentTarget.value,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeZipCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.zip_code.validations.items,
+      value: e.currentTarget.value,
+      type: "required",
+    });
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            zip_code: {
+              ...state.company_data.form.address.zip_code,
+              value: e.currentTarget.value,
+              error: errorItem,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.city.validations.items,
+      value: e.currentTarget.value,
+      type: "required",
+    });
+    dispatch({
+      type: CreateOrganizationActionEnum.SetCompanyDataData,
+      payload: {
+        ...state.company_data,
+        form: {
+          ...state.company_data.form,
+          address: {
+            ...state.company_data.form.address,
+            city: {
+              ...state.company_data.form.address.city,
+              value: e.currentTarget.value,
+              error: errorItem,
+            },
+          },
+        },
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -192,9 +316,9 @@ export const CompanyDataFormCreateOrganization = () => {
       </h2>
       <div
         className={clsx(
-          "grid grid-cols-1 items-center content-center justify-items-start justify-start gap-[0.75rem]",
+          "grid grid-cols-1 items-center content-center justify-items-start justify-start gap-3",
           "w-full",
-          "py-[0.5rem]"
+          "py-2"
         )}
       >
         <CompanyTypeDropdown
@@ -203,8 +327,22 @@ export const CompanyDataFormCreateOrganization = () => {
           items={dictionaries.company_data.form.input.company_type.items}
           onSelect={handleSelectCompanyType}
         />
+
         {!!state.company_data.form.company_type.selected && (
           <>
+            {/* company_name */}
+            <Textfield
+              labelProps={{
+                ...dictionaries.company_data.form.input.company_name.labelProps,
+              }}
+              inputProps={{
+                ...dictionaries.company_data.form.input.company_name.inputProps,
+                value: state.company_data.form.company_name.value,
+                onChange: handleChangeCompanyName,
+              }}
+              error={state.company_data.form.company_name.error?.name}
+            />
+
             {state.company_data.form.company_type.selected.id === "domain" && (
               <>
                 {/* domain */}
@@ -230,6 +368,7 @@ export const CompanyDataFormCreateOrganization = () => {
                   value={state.company_data.form.company_code.value}
                   cta={{
                     ...dictionaries.company_data.form.input.company_code.cta,
+                    disabled: isPendingGetOrganizationGenerateCode,
                     onClick: handleClickGenerateCompanyCode,
                   }}
                 />
@@ -247,18 +386,7 @@ export const CompanyDataFormCreateOrganization = () => {
               }}
               error={state.company_data.form.admin_email.error?.name}
             />
-            {/* company_name */}
-            <Textfield
-              labelProps={{
-                ...dictionaries.company_data.form.input.company_name.labelProps,
-              }}
-              inputProps={{
-                ...dictionaries.company_data.form.input.company_name.inputProps,
-                value: state.company_data.form.company_name.value,
-                onChange: handleChangeCompanyName,
-              }}
-              error={state.company_data.form.company_name.error?.name}
-            />
+
             {/* telephone */}
             <Textfield
               labelProps={{
@@ -271,6 +399,8 @@ export const CompanyDataFormCreateOrganization = () => {
               }}
               error={state.company_data.form.telephone.error?.name}
             />
+
+            <PictureFormCreateOrganization />
 
             <div
               className={clsx(
@@ -329,6 +459,93 @@ export const CompanyDataFormCreateOrganization = () => {
                       ?.name
                   }
                 />
+              </div>
+            </div>
+
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-1",
+                "w-full"
+              )}
+            >
+              <p
+                className={clsx(
+                  "text-[0.875rem] text-[#292929] dark:text-white font-bold"
+                )}
+              >
+                {dictionaries.company_data.form.input.address.title}
+              </p>
+
+              <div
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-3",
+                  "w-full"
+                )}
+              >
+                {/* address_1 */}
+                <Textfield
+                  labelProps={{
+                    ...dictionaries.company_data.form.input.address.address_1
+                      .labelProps,
+                  }}
+                  inputProps={{
+                    ...dictionaries.company_data.form.input.address.address_1
+                      .inputProps,
+                    value: state.company_data.form.address.address_1.value,
+                    onChange: handleChangeAddress1,
+                  }}
+                  error={state.company_data.form.address.address_1.error?.name}
+                />
+                {/* address_2 */}
+                <Textfield
+                  labelProps={{
+                    ...dictionaries.company_data.form.input.address.address_2
+                      .labelProps,
+                  }}
+                  inputProps={{
+                    ...dictionaries.company_data.form.input.address.address_2
+                      .inputProps,
+                    value: state.company_data.form.address.address_2.value,
+                    onChange: handleChangeAddress2,
+                  }}
+                  error={state.company_data.form.address.address_2.error?.name}
+                />
+
+                <div
+                  className={clsx(
+                    "grid grid-cols-2 place-content-start place-items-start gap-3",
+                    "w-full"
+                  )}
+                >
+                  {/* zip_code */}
+                  <Textfield
+                    labelProps={{
+                      ...dictionaries.company_data.form.input.address.zip_code
+                        .labelProps,
+                    }}
+                    inputProps={{
+                      ...dictionaries.company_data.form.input.address.zip_code
+                        .inputProps,
+                      value: state.company_data.form.address.zip_code.value,
+                      onChange: handleChangeZipCode,
+                    }}
+                    error={state.company_data.form.address.zip_code.error?.name}
+                  />
+                  {/* city */}
+                  <Textfield
+                    labelProps={{
+                      ...dictionaries.company_data.form.input.address.city
+                        .labelProps,
+                    }}
+                    inputProps={{
+                      ...dictionaries.company_data.form.input.address.city
+                        .inputProps,
+                      value: state.company_data.form.address.city.value,
+                      onChange: handleChangeCity,
+                    }}
+                    error={state.company_data.form.address.city.error?.name}
+                  />
+                </div>
               </div>
             </div>
           </>

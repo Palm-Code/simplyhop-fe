@@ -38,18 +38,35 @@ export const usePostOrganizationCreate = () => {
           state.company_data.form.responsible_person.last_name.value,
         email: state.company_data.form.admin_email.value,
         phone: state.company_data.form.telephone.value,
+        address: state.company_data.form.address.address_1.value,
+        address_line_2: !state.company_data.form.address.address_2.value.length
+          ? undefined
+          : state.company_data.form.address.address_2.value,
+        city: state.company_data.form.address.city.value,
+        postal_code: state.company_data.form.address.zip_code.value,
+        logo:
+          state.company_data.form.pictures.files.filter(
+            (item) => item instanceof File
+          ).length === 0
+            ? undefined
+            : state.company_data.form.pictures.files.filter(
+                (item) => item instanceof File
+              )[0],
         addresses: state.company_office.form.map((item) => {
           return {
             postal_code: item.zip_code.value,
-            location_2: "Location 2",
+            location_2: !item.pin_point.value?.location_2.length
+              ? undefined
+              : item.pin_point.value?.location_2,
             city: item.city.value,
-            latitude: 52.520008,
-            longitude: 13.404954,
+            latitude: item.pin_point.value?.lat ?? 0,
+            longitude: item.pin_point.value?.lng ?? 0,
             address_line_2: !item.address_2.value.length
               ? undefined
               : item.address_2.value,
             address: item.address_1.value,
-            location: "Berlin Mitte",
+            location: item.pin_point.value?.location_1 ?? "",
+            name: item.address_name.value,
           };
         }),
       };
@@ -60,18 +77,27 @@ export const usePostOrganizationCreate = () => {
         Object.entries(bodyPayload).filter(([, value]) => value !== undefined)
       );
 
-      for (const key of Object.keys(cleanedObj)) {
-        formData.append(
-          key,
-          String((cleanedObj as { [key: string]: string })[key])
-        );
+      for (const [key, value] of Object.entries(cleanedObj)) {
+        if (value instanceof File) {
+          // Handle File objects (logo)
+          formData.append(key, value);
+        } else if (Array.isArray(value)) {
+          // Handle array - either as JSON string or indexed keys
+          formData.append(key, JSON.stringify(value));
+        } else if (typeof value === "object" && value !== null) {
+          // Handle nested objects
+          formData.append(key, JSON.stringify(value));
+        } else {
+          // Handle primitive values
+          formData.append(key, String(value));
+        }
       }
+
       const payload: PostOrganizationCreatePayloadRequestInterface = {
         body: formData,
       };
       return fetchPostOrganizationCreate(payload);
     },
-    onSuccess() {},
     onError(error) {
       dispatchGlobal({
         type: GlobalActionEnum.SetAlertData,

@@ -27,7 +27,7 @@ export const DashboardCard = ({
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-6",
-        "w-full",
+        "w-full h-full",
         "px-4 py-4",
         "bg-[white] dark:bg-[#232323]",
         "rounded-2xl",
@@ -54,7 +54,7 @@ export const DashboardCard = ({
           </div>
           <p
             className={clsx(
-              "text-sm text-[#5B5B5B] dark:text-[#C3C3C3] font-semibold"
+              "text-sm text-[#5B5B5B] dark:text-[#DADADA] font-semibold"
             )}
           >
             {title}
@@ -67,7 +67,7 @@ export const DashboardCard = ({
               "flex items-center justify-center",
               "rounded-full",
               "bg-transparent",
-              "text-xs text-[#26531A] font-medium whitespace-nowrap",
+              "text-xs text-[#249124] dark:text-[#33CC33] font-medium whitespace-nowrap",
               "px-1 py-1"
             )}
             href={cta.primary.href}

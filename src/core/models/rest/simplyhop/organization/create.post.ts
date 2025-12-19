@@ -17,6 +17,10 @@ export type PostOrganizationCreateBodyPayloadRequestInterface = {
   domain?: string;
   organization_code?: string;
   phone?: string;
+  city?: string;
+  address?: string;
+  address_line_2?: string;
+  postal_code?: string;
   addresses?: {
     postal_code: string; //"10115";
     location_2?: string; //"Location 2";
@@ -28,6 +32,7 @@ export type PostOrganizationCreateBodyPayloadRequestInterface = {
     address: string; //"Musterstraße 123";
     location: string; //"Berlin Mitte";
   }[];
+  logo?: File;
 };
 
 export type PostOrganizationCreateResponseInterface = NextApiResponse<
