@@ -1,162 +1,110 @@
 {
-  "title": "Datenschutz",
+  "title": "Datenschutzerklärung",
   "contents": [
     {
       "title": "1. Verantwortlicher",
       "type": "unordered-list",
       "content": [
-        "Verantwortlich für die Verarbeitung personenbezogener Daten im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:",
+        "Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:",
         "<br />",
-        "Simply Hop – Marcus Ritter",
+        "Marcus Ritter",
+        "Simply Hop / Drive Together",
+        "Sachsen Fährt Mit",
         "Altmarkt 10 B / D",
         "01067 Dresden",
-        "Telefon: +49 172 7971666",
         "E-Mail: marcus.ritter@simplyhop.com",
         "<br />",
-        "Bei Fragen zum Datenschutz:",
-        "E-Mail: service@simplyhop.com"
+        "Der Verantwortliche betreibt die Plattformen Simply Hop / Drive Together und Sachsen Fährt Mit als digitale Mobilitätsplattformen zur Organisation und Vermittlung von Fahrgemeinschaften."
       ]
     },
     {
-      "title": "2. Allgemeines zur Datenverarbeitung",
+      "title": "2. Gegenstand der Plattform",
       "type": "paragraph",
       "content": [
-        "Wir verarbeiten Ihre personenbezogenen Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website, App sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung erfolgt auf Grundlage der DSGVO und nur mit entsprechender Rechtsgrundlage (Art. 6 Abs. 1 DSGVO)."
+        "Die Plattformen dienen der freiwilligen und eigenverantwortlichen Organisation von Fahrgemeinschaften zwischen registrierten Nutzerinnen und Nutzern. Die Plattform stellt ausschließlich technische Funktionen zur Kontakt- und Fahrtvermittlung bereit. Eine Beförderungsleistung wird nicht erbracht."
       ]
     },
     {
-      "title": "3. Erhebung und Nutzung personenbezogener Daten",
+      "title": "3. Grundsätze der Datenverarbeitung",
+      "type": "paragraph",
+      "content": [
+        "Die Verarbeitung personenbezogener Daten erfolgt gemäß Art. 5 DSGVO nach den Grundsätzen der Rechtmäßigkeit, Zweckbindung, Datenminimierung, Transparenz und Datensicherheit."
+      ]
+    },
+    {
+      "title": "4. Standortdaten und Tracking",
+      "type": "paragraph",
+      "content": [
+        "Es findet keine kontinuierliche Standortverfolgung, keine GPS-basierte Live-Ortung und keine automatisierte Erstellung von Bewegungsprofilen statt.",
+        "Standort- oder Routendaten werden ausschließlich nutzungsbezogen durch die Nutzerinnen und Nutzer selbst eingegeben und nur für die Vermittlung konkreter Fahrgemeinschaften verwendet."
+      ]
+    },
+    {
+      "title": "5. Verarbeitete personenbezogene Daten",
       "type": "unordered-list",
       "content": [
-        "a. Bei Nutzung der Website oder PWA App:",
-        "Beim Aufruf unserer digitalen Angebote werden automatisch folgende Daten durch den Server erfasst (Server-Logfiles):",
-        "- IP-Adresse",
-        "- Datum und Uhrzeit der Anfrage",
-        "- Zeitzonendifferenz zur GMT",
-        "- Inhalt der Anforderung (konkrete Seite)",
-        "- Zugriffsstatus/HTTP-Statuscode",
-        "- jeweils übertragene Datenmenge",
-        "- Website, von der die Anforderung kommt (Referrer)",
-        "- Browsertyp und -version",
-        "- Betriebssystem",
-        "<br />",
-        "Diese Daten dienen der Sicherstellung eines störungsfreien Betriebs sowie der Sicherheit der IT-Systeme (Art. 6 Abs. 1 lit. f DSGVO).",
-        "<br />",
-        "b. Bei Registrierung und Nutzung von Simply Hop:",
-        "Wenn Sie sich für unsere Plattform registrieren oder ein Kundenkonto anlegen, erheben wir:",
-        "- Name, Vorname",
+        "- Name",
         "- E-Mail-Adresse",
-        "- Passwort (verschlüsselt)",
-        "- ggf. Telefonnummer",
-        "- Standort- und Routendaten (freiwillig, bei aktiver Nutzung)",
-        "<br />",
-        "Diese Daten nutzen wir ausschließlich zur Erfüllung unseres Services und der Vermittlung von Fahrgemeinschaften (Art. 6 Abs. 1 lit. b DSGVO)."
+        "- Telefonnummer (freiwillige Angabe)",
+        "- Fahrzeugangaben (freiwillige Angabe)",
+        "- Organisationszugehörigkeit",
+        "- Anzahl angebotener oder genutzter Fahrgemeinschaften",
+        "- technisch notwendige Nutzungsdaten (z. B. IP-Adresse, Zeitstempel, Logfiles)"
       ]
     },
     {
-      "title": "4. Standortdaten in der PWA App",
-      "type": "paragraph",
-      "content": [
-        "Bei Nutzung der PWA App bitten wir Sie ggf. um Zugriff auf Ihre Standortdaten. Diese werden ausschließlich zur Routenberechnung und Vermittlung passender Fahrgemeinschaften verwendet. Sie können den Zugriff jederzeit über die Geräteeinstellungen deaktivieren."
-      ]
-    },
-    {
-      "title": "5. Cookies und vergleichbare Technologien",
-      "type": "paragraph",
-      "content": [
-        "Wir verwenden Cookies und ähnliche Technologien, um unsere Dienste zu verbessern und Nutzungsverhalten anonym zu analysieren. Rechtsgrundlage ist Ihre Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO (Cookie-Banner) bzw. unser berechtigtes Interesse gem. Art. 6 Abs. 1 lit. f DSGVO bei rein technischen Cookies.",
-        "Detaillierte Informationen finden Sie in unserer Cookie-Richtlinie (Link einfügen)."
-      ]
-    },
-    {
-      "title": "6. Drittanbieter-Tools und Plugins",
+      "title": "6. Zwecke der Datenverarbeitung",
       "type": "unordered-list",
       "content": [
-        "Unsere Website bzw. PWA App nutzt folgende Dienste:",
-        "<br />",
-        "a. Google Analytics (mit IP-Anonymisierung)",
-        "Zur Analyse und Optimierung unserer Website. Die Datenverarbeitung erfolgt in den USA. Mit Google besteht ein Vertrag zur Auftragsverarbeitung (AVV). Sie können der Nutzung widersprechen: https://tools.google.com/dlpage/gaoptout?hl=de",
-        "<br />",
-        "b. Social Media Plugins (Facebook, Instagram, LinkedIn, X, YouTube)",
-        "Diese Dienste erfassen möglicherweise personenbezogene Daten, insbesondere IP-Adressen und Interaktionen. Wenn Sie bei dem jeweiligen Dienst eingeloggt sind, können Daten direkt Ihrem Profil zugeordnet werden. Mehr erfahren Sie in den Datenschutzrichtlinien der Anbieter:",
-        "- Meta (Facebook, Instagram): https://www.facebook.com/privacy/policy",
-        "- LinkedIn: https://www.linkedin.com/legal/privacy-policy",
-        "- X (ehemals Twitter): https://twitter.com/privacy",
-        "- YouTube: https://policies.google.com/privacy",
-        "<br />",
-        "Google+ wird nicht mehr unterstützt und wurde entfernt."
+        "- technischer Betrieb und Sicherheit der Plattform",
+        "- Vermittlung von Fahrgemeinschaften",
+        "- Nutzerverwaltung und Missbrauchsprävention",
+        "- Bereitstellung aggregierter und anonymisierter Nutzungsstatistiken",
+        "- Eine Auswertung individueller Mobilitätsverhalten oder personenbezogener Fahrtmuster erfolgt nicht."
       ]
     },
     {
-      "title": "7. Kontaktaufnahme und Support",
+      "title": "7. Administrativer Zugriff",
       "type": "paragraph",
       "content": [
-        "Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren, speichern wir Ihre Angaben zur Bearbeitung der Anfrage und für mögliche Anschlussfragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO."
+        "Teilnehmende Organisationen können einen administrativen Zugang erhalten. Der administrative Zugriff dient ausschließlich dem organisatorischen Betrieb und der Systempflege.",
+        "Administratoren haben keinen Zugriff auf individuelle Fahrtbeziehungen, konkrete Zeitpunkte einzelner Fahrten, Start- oder Zielorte oder Fahrthistorien einzelner Personen."
       ]
     },
     {
-      "title": "8. Newsletter",
+      "title": "8. Rechtsgrundlagen",
       "type": "paragraph",
       "content": [
-        "Für den Versand unseres Newsletters benötigen wir Ihre ausdrückliche Einwilligung (Double-Opt-In). Sie können sich jederzeit über den Abmeldelink im Newsletter oder per Mail abmelden."
+        "Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, Art. 6 Abs. 1 lit. f DSGVO sowie ggf. Art. 6 Abs. 1 lit. a DSGVO."
       ]
     },
     {
       "title": "9. Speicherdauer",
       "type": "paragraph",
       "content": [
-        "Wir speichern personenbezogene Daten nur so lange, wie dies zur Erfüllung der jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen."
+        "Personenbezogene Daten werden nur so lange gespeichert, wie dies für die genannten Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen."
       ]
     },
     {
-      "title": "10. Weitergabe an Dritte / Auftragsverarbeiter",
-      "type": "unordered-list",
-      "content": [
-        "Eine Weitergabe Ihrer Daten erfolgt nur:",
-        "- an technische Dienstleister (z. B. Hosting-Anbieter, E-Mail-Provider) im Rahmen eines",
-        "Auftragsverarbeitungsvertrags",
-        "- bei Zahlungen: an Zahlungsdienstleister und Kreditinstitute",
-        "- bei gesetzlicher Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO)",
-        "<br />",
-        "Es erfolgt keine Weitergabe zu Werbezwecken an Dritte."
-      ]
-    },
-    {
-      "title": "11. Ihre Rechte",
-      "type": "unordered-list",
-      "content": [
-        "Sie haben jederzeit das Recht auf:",
-        "- Auskunft (Art. 15 DSGVO)",
-        "- Berichtigung (Art. 16 DSGVO)",
-        "- Löschung (Art. 17 DSGVO)",
-        "- Einschränkung der Verarbeitung (Art. 18 DSGVO)",
-        "- Datenübertragbarkeit (Art. 20 DSGVO)",
-        "- Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)",
-        "- Widerruf Ihrer Einwilligung (Art. 7 Abs. 3 DSGVO)",
-        "<br/>",
-        "Zur Ausübung Ihrer Rechte wenden Sie sich bitte per Mail an: service@simplyhop.com"
-      ]
-    },
-    {
-      "title": "12. Beschwerderecht bei der Aufsichtsbehörde",
+      "title": "10. Rechte der betroffenen Personen",
       "type": "paragraph",
       "content": [
-        "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass Ihre Daten unrechtmäßig verarbeitet werden."
+        "Betroffene Personen haben die Rechte gemäß Art. 15 ff. DSGVO, insbesondere auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Widerspruch."
       ]
     },
     {
-      "title": "13. Datensicherheit",
+      "title": "11. Weitergabe von Daten",
       "type": "paragraph",
       "content": [
-        "Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulation, Verlust oder unbefugten Zugriff zu schützen. Die Übertragung erfolgt TLS-verschlüsselt."
+        "Eine Weitergabe personenbezogener Daten an Dritte erfolgt nicht, sofern keine gesetzliche Verpflichtung besteht.",
+        "Aggregierte und anonymisierte Nutzungs- und Mobilitätsdaten, bei denen kein Personenbezug mehr besteht, unterliegen nicht der DSGVO und können zu statistischen, wissenschaftlichen oder planerischen Zwecken verwendet werden."
       ]
     },
     {
-      "title": "14. Änderungen dieser Datenschutzerklärung",
+      "title": "12. Datensicherheit",
       "type": "paragraph",
       "content": [
-        "Wir behalten uns vor, diese Datenschutzerklärung bei Änderungen unserer Dienste oder gesetzlichen Vorgaben anzupassen. Die jeweils aktuelle Fassung finden Sie auf unserer Website.",
-        "Letzte Aktualisierung: Mai 2025"
+        "Es werden geeignete technische und organisatorische Maßnahmen eingesetzt, um personenbezogene Daten gegen unbefugten Zugriff, Verlust oder Manipulation zu schützen."
       ]
     }
   ]
