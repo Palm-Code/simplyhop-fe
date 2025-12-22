@@ -122,7 +122,7 @@
   "ride_detail": {
     "title": {
       "upcoming": {
-        "title": "Reise Bevorstehend",
+        "title": "Bevorstehende Reise",
         "description": ""
       },
       "in_progress": {
