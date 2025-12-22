@@ -43,7 +43,7 @@
         "name": "Geschlecht"
       },
       "address": {
-        "name": "Hauptadresse"
+        "name": "Geschäftsadresse"
       },
       "phonenumber": {
         "name": "Telefon-Nummer"
