@@ -133,7 +133,7 @@ export const RideDetailListTrip = () => {
           ...state.complete_ride_confirmation.confirmed_booking,
           {
             id: data.bookingId,
-            type: "unjoined",
+            type: "joined",
           },
         ],
       },
