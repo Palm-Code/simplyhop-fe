@@ -27,8 +27,9 @@ export const RideDetailListTrip = () => {
   useGetRidesId();
   const { state: userState } = React.useContext(UserContext);
   const isEmployee = userState.profile?.role === "employee";
-  const isShowPrice = isEmployee;
-  const isShowBooking = isEmployee;
+  const isSuperAdmin = !!userState.profile?.is_super_admin;
+  const isShowPrice = isEmployee || isSuperAdmin;
+  const isShowBooking = isEmployee || isSuperAdmin;
   const isDriver = userState.profile?.is_driver;
 
   const filteredData = state.ride.detail;
@@ -111,9 +112,10 @@ export const RideDetailListTrip = () => {
 
   const handleClickConfirmNotPresent = (data: { bookingId: number }) => {
     // Check if booking already exists in confirmed_booking array
-    const alreadyConfirmed = state.complete_ride_confirmation.confirmed_booking.some(
-      (item) => item.id === data.bookingId
-    );
+    const alreadyConfirmed =
+      state.complete_ride_confirmation.confirmed_booking.some(
+        (item) => item.id === data.bookingId
+      );
 
     if (alreadyConfirmed) {
       return; // Don't add duplicate
@@ -135,9 +137,10 @@ export const RideDetailListTrip = () => {
   };
   const handleClickConfirmPresent = (data: { bookingId: number }) => {
     // Check if booking already exists in confirmed_booking array
-    const alreadyConfirmed = state.complete_ride_confirmation.confirmed_booking.some(
-      (item) => item.id === data.bookingId
-    );
+    const alreadyConfirmed =
+      state.complete_ride_confirmation.confirmed_booking.some(
+        (item) => item.id === data.bookingId
+      );
 
     if (alreadyConfirmed) {
       return; // Don't add duplicate
