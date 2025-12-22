@@ -41,6 +41,9 @@ export const AccountSettingsSupport = () => {
       },
     });
   };
+  const items = !isEmployee
+    ? dictionaries.security.items.filter((item) => item.id !== "block")
+    : dictionaries.security.items;
   return (
     <div
       className={clsx(
@@ -65,7 +68,7 @@ export const AccountSettingsSupport = () => {
         >
           {dictionaries.security.title}
         </h2>
-        {dictionaries.security.items.map((item, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className={clsx(
