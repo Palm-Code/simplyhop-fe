@@ -2,12 +2,17 @@
 import * as React from "react";
 import { DetailDriverActionEnum, DetailDriverContext } from "../../context";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { UserInformationCard } from "@/core/components/user_information_card";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { UserContext } from "@/core/modules/app/context";
 
 export const UserDetailDriver = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(DetailDriverContext);
+  const { state: userState } = React.useContext(UserContext);
+  const isSuperAdmin = !!userState.profile?.is_super_admin;
   const summaryItems = !state.user.data?.is_driver
     ? []
     : dictionaries.user.summary.items.map((item) => {
@@ -120,6 +125,32 @@ export const UserDetailDriver = () => {
               ? state.user.data?.organization?.address_line_2 ?? ""
               : `${state.user.data?.organization?.address} ${state.user.data?.organization?.address_line_2}`,
         },
+        gender: isSuperAdmin
+          ? {
+              label: dictionaries.user.information.gender.name,
+              value: !state.user.data?.gender?.length
+                ? "-"
+                : globalDictionaries.personal_information.gender.options.items.find(
+                    (item) => item.id === state.user.data?.gender
+                  )?.name ?? "-",
+            }
+          : undefined,
+        phoneNumber: isSuperAdmin
+          ? {
+              label: dictionaries.user.information.phonenumber.name,
+              value: !state.user.data?.mobile?.length
+                ? "-"
+                : state.user.data.mobile,
+            }
+          : undefined,
+        aboutMe: isSuperAdmin
+          ? {
+              label: dictionaries.user.information.about_me.name,
+              value: !state.user.data?.profile?.bio.length
+                ? "-"
+                : state.user.data.profile?.bio,
+            }
+          : undefined,
       }}
     />
   );
