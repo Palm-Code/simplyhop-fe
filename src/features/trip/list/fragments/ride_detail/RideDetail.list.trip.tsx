@@ -109,7 +109,16 @@ export const RideDetailListTrip = () => {
     state.complete_ride_confirmation.confirmed_booking.length ===
     filteredData.booking.length;
 
-  const handleClickConfirmAbsent = (data: { bookingId: number }) => {
+  const handleClickConfirmNotPresent = (data: { bookingId: number }) => {
+    // Check if booking already exists in confirmed_booking array
+    const alreadyConfirmed = state.complete_ride_confirmation.confirmed_booking.some(
+      (item) => item.id === data.bookingId
+    );
+
+    if (alreadyConfirmed) {
+      return; // Don't add duplicate
+    }
+
     dispatch({
       type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
@@ -125,6 +134,15 @@ export const RideDetailListTrip = () => {
     });
   };
   const handleClickConfirmPresent = (data: { bookingId: number }) => {
+    // Check if booking already exists in confirmed_booking array
+    const alreadyConfirmed = state.complete_ride_confirmation.confirmed_booking.some(
+      (item) => item.id === data.bookingId
+    );
+
+    if (alreadyConfirmed) {
+      return; // Don't add duplicate
+    }
+
     dispatch({
       type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
@@ -342,7 +360,7 @@ export const RideDetailListTrip = () => {
                               "text-[0.75rem] text-[#B30606] font-semibold"
                             )}
                             onClick={() =>
-                              handleClickConfirmAbsent({
+                              handleClickConfirmNotPresent({
                                 bookingId: item.booking?.id ?? -1,
                               })
                             }
