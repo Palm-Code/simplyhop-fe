@@ -71,13 +71,8 @@
         },
         {
           "id": "company_address",
-          "name": "Hauptadresse",
+          "name": "Geschäftsadresse",
           "icon": "MapPin"
-        },
-        {
-          "id": "gender",
-          "name": "Geschlecht",
-          "icon": "PersonStanding"
         }
       ]
     },
