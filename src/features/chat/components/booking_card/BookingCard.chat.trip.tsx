@@ -263,7 +263,7 @@ export const BookingCardChatTrip = ({
               <span className={clsx("font-medium text-[#727272] text-[10px]")}>
                 {date.label}
               </span>
-              <span className={clsx("font-semibold text-sm")}>{date.date}</span>
+              <span className={clsx("font-semibold text-sm dark:text-white")}>{date.date}</span>
             </div>
             <Image
               {...car.image}
