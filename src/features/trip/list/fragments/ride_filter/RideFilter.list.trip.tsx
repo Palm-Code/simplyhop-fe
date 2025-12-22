@@ -20,7 +20,7 @@ export const RideFilterListTrip = () => {
 
   const items = !userState.profile
     ? []
-    : isSuperAdmin || isOrganizationAdmin
+    : isOrganizationAdmin
     ? dictionaries.filter.ride.items.filter((item) => item.id !== "archive")
     : dictionaries.filter.ride.items;
   return (
