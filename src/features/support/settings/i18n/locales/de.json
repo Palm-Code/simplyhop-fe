@@ -9,14 +9,6 @@
         "cta": {
           "children": "Siehe Liste"
         }
-      },
-      {
-        "id": "change_password",
-        "name": "Passwort",
-        "description": "Hier kannst Du Dein Passwort ändern.",
-        "cta": {
-          "children": "Passwort ändern"
-        }
       }
     ]
   },

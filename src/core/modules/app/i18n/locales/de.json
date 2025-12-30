@@ -257,12 +257,6 @@
               "name": "Fahrten",
               "href": "/support/fahrten",
               "icon": "CarFront"
-            },
-            {
-              "id": "einstellungen",
-              "name": "Einstellungen",
-              "href": "/support/einstellungen",
-              "icon": "Settings"
             }
           ]
         },
@@ -298,12 +292,6 @@
           "bottom": {
             "items": [
               {
-                "id": "einstellungen",
-                "name": "Einstellungen",
-                "href": "/support/einstellungen",
-                "icon": "Settings"
-              },
-              {
                 "id": "logout",
                 "name": "Abmelden",
                 "href": "/logout",
@@ -335,12 +323,6 @@
               "name": "Fahrten",
               "href": "/support/fahrten",
               "icon": "CarFront"
-            },
-            {
-              "id": "einstellungen",
-              "name": "Einstellungen",
-              "href": "/support/einstellungen",
-              "icon": "Settings"
             }
           ]
         },
@@ -369,12 +351,6 @@
           },
           "bottom": {
             "items": [
-              {
-                "id": "einstellungen",
-                "name": "Einstellungen",
-                "href": "/support/einstellungen",
-                "icon": "Settings"
-              },
               {
                 "id": "logout",
                 "name": "Abmelden",
