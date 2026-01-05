@@ -66,6 +66,13 @@ export const UserDetailDriver = () => {
             ...state.edit.form.phonenumber,
             value: state.user.data?.mobile ?? "",
           },
+          gender: {
+            ...state.edit.form.gender,
+            selected:
+              globalDictionaries.personal_information.gender.options.items.find(
+                (item) => item.id === state.user.data?.gender
+              ) ?? null,
+          },
           city: {
             ...state.edit.form.city,
             value: state.user.data?.city ?? "",
