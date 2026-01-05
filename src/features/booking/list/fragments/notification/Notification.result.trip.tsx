@@ -81,7 +81,7 @@ export const NotificationResultTrip = () => {
 
         <h1
           className={clsx(
-            "text-[1.5rem] text-[black] darK:text-white font-bold text-center"
+            "text-[1.5rem] text-[black] dark:text-white font-bold text-center"
           )}
         >
           {dictionaries.notification.title}
