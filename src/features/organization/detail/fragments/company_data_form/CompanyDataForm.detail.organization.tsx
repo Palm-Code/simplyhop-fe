@@ -11,11 +11,15 @@ import { Textfield } from "@/core/components/textfield";
 import { getError } from "@/core/utils/form";
 import { CompanyCodeInput } from "@/core/components/company_code_input";
 import { PictureFormDetailOrganization } from "../picture_form";
+import { UserContext } from "@/core/modules/app/context";
 
 export const CompanyDataFormDetailOrganization = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
+  const { state: userState } = React.useContext(UserContext);
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" && !userState.profile.is_super_admin;
 
   const handleChangeDomain = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
@@ -287,6 +291,7 @@ export const CompanyDataFormDetailOrganization = () => {
                   value: state.company_data.form.domain.value,
                   onChange: handleChangeDomain,
                 }}
+                disabled={isOrganizationAdmin}
                 error={state.company_data.form.domain.error?.name}
               />
             </>
@@ -296,6 +301,7 @@ export const CompanyDataFormDetailOrganization = () => {
               {/* company code */}
               <CompanyCodeInput
                 {...dictionaries.company_data.form.input.company_code}
+                disabled={isOrganizationAdmin}
                 value={state.company_data.form.company_code.value}
               />
             </>
@@ -310,6 +316,7 @@ export const CompanyDataFormDetailOrganization = () => {
               value: state.company_data.form.admin_email.value,
               onChange: handleChangeAdminEmail,
             }}
+            disabled={isOrganizationAdmin}
             error={state.company_data.form.admin_email.error?.name}
           />
 
