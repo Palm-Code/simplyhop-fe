@@ -15,6 +15,7 @@ import {
   DetailOrganizationPinPointReducers,
   DetailOrganizationPinPointDeleteConfirmationReducers,
   DetailOrganizationNotificationReducers,
+  DetailOrganizationShareRideNotificationReducers,
 } from "./Detail.organization.reducers";
 
 const initialState: DetailOrganizationInitialStateType = {
@@ -158,6 +159,13 @@ const initialState: DetailOrganizationInitialStateType = {
     is_open: false,
     index: null,
   },
+  share_ride_notification: {
+    is_open: false,
+    share: {
+      link: "",
+      message: "",
+    },
+  },
 };
 
 const DetailOrganizationContext = createContext<{
@@ -180,6 +188,7 @@ const mainReducer = (
     pin_point,
     pin_point_delete_confirmation,
     notification,
+    share_ride_notification,
   }: DetailOrganizationInitialStateType,
   action: DetailOrganizationActions
 ) => ({
@@ -204,6 +213,10 @@ const mainReducer = (
       action
     ),
   notification: DetailOrganizationNotificationReducers(notification, action),
+  share_ride_notification: DetailOrganizationShareRideNotificationReducers(
+    share_ride_notification,
+    action
+  ),
 });
 
 const DetailOrganizationProvider = (props: { children: React.ReactNode }) => {

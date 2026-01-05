@@ -43,62 +43,6 @@
         "children": "Alle anzeigen",
         "href": "/support/fahrten/organisation/{{organization_id}}"
       }
-    },
-    "share_ride_notification": {
-      "title": "Fahrt teilen",
-      "cta": {
-        "back": {
-          "children": "Zurück",
-          "href": "/meine-fahrten"
-        }
-      },
-      "share": {
-        "label": "Teilen auf: ",
-        "example_link": "simplyhop.com/trip/2139rfkdsfns/",
-        "share_message": "Fahr mit mir – ganz einfach über SimplyHop!\n\nIch fahre von {{origin}} nach {{destination}}\n\n🕒 Abfahrt: {{departure_time}}\n\nWillst du mitfahren?\n\nJetzt Platz sichern: {{share_link}}",
-        "items": [
-          {
-            "id": "whatsapp",
-            "icon": {
-              "name": "Whatsapp"
-            },
-            "href": "https://wa.me/?text={{message}}"
-          },
-          {
-            "id": "facebook",
-            "icon": {
-              "name": "Facebook2"
-            },
-            "href": "https://www.facebook.com/sharer/sharer.php?u={{link}}"
-          },
-          {
-            "id": "twitter",
-            "icon": {
-              "name": "Twitter"
-            },
-            "href": "https://twitter.com/intent/tweet?text={{message}}"
-          },
-          {
-            "id": "telegram",
-            "icon": {
-              "name": "Telegram"
-            },
-            "href": "https://telegram.me/share/url?text={{message}}"
-          },
-          {
-            "id": "thread",
-            "icon": {
-              "name": "Thread"
-            },
-            "href": "https://threads.net/intent/post?text={{link}}"
-          }
-        ],
-        "cta": {
-          "copy": {
-            "children": "Link kopieren"
-          }
-        }
-      }
     }
   },
   "drivers": {
@@ -568,6 +512,62 @@
       },
       "delete": {
         "children": "Löschen"
+      }
+    }
+  },
+  "share_ride_notification": {
+    "title": "Fahrt teilen",
+    "cta": {
+      "back": {
+        "children": "Zurück",
+        "href": "/meine-fahrten"
+      }
+    },
+    "share": {
+      "label": "Teilen auf: ",
+      "example_link": "simplyhop.com/trip/2139rfkdsfns/",
+      "share_message": "Fahr mit mir – ganz einfach über SimplyHop!\n\nIch fahre von {{origin}} nach {{destination}}\n\n🕒 Abfahrt: {{departure_time}}\n\nWillst du mitfahren?\n\nJetzt Platz sichern: {{share_link}}",
+      "items": [
+        {
+          "id": "whatsapp",
+          "icon": {
+            "name": "Whatsapp"
+          },
+          "href": "https://wa.me/?text={{message}}"
+        },
+        {
+          "id": "facebook",
+          "icon": {
+            "name": "Facebook2"
+          },
+          "href": "https://www.facebook.com/sharer/sharer.php?u={{link}}"
+        },
+        {
+          "id": "twitter",
+          "icon": {
+            "name": "Twitter"
+          },
+          "href": "https://twitter.com/intent/tweet?text={{message}}"
+        },
+        {
+          "id": "telegram",
+          "icon": {
+            "name": "Telegram"
+          },
+          "href": "https://telegram.me/share/url?text={{message}}"
+        },
+        {
+          "id": "thread",
+          "icon": {
+            "name": "Thread"
+          },
+          "href": "https://threads.net/intent/post?text={{link}}"
+        }
+      ],
+      "cta": {
+        "copy": {
+          "children": "Link kopieren"
+        }
       }
     }
   }

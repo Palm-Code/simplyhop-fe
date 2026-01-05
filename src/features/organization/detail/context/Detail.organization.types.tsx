@@ -30,6 +30,7 @@ export interface DetailOrganizationInitialStateType {
   pin_point: DetailOrganizationPinPoint;
   pin_point_delete_confirmation: DetailOrganizationPinPointDeleteConfirmation;
   notification: DetailOrganizationNotification;
+  share_ride_notification: DetailOrganizationShareRideNotification;
 }
 
 export interface DetailOrganizationProfile {
@@ -189,6 +190,14 @@ export interface DetailOrganizationNotification {
   is_open: boolean;
 }
 
+export interface DetailOrganizationShareRideNotification {
+  is_open: boolean;
+  share: {
+    link: string;
+    message: string;
+  };
+}
+
 export enum DetailOrganizationActionEnum {
   // Profile
   SetProfileData = "SetProfileData",
@@ -221,6 +230,8 @@ export enum DetailOrganizationActionEnum {
   SetPinPointDeleteConfirmationData = "SetPinPointDeleteConfirmationData",
   // Notification
   SetNotificationData = "SetNotificationData",
+  // ShareRideNotification
+  SetShareRideNotificationData = "SetShareRideNotificationData",
 }
 
 // Action Collection Types
@@ -234,7 +245,8 @@ export type DetailOrganizationActions =
   | DetailOrganizationCompanyOfficeActions
   | DetailOrganizationPinPointActions
   | DetailOrganizationPinPointDeleteConfirmationActions
-  | DetailOrganizationNotificationActions;
+  | DetailOrganizationNotificationActions
+  | DetailOrganizationShareRideNotificationActions;
 
 // Action Collection Types consist of:
 
@@ -324,3 +336,11 @@ type DetailOrganizationNotificationPayload = {
 
 export type DetailOrganizationNotificationActions =
   ActionMap<DetailOrganizationNotificationPayload>[keyof ActionMap<DetailOrganizationNotificationPayload>];
+
+// ShareRideNotification
+type DetailOrganizationShareRideNotificationPayload = {
+  [DetailOrganizationActionEnum.SetShareRideNotificationData]: DetailOrganizationShareRideNotification;
+};
+
+export type DetailOrganizationShareRideNotificationActions =
+  ActionMap<DetailOrganizationShareRideNotificationPayload>[keyof ActionMap<DetailOrganizationShareRideNotificationPayload>];

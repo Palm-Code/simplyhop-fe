@@ -17,6 +17,7 @@ import { HeaderDetailOrganization } from "../fragments/header";
 import { NotificationDetailOrganization } from "../fragments/notification";
 import { PinPointDetailOrganization } from "../fragments/pin_point";
 import { PinPointDeleteConfirmationDetailOrganization } from "../fragments/pin_point_delete_confirmation";
+import { ShareRideNotificationDetailOrganization } from "../fragments/share_ride_notification";
 
 export const DetailOrganizationContainer = () => {
   useGetDashboardSuperAdmin();
@@ -49,6 +50,7 @@ export const DetailOrganizationContainer = () => {
       <NotificationDetailOrganization />
       <PinPointDetailOrganization />
       <PinPointDeleteConfirmationDetailOrganization />
+      <ShareRideNotificationDetailOrganization />
     </>
   );
 };

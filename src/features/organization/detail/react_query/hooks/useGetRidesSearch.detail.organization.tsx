@@ -57,7 +57,7 @@ export const useGetRidesSearch = () => {
         const urlSearchParams = new URLSearchParams(searchParams.toString());
         urlSearchParams.append("ride_id", String(item.id));
         const shareMessage =
-          dictionaries.upcoming_rides.share_ride_notification.share.share_message
+          dictionaries.share_ride_notification.share.share_message
             .replaceAll("{{origin}}", !item.start_name ? "-" : item.start_name)
             .replaceAll(
               "{{destination}}",

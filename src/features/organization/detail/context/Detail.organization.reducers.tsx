@@ -11,6 +11,7 @@ import {
   DetailOrganizationPinPoint,
   DetailOrganizationPinPointDeleteConfirmation,
   DetailOrganizationNotification,
+  DetailOrganizationShareRideNotification,
 } from "./Detail.organization.types";
 
 // Profile
@@ -176,6 +177,20 @@ export const DetailOrganizationNotificationReducers = (
 ) => {
   switch (action.type) {
     case DetailOrganizationActionEnum.SetNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// ShareRideNotification
+export const DetailOrganizationShareRideNotificationReducers = (
+  state: DetailOrganizationShareRideNotification,
+  action: DetailOrganizationActions
+) => {
+  switch (action.type) {
+    case DetailOrganizationActionEnum.SetShareRideNotificationData:
       return action.payload;
 
     default:
