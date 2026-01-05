@@ -67,10 +67,11 @@ export const useGetRidesSearch = () => {
         !!userState.profile?.id && isEmployee
           ? String(userState.profile.id)
           : undefined,
-      "filter[organization_id]":
-        isOrganizationAdmin && !!userState.profile?.organization_id
-          ? String(userState.profile.organization_id)
-          : undefined,
+      "filter[organization_id]": isOrganizationDetailRoute
+        ? String(organization_id ?? "0")
+        : isOrganizationAdmin && !!userState.profile?.organization_id
+        ? String(userState.profile.organization_id)
+        : undefined,
       include: "vehicle.brand,user,bookings,bookings.user",
       status: rideStatus ?? "in_progress",
       sort: sort,

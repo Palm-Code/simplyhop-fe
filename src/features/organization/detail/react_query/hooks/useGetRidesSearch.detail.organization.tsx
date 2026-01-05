@@ -34,8 +34,8 @@ export const useGetRidesSearch = () => {
       "filter[organization_id]": String(organization_id ?? "0"),
       include: "vehicle.brand,user,bookings,bookings.user",
       status: "upcoming",
-      departure_time__gte: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"), // "2025-03-31 09:30:00";
       "page[number]": 1,
+      sort: "departure_time",
       "page[size]": 3,
     },
   };
