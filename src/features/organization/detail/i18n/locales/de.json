@@ -41,7 +41,7 @@
     "cta": {
       "primary": {
         "children": "Alle anzeigen",
-        "href": "/"
+        "href": "/support/fahrten/organisation/{{organization_id}}"
       }
     },
     "share_ride_notification": {
