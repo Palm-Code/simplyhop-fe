@@ -14,6 +14,7 @@ export const UserProfileListDriver = () => {
   const router = useRouter();
   const { state, dispatch } = React.useContext(ListDriverContext);
   const { state: userState } = React.useContext(UserContext);
+  const isSuperAdmin = userState.profile?.is_super_admin;
   const isOpen = state.user_profile.is_open;
   const handleClose = () => {
     dispatch({
@@ -129,12 +130,14 @@ export const UserProfileListDriver = () => {
   });
 
   const cta = userState.profile?.is_super_admin
-    ? dictionaries.user_profile.cta.super_admin.items.map((item) => {
-        return {
-          ...item,
-          onClick: handleClickBlockList,
-        };
-      })
+    ? dictionaries.user_profile.cta.super_admin.items
+        .filter((item) => item.id !== "delete_chat" && item.id !== "block_list")
+        .map((item) => {
+          return {
+            ...item,
+            onClick: handleClickBlockList,
+          };
+        })
     : dictionaries.user_profile.cta.organizational_admin.items.map((item) => {
         return {
           ...item,
