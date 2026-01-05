@@ -7,13 +7,14 @@ import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import Cookies from "universal-cookie";
 import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
-import { GlobalContext } from "../../context";
+import { GlobalContext, UserContext } from "../../context";
 import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
 import Image from "next/image";
 import { ThemeToggleButton } from "@/core/components/theme_toggle_button";
 
 export const TopNavigationDesktopMenu = () => {
   const { state } = React.useContext(GlobalContext);
+  const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const cookie = new Cookies();
   const token = cookie.get("token");
@@ -28,6 +29,10 @@ export const TopNavigationDesktopMenu = () => {
       name: string;
     };
   };
+
+  const isProfileRegistrationPage = pathname.includes("profile-registration");
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" && !userState.profile.is_super_admin;
 
   const isMaintenance =
     process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true";
@@ -148,53 +153,56 @@ export const TopNavigationDesktopMenu = () => {
                 "w-full h-full"
               )}
             >
-              {dictionaries.menu.items.map((menu, menuIndex) => (
-                <Link
-                  href={menuLink(menu)}
-                  key={menuIndex}
-                  title={menuTitle(menu)}
-                  className={clsx(
-                    "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
-                    "h-[64px]",
-                    cursorClassName(menu),
-                    textClassName(menu),
-                    "text-[1rem] font-normal text-inter",
-                    borderClassName(menu)
-                  )}
-                >
-                  <SVGIcon
-                    {...(menu.icon as { name: SVGIconProps["name"] })}
-                    className={clsx("w-[1rem] h-[1rem]")}
-                  />
-
-                  {menu.name}
-                  {menu.id === "chat" && state.chat.count > 0 && (
-                    <div
+              {!(isProfileRegistrationPage && isOrganizationAdmin) && (
+                <>
+                  {dictionaries.menu.items.map((menu, menuIndex) => (
+                    <Link
+                      href={menuLink(menu)}
+                      key={menuIndex}
+                      title={menuTitle(menu)}
                       className={clsx(
-                        "flex items-center justify-center",
-                        "px-[0.5rem] py-[0.25rem]",
-                        "bg-green-500 dark:bg-[#232323]",
-                        "rounded-[1.25rem]"
+                        "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
+                        "h-[64px]",
+                        cursorClassName(menu),
+                        textClassName(menu),
+                        "text-[1rem] font-normal text-inter",
+                        borderClassName(menu)
                       )}
                     >
-                      <p
-                        className={clsx(
-                          "text-white dark:text-[#E9E6E6] text-[0.75rem]"
-                        )}
-                      >
-                        {formatUnreadMessageNumber(state.chat.count)}
-                      </p>
-                    </div>
-                  )}
-                </Link>
-              ))}
+                      <SVGIcon
+                        {...(menu.icon as { name: SVGIconProps["name"] })}
+                        className={clsx("w-[1rem] h-[1rem]")}
+                      />
 
-              <div
-                className={clsx(
-                  "h-[30px] w-[1px]",
-                  "bg-[#E9E6E6] dark:bg-[#E9E6E6]"
-                )}
-              />
+                      {menu.name}
+                      {menu.id === "chat" && state.chat.count > 0 && (
+                        <div
+                          className={clsx(
+                            "flex items-center justify-center",
+                            "px-[0.5rem] py-[0.25rem]",
+                            "bg-green-500 dark:bg-[#232323]",
+                            "rounded-[1.25rem]"
+                          )}
+                        >
+                          <p
+                            className={clsx(
+                              "text-white dark:text-[#E9E6E6] text-[0.75rem]"
+                            )}
+                          >
+                            {formatUnreadMessageNumber(state.chat.count)}
+                          </p>
+                        </div>
+                      )}
+                    </Link>
+                  ))}
+                  <div
+                    className={clsx(
+                      "h-[30px] w-[1px]",
+                      "bg-[#E9E6E6] dark:bg-[#E9E6E6]"
+                    )}
+                  />
+                </>
+              )}
 
               <ThemeToggleButton />
             </div>
