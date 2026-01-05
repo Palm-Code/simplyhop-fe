@@ -151,15 +151,29 @@ export const CompleteBookingRideCardChatTrip = ({
             )}
           >
             <img src={"/images/chat/complete.svg"} />
-            <p className={clsx("text-[0.875rem] text-[#292929] font-bold")}>
+            <p
+              className={clsx(
+                "text-[0.875rem] text-[#232323] dark:text-white font-bold"
+              )}
+            >
               {"Trip Complete"}
             </p>
           </div>
           <div className="grid grid-cols-1 gap-1">
-            <span className={clsx("font-medium text-[#727272] text-[10px]")}>
+            <span
+              className={clsx(
+                "font-medium text-[#5B5B5B] dark:text-[#E9E6E6] text-[10px]"
+              )}
+            >
               {date.label}
             </span>
-            <span className={clsx("font-semibold text-sm")}>{date.date}</span>
+            <span
+              className={clsx(
+                "font-semibold text-sm text-[#232323] dark:text-white"
+              )}
+            >
+              {date.date}
+            </span>
           </div>
         </div>
 
