@@ -54,10 +54,18 @@ export const RideBookingListItem = ({
           "w-full"
         )}
       >
-        <span className={clsx("text-[0.875rem] text-[black] font-medium")}>
+        <span
+          className={clsx(
+            "text-[0.875rem] text-[black] dark:text-white font-medium"
+          )}
+        >
           {booking.number}
         </span>
-        <span className={clsx("text-[0.875rem] text-[black] font-medium")}>
+        <span
+          className={clsx(
+            "text-[0.875rem] text-[black] dark:text-white font-medium"
+          )}
+        >
           {booking.name}
         </span>
       </div>
@@ -66,7 +74,7 @@ export const RideBookingListItem = ({
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start",
           "w-full",
-          "border border-[#F6F6F6]",
+          "border border-[#F6F6F6] dark:border-[#5B5B5B]",
           "rounded-[0.375rem]",
           "overflow-clip"
         )}
@@ -76,13 +84,13 @@ export const RideBookingListItem = ({
           className={clsx(
             "grid grid-cols-[1fr_1rem_1fr] items-center content-center justify-start justify-items-start gap-[0.5rem]",
             "w-full",
-            "bg-[#F9FDF9]",
+            "bg-[white] dark:bg-[#232323]",
             "px-[0.5rem] py-[5px]"
           )}
         >
           <span
             className={clsx(
-              "text-[0.875rem] text-[black] font-medium truncate text-ellipsis",
+              "text-[0.875rem] text-[black] dark:text-white font-medium truncate text-ellipsis",
               "max-w-[144px]"
             )}
           >
@@ -90,11 +98,14 @@ export const RideBookingListItem = ({
           </span>
           <SVGIcon
             name="ArrowRight"
-            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+            className={clsx(
+              "w-[1rem] h-[1rem]",
+              "text-[#5B5B5B] dark:text-[#C3C3C3]"
+            )}
           />
           <span
             className={clsx(
-              "text-[0.875rem] text-[black] font-medium truncate text-ellipsis",
+              "text-[0.875rem] text-[black] dark:text-white font-medium truncate text-ellipsis",
               "max-w-[144px]"
             )}
           >
@@ -123,10 +134,15 @@ export const RideBookingListItem = ({
             >
               <SVGIcon
                 name="User2"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+                className={clsx(
+                  "w-[1rem] h-[1rem]",
+                  "text-[#5B5B5B] dark:text-[#C3C3C3]"
+                )}
               />
               <span
-                className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}
+                className={clsx(
+                  "text-[0.75rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal"
+                )}
               >
                 {passenger.adult}
               </span>
@@ -140,10 +156,15 @@ export const RideBookingListItem = ({
             >
               <SVGIcon
                 name="Baby"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+                className={clsx(
+                  "w-[1rem] h-[1rem]",
+                  "text-[#5B5B5B] dark:text-[#C3C3C3]"
+                )}
               />
               <span
-                className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}
+                className={clsx(
+                  "text-[0.75rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal"
+                )}
               >
                 {passenger.children}
               </span>
@@ -158,9 +179,16 @@ export const RideBookingListItem = ({
           >
             <SVGIcon
               name="BadgeEuro"
-              className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+              className={clsx(
+                "w-[1rem] h-[1rem]",
+                "text-[#5B5B5B] dark:text-[#C3C3C3]"
+              )}
             />
-            <span className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}>
+            <span
+              className={clsx(
+                "text-[0.75rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal"
+              )}
+            >
               {price.value}
             </span>
           </div>
