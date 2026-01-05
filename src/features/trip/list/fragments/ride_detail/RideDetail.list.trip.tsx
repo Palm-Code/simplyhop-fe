@@ -107,7 +107,7 @@ export const RideDetailListTrip = () => {
     )[rideStatus ?? "default"]?.description ?? "";
 
   const isRideCompleteConfirmationDisabled =
-    state.complete_ride_confirmation.confirmed_booking.length ===
+    state.complete_ride_confirmation.confirmed_booking.length !==
     filteredData.booking.length;
 
   const handleClickConfirmNotPresent = (data: { bookingId: number }) => {
@@ -333,6 +333,10 @@ export const RideDetailListTrip = () => {
                     state.complete_ride_confirmation.confirmed_booking
                       .map((confirmedItem) => confirmedItem.id)
                       .includes(item.booking?.id ?? -1);
+                  console.log(
+                    isPresentStatusNotNull,
+                    "ini present status not null"
+                  );
                   const isPresent =
                     state.complete_ride_confirmation.confirmed_booking.find(
                       (confirmedItem) => confirmedItem.id === item.booking?.id
@@ -346,7 +350,7 @@ export const RideDetailListTrip = () => {
                       key={index}
                     >
                       <RideBookingListItem key={index} {...item} />
-                      {isFinishTrip && (
+                      {isFinishTrip && !isPresentStatusNotNull && (
                         <div
                           key={`action-${index}`}
                           className={clsx(
@@ -376,8 +380,8 @@ export const RideDetailListTrip = () => {
                               "w-full",
                               "px-[0.5rem] py-[0.5rem]",
                               "rounded-[0.375rem]",
-                              "bg-[#33CC33]",
-                              "text-[0.75rem] text-[#232323] dark:text-white font-semibold"
+                              "bg-[#249124] dark:bg-[#33CC33]",
+                              "text-[0.75rem] text-[white] dark:text-[#232323] font-semibold"
                             )}
                             onClick={() =>
                               handleClickConfirmPresent({
@@ -403,11 +407,17 @@ export const RideDetailListTrip = () => {
                               "w-full",
                               "border",
                               isPresent
-                                ? "border-[#232323]"
+                                ? "border-[#249124] dark:border-[#33CC33]"
                                 : "border-[#D85959]",
+                              isPresent
+                                ? "bg-[#249124] dark:bg-[#33CC33]"
+                                : "bg-transparent",
                               "rounded-[0.375rem]",
                               "text-[0.75rem] font-semibold",
-                              isPresent ? "text-[#232323]" : "text-[#D85959]"
+                              isPresent
+                                ? "text-[white] dark:text-[#232323]"
+                                : "text-[#D85959]",
+                              "cursor-pointer"
                             )}
                             onClick={() =>
                               handleClickToggleConfirmation({
@@ -463,8 +473,8 @@ export const RideDetailListTrip = () => {
                 "w-full",
                 "px-[1rem] py-[0.75rem]",
                 "rounded-[0.375rem]",
-                "bg-[#33CC33] disabled:bg-[#F6F6F6]",
-                "text-[#232323] disabled:text-[#A6A6A6] text-[0.75rem] sm:text-[1rem] font-semibold",
+                "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6]",
+                "text-white dark:text-[#232323] disabled:text-[#A6A6A6] text-[0.75rem] sm:text-[1rem] font-semibold",
                 "cursor-pointer"
               )}
               disabled={isRideCompleteConfirmationDisabled}
