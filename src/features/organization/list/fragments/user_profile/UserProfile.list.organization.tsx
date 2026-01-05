@@ -20,6 +20,7 @@ export const UserProfileListOrganization = () => {
       type: ListOrganizationActionEnum.SetUserProfileData,
       payload: {
         ...state.user_profile,
+        user_id: null,
         data: null,
         is_open: false,
       },
