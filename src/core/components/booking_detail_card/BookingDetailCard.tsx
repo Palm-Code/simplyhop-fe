@@ -106,7 +106,7 @@ export const BookingDetailCard = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "bg-[white]"
+        "bg-[white] dark:bg-[#232323]"
       )}
       style={{
         backdropFilter: "blur(20px)",
@@ -135,7 +135,7 @@ export const BookingDetailCard = ({
             <Link href={message.link}>
               <SVGIcon
                 name="MessageSquare"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
               />
             </Link>
             <DriverProfileLabel
