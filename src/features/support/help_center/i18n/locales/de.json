@@ -11,7 +11,7 @@
           "href": "/agb"
         }
       },
-       {
+      {
         "id": "barrierefreiheitserklärung",
         "name": "Barrierefreiheitserklärung",
         "description": "Barrierefreie Angebote gemäß BITV 2.0 und EU-Richtlinie.",
@@ -27,15 +27,6 @@
         "cta": {
           "children": "Seite öffnen",
           "href": "/datenschutz"
-        }
-      },
-      {
-        "id": "faq",
-        "name": "Frage und Antwort",
-        "description": "Hier findest du Antworten auf häufig gestellte Fragen.",
-        "cta": {
-          "children": "Seite öffnen",
-          "href": "/impressum"
         }
       },
       {
