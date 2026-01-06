@@ -54,22 +54,21 @@ export const NotificationDetailOrganization = () => {
         >
           {/* Header */}
           <div className="grid grid-cols-1 place-content-center place-items-center gap-8">
-            <img src={"/images/trip/welcome.svg"} />
+            <img src={"/images/organization/success.svg"} />
 
             <DialogTitle
               as="h1"
               className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
             >
-              Willkommen bei
-              <br /> SimplyHop!
+              Änderungen gespeichert!
             </DialogTitle>
 
             {/* Content */}
 
             <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
-              Bereit für deine erste Fahrt? Die nächsten Schritte zeigen dir,
-              wie du deine Route planst, Fahrer findest und ganz einfach
-              startest. Viel Spaß beim Entdecken – los geht’s!
+              Deine Organisationsdetails wurden erfolgreich aktualisiert. Du
+              kannst jederzeit weitere Änderungen vornehmen oder direkt mit dem
+              Planen deiner Fahrt loslegen.
             </p>
 
             <button

@@ -58,22 +58,21 @@ export const NotificationCreateOrganization = () => {
         >
           {/* Header */}
           <div className="grid grid-cols-1 place-content-center place-items-center gap-8">
-            <img src={"/images/trip/welcome.svg"} />
+            <img src={"/images/organization/success.svg"} />
 
             <DialogTitle
               as="h1"
               className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
             >
-              Willkommen bei
-              <br /> SimplyHop!
+              Organisation erstellt!
             </DialogTitle>
 
             {/* Content */}
 
             <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
-              Bereit für deine erste Fahrt? Die nächsten Schritte zeigen dir,
-              wie du deine Route planst, Fahrer findest und ganz einfach
-              startest. Viel Spaß beim Entdecken – los geht’s!
+              Deine neue Organisation ist bereit. Jetzt kannst du Standorte
+              hinzufügen, Mitglieder einladen und loslegen. Willkommen bei
+              SimplyHop!
             </p>
 
             <button
