@@ -59,6 +59,16 @@ export const OTPFormRegisterAuth = () => {
         name: "form",
       },
     });
+    dispatch({
+      type: RegisterAuthActionEnum.SetOTPFormData,
+      payload: {
+        ...state.otp_form,
+        otp: {
+          ...state.otp_form.otp,
+          value: "",
+        },
+      },
+    });
   };
 
   const isSubmitLoading =
