@@ -54,10 +54,12 @@ export const useGetRidesSearch = () => {
     pathname.startsWith("/support/organisation/detail") && !!organization_id;
   const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
 
-  const sort =
-    searchParams.get("sort") ?? rideStatus === "finished"
+  const sortSearchParams = searchParams.get("sort");
+  const sort = !sortSearchParams
+    ? rideStatus === "finished"
       ? "-departure_time"
-      : "departure_time";
+      : "departure_time"
+    : sortSearchParams;
 
   const isEnabled = isEmployee
     ? !type && !!userState.profile?.id && userState.profile.is_driver
