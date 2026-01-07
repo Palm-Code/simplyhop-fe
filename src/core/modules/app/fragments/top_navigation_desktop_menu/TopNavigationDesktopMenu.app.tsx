@@ -180,7 +180,7 @@ export const TopNavigationDesktopMenu = () => {
                           className={clsx(
                             "flex items-center justify-center",
                             "px-[0.5rem] py-[0.25rem]",
-                            "bg-green-500 dark:bg-[#232323]",
+                            "bg-green-500",
                             "rounded-[1.25rem]"
                           )}
                         >
