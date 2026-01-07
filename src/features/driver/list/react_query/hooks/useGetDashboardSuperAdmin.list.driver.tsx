@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -11,17 +12,21 @@ import {
 } from "@/core/models/rest/simplyhop/dashboard";
 import { UserContext } from "@/core/modules/app/context";
 import { ListDriverReactQueryKey } from "../keys";
+import { useParams } from "next/navigation";
 
 export const useGetDashboardSuperAdmin = () => {
   const { state, dispatch } = React.useContext(ListDriverContext);
   const { state: userState } = React.useContext(UserContext);
-
+  const { organization_id } = useParams();
   const payload: GetDashboardSuperAdminPayloadRequestInterface = {
     params: {
       include: "user",
       append: "upcoming_rides",
       "page[number]": state.table.pagination.current,
       "page[size]": 10,
+      "filter[organization_id]": !!organization_id
+        ? String(organization_id ?? "0")
+        : undefined,
     },
   };
   const query = useQuery<
