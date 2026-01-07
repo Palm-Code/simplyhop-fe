@@ -1,6 +1,10 @@
 import React from "react";
 
-export const Twitter = () => {
+interface TwitterProps {
+  className?: string;
+}
+
+export const Twitter: React.FC<TwitterProps> = ({ className }) => {
   return (
     <svg
       width="19"
@@ -8,6 +12,7 @@ export const Twitter = () => {
       viewBox="0 0 19 19"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <g clipPath="url(#clip0_1129_372)">
         <mask
@@ -27,7 +32,7 @@ export const Twitter = () => {
         <g mask="url(#mask0_1129_372)">
           <path
             d="M14.866 1.04126H17.7287L11.4753 8.20659L18.8327 17.9586H13.0727L8.55801 12.0453L3.39802 17.9586H0.532682L7.22068 10.2919L0.166016 1.04259H6.07268L10.1473 6.44659L14.866 1.04126ZM13.8593 16.2413H15.446L5.20602 2.66926H3.50468L13.8593 16.2413Z"
-            fill="#232323"
+            className="fill-[#232323] dark:fill-[white]"
           />
         </g>
       </g>
