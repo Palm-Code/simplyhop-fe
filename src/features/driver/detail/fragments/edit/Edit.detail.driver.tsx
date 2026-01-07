@@ -238,7 +238,7 @@ export const EditDetailDriver = () => {
           </button>
           <h2
             className={clsx(
-              "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
             )}
           >
             {dictionaries.edit.title}
@@ -250,7 +250,7 @@ export const EditDetailDriver = () => {
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full",
             "px-4 py-4",
-            "bg-[#F0F0F0]",
+            "bg-[#F0F0F0] dark:bg-[#232323]",
             "rounded-[0.25rem]"
           )}
         >

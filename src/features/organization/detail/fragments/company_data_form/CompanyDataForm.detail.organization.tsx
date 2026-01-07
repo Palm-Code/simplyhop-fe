@@ -18,8 +18,6 @@ export const CompanyDataFormDetailOrganization = () => {
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(DetailOrganizationContext);
   const { state: userState } = React.useContext(UserContext);
-  const isOrganizationAdmin =
-    userState.profile?.role === "admin" && !userState.profile.is_super_admin;
 
   const handleChangeDomain = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
@@ -291,7 +289,7 @@ export const CompanyDataFormDetailOrganization = () => {
                   value: state.company_data.form.domain.value,
                   onChange: handleChangeDomain,
                 }}
-                disabled={isOrganizationAdmin}
+                disabled={true}
                 error={state.company_data.form.domain.error?.name}
               />
             </>
@@ -301,7 +299,7 @@ export const CompanyDataFormDetailOrganization = () => {
               {/* company code */}
               <CompanyCodeInput
                 {...dictionaries.company_data.form.input.company_code}
-                disabled={isOrganizationAdmin}
+                disabled={true}
                 value={state.company_data.form.company_code.value}
               />
             </>
@@ -316,7 +314,7 @@ export const CompanyDataFormDetailOrganization = () => {
               value: state.company_data.form.admin_email.value,
               onChange: handleChangeAdminEmail,
             }}
-            disabled={isOrganizationAdmin}
+            disabled={true}
             error={state.company_data.form.admin_email.error?.name}
           />
 
