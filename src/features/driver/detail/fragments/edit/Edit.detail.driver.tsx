@@ -250,7 +250,7 @@ export const EditDetailDriver = () => {
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full",
             "px-4 py-4",
-            "bg-[#F0F0F0] dark:bg-[#232323]",
+            "bg-[#F0F0F0] dark:bg-[#292929]",
             "rounded-[0.25rem]"
           )}
         >
