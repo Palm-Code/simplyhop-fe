@@ -248,7 +248,7 @@ export const BookingCardChatTrip = ({
           "w-full",
           "px-[1.5rem] py-[1rem]",
           "rounded-[0.625rem]",
-          "border border-[#EFEFEF]"
+          "border border-[#EFEFEF] dark:border-[#464646]"
         )}
       >
         {/* car */}
@@ -342,7 +342,7 @@ export const BookingCardChatTrip = ({
           className={clsx(
             "w-full",
             "px-[0rem] lg:px-[1rem] py-[0.75rem]",
-            "border-t border-t-[#F8F8F8]"
+            "border-t border-t-[#F8F8F8] dark:border-t-[#464646]"
           )}
         >
           <PriceOfferedItem {...price.offered} />
@@ -353,7 +353,7 @@ export const BookingCardChatTrip = ({
           className={clsx(
             "w-full",
             "px-[0rem] lg:px-[1rem] py-[0.75rem]",
-            "border-t border-t-[#F8F8F8]"
+            "border-t border-t-[#F8F8F8] dark:border-t-[#464646]"
           )}
         >
           <TripNoteItem {...note} />

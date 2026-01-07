@@ -21,7 +21,7 @@ export const PriceInputChatTrip = ({
       )}
     >
       {!!label && (
-        <span className={clsx("text-[1.5rem] text-[black] font-bold")}>
+        <span className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold")}>
           {label}
         </span>
       )}

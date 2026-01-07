@@ -72,12 +72,12 @@ export const UserBlockConfirmation = ({
             "w-full h-full"
           )}
         >
-          <p className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
+          <p className={clsx("text-[1.5rem] text-[#232323] dark:text-[white] font-bold")}>
             {title}
           </p>
           <span
             className={clsx(
-              "text-[1rem] text-[#5B5B5B] font-normal text-center"
+              "text-[1rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal text-center"
             )}
           >
             {description}
@@ -96,7 +96,7 @@ export const UserBlockConfirmation = ({
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[white]",
+              "bg-[white] dark:bg-[#232323]",
               "rounded-[0.375rem]",
               "text-[1rem] text-[#B30606] font-semibold",
               "border border-[#B30606]",
@@ -113,9 +113,9 @@ export const UserBlockConfirmation = ({
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[#B30606] disabled:bg-[#F6F6F6]",
+              "bg-[#B30606] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#FFFFFF] disabled:text-[#A6A6A6] font-semibold",
+              "text-[1rem] text-[#FFFFFF] dark:text-[#232323] disabled:text-[#A6A6A6] font-semibold",
               "cursor-pointer"
             )}
             disabled={confirmButton.disabled || confirmButton.isLoading}

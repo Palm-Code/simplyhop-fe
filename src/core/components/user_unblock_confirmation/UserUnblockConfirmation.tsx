@@ -72,12 +72,12 @@ export const UserUnblockConfirmation = ({
             "w-full h-full"
           )}
         >
-          <p className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
+          <p className={clsx("text-[1.5rem] text-[#232323] dark:text-white font-bold")}>
             {title}
           </p>
           <span
             className={clsx(
-              "text-[1rem] text-[#5B5B5B] font-normal text-center"
+              "text-[1rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal text-center"
             )}
           >
             {description}
@@ -96,9 +96,9 @@ export const UserUnblockConfirmation = ({
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[white]",
+              "bg-[white] dark:bg-[#232323]",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#232323] font-semibold",
+              "text-[1rem] text-[#232323] dark:text-white font-semibold",
               "border border-[#464646]",
               "box-border",
               "cursor-pointer"
@@ -113,8 +113,8 @@ export const UserUnblockConfirmation = ({
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[#33CC33] disabled:bg-[#F6F6F6]",
-              "text-[#232323] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
+              "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6]",
+              "text-[#232323] dark:text-[white] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
               "rounded-[0.375rem]",
               "cursor-pointer"
             )}

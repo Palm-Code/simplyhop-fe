@@ -169,7 +169,7 @@ export const RideDetailCardChatTrip = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "border border-[#EFEFEF]"
+        "border border-[#EFEFEF] dark:border-[#464646]"
       )}
       style={{
         backdropFilter: "blur(20px)",

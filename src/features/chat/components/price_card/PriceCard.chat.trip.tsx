@@ -13,11 +13,11 @@ export const PriceCardChatTrip = ({
 }: PriceCardChatTripProps) => {
   return (
     <Card className={clsx("!grid-flow-col !items-center !content-center !justify-between")}>
-      <span className={clsx("text-[#606060] text-[0.75rem] font-normal")}>
+      <span className={clsx("text-[#606060] dark:text-[#C3C3C3] text-[0.75rem] font-normal")}>
         {label}
       </span>
 
-      <span className={clsx("text-[black] text-[0.875rem] lg:text-[1.5rem] font-bold")}>
+      <span className={clsx("text-[black] dark:text-white text-[0.875rem] lg:text-[1.5rem] font-bold")}>
         {price}
       </span>
     </Card>

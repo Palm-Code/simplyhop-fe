@@ -125,7 +125,7 @@ export const FormChatTrip = () => {
         className={clsx(
           "grid grid-cols-2 place-content-center place-items-center gap-[1rem]",
           "w-full",
-          "border-t border-t-[#DFDFDF]",
+          "border-t border-t-[#DFDFDF] dark:border-[#464646]",
           "px-[0.75rem] py-[1rem]"
         )}
       >
@@ -135,7 +135,7 @@ export const FormChatTrip = () => {
             "w-full",
             "px-[0.75rem] py-[0.75rem]",
             "rounded-[6px]",
-            "bg-[white] disabled:bg-[#F6F6F6]",
+            "bg-[white] dark:bg-[#232323] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
             "text-[#B30606] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
             "border border-[#B30606]",
             "box-border"
@@ -150,8 +150,8 @@ export const FormChatTrip = () => {
             "w-full",
             "px-[0.75rem] py-[0.75rem]",
             "rounded-[6px]",
-            "bg-[#33CC33] disabled:bg-[#F6F6F6]",
-            "text-[#232323] disabled:text-[#A6A6A6] text-[1rem] font-semibold"
+            "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
+            "text-[#232323] dark:text-white disabled:text-[#A6A6A6] text-[1rem] font-semibold"
           )}
           onClick={handleClickUnblock}
         >
@@ -166,12 +166,12 @@ export const FormChatTrip = () => {
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start",
           "w-full",
-          "border-t border-t-[#DFDFDF]",
+          "border-t border-t-[#DFDFDF] dark:border-t-[#464646]",
           "px-[0.75rem] py-[1rem]",
-          "bg-[#F6F6F6CC]"
+          "bg-[#F6F6F6CC] dark:bg-[#292929]"
         )}
       >
-        <p className={clsx("text-[#767676] text-[1rem] font-normal")}>
+        <p className={clsx("text-[#767676] dark:text-[#C3C3C3] text-[1rem] font-normal")}>
           {"Sorry, du kannst dieser Person keine Nachricht senden."}
         </p>
       </div>
@@ -235,9 +235,9 @@ export const FormChatTrip = () => {
         className={clsx(
           "grid grid-flow-col place-content-center place-items-center gap-[0.625rem]",
           "px-[0.75rem] py-[0.625rem]",
-          "bg-[#05912A] disabled:bg-[#F6F6F6]",
+          "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
           "rounded-[0.375rem]",
-          "text-[0.875rem] text-[white] disabled:text-[#5B5B5B] font-normal"
+          "text-[0.875rem] text-[white] dark:text-[#232323] disabled:text-[#5B5B5B] dark:disabled:text-[#C3C3C3] font-normal"
         )}
         type="submit"
         disabled={isDisabledSendChat}
@@ -251,7 +251,7 @@ export const FormChatTrip = () => {
             name="SendHorizonal"
             className={clsx(
               "w-[1rem] h-[1rem]",
-              isDisabledSendChat ? "text-[#5B5B5B]" : "text-[white]"
+              isDisabledSendChat ? "text-[#5B5B5B] dark:text-[#C3C3C3]" : "text-[white] dark:text-[#232323]"
             )}
           />
         )}

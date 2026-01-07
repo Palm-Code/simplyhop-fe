@@ -166,11 +166,11 @@ export const OfferChatTrip = () => {
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
             />
           </button>
 
-          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+          <h1 className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold")}>
             {dictionaries.offer.title}
           </h1>
         </AdaptiveModalHeader>
