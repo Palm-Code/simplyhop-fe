@@ -60,21 +60,19 @@ export const FooterApp = () => {
                     key={itemIndex}
                     href={item.href}
                     className={clsx(
+                      "group",
                       "flex items-center justify-center",
                       "px-[0.5rem] py-[0.5rem]",
                       "rounded-[0.625rem]",
-                      isDarkMode && item.id === "facebook"
-                        ? "bg-[#767676]"
-                        : item.id === "facebook"
-                        ? "bg-[#EFF9EC]"
-                        : "bg-[transparent]"
+                      "bg-transparent hover:bg-[#EFF9EC] dark:hover:bg-[#767676]"
                     )}
                   >
                     <SVGIcon
                       name={item.icon.name as SVGIconProps["name"]}
                       className={clsx(
                         "w-[1.5rem] h-[1.5rem]",
-                        "text-[#5B5B5B] dark:text-[#767676]"
+                        "fill-[#5B5B5B] group-hover:fill-[#249124]",
+                        "dark:fill-[#767676] dark:group-hover:fill-[#33CC33]"
                       )}
                     />
                   </Link>
@@ -146,7 +144,11 @@ export const FooterApp = () => {
               "w-full"
             )}
           >
-            <span className={clsx("text-[#232323] dark:text-white text-[1.125rem] font-bold")}>
+            <span
+              className={clsx(
+                "text-[#232323] dark:text-white text-[1.125rem] font-bold"
+              )}
+            >
               {dictionaries.footer.middle.function.title}
             </span>
             <div
@@ -199,7 +201,11 @@ export const FooterApp = () => {
               "w-full"
             )}
           >
-            <span className={clsx("text-[#232323] dark:text-white text-[1.125rem] font-bold")}>
+            <span
+              className={clsx(
+                "text-[#232323] dark:text-white text-[1.125rem] font-bold"
+              )}
+            >
               {dictionaries.footer.middle.legal.title}
             </span>
             <div
@@ -241,9 +247,16 @@ export const FooterApp = () => {
         >
           <SVGIcon
             name="Copyright"
-            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-[#767676]")}
+            className={clsx(
+              "w-[1rem] h-[1rem]",
+              "text-[#5B5B5B] dark:text-[#767676]"
+            )}
           />
-          <span className={clsx("text-[#767676] dark:text-[#E9E6E6] text-[1rem] font-normal")}>
+          <span
+            className={clsx(
+              "text-[#767676] dark:text-[#E9E6E6] text-[1rem] font-normal"
+            )}
+          >
             {dictionaries.footer.bottom.copyright}
           </span>
         </div>
