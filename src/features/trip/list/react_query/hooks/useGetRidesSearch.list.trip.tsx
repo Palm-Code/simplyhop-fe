@@ -36,6 +36,7 @@ export const useGetRidesSearch = () => {
   const rideStatus = searchParams.get("ride-status");
   const pathname = usePathname();
   const { organization_id } = useParams();
+  const { driver_id } = useParams();
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
   const { isDarkMode } = React.useContext(ThemeContext);
@@ -66,6 +67,8 @@ export const useGetRidesSearch = () => {
       "filter[user_id]":
         !!userState.profile?.id && isEmployee
           ? String(userState.profile.id)
+          : !!driver_id
+          ? String(driver_id ?? "0")
           : undefined,
       "filter[organization_id]": isOrganizationDetailRoute
         ? String(organization_id ?? "0")
