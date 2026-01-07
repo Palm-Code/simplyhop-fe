@@ -15,8 +15,10 @@ import SVGIcon from "@/core/icons";
 export const OTPFormRegisterAuth = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(RegisterAuthContext);
-  const { mutate: postAuthVerifyOTP, isPending: isPendingPostAuthVerifyOTP } =
-    usePostAuthVerifyOTP();
+  const {
+    mutateAsync: postAuthVerifyOTP,
+    isPending: isPendingPostAuthVerifyOTP,
+  } = usePostAuthVerifyOTP();
   const {
     mutate: postAuthRequestOTPRegistration,
     isPending: isPendingPostAuthRequestOTPRegistration,
@@ -38,7 +40,11 @@ export const OTPFormRegisterAuth = () => {
 
   const handleClickLogin = async () => {
     setIsLoading(true);
-    postAuthVerifyOTP();
+    try {
+      await postAuthVerifyOTP();
+    } catch {
+      setIsLoading(false);
+    }
   };
 
   const handleRequestOTP = () => {
