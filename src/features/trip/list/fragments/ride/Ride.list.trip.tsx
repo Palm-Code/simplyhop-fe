@@ -7,7 +7,7 @@ import { getDictionaries } from "../../i18n";
 import { useGetRidesSearch } from "../../react_query/hooks";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 import { PAGINATION } from "@/core/utils/pagination/contants";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { LoadingState } from "@/core/components/loading_state";
 import { EmptyState } from "@/core/components/empty_state";
 import { TripCard } from "@/core/components/trip_card";
@@ -16,6 +16,8 @@ export const RideListTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ListTripContext);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const rideStatus = searchParams.get("ride-status");
 
   const isOrganizationDetailRoute = pathname.startsWith(
     "/support/organisation/detail"
@@ -99,14 +101,17 @@ export const RideListTrip = () => {
             key={itemIndex}
             cta={{
               ...item.cta,
-              share: {
-                ...item.cta?.share,
-                onClick: () =>
-                  handleClickShare({
-                    link: item.cta?.share?.href ?? "",
-                    message: item.cta?.share?.message ?? "",
-                  }),
-              },
+              share:
+                rideStatus === "finished"
+                  ? undefined
+                  : {
+                      ...item.cta?.share,
+                      onClick: () =>
+                        handleClickShare({
+                          link: item.cta?.share?.href ?? "",
+                          message: item.cta?.share?.message ?? "",
+                        }),
+                    },
             }}
           />
         ))}

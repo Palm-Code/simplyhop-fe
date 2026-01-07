@@ -254,8 +254,12 @@ export const TripDesktopCard = ({
         {(cta || price) && (
           <div
             className={clsx(
-              "flex flex-col items-center justify-between gap-[1rem]",
-              "w-full h-full"
+              "flex flex-col items-center gap-[1rem]",
+              "w-full h-full",
+              [cta?.share, price, cta?.book, cta?.detail].filter(Boolean)
+                .length >= 3
+                ? "justify-between"
+                : "justify-center"
             )}
           >
             {cta?.share && (
