@@ -61,10 +61,10 @@ export const TabFAQHelpCenter = () => {
               "w-full"
             )}
           >
-            <p className={clsx("text-[#232323] text-[1rem] font-semibold")}>
+            <p className={clsx("text-[#232323] dark:text-white text-[1rem] font-semibold")}>
               {listItem.question}
             </p>
-            <p className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}>
+            <p className={clsx("text-[#5B5B5B] dark:text-[#C3C3C3] text-[0.875rem] font-normal")}>
               {listItem.answer}
             </p>
           </div>

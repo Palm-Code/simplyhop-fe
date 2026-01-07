@@ -24,7 +24,11 @@ export const HeaderHelpCenter = ({ title = "" }: HeaderHelpCenterProps) => {
           className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
         />
       </Link> */}
-      <h1 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
+      <h1
+        className={clsx(
+          "text-[1.5rem] text-[#292929] dark:text-white font-bold"
+        )}
+      >
         {title}
       </h1>
     </div>

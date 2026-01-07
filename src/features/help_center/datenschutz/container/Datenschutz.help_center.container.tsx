@@ -24,7 +24,7 @@ export const DatenschutzHelpCenterContainer = () => {
           )}
         >
           <p
-            className={clsx("text-[1rem] text-[#232323] font-semibold")}
+            className={clsx("text-[1rem] text-[#232323] dark:text-white font-semibold")}
             dangerouslySetInnerHTML={{ __html: content.title }}
           />
           <br />
@@ -35,7 +35,7 @@ export const DatenschutzHelpCenterContainer = () => {
                   <li
                     key={`${contentIndex}-${subContentIndex}`}
                     className={clsx(
-                      "text-[0.875rem] text-[#606060] font-normal"
+                      "text-[0.875rem] text-[#606060] dark:text-[#C3C3C3] font-normal"
                     )}
                     dangerouslySetInnerHTML={{ __html: subContent }}
                   />
@@ -49,7 +49,7 @@ export const DatenschutzHelpCenterContainer = () => {
                   <li
                     key={`${contentIndex}-${subContentIndex}`}
                     className={clsx(
-                      "text-[0.875rem] text-[#606060] font-normal"
+                      "text-[0.875rem] text-[#606060] dark:text-[#C3C3C3] font-normal"
                     )}
                     dangerouslySetInnerHTML={{ __html: subContent }}
                   />
@@ -69,7 +69,7 @@ export const DatenschutzHelpCenterContainer = () => {
                   >
                     <p
                       className={clsx(
-                        "text-[0.875rem] text-[#606060] font-normal"
+                        "text-[0.875rem] text-[#606060] dark:text-[#C3C3C3] font-normal"
                       )}
                       dangerouslySetInnerHTML={{ __html: subContent }}
                     />
