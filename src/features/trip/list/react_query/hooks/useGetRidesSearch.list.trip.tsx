@@ -40,7 +40,7 @@ export const useGetRidesSearch = () => {
   const { state, dispatch } = React.useContext(ListTripContext);
   const { state: userState } = React.useContext(UserContext);
   const { isDarkMode } = React.useContext(ThemeContext);
-  const sort = searchParams.get("sort") ?? "departure_time";
+
   // const search = searchParams.get("sort");
 
   const isEmployee = userState.profile?.role === "employee";
@@ -53,6 +53,11 @@ export const useGetRidesSearch = () => {
   const isOrganizationDetailRoute =
     pathname.startsWith("/support/organisation/detail") && !!organization_id;
   const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
+
+  const sort =
+    rideStatus === "finished"
+      ? "-departure_time"
+      : searchParams.get("sort") ?? "departure_time";
 
   const isEnabled = isEmployee
     ? !type && !!userState.profile?.id && userState.profile.is_driver
