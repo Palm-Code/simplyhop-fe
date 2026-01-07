@@ -26,11 +26,11 @@ export const PassengerItem = ({
             name="User2"
             className={clsx(
               "w-[0.75rem] h-[0.75rem]",
-              "text-icon-primary-subdued]"
+              "text-icon-primary-subdued] dark:text-white"
             )}
           />
           <span
-            className={clsx("text-text-primary text-[0.625rem] font-normal")}
+            className={clsx("text-text-primary dark:text-white text-[0.625rem] font-normal")}
           >
             {adult}
           </span>
@@ -40,11 +40,11 @@ export const PassengerItem = ({
             name="Baby"
             className={clsx(
               "w-[0.75rem] h-[0.75rem]",
-              "text-icon-primary-subdued]"
+              "text-icon-primary-subdued dark:text-white"
             )}
           />
           <span
-            className={clsx("text-text-primary text-[0.625rem] font-normal")}
+            className={clsx("text-text-primary dark:text-white text-[0.625rem] font-normal")}
           >
             {child}
           </span>
