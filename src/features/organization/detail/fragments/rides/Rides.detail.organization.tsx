@@ -8,6 +8,8 @@ import {
 import { SVGIconProps } from "@/core/icons";
 import { DashboardRideCard } from "@/core/components/dashboard_ride_card";
 import { useParams } from "next/navigation";
+import { LoadingState } from "@/core/components/loading_state";
+import { EmptyState } from "@/core/components/empty_state";
 
 export const RidesDetailOrganization = () => {
   const { organization_id } = useParams();
@@ -27,6 +29,49 @@ export const RidesDetailOrganization = () => {
       },
     });
   };
+  const isLoading = state.ride.loading.is_fetching;
+  const isEmpty = !state.ride.data?.length;
+  const empty = dictionaries.upcoming_rides.empty;
+  if (isLoading) {
+    return (
+      <DashboardCard
+        title={dictionaries.upcoming_rides.title}
+        icon={dictionaries.upcoming_rides.icon as SVGIconProps["name"]}
+        cta={{
+          ...dictionaries.upcoming_rides.cta,
+          primary: {
+            ...dictionaries.upcoming_rides.cta.primary,
+            href: dictionaries.upcoming_rides.cta.primary.href.replaceAll(
+              "{{organization_id}}",
+              String(organization_id)
+            ),
+          },
+        }}
+      >
+        <LoadingState />
+      </DashboardCard>
+    );
+  }
+  if (isEmpty) {
+    return (
+      <DashboardCard
+        title={dictionaries.upcoming_rides.title}
+        icon={dictionaries.upcoming_rides.icon as SVGIconProps["name"]}
+        cta={{
+          ...dictionaries.upcoming_rides.cta,
+          primary: {
+            ...dictionaries.upcoming_rides.cta.primary,
+            href: dictionaries.upcoming_rides.cta.primary.href.replaceAll(
+              "{{organization_id}}",
+              String(organization_id)
+            ),
+          },
+        }}
+      >
+        <EmptyState {...empty} />
+      </DashboardCard>
+    );
+  }
   return (
     <DashboardCard
       title={dictionaries.upcoming_rides.title}

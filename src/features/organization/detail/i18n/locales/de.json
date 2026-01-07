@@ -43,6 +43,10 @@
         "children": "Alle anzeigen",
         "href": "/support/fahrten/organisation/{{organization_id}}"
       }
+    },
+    "empty": {
+      "message": "Noch kein Bevorstehende Fahrten",
+      "description": "Noch kein Bevorstehende Fahrten"
     }
   },
   "drivers": {
