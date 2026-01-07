@@ -42,7 +42,7 @@ export const EmptyState = ({ message, description, cta }: EmptyStateProps) => {
       >
         {message}
       </p>
-      {description && (
+      {!!description?.length && (
         <p
           className={clsx(
             "text-[#979797] dark:text-[#C3C3C3] text-[0.875rem] font-normal text-center"

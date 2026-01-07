@@ -65,7 +65,7 @@
       },
       "empty": {
         "message": "Noch kein Bevorstehende Fahrten",
-        "description": "Noch kein Bevorstehende Fahrten"
+        "description": ""
       },
       "share_ride_notification": {
         "title": "Fahrt teilen",
@@ -192,7 +192,7 @@
       },
       "empty": {
         "message": "Noch kein Bevorstehende Fahrten",
-        "description": "Noch kein Bevorstehende Fahrten"
+        "description": ""
       }
     },
     "drivers": {
