@@ -74,7 +74,7 @@ export const OrganizationRegisterAuth = () => {
             </div>
           </div>
 
-          <div className={clsx("max-w-[280px]", "w-full")}>
+          <div className={clsx("max-w-[256px]", "w-full")}>
             <SearchRegisterAuth />
           </div>
         </div>
@@ -143,7 +143,7 @@ export const OrganizationRegisterAuth = () => {
             </div>
           </div>
 
-          <div className={clsx("max-w-[280px]", "w-full")}>
+          <div className={clsx("max-w-[256px]", "w-full")}>
             <SearchRegisterAuth />
           </div>
         </div>
@@ -243,7 +243,7 @@ export const OrganizationRegisterAuth = () => {
           </div>
         </div>
 
-        <div className={clsx("max-w-[280px]", "w-full")}>
+        <div className={clsx("max-w-[256px]", "w-full")}>
           <SearchRegisterAuth />
         </div>
       </div>
