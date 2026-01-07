@@ -80,12 +80,15 @@ export const CompletedRideTripChat = () => {
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+              className={clsx(
+                "w-[1.5rem] h-[1.5rem]",
+                "text-[#5B5B5B] dark:text-[#C3C3C3]"
+              )}
             />
           </button>
           <h2
             className={clsx(
-              "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
             )}
           >
             {dictionaries.completed_ride.title}
@@ -97,7 +100,7 @@ export const CompletedRideTripChat = () => {
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
             "w-full",
-            "bg-[#FAFDF9]"
+            "bg-[#FAFDF9] dark:bg-[#242623]"
           )}
         >
           {/* dekstop trip summary */}
@@ -106,10 +109,10 @@ export const CompletedRideTripChat = () => {
               "hidden sm:flex items-center justify-between",
               "w-full",
               "px-[1rem] py-[1.5rem]",
-              "bg-[white]"
+              "bg-[white] dark:bg-[#232323]"
             )}
           >
-            <p className={clsx("text-[1rem] text-[black] font-semibold")}>
+            <p className={clsx("text-[1rem] text-[black] dark:text-white font-semibold")}>
               {dictionaries.completed_ride.trip_summary.title}
             </p>
 
@@ -117,7 +120,7 @@ export const CompletedRideTripChat = () => {
               <span className={clsx("font-medium text-[#727272] text-[10px]")}>
                 {state.completed_ride.booking.date?.label}
               </span>
-              <span className={clsx("font-semibold text-sm")}>
+              <span className={clsx("dark:text-white font-semibold text-sm")}>
                 {state.completed_ride.booking.date?.date}
               </span>
             </div>
@@ -130,10 +133,10 @@ export const CompletedRideTripChat = () => {
                 "grid grid-cols-1 place-content-center place-items-center w-full gap-[1rem]",
                 "w-full",
                 "px-[1rem] py-[1.5rem]",
-                "bg-[white]"
+                "bg-[white] dark:bg-[#232323]"
               )}
             >
-              <p className={clsx("text-[1rem] text-[black] font-semibold")}>
+              <p className={clsx("text-[1rem] text-[black] dark:text-white font-semibold")}>
                 {dictionaries.completed_ride.rating.title}
               </p>
 
