@@ -306,12 +306,12 @@ export const VehicleFilters = () => {
             >
               <SVGIcon
                 name="X"
-                className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+                className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
               />
             </button>
             <h2
               className={clsx(
-                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
               {dictionaries.vehicle_filters.title}
@@ -324,7 +324,7 @@ export const VehicleFilters = () => {
             className={clsx(
               "cursor-pointer",
               "px-[1rem] py-[1rem]",
-              "text-[#33CC33] text-[0.75rem] lg:text-[1rem] font-medium"
+              "text-[#249124] dark:text-[#33CC33] text-[0.75rem] lg:text-[1rem] font-medium"
             )}
             onClick={handleClickReset}
           >

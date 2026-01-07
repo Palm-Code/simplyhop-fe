@@ -24,7 +24,7 @@ export const VehicleFilterList = ({
         "w-full"
       )}
     >
-      <p className={clsx("text-[#232323] text-[0.875rem] lg:text-[1rem] font-semibold")}>
+      <p className={clsx("text-[#232323] dark:text-white text-[0.875rem] lg:text-[1rem] font-semibold")}>
         {label}
       </p>
 
