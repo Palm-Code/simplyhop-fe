@@ -132,18 +132,23 @@ export const SuccessCancelBookNotificationListTrip = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#EFF9EC]"
+              "bg-[#EFF9EC] dark:bg-[#26531A]"
             )}
           >
             <SVGIcon
               name="ContrastCheckMark"
-              className={clsx("w-[5rem] h-[5rem]", "text-[#33CC33]")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[#249124] dark:text-[#33CC33]"
+              )}
             />
           </div>
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx(
+            "text-[1.5rem] text-[black] dark:text-white font-bold text-center"
+          )}
         >
           {dictionaries.success_cancel_book_notification.title}
         </h1>

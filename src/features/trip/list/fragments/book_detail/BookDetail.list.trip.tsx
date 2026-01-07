@@ -52,7 +52,7 @@ export const BookDetailListTrip = () => {
 
   const handleClickCancelBook = () => {
     dispatch({
-      type: ListTripActionEnum.SetDetailRideNotificationData,
+      type: ListTripActionEnum.SetDetailBookNotificationData,
       payload: {
         ...state.detail_book_notification,
         is_open: false,

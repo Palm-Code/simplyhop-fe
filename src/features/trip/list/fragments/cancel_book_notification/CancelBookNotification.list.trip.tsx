@@ -41,7 +41,7 @@ export const CancelBookNotificationListTrip = () => {
       },
     });
     dispatch({
-      type: ListTripActionEnum.SetSuccessDeleteRideNotificationData,
+      type: ListTripActionEnum.SetSuccessCancelBookNotificationData,
       payload: {
         ...state.success_cancel_book_notification,
         is_open: true,
@@ -80,12 +80,15 @@ export const CancelBookNotificationListTrip = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5]"
+              "bg-[#F5F5F5] dark:bg-[#2A2A2A]"
             )}
           >
             <SVGIcon
               name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black]")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[black] dark:text-white"
+              )}
             />
           </div>
         </div>
@@ -97,7 +100,9 @@ export const CancelBookNotificationListTrip = () => {
           )}
         >
           <h1
-            className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+            className={clsx(
+              "text-[1.5rem] text-[black] dark:text-white font-bold text-center"
+            )}
           >
             {dictionaries.cancel_book_notification.title}
           </h1>
@@ -111,11 +116,12 @@ export const CancelBookNotificationListTrip = () => {
         >
           <p
             className={clsx(
-              "text-[1rem] text-[#5B5B5B] font-normal text-center"
+              "text-[1rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal text-center"
             )}
-          >
-            {dictionaries.cancel_book_notification.message}
-          </p>
+            dangerouslySetInnerHTML={{
+              __html: dictionaries.cancel_book_notification.message,
+            }}
+          />
         </div>
 
         <div
@@ -130,7 +136,7 @@ export const CancelBookNotificationListTrip = () => {
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
-              "text-[1rem] text-[#33CC33] font-medium",
+              "text-[1rem] text-[#249124] dark:text-[#33CC33] font-medium",
               "cursor-pointer"
             )}
             onClick={handleClose}
@@ -145,7 +151,7 @@ export const CancelBookNotificationListTrip = () => {
             className={clsx(
               "py-[1rem]",
               "!bg-[#C50707]",
-              "border border-[#C50707]"
+              "border! border-[#C50707]!"
             )}
             disabled={isPendingPostBookingReject}
             isLoading={isPendingPostBookingReject}
