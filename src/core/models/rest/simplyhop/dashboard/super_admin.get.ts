@@ -16,6 +16,7 @@ export type GetDashboardSuperAdminParamsPayloadRequestInterface = {
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;
+  "filter[organization_id]"?: string;
 };
 
 export type GetDashboardSuperAdminResponseInterface = NextApiResponse<
