@@ -39,7 +39,8 @@ export const VehicleFilters = () => {
     const dataIds = data.map((item) => item.id);
     let result = [];
     if (type === "single") {
-      result = [value];
+      // Toggle: if already selected, deselect it (return empty array)
+      result = dataIds.includes(value.id) ? [] : [value];
     } else {
       result = dataIds.includes(value.id)
         ? data.filter((item) => item.id !== value.id)
