@@ -14,7 +14,7 @@ export const OrganizationInformationItem = ({
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
-        "w-full"
+        "min-w-[100px]"
       )}
     >
       <p className={clsx("text-[#606060] dark:text-[#DADADA] text-[0.875rem] font-normal")}>

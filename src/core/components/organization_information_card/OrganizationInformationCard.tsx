@@ -84,9 +84,9 @@ export const OrganizationInformationCard = ({
         </button>
       </div>
 
-      <div className={clsx("flex items-center justify-between", "w-full")}>
+      <div className={clsx("flex items-center justify-between gap-8", "w-full")}>
         <div
-          className={clsx("flex items-center justify-start gap-4", "w-full")}
+          className={clsx("flex items-center justify-start gap-4", "flex-1")}
         >
           {summary.map((item, index) => (
             <div
@@ -129,7 +129,7 @@ export const OrganizationInformationCard = ({
           ))}
         </div>
 
-        <div className={clsx("flex items-center justify-end gap-4", "w-full")}>
+        <div className={clsx("flex items-center justify-end gap-4", "flex-1")}>
           {detail.map((item, index) => (
             <OrganizationInformationItem
               key={index}
