@@ -10,13 +10,21 @@ export const SortListTrip = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const sort = searchParams.get("sort") ?? "departure_time";
+  const rideStatus = searchParams.get("ride-status");
   const handleSelect = (item: { id: string; name: string }) => {
     const params = new URLSearchParams(searchParams.toString());
-
-    if (item.id !== "departure_time") {
-      params.set("sort", item.id);
+    if (rideStatus !== "finished") {
+      if (item.id !== "departure_time") {
+        params.set("sort", item.id);
+      } else {
+        params.delete("sort");
+      }
     } else {
-      params.delete("sort");
+      if (item.id !== "-departure_time") {
+        params.set("sort", item.id);
+      } else {
+        params.delete("sort");
+      }
     }
 
     router.push(`${pathname}?${params.toString()}`);
