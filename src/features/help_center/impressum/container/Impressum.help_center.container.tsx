@@ -82,7 +82,6 @@ export const ImpressumHelpCenterContainer = () => {
           )}
         </div>
       ))}
-      <Image {...dictionaries.image} className={clsx("w-[340px]")} />
     </div>
   );
 };

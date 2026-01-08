@@ -82,7 +82,6 @@ export const AccessibilityHelpCenterContainer = () => {
           )}
         </div>
       ))}
-      <Image {...dictionaries.image} className={clsx("w-[340px]")} />
     </div>
   );
 };
