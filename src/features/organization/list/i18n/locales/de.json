@@ -1,5 +1,5 @@
 {
-  "title": "Organisation",
+  "title": "Unternehmen",
   "breadcrumb": {
     "items": [
       {
@@ -7,7 +7,7 @@
         "href": "/support/dashboard"
       },
       {
-        "label": "Organisation",
+        "label": "Unternehmen",
         "href": "/support/organisation"
       }
     ]
@@ -25,14 +25,14 @@
   },
   "table": {
     "empty": {
-      "message": "Noch kein Organisation",
-      "description": "Noch kein Organisation"
+      "message": "Noch kein Unternehmen",
+      "description": "Noch kein Unternehmen"
     },
     "head": {
       "items": [
         {
           "id": "organisation",
-          "name": "Organisation"
+          "name": "Unternehmen"
         },
         {
           "id": "completed_rides",
@@ -120,7 +120,7 @@
       "items": [
         {
           "id": "delete_organization",
-          "label": "Organisation löschen",
+          "label": "Unternehmen löschen",
           "icon": "X"
         }
       ]

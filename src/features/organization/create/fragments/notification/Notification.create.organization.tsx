@@ -64,13 +64,13 @@ export const NotificationCreateOrganization = () => {
               as="h1"
               className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
             >
-              Organisation erstellt!
+              Unternehmen erstellt!
             </DialogTitle>
 
             {/* Content */}
 
             <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
-              Deine neue Organisation ist bereit. Jetzt kannst du Standorte
+              Deine neue Unternehmen ist bereit. Jetzt kannst du Standorte
               hinzufügen, Mitglieder einladen und loslegen. Willkommen bei
               SimplyHop!
             </p>

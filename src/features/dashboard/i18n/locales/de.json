@@ -240,8 +240,8 @@
       "items": [
         {
           "id": "Organisation",
-          "name": "Organisation",
-          "unit": "Organisation",
+          "name": "Unternehmen",
+          "unit": "Unternehmen",
           "icon": "Component",
           "href": "/support/organisation"
         },
@@ -269,7 +269,7 @@
       ]
     },
     "organizations": {
-      "title": "Organisation",
+      "title": "Unternehmen",
       "icon": "Component",
       "table": {
         "empty": {

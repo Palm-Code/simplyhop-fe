@@ -85,7 +85,7 @@ export const DataTableListOrganization = () => {
 
   return (
     <InfiniteScrollWrapper
-      loader={<ListLoader message="Lade weitere Organisationen..." />}
+      loader={<ListLoader message="Lade weitere Unternehmen..." />}
       isPaused={state.table.loading.is_fetching}
       isEndReached={isEndReached}
       onLoadMore={handleLoadMore}

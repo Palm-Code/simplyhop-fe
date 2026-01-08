@@ -4,7 +4,7 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Organisation Create",
+  title: "Unternehmen Create",
 };
 
 type ProfileLayoutProps = {

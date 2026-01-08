@@ -242,7 +242,7 @@
             },
             {
               "id": "organisation",
-              "name": "Organisation",
+              "name": "Unternehmen",
               "href": "/support/organisation",
               "icon": "Building2"
             },
@@ -271,7 +271,7 @@
               },
               {
                 "id": "organisation",
-                "name": "Organisation",
+                "name": "Unternehmen",
                 "href": "/support/organisation",
                 "icon": "Building2"
               },
