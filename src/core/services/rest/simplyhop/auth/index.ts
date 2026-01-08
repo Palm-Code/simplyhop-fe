@@ -10,3 +10,5 @@ export * from "./reset_password.post";
 export * from "./request_otp.post";
 export * from "./verify_otp.post";
 export * from "./request_otp_registration.post";
+export * from "./request_otp_deactivate.post";
+export * from "./deactivate_account_otp.post";
