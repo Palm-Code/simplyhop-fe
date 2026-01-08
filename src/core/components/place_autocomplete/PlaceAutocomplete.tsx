@@ -178,7 +178,7 @@ export const PlaceAutocomplete = ({
                 className={clsx(
                   "w-full text-left",
                   "flex items-start gap-3",
-                  "hover:bg-[#F5F5F5] dark:hover:bg-[#2A2A2A]",
+                  "hover:bg-[#F5F5F5] dark:bg-[#2A2A2A]",
                   "transition-colors",
                   "cursor-pointer"
                 )}

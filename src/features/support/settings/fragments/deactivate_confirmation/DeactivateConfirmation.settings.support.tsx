@@ -109,7 +109,7 @@ export const DeactivateConfirmationSettingsSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5]"
+              "bg-[#F5F5F5] dark:bg-[#2A2A2A]"
             )}
           >
             <SVGIcon
