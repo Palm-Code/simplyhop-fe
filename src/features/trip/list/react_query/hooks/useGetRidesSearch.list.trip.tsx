@@ -77,7 +77,7 @@ export const useGetRidesSearch = () => {
           : !!driver_id
           ? String(driver_id ?? "0")
           : undefined,
-      "filter[organization_id]": isOrganizationDetailRoute
+      "filter[organization_id]": !!organization_id
         ? String(organization_id ?? "0")
         : isOrganizationAdmin && !!userState.profile?.organization_id
         ? String(userState.profile.organization_id)

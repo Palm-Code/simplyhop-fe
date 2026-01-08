@@ -18,6 +18,7 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 export interface BookingRatingRideCardChatTripProps {
   driver?: {
@@ -85,6 +86,7 @@ export const BookingRatingRideCardChatTrip = ({
     },
   },
 }: BookingRatingRideCardChatTripProps) => {
+  const { isDarkMode } = React.useContext(ThemeContext);
   return (
     <div
       className={clsx(
@@ -98,8 +100,8 @@ export const BookingRatingRideCardChatTrip = ({
           "w-full",
           "px-[1.5rem] py-[1rem]",
           "rounded-[0.625rem]",
-          "border border-[#EFEFEF]",
-          "bg-[white]"
+          "border border-[#EFEFEF] dark:border-[#464646]",
+          "bg-[white] dark:bg-[#232323]"
         )}
       >
         {/* car */}
@@ -176,11 +178,11 @@ export const BookingRatingRideCardChatTrip = ({
                 name={String(cta.trip_details.children ?? "")}
                 className={clsx(
                   "flex items-center justify-center gap-[0.5rem]",
-                  "bg-[#33CC33]",
-                  "border border-[#33CC33]",
+                  "bg-[#249124] dark:bg-[#33CC33]",
+                  "border border-[#249124] dark:border-[#33CC33]",
                   "px-[1rem] py-[0.75rem]",
                   "rounded-[0.375rem]",
-                  "text-[#232323] text-[0.875rem] font-medium",
+                  "text-[#232323] dark:text-white text-[0.875rem] font-medium",
                   "w-full lg:w-fit",
                   "cursor-pointer"
                 )}
@@ -188,7 +190,10 @@ export const BookingRatingRideCardChatTrip = ({
                 onClick={cta.trip_details.onClick}
               >
                 {cta.trip_details.loading && (
-                  <MoonLoader size={20} color={"white"} />
+                  <MoonLoader
+                    size={20}
+                    color={isDarkMode ? "#232323" : "white"}
+                  />
                 )}
                 {cta.trip_details.children}
               </button>
