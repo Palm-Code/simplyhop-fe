@@ -407,11 +407,9 @@ export const RideDetailListTrip = () => {
                               "w-full",
                               "border",
                               isPresent
-                                ? "border-[#249124] dark:border-[#33CC33]"
+                                ? "border-[#232323] dark:border-white"
                                 : "border-[#D85959]",
-                              isPresent
-                                ? "bg-[#249124] dark:bg-[#33CC33]"
-                                : "bg-transparent",
+                              "bg-transparent",
                               "rounded-[0.375rem]",
                               "text-[0.75rem] font-semibold",
                               isPresent
@@ -440,7 +438,7 @@ export const RideDetailListTrip = () => {
                                 )}
                               />
                             )}
-                            {isPresent ? "Anwesend" : "Nicht anwesend"}
+                            {isPresent ? "Bestätigt" : "Abgemeldet"}
                           </button>
                         </div>
                       )}
