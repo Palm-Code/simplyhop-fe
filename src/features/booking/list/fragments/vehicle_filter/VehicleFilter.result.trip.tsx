@@ -16,6 +16,11 @@ export const VehicleFilterResulTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
   const globalDictionaries = getGlobalDictionaries();
+  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
+
+  const handleToggleDropdown = (dropdownName: string) => {
+    setOpenDropdown((prev) => (prev === dropdownName ? null : dropdownName));
+  };
 
   React.useEffect(() => {
     dispatch({
@@ -502,6 +507,8 @@ export const VehicleFilterResulTrip = () => {
               .luggage as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.luggage.filter.option.items}
             selected={state.advanced_filter.luggage.selected}
+            isOpen={openDropdown === "luggage"}
+            onToggle={() => handleToggleDropdown("luggage")}
             onSelect={(data) =>
               handleSelectLuggage({
                 ...data,
@@ -515,6 +522,8 @@ export const VehicleFilterResulTrip = () => {
               .smoker as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.smoking.type.options.items}
             selected={state.advanced_filter.smoker.selected}
+            isOpen={openDropdown === "smoker"}
+            onToggle={() => handleToggleDropdown("smoker")}
             onSelect={(data) =>
               handleSelectSmoker({
                 ...data,
@@ -528,6 +537,8 @@ export const VehicleFilterResulTrip = () => {
               .music as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.music.type.options.items}
             selected={state.advanced_filter.music.selected}
+            isOpen={openDropdown === "music"}
+            onToggle={() => handleToggleDropdown("music")}
             onSelect={(data) =>
               handleSelectMusic({
                 ...data,
@@ -541,6 +552,8 @@ export const VehicleFilterResulTrip = () => {
               .pets as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.pets.type.options.items}
             selected={state.advanced_filter.pets.selected}
+            isOpen={openDropdown === "pets"}
+            onToggle={() => handleToggleDropdown("pets")}
             onSelect={(data) =>
               handleSelectPets({
                 ...data,
@@ -554,6 +567,8 @@ export const VehicleFilterResulTrip = () => {
               .driver_gender as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.driver_gender.type.options.items}
             selected={state.advanced_filter.driver_gender.selected}
+            isOpen={openDropdown === "driver_gender"}
+            onToggle={() => handleToggleDropdown("driver_gender")}
             onSelect={(data) =>
               handleSelectDriverGender({
                 ...data,
@@ -567,6 +582,8 @@ export const VehicleFilterResulTrip = () => {
               .shift as CarFacilityFilterDropdownProps)}
             items={state.advanced_filter.shift.items}
             selected={state.advanced_filter.shift.selected}
+            isOpen={openDropdown === "shift"}
+            onToggle={() => handleToggleDropdown("shift")}
             onSelect={(data) =>
               handleSelectShift({
                 ...data,

@@ -9,6 +9,8 @@ export interface CarFacilityFilterDropdownProps {
   label?: string;
   items?: { id: string; name: string }[];
   variant?: "multiple" | "single";
+  isOpen?: boolean;
+  onToggle?: () => void;
   onSelect?: (data: { id: string; name: string }) => void;
   onReset?: () => void;
 }
@@ -18,16 +20,19 @@ export const CarFacilityFilterDropdown = ({
   label = "",
   items = [],
   variant = "multiple",
+  isOpen = false,
+  onToggle = () => {},
   onSelect = () => {},
   onReset = () => {},
 }: CarFacilityFilterDropdownProps) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
   useOnClickOutside(ref as any, () => {
-    setIsOpen(false);
+    if (isOpen) {
+      onToggle();
+    }
   });
   const handleClickDropdownButton = () => {
-    setIsOpen((prev) => !prev);
+    onToggle();
   };
   return (
     <div ref={ref} className={clsx(isOpen && "relative", "rounded-[1.25rem]")}>
