@@ -16,15 +16,15 @@
       },
       {
         "label": "Fahrer von {{organization_name}}",
-        "href": "/support/driver/organisation/{{organization_id}}"
+        "href": "/support/fahrer/organisation/{{organization_id}}"
       },
       {
         "label": "{{driver_name}}",
-        "href": "/support/driver/organisation/{{organization_id}}/detail/{{driver_id}}"
+        "href": "/support/fahrer/organisation/{{organization_id}}/detail/{{driver_id}}"
       },
       {
         "label": "Fahrzeuginformationen",
-        "href": "/support/driver/organisation/{{organization_id}}/detail/{{driver_id}}/fahrzeuginformationen"
+        "href": "/support/fahrer/organisation/{{organization_id}}/detail/{{driver_id}}/fahrzeuginformationen"
       }
     ]
   },

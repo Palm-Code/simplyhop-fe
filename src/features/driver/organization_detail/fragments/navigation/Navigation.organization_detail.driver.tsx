@@ -6,14 +6,19 @@ import { getDictionaries } from "../../i18n";
 import { OrganizationDetailDriverContext } from "../../context";
 import { DetailDriverContext } from "@/features/driver/detail/context";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { useParams } from "next/navigation";
 
 export const NavigationOrganizationDetailDriver = () => {
   const dictionaries = getDictionaries();
   const { state } = React.useContext(OrganizationDetailDriverContext);
   const { state: driverDetailState } = React.useContext(DetailDriverContext);
+  const { organization_id, driver_id } = useParams();
   const items = dictionaries.breadcrumb.items.map((item) => {
     return {
       ...item,
+      href: item.href
+        .replaceAll("{{organization_id}}", String(organization_id ?? "0"))
+        .replaceAll("{{driver_id}}", String(driver_id ?? "0")),
       label: item.label
         .replaceAll(
           "{{organization_name}}",
