@@ -130,7 +130,12 @@
     "cta": {
       "primary": {
         "children": "Alle anzeigen",
-        "href": "/"
+        "href": "/support/fahrer/organisation/{{organization_id}}/detail/{{driver_id}}/fahrzeuginformationen"
+      }
+    },
+    "item": {
+      "cta": {
+        "href": "/support/fahrer/organisation/{{organization_id}}/detail/{{driver_id}}/fahrzeuginformationen"
       }
     }
   },

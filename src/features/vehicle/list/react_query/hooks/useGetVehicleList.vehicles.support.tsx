@@ -8,31 +8,37 @@ import {
 } from "../../context";
 
 import {
-  GetVehicleMyErrorResponseInterface,
-  GetVehicleMyPayloadRequestInterface,
-  GetVehicleMySuccessResponseInterface,
+  GetVehicleListErrorResponseInterface,
+  GetVehicleListPayloadRequestInterface,
+  GetVehicleListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/vehicle";
-import { fetchGetVehicleMy } from "@/core/services/rest/simplyhop/vehicle";
+import { fetchGetVehicleList } from "@/core/services/rest/simplyhop/vehicle";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserContext } from "@/core/modules/app/context";
+import { useParams } from "next/navigation";
 
-export const useGetVehicleMy = () => {
+export const useGetVehicleList = () => {
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(VehiclesSupportContext);
-
-  const payload: GetVehicleMyPayloadRequestInterface = {
+  const { state: userState } = React.useContext(UserContext);
+  const { driver_id } = useParams();
+  const payload: GetVehicleListPayloadRequestInterface = {
     params: {
       include: "brand",
+      "filter[user_id]": !driver_id
+        ? String(userState.profile?.id ?? 0)
+        : String(driver_id ?? 0),
     },
   };
   const query = useQuery<
-    GetVehicleMySuccessResponseInterface,
-    GetVehicleMyErrorResponseInterface
+    GetVehicleListSuccessResponseInterface,
+    GetVehicleListErrorResponseInterface
   >({
-    queryKey: VehiclesSupportReactQueryKey.GetVehicleMy(),
+    queryKey: VehiclesSupportReactQueryKey.GetVehicleList(),
     queryFn: () => {
-      return fetchGetVehicleMy(payload);
+      return fetchGetVehicleList(payload);
     },
   });
 
@@ -202,12 +208,14 @@ export const useGetVehicleMy = () => {
               },
 
               cta: {
-                ride: {
-                  href: AppCollectionURL.private.support_vehicle_detail(
-                    item.id.toString()
-                  ),
-                  children: "Siehe Details",
-                },
+                ride: !!driver_id
+                  ? undefined
+                  : {
+                      href: AppCollectionURL.private.support_vehicle_detail(
+                        item.id.toString()
+                      ),
+                      children: "Siehe Details",
+                    },
               },
             };
           }),

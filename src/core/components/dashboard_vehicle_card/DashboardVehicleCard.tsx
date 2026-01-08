@@ -12,6 +12,7 @@ import {
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
+import Link from "next/link";
 
 export interface DashboardVehicleCardProps {
   id?: string;
@@ -23,6 +24,9 @@ export interface DashboardVehicleCardProps {
       top: CarFacilityItemProps[];
       bottom: CarFacilityItemProps[];
     };
+  };
+  cta?: {
+    href: string;
   };
 }
 
@@ -102,6 +106,7 @@ export const DashboardVehicleCard = ({
       ],
     },
   },
+  cta,
 }: DashboardVehicleCardProps) => {
   const [imageError, setImageError] = React.useState(false);
 
@@ -200,19 +205,22 @@ export const DashboardVehicleCard = ({
         </div>
         {/*  */}
 
-        <button
-          className={clsx(
-            "flex items-center justify-center",
-            "w-8 h-8",
-            "rounded-full",
-            "bg-surface-neutral-subdued"
-          )}
-        >
-          <SVGIcon
-            name="ArrowUpRight"
-            className={clsx("w-5 h-5", "text-icon-default")}
-          />
-        </button>
+        {cta && (
+          <Link
+            className={clsx(
+              "flex items-center justify-center",
+              "w-8 h-8",
+              "rounded-full",
+              "bg-surface-neutral-subdued"
+            )}
+            href={cta.href}
+          >
+            <SVGIcon
+              name="ArrowUpRight"
+              className={clsx("w-5 h-5", "text-icon-default")}
+            />
+          </Link>
+        )}
       </div>
     </div>
   );

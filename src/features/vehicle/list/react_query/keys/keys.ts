@@ -1,6 +1,6 @@
 export const VehiclesSupportReactQueryKey = {
-  GetVehicleMy: () => {
-    return ["VehicleSupportReactQueryKey.GetVehicleMy"];
+  GetVehicleList: () => {
+    return ["VehicleSupportReactQueryKey.GetVehicleList"];
   },
   PostUserProfileCreate: () => {
     return ["VehicleSupportReactQueryKey.PostUserProfileCreate"];

@@ -3,7 +3,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { VehiclesSupportContext } from "../../context";
 import { CardVehiclesSupport } from "../../components/card";
-import { useGetVehicleMy } from "../../react_query/hooks";
+import { useGetVehicleList } from "../../react_query/hooks";
 import { getDictionaries } from "../../i18n";
 import { ListLoader } from "@/core/components/list_loader";
 import { ListErrorItem } from "@/core/components/list_error_item";
@@ -12,8 +12,8 @@ export const ListVehiclesSupport = () => {
   const dictionaries = getDictionaries();
   const { state } = React.useContext(VehiclesSupportContext);
 
-  const { isFetching: isFetchingGetVehicleMy } = useGetVehicleMy();
-  const isLoading = isFetchingGetVehicleMy;
+  const { isFetching: isFetchingGetVehicleList } = useGetVehicleList();
+  const isLoading = isFetchingGetVehicleList;
 
   if (isLoading) {
     return (
