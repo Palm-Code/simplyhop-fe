@@ -31,6 +31,12 @@ export interface SettingsSupportDeactivateConfirmation {
     password: {
       value: string;
     };
+    otp: {
+      value: string;
+    };
+    error: null | {
+      code: string;
+    };
   };
 }
 

@@ -9,11 +9,17 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { usePostAuthRequestOTPDeactivate } from "../../react_query/hooks";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const DeactivateSettingsSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
   const { isLg } = useTailwindBreakpoint();
+  const {
+    mutateAsync: postAuthRequestOTPDeactivate,
+    isPending: isPendingPostAuthRequestOTPDeactivate,
+  } = usePostAuthRequestOTPDeactivate();
   const isOpen = state.deactivate.is_open;
   const handleClose = () => {
     dispatch({
@@ -25,7 +31,9 @@ export const DeactivateSettingsSupport = () => {
     });
   };
 
-  const handleClickDeactivate = () => {
+  const handleClickDeactivate = async () => {
+    const res = await postAuthRequestOTPDeactivate();
+    if (!res) return;
     dispatch({
       type: SettingsSupportActionEnum.SetDeactivateData,
       payload: {
@@ -66,7 +74,10 @@ export const DeactivateSettingsSupport = () => {
       >
         <SVGIcon
           name="X"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
+          className={clsx(
+            "w-[1.5rem] h-[1.5rem]",
+            "text-[#5B5B5B] dark:text-[#C3C3C3]"
+          )}
         />
       </button>
       <div
@@ -93,19 +104,26 @@ export const DeactivateSettingsSupport = () => {
           >
             <SVGIcon
               name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black] dark:text-white")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[black] dark:text-white"
+              )}
             />
           </div>
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
+          className={clsx(
+            "text-[1.5rem] text-[black] dark:text-white font-bold text-center"
+          )}
         >
           {dictionaries.deactivate.title}
         </h1>
 
         <p
-          className={clsx("text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center")}
+          className={clsx(
+            "text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center"
+          )}
         >
           {dictionaries.deactivate.message}
         </p>
@@ -142,14 +160,18 @@ export const DeactivateSettingsSupport = () => {
           aria-label={dictionaries.deactivate.cta.deactivate.children}
           name={dictionaries.deactivate.cta.deactivate.children}
           className={clsx(
-            "flex items-center justify-center",
+            "flex items-center justify-center gap-2",
             "w-full",
             "py-[1rem]",
             "text-[1rem] text-[#C50707] font-medium text-left",
             "cursor-pointer"
           )}
+          disabled={isPendingPostAuthRequestOTPDeactivate}
           onClick={handleClickDeactivate}
         >
+          {isPendingPostAuthRequestOTPDeactivate && (
+            <MoonLoader size={20} color={"#C50707"} />
+          )}
           {dictionaries.deactivate.cta.deactivate.children}
         </button>
       </div>

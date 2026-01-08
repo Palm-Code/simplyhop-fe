@@ -22,6 +22,10 @@ const initialState: SettingsSupportInitialStateType = {
       password: {
         value: "",
       },
+      otp: {
+        value: "",
+      },
+      error: null,
     },
   },
   deactivate_notification: {

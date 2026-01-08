@@ -5,4 +5,10 @@ export const SettingsSupportReactQueryKey = {
   DeleteDeactivateAccount: () => {
     return ["SettingsSupportReactQueryKey.DeleteDeactivateAccount"];
   },
+  PostRequestOTP: () => {
+    return ["SettingsSupportReactQueryKey.PostRequestOTP"];
+  },
+  PostVerifyOTP: () => {
+    return ["SettingsSupportReactQueryKey.PostVerifyOTP"];
+  },
 };
