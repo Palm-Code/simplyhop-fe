@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import clsx from "clsx";
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
 import { InputLabelProps } from "../input_label";
@@ -115,13 +115,42 @@ export const AutocompleteRoutes = ({
     isOpen: false,
   });
 
+  const [position, setPosition] = useState<"above" | "below">("above");
+
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const originDebounced = useDebounceCallback(origin.autocomplete.onQuery, 500);
   const destinationDebounced = useDebounceCallback(
     destination.autocomplete.onQuery,
     500
   );
+
+  const updatePosition = useCallback(() => {
+    const dropdownPosition =
+      dropdownRef.current?.getBoundingClientRect().top ?? 0;
+    const viewportHeight = window.innerHeight;
+
+    if (dropdownPosition < viewportHeight / 2) {
+      setPosition("below");
+    } else {
+      setPosition("above");
+    }
+  }, []);
+
+  useEffect(() => {
+    const isOpen = originAutocomplete.isOpen || destinationAutocomplete.isOpen;
+    if (isOpen) {
+      updatePosition();
+      window.addEventListener("resize", updatePosition);
+      window.addEventListener("scroll", updatePosition, true);
+    }
+
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
+    };
+  }, [originAutocomplete.isOpen, destinationAutocomplete.isOpen, updatePosition]);
 
   useOnClickOutside(containerRef as any, () => {
     setOriginAutocomplete({
@@ -282,7 +311,11 @@ export const AutocompleteRoutes = ({
 
         {!origin.autocomplete?.disabled && (
           <AutocompleteOptionsContainer
-            className={clsx(originAutocomplete.isOpen ? "inline" : "hidden")}
+            ref={dropdownRef}
+            className={clsx(
+              originAutocomplete.isOpen ? "inline" : "hidden",
+              position === "below" ? "!top-full !mt-[0.5rem] !bottom-auto !mb-0" : ""
+            )}
           >
             <div
               className={clsx(
@@ -356,7 +389,8 @@ export const AutocompleteRoutes = ({
         {!destination.autocomplete?.disabled && (
           <AutocompleteOptionsContainer
             className={clsx(
-              destinationAutocomplete.isOpen ? "inline" : "hidden"
+              destinationAutocomplete.isOpen ? "inline" : "hidden",
+              position === "below" ? "!top-full !mt-[0.5rem] !bottom-auto !mb-0" : ""
             )}
           >
             <div
