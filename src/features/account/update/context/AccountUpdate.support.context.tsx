@@ -54,6 +54,10 @@ const initialState: AccountUpdateSupportInitialStateType = {
       password: {
         value: "",
       },
+      otp: {
+        value: "",
+      },
+      error: null,
     },
   },
   deactivate_notification: {

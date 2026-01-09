@@ -9,11 +9,17 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { usePostAuthRequestOTPDeactivate } from "../../react_query/hooks";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const DeactivateAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
+  const {
+    mutateAsync: postAuthRequestOTPDeactivate,
+    isPending: isPendingPostAuthRequestOTPDeactivate,
+  } = usePostAuthRequestOTPDeactivate();
   const isOpen = state.deactivate.is_open;
   const handleClose = () => {
     dispatch({
@@ -25,7 +31,9 @@ export const DeactivateAccountUpdateSupport = () => {
     });
   };
 
-  const handleClickDeactivate = () => {
+  const handleClickDeactivate = async () => {
+    const res = await postAuthRequestOTPDeactivate();
+    if (!res) return;
     dispatch({
       type: AccountUpdateSupportActionEnum.SetDeactivateData,
       payload: {
@@ -66,7 +74,7 @@ export const DeactivateAccountUpdateSupport = () => {
       >
         <SVGIcon
           name="X"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
         />
       </button>
       <div
@@ -88,19 +96,19 @@ export const DeactivateAccountUpdateSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5]"
+              "bg-[#F5F5F5] dark:bg-[#2A2A2A]"
             )}
           >
             <SVGIcon
               name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black]")}
+              className={clsx("w-[5rem] h-[5rem]", "text-[black] dark:text-white")}
             />
           </div>
         </div>
 
         <h1
           className={clsx(
-            "text-[1.25rem] lg:text-[1.5rem] text-[black] font-bold text-center"
+            "text-[1.25rem] lg:text-[1.5rem] text-[black] dark:text-white font-bold text-center"
           )}
         >
           {dictionaries.deactivate.title}
@@ -108,7 +116,7 @@ export const DeactivateAccountUpdateSupport = () => {
 
         <p
           className={clsx(
-            "text-[0.875rem] lg:text-[1rem] text-[#888888] font-normal text-center"
+            "text-[0.875rem] lg:text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center"
           )}
         >
           {dictionaries.deactivate.message}
@@ -122,7 +130,7 @@ export const DeactivateAccountUpdateSupport = () => {
         >
           <p
             className={clsx(
-              "text-[1rem] text-[#232323] font-semibold text-left"
+              "text-[1rem] text-[#232323] dark:text-white font-semibold text-left"
             )}
           >
             {dictionaries.deactivate.tnc.title}
@@ -133,7 +141,7 @@ export const DeactivateAccountUpdateSupport = () => {
                 key={itemIndex}
                 id={item.id}
                 className={clsx(
-                  "text-[0.875rem] lg:text-[1rem] text-[#888888] font-normal text-left"
+                  "text-[0.875rem] lg:text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-left"
                 )}
               >
                 {item.name}
@@ -152,8 +160,12 @@ export const DeactivateAccountUpdateSupport = () => {
             "text-[1rem] text-[#C50707] font-medium text-left",
             "cursor-pointer"
           )}
+          disabled={isPendingPostAuthRequestOTPDeactivate}
           onClick={handleClickDeactivate}
         >
+          {isPendingPostAuthRequestOTPDeactivate && (
+            <MoonLoader size={20} color={"#C50707"} />
+          )}
           {dictionaries.deactivate.cta.deactivate.children}
         </button>
       </div>

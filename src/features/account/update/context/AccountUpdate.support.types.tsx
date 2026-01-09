@@ -65,6 +65,12 @@ export interface AccountUpdateSupportDeactivateConfirmation {
     password: {
       value: string;
     };
+    otp: {
+      value: string;
+    };
+    error: null | {
+      code: string;
+    };
   };
 }
 
