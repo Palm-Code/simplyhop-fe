@@ -40,6 +40,9 @@ export const BookDetailListTrip = () => {
   }
 
   const isOpen = state.detail_book_notification.is_open;
+  const rideStatus = searchParams.get("ride-status");
+  const isCancelBookingAvailable =
+    rideStatus !== "finished" && rideStatus !== "archive";
 
   const handleClose = () => {
     const params = new URLSearchParams(searchParams.toString());
@@ -146,21 +149,23 @@ export const BookDetailListTrip = () => {
             <CarPriceItem {...filteredData.price} />
           </div>
 
-          <button
-            aria-label={"Fahrt löschen"}
-            name={"Fahrt löschen"}
-            className={clsx(
-              "grid grid-cols-1 place-content-center place-items-center",
-              "w-full",
-              "px-[1rem] py-[1.5rem]",
-              "bg-[white] dark:bg-[#232323]",
-              "text-[#C50707] text-[0.75rem] font-medium",
-              "cursor-pointer"
-            )}
-            onClick={handleClickCancelBook}
-          >
-            {"Fahrt löschen"}
-          </button>
+          {isCancelBookingAvailable && (
+            <button
+              aria-label={"Fahrt löschen"}
+              name={"Fahrt löschen"}
+              className={clsx(
+                "grid grid-cols-1 place-content-center place-items-center",
+                "w-full",
+                "px-[1rem] py-[1.5rem]",
+                "bg-[white] dark:bg-[#232323]",
+                "text-[#C50707] text-[0.75rem] font-medium",
+                "cursor-pointer"
+              )}
+              onClick={handleClickCancelBook}
+            >
+              {"Fahrt löschen"}
+            </button>
+          )}
         </AdaptiveModalContent>
       </div>
     </AdaptiveModal>
