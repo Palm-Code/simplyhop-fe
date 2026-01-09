@@ -402,7 +402,7 @@ export const RideDetailListTrip = () => {
                         >
                           <button
                             className={clsx(
-                              "flex items-center justify-center",
+                              "flex items-center justify-center gap-2",
                               "px-[0.5rem] py-[0.5rem]",
                               "w-full",
                               "border",
@@ -413,7 +413,7 @@ export const RideDetailListTrip = () => {
                               "rounded-[0.375rem]",
                               "text-[0.75rem] font-semibold",
                               isPresent
-                                ? "text-[white] dark:text-[#232323]"
+                                ? "text-[#232323] dark:text-[white]"
                                 : "text-[#D85959]",
                               "cursor-pointer"
                             )}
@@ -427,7 +427,7 @@ export const RideDetailListTrip = () => {
                               <CheckIcon
                                 className={clsx(
                                   "w-[1.25rem] h-[1.25rem]",
-                                  "text-[#232323]"
+                                  "text-[#232323] dark:text-white"
                                 )}
                               />
                             ) : (
