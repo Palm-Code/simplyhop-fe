@@ -90,7 +90,7 @@ export const SummaryDashboard = () => {
             );
             break;
           }
-          case "Eingespartes CO2": {
+          case "Eingespartes CO₂": {
             value =
               state.summary.organization_admin?.total_rides_carbon?.toLocaleString(
                 "de-DE"

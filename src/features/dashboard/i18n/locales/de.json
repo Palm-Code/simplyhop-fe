@@ -174,8 +174,8 @@
           "href": "/support/fahrten"
         },
         {
-          "id": "Eingespartes CO2",
-          "name": "Eingespartes CO2",
+          "id": "Eingespartes CO₂",
+          "name": "Eingespartes CO₂",
           "unit": "Kilograms",
           "icon": "Leaf"
         }
