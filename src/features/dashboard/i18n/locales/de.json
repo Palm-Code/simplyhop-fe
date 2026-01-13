@@ -39,7 +39,7 @@
           },
           {
             "id": "Abgeschlossene",
-            "name": "Abgeschlossene",
+            "name": "Abgeschlossene Fahrten",
             "unit": "Fahrten",
             "icon": "Check",
             "href": "/meine-fahrten?ride-status=archive"
@@ -161,7 +161,7 @@
         },
         {
           "id": "Abgeschlossene",
-          "name": "Abgeschlossene",
+          "name": "Abgeschlossene Fahrten",
           "unit": "Fahrten",
           "icon": "Check",
           "href": "/support/fahrten"
@@ -261,7 +261,7 @@
         },
         {
           "id": "Abgeschlossene",
-          "name": "Abgeschlossene",
+          "name": "Abgeschlossene Fahrten",
           "unit": "Fahrten",
           "icon": "Check",
           "href": "/support/fahrten"
