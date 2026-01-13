@@ -49,14 +49,6 @@
       {
         "id": "-departure_time",
         "name": "Abfahrtszeit (aufsteigend)"
-      },
-      {
-        "id": "organization_id",
-        "name": "Organisationsnummer (absteigend)"
-      },
-      {
-        "id": "-organization_id",
-        "name": "Organisationsnummer (aufsteigend)"
       }
     ]
   },
