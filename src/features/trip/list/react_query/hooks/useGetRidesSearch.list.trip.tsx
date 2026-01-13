@@ -436,10 +436,13 @@ export const useGetRidesSearch = () => {
                   },
                 },
           cta: {
-            detail: {
-              children: "Siehe Details",
-              href: `${pathname}?${urlSearchParams.toString()}`,
-            },
+            detail:
+              (isOrganizationAdmin || isSuperAdmin) && rideStatus === "finished"
+                ? undefined
+                : {
+                    children: "Siehe Details",
+                    href: `${pathname}?${urlSearchParams.toString()}`,
+                  },
             share: {
               onClick: () => {},
               href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
