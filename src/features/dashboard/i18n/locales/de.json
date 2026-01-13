@@ -154,7 +154,7 @@
         },
         {
           "id": "Fahrer",
-          "name": "Fahrer",
+          "name": "Registrierte Fahrer",
           "unit": "Fahrer",
           "icon": "User2",
           "href": "/support/fahrer"
@@ -254,7 +254,7 @@
         },
         {
           "id": "Fahrer",
-          "name": "Fahrer",
+          "name": "Registrierte Fahrer",
           "unit": "Fahrer",
           "icon": "User2",
           "href": "/support/fahrer"

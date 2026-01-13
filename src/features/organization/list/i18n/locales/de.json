@@ -92,7 +92,7 @@
       "items": [
         {
           "id": "fahrer",
-          "name": "Fahrer",
+          "name": "Registrierte Fahrer",
           "icon": "PersonStanding"
         },
         {

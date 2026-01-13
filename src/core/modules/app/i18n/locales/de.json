@@ -248,7 +248,7 @@
             },
             {
               "id": "fahrer",
-              "name": "Fahrer",
+              "name": "Registrierte Fahrer",
               "href": "/support/fahrer",
               "icon": "User2"
             },
@@ -277,7 +277,7 @@
               },
               {
                 "id": "fahrer",
-                "name": "Fahrer",
+                "name": "Registrierte Fahrer",
                 "href": "/support/fahrer",
                 "icon": "User2"
               },
@@ -314,7 +314,7 @@
             },
             {
               "id": "fahrer",
-              "name": "Fahrer",
+              "name": "Registrierte Fahrer",
               "href": "/support/fahrer",
               "icon": "User2"
             },
@@ -337,7 +337,7 @@
               },
               {
                 "id": "fahrer",
-                "name": "Fahrer",
+                "name": "Registrierte Fahrer",
                 "href": "/support/fahrer",
                 "icon": "User2"
               },

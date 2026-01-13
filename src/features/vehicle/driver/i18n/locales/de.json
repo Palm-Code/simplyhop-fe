@@ -15,7 +15,7 @@
         "href": "/support/organisation/detail/{{organization_id}}"
       },
       {
-        "label": "Fahrer von {{organization_name}}",
+        "label": "Registrierte Fahrer von {{organization_name}}",
         "href": "/support/fahrer/organisation/{{organization_id}}"
       },
       {
