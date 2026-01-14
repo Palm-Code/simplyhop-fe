@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { SummaryDashboard } from "../fragments/summary/Summary.dashboard";
 import { UserContext } from "@/core/modules/app/context";
 import { PersonalSectionsDashboard } from "../fragments/personal_sections";
-import { OrganizationalAdminSectionsDashboard } from "../fragments/organizational_admin_sections";
+// import { OrganizationalAdminSectionsDashboard } from "../fragments/organizational_admin_sections";
 import {
   useGetDashboardMy,
   useGetDashboardOrganizationSummary,
@@ -16,7 +16,7 @@ import {
   useGetDashboardSuperAdminPerOrganization,
   useGetBookingList,
 } from "../react_query/hooks";
-import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
+// import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
 import { NavigationDashboard } from "../fragments/navigation";
 import { HeaderDashboard } from "../fragments/header";
 
@@ -43,7 +43,7 @@ export const DashboardSupportContainer = () => {
         <HeaderDashboard />
         <NavigationDashboard />
         <SummaryDashboard />
-        <SuperAdminSectionsDashboard />
+        {/* <SuperAdminSectionsDashboard /> */}
       </div>
     );
   }
@@ -58,7 +58,7 @@ export const DashboardSupportContainer = () => {
         <HeaderDashboard />
         <NavigationDashboard />
         <SummaryDashboard />
-        <OrganizationalAdminSectionsDashboard />
+        {/* <OrganizationalAdminSectionsDashboard /> */}
       </div>
     );
   }

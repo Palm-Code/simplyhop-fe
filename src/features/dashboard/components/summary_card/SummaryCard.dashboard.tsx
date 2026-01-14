@@ -21,7 +21,7 @@ export const SummaryCardDashboard = ({
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-6",
+        "grid grid-cols-1 place-content-start place-items-start gap-20.5",
         "w-full",
         "px-4 py-4",
         "bg-[white] dark:bg-[#232323]",
@@ -84,13 +84,13 @@ export const SummaryCardDashboard = ({
         )}
       >
         <p
-          className={clsx("text-[#232323] dark:text-white text-2xl font-bold")}
+          className={clsx("text-[#232323] dark:text-white text-5xl font-bold")}
         >
           {value}
         </p>
         <span
           className={clsx(
-            "text-[#767676] dark:text-[#C3C3C3] text-sm font-normal"
+            "text-[#767676] dark:text-[#C3C3C3] text-base font-normal"
           )}
         >
           {unit}

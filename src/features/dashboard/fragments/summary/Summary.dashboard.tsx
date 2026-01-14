@@ -184,8 +184,8 @@ export const SummaryDashboard = () => {
         isPassenger
           ? "grid grid-cols-1 place-content-start place-items-start gap-4"
           : isOrganizationAdmin
-          ? "grid grid-cols-2 lg:grid-cols-5 place-content-start place-items-start gap-4"
-          : "grid grid-cols-2 lg:grid-cols-4 place-content-start place-items-start gap-4",
+          ? "grid grid-cols-2 lg:grid-cols-3 place-content-start place-items-start gap-4"
+          : "grid grid-cols-2 lg:grid-cols-2 place-content-start place-items-start gap-4",
         "w-full"
       )}
     >
