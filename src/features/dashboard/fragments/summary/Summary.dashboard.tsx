@@ -178,13 +178,61 @@ export const SummaryDashboard = () => {
     userState.profile?.role === "employee" && !userState.profile.is_driver;
   const isOrganizationAdmin =
     userState.profile?.role === "admin" && !userState.profile.is_super_admin;
+
+  if (isOrganizationAdmin) {
+    const firstThreeItems = summaryItems.slice(0, 3);
+    const lastTwoItems = summaryItems.slice(3, 5);
+    
+    return (
+      <div className="flex flex-col gap-4 w-full">
+        {/* Mobile & Tablet: Show all items in 2 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-4">
+          {summaryItems.map((item, index) => (
+            <SummaryCardDashboard
+              key={index}
+              title={item.name}
+              unit={item.unit}
+              value={item.value}
+              icon={item.icon as SVGIconProps["name"]}
+              href={item?.href}
+            />
+          ))}
+        </div>
+        
+        {/* Desktop: Split into 3+2 layout */}
+        <div className="hidden lg:grid grid-cols-3 gap-4">
+          {firstThreeItems.map((item, index) => (
+            <SummaryCardDashboard
+              key={index}
+              title={item.name}
+              unit={item.unit}
+              value={item.value}
+              icon={item.icon as SVGIconProps["name"]}
+              href={item?.href}
+            />
+          ))}
+        </div>
+        <div className="hidden lg:grid grid-cols-2 gap-4">
+          {lastTwoItems.map((item, index) => (
+            <SummaryCardDashboard
+              key={index + 3}
+              title={item.name}
+              unit={item.unit}
+              value={item.value}
+              icon={item.icon as SVGIconProps["name"]}
+              href={item?.href}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={clsx(
         isPassenger
           ? "grid grid-cols-1 place-content-start place-items-start gap-4"
-          : isOrganizationAdmin
-          ? "grid grid-cols-2 lg:grid-cols-3 place-content-start place-items-start gap-4"
           : "grid grid-cols-2 lg:grid-cols-2 place-content-start place-items-start gap-4",
         "w-full"
       )}
