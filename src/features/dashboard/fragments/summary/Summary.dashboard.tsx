@@ -88,6 +88,7 @@ export const SummaryDashboard = () => {
                 "de-DE"
               ) ?? "0"
             );
+
             break;
           }
           case "Eingespartes CO₂": {
@@ -182,7 +183,7 @@ export const SummaryDashboard = () => {
   if (isOrganizationAdmin) {
     const firstThreeItems = summaryItems.slice(0, 3);
     const lastTwoItems = summaryItems.slice(3, 5);
-    
+
     return (
       <div className="flex flex-col gap-4 w-full">
         {/* Mobile & Tablet: Show all items in 2 columns */}
@@ -195,10 +196,12 @@ export const SummaryDashboard = () => {
               value={item.value}
               icon={item.icon as SVGIconProps["name"]}
               href={item?.href}
+              showRating={item.id === "Bewertungen"}
+              ratingValue={4.7}
             />
           ))}
         </div>
-        
+
         {/* Desktop: Split into 3+2 layout */}
         <div className="hidden lg:grid grid-cols-3 gap-4">
           {firstThreeItems.map((item, index) => (
@@ -221,6 +224,8 @@ export const SummaryDashboard = () => {
               value={item.value}
               icon={item.icon as SVGIconProps["name"]}
               href={item?.href}
+              showRating={item.id === "Bewertungen"}
+              ratingValue={4.7}
             />
           ))}
         </div>
@@ -246,6 +251,8 @@ export const SummaryDashboard = () => {
             value={item.value}
             icon={item.icon as SVGIconProps["name"]}
             href={item?.href}
+            showRating={item.id === "Bewertungen"}
+            ratingValue={4.7}
           />
         );
       })}

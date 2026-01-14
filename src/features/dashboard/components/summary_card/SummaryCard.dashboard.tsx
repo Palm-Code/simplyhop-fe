@@ -2,6 +2,9 @@ import SVGIcon, { SVGIconProps } from "@/core/icons";
 import * as React from "react";
 import clsx from "clsx";
 import Link from "next/link";
+import { Rating, Star } from "@smastrom/react-rating";
+// @ts-ignore
+import "@smastrom/react-rating/style.css";
 
 export interface SummaryCardDashboardProps {
   title?: string;
@@ -9,6 +12,8 @@ export interface SummaryCardDashboardProps {
   unit?: string;
   value?: string;
   href?: string;
+  showRating?: boolean;
+  ratingValue?: number;
 }
 
 export const SummaryCardDashboard = ({
@@ -17,11 +22,13 @@ export const SummaryCardDashboard = ({
   unit = "",
   value = "",
   href = "",
+  showRating = false,
+  ratingValue = 0,
 }: SummaryCardDashboardProps) => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-20.5",
+        "grid grid-cols-1 items-stretch content-between justify-start justify-items-start gap-20.5",
         "w-full",
         "px-4 py-4",
         "bg-[white] dark:bg-[#232323]",
@@ -79,7 +86,7 @@ export const SummaryCardDashboard = ({
 
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-0",
+          "grid grid-cols-1 items-end content-end justify-start justify-items-start gap-0",
           "w-full"
         )}
       >
@@ -88,6 +95,20 @@ export const SummaryCardDashboard = ({
         >
           {value}
         </p>
+        {showRating && (
+          <div className="flex items-center gap-2 mt-2">
+            <Rating
+              value={ratingValue}
+              readOnly
+              style={{ maxWidth: 160 }}
+              itemStyles={{
+                itemShapes: Star,
+                activeFillColor: "#FAC248",
+                inactiveFillColor: "rgba(250, 194, 72, 0.3)",
+              }}
+            />
+          </div>
+        )}
         <span
           className={clsx(
             "text-[#767676] dark:text-[#C3C3C3] text-base font-normal"
