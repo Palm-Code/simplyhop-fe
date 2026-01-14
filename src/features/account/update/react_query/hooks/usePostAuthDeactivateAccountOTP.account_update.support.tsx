@@ -1,25 +1,25 @@
 import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
-import { SettingsSupportReactQueryKey } from "../keys";
+import { AccountUpdateSupportReactQueryKey } from "../keys";
 import {
   PostAuthDeactivateAccountOTPErrorResponseInterface,
   PostAuthDeactivateAccountOTPPayloadRequestInterface,
   PostAuthDeactivateAccountOTPSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/auth";
 import {
-  SettingsSupportActionEnum,
-  SettingsSupportContext,
+  AccountUpdateSupportActionEnum,
+  AccountUpdateSupportContext,
 } from "../../context";
 import { fetchPostAuthDeactivateAccountOTP } from "@/core/services/rest/simplyhop/auth";
 
 export const usePostAuthDeactivateAccountOTP = () => {
-  const { state, dispatch } = React.useContext(SettingsSupportContext);
+  const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
 
   const mutation = useMutation<
     PostAuthDeactivateAccountOTPSuccessResponseInterface,
     PostAuthDeactivateAccountOTPErrorResponseInterface
   >({
-    mutationKey: SettingsSupportReactQueryKey.PostRequestOTP(),
+    mutationKey: AccountUpdateSupportReactQueryKey.PostRequestOTP(),
     mutationFn: () => {
       const payload: PostAuthDeactivateAccountOTPPayloadRequestInterface = {
         body: {
@@ -30,7 +30,7 @@ export const usePostAuthDeactivateAccountOTP = () => {
     },
     onSuccess(data) {
       dispatch({
-        type: SettingsSupportActionEnum.SetDeactivateConfirmationData,
+        type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
         payload: {
           ...state.deactivate_confirmation,
           form: {
@@ -43,7 +43,7 @@ export const usePostAuthDeactivateAccountOTP = () => {
 
     onError(error) {
       dispatch({
-        type: SettingsSupportActionEnum.SetDeactivateConfirmationData,
+        type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
         payload: {
           ...state.deactivate_confirmation,
           form: {
