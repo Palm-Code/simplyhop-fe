@@ -9,6 +9,12 @@ import { DashboardSupportContext } from "../../context";
 export const SummaryDashboard = () => {
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" && !userState.profile.is_super_admin;
+  const isPassenger =
+    userState.profile?.role === "employee" && !userState.profile.is_driver;
+  const isSuperAdmin =
+    userState.profile?.role === "admin" && !!userState.profile.is_super_admin;
   const { state } = React.useContext(DashboardSupportContext);
   const summaryItems = userState.profile?.is_super_admin
     ? dictionaries.super_admin.summary.items?.map((item) => {
@@ -174,13 +180,6 @@ export const SummaryDashboard = () => {
           unit: unit,
         };
       }) ?? [];
-
-  const isPassenger =
-    userState.profile?.role === "employee" && !userState.profile.is_driver;
-  const isOrganizationAdmin =
-    userState.profile?.role === "admin" && !userState.profile.is_super_admin;
-  const isSuperAdmin =
-    userState.profile?.role === "admin" && !!userState.profile.is_super_admin;
 
   if (isOrganizationAdmin) {
     const firstThreeItems = summaryItems.slice(0, 3);
