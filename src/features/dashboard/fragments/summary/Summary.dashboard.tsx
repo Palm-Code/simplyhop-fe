@@ -179,6 +179,8 @@ export const SummaryDashboard = () => {
     userState.profile?.role === "employee" && !userState.profile.is_driver;
   const isOrganizationAdmin =
     userState.profile?.role === "admin" && !userState.profile.is_super_admin;
+  const isSuperAdmin =
+    userState.profile?.role === "admin" && !!userState.profile.is_super_admin;
 
   if (isOrganizationAdmin) {
     const firstThreeItems = summaryItems.slice(0, 3);
@@ -197,7 +199,11 @@ export const SummaryDashboard = () => {
               icon={item.icon as SVGIconProps["name"]}
               href={item?.href}
               showRating={item.id === "Bewertungen"}
-              ratingValue={4.7}
+              ratingValue={
+                item.id === "Bewertungen"
+                  ? state.summary.organization_admin?.average_rating ?? 0
+                  : undefined
+              }
             />
           ))}
         </div>
@@ -225,7 +231,11 @@ export const SummaryDashboard = () => {
               icon={item.icon as SVGIconProps["name"]}
               href={item?.href}
               showRating={item.id === "Bewertungen"}
-              ratingValue={4.7}
+              ratingValue={
+                item.id === "Bewertungen"
+                  ? state.summary.organization_admin?.average_rating ?? 0
+                  : undefined
+              }
             />
           ))}
         </div>
@@ -252,7 +262,13 @@ export const SummaryDashboard = () => {
             icon={item.icon as SVGIconProps["name"]}
             href={item?.href}
             showRating={item.id === "Bewertungen"}
-            ratingValue={4.7}
+            ratingValue={
+              item.id === "Bewertungen"
+                ? isSuperAdmin
+                  ? state.summary.super_admin?.average_rating ?? 0
+                  : state.summary.personal?.average_rating ?? 0
+                : undefined
+            }
           />
         );
       })}
