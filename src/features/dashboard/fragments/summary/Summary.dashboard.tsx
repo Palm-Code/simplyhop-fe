@@ -13,8 +13,7 @@ export const SummaryDashboard = () => {
     userState.profile?.role === "admin" && !userState.profile.is_super_admin;
   const isPassenger =
     userState.profile?.role === "employee" && !userState.profile.is_driver;
-  const isSuperAdmin =
-    userState.profile?.role === "admin" && !!userState.profile.is_super_admin;
+
   const { state } = React.useContext(DashboardSupportContext);
   const summaryItems = userState.profile?.is_super_admin
     ? dictionaries.super_admin.summary.items?.map((item) => {
