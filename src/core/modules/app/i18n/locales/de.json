@@ -239,6 +239,24 @@
               "name": "Dashboard",
               "href": "/support/dashboard",
               "icon": "LayoutDashboard"
+            },
+            {
+              "id": "organisation",
+              "name": "Unternehmen",
+              "href": "/support/organisation",
+              "icon": "Building2"
+            },
+            {
+              "id": "fahrer",
+              "name": "Registrierte Fahrer",
+              "href": "/support/fahrer",
+              "icon": "User2"
+            },
+            {
+              "id": "fahrten",
+              "name": "Fahrten",
+              "href": "/support/fahrten",
+              "icon": "CarFront"
             }
           ]
         },
@@ -250,6 +268,24 @@
                 "name": "Dashboard",
                 "href": "/support/dashboard",
                 "icon": "LayoutDashboard"
+              },
+              {
+                "id": "organisation",
+                "name": "Unternehmen",
+                "href": "/support/organisation",
+                "icon": "Building2"
+              },
+              {
+                "id": "fahrer",
+                "name": "Registrierte Fahrer",
+                "href": "/support/fahrer",
+                "icon": "User2"
+              },
+              {
+                "id": "fahrten",
+                "name": "Fahrten",
+                "href": "/support/fahrten",
+                "icon": "CarFront"
               }
             ]
           },
