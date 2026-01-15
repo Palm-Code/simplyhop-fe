@@ -218,6 +218,7 @@ export const SummaryDashboard = () => {
               value={item.value}
               icon={item.icon as SVGIconProps["name"]}
               href={item?.href}
+              variant="extend"
             />
           ))}
         </div>
@@ -236,6 +237,7 @@ export const SummaryDashboard = () => {
                   ? state.summary.organization_admin?.average_rating ?? 0
                   : undefined
               }
+              variant="extend"
             />
           ))}
         </div>

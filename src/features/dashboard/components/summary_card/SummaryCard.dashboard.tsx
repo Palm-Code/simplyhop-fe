@@ -14,6 +14,7 @@ export interface SummaryCardDashboardProps {
   href?: string;
   showRating?: boolean;
   ratingValue?: number;
+  variant?: "compact" | "extend";
 }
 
 export const SummaryCardDashboard = ({
@@ -24,11 +25,13 @@ export const SummaryCardDashboard = ({
   href = "",
   showRating = false,
   ratingValue = 0,
+  variant = "compact",
 }: SummaryCardDashboardProps) => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 items-stretch content-between justify-start justify-items-start gap-20.5",
+        "grid grid-cols-1 items-stretch content-between justify-start justify-items-start",
+        variant === "extend" ? "gap-20.5" : "gap-6",
         "w-full",
         "px-4 py-4",
         "bg-[white] dark:bg-[#232323]",
@@ -91,7 +94,10 @@ export const SummaryCardDashboard = ({
         )}
       >
         <p
-          className={clsx("text-[#232323] dark:text-white text-5xl font-bold")}
+          className={clsx(
+            "text-[#232323] dark:text-white font-bold",
+            variant === "extend" ? "text-5xl" : "text-2xl"
+          )}
         >
           {value}
         </p>
@@ -111,7 +117,8 @@ export const SummaryCardDashboard = ({
         )}
         <span
           className={clsx(
-            "text-[#767676] dark:text-[#C3C3C3] text-base font-normal"
+            "text-[#767676] dark:text-[#C3C3C3] font-normal",
+            variant === "extend" ? "text-base" : "text-sm"
           )}
         >
           {unit}
