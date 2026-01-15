@@ -58,7 +58,8 @@ export const useGetRidesSearch = () => {
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
-    enabled: !userState.profile?.is_super_admin || !isPassengerEmployee,
+    // enabled: !userState.profile?.is_super_admin || !isPassengerEmployee,
+    enabled: !isPassengerEmployee,
   });
 
   React.useEffect(() => {

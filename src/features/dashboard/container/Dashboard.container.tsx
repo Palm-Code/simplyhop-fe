@@ -9,14 +9,14 @@ import {
   useGetDashboardMy,
   useGetDashboardOrganizationSummary,
   useGetDashboardSuperAdminSummary,
-  // useGetRidesSearch,
-  // useGetVehicleMy,
+  useGetRidesSearch,
+  useGetVehicleMy,
   // useGetDashboardOrganization,
-  // useGetDashboardSuperAdmin,
-  // useGetDashboardSuperAdminPerOrganization,
-  // useGetBookingList,
+  useGetDashboardSuperAdmin,
+  useGetDashboardSuperAdminPerOrganization,
+  useGetBookingList,
 } from "../react_query/hooks";
-// import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
+import { SuperAdminSectionsDashboard } from "../fragments/super_admin_sections";
 import { NavigationDashboard } from "../fragments/navigation";
 import { HeaderDashboard } from "../fragments/header";
 
@@ -25,12 +25,12 @@ export const DashboardSupportContainer = () => {
   useGetDashboardMy();
   useGetDashboardOrganizationSummary();
   useGetDashboardSuperAdminSummary();
-  // useGetRidesSearch();
-  // useGetVehicleMy();
+  useGetRidesSearch();
+  useGetVehicleMy();
   // useGetDashboardOrganization();
-  // useGetDashboardSuperAdmin();
-  // useGetDashboardSuperAdminPerOrganization();
-  // useGetBookingList();
+  useGetDashboardSuperAdmin();
+  useGetDashboardSuperAdminPerOrganization();
+  useGetBookingList();
 
   if (state.profile?.is_super_admin) {
     return (
@@ -43,7 +43,7 @@ export const DashboardSupportContainer = () => {
         <HeaderDashboard />
         <NavigationDashboard />
         <SummaryDashboard />
-        {/* <SuperAdminSectionsDashboard /> */}
+        <SuperAdminSectionsDashboard />
       </div>
     );
   }
