@@ -262,7 +262,7 @@ export const SummaryDashboard = () => {
             unit={item.unit}
             value={item.value}
             icon={item.icon as SVGIconProps["name"]}
-            href={item?.href}
+            href={isOrganizationAdmin ? undefined : item?.href}
             showRating={item.id === "Bewertungen"}
             ratingValue={
               item.id === "Bewertungen"
