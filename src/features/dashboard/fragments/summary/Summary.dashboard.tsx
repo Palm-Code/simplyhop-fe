@@ -196,7 +196,6 @@ export const SummaryDashboard = () => {
               unit={item.unit}
               value={item.value}
               icon={item.icon as SVGIconProps["name"]}
-              href={item?.href}
               showRating={item.id === "Bewertungen"}
               ratingValue={
                 item.id === "Bewertungen"
@@ -216,7 +215,6 @@ export const SummaryDashboard = () => {
               unit={item.unit}
               value={item.value}
               icon={item.icon as SVGIconProps["name"]}
-              href={item?.href}
               variant="extend"
             />
           ))}
@@ -229,7 +227,6 @@ export const SummaryDashboard = () => {
               unit={item.unit}
               value={item.value}
               icon={item.icon as SVGIconProps["name"]}
-              href={item?.href}
               showRating={item.id === "Bewertungen"}
               ratingValue={
                 item.id === "Bewertungen"
@@ -261,15 +258,7 @@ export const SummaryDashboard = () => {
             unit={item.unit}
             value={item.value}
             icon={item.icon as SVGIconProps["name"]}
-            href={isOrganizationAdmin ? undefined : item?.href}
-            showRating={item.id === "Bewertungen"}
-            ratingValue={
-              item.id === "Bewertungen"
-                ? isSuperAdmin
-                  ? state.summary.super_admin?.average_rating ?? 0
-                  : state.summary.personal?.average_rating ?? 0
-                : undefined
-            }
+            href={item?.href}
           />
         );
       })}
