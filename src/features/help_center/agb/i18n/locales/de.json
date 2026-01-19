@@ -1,102 +1,87 @@
 {
-  "title": "AGB’s",
+  "title": "Allgemeine Geschäftsbedingungen (AGB) Website \"Simply Hop\"",
   "contents": [
+    {
+      "title": "Betreiber",
+      "type": "paragraph",
+      "content": [
+        "Marcus Ritter",
+        "Einzelunternehmer",
+        "Altmarkt 10 B / D",
+        "01067 Dresden",
+        "Deutschland",
+        "Telefon: +49 351 850 966 33",
+        "E-Mail: service@simplyhop.com"
+      ]
+    },
     {
       "title": "1. Geltungsbereich",
       "type": "paragraph",
       "content": [
-        "1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der von der Simply Hop  (nachfolgend: 'Betreiber') bereitgestellten Mitfahrplattform über die PWA -App, Mobilgeräte und andere digitale Kanäle.",
-        "1.2 Die AGB gelten sowohl für registrierte Nutzerinnen und Nutzer (nachfolgend: 'Nutzer') als auch für nicht registrierte Besucher der Plattform, soweit anwendbar."
+        "1.1 Diese Allgemeinen Geschäftsbedingungen regeln ausschließlich die Nutzung der Website und der Plattform \"Simply Hop\" durch natürliche Personen (nachfolgend \"Nutzer\"), deren Zugang über Unternehmen, Institutionen, Vereine oder Veranstalter bereitgestellt wird.",
+        "1.2 Sie regeln ausschließlich das Nutzungsverhältnis zwischen dem Betreiber und den Nutzern."
       ]
     },
     {
       "title": "2. Leistungsgegenstand",
       "type": "paragraph",
       "content": [
-        "2.1 Der Betreiber stellt eine digitale Plattform zur Vermittlung von Fahrgemeinschaften zwischen Nutzerinnen und Nutzern zur Verfügung.",
-        "2.2 Der Betreiber ist ausschließlich technischer Dienstleister. Es entsteht kein Beförderungsvertrag zwischen dem Betreiber und den Nutzern, sondern ausschließlich zwischen Fahrer und Mitfahrer.",
-        "2.3 Die Nutzung der Plattform ist freiwillig und erfolgt auf eigenes Risiko der Nutzer."
+        "2.1 Der Betreiber stellt eine überregional verfügbare digitale Plattform zur privaten Organisation und Vermittlung von Fahrgemeinschaften innerhalb geschlossener Nutzergruppen (B2B-Carpooling) bereit.",
+        "2.2 Die Plattform stellt ausschließlich technische Funktionen zur Kontakt-, Kommunikations- und Fahrtvermittlung zur Verfügung.",
+        "2.3 Der Betreiber erbringt keine Beförderungsleistungen. Fahrten kommen ausschließlich zwischen den Nutzern eigenverantwortlich zustande.",
+        "2.4 Die Nutzung erfolgt zu festen Destinationen, die durch die jeweilige Organisation vorgegeben sind (z. B. Arbeitsstätte, Niederlassung, Veranstaltungsort)."
       ]
     },
     {
-      "title": "3. Registrierung und Nutzerkonto",
+      "title": "3. Registrierung und Nutzung",
       "type": "paragraph",
       "content": [
-        "3.1 Die Nutzung bestimmter Funktionen erfordert eine vorherige Registrierung.",
-        "3.2 Die bei der Registrierung abgefragten Daten sind vollständig und korrekt anzugeben. Änderungen sind vom Nutzer unverzüglich im Nutzerkonto zu aktualisieren.",
-        "3.3 Jeder Nutzer darf nur ein Nutzerkonto anlegen."
+        "3.1 Für bestimmte Funktionen ist eine Registrierung erforderlich.",
+        "3.2 Nutzer sind verpflichtet, bei der Registrierung wahrheitsgemäße Angaben zu machen und ihre Zugangsdaten vertraulich zu behandeln.",
+        "3.3 Eine missbräuchliche Nutzung der Plattform ist untersagt.",
+        "3.4 Die Nutzung der Plattform ist nur volljährigen natürlichen Personen gestattet."
       ]
     },
     {
-      "title": "4. Nutzungspflichten",
+      "title": "4. Pflichten der Nutzer",
       "type": "paragraph",
       "content": [
-        "4.1 Nutzer verpflichten sich, die Plattform nur im Rahmen der geltenden Gesetze sowie dieser AGB zu verwenden.",
-        "4.2 Es ist insbesondere untersagt:",
-        "– falsche Angaben zu machen,",
-        "– Inhalte mit beleidigendem, diskriminierendem oder gesetzeswidrigem Charakter zu veröffentlichen,",
-        "– automatisierte Systeme zur Datenabfrage oder Manipulation zu verwenden."
+        "4.1 Nutzer nutzen die Plattform eigenverantwortlich.",
+        "4.2 Nutzer haben gesetzliche Vorschriften sowie die Rechte Dritter zu beachten."
       ]
     },
     {
-      "title": "5. Vertragsverhältnis zwischen Fahrern und Mitfahrern",
+      "title": "5. Haftung",
       "type": "paragraph",
       "content": [
-        "5.1 Die Vermittlung von Fahrgemeinschaften erfolgt ausschließlich zwischen den beteiligten Nutzern.",
-        "5.2 Der Betreiber ist weder Vertragspartner noch haftet er für die Durchführung der Fahrt, die Pünktlichkeit, Sicherheit oder Verfügbarkeit.",
-        "5.3 Etwaige Ansprüche aus Beförderung, Kostenbeteiligung oder Schäden sind zwischen Fahrer und Mitfahrer direkt zu klären."
+        "5.1 Der Betreiber haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit.",
+        "5.2 Bei einfacher Fahrlässigkeit haftet der Betreiber nur bei Verletzung wesentlicher Vertragspflichten und beschränkt auf den vorhersehbaren Schaden.",
+        "5.3 Eine Haftung des Betreibers für die Durchführung von Fahrten, das Verhalten von Nutzern oder Schäden im Zusammenhang mit Fahrgemeinschaften ist ausgeschlossen, soweit gesetzlich zulässig."
       ]
     },
     {
-      "title": "6. Kosten und Zahlungsabwicklung",
+      "title": "6. Beendigung der Nutzung",
       "type": "paragraph",
       "content": [
-        "6.1 Die Nutzung der Plattform ist grundsätzlich kostenfrei, soweit nicht ausdrücklich anders vereinbart.",
-        "6.2 Etwaige Kostenbeteiligungen zwischen Fahrer und Mitfahrer erfolgen außerhalb der Plattform und werden vom Betreiber nicht verwaltet oder kontrolliert."
+        "6.1 Nutzer können die Nutzung der Plattform jederzeit beenden.",
+        "6.2 Der Betreiber ist berechtigt, Nutzer bei Verstößen gegen diese AGB von der Nutzung auszuschließen."
       ]
     },
     {
-      "title": "7. Inhalte und Verantwortung",
+      "title": "7. Datenschutz",
       "type": "paragraph",
       "content": [
-        "7.1 Nutzer sind für alle von ihnen eingestellten Inhalte (z. B. Fahrangebote, Profilinformationen, Nachrichten) selbst verantwortlich.",
-        "7.2 Der Betreiber ist nicht verpflichtet, Inhalte vorab zu prüfen, behält sich aber das Recht vor, rechtswidrige oder unangemessene Inhalte zu entfernen."
+        "7.1 Die Verarbeitung personenbezogener Daten erfolgt gemäß den geltenden datenschutzrechtlichen Vorschriften. Weitere Informationen enthält die Datenschutzerklärung.",
+        "7.2 Personenbezogene Daten – einschließlich Fahrtdaten – werden nur so lange gespeichert, wie dies für den Betrieb der Plattform, die Nachvollziehbarkeit von Fahrten, Supportzwecke sowie gesetzliche Aufbewahrungspflichten erforderlich ist, in der Regel jedoch nicht länger als 24 Monate."
       ]
     },
     {
-      "title": "8. Laufzeit und Kündigung",
+      "title": "8. Schlussbestimmungen",
       "type": "paragraph",
       "content": [
-        "8.1 Das Nutzungsverhältnis kann von beiden Seiten jederzeit ohne Angabe von Gründen gekündigt werden.",
-        "8.2 Der Betreiber behält sich das Recht vor, Nutzer bei Verstößen gegen die AGB oder gesetzliche Vorschriften zu sperren oder auszuschließen."
-      ]
-    },
-    {
-      "title": "9. Haftung",
-      "type": "paragraph",
-      "content": [
-        "9.1 Der Betreiber übernimmt keine Haftung für das Zustandekommen oder die Durchführung von Fahrgemeinschaften.",
-        "9.2 Der Betreiber haftet nicht für Schäden, die durch Nutzer verursacht werden oder aus der Nutzung der Plattform entstehen, es sei denn, es liegt ein vorsätzliches oder grob fahrlässiges Verhalten des Betreibers vor.",
-        "9.3 Der Betreiber des Mitfahrportals haftet unbeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, die auf einer vorsätzlichen oder fahrlässigen Pflichtverletzung des Betreibers, seiner gesetzlichen Vertreter oder Erfüllungsgehilfen beruhen. Für sonstige Schäden haftet der Betreiber nur bei vorsätzlicher oder grob fahrlässiger Pflichtverletzung oder bei Arglist."
-      ]
-    },
-    {
-      "title": "10. Datenschutz",
-      "type": "paragraph",
-      "content": [
-        "10.1 Informationen zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten sind in der Datenschutzerklärung abrufbar.",
-        "10.2 Der Betreiber verarbeitet personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Vorschriften."
-      ]
-    },
-    {
-      "title": "11. Verbindlichkeit veröffentlichter Inserate",
-      "type": "paragraph",
-      "content": [
-        "11.1 Es gilt das Recht der Bundesrepublik Deutschland.",
-        "11.2 Gerichtsstand ist der Sitz des Betreibers, sofern der Nutzer Kaufmann ist oder keinen allgemeinen Gerichtsstand im Inland hat.",
-        "11.3 Änderungen oder Ergänzungen dieser AGB bedürfen der Textform.",
-        "11.4 Sollten sich gesetzliche Bestimmungen ändern, behält sich der Betreiber vor, diese AGB entsprechend anzupassen.",
-        "11.5 Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam oder undurchführbar sein oder werden, so wird hierdurch die Wirksamkeit der übrigen Bestimmungen nicht berührt. Anstelle der unwirksamen oder undurchführbaren Regelung gilt diejenige wirksame und durchführbare Regelung als vereinbart, die dem wirtschaftlichen Zweck der unwirksamen Regelung am nächsten kommt. Gleiches gilt für etwaige Regelungslücken."
+        "8.1 Es gilt das Recht der Bundesrepublik Deutschland.",
+        "8.2 Soweit gesetzlich zulässig, ist Gerichtsstand der Sitz des Betreibers.",
+        "8.3 Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt."
       ]
     }
   ]
