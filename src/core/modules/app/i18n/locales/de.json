@@ -26,21 +26,21 @@
         "items": [
           {
             "id": "facebook",
-            "href": "",
+            "href": "https://www.facebook.com/simplyhop/",
             "icon": {
               "name": "Facebook3"
             }
           },
           {
             "id": "linkedin",
-            "href": "",
+            "href": "https://www.linkedin.com/company/simplyhop/",
             "icon": {
               "name": "Linkedin"
             }
           },
           {
             "id": "instagram",
-            "href": "",
+            "href": "https://www.instagram.com/simply_hop/",
             "icon": {
               "name": "Instagram"
             }
