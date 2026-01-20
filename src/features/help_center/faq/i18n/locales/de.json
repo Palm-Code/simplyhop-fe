@@ -22,61 +22,52 @@
         "tabId": "1",
         "list": [
           {
-            "question": "Kosten",
-            "answer": "Tägliche innerstädtische Fahrten in die Arbeit können teuer oder langwierig sein. Mit Simply Hop kannst Du durch die Kostenbeteiligung Deine eigenen Fixkosten für die innerstädtische Mobilität erheblich und nachhaltig senken."
+            "question": "Was ist Simply Hop?",
+            "answer": "Simply Hop ist eine überregional aktive B2B-Carpooling-Plattform. Unternehmen, Institutionen, Vereine und Veranstalter stellen ihren Mitarbeitenden, Gästen oder Fans über Simply Hop eine digitale Lösung zur privaten Bildung von Fahrgemeinschaften zu festen Destinationen zur Verfügung."
           },
           {
-            "question": "Komfort und Bequemlichkeit",
-            "answer": "Du musst nicht selbst fahren und kannst die Zeit im Auto für gute Gespräche oder auch zur Entspannung nutzen, sparst Dir den Stress mit Parkplatzsuche oder Navigieren durch den Stadtverkehr"
+            "question": "Wer kann Simply Hop nutzen?",
+            "answer": "Simply Hop wird von Teilnehmenden genutzt, zum Beispiel von Mitarbeitenden, Vereinsmitgliedern, Fans, Gästen oder Event- und Festivalbesuchern. Der Zugang erfolgt ausschließlich über eine Organisation."
           },
           {
-            "question": "Umweltfreundlichkeit",
-            "answer": "Durch das Teilen von Fahrten trägst du aktiv zur Reduzierung der Verkehrsbelastung und der CO₂-Emissionen in der Stadt bei. Weniger Autos bedeuten auch weniger Staus und bessere Luftqualität."
+            "question": "Was bedeutet B2B-Carpooling bei Simply Hop?",
+            "answer": "B2B-Carpooling bedeutet, dass Organisationen den Zugang zur Plattform bereitstellen, die Nutzung der Fahrgemeinschaften jedoch privat zwischen den Teilnehmenden erfolgt. Simply Hop stellt ausschließlich die technische Plattform zur Verfügung."
           },
           {
-            "question": "Zeitersparnis",
-            "answer": "Mit Simply Hop kannst du oft schneller ans Ziel gelangen, da du dir die Zeit für Parkplatzsuche und Umsteigen sparst. Außerdem sind unsere Routen flexibel und ggf. auf deine Bedürfnisse abstimmbar."
+            "question": "Ist Simply Hop ein Fahrdienst, Ridepooling- oder Ridesharing-Anbieter?",
+            "answer": "Nein. Simply Hop erbringt keine Beförderungs- oder Fahrdienstleistung. Es findet keine gewerbliche Personenbeförderung statt. Die Plattform dient ausschließlich der Vermittlung privater Fahrgemeinschaften."
           },
           {
-            "question": "Sozialer Austausch",
-            "answer": "Nutze die Gelegenheit, neue Leute aus deiner Stadt kennenzulernen und interessante Gespräche zu führen. Dies kann besonders in einer großen Stadt eine bereichernde Erfahrung sein."
+            "question": "Wie funktionieren Fahrgemeinschaften bei Simply Hop?",
+            "answer": "Teilnehmende registrieren sich über Simply Hop und stellen Fahrten zu festen Destinationen ein (z. B. Arbeitsstätte, Niederlassung oder Veranstaltungsort). Fahrer und Mitfahrende stimmen Details privat miteinander ab."
           },
           {
-            "question": "Flexible Routen und Abholpunkte",
-            "answer": "Simply Hop bietet Euch durch eigene Absprachen flexible Abhol- und Absetzpunkte, was deine innerstädtische Reiseplanung erleichtert und dir mehr Optionen für deine innerstädtische Route ermöglicht."
+            "question": "Gibt es flexible Treffpunkte oder wechselnde Ziele?",
+            "answer": "Simply Hop ist auf feste Destinationen ausgelegt, die durch die jeweilige Organisation definiert werden. Individuelle Absprachen sind möglich, das Ziel selbst bleibt fest."
           },
           {
-            "question": "Sicherheit",
-            "answer": "Simply Hop legt natürlich großen Wert auf Sicherheit. Alle Fahrten können über die sozialen Medien geteilt werden, sind für 14 Tage in unserem System gespeichert und kurzfristig über unsere IT abrufbar. Des weiteren werden die Infos zu Fahrer / Mitfahrer mit Hdy Nr., E Mail, PKW in unserem System gespeichert."
-          }
-        ]
-      },
-      {
-        "tabId": "2",
-        "list": [
-          {
-            "question": "Kosten",
-            "answer": "Als Fahrer bei Simply Hop hast Du den Vorteil der eigenen Kostenreduzierung für Deine täglichen Fahrten in die Arbeit und zurück. Selbstverständlich steht Dir die Simply Hop auch am WE zur Verfügung. Durch das Mitnehmen von Mitfahrern kannst du deine Benzin- und Parkkosten teilen, was deine täglichen Fahr – bzw. Betriebskosten erheblich senkt. Dies ist besonders in Städten mit hohen Parkgebühren und Spritpreisen von Vorteil. Dabei wird Dein Auto besser ausgelastet, was den Verschleiß und die Betriebskosten im Verhältnis zur Anzahl der Passagiere senkt. Dies ist besonders nützlich in einer Stadt, wo Autos oft nur für kurze Strecken genutzt werden."
+            "question": "Ist die Nutzung von Simply Hop kostenpflichtig?",
+            "answer": "Für Teilnehmende ist die Nutzung der Plattform kostenfrei. Eine mögliche Kostenbeteiligung (z. B. für Kraftstoff) wird privat zwischen Fahrer und Mitfahrenden vereinbart"
           },
           {
-            "question": "Umweltfreundlichkeit",
-            "answer": "Auch als Fahrer trägst du zur Reduzierung der CO₂-Emissionen bei, indem du dein Fahrzeug in Form von Mitfahrmöglichkeiten mit anderen teilst. Weniger Autos auf der Straße bedeuten für alle weniger Staus und eine bessere Luftqualität."
+            "question": "Welche Rolle hat Simply Hop technisch?",
+            "answer": "Simply Hop stellt die zentrale technische Plattform bereit, über die Registrierung, Profilverwaltung, Kommunikation und Fahrtenanlage erfolgen."
           },
           {
-            "question": "Zeitersparnis",
-            "answer": "Du kannst die Fahrten effizienter gestalten und deine Mitfahrer an strategischen Punkten absetzen, was deine tägliche Pendelzeit reduziert und den Stress im Stadtverkehr mindert."
+            "question": "Welche Daten werden bei Simply Hop gespeichert?",
+            "answer": "Es werden ausschließlich die für den Plattformbetrieb notwendigen Daten gespeichert, z. B. Profilinformationen, Fahrtdaten und Kommunikationsinhalte innerhalb der Plattform. Die Verarbeitung erfolgt gemäß den geltenden Datenschutzbestimmungen."
           },
           {
-            "question": "Soziale Interaktion:",
-            "answer": "Du hast die Möglichkeit, interessante Mitfahrer kennenzulernen und während der Fahrt neue Kontakte zu knüpfen. Dies kann zu einem angenehmeren Fahrerlebnis beitragen und deinen Alltag bereichern."
+            "question": "Wie lange werden Fahrten gespeichert?",
+            "answer": "Fahrtdaten werden für einen Zeitraum von bis zu 12 Monaten gespeichert, um Transparenz, Nachvollziehbarkeit und Support zu gewährleisten."
           },
           {
-            "question": "Flexible Routen und Abholpunkte:",
-            "answer": "Simply Hop bietet Euch durch eigene Absprachen flexible Abhol- und Absetzpunkte, was deine innerstädtische Reiseplanung erleichtert und dir mehr Optionen für deine innerstädtische Route ermöglicht."
+            "question": "Ist Simply Hop auch für Veranstaltungen, Vereine oder Festivals geeignet?",
+            "answer": "Ja. Simply Hop eignet sich für Unternehmen, Vereine, Sportveranstaltungen, Events, Festivals und andere Organisationen mit gebündelten oder wiederkehrenden Wegen."
           },
           {
-            "question": "Sicherheit",
-            "answer": "Simply Hop legt wie bei den Mitfahrenden natürlich auch großen Wert auf die Sicherheit der Fahrer.  Daher gilt für alle Beteiligten: Alle Fahrten können über die sozialen Medien geteilt werden, werden für 14 Tage in unserem System gespeichert und kurzfristig über unsere IT abrufbar. Des weiteren werden die Infos zu Fahrer / Mitfahrer mit Hdy Nr., E Mail, PKW in unserem System gespeichert."
+            "question": "Wer ist Ansprechpartner bei Fragen zu Simply Hop?",
+            "answer": "Bei Fragen zur Nutzung wende dich bitte an deine Organisation oder direkt an das Simply-Hop-Team."
           }
         ]
       }
