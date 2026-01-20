@@ -99,7 +99,7 @@
           "title": "Profilbilder",
           "description": "Bilder hochladen, die Ihr Gesicht darstellen",
           "form": {
-            "message": "Ziehen Sie Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
+            "message": "Ziehen Du Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
             "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
           },
           "square_input": {
@@ -211,9 +211,9 @@
     },
     "pictures": {
       "title": "Fahrzeugbilder",
-      "description": "Laden Sie Bilder hoch, die Ihr Auto repräsentieren",
+      "description": "Laden Du Bilder hoch, die Ihr Auto repräsentieren",
       "form": {
-        "message": "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
+        "message": "Ziehen Du Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
         "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
       },
       "square_input": {

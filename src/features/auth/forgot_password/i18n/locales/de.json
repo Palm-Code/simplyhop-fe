@@ -13,7 +13,7 @@
       }
     },
     "title": "Passwort vergessen",
-    "description": "Geben Sie die E-Mail, die Telefonnummer oder den Benutzernamen ein, die mit Ihrem Konto verbunden sind, um Ihr Passwort zu ändern.",
+    "description": "Geben Du die E-Mail, die Telefonnummer oder den Benutzernamen ein, die mit Ihrem Konto verbunden sind, um Ihr Passwort zu ändern.",
     "input": {
       "email": {
         "inputProps": {

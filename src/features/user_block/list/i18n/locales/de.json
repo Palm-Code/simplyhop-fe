@@ -28,7 +28,7 @@
   },
   "unblock_confirmation": {
     "title": "Reiseende bestätigen",
-    "description": "Bevor Sie bestätigen, überprüfen Sie bitte, ob alle Daten korrekt sind.",
+    "description": "Bevor Du bestätigen, überprüfen Du bitte, ob alle Daten korrekt sind.",
     "cta": {
       "cancel": {
         "children": "Erneut überprüfen"

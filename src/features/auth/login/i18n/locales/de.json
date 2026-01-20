@@ -13,7 +13,7 @@
   },
   "form": {
     "title": "Einloggen",
-    "description": "Geben Sie Ihre registrierte E-Mail-Adresse ein, um sich anzumelden.",
+    "description": "Geben Du Ihre registrierte E-Mail-Adresse ein, um sich anzumelden.",
     "input": {
       "email": {
         "inputProps": {
@@ -41,9 +41,9 @@
     }
   },
   "otp_form": {
-    "title": "Bestätigen Sie Ihre Anmeldung",
-    "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Geben Sie den Code hier ein oder klicken Sie auf den Button in der E-Mail, um fortzufahren.",
-    "description_2": "Wenn Sie die E-Mail nicht sehen, überprüfen Sie bitte Ihren Spam- oder Junk-Ordner.",
+    "title": "Bestätigen Du Ihre Anmeldung",
+    "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Geben Du den Code hier ein oder klicken Du auf den Button in der E-Mail, um fortzufahren.",
+    "description_2": "Wenn Du die E-Mail nicht sehen, überprüfen Du bitte Ihren Spam- oder Junk-Ordner.",
     "input": {
       "otp": {
         "inputProps": {
@@ -58,10 +58,10 @@
       }
     },
     "request_otp": {
-      "description": "Sie haben keinen Code erhalten?",
+      "description": "Du haben keinen Code erhalten?",
       "cta": {
         "request_otp": {
-          "children": "Fordern Sie einen neuen Code an."
+          "children": "Fordern Du einen neuen Code an."
         }
       }
     }
