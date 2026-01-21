@@ -39,7 +39,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main
       className={clsx(
-        "grid grid-rows-1 grid-cols-1 2xl:grid-cols-[776px_1fr] xl:grid-cols-[776px_1fr] lg:grid-cols-[776px_1fr] place-content-center place-items-center",
+        "grid grid-rows-1 grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 place-content-center place-items-center",
         "w-full h-full min-h-screen",
         "relative"
       )}
