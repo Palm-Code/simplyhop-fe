@@ -19,7 +19,7 @@
     },
     "labelProps": {
       "id": "name",
-      "children": "Registrierte Fahrer suchen",
+      "children": "Registrierte fahrer suchen",
       "required": false
     }
   },
