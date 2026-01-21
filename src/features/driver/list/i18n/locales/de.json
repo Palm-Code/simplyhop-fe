@@ -12,6 +12,17 @@
       }
     ]
   },
+  "search": {
+    "inputProps": {
+      "id": "name",
+      "placeholder": " "
+    },
+    "labelProps": {
+      "id": "name",
+      "children": "Registrierte Fahrer suchen",
+      "required": false
+    }
+  },
   "filter": {
     "search": {
       "placeholder": "Fahrten suchen"

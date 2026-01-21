@@ -13,7 +13,7 @@ export const SearchDashboardTrip = () => {
   const pathname = usePathname();
 
   const [searchValue, setSearchValue] = React.useState(
-    searchParams.get("search") || ""
+    searchParams.get("search") || "",
   );
 
   const [debouncedSearchValue] = useDebounceValue(searchValue, 500);
@@ -28,10 +28,10 @@ export const SearchDashboardTrip = () => {
     }
 
     router.push(`${pathname}?${params.toString()}`);
-  }, [debouncedSearchValue, pathname, router, searchParams]);
+  }, [debouncedSearchValue, pathname, router]);
 
   const isShowed = pathname.startsWith("/support/fahrten");
-  
+
   if (isShowed) {
     const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);

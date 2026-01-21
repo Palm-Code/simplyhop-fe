@@ -12,16 +12,20 @@ import {
 } from "@/core/models/rest/simplyhop/dashboard";
 import { UserContext } from "@/core/modules/app/context";
 import { ListDriverReactQueryKey } from "../keys";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 export const useGetDashboardSuperAdmin = () => {
   const { state, dispatch } = React.useContext(ListDriverContext);
   const { state: userState } = React.useContext(UserContext);
   const { organization_id } = useParams();
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
+
   const payload: GetDashboardSuperAdminPayloadRequestInterface = {
     params: {
       include: "user",
       append: "upcoming_rides",
+      search: !search ? undefined : String(search),
       "page[number]": state.table.pagination.current,
       "page[size]": 10,
       "filter[organization_id]": !!organization_id
@@ -49,8 +53,8 @@ export const useGetDashboardSuperAdmin = () => {
           state.table.pagination.current === 1
             ? [...newData]
             : !newData.length
-            ? state.table.items
-            : [...state.table.items, ...newData],
+              ? state.table.items
+              : [...state.table.items, ...newData],
       });
       dispatch({
         type: ListDriverActionEnum.SetTablePaginationData,

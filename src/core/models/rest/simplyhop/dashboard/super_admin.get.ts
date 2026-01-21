@@ -14,6 +14,7 @@ export type GetDashboardSuperAdminParamsPayloadRequestInterface = {
   include?: string; //user
   append?: string; //upcoming_rides
   sort?: string;
+  search?: string;
   "page[number]"?: number;
   "page[size]"?: number;
   "filter[organization_id]"?: string;
