@@ -149,9 +149,9 @@
       }
     },
     "otp_form": {
-      "title": "Bestätigen Du Ihre Anmeldung",
-      "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Geben Du den Code hier ein oder klicken Du auf den Button in der E-Mail, um fortzufahren.",
-      "description_2": "Wenn Du die E-Mail nicht sehen, überprüfen Du bitte Ihren Spam- oder Junk-Ordner.",
+      "title": "Bestätigen deine Anmeldung",
+      "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Geben den Code hier ein oder klicke auf den Button in der E-Mail, um fortzufahren.",
+      "description_2": "Wenn Du die E-Mail nicht sehen kannst, überprüfe bitte deinen Spam- oder Junk-Ordner.",
       "input": {
         "otp": {
           "inputProps": {
