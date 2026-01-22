@@ -52,7 +52,7 @@ export const WelcomeModal = () => {
               className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
             >
               Willkommen bei
-              <br /> SimplyHop!
+              <br /> Simply Hop!
             </DialogTitle>
 
             {/* Content */}

@@ -78,7 +78,7 @@
         "share": {
           "label": "Teilen auf: ",
           "example_link": "simplyhop.com/trip/2139rfkdsfns/",
-          "share_message": "Fahr mit mir – ganz einfach über SimplyHop!\n\nIch fahre von {{origin}} nach {{destination}}\n\n🕒 Abfahrt: {{departure_time}}\n\nWillst du mitfahren?\n\nJetzt Platz sichern: {{share_link}}",
+          "share_message": "Fahr mit mir – ganz einfach über Simply Hop!\n\nIch fahre von {{origin}} nach {{destination}}\n\n🕒 Abfahrt: {{departure_time}}\n\nWillst du mitfahren?\n\nJetzt Platz sichern: {{share_link}}",
           "items": [
             {
               "id": "whatsapp",
@@ -135,7 +135,7 @@
       },
       "empty": {
         "message": "Noch kein Auto",
-        "description": "Bitte bestätigen Du Ihre Bereitschaft, Fahrten als Fahrer bei SimplyHop anzubieten.",
+        "description": "Bitte bestätigen Du Ihre Bereitschaft, Fahrten als Fahrer bei Simply Hop anzubieten.",
         "cta": {
           "label": "Fahrten Anbieten"
         }

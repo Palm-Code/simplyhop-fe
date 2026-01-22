@@ -249,7 +249,7 @@
     }
   },
   "notification": {
-    "title": "Willkommen bei SimplyHop!",
+    "title": "Willkommen bei Simply Hop!",
     "description": "Das Unternehmenskonto ist bereit. Bitten Du den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
     "cta": {
       "back": {
@@ -296,7 +296,7 @@
     }
   },
   "pin_point_delete_confirmation": {
-    "title": "SimplyHop Office 2 löschen?",
+    "title": "Simply Hop Office 2 löschen?",
     "description": "Möchten Du diesen Standort wirklich entfernen?",
     "cta": {
       "cancel": {

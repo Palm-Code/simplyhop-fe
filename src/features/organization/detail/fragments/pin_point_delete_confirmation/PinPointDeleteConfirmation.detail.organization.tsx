@@ -126,7 +126,7 @@ export const PinPointDeleteConfirmationDetailOrganization = () => {
               as="h1"
               className="text-[2rem] font-bold text-[#292929] dark:text-white text-center"
             >
-              SimplyHop Office 2
+              Simply Hop Office 2
               <br /> löschen?
             </DialogTitle>
 

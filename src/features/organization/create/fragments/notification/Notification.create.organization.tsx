@@ -72,7 +72,7 @@ export const NotificationCreateOrganization = () => {
             <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
               Deine neue Unternehmen ist bereit. Jetzt kannst du Standorte
               hinzufügen, Mitglieder einladen und loslegen. Willkommen bei
-              SimplyHop!
+              Simply Hop!
             </p>
 
             <button

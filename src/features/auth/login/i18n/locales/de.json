@@ -28,7 +28,7 @@
       }
     },
     "register": {
-      "message": "Neu bei SimplyHop?",
+      "message": "Neu bei Simply Hop?",
       "cta": {
         "href": "/register",
         "children": "Hier registrieren"
