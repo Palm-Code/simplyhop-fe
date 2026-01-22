@@ -18,7 +18,7 @@ export type PutRidesSecondBodyPayloadRequestInterface = {
   waiting_time: string; //"5 minuten";
   available_seats: number; //2;
   additional_info: string; //"my information";
-  available_child_seats: number;
+  available_child_seats?: number;
 };
 
 export type PutRidesSecondResponseInterface = NextApiResponse<

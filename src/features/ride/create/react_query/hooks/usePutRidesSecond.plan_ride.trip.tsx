@@ -36,7 +36,7 @@ export const usePutRidesSecond = () => {
           additional_info: state.detail.form.other.notes.value,
           available_child_seats: !state.detail.form.plan.available_child_seat
             .value
-            ? 0
+            ? undefined
             : Number(state.detail.form.plan.available_child_seat.value),
         },
       };

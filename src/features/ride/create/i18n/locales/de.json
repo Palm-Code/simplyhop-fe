@@ -287,7 +287,7 @@
             "labelProps": {
               "id": "available_child_seat",
               "children": "Verfügbarkeit von Kindersitzen",
-              "required": true
+              "required": false
             }
           },
           "back_seat": {

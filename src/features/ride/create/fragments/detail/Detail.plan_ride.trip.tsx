@@ -56,7 +56,7 @@ export const DetailPlanRideTrip = () => {
     usePutRidesThird();
 
   const filteredCar = state.filters.auto.data.find(
-    (item) => item?.id === state.filters.auto.selected?.id
+    (item) => item?.id === state.filters.auto.selected?.id,
   );
   if (!filteredCar) {
     return null;
@@ -193,11 +193,11 @@ export const DetailPlanRideTrip = () => {
   const handleChangeSeat = (e: React.ChangeEvent<HTMLInputElement>) => {
     const invalidSeatDictionary =
       globalDictionaries.form.available_seat.validations.items.find(
-        (item) => item.id === "invalid_available_seat"
+        (item) => item.id === "invalid_available_seat",
       );
     const mustGreaterThanSeatDictionary =
       globalDictionaries.form.available_seat.validations.items.find(
-        (item) => item.id === "must_greater_than"
+        (item) => item.id === "must_greater_than",
       );
 
     dispatch({
@@ -218,20 +218,20 @@ export const DetailPlanRideTrip = () => {
                 e.currentTarget.value === ""
                   ? null
                   : Number(e.currentTarget.value) > filteredCar.seat
-                  ? !invalidSeatDictionary
-                    ? null
-                    : {
-                        id: invalidSeatDictionary.id,
-                        name: invalidSeatDictionary.name,
-                      }
-                  : Number(e.currentTarget.value) <= 0
-                  ? !mustGreaterThanSeatDictionary
-                    ? null
-                    : {
-                        id: mustGreaterThanSeatDictionary.id,
-                        name: mustGreaterThanSeatDictionary.name,
-                      }
-                  : null,
+                    ? !invalidSeatDictionary
+                      ? null
+                      : {
+                          id: invalidSeatDictionary.id,
+                          name: invalidSeatDictionary.name,
+                        }
+                    : Number(e.currentTarget.value) <= 0
+                      ? !mustGreaterThanSeatDictionary
+                        ? null
+                        : {
+                            id: mustGreaterThanSeatDictionary.id,
+                            name: mustGreaterThanSeatDictionary.name,
+                          }
+                      : null,
             },
           },
         },
@@ -240,15 +240,15 @@ export const DetailPlanRideTrip = () => {
   };
 
   const handleChangeAvailableChildSeat = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const invalidSeatDictionary =
       globalDictionaries.form.available_child_seat.validations.items.find(
-        (item) => item.id === "invalid_available_child_seat"
+        (item) => item.id === "invalid_available_child_seat",
       );
     const mustGreaterThanSeatDictionary =
       globalDictionaries.form.available_child_seat.validations.items.find(
-        (item) => item.id === "must_greater_than"
+        (item) => item.id === "must_greater_than",
       );
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
@@ -268,20 +268,20 @@ export const DetailPlanRideTrip = () => {
                 e.currentTarget.value === ""
                   ? null
                   : Number(e.currentTarget.value) > filteredCar.seat
-                  ? !invalidSeatDictionary
-                    ? null
-                    : {
-                        id: invalidSeatDictionary.id,
-                        name: invalidSeatDictionary.name,
-                      }
-                  : Number(e.currentTarget.value) < 0
-                  ? !mustGreaterThanSeatDictionary
-                    ? null
-                    : {
-                        id: mustGreaterThanSeatDictionary.id,
-                        name: mustGreaterThanSeatDictionary.name,
-                      }
-                  : null,
+                    ? !invalidSeatDictionary
+                      ? null
+                      : {
+                          id: invalidSeatDictionary.id,
+                          name: invalidSeatDictionary.name,
+                        }
+                    : Number(e.currentTarget.value) < 0
+                      ? !mustGreaterThanSeatDictionary
+                        ? null
+                        : {
+                            id: mustGreaterThanSeatDictionary.id,
+                            name: mustGreaterThanSeatDictionary.name,
+                          }
+                      : null,
             },
           },
         },
@@ -378,7 +378,7 @@ export const DetailPlanRideTrip = () => {
         RIDE_FILTER.ADULT_PASSENGER
       }=${1}&${RIDE_FILTER.CHILDREN_PASSENGER}=${0}&${RIDE_FILTER.RIDE_ID}=${
         ridesFirst.data.id
-      }`
+      }`,
     )}`;
     const ridesSecond = await postRidesSecond({ id: ridesFirst.data.id });
     if (!ridesSecond) return;
@@ -392,13 +392,13 @@ export const DetailPlanRideTrip = () => {
       .replaceAll("{{origin}}", state.filters.origin.selected.item?.name ?? "")
       .replaceAll(
         "{{destination}}",
-        state.filters.destination.selected.item?.name ?? ""
+        state.filters.destination.selected.item?.name ?? "",
       )
       .replaceAll(
         "{{departure_time}}",
         `${dayjs.utc(ridesFirst.data.departure_time).format("DD.MM.YYYY")} ${
           state.detail.form.plan.time.value
-        } Uhr`
+        } Uhr`,
       )
       .replaceAll("{{share_link}}", shareUrl);
 
@@ -434,7 +434,6 @@ export const DetailPlanRideTrip = () => {
     !state.detail.form.plan.umweg.value.length ||
     !state.detail.form.plan.seat.value.length ||
     !!state.detail.form.plan.seat.error ||
-    !state.detail.form.plan.available_child_seat.value ||
     !state.detail.form.other.price.value ||
     !state.detail.form.tnc.checked ||
     !!state.detail.form.plan.available_child_seat.error;
@@ -448,7 +447,7 @@ export const DetailPlanRideTrip = () => {
         "!max-w-[100vw] lg:!max-w-[872px]",
         "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[80vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-hidden"
+        "overflow-hidden",
       )}
       open={isOpen}
       variant={isLg ? "modal" : "page_sheet"}
@@ -457,7 +456,7 @@ export const DetailPlanRideTrip = () => {
       <div
         className={clsx(
           "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center",
-          "w-full h-full"
+          "w-full h-full",
         )}
       >
         <AdaptiveModalHeader>
@@ -471,13 +470,13 @@ export const DetailPlanRideTrip = () => {
               name="X"
               className={clsx(
                 "w-[1.5rem] h-[1.5rem]",
-                "text-[#5B5B5B] dark:text-white"
+                "text-[#5B5B5B] dark:text-white",
               )}
             />
           </button>
           <h1
             className={clsx(
-              "text-[1.5rem] text-[#232323] dark:text-white font-bold"
+              "text-[1.5rem] text-[#232323] dark:text-white font-bold",
             )}
           >
             {dictionaries.detail.title}
@@ -506,14 +505,14 @@ export const DetailPlanRideTrip = () => {
               },
               travelTime: {
                 time: setDurationTime(
-                  state.detail.distance_matrix?.duration?.value ?? 0
+                  state.detail.distance_matrix?.duration?.value ?? 0,
                 ),
               },
               arrival: {
                 place: state.filters.destination.selected.item?.name ?? "",
                 time: `${setArrivalTime(
                   state.filters.time.value,
-                  state.detail.distance_matrix?.duration?.value ?? 0
+                  state.detail.distance_matrix?.duration?.value ?? 0,
                 )} Uhr`,
               },
             }}
@@ -522,7 +521,7 @@ export const DetailPlanRideTrip = () => {
           <Card
             className={clsx(
               "!px-[0rem] !py-[0rem] lg:!pl-[1.5rem] lg:!py-[1.5rem]",
-              "!border-[0px]"
+              "!border-[0px]",
             )}
             style={{
               boxShadow: undefined,
@@ -531,7 +530,7 @@ export const DetailPlanRideTrip = () => {
           >
             <p
               className={clsx(
-                "text-[1.5rem] text-[#232323] dark:text-white font-bold"
+                "text-[1.5rem] text-[#232323] dark:text-white font-bold",
               )}
             >
               {dictionaries.detail.plan.form.title}
@@ -539,7 +538,7 @@ export const DetailPlanRideTrip = () => {
             <div
               className={clsx(
                 "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <DatePicker
@@ -572,7 +571,7 @@ export const DetailPlanRideTrip = () => {
             <div
               className={clsx(
                 "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <Dropdownfield
@@ -611,7 +610,7 @@ export const DetailPlanRideTrip = () => {
             <div
               className={clsx(
                 "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <Textfield
@@ -653,7 +652,7 @@ export const DetailPlanRideTrip = () => {
             <div
               className={clsx(
                 "grid grid-cols-2 place-content-start place-items-start gap-[1rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <Dropdownfield
@@ -674,7 +673,7 @@ export const DetailPlanRideTrip = () => {
               <InputContainer
                 className={clsx(
                   "!border !border-[#F8F8F8] dark:!border-[#464646]",
-                  "!grid !grid-flow-col !items-center !content-center !gap-[0.5rem]"
+                  "!grid !grid-flow-col !items-center !content-center !gap-[0.5rem]",
                 )}
               >
                 <Checkbox
@@ -718,7 +717,7 @@ export const DetailPlanRideTrip = () => {
             <div
               className={clsx(
                 "grid grid-flow-col items-start content-start justify-start justify-items-start gap-[1rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <Checkbox
@@ -728,7 +727,7 @@ export const DetailPlanRideTrip = () => {
               />
               <span
                 className={clsx(
-                  "text-[#232323] dark:text-white text-[0.875rem] font-normal"
+                  "text-[#232323] dark:text-white text-[0.875rem] font-normal",
                 )}
                 dangerouslySetInnerHTML={{
                   __html: dictionaries.detail.tnc.label,
