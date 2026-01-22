@@ -6,10 +6,12 @@ import clsx from "clsx";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useDebounceValue } from "usehooks-ts";
 import { UserContext } from "@/core/modules/app/context";
+import { ListDriverActionEnum, ListDriverContext } from "../../context";
 
 export const SearchListDriver = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
+  const { state, dispatch } = React.useContext(ListDriverContext);
   const router = useRouter();
   const pathname = usePathname();
   const { state: userState } = React.useContext(UserContext);
@@ -29,7 +31,13 @@ export const SearchListDriver = () => {
     } else {
       params.delete("search");
     }
-
+    dispatch({
+      type: ListDriverActionEnum.SetTablePaginationData,
+      payload: {
+        ...state.table.pagination,
+        current: 1,
+      },
+    });
     router.push(`${pathname}?${params.toString()}`);
   }, [debouncedSearchValue, pathname, router]);
 
