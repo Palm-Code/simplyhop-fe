@@ -20,13 +20,15 @@ export const useRestGoogleGetDistanceMatrix = () => {
       destLng: state.filters.destination.selected.lat_lng?.lng ?? 0,
     },
   };
-  const mutation =
-    useMutation<RestGoogleGetDistanceMatrixSuccessResponseInterface>({
-      mutationKey: PlanRideTripReactQueryKey.GetDistanceMatrix(),
-      mutationFn: () => {
-        return fetchRestGoogleGetDistanceMatrix(payload);
-      },
-    });
+  const mutation = useMutation<
+    RestGoogleGetDistanceMatrixSuccessResponseInterface,
+    { error: string }
+  >({
+    mutationKey: PlanRideTripReactQueryKey.GetDistanceMatrix(),
+    mutationFn: () => {
+      return fetchRestGoogleGetDistanceMatrix(payload);
+    },
+  });
 
   return mutation;
 };

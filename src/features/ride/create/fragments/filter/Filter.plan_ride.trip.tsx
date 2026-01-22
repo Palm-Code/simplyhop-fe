@@ -19,15 +19,22 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormRoutes } from "@/core/components/form_routes";
 import { Textfield } from "@/core/components/textfield";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { UserContext } from "@/core/modules/app/context";
+import {
+  GlobalActionEnum,
+  GlobalContext,
+  UserContext,
+} from "@/core/modules/app/context";
 import { storageService } from "@/core/services/storage/indexdb";
 import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
+import { v4 as uuidv4 } from "uuid";
 
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(PlanRideTripContext);
+  const { state: globalState, dispatch: dispatchGlobal } =
+    React.useContext(GlobalContext);
   const { isLg } = useTailwindBreakpoint();
   const { location: userLocation, error: userLocationError } = useGeolocation();
 
@@ -160,18 +167,18 @@ export const FilterPlanRideTrip = () => {
             ? !input.length
               ? companyOfficeItems.filter(
                   (item) =>
-                    item.id !== state.filters.destination.selected.item?.id
+                    item.id !== state.filters.destination.selected.item?.id,
                 )
               : state.filters.origin.items.filter(
                   (item) =>
                     item.name.toLowerCase().includes(input.toLowerCase()) ||
                     item.description
                       ?.toLowerCase()
-                      .includes(input.toLowerCase())
+                      .includes(input.toLowerCase()),
                 )
             : !input.length
-            ? []
-            : state.filters.origin.items,
+              ? []
+              : state.filters.origin.items,
           query: input,
         },
       },
@@ -182,7 +189,7 @@ export const FilterPlanRideTrip = () => {
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
-      data: null | { description: string; place_id: string }[]
+      data: null | { description: string; place_id: string }[],
     ) => {
       if (!!data) {
         dispatch({
@@ -200,7 +207,7 @@ export const FilterPlanRideTrip = () => {
                 })
                 .filter(
                   (item) =>
-                    item.id !== state.filters.destination.selected.item?.id
+                    item.id !== state.filters.destination.selected.item?.id,
                 ),
             },
           },
@@ -211,7 +218,7 @@ export const FilterPlanRideTrip = () => {
     await fetchAutocompletePlace(
       input,
       // state.filters.city.selected.lat_lng,
-      handleResult
+      handleResult,
     );
   };
 
@@ -223,7 +230,7 @@ export const FilterPlanRideTrip = () => {
 
     if (isOriginCompanyOfficeChecked) {
       const selectedOfficeAddress = companyOfficeAddreses.find(
-        (item) => String(item.id) === data.id
+        (item) => String(item.id) === data.id,
       );
       if (!selectedOfficeAddress) return;
       lat_lng = {
@@ -361,7 +368,7 @@ export const FilterPlanRideTrip = () => {
           items: checked
             ? companyOfficeItems.filter(
                 (item) =>
-                  item.id !== state.filters.destination.selected.item?.id
+                  item.id !== state.filters.destination.selected.item?.id,
               )
             : [],
           company_office: {
@@ -418,18 +425,18 @@ export const FilterPlanRideTrip = () => {
           items: isDestinationCompanyOfficeChecked
             ? !input.length
               ? companyOfficeItems.filter(
-                  (item) => item.id !== state.filters.origin.selected.item?.id
+                  (item) => item.id !== state.filters.origin.selected.item?.id,
                 )
               : state.filters.destination.items.filter(
                   (item) =>
                     item.name.toLowerCase().includes(input.toLowerCase()) ||
                     item.description
                       ?.toLowerCase()
-                      .includes(input.toLowerCase())
+                      .includes(input.toLowerCase()),
                 )
             : !input.length
-            ? []
-            : state.filters.destination.items,
+              ? []
+              : state.filters.destination.items,
           query: input,
         },
       },
@@ -441,7 +448,7 @@ export const FilterPlanRideTrip = () => {
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
-      data: null | { description: string; place_id: string }[]
+      data: null | { description: string; place_id: string }[],
     ) => {
       if (!!data) {
         dispatch({
@@ -458,7 +465,7 @@ export const FilterPlanRideTrip = () => {
                   };
                 })
                 .filter(
-                  (item) => item.id !== state.filters.origin.selected.item?.id
+                  (item) => item.id !== state.filters.origin.selected.item?.id,
                 ),
             },
           },
@@ -469,7 +476,7 @@ export const FilterPlanRideTrip = () => {
     await fetchAutocompletePlace(
       input,
       // state.filters.city.selected.lat_lng,
-      handleResult
+      handleResult,
     );
   };
 
@@ -481,7 +488,7 @@ export const FilterPlanRideTrip = () => {
 
     if (isDestinationCompanyOfficeChecked) {
       const selectedOfficeAddress = companyOfficeAddreses.find(
-        (item) => String(item.id) === data.id
+        (item) => String(item.id) === data.id,
       );
       if (!selectedOfficeAddress) return;
       lat_lng = {
@@ -618,7 +625,7 @@ export const FilterPlanRideTrip = () => {
           ...state.filters.destination,
           items: checked
             ? companyOfficeItems.filter(
-                (item) => item.id !== state.filters.origin.selected.item?.id
+                (item) => item.id !== state.filters.origin.selected.item?.id,
               )
             : [],
           company_office: {
@@ -698,7 +705,7 @@ export const FilterPlanRideTrip = () => {
           ].filter(
             (obj, index, self) =>
               index ===
-              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name)
+              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name),
           ),
     });
     await storageService({
@@ -709,24 +716,40 @@ export const FilterPlanRideTrip = () => {
         : [
             state.filters.destination.selected.item,
             ...state.filters.destination.saved_items.filter(
-              (_, index) => index < 5
+              (_, index) => index < 5,
             ),
           ].filter(
             (obj, index, self) =>
               index ===
-              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name)
+              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name),
           ),
     });
-    const data = await fetchRestGoogleGetDistanceMatrix();
-    if (!data) return;
-    dispatch({
-      type: PlanRideTripActionEnum.SetDetailData,
-      payload: {
-        ...state.detail,
-        is_open: true,
-        distance_matrix: data,
-      },
-    });
+    try {
+      const data = await fetchRestGoogleGetDistanceMatrix();
+      dispatch({
+        type: PlanRideTripActionEnum.SetDetailData,
+        payload: {
+          ...state.detail,
+          is_open: true,
+          distance_matrix: data,
+        },
+      });
+    } catch {
+      dispatchGlobal({
+        type: GlobalActionEnum.SetAlertData,
+        payload: {
+          ...globalState.alert,
+          items: [
+            ...globalState.alert.items,
+            {
+              id: uuidv4(),
+              variant: "error",
+              message: "Entschuldigung, wir können Ihre Route nicht finden.",
+            },
+          ],
+        },
+      });
+    }
   };
 
   const isSubmitDisabled =
@@ -747,7 +770,7 @@ export const FilterPlanRideTrip = () => {
         "px-[1rem] py-[1rem] sm:px-[1.5rem] sm:py-[1.5rem]",
         "bg-[#FCFCFC] dark:bg-[#292929]",
         "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
-        "border border-[#E9E6E6] dark:border-[#464646]"
+        "border border-[#E9E6E6] dark:border-[#464646]",
       )}
       style={{
         boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
@@ -757,12 +780,12 @@ export const FilterPlanRideTrip = () => {
         className={clsx(
           "grid grid-cols-1 lg:grid-cols-[1fr_397px] items-center content-center justify-start justify-items-start",
           "w-full",
-          "gap-[1rem]"
+          "gap-[1rem]",
         )}
       >
         <h1
           className={clsx(
-            "text-[1.125rem] sm:text-[1.5rem] text-[#232323] dark:text-white font-bold"
+            "text-[1.125rem] sm:text-[1.5rem] text-[#232323] dark:text-white font-bold",
           )}
         >
           {dictionaries.filter.title}
@@ -801,7 +824,7 @@ export const FilterPlanRideTrip = () => {
           items={state.filters.auto.items.filter((item) =>
             item.name
               .toLowerCase()
-              .includes(state.filters.auto.query.toLowerCase())
+              .includes(state.filters.auto.query.toLowerCase()),
           )}
           debounceQuery
           onQuery={handleQueryAuto}
@@ -812,14 +835,14 @@ export const FilterPlanRideTrip = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "w-full",
         )}
       >
         {/* form */}
         <div
           className={clsx(
             "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <FormRoutes
@@ -829,9 +852,9 @@ export const FilterPlanRideTrip = () => {
                 items: isOriginCompanyOfficeChecked
                   ? state.filters.origin.items
                   : !state.filters.origin.items.length &&
-                    !state.filters.origin.query.length
-                  ? state.filters.origin.saved_items
-                  : state.filters.origin.items,
+                      !state.filters.origin.query.length
+                    ? state.filters.origin.saved_items
+                    : state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectOriginRoutes(data),
@@ -889,8 +912,8 @@ export const FilterPlanRideTrip = () => {
                 items: isOriginCompanyOfficeChecked
                   ? state.filters.origin.items
                   : !state.filters.origin.items.length
-                  ? state.filters.origin.saved_items
-                  : state.filters.origin.items,
+                    ? state.filters.origin.saved_items
+                    : state.filters.origin.items,
 
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
@@ -945,8 +968,8 @@ export const FilterPlanRideTrip = () => {
                 items: isDestinationCompanyOfficeChecked
                   ? state.filters.destination.items
                   : !state.filters.destination.items.length
-                  ? state.filters.destination.saved_items
-                  : state.filters.destination.items,
+                    ? state.filters.destination.saved_items
+                    : state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectDestinationRoutes(data),
@@ -994,8 +1017,8 @@ export const FilterPlanRideTrip = () => {
                 items: isDestinationCompanyOfficeChecked
                   ? state.filters.destination.items
                   : !state.filters.destination.items.length
-                  ? state.filters.destination.saved_items
-                  : state.filters.destination.items,
+                    ? state.filters.destination.saved_items
+                    : state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectDestinationRoutes(data),
