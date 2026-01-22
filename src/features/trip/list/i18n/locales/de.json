@@ -118,7 +118,7 @@
         "description": ""
       },
       "in_progress": {
-        "title": "Reise In Bearbeitung",
+        "title": "Fahrt In Bearbeitung",
         "description": ""
       },
       "finished": {
@@ -244,7 +244,7 @@
     }
   },
   "complete_ride_confirmation": {
-    "title": "Reiseende bestätigen",
+    "title": "Fahrtende bestätigen",
     "description": "Bevor Du bestätigen, überprüfen Du bitte, ob alle Daten korrekt sind.",
     "cta": {
       "cancel": {

@@ -193,7 +193,7 @@
     }
   },
   "delete_account_confirmation": {
-    "title": "Reiseende bestätigen",
+    "title": "Fahrtende bestätigen",
     "description": "Bevor Du bestätigen, überprüfen Du bitte, ob alle Daten korrekt sind.",
     "cta": {
       "cancel": {
