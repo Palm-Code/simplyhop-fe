@@ -5,12 +5,14 @@ import { getDictionaries } from "../../i18n";
 import clsx from "clsx";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useDebounceValue } from "usehooks-ts";
+import { ListTripActionEnum, ListTripContext } from "../../context";
 
 export const SearchListTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { state, dispatch } = React.useContext(ListTripContext);
 
   const [searchValue, setSearchValue] = React.useState(
     searchParams.get("search") || "",
@@ -27,6 +29,14 @@ export const SearchListTrip = () => {
       params.delete("search");
     }
 
+    dispatch({
+      type: ListTripActionEnum.SetRideDataPaginationCurrent,
+      payload: state.ride.pagination.current + 1,
+    });
+    dispatch({
+      type: ListTripActionEnum.SetBookDataPaginationCurrent,
+      payload: state.book.pagination.current + 1,
+    });
     router.push(`${pathname}?${params.toString()}`);
   }, [debouncedSearchValue, pathname, router]);
 

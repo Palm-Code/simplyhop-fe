@@ -9,21 +9,22 @@ import { SearchDashboardTrip } from "../fragments/search";
 
 export const DashboardTripContainer = () => {
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-        "w-full"
-      )}
-    >
-      <HeaderDashboardTrip />
-      <div className={clsx("flex items-center justify-between", "w-full")}>
-        <NavigationDashboardTrip />
-        <SearchDashboardTrip />
-      </div>
-      <ListTripProvider>
+    <ListTripProvider>
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "w-full",
+        )}
+      >
+        <HeaderDashboardTrip />
+        <div className={clsx("flex items-center justify-between", "w-full")}>
+          <NavigationDashboardTrip />
+          <SearchDashboardTrip />
+        </div>
+
         <ListTripContainer />
         <AlertApp />
-      </ListTripProvider>
-    </div>
+      </div>
+    </ListTripProvider>
   );
 };

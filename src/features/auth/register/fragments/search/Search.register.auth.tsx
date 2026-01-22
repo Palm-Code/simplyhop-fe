@@ -13,11 +13,11 @@ export const SearchRegisterAuth = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const { dispatch } = React.useContext(RegisterAuthContext);
+  const { state, dispatch } = React.useContext(RegisterAuthContext);
   const isFirstRender = React.useRef(true);
 
   const [searchValue, setSearchValue] = React.useState(
-    searchParams.get("search") || ""
+    searchParams.get("search") || "",
   );
 
   const [debouncedSearchValue] = useDebounceValue(searchValue, 500);
@@ -51,6 +51,13 @@ export const SearchRegisterAuth = () => {
       params.delete("search");
     }
 
+    dispatch({
+      type: RegisterAuthActionEnum.SetOrganizationPaginationData,
+      payload: {
+        ...state.organization.pagination,
+        current: state.organization.pagination.current + 1,
+      },
+    });
     router.push(`${pathname}?${params.toString()}`);
   }, [debouncedSearchValue, pathname, router]);
 
