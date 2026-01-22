@@ -53,7 +53,7 @@ export const DashboardVehicleCard = ({
             color: "#D41010",
           },
           name: {
-            label: "Letzter Platz für deine Buchung",
+            label: "Nein",
             color: "#D41010",
           },
         },
@@ -64,7 +64,7 @@ export const DashboardVehicleCard = ({
             color: "#D41010",
           },
           name: {
-            label: "Keinet",
+            label: "Nein",
             color: "#D41010",
           },
         },
@@ -77,7 +77,7 @@ export const DashboardVehicleCard = ({
             color: "#26531A",
           },
           name: {
-            label: "Keinet",
+            label: "Nein",
             color: "#26531A",
           },
         },
@@ -88,7 +88,7 @@ export const DashboardVehicleCard = ({
             color: "#26531A",
           },
           name: {
-            label: "Erlaubt",
+            label: "Ja",
             color: "#26531A",
           },
         },
@@ -99,7 +99,7 @@ export const DashboardVehicleCard = ({
             color: "#26531A",
           },
           name: {
-            label: "Erlaubt",
+            label: "Ja",
             color: "#26531A",
           },
         },

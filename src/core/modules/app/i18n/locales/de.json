@@ -690,7 +690,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Letzter Platz für deine Buchung",
+          "label": "Nein",
           "color": "#D41010"
         }
       }
@@ -717,11 +717,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Erlaubt"
+              "name": "Ja"
             },
             {
               "id": "false",
-              "name": "Keinet"
+              "name": "Nein"
             }
           ]
         }
@@ -734,7 +734,7 @@
           "darkColor": "#FFFFFF"
         },
         "name": {
-          "label": "Erlaubt",
+          "label": "Ja",
           "color": "#727272",
           "darkColor": "#FFFFFF"
         }
@@ -746,7 +746,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Keinet",
+          "label": "Nein",
           "color": "#D41010"
         }
       }
@@ -757,11 +757,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Erlaubt"
+              "name": "Ja"
             },
             {
               "id": "false",
-              "name": "Keinet"
+              "name": "Nein"
             }
           ]
         }
@@ -774,7 +774,7 @@
           "darkColor": "#33CC33"
         },
         "name": {
-          "label": "Erlaubt",
+          "label": "Ja",
           "color": "#249124",
           "darkColor": "#33CC33"
         }
@@ -786,7 +786,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Keinet",
+          "label": "Nein",
           "color": "#D41010"
         }
       }
@@ -797,11 +797,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Erlaubt"
+              "name": "Ja"
             },
             {
               "id": "false",
-              "name": "Keinet"
+              "name": "Nein"
             }
           ]
         }
@@ -814,7 +814,7 @@
           "darkColor": "#33CC33"
         },
         "name": {
-          "label": "Erlaubt",
+          "label": "Ja",
           "color": "#249124",
           "darkColor": "#33CC33"
         }
@@ -826,7 +826,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Musik nicht erlaubt",
+          "label": "Musik nicht Ja",
           "color": "#D41010"
         }
       }
@@ -837,11 +837,11 @@
           "items": [
             {
               "id": "true",
-              "name": "Erlaubt"
+              "name": "Ja"
             },
             {
               "id": "false",
-              "name": "Keinet"
+              "name": "Nein"
             }
           ]
         }
@@ -854,7 +854,7 @@
           "darkColor": "#33CC33"
         },
         "name": {
-          "label": "Erlaubt",
+          "label": "Ja",
           "color": "#249124",
           "darkColor": "#33CC33"
         }
@@ -866,7 +866,7 @@
           "color": "#D41010"
         },
         "name": {
-          "label": "Keinet",
+          "label": "Nein",
           "color": "#D41010"
         }
       }

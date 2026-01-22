@@ -59,7 +59,7 @@ export const CardVehiclesSupport = ({
             color: "#D41010",
           },
           name: {
-            label: "Letzter Platz für deine Buchung",
+            label: "Nein",
             color: "#D41010",
           },
         },
@@ -70,7 +70,7 @@ export const CardVehiclesSupport = ({
             color: "#D41010",
           },
           name: {
-            label: "Keinet",
+            label: "Nein",
             color: "#D41010",
           },
         },
@@ -83,7 +83,7 @@ export const CardVehiclesSupport = ({
             color: "#727272",
           },
           name: {
-            label: "Keinet",
+            label: "Nein",
             color: "#727272",
           },
         },
@@ -94,7 +94,7 @@ export const CardVehiclesSupport = ({
             color: "#727272",
           },
           name: {
-            label: "Erlaubt",
+            label: "Ja",
             color: "#727272",
           },
         },
@@ -105,7 +105,7 @@ export const CardVehiclesSupport = ({
             color: "#727272",
           },
           name: {
-            label: "Erlaubt",
+            label: "Ja",
             color: "#727272",
           },
         },
