@@ -9,9 +9,13 @@ import {
 } from "@/core/models/rest/google/route";
 import { fetchRestGooglePostRouteDirections } from "@/core/services/rest/google/routes.post";
 import { decode } from "@googlemaps/polyline-codec";
+import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const useRestGooglePostRouteDirections = () => {
   const { state, dispatch } = React.useContext(PlanRideTripContext);
+  const { state: globalState, dispatch: dispatchGlobal } =
+    React.useContext(GlobalContext);
 
   const payload: RestGooglePostRouteDirectionsPayloadRequestInterface = {
     body: {
@@ -42,14 +46,51 @@ export const useRestGooglePostRouteDirections = () => {
       queryFn: () => {
         return fetchRestGooglePostRouteDirections(payload);
       },
-    }
+    },
   );
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
-      if (!Object.keys(data).length) return;
-      if (!data.routes.length) return;
+      if (
+        !state.filters.origin.selected.lat_lng ||
+        !state.filters.destination.selected.lat_lng
+      )
+        return;
+      if (!Object.keys(data).length) {
+        dispatchGlobal({
+          type: GlobalActionEnum.SetAlertData,
+          payload: {
+            ...globalState.alert,
+            items: [
+              ...globalState.alert.items,
+              {
+                id: uuidv4(),
+                variant: "error",
+                message: "Entschuldigung, wir können Ihre Route nicht finden.",
+              },
+            ],
+          },
+        });
+        return;
+      }
+      if (!data.routes.length) {
+        dispatchGlobal({
+          type: GlobalActionEnum.SetAlertData,
+          payload: {
+            ...globalState.alert,
+            items: [
+              ...globalState.alert.items,
+              {
+                id: uuidv4(),
+                variant: "error",
+                message: "Entschuldigung, wir können Ihre Route nicht finden.",
+              },
+            ],
+          },
+        });
+        return;
+      }
       const encodedPolyline = data.routes[0].polyline.encodedPolyline;
       const decodedPolyline = decode(encodedPolyline).map(([lat, lng]) => ({
         lat,
