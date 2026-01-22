@@ -36,15 +36,15 @@
         },
         {
           "id": "completed_rides",
-          "name": "Completed rides"
+          "name": "Abgeschlossene Fahrten"
         },
         {
           "id": "drivers",
-          "name": "Drivers"
+          "name": "Fahrer"
         },
         {
           "id": "upcoming_rides",
-          "name": "Upcoming Rides"
+          "name": "Geplante Fahrten"
         }
       ]
     }
