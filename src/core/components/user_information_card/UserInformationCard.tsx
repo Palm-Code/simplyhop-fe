@@ -53,6 +53,11 @@ export interface UserInformationCardProps {
       value: string;
     };
 
+    organization?: {
+      label: string;
+      value: string;
+    };
+
     aboutMe?: {
       label: string;
       value: string;
@@ -68,7 +73,16 @@ export interface UserInformationCardProps {
 export const UserInformationCard = ({
   summary = [],
   header: { avatar, displayName, cta },
-  detail: { email, firstName, lastName, gender, city, phoneNumber, aboutMe },
+  detail: {
+    email,
+    firstName,
+    lastName,
+    organization,
+    gender,
+    city,
+    phoneNumber,
+    aboutMe,
+  },
   containerClassName,
 }: UserInformationCardProps) => {
   return (
@@ -81,13 +95,13 @@ export const UserInformationCard = ({
         "border border-[#D3E7CE] dark:border-[#464646]",
         "rounded-[1.25rem]",
         "bg-[white] dark:bg-[#232323]",
-        containerClassName
+        containerClassName,
       )}
     >
       <div
         className={clsx(
           "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <div className={clsx("flex items-center justify-start gap-3")}>
@@ -98,7 +112,7 @@ export const UserInformationCard = ({
           />
           <h2
             className={clsx(
-              "text-[#292929] dark:text-white text-2xl font-bold"
+              "text-[#292929] dark:text-white text-2xl font-bold",
             )}
           >
             {displayName}
@@ -111,7 +125,7 @@ export const UserInformationCard = ({
             "px-4 py-2",
             "rounded-md",
             "border dark:border-[#33CC33] border-[#249124]",
-            "dark:text-[#33CC33] text-[#249124] text-xs font-semibold"
+            "dark:text-[#33CC33] text-[#249124] text-xs font-semibold",
           )}
           onClick={cta.onClick}
         >
@@ -129,7 +143,7 @@ export const UserInformationCard = ({
             "w-full",
             "bg-[white] dark:bg-[#292929]",
             "px-[0.5rem] py-[0.5rem]",
-            "rounded-[0.5rem]"
+            "rounded-[0.5rem]",
           )}
           style={{
             gridTemplateColumns: `repeat(${summary.length},1fr)`,
@@ -141,19 +155,20 @@ export const UserInformationCard = ({
               className={clsx(
                 "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
                 "w-full",
-                index < summary.length - 1 && "border-r border-r-border-subdued"
+                index < summary.length - 1 &&
+                  "border-r border-r-border-subdued",
               )}
             >
               <p
                 className={clsx(
-                  "text-[0.75rem] text-[#606060] dark:text-[#DADADA] font-normal"
+                  "text-[0.75rem] text-[#606060] dark:text-[#DADADA] font-normal",
                 )}
               >
                 {item.name}
               </p>
               <div
                 className={clsx(
-                  "flex items-center justify-center gap-[0.5rem]"
+                  "flex items-center justify-center gap-[0.5rem]",
                 )}
               >
                 {item.id === "ratings" && (
@@ -161,13 +176,13 @@ export const UserInformationCard = ({
                     name="Star"
                     className={clsx(
                       "w-[1rem] h-[1rem]",
-                      "fill-[#FAC248] text-[#FAC248]"
+                      "fill-[#FAC248] text-[#FAC248]",
                     )}
                   />
                 )}
                 <p
                   className={clsx(
-                    "text-[0.875rem] text-[#232323] dark:text-[white] font-bold"
+                    "text-[0.875rem] text-[#232323] dark:text-[white] font-bold",
                   )}
                 >
                   {item.value}
@@ -183,12 +198,19 @@ export const UserInformationCard = ({
       <div
         className={clsx(
           "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <UserInformationItem name={firstName.label} value={firstName.value} />
         <UserInformationItem name={lastName.label} value={lastName.value} />
       </div>
+
+      {organization && (
+        <UserInformationItem
+          name={organization.label}
+          value={organization.value}
+        />
+      )}
 
       {gender && (
         <UserInformationItem name={gender.label} value={gender.value} />

@@ -32,7 +32,7 @@ export const UserDetailDriver = () => {
           case "passengers": {
             value =
               state.user.data?.total_passengers_count?.toLocaleString(
-                "de-DE"
+                "de-DE",
               ) ?? "-";
             break;
           }
@@ -70,7 +70,7 @@ export const UserDetailDriver = () => {
             ...state.edit.form.gender,
             selected:
               globalDictionaries.personal_information.gender.options.items.find(
-                (item) => item.id === state.user.data?.gender
+                (item) => item.id === state.user.data?.gender,
               ) ?? null,
           },
           city: {
@@ -120,6 +120,12 @@ export const UserDetailDriver = () => {
             ? "-"
             : state.user.data.last_name,
         },
+        organization: {
+          label: dictionaries.user.information.organization.name,
+          value: !state.user.data?.organization?.name?.length
+            ? "-"
+            : state.user.data.organization.name,
+        },
         city: {
           label: dictionaries.user.information.address.name,
           value:
@@ -127,19 +133,19 @@ export const UserDetailDriver = () => {
             !state.user.data?.organization?.address_line_2?.length
               ? "-"
               : !state.user.data?.organization?.address_line_2?.length
-              ? state.user.data?.organization?.address ?? ""
-              : !state.user.data?.organization?.address?.length
-              ? state.user.data?.organization?.address_line_2 ?? ""
-              : `${state.user.data?.organization?.address} ${state.user.data?.organization?.address_line_2}`,
+                ? (state.user.data?.organization?.address ?? "")
+                : !state.user.data?.organization?.address?.length
+                  ? (state.user.data?.organization?.address_line_2 ?? "")
+                  : `${state.user.data?.organization?.address} ${state.user.data?.organization?.address_line_2}`,
         },
         gender: isSuperAdmin
           ? {
               label: dictionaries.user.information.gender.name,
               value: !state.user.data?.gender?.length
                 ? "-"
-                : globalDictionaries.personal_information.gender.options.items.find(
-                    (item) => item.id === state.user.data?.gender
-                  )?.name ?? "-",
+                : (globalDictionaries.personal_information.gender.options.items.find(
+                    (item) => item.id === state.user.data?.gender,
+                  )?.name ?? "-"),
             }
           : undefined,
         phoneNumber: isSuperAdmin

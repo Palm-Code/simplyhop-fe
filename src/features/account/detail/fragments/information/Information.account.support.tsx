@@ -83,13 +83,19 @@ export const InformationAccountSupport = () => {
             ? "-"
             : userState.profile.last_name,
         },
+        organization: {
+          label: dictionaries.information.organization.name,
+          value: !userState.profile?.organization?.name?.length
+            ? "-"
+            : userState.profile.organization.name,
+        },
         gender: {
           label: dictionaries.information.gender.name,
           value: !userState.profile?.gender?.length
             ? "-"
-            : globalDictionaries.personal_information.gender.options.items.find(
-                (item) => item.id === userState.profile?.gender
-              )?.name ?? "-",
+            : (globalDictionaries.personal_information.gender.options.items.find(
+                (item) => item.id === userState.profile?.gender,
+              )?.name ?? "-"),
         },
         city: {
           label: dictionaries.information.city.name,

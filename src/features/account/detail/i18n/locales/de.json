@@ -38,6 +38,9 @@
     "last_name": {
       "name": "Nachname"
     },
+    "organization": {
+      "name": "Unternehmen"
+    },
     "gender": {
       "name": "Geschlecht"
     },
