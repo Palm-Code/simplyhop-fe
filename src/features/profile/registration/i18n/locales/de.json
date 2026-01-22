@@ -211,9 +211,9 @@
     },
     "pictures": {
       "title": "Fahrzeugbilder",
-      "description": "Laden Du Bilder hoch, die Ihr Auto repräsentieren",
+      "description": "Lade Bilder hoch, die dein Auto repräsentieren",
       "form": {
-        "message": "Ziehen Du Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
+        "message": "Ziehe die Bilder hierher oder klicke, um die Dateien auszuwählen",
         "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
       },
       "square_input": {
@@ -224,7 +224,7 @@
     },
     "capacity": {
       "title": "Kapazität der Fahrzeuge",
-      "description": "Die Kapazität Ihres Autos für Sitze und Gepäckstücke",
+      "description": "Die Kapazität deines Autos für Sitze und Gepäckstücke",
       "passenger_seats": {
         "title": "Fahrgastsitze",
         "form": {
@@ -236,7 +236,7 @@
               },
               "labelProps": {
                 "id": "available_seat",
-                "children": "Verfügbare Plätze insgesamt",
+                "children": "Verfügbare Plätze Insgesamt",
                 "required": true
               }
             },
