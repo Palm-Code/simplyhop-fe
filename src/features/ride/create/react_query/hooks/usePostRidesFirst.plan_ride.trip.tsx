@@ -34,7 +34,7 @@ export const usePostRidesFirst = () => {
           destination_long:
             state.filters.destination.selected.lat_lng?.lng ?? 0,
           destination_name: state.filters.destination.selected.item?.name ?? "",
-          eta: state.detail.distance_matrix?.duration.value ?? 0,
+          eta: state.detail.distance_matrix?.duration?.value ?? 0,
           departure_time: Array.isArray(state.filters.date.selected)
             ? state.filters.date.selected
                 .map((item) => {

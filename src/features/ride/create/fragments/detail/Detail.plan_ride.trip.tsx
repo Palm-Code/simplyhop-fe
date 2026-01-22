@@ -506,14 +506,14 @@ export const DetailPlanRideTrip = () => {
               },
               travelTime: {
                 time: setDurationTime(
-                  state.detail.distance_matrix?.duration.value ?? 0
+                  state.detail.distance_matrix?.duration?.value ?? 0
                 ),
               },
               arrival: {
                 place: state.filters.destination.selected.item?.name ?? "",
                 time: `${setArrivalTime(
                   state.filters.time.value,
-                  state.detail.distance_matrix?.duration.value ?? 0
+                  state.detail.distance_matrix?.duration?.value ?? 0
                 )} Uhr`,
               },
             }}
