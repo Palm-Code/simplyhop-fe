@@ -209,8 +209,8 @@ export const CardVehiclesSupport = ({
                 name={String(cta.ride.children ?? "")}
                 className={clsx(
                   "!px-[1rem] !py-[0.5rem]",
-                  "!bg-[white] !border-[white]",
-                  "!text-[#33CC33]"
+                  "!bg-[white] dark:!bg-[#232323] !border-[white] dark:!border-[#232323]",
+                  "!text-[#249124] dark:!text-[#33CC33]"
                 )}
                 // onClick={cta.ride.onClick}
               >

@@ -43,13 +43,30 @@ export const CTAVehicleUpdateSupport = () => {
     });
   };
 
-  const isSaveDisabled = isPendingPostVehicleUpdate;
+  const isVehicleFormValid =
+    !!state.vehicle_information.general.form.car_brand.selected &&
+    !!state.vehicle_information.general.form.car_category.selected &&
+    !!state.vehicle_information.general.form.car_model.value.length &&
+    !!state.vehicle_information.general.form.license_plate.value.length &&
+    !!state.vehicle_information.capacity.passenger_seats.form.available_seat
+      .selected &&
+    !!state.vehicle_information.capacity.passenger_seats.form.available_car_seat
+      .selected &&
+    !!state.vehicle_information.capacity.luggage.form.luggage.selected &&
+    (state.vehicle_information.capacity.luggage.form.luggage.selected?.id !==
+    "0"
+      ? !!state.vehicle_information.capacity.luggage.form.luggage_size.selected
+      : true) &&
+    !!state.vehicle_information.trip.form.smoking.selected &&
+    !!state.vehicle_information.trip.form.music.selected &&
+    !!state.vehicle_information.trip.form.pet.selected;
+  const isSaveDisabled = isPendingPostVehicleUpdate || !isVehicleFormValid;
   const isSaveLoading = isPendingPostVehicleUpdate;
   return (
     <div
       className={clsx(
         "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]",
-        "w-full"
+        "w-full",
       )}
     >
       <button
@@ -60,7 +77,7 @@ export const CTAVehicleUpdateSupport = () => {
           "w-full h-full",
           "text-[1rem] text-[#DA2323] font-medium",
           "cursor-pointer",
-          "px-[1rem] py-[1rem]"
+          "px-[1rem] py-[1rem]",
         )}
         onClick={handleClickDelete}
       >

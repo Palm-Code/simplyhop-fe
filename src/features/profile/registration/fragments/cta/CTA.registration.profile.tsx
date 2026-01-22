@@ -86,8 +86,11 @@ export const CTARegistrationProfile = () => {
         !!state.vehicle_information.capacity.passenger_seats.form
           .available_car_seat.selected &&
         !!state.vehicle_information.capacity.luggage.form.luggage.selected &&
-        !!state.vehicle_information.capacity.luggage.form.luggage_size
-          .selected &&
+        (state.vehicle_information.capacity.luggage.form.luggage.selected
+          ?.id !== "0"
+          ? !!state.vehicle_information.capacity.luggage.form.luggage_size
+              .selected
+          : true) &&
         !!state.vehicle_information.trip.form.smoking.selected &&
         !!state.vehicle_information.trip.form.music.selected &&
         !!state.vehicle_information.trip.form.pet.selected;

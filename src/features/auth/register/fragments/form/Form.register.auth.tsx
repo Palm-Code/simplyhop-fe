@@ -109,6 +109,20 @@ export const FormRegisterAuth = () => {
         name: "organization",
       },
     });
+    dispatch({
+      type: RegisterAuthActionEnum.SetFormData,
+      payload: {
+        ...state.form,
+        error: null,
+      },
+    });
+    dispatch({
+      type: RegisterAuthActionEnum.SetOTPFormData,
+      payload: {
+        ...state.otp_form,
+        error: null,
+      },
+    });
   };
 
   const isEmailHasNoLength = !state.form.email.value.length;
@@ -123,14 +137,14 @@ export const FormRegisterAuth = () => {
         "grid grid-cols-1 place-content-start place-items-start gap-8",
         "px-4",
         "rounded-[1.25rem]",
-        "w-full h-full"
+        "w-full h-full",
       )}
     >
       <button
         onClick={handleClickBack}
         className={clsx(
           "flex items-center justify-start gap-4",
-          "cursor-pointer"
+          "cursor-pointer",
         )}
       >
         <SVGIcon
@@ -139,7 +153,7 @@ export const FormRegisterAuth = () => {
         />
         <p
           className={clsx(
-            "text-[#232323] dark:text-white text-base font-normal"
+            "text-[#232323] dark:text-white text-base font-normal",
           )}
         >
           {dictionaries.form.cta.back.children}
@@ -148,7 +162,7 @@ export const FormRegisterAuth = () => {
 
       <h1
         className={clsx(
-          "text-[#232323] dark:text-white text-[1.5rem] font-bold"
+          "text-[#232323] dark:text-white text-[1.5rem] font-bold",
         )}
       >
         {dictionaries.form.title}
@@ -161,7 +175,7 @@ export const FormRegisterAuth = () => {
             "w-full",
             "bg-[#F9E6E6]",
             "border border-[#C50707]",
-            "rounded-md"
+            "rounded-md",
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
@@ -173,7 +187,7 @@ export const FormRegisterAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-6",
-          "w-full"
+          "w-full",
         )}
       >
         <Textfield

@@ -60,6 +60,13 @@ export const OTPFormRegisterAuth = () => {
       },
     });
     dispatch({
+      type: RegisterAuthActionEnum.SetFormData,
+      payload: {
+        ...state.form,
+        error: null,
+      },
+    });
+    dispatch({
       type: RegisterAuthActionEnum.SetOTPFormData,
       payload: {
         ...state.otp_form,
@@ -67,6 +74,7 @@ export const OTPFormRegisterAuth = () => {
           ...state.otp_form.otp,
           value: "",
         },
+        error: null,
       },
     });
   };
@@ -90,14 +98,14 @@ export const OTPFormRegisterAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[2rem]",
-        "w-full h-full"
+        "w-full h-full",
       )}
     >
       <button
         onClick={handleClickBack}
         className={clsx(
           "flex items-center justify-start gap-4",
-          "cursor-pointer"
+          "cursor-pointer",
         )}
       >
         <SVGIcon
@@ -106,7 +114,7 @@ export const OTPFormRegisterAuth = () => {
         />
         <p
           className={clsx(
-            "text-[#232323] dark:text-white text-base font-normal"
+            "text-[#232323] dark:text-white text-base font-normal",
           )}
         >
           {dictionaries.otp_form.cta.back.children}
@@ -115,12 +123,12 @@ export const OTPFormRegisterAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <h1
           className={clsx(
-            "text-[#292929] dark:text-white text-[1.5rem] font-bold"
+            "text-[#292929] dark:text-white text-[1.5rem] font-bold",
           )}
         >
           {dictionaries.otp_form.title}
@@ -128,24 +136,24 @@ export const OTPFormRegisterAuth = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start",
-            "w-full"
+            "w-full",
           )}
         >
           <p
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal",
             )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.otp_form.description.replaceAll(
                 "{{email}}",
-                state.form.email.value
+                state.form.email.value,
               ),
             }}
           />
 
           <p
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal",
             )}
           >
             {dictionaries.otp_form.description_2}
@@ -160,7 +168,7 @@ export const OTPFormRegisterAuth = () => {
             "w-full",
             "bg-[#F9E6E6]",
             "border border-[#C50707]",
-            "rounded-[0.375rem]"
+            "rounded-[0.375rem]",
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
@@ -172,7 +180,7 @@ export const OTPFormRegisterAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full h-full"
+          "w-full h-full",
         )}
       >
         <OtpField
@@ -196,12 +204,12 @@ export const OTPFormRegisterAuth = () => {
         <div
           className={clsx(
             "flex items-center justify-center gap-[0.25rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <span
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal",
             )}
           >
             {dictionaries.otp_form.request_otp.description}
@@ -209,7 +217,7 @@ export const OTPFormRegisterAuth = () => {
           <button
             className={clsx(
               "cursor-pointer",
-              "text-[#33CC33] text-[1rem] font-normal"
+              "text-[#33CC33] text-[1rem] font-normal",
             )}
             onClick={handleRequestOTP}
           >
