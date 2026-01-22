@@ -123,15 +123,15 @@
       },
       "finished": {
         "title": "Fahrt beenden",
-        "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
+        "description": ""
       },
       "complete": {
         "title": "Fahrt beenden",
-        "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
+        "description": ""
       },
       "archive": {
         "title": "Fahrt beenden",
-        "description": "Markiere kurz, wer mitgefahren ist. So wird die Fahrt abgeschlossen und deine Fahrgäste können bewerten."
+        "description": ""
       },
       "default": {
         "title": "Title",
