@@ -5,7 +5,7 @@
       {
         "id": "block",
         "name": "Blockierte Nutzer",
-        "description": "Liste der Benutzer, die Du blockiert haben",
+        "description": "Liste der Benutzer, die Du blockiert hast.",
         "cta": {
           "children": "Siehe Liste"
         }
