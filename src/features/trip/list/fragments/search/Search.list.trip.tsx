@@ -31,11 +31,11 @@ export const SearchListTrip = () => {
 
     dispatch({
       type: ListTripActionEnum.SetRideDataPaginationCurrent,
-      payload: state.ride.pagination.current + 1,
+      payload: 1,
     });
     dispatch({
       type: ListTripActionEnum.SetBookDataPaginationCurrent,
-      payload: state.book.pagination.current + 1,
+      payload: 1,
     });
     router.push(`${pathname}?${params.toString()}`);
   }, [debouncedSearchValue, pathname, router]);

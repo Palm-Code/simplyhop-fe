@@ -55,7 +55,7 @@ export const SearchRegisterAuth = () => {
       type: RegisterAuthActionEnum.SetOrganizationPaginationData,
       payload: {
         ...state.organization.pagination,
-        current: state.organization.pagination.current + 1,
+        current: 1,
       },
     });
     router.push(`${pathname}?${params.toString()}`);
