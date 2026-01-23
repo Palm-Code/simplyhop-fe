@@ -427,6 +427,10 @@ export const DetailPlanRideTrip = () => {
     isPendingRidesFirst ||
     isPendingRidesSecond ||
     isPendingRidesThird ||
+    (Array.isArray(state.detail.form.plan.date.selected) &&
+    state.detail.form.plan.date.selected.length > 1
+      ? false
+      : !state.detail.form.plan.recurring.selected) ||
     !state.detail.form.plan.umweg.value.length ||
     !state.detail.form.plan.seat.value.length ||
     !!state.detail.form.plan.seat.error ||
@@ -573,6 +577,11 @@ export const DetailPlanRideTrip = () => {
               <Dropdownfield
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.recurring.labelProps,
+                  required:
+                    Array.isArray(state.detail.form.plan.date.selected) &&
+                    state.detail.form.plan.date.selected.length > 1
+                      ? false
+                      : true,
                 }}
                 inputProps={{
                   ...dictionaries.detail.plan.form.input.recurring.inputProps,
