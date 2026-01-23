@@ -358,6 +358,7 @@ export const ImportExport = ({
               }
               onChange={handleFileImport}
               className="hidden"
+              autoComplete="off"
             />
             
             <button

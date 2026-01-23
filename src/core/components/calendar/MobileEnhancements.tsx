@@ -222,6 +222,7 @@ export const MobileEventModal = ({
                   onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                   placeholder="Enter event title"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  autoComplete="off"
                   autoFocus
                 />
               </div>
@@ -271,6 +272,7 @@ export const MobileEventModal = ({
                       value={formData.startTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, startTime: e.target.value }))}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      autoComplete="off"
                     />
                   </div>
                   <div>
@@ -282,6 +284,7 @@ export const MobileEventModal = ({
                       value={formData.endTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      autoComplete="off"
                     />
                   </div>
                 </div>
@@ -301,6 +304,7 @@ export const MobileEventModal = ({
                   placeholder="Add description..."
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  autoComplete="off"
                 />
               </div>
 

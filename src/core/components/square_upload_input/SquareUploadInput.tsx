@@ -54,6 +54,7 @@ export const SquareUploadInput = ({
         className={clsx("sr-only")}
         multiple={true}
         accept={"image/jpeg, image/jpg, image/png, .pdf"}
+        autoComplete="off"
         onChange={handleChangeUpload}
       />
 

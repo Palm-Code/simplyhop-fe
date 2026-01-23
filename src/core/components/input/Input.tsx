@@ -9,6 +9,7 @@ export const Input = forwardRef<
     <input
       ref={ref}
       {...props}
+      autoComplete="off"
       className={clsx(
         "peer",
         "w-full",

@@ -130,6 +130,7 @@ export const OtpField = ({
             maxLength={1}
             value={otpValues[index]}
             disabled={disabled}
+            autoComplete="off"
             onChange={(e) => handleInputChange(index, e.target.value)}
             onKeyDown={(e) => handleKeyDown(index, e)}
             onPaste={index === 0 ? handlePaste : undefined}

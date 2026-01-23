@@ -158,6 +158,7 @@ export const EventModal = ({
               <input
                 type="text"
                 value={formData.title}
+                autoComplete="off"
                 onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })
                 }
@@ -180,6 +181,7 @@ export const EventModal = ({
               </label>
               <textarea
                 value={formData.description}
+                autoComplete="off"
                 onChange={(e) =>
                   setFormData({ ...formData, description: e.target.value })
                 }
@@ -197,6 +199,7 @@ export const EventModal = ({
               <input
                 type="date"
                 value={dayjs(formData.date).format("YYYY-MM-DD")}
+                autoComplete="off"
                 onChange={(e) =>
                   setFormData({ ...formData, date: new Date(e.target.value) })
                 }
@@ -233,6 +236,7 @@ export const EventModal = ({
                   <input
                     type="time"
                     value={formData.startTime}
+                    autoComplete="off"
                     onChange={(e) =>
                       setFormData({ ...formData, startTime: e.target.value })
                     }
@@ -246,6 +250,7 @@ export const EventModal = ({
                   <input
                     type="time"
                     value={formData.endTime}
+                    autoComplete="off"
                     onChange={(e) =>
                       setFormData({ ...formData, endTime: e.target.value })
                     }

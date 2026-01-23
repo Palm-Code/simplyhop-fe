@@ -10,6 +10,7 @@ export const InputPrice = forwardRef<
       ref={ref}
       {...props}
       type="number"
+      autoComplete="off"
       className={clsx(
         "h-full w-[228px]",
         "bg-[white] dark:bg-[#232323]",

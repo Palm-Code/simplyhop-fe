@@ -129,6 +129,7 @@ export const PlaceAutocomplete = ({
             type="text"
             placeholder="Suchen"
             value={searchValue}
+            autoComplete="off"
             onChange={(e) => setSearchValue(e.target.value)}
             onKeyPress={handleKeyPress}
             className={clsx(

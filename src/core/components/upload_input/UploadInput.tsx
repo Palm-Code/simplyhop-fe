@@ -151,6 +151,7 @@ export const UploadInput = ({
           className={clsx("sr-only")}
           multiple={multiple}
           accept={"image/jpeg, image/jpg, image/png, .pdf"}
+          autoComplete="off"
           onChange={handleChangeUpload}
         />
 

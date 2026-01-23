@@ -9,6 +9,7 @@ export const Textarea = forwardRef<
     <textarea
       ref={ref}
       {...props}
+      autoComplete="off"
       className={clsx(
         "peer",
         "w-full",

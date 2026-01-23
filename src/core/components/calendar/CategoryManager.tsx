@@ -96,6 +96,7 @@ export const CategoryManager = ({
                 value={newCategory.name}
                 onChange={(e) => setNewCategory(prev => ({ ...prev, name: e.target.value }))}
                 placeholder="Enter category name"
+                autoComplete="off"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -154,6 +155,7 @@ export const CategoryManager = ({
                 onChange={(e) => setNewCategory(prev => ({ ...prev, description: e.target.value }))}
                 placeholder="Brief description of this category"
                 rows={2}
+                autoComplete="off"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>

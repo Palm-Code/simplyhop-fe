@@ -161,6 +161,7 @@ This share includes ${share.events.length} events and gives you ${share.permissi
                 onChange={(e) => setShareSettings(prev => ({ ...prev, name: e.target.value }))}
                 placeholder="e.g., Team Calendar, Project Timeline"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                autoComplete="off"
               />
             </div>
 
@@ -213,6 +214,7 @@ This share includes ${share.events.length} events and gives you ${share.permissi
                   onChange={(e) => setShareSettings(prev => ({ ...prev, password: e.target.value }))}
                   placeholder="Enter password for access"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  autoComplete="off"
                 />
               </div>
             )}
@@ -226,6 +228,7 @@ This share includes ${share.events.length} events and gives you ${share.permissi
                 value={shareSettings.expiresAt}
                 onChange={(e) => setShareSettings(prev => ({ ...prev, expiresAt: e.target.value }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                autoComplete="off"
               />
             </div>
 
