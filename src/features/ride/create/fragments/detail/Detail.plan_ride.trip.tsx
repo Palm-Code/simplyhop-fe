@@ -427,10 +427,6 @@ export const DetailPlanRideTrip = () => {
     isPendingRidesFirst ||
     isPendingRidesSecond ||
     isPendingRidesThird ||
-    (Array.isArray(state.detail.form.plan.date.selected) &&
-    state.detail.form.plan.date.selected.length > 1
-      ? false
-      : !state.detail.form.plan.recurring.selected) ||
     !state.detail.form.plan.umweg.value.length ||
     !state.detail.form.plan.seat.value.length ||
     !!state.detail.form.plan.seat.error ||

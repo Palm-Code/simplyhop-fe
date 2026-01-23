@@ -14,7 +14,7 @@ export type PutRidesSecondPathPayloadRequestInterface = {
 };
 
 export type PutRidesSecondBodyPayloadRequestInterface = {
-  recurring_ride: string; //"no";
+  recurring_ride?: string; //"no";
   waiting_time: string; //"5 minuten";
   available_seats: number; //2;
   additional_info: string; //"my information";

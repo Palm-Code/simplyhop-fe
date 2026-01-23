@@ -220,7 +220,7 @@
             "labelProps": {
               "id": "recurring",
               "children": "Wiederkehrende Fahrt",
-              "required": true
+              "required": false
             },
             "items": [
               {

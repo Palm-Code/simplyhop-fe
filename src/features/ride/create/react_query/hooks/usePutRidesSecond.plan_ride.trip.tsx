@@ -28,7 +28,8 @@ export const usePutRidesSecond = () => {
           id: data.id,
         },
         body: {
-          recurring_ride: state.detail.form.plan.recurring.selected?.id ?? "no",
+          recurring_ride:
+            state.detail.form.plan.recurring.selected?.id ?? undefined,
           waiting_time: state.detail.form.plan.umweg.value,
           available_seats: !state.detail.form.plan.seat.value
             ? 0
