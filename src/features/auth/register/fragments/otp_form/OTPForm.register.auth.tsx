@@ -48,6 +48,17 @@ export const OTPFormRegisterAuth = () => {
   };
 
   const handleRequestOTP = () => {
+    dispatch({
+      type: RegisterAuthActionEnum.SetOTPFormData,
+      payload: {
+        ...state.otp_form,
+        otp: {
+          ...state.otp_form.otp,
+          value: "",
+        },
+        error: null,
+      },
+    });
     postAuthRequestOTPRegistration();
   };
 

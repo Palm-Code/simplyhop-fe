@@ -45,6 +45,17 @@ export const OTPFormLoginAuth = () => {
   };
 
   const handleRequestOTP = () => {
+    dispatch({
+      type: LoginAuthActionEnum.SetOTPFormData,
+      payload: {
+        ...state.otp_form,
+        otp: {
+          ...state.otp_form.otp,
+          value: "",
+        },
+        error: null,
+      },
+    });
     postAuthRequestOTP();
   };
 
@@ -65,18 +76,18 @@ export const OTPFormLoginAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[2rem]",
-        "w-full h-full"
+        "w-full h-full",
       )}
     >
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <h1
           className={clsx(
-            "text-[#292929] dark:text-white text-[1.5rem] font-bold"
+            "text-[#292929] dark:text-white text-[1.5rem] font-bold",
           )}
         >
           {dictionaries.otp_form.title}
@@ -84,24 +95,24 @@ export const OTPFormLoginAuth = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start",
-            "w-full"
+            "w-full",
           )}
         >
           <p
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal",
             )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.otp_form.description.replaceAll(
                 "{{email}}",
-                state.form.email.value
+                state.form.email.value,
               ),
             }}
           />
 
           <p
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal",
             )}
           >
             {dictionaries.otp_form.description_2}
@@ -116,7 +127,7 @@ export const OTPFormLoginAuth = () => {
             "w-full",
             "bg-[#F9E6E6]",
             "border border-[#C50707]",
-            "rounded-[0.375rem]"
+            "rounded-[0.375rem]",
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
@@ -128,7 +139,7 @@ export const OTPFormLoginAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full h-full"
+          "w-full h-full",
         )}
       >
         <OtpField
@@ -152,12 +163,12 @@ export const OTPFormLoginAuth = () => {
         <div
           className={clsx(
             "flex items-center justify-center gap-[0.25rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <span
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal whitespace-nowrap"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal whitespace-nowrap",
             )}
           >
             {dictionaries.otp_form.request_otp.description}
@@ -165,7 +176,7 @@ export const OTPFormLoginAuth = () => {
           <button
             className={clsx(
               "cursor-pointer",
-              "text-[#33CC33] text-[1rem] font-normal whitespace-nowrap"
+              "text-[#33CC33] text-[1rem] font-normal whitespace-nowrap",
             )}
             onClick={handleRequestOTP}
           >

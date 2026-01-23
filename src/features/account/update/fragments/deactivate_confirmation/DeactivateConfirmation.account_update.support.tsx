@@ -63,6 +63,20 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
   };
 
   const handleRequestOTP = () => {
+    dispatch({
+      type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
+      payload: {
+        ...state.deactivate_confirmation,
+        form: {
+          ...state.deactivate_confirmation.form,
+          otp: {
+            ...state.deactivate_confirmation.form.otp,
+            value: "",
+          },
+          error: null,
+        },
+      },
+    });
     postAuthRequestOTPDeactivate();
   };
 
@@ -102,7 +116,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "!px-[0rem] !py-[0rem]",
       )}
       open={isOpen}
       variant={isLg ? "modal" : "page_sheet"}
@@ -114,7 +128,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         className={clsx(
           "absolute top-[1.5rem] left-[1.5rem]",
           "block lg:hidden",
-          "cursor-pointer"
+          "cursor-pointer",
         )}
         onClick={handleClose}
       >
@@ -122,7 +136,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
           name="X"
           className={clsx(
             "w-[1.5rem] h-[1.5rem]",
-            "text-[#5B5B5B] dark:text-[#C3C3C3]"
+            "text-[#5B5B5B] dark:text-[#C3C3C3]",
           )}
         />
       </button>
@@ -131,13 +145,13 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
           "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full lg:h-fit",
           "overflow-auto",
-          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]",
         )}
       >
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center",
-            "w-full"
+            "w-full",
           )}
         >
           <div
@@ -145,14 +159,14 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5]"
+              "bg-[#F5F5F5]",
             )}
           >
             <SVGIcon
               name="OctagonX"
               className={clsx(
                 "w-[5rem] h-[5rem]",
-                "text-[black] dark:text-white"
+                "text-[black] dark:text-white",
               )}
             />
           </div>
@@ -160,7 +174,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
 
         <h1
           className={clsx(
-            "text-[1.5rem] text-[black] dark:text-white font-bold text-center"
+            "text-[1.5rem] text-[black] dark:text-white font-bold text-center",
           )}
         >
           {dictionaries.deactivate_confirmation.title}
@@ -168,7 +182,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
 
         <p
           className={clsx(
-            "text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center"
+            "text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center",
           )}
         >
           {dictionaries.deactivate_confirmation.message}
@@ -181,7 +195,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
               "w-full",
               "bg-[#F9E6E6]",
               "border border-[#C50707]",
-              "rounded-[0.375rem]"
+              "rounded-[0.375rem]",
             )}
           >
             <span
@@ -195,7 +209,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <OtpField
@@ -215,7 +229,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
             "w-full",
             "py-[1rem]",
             "text-[1rem] text-[#C50707] font-medium text-left",
-            "cursor-pointer"
+            "cursor-pointer",
           )}
           disabled={isSubmitDisabled}
           onClick={handleClickDeactivateConfirmation}
@@ -227,12 +241,12 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         <div
           className={clsx(
             "flex items-center justify-center gap-[0.25rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <span
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal"
+              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal",
             )}
           >
             {
@@ -242,7 +256,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
             <span
               className={clsx(
                 "cursor-pointer",
-                "text-[#33CC33] text-[1rem] font-normal"
+                "text-[#33CC33] text-[1rem] font-normal",
               )}
               onClick={handleRequestOTP}
             >
