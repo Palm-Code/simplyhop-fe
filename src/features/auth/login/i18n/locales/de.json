@@ -42,7 +42,7 @@
   },
   "otp_form": {
     "title": "Bestätigen deine Anmeldung",
-    "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Geben den Code hier ein oder klicke auf den Button in der E-Mail, um fortzufahren.",
+    "description": "Wir haben eine E-Mail an <strong>{{email}}</strong> gesendet.<br/>Gebe den Code hier ein oder klicke auf den Button in der E-Mail, um fortzufahren.",
     "description_2": "Wenn Du die E-Mail nicht sehen kannst, überprüfe bitte deinen Spam- oder Junk-Ordner.",
     "input": {
       "otp": {
@@ -58,10 +58,14 @@
       }
     },
     "request_otp": {
-      "description": "Du haben keinen Code erhalten?",
+      "description": "Du hast keinen Code erhalten?",
       "cta": {
         "request_otp": {
-          "children": "Fordern Du einen neuen Code an."
+          "children": "Fordere einen neuen Code an."
+        },
+
+        "login": {
+          "children": "Code bestätigen"
         }
       }
     }
