@@ -41,7 +41,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
       className={clsx(
         "grid grid-rows-1 grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 place-content-center place-items-center",
         "w-full h-full min-h-screen",
-        "relative"
+        "relative",
       )}
     >
       <div
@@ -50,11 +50,11 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           "relative",
           "w-full h-full",
           "px-4 py-4",
-          "box-border"
+          "box-border",
         )}
       >
         <Image
-          src={"/images/auth/new-auth-bg-portrait.png"}
+          src={"/images/auth/new-auth-bg-portrait-3.png"}
           alt="login"
           width={776}
           height={950}
@@ -63,30 +63,30 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           className={clsx(
             "w-full h-full max-h-[calc(100vh-2rem)]",
             "object-center object-cover",
-            "rounded-2xl"
+            "rounded-2xl",
           )}
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(7, 37, 0, 0.03) 34.57%, #020601 103.67%)",
-          }}
+          // style={{
+          //   background:
+          //     "linear-gradient(180deg, rgba(7, 37, 0, 0.03) 34.57%, #020601 103.67%)",
+          // }}
         />
         <div
           className={clsx(
             "absolute left-15 bottom-9",
-            "grid grid-cols-1 place-content-start place-items-start gap-0"
+            "grid grid-cols-1 place-content-start place-items-start gap-0",
           )}
         >
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-0"
+              "grid grid-cols-1 place-content-start place-items-start gap-0",
             )}
           >
             <h1
               className={clsx(
-                "text-[#333FFF] xl:text-[104.6px] text-[80px] font-bold leading-24"
+                "text-[#333FFF] xl:text-[104.6px] text-[80px] font-bold leading-24",
               )}
             >
-              {"Simply"}
+              {"Simply "}
               <span className={clsx("text-[#5AC53D]")}>{"Hop"}</span>
             </h1>
             <p className={clsx("text-[#FFFFFF] text-[2rem] font-semibold")}>
