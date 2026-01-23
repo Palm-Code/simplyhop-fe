@@ -22,18 +22,16 @@ export const OtpField = ({
 }: OtpFieldProps) => {
   const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
   const [otpValues, setOtpValues] = React.useState<string[]>(
-    Array(length).fill("")
+    Array(length).fill(""),
   );
 
   React.useEffect(() => {
-    if (value) {
-      const valueArray = value.split("").slice(0, length);
-      const paddedArray = [
-        ...valueArray,
-        ...Array(length - valueArray.length).fill(""),
-      ];
-      setOtpValues(paddedArray);
-    }
+    const valueArray = value.split("").slice(0, length);
+    const paddedArray = [
+      ...valueArray,
+      ...Array(length - valueArray.length).fill(""),
+    ];
+    setOtpValues(paddedArray);
   }, [value, length]);
 
   const handleInputChange = (index: number, inputValue: string) => {
@@ -59,7 +57,7 @@ export const OtpField = ({
 
   const handleKeyDown = (
     index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if (e.key === "Backspace" && !otpValues[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
@@ -99,7 +97,7 @@ export const OtpField = ({
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-        "w-full"
+        "w-full",
       )}
     >
       {labelProps && (
@@ -108,7 +106,7 @@ export const OtpField = ({
           className={clsx(
             "relative top-0 left-0 translate-y-0 text-[0.875rem]",
             error ? "!text-[#DA2323]" : "!text-[#5B5B5B]",
-            labelProps.className
+            labelProps.className,
           )}
         />
       )}
@@ -116,7 +114,7 @@ export const OtpField = ({
       <div
         className={clsx(
           "flex items-center justify-center gap-[0.5rem]",
-          "w-full"
+          "w-full",
         )}
       >
         {Array.from({ length }, (_, index) => (
@@ -143,7 +141,7 @@ export const OtpField = ({
               "focus:border-[#33CC33]",
               disabled && "!bg-[#F6F6F6] dark:!bg-[#232323] cursor-not-allowed",
               error && "!border-[#DA2323]",
-              "transition-colors duration-200"
+              "transition-colors duration-200",
             )}
           />
         ))}
@@ -153,7 +151,7 @@ export const OtpField = ({
         <span
           className={clsx(
             "text-[0.625rem] text-[#DA2323] font-normal",
-            "pl-[0.5rem]"
+            "pl-[0.5rem]",
           )}
         >
           {error}
