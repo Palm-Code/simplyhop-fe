@@ -61,9 +61,9 @@
           {
             "id": "call_center",
             "name": "Telefon",
-            "description": "+49 / 0172 797 16 66",
+            "description": "+49 / 351 850 966 33",
             "image_url": "/images/general/phone_3d.png",
-            "href": "tel:+4901727971666"
+            "href": "tel:+4935185096633"
           },
           {
             "id": "email",
