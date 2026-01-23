@@ -28,7 +28,7 @@ export const useGetOrganizationList = () => {
       include: "addresses",
       "page[number]": state.organization.pagination.current,
       "page[size]": 30,
-      search: search ?? "",
+      search: search ?? undefined,
     },
   };
   const query = useQuery<
