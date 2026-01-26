@@ -31,6 +31,14 @@ export const useRideFilterResultTrip = () => {
   const { state: userState } = React.useContext(UserContext);
   const companyOfficeAddreses =
     userState.profile?.organization?.addresses ?? [];
+  const companyOfficeItems =
+    companyOfficeAddreses?.map((item) => {
+      return {
+        id: String(item.id),
+        name: item.name ?? "",
+        description: item.address ?? "",
+      };
+    }) ?? [];
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
     libraries: LIBRARIES,
@@ -110,9 +118,11 @@ export const useRideFilterResultTrip = () => {
     });
     let originData: null | { id: string; name: string } = null;
     let originLatLng: null | { lat: number; lng: number } = null;
+    let isOriginCompanyAddress: boolean = false;
 
     let destinationData: null | { id: string; name: string } = null;
     let destinationLatLng: null | { lat: number; lng: number } = null;
+    let isDestinationCompanyAddress: boolean = false;
 
     let dateData: Date[] = [];
 
@@ -125,9 +135,10 @@ export const useRideFilterResultTrip = () => {
       const isCompanyAddressId = !isNaN(parseInt(originId));
       if (isCompanyAddressId) {
         const selectedCompanyAddress = companyOfficeAddreses.find(
-          (item) => String(item.id) === originId
+          (item) => String(item.id) === originId,
         );
         if (!!selectedCompanyAddress) {
+          isOriginCompanyAddress = true;
           originData = {
             id: String(selectedCompanyAddress.id),
             name: selectedCompanyAddress.name ?? "",
@@ -152,9 +163,10 @@ export const useRideFilterResultTrip = () => {
       const isCompanyAddressId = !isNaN(parseInt(destinationId));
       if (isCompanyAddressId) {
         const selectedCompanyAddress = companyOfficeAddreses.find(
-          (item) => String(item.id) === destinationId
+          (item) => String(item.id) === destinationId,
         );
         if (!!selectedCompanyAddress) {
+          isDestinationCompanyAddress = true;
           destinationData = {
             id: String(selectedCompanyAddress.id),
             name: selectedCompanyAddress.name ?? "",
@@ -222,6 +234,15 @@ export const useRideFilterResultTrip = () => {
             saved_items: !findTripOriginStorage.data
               ? []
               : findTripOriginStorage.data,
+            items: isOriginCompanyAddress
+              ? companyOfficeItems.filter(
+                  (item) => item.id !== destinationData?.id,
+                )
+              : state.filters.origin.items,
+            company_office: {
+              ...state.filters.origin.company_office,
+              checked: isOriginCompanyAddress,
+            },
           },
           destination: {
             ...state.filters.destination,
@@ -233,6 +254,13 @@ export const useRideFilterResultTrip = () => {
             saved_items: !findTripDestinationStorage.data
               ? []
               : findTripDestinationStorage.data,
+            items: isDestinationCompanyAddress
+              ? companyOfficeItems.filter((item) => item.id !== originData?.id)
+              : state.filters.destination.items,
+            company_office: {
+              ...state.filters.destination.company_office,
+              checked: isDestinationCompanyAddress,
+            },
           },
           date: {
             mode: dateData.length > 1 ? "multiple" : "single",
@@ -247,12 +275,12 @@ export const useRideFilterResultTrip = () => {
                   ...item,
                   value:
                     item.id === "adult"
-                      ? adultData ?? 0
+                      ? (adultData ?? 0)
                       : item.id === "children"
-                      ? childrenData ?? 0
-                      : 0,
+                        ? (childrenData ?? 0)
+                        : 0,
                 };
-              }
+              },
             ),
             car_seat: {
               ...state.filters.passenger.car_seat,
@@ -266,6 +294,25 @@ export const useRideFilterResultTrip = () => {
 
   React.useEffect(() => {
     if (!isLoaded || !window.google) return;
+
+    // Wait for user profile to be loaded if we need company addresses
+    const needsCompanyAddresses =
+      (originId && !isNaN(parseInt(originId))) ||
+      (destinationId && !isNaN(parseInt(destinationId)));
+
+    if (
+      needsCompanyAddresses &&
+      (!userState.profile || !companyOfficeAddreses.length)
+    ) {
+      return;
+    }
+
     setDefaultData();
-  }, [isLoaded]);
+  }, [
+    isLoaded,
+    userState.profile,
+    companyOfficeAddreses.length,
+    originId,
+    destinationId,
+  ]);
 };
