@@ -36,13 +36,12 @@ export const VehicleUpdateSupportContainer = () => {
               "w-full",
               "pt-[2rem] lg:pt-[0rem]",
               // "sticky top-[90px] z-[30]",
-              "bg-[white]",
               "pb-[1.5rem]"
             )}
           >
             <h2
               className={clsx(
-                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
               {dictionaries.vehicle_information.title}
