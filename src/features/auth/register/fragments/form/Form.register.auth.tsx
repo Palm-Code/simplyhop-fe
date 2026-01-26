@@ -9,6 +9,7 @@ import { Button } from "@/core/components/button";
 import { getError } from "@/core/utils/form";
 import { usePostAuthRequestOTPRegistration } from "../../react_query/hooks";
 import SVGIcon from "@/core/icons";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const FormRegisterAuth = () => {
   const dictionaries = getDictionaries();
@@ -131,6 +132,7 @@ export const FormRegisterAuth = () => {
     isEmailHasNoLength ||
     isEmailInvalid ||
     isPendingPostAuthRequestOTPRegistration;
+  const isSubmitLoading = isPendingPostAuthRequestOTPRegistration;
   return (
     <div
       className={clsx(
@@ -222,6 +224,7 @@ export const FormRegisterAuth = () => {
           disabled={isSubmitDisabled}
           onClick={handleClickRegister}
         >
+          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.form.cta.save.children}
         </Button>
       </div>
