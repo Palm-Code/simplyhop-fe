@@ -876,10 +876,10 @@
       "type": {
         "options": {
           "items": [
-            {
-              "id": "female",
-              "name": "Weiblich"
-            },
+            { "id": "male", "name": "Männlich" },
+            { "id": "female", "name": "Weiblich" },
+            { "id": "diverse", "name": "Divers" },
+            { "id": "unspecified", "name": "Keine Angabe" },
             {
               "id": "undefined",
               "name": "Alle"

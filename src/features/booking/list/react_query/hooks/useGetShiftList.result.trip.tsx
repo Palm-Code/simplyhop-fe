@@ -40,6 +40,21 @@ export const useGetShifts = () => {
           },
         },
       });
+      dispatch({
+        type: ResultTripActionEnum.SetVehicleFiltersData,
+        payload: {
+          ...state.vehicle_filters,
+          shift: {
+            ...state.vehicle_filters.shift,
+            items: data.data.map((item) => {
+              return {
+                id: String(item.id),
+                name: item.name,
+              };
+            }),
+          },
+        },
+      });
     }
   }, [query.data, query.isFetching]);
   return query;
