@@ -27,7 +27,7 @@ export const DataTableListUserBlock = () => {
             "grid grid-cols-1 place-content-start place-items-start gap-6",
             "w-full",
             "px-4 py-4",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#232323]",
             "rounded-2xl"
           )}
         >
@@ -50,7 +50,7 @@ export const DataTableListUserBlock = () => {
             "grid grid-cols-1 place-content-start place-items-start gap-6",
             "w-full",
             "px-4 py-4",
-            "bg-[white]",
+            "bg-[white] dark:bg-[#232323]",
             "rounded-2xl"
           )}
         >
@@ -83,7 +83,7 @@ export const DataTableListUserBlock = () => {
           "grid grid-cols-1 place-content-start place-items-start gap-6",
           "w-full",
           "px-4 py-4",
-          "bg-[white]",
+          "bg-[white] dark:bg-[#232323]",
           "rounded-2xl"
         )}
       >
