@@ -223,7 +223,7 @@
   },
   "delete_notification": {
     "title": "Auto löschen?",
-    "message": "Du werden den <span style='color:black;font-weight:bold;'>{{type}}</span> löschen",
+    "message": "Du werden den <span class='text-black dark:text-white font-bold'>{{type}}</span> löschen",
     "information": {
       "items": [
         {
