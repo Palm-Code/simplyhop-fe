@@ -107,10 +107,10 @@ export const PictureVehicleInformationFormVehicleUpdateSupport = () => {
           "w-full"
         )}
       >
-        <p className={clsx("text-[0.875rem] text-[#232323CC] font-medium")}>
+        <p className={clsx("text-[0.875rem] text-[#232323CC] dark:text-white font-medium")}>
           {dictionaries.vehicle_information.pictures.title}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>
+        <p className={clsx("text-[0.75rem] text-[#606060] dark:text-[#C3C3C3] font-normal")}>
           {dictionaries.vehicle_information.pictures.description}
         </p>
       </div>

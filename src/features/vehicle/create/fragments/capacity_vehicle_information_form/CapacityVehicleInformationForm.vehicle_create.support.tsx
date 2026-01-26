@@ -124,10 +124,10 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
           "w-full"
         )}
       >
-        <p className={clsx("text-[0.875rem] text-[#232323CC] font-medium")}>
+        <p className={clsx("text-[0.875rem] text-[#232323CC] dark:text-white font-medium")}>
           {dictionaries.vehicle_information.capacity.title}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#606060] font-normal")}>
+        <p className={clsx("text-[0.75rem] text-[#606060] dark:text-[#C3C3C3] font-normal")}>
           {dictionaries.vehicle_information.capacity.description}
         </p>
       </div>
@@ -139,7 +139,7 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
           "w-full"
         )}
       >
-        <p className={clsx("text-[0.875rem] text-[#232323CC] font-medium")}>
+        <p className={clsx("text-[0.875rem] text-[#232323CC] dark:text-white font-medium")}>
           {dictionaries.vehicle_information.capacity.passenger_seats.title}
         </p>
 

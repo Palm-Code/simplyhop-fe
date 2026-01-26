@@ -18,13 +18,13 @@ export const VehicleCreateSupportContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "lg:pt-[2rem] lg:pb-[3rem] px-[1rem]"
+          "lg:pt-[2rem] lg:pb-[3rem] px-[1rem]",
         )}
       >
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full max-w-container"
+            "w-full max-w-container",
           )}
         >
           <div
@@ -33,13 +33,12 @@ export const VehicleCreateSupportContainer = () => {
               "w-full",
               "pt-[2rem] lg:pt-[0rem]",
               // "sticky top-[90px] z-[30]",
-              "bg-[white]",
-              "pb-[1.5rem]"
+              "pb-[1.5rem]",
             )}
           >
             <h2
               className={clsx(
-                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold",
               )}
             >
               {dictionaries.vehicle_information.title}
@@ -49,13 +48,13 @@ export const VehicleCreateSupportContainer = () => {
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-              "w-full"
+              "w-full",
             )}
           >
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <GeneralVehicleInformationFormVehicleCreateSupport />
