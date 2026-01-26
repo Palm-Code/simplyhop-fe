@@ -61,9 +61,9 @@
           {
             "id": "call_center",
             "name": "Telefon",
-            "description": "+49 / 351 850 966 33",
+            "description": "+49 / 351 850 966 32",
             "image_url": "/images/general/phone_3d.png",
-            "href": "tel:+4935185096633"
+            "href": "tel:+4935185096632"
           },
           {
             "id": "email",
