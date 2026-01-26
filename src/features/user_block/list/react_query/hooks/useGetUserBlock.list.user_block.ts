@@ -21,7 +21,7 @@ export const useGetUserBlockList = () => {
       "filter[user_id]": String(userState.profile?.id ?? -1),
       include: "user,blockedUser",
       "page[number]": 1,
-      "page[size]": 100,
+      "page[size]": 30,
     },
   };
   const query = useQuery<
