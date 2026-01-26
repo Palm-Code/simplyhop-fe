@@ -139,7 +139,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
+        "maskedValue": "{{adult}} Erwachsene"
       }
     },
     "cta": {

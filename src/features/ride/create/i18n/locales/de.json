@@ -167,7 +167,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
+        "maskedValue": "{{adult}} Erwachsene"
       },
       "time": {
         "inputProps": {

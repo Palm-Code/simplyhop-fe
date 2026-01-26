@@ -104,7 +104,7 @@
     "title": "Details zur Fahrt",
     "passenger": {
       "label": "Passagiere",
-      "maskedValue": "{{adult}} Erwachsene, {{children}} Kinder"
+      "maskedValue": "{{adult}} Erwachsene"
     },
     "price": {
       "form": {

@@ -96,7 +96,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
+        "maskedValue": "{{adult}} Erwachsene"
       }
     },
     "cta": {
@@ -210,7 +210,7 @@
     "title": "Details zur Fahrt",
     "passenger": {
       "label": "Passagiere",
-      "maskedValue": "{{adult}} Erwachsene, {{children}} Kinder"
+      "maskedValue": "{{adult}} Erwachsene"
     },
     "price": {
       "form": {
