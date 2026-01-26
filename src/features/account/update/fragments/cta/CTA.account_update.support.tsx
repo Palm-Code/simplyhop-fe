@@ -21,12 +21,20 @@ export const CTAAccountUpdateSupport = () => {
     isPending: isPendingPostUserProfileCreate,
   } = usePostUserProfileCreate();
 
+  const isPersonalFormValid =
+    !!state.form.first_name.value.length &&
+    !state.form.first_name.error &&
+    !!state.form.last_name.value.length &&
+    !state.form.last_name.error &&
+    !!state.form.gender.selected &&
+    !state.form.gender.error &&
+    !!state.form.city.value.length &&
+    !state.form.city.error &&
+    !!state.form.phonenumber.value.length &&
+    !state.form.phonenumber.error;
+
   const isSubmitDisabled =
-    !!state.form.first_name.error ||
-    !!state.form.last_name.error ||
-    !!state.form.city.error ||
-    !!state.form.phonenumber.error ||
-    isPendingPostUserProfileCreate;
+    !isPersonalFormValid || isPendingPostUserProfileCreate;
   const isSubmitLoading = isPendingPostUserProfileCreate;
 
   const handleClickSave = async () => {
@@ -72,7 +80,7 @@ export const CTAAccountUpdateSupport = () => {
       className={clsx(
         "grid grid-cols-1 lg:grid-cols-2 items-start content-start justify-center justify-items-center gap-[1rem]",
         "w-full",
-        "py-[1rem]"
+        "py-[1rem]",
       )}
     >
       <button
@@ -82,7 +90,7 @@ export const CTAAccountUpdateSupport = () => {
           "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
           "w-full h-full",
           "text-[1rem] text-[#DA2323] font-medium",
-          "cursor-pointer"
+          "cursor-pointer",
         )}
         onClick={handleClickDeactivate}
       >
