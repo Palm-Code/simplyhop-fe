@@ -80,12 +80,12 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5]"
+              "bg-[#F5F5F5] dark:bg-[#2A2A2A]"
             )}
           >
             <SVGIcon
               name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black]")}
+              className={clsx("w-[5rem] h-[5rem]", "text-[black] dark:text-white")}
             />
           </div>
         </div>
@@ -97,13 +97,13 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
           )}
         >
           <h1
-            className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+            className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
           >
             {dictionaries.delete_notification.title}
           </h1>
           <h2
             className={clsx(
-              "text-[1rem] text-[#888888] font-normal text-center"
+              "text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center"
             )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.delete_notification.message.replace(
@@ -120,7 +120,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
             "w-full"
           )}
         >
-          <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+          <p className={clsx("text-[1rem] text-[#232323] dark:text-white font-semibold")}>
             {dictionaries.delete_notification.title}
           </p>
           <ol
@@ -135,7 +135,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               (item, index) => (
                 <li
                   key={index}
-                  className={clsx("text-[#888888] text-[1rem] font-normal")}
+                  className={clsx("text-[#888888] dark:text-[#C3C3C3] text-[1rem] font-normal")}
                 >
                   {item.name}
                 </li>
@@ -156,7 +156,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
-              "text-[1rem] text-[#33CC33] font-medium",
+              "text-[1rem] text-[#249124] dark:text-[#33CC33] font-medium",
               "cursor-pointer"
             )}
             onClick={handleClose}
@@ -169,7 +169,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
             className={clsx(
               "py-[1rem]",
               "!bg-[#C50707]",
-              "border border-[#C50707]"
+              "border border-[#C50707]!"
             )}
             onClick={handleClickDelete}
           >
