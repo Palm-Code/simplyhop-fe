@@ -19,7 +19,7 @@ export const Button = forwardRef<
         variant === "tertiary"
           ? "bg-[#333FFF]"
           : variant === "secondary"
-          ? "bg-[white]"
+          ? "bg-[white] dark:bg-transparent"
           : "bg-[#249124] dark:bg-[#33CC33]",
         "py-[1rem]",
         "rounded-[0.375rem]",

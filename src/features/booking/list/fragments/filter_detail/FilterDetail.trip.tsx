@@ -56,18 +56,18 @@ export const FilterDetailTrip = () => {
           >
             <p
               className={clsx(
-                "text-[black] text-[0.875rem] font-semibold truncate text-ellipsis",
+                "text-[black dark:text-white text-[0.875rem] font-semibold truncate text-ellipsis",
                 "w-[5rem]"
               )}
             >
               {state.filters.origin.selected.item?.name ?? ""}
             </p>
-            <span className={clsx("text-[black] text-[0.875rem] font-normal")}>
+            <span className={clsx("text-[black] dark:text-white text-[0.875rem] font-normal")}>
               to
             </span>
             <p
               className={clsx(
-                "text-[black] text-[0.875rem] font-semibold truncate text-ellipsis",
+                "text-[black] dark:text-white text-[0.875rem] font-semibold truncate text-ellipsis",
                 "w-[5rem]"
               )}
             >
@@ -89,10 +89,10 @@ export const FilterDetailTrip = () => {
             >
               <SVGIcon
                 name="Calendar"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
               />
               <span
-                className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
+                className={clsx("text-[#5B5B5B] dark:text-[#C3C3C3] text-[0.875rem] font-normal")}
               >
                 {Array.isArray(state.filters.date.selected) 
                   ? state.filters.date.selected.length > 1
@@ -104,7 +104,7 @@ export const FilterDetailTrip = () => {
             </div>
 
             <div
-              className={clsx("w-[5px] h-[5px]", "rounded-[]", "bg-[#D9D9D9]")}
+              className={clsx("w-[5px] h-[5px]", "rounded-full", "bg-[#D9D9D9] dark:bg-white")}
             />
 
             <div
@@ -115,10 +115,10 @@ export const FilterDetailTrip = () => {
             >
               <SVGIcon
                 name="User2"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
               />
               <span
-                className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
+                className={clsx("text-[#5B5B5B] dark:text-[#C3C3C3] text-[0.875rem] font-normal")}
               >
                 {state.filters.passenger.value.reduce((acc, item) => {
                   return acc + item.value;
