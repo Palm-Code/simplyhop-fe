@@ -46,7 +46,7 @@ export const NotificationVehicleCreateSupport = () => {
         "h-[100vh] lg:h-fit",
         "!rounded-[0rem] lg:!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "!px-[0rem] !py-[0rem]",
       )}
       open={isOpen}
       variant={isLg ? "modal" : "page_sheet"}
@@ -56,13 +56,13 @@ export const NotificationVehicleCreateSupport = () => {
         className={clsx(
           "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full lg:h-fit",
-          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]",
         )}
       >
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center",
-            "w-full"
+            "w-full",
           )}
         >
           <div
@@ -70,18 +70,21 @@ export const NotificationVehicleCreateSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#EFF9EC]"
+              "bg-[#EFF9EC] dark:bg-[#26531A]",
             )}
           >
             <SVGIcon
               name="ContrastCheckMark"
-              className={clsx("w-[5rem] h-[5rem]", "text-[#33CC33]")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[#249124] dark:text-[#33CC33]",
+              )}
             />
           </div>
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
         >
           {dictionaries.notification.title}
         </h1>
