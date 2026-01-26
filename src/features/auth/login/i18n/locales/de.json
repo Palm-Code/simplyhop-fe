@@ -13,7 +13,7 @@
   },
   "form": {
     "title": "Einloggen",
-    "description": "Gebe deine registrierte E-Mail Adresse ein, um dich anzumelden.",
+    "description": "Gib deine registrierte E-Mail-Adresse ein, um dich anzumelden.",
     "input": {
       "email": {
         "inputProps": {
