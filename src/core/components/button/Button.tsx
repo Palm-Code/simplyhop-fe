@@ -30,8 +30,8 @@ export const Button = forwardRef<
           : variant === "secondary"
           ? "text-[1rem] text-[#33CC33] disabled:text-[#5B5B5B] font-medium"
           : isLoading
-          ? "text-[1rem] text-white dark:text-[#232323] font-medium"
-          : "text-[1rem] text-white dark:text-[#232323] disabled:text-[#5B5B5B] dark:disabled:text-[#DADADA] font-medium",
+          ? "text-[1rem] text-[#232323] dark:text-[white] font-medium"
+          : "text-[1rem] text-[#232323] dark:text-[white] disabled:text-[#5B5B5B] dark:disabled:text-[#DADADA] font-medium",
         variant === "tertiary"
           ? isLoading
             ? ""
