@@ -10,14 +10,13 @@ export default function TripPage() {
   const { state: userState } = useContext(UserContext);
   const isOrganizationAdmin =
     userState.profile?.role === "admin" && !userState.profile.is_super_admin;
-  const isEmployee = userState.profile?.role === "employee";
 
   // Show loading screen while profile is loading
   if (!userState.profile) {
     return <LoadingPage />;
   }
 
-  if (isOrganizationAdmin || isEmployee) {
+  if (isOrganizationAdmin) {
     notFound();
   }
   return (
