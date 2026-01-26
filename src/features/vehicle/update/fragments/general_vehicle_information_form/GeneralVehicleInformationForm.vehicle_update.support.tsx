@@ -206,7 +206,7 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
 
   const handleChangeLicensePlate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
+      errorItems: globalDictionaries.form.license_plate.validations.items,
       value: e.currentTarget.value,
       type: "optional",
     });
@@ -234,13 +234,13 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
       id={dictionaries.vehicle_information.id}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
-        "w-full"
+        "w-full",
       )}
     >
       <div
         className={clsx(
           "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <Autocomplete
@@ -292,7 +292,7 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
       <div
         className={clsx(
           "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <Textfield
