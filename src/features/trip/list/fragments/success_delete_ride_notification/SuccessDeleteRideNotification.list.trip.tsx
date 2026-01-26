@@ -7,7 +7,7 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { queryClient } from "@/core/utils/react_query";
@@ -18,6 +18,7 @@ import { ListTripReactQueryKey } from "../../react_query/keys";
 
 export const SuccessDeleteRideNotificationListTrip = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(ListTripContext);
@@ -64,7 +65,15 @@ export const SuccessDeleteRideNotificationListTrip = () => {
       type: "all",
     });
 
-    router.push(AppCollectionURL.private.myList());
+    const type = searchParams.get("type");
+    const rideStatus = searchParams.get("ride-status");
+    let url = AppCollectionURL.private.myList();
+    const params = [];
+    if (type) params.push(`type=${type}`);
+    if (rideStatus) params.push(`ride-status=${rideStatus}`);
+    if (params.length > 0) url += `?${params.join("&")}`;
+
+    router.push(url);
   };
 
   const handleClickGoToHomepage = () => {
@@ -94,7 +103,15 @@ export const SuccessDeleteRideNotificationListTrip = () => {
       type: "all",
     });
 
-    router.push(AppCollectionURL.private.myList());
+    const type = searchParams.get("type");
+    const rideStatus = searchParams.get("ride-status");
+    let url = AppCollectionURL.private.myList();
+    const params = [];
+    if (type) params.push(`type=${type}`);
+    if (rideStatus) params.push(`ride-status=${rideStatus}`);
+    if (params.length > 0) url += `?${params.join("&")}`;
+
+    router.push(url);
   };
   return (
     <AdaptiveModal
