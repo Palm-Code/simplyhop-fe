@@ -49,27 +49,27 @@ export const VehicleFilters = () => {
     return result;
   };
 
-  const handleSelectLuggage = (data: {
-    id: string;
-    name: string;
-    type: string;
-  }) => {
-    const selected = setMultipleCheckboxPayload(
-      state.vehicle_filters.luggage.selected,
-      { id: data.id, name: data.name },
-      data.type
-    );
-    dispatch({
-      type: ResultTripActionEnum.SetVehicleFiltersData,
-      payload: {
-        ...state.vehicle_filters,
-        luggage: {
-          ...state.vehicle_filters.luggage,
-          selected: selected,
-        },
-      },
-    });
-  };
+  // const handleSelectLuggage = (data: {
+  //   id: string;
+  //   name: string;
+  //   type: string;
+  // }) => {
+  //   const selected = setMultipleCheckboxPayload(
+  //     state.vehicle_filters.luggage.selected,
+  //     { id: data.id, name: data.name },
+  //     data.type
+  //   );
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetVehicleFiltersData,
+  //     payload: {
+  //       ...state.vehicle_filters,
+  //       luggage: {
+  //         ...state.vehicle_filters.luggage,
+  //         selected: selected,
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleSelectSmoker = (data: {
     id: string;
@@ -115,27 +115,27 @@ export const VehicleFilters = () => {
     });
   };
 
-  const handleSelectPets = (data: {
-    id: string;
-    name: string;
-    type: string;
-  }) => {
-    const selected = setMultipleCheckboxPayload(
-      state.vehicle_filters.pets.selected,
-      { id: data.id, name: data.name },
-      data.type
-    );
-    dispatch({
-      type: ResultTripActionEnum.SetVehicleFiltersData,
-      payload: {
-        ...state.vehicle_filters,
-        pets: {
-          ...state.vehicle_filters.pets,
-          selected: selected,
-        },
-      },
-    });
-  };
+  // const handleSelectPets = (data: {
+  //   id: string;
+  //   name: string;
+  //   type: string;
+  // }) => {
+  //   const selected = setMultipleCheckboxPayload(
+  //     state.vehicle_filters.pets.selected,
+  //     { id: data.id, name: data.name },
+  //     data.type
+  //   );
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetVehicleFiltersData,
+  //     payload: {
+  //       ...state.vehicle_filters,
+  //       pets: {
+  //         ...state.vehicle_filters.pets,
+  //         selected: selected,
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleSelectDriverGender = (data: {
     id: string;
@@ -340,7 +340,7 @@ export const VehicleFilters = () => {
             "overflow-auto"
           )}
         >
-          <VehicleFilterList
+          {/* <VehicleFilterList
             {...(dictionaries.vehicle_filters
               .luggage as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.luggage.filter.option.items}
@@ -352,7 +352,7 @@ export const VehicleFilters = () => {
               })
             }
           />
-          <Divider />
+          <Divider /> */}
           <VehicleFilterList
             {...(dictionaries.vehicle_filters.smoker as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.smoking.type.options.items}
@@ -377,7 +377,7 @@ export const VehicleFilters = () => {
             }
           />
           <Divider />
-          <VehicleFilterList
+          {/* <VehicleFilterList
             {...(dictionaries.vehicle_filters.pets as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.pets.type.options.items}
             selected={state.vehicle_filters.pets.selected}
@@ -388,7 +388,7 @@ export const VehicleFilters = () => {
               })
             }
           />
-          <Divider />
+          <Divider /> */}
           <VehicleFilterList
             {...(dictionaries.vehicle_filters
               .driver_gender as VehicleFilterListProps)}

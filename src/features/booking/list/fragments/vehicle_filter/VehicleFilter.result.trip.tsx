@@ -69,64 +69,64 @@ export const VehicleFilterResulTrip = () => {
     return result;
   };
 
-  const handleSelectLuggage = (data: {
-    id: string;
-    name: string;
-    type: string;
-  }) => {
-    const selected = setMultipleCheckboxPayload(
-      state.advanced_filter.luggage.selected,
-      { id: data.id, name: data.name },
-      data.type
-    );
-    dispatch({
-      type: ResultTripActionEnum.SetRidesData,
-      payload: {
-        ...state.rides,
-        data: [],
-        pagination: {
-          ...state.rides.pagination,
-          current: PAGINATION.NUMBER,
-          last: null,
-        },
-      },
-    });
-    dispatch({
-      type: ResultTripActionEnum.SetAdvancedFilterData,
-      payload: {
-        ...state.advanced_filter,
-        luggage: {
-          ...state.advanced_filter.luggage,
-          selected: selected,
-        },
-      },
-    });
-  };
+  // const handleSelectLuggage = (data: {
+  //   id: string;
+  //   name: string;
+  //   type: string;
+  // }) => {
+  //   const selected = setMultipleCheckboxPayload(
+  //     state.advanced_filter.luggage.selected,
+  //     { id: data.id, name: data.name },
+  //     data.type
+  //   );
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetRidesData,
+  //     payload: {
+  //       ...state.rides,
+  //       data: [],
+  //       pagination: {
+  //         ...state.rides.pagination,
+  //         current: PAGINATION.NUMBER,
+  //         last: null,
+  //       },
+  //     },
+  //   });
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetAdvancedFilterData,
+  //     payload: {
+  //       ...state.advanced_filter,
+  //       luggage: {
+  //         ...state.advanced_filter.luggage,
+  //         selected: selected,
+  //       },
+  //     },
+  //   });
+  // };
 
-  const handleResetLuggage = () => {
-    dispatch({
-      type: ResultTripActionEnum.SetRidesData,
-      payload: {
-        ...state.rides,
-        data: [],
-        pagination: {
-          ...state.rides.pagination,
-          current: PAGINATION.NUMBER,
-          last: null,
-        },
-      },
-    });
-    dispatch({
-      type: ResultTripActionEnum.SetAdvancedFilterData,
-      payload: {
-        ...state.advanced_filter,
-        luggage: {
-          ...state.advanced_filter.luggage,
-          selected: [],
-        },
-      },
-    });
-  };
+  // const handleResetLuggage = () => {
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetRidesData,
+  //     payload: {
+  //       ...state.rides,
+  //       data: [],
+  //       pagination: {
+  //         ...state.rides.pagination,
+  //         current: PAGINATION.NUMBER,
+  //         last: null,
+  //       },
+  //     },
+  //   });
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetAdvancedFilterData,
+  //     payload: {
+  //       ...state.advanced_filter,
+  //       luggage: {
+  //         ...state.advanced_filter.luggage,
+  //         selected: [],
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleSelectSmoker = (data: {
     id: string;
@@ -246,64 +246,64 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
-  const handleSelectPets = (data: {
-    id: string;
-    name: string;
-    type: string;
-  }) => {
-    dispatch({
-      type: ResultTripActionEnum.SetRidesData,
-      payload: {
-        ...state.rides,
-        data: [],
-        pagination: {
-          ...state.rides.pagination,
-          current: PAGINATION.NUMBER,
-          last: null,
-        },
-      },
-    });
-    const selected = setMultipleCheckboxPayload(
-      state.advanced_filter.pets.selected,
-      { id: data.id, name: data.name },
-      data.type
-    );
-    dispatch({
-      type: ResultTripActionEnum.SetAdvancedFilterData,
-      payload: {
-        ...state.advanced_filter,
-        pets: {
-          ...state.advanced_filter.pets,
-          selected: selected,
-        },
-      },
-    });
-  };
+  // const handleSelectPets = (data: {
+  //   id: string;
+  //   name: string;
+  //   type: string;
+  // }) => {
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetRidesData,
+  //     payload: {
+  //       ...state.rides,
+  //       data: [],
+  //       pagination: {
+  //         ...state.rides.pagination,
+  //         current: PAGINATION.NUMBER,
+  //         last: null,
+  //       },
+  //     },
+  //   });
+  //   const selected = setMultipleCheckboxPayload(
+  //     state.advanced_filter.pets.selected,
+  //     { id: data.id, name: data.name },
+  //     data.type
+  //   );
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetAdvancedFilterData,
+  //     payload: {
+  //       ...state.advanced_filter,
+  //       pets: {
+  //         ...state.advanced_filter.pets,
+  //         selected: selected,
+  //       },
+  //     },
+  //   });
+  // };
 
-  const handleResetPets = () => {
-    dispatch({
-      type: ResultTripActionEnum.SetRidesData,
-      payload: {
-        ...state.rides,
-        data: [],
-        pagination: {
-          ...state.rides.pagination,
-          current: PAGINATION.NUMBER,
-          last: null,
-        },
-      },
-    });
-    dispatch({
-      type: ResultTripActionEnum.SetAdvancedFilterData,
-      payload: {
-        ...state.advanced_filter,
-        pets: {
-          ...state.advanced_filter.pets,
-          selected: [],
-        },
-      },
-    });
-  };
+  // const handleResetPets = () => {
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetRidesData,
+  //     payload: {
+  //       ...state.rides,
+  //       data: [],
+  //       pagination: {
+  //         ...state.rides.pagination,
+  //         current: PAGINATION.NUMBER,
+  //         last: null,
+  //       },
+  //     },
+  //   });
+  //   dispatch({
+  //     type: ResultTripActionEnum.SetAdvancedFilterData,
+  //     payload: {
+  //       ...state.advanced_filter,
+  //       pets: {
+  //         ...state.advanced_filter.pets,
+  //         selected: [],
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleSelectDriverGender = (data: {
     id: string;
@@ -502,7 +502,7 @@ export const VehicleFilterResulTrip = () => {
             "w-full"
           )}
         >
-          <CarFacilityFilterDropdown
+          {/* <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
               .luggage as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.luggage.filter.option.items}
@@ -516,7 +516,7 @@ export const VehicleFilterResulTrip = () => {
               })
             }
             onReset={handleResetLuggage}
-          />
+          /> */}
           <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
               .smoker as CarFacilityFilterDropdownProps)}
@@ -547,7 +547,7 @@ export const VehicleFilterResulTrip = () => {
             }
             onReset={handleResetMusic}
           />
-          <CarFacilityFilterDropdown
+          {/* <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
               .pets as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.pets.type.options.items}
@@ -561,7 +561,7 @@ export const VehicleFilterResulTrip = () => {
               })
             }
             onReset={handleResetPets}
-          />
+          /> */}
           <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
               .driver_gender as CarFacilityFilterDropdownProps)}
