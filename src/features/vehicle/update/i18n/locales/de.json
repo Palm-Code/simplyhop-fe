@@ -14,7 +14,7 @@
             "labelProps": {
               "id": "car_brand",
               "children": "Automarke",
-              "required": false
+              "required": true
             },
             "option": {
               "cta": {
@@ -32,7 +32,7 @@
             "labelProps": {
               "id": "car_category",
               "children": "Auto-Kategorie",
-              "required": false
+              "required": true
             },
             "option": {
               "cta": {
@@ -50,7 +50,7 @@
             "labelProps": {
               "id": "car_model",
               "children": "Auto-Modell",
-              "required": false
+              "required": true
             }
           },
           "car_color": {
@@ -61,7 +61,7 @@
             "labelProps": {
               "id": "car_color",
               "children": "Farbe",
-              "required": false
+              "required": true
             }
           },
           "license_plate": {
@@ -72,7 +72,7 @@
             "labelProps": {
               "id": "license_plate",
               "children": "Nummernschild",
-              "required": false
+              "required": true
             }
           }
         }
@@ -106,7 +106,7 @@
               "labelProps": {
                 "id": "available_seat",
                 "children": "Verfügbare Plätze Insgesamt",
-                "required": false
+                "required": true
               }
             },
             "available_child_seat": {
@@ -117,7 +117,7 @@
               "labelProps": {
                 "id": "available_child_seat",
                 "children": "Verfügbarkeit von Kindersitzen",
-                "required": false
+                "required": true
               }
             },
             "available_car_seat": {
@@ -128,7 +128,7 @@
               "labelProps": {
                 "id": "available_car_seat",
                 "children": "Autokindersitz verfügbar",
-                "required": false
+                "required": true
               }
             }
           }
@@ -146,7 +146,7 @@
               "labelProps": {
                 "id": "luggage",
                 "children": "Gepäck",
-                "required": false
+                "required": true
               }
             },
             "luggage_size": {
@@ -157,7 +157,7 @@
               "labelProps": {
                 "id": "luggage_size",
                 "children": "Größe des Gepäcks",
-                "required": false
+                "required": true
               }
             }
           }
@@ -176,7 +176,7 @@
             "labelProps": {
               "id": "smoking",
               "children": "Rauchen",
-              "required": false
+              "required": true
             }
           },
           "music": {
@@ -187,7 +187,7 @@
             "labelProps": {
               "id": "music",
               "children": "Musik",
-              "required": false
+              "required": true
             }
           },
           "pet": {
@@ -198,7 +198,7 @@
             "labelProps": {
               "id": "pet",
               "children": "Haustiere",
-              "required": false
+              "required": true
             }
           }
         }
