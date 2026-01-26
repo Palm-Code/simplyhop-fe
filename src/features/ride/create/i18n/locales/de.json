@@ -249,7 +249,7 @@
             },
             "labelProps": {
               "id": "shift",
-              "children": "Shift",
+              "children": "Dienstzeiten",
               "required": false
             },
             "items": []

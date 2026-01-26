@@ -145,7 +145,7 @@
       "variant": "single"
     },
     "shift": {
-      "label": "Shift",
+      "label": "Dienstzeiten",
       "variant": "single"
     },
     "sort": {
@@ -178,7 +178,7 @@
       "variant": "single"
     },
     "shift": {
-      "label": "Shift",
+      "label": "Dienstzeiten",
       "variant": "single"
     },
     "sort": {
