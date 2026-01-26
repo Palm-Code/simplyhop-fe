@@ -2,7 +2,7 @@
   "header": {
     "logo": {
       "image": {
-        "src": "/logo/simply_hop.png",
+        "src": "/logo/simply_hop_v2.svg",
         "width": 52,
         "height": 52,
         "alt": "logo",
@@ -141,7 +141,7 @@
     "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#33CC33;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#33CC33;'>AGB</a> von Simply Hop zu. ",
     "credit": {
       "logo": {
-        "src": "/logo/simply_hop.png",
+        "src": "/logo/simply_hop_v2.svg",
         "width": 52,
         "height": 14,
         "alt": "logo"
