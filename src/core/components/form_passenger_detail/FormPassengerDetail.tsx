@@ -16,7 +16,7 @@ export interface FormPassengerDetailProps {
       data: {
         id: string;
         value: number;
-      }[]
+      }[],
     ) => void;
   };
   carSeat?: {
@@ -26,23 +26,23 @@ export interface FormPassengerDetailProps {
 
 export const FormPassengerDetail = ({
   passenger = { items: [], onChange: () => {} },
-  carSeat = {
-    input: {},
-  },
+  // carSeat = {
+  //   input: {},
+  // },
 }: FormPassengerDetailProps) => {
-  const { label, ...carSeatInput } = carSeat.input;
+  // const { label, ...carSeatInput } = carSeat.input;
   return (
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
-        "w-full"
+        "w-full",
       )}
     >
       {/* NOTES: option counter */}
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "w-full",
         )}
       >
         {passenger?.items?.map((item, itemIndex) => (
@@ -50,17 +50,19 @@ export const FormPassengerDetail = ({
             key={itemIndex}
             className={clsx(
               "grid grid-flow-col items-center content-center justify-between justify-items-start",
-              "w-full"
+              "w-full",
             )}
           >
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[0.125rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <span
-                className={clsx("text-[#232323] dark:text-white text-[0.875rem] font-semibold")}
+                className={clsx(
+                  "text-[#232323] dark:text-white text-[0.875rem] font-semibold",
+                )}
               >
                 {item.name}
               </span>
@@ -73,7 +75,7 @@ export const FormPassengerDetail = ({
 
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[0.5rem]"
+                "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[0.5rem]",
               )}
             >
               <button
@@ -83,7 +85,7 @@ export const FormPassengerDetail = ({
                   "flex items-center justify-center",
                   "bg-[#F5F5F5]",
                   "rounded-[50%]",
-                  "disabled:opacity-50"
+                  "disabled:opacity-50",
                 )}
                 disabled={item.value === 0}
                 onClick={() => {
@@ -108,7 +110,11 @@ export const FormPassengerDetail = ({
                 />
               </button>
 
-              <span className={clsx("text-[#232323] dark:text-white text-[1rem] font-bold")}>
+              <span
+                className={clsx(
+                  "text-[#232323] dark:text-white text-[1rem] font-bold",
+                )}
+              >
                 {item.value}
               </span>
 
@@ -119,7 +125,7 @@ export const FormPassengerDetail = ({
                   "flex items-center justify-center",
                   "bg-[#F5F5F5]",
                   "rounded-[50%]",
-                  "disabled:opacity-50"
+                  "disabled:opacity-50",
                 )}
                 onClick={() => {
                   if (!passenger.onChange) return;
@@ -147,7 +153,7 @@ export const FormPassengerDetail = ({
       </div>
 
       {/* end options */}
-      <div
+      {/* <div
         className={clsx(
           "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
         )}
@@ -156,7 +162,7 @@ export const FormPassengerDetail = ({
         <span className={clsx("text-[#232323] dark:text-white text-[0.75rem] font-normal")}>
           {label}
         </span>
-      </div>
+      </div> */}
     </div>
   );
 };

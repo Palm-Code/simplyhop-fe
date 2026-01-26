@@ -47,7 +47,7 @@ export const FormWrapperPassengerDetail = (
       {...restProps}
       className={clsx(
         "absolute",
-        position === "below" ? "top-[4rem]" : "top-[-200px]",
+        position === "below" ? "top-[4rem]" : "top-[-100px]",
         "right-0",
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
         "px-[1rem] py-[0.75rem]",

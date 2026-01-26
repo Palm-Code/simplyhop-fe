@@ -130,12 +130,6 @@
               "name": "Erwachsene",
               "description": "Alter: 18 oder älter",
               "value": 1
-            },
-            {
-              "id": "children",
-              "name": "Kinder",
-              "description": "Alter: 0-12",
-              "value": 0
             }
           ],
           "cta": {
