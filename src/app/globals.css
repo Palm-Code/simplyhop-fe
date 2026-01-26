@@ -48,6 +48,18 @@ body {
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  /* Time input icon styling for light mode - #232323 */
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(96%) contrast(93%);
+    cursor: pointer;
+  }
+}
+
+/* Time input icon styling for dark mode - white */
+.dark input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  cursor: pointer;
 }
 
 /* Disable browser autocomplete globally */
