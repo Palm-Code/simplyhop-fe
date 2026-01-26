@@ -32,7 +32,25 @@ export const CTAVehicleCreateSupport = () => {
     });
   };
 
-  const isSaveDisabled = isPendingPostVehicleCreateMy;
+  const isVehicleFormValid =
+    !!state.vehicle_information.general.form.car_brand.selected &&
+    !!state.vehicle_information.general.form.car_category.selected &&
+    !!state.vehicle_information.general.form.car_model.value.length &&
+    !!state.vehicle_information.general.form.license_plate.value.length &&
+    !!state.vehicle_information.capacity.passenger_seats.form.available_seat
+      .selected &&
+    !!state.vehicle_information.capacity.passenger_seats.form.available_car_seat
+      .selected &&
+    !!state.vehicle_information.capacity.luggage.form.luggage.selected &&
+    (state.vehicle_information.capacity.luggage.form.luggage.selected?.id !==
+    "0"
+      ? !!state.vehicle_information.capacity.luggage.form.luggage_size.selected
+      : true) &&
+    !!state.vehicle_information.trip.form.smoking.selected &&
+    !!state.vehicle_information.trip.form.music.selected &&
+    !!state.vehicle_information.trip.form.pet.selected;
+
+  const isSaveDisabled = !isVehicleFormValid || isPendingPostVehicleCreateMy;
   const isSaveLoading = isPendingPostVehicleCreateMy;
   return (
     <Button
