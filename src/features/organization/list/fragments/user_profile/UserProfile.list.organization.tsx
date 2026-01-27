@@ -43,7 +43,7 @@ export const UserProfileListOrganization = () => {
       case "trips": {
         value =
           state.user_profile.data?.total_rides_completed?.toLocaleString(
-            "de-DE"
+            "de-DE",
           ) ?? "-";
         break;
       }
@@ -72,6 +72,10 @@ export const UserProfileListOrganization = () => {
         value = state.user_profile.data?.organization.email ?? "-";
         break;
       }
+      case "city": {
+        value = state.user_profile.data?.organization.city ?? "-";
+        break;
+      }
       case "phone": {
         value = state.user_profile.data?.organization.phone ?? "-";
         break;
@@ -86,8 +90,8 @@ export const UserProfileListOrganization = () => {
             : formatDisplayName({
                 first_name: !state.user_profile.data?.organization
                   .responsible_person_last_name
-                  ? state.user_profile.data?.organization
-                      .responsible_person_first_name ?? ""
+                  ? (state.user_profile.data?.organization
+                      .responsible_person_first_name ?? "")
                   : `${state.user_profile.data?.organization.responsible_person_last_name} ${state.user_profile.data?.organization.responsible_person_last_name}`,
                 email: state.user_profile.data?.organization.email,
               });
@@ -118,7 +122,7 @@ export const UserProfileListOrganization = () => {
         case "fahrten": {
           value =
             state.user_profile.data?.total_rides_completed?.toLocaleString(
-              "de-DE"
+              "de-DE",
             ) ?? "-";
           href = AppCollectionURL.private.dashboardTrip();
           break;
@@ -132,7 +136,7 @@ export const UserProfileListOrganization = () => {
         case "co2": {
           value =
             state.user_profile.data?.total_rides_carbon?.toLocaleString(
-              "de-DE"
+              "de-DE",
             ) ?? "-";
           break;
         }
@@ -145,7 +149,7 @@ export const UserProfileListOrganization = () => {
         value: value,
         href: href,
       };
-    }
+    },
   );
 
   const cta = dictionaries.user_profile.cta.items.map((item) => {
@@ -159,7 +163,7 @@ export const UserProfileListOrganization = () => {
     router.push(
       AppCollectionURL.private.organizationDetail({
         id: state.user_profile.user_id ?? "",
-      })
+      }),
     );
   };
 
