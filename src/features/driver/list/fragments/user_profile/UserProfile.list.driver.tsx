@@ -7,14 +7,16 @@ import { formatDisplayName } from "@/core/utils/name/functions";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { useParams, useRouter } from "next/navigation";
 import { UserContext } from "@/core/modules/app/context";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 
 export const UserProfileListDriver = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { organization_id } = useParams();
   const router = useRouter();
   const { state, dispatch } = React.useContext(ListDriverContext);
   const { state: userState } = React.useContext(UserContext);
-  const isSuperAdmin = userState.profile?.is_super_admin;
+  // const isSuperAdmin = userState.profile?.is_super_admin;
   const isOpen = state.user_profile.is_open;
   const handleClose = () => {
     dispatch({
@@ -75,14 +77,14 @@ export const UserProfileListDriver = () => {
           case "ratings": {
             value =
               state.user_profile.data?.average_ride_rating?.toLocaleString(
-                "de-DE"
+                "de-DE",
               ) ?? "-";
             break;
           }
           case "passengers": {
             value =
               state.user_profile.data?.total_passengers_count?.toLocaleString(
-                "de-DE"
+                "de-DE",
               ) ?? "-";
             break;
           }
@@ -109,14 +111,18 @@ export const UserProfileListDriver = () => {
           !state.user_profile.data?.organization?.address_line_2?.length
             ? "-"
             : !state.user_profile.data?.organization?.address_line_2?.length
-            ? state.user_profile.data?.organization?.address ?? ""
-            : !state.user_profile.data?.organization?.address?.length
-            ? state.user_profile.data?.organization?.address_line_2 ?? ""
-            : `${state.user_profile.data?.organization?.address} ${state.user_profile.data?.organization?.address_line_2}`;
+              ? (state.user_profile.data?.organization?.address ?? "")
+              : !state.user_profile.data?.organization?.address?.length
+                ? (state.user_profile.data?.organization?.address_line_2 ?? "")
+                : `${state.user_profile.data?.organization?.address} ${state.user_profile.data?.organization?.address_line_2}`;
         break;
       }
       case "gender": {
-        value = state.user_profile.data?.gender ?? "-";
+        value = !state.user_profile.data?.gender?.length
+          ? "-"
+          : (globalDictionaries.personal_information.gender.options.items.find(
+              (item) => item.id === state.user_profile.data?.gender,
+            )?.name ?? "-");
         break;
       }
       default: {
@@ -145,8 +151,8 @@ export const UserProfileListDriver = () => {
             item.id === "delete_chat"
               ? handleClickDeleteChat
               : item.id === "block_list"
-              ? handleClickBlockList
-              : handleClickDeleteAccount,
+                ? handleClickBlockList
+                : handleClickDeleteAccount,
         };
       });
 
@@ -156,13 +162,13 @@ export const UserProfileListDriver = () => {
         AppCollectionURL.private.driverOrganizationDetail({
           organization_id: String(organization_id),
           driver_id: state.user_profile.user_id ?? "",
-        })
+        }),
       );
     } else {
       router.push(
         AppCollectionURL.private.driverDetail({
           id: state.user_profile.user_id ?? "",
-        })
+        }),
       );
     }
   };
