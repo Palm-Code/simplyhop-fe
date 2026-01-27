@@ -190,12 +190,19 @@ export const EditDetailDriver = () => {
     });
   };
 
-  const isSubmitDisabled =
-    !!state.edit.form.first_name.error ||
-    !!state.edit.form.last_name.error ||
-    !!state.edit.form.city.error ||
-    !!state.edit.form.phonenumber.error ||
-    isPendingPathUserProfile;
+  const isPersonalFormValid =
+    !!state.edit.form.first_name.value.length &&
+    !state.edit.form.first_name.error &&
+    !!state.edit.form.last_name.value.length &&
+    !state.edit.form.last_name.error &&
+    !!state.edit.form.gender.selected &&
+    !state.edit.form.gender.error &&
+    !!state.edit.form.city.value.length &&
+    !state.edit.form.city.error &&
+    !!state.edit.form.phonenumber.value.length &&
+    !state.edit.form.phonenumber.error;
+
+  const isSubmitDisabled = !isPersonalFormValid || isPendingPathUserProfile;
   const isSubmitLoading = isPendingPathUserProfile;
 
   return (
@@ -205,7 +212,7 @@ export const EditDetailDriver = () => {
         "!max-w-[100vw] lg:!max-w-[584px]",
         "h-[100vh] lg:!h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-hidden"
+        "overflow-hidden",
       )}
       open={isOpen}
       onClose={onClose}
@@ -214,7 +221,7 @@ export const EditDetailDriver = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
           "px-[0rem] sm:px-[2rem] py-[2rem]",
-          "w-full h-full"
+          "w-full h-full",
         )}
       >
         {/* header */}
@@ -222,7 +229,7 @@ export const EditDetailDriver = () => {
           className={clsx(
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
             "w-full",
-            "px-[2rem] sm:px-[0rem]"
+            "px-[2rem] sm:px-[0rem]",
           )}
         >
           <button
@@ -238,7 +245,7 @@ export const EditDetailDriver = () => {
           </button>
           <h2
             className={clsx(
-              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
+              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold",
             )}
           >
             {dictionaries.edit.title}
@@ -251,7 +258,7 @@ export const EditDetailDriver = () => {
             "w-full",
             "px-4 py-4",
             "bg-[#F0F0F0] dark:bg-[#292929]",
-            "rounded-[0.25rem]"
+            "rounded-[0.25rem]",
           )}
         >
           <div className={clsx("flex items-center justify-center", "w-full")}>
@@ -272,7 +279,7 @@ export const EditDetailDriver = () => {
           <div
             className={clsx(
               "grid grid-cols-2 place-content-start place-items-start gap-[1rem]",
-              "w-full"
+              "w-full",
             )}
           >
             <Textfield
@@ -312,7 +319,7 @@ export const EditDetailDriver = () => {
           <div
             className={clsx(
               "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-              "w-full"
+              "w-full",
             )}
           >
             <Textfield
@@ -351,7 +358,7 @@ export const EditDetailDriver = () => {
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
             "w-full",
-            "py-[1rem]"
+            "py-[1rem]",
           )}
         >
           <Button
@@ -372,7 +379,7 @@ export const EditDetailDriver = () => {
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
               "text-[1rem] text-[#DA2323] font-medium",
-              "cursor-pointer"
+              "cursor-pointer",
             )}
             onClick={handleClickDeactivate}
           >

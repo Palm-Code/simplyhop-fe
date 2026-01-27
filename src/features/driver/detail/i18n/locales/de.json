@@ -154,7 +154,7 @@
           "labelProps": {
             "id": "email",
             "children": "Email",
-            "required": false
+            "required": true
           }
         },
         "first_name": {
@@ -165,7 +165,7 @@
           "labelProps": {
             "id": "first_name",
             "children": "Vorname",
-            "required": false
+            "required": true
           }
         },
         "last_name": {
@@ -176,7 +176,7 @@
           "labelProps": {
             "id": "last_name",
             "children": "Nachname",
-            "required": false
+            "required": true
           }
         },
         "city": {
@@ -187,7 +187,7 @@
           "labelProps": {
             "id": "city",
             "children": "Stadt",
-            "required": false
+            "required": true
           }
         },
         "phonenumber": {
@@ -198,7 +198,7 @@
           "labelProps": {
             "id": "phonenumber",
             "children": "Telefon-Nummer",
-            "required": false
+            "required": true
           }
         },
         "about_me": {
@@ -220,7 +220,7 @@
           "labelProps": {
             "id": "gender",
             "children": "Geschlecht",
-            "required": false
+            "required": true
           }
         },
         "pictures": {
