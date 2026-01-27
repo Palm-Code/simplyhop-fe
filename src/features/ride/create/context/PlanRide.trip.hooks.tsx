@@ -28,6 +28,7 @@ export const useSetInitialContextValue = () => {
       type: PlanRideTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
+        is_initialized: true,
         origin: {
           ...state.filters.origin,
           saved_items: !planRideTripOriginStorage.data

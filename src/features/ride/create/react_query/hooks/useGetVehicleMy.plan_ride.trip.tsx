@@ -30,6 +30,7 @@ export const useGetVehicleMy = () => {
     queryFn: () => {
       return fetchGetVehicleMy(payload);
     },
+    enabled: !!state.filters.is_initialized,
   });
 
   React.useEffect(() => {
@@ -50,19 +51,19 @@ export const useGetVehicleMy = () => {
               : {
                   id: String(firstData.id),
                   name: !firstData.brand?.title
-                    ? firstData.model ?? ""
+                    ? (firstData.model ?? "")
                     : !firstData.model
-                    ? firstData.brand?.title ?? ""
-                    : `${firstData.brand?.title} ${firstData.model}`,
+                      ? (firstData.brand?.title ?? "")
+                      : `${firstData.brand?.title} ${firstData.model}`,
                 },
             items: filteredData.map((item) => {
               return {
                 id: String(item.id),
                 name: !item.brand?.title
-                  ? item.model ?? ""
+                  ? (item.model ?? "")
                   : !item.model
-                  ? item.brand?.title ?? ""
-                  : `${item.brand?.title} ${item.model}`,
+                    ? (item.brand?.title ?? "")
+                    : `${item.brand?.title} ${item.model}`,
               };
             }),
             data: filteredData.map((item) => {
@@ -72,17 +73,17 @@ export const useGetVehicleMy = () => {
                 image: {
                   src: !item.image.length
                     ? "/images/general/car.png"
-                    : item.image[0] ?? "",
+                    : (item.image[0] ?? ""),
                   alt: "car",
                   width: 145,
                   height: 46,
                 },
                 identity: {
                   name: !item.brand?.title
-                    ? item.model ?? ""
+                    ? (item.model ?? "")
                     : !item.model
-                    ? item.brand?.title ?? ""
-                    : `${item.brand?.title} ${item.model}`,
+                      ? (item.brand?.title ?? "")
+                      : `${item.brand?.title} ${item.model}`,
                   number: item.plate_license,
                 },
                 facility: {
@@ -101,7 +102,7 @@ export const useGetVehicleMy = () => {
                               label:
                                 globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                   "{{number}}",
-                                  item.numb_free_seats.toLocaleString("de-DE")
+                                  item.numb_free_seats.toLocaleString("de-DE"),
                                 ),
                             },
                           },

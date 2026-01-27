@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 
 const initialState: PlanRideTripInitialStateType = {
   filters: {
+    is_initialized: false,
     auto: {
       bottom_sheet: {
         is_open: false,
@@ -132,7 +133,7 @@ const PlanRideTripContext = createContext<{
 
 const mainReducer = (
   { filters, map, detail, notification }: PlanRideTripInitialStateType,
-  action: PlanRideTripActions
+  action: PlanRideTripActions,
 ) => ({
   filters: PlanRideTripFiltersReducers(filters, action),
   map: PlanRideTripMapReducers(map, action),

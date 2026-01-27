@@ -23,6 +23,7 @@ export interface PlanRideTripInitialStateType {
 
 // State Collection Types consist of:
 export interface PlanRideTripFilters {
+  is_initialized: boolean;
   auto: {
     bottom_sheet: {
       is_open: boolean;
