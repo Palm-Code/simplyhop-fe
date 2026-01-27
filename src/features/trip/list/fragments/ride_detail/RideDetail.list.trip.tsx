@@ -167,17 +167,9 @@ export const RideDetailListTrip = () => {
       payload: {
         ...state.complete_ride_confirmation,
         confirmed_booking:
-          state.complete_ride_confirmation.confirmed_booking.map((item) => {
-            return {
-              ...item,
-              type:
-                data.bookingId === item.id && item.type === "joined"
-                  ? "unjoined"
-                  : data.bookingId === item.id && item.type === "unjoined"
-                    ? "joined"
-                    : item.type,
-            };
-          }),
+          state.complete_ride_confirmation.confirmed_booking.filter(
+            (item) => item.id !== data.bookingId,
+          ),
       },
     });
   };
@@ -470,7 +462,7 @@ export const RideDetailListTrip = () => {
                 "w-full",
                 "px-[1rem] py-[0.75rem]",
                 "rounded-[0.375rem]",
-                "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6]",
+                "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
                 "text-white dark:text-[#232323] disabled:text-[#A6A6A6] text-[0.75rem] sm:text-[1rem] font-semibold",
                 "cursor-pointer",
               )}
