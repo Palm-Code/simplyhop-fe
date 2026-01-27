@@ -144,7 +144,7 @@ export const CompletedRideTripChat = () => {
             </div>
 
             {/* rating */}
-            {state.user_profile.data?.type === "driver" && (
+            {state.user_profile.data?.type === 'passenger' && (
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-center place-items-center w-full gap-[1rem]",
