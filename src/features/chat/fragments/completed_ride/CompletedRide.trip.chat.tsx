@@ -237,7 +237,7 @@ export const CompletedRideTripChat = () => {
                 "grid grid-cols-1 place-content-center place-items-center",
                 "w-full",
                 "px-[0.75rem] py-[0.75rem]",
-                "bg-[#33CC33] disabled:bg-[#F6F6F6]",
+                "bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
                 "rounded-[0.375rem]",
                 "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
                 "cursor-pointer"

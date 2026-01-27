@@ -57,7 +57,7 @@ export const CompletedRideListTrip = () => {
         "h-[100vh] lg:!h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-hidden",
-        "!px-[0rem] !py-[0rem]"
+        "!px-[0rem] !py-[0rem]",
       )}
       open={state.complete_ride_confirmation.is_open}
       onClose={handleClose}
@@ -66,21 +66,25 @@ export const CompletedRideListTrip = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full",
-          "!px-[2rem] !py-[2rem]"
+          "!px-[2rem] !py-[2rem]",
         )}
       >
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[0.5rem]",
-            "w-full h-full"
+            "w-full h-full",
           )}
         >
-          <p className={clsx("text-[1.5rem] text-[#232323] font-bold")}>
+          <p
+            className={clsx(
+              "text-[1.5rem] text-[#232323] dark:text-white font-bold",
+            )}
+          >
             {dictionaries.complete_ride_confirmation.title}
           </p>
           <span
             className={clsx(
-              "text-[1rem] text-[#5B5B5B] font-normal text-center"
+              "text-[1rem] text-[#5B5B5B] dark:text-[#C3C3C3] font-normal text-center",
             )}
           >
             {dictionaries.complete_ride_confirmation.description}
@@ -90,7 +94,7 @@ export const CompletedRideListTrip = () => {
         <div
           className={clsx(
             "grid sm:grid-cols-2 lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <button
@@ -98,12 +102,12 @@ export const CompletedRideListTrip = () => {
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[white]",
+              "bg-[white] dark:bg-[#232323]",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#232323] font-semibold",
-              "border border-[#464646]",
+              "text-[1rem] text-[#232323] dark:text-white font-semibold",
+              "border border-[#E9E6E6] dark:border-[#464646]",
               "box-border",
-              "cursor-pointer"
+              "cursor-pointer",
             )}
             onClick={handleClickCancelConfirmRideComplete}
           >
@@ -114,10 +118,10 @@ export const CompletedRideListTrip = () => {
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",
               "px-[0.75rem] py-[0.75rem]",
-              "bg-[#33CC33] disabled:bg-[#F6F6F6]",
+              "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
               "rounded-[0.375rem]",
-              "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
-              "cursor-pointer"
+              "text-[1rem] text-[#232323] dark:text-white disabled:text-[#A6A6A6] font-semibold",
+              "cursor-pointer",
             )}
             disabled={isPendingRidesArchive}
             onClick={handleClickOKConfirmRideComplete}
