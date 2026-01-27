@@ -2,10 +2,12 @@
 import * as React from "react";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { UserProfileModal } from "@/core/components/user_profile_modal/UserProfileModal";
 
 export const UserProfileTripChat = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
   const isOpen = state.user_profile.is_open;
   const handleClose = () => {
@@ -97,7 +99,12 @@ export const UserProfileTripChat = () => {
         break;
       }
       case "gender": {
-        value = state.user_profile.data?.gender ?? "-";
+        // value = state.user_profile.data?.gender ?? "-";
+        value = !state.user_profile.data?.gender?.length
+          ? "-"
+          : (globalDictionaries.personal_information.gender.options.items.find(
+              (item) => item.id === state.user_profile.data?.gender,
+            )?.name ?? "-");
         break;
       }
       default: {
