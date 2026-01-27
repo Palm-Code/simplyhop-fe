@@ -7,7 +7,7 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, useParams, usePathname } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { queryClient } from "@/core/utils/react_query";
@@ -19,22 +19,53 @@ import { ListTripReactQueryKey } from "../../react_query/keys";
 export const SuccessDeleteRideNotificationListTrip = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { organization_id } = useParams();
+  const { driver_id } = useParams();
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(ListTripContext);
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.success_delete_ride_notification.is_open;
 
+  const rideStatus = searchParams.get("ride-status");
+  const sortSearchParams = searchParams.get("sort");
+  const sort = !sortSearchParams
+    ? rideStatus === "finished"
+      ? "-departure_time"
+      : "departure_time"
+    : sortSearchParams;
+
+  const isEmployee = userState.profile?.role === "employee";
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" &&
+    userState.profile.is_super_admin === false;
+  const isOrganizationDetailRoute =
+    pathname.startsWith("/support/organisation/detail") && !!organization_id;
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
+
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
-      "filter[user_id]": !userState.profile?.id
-        ? undefined
-        : String(userState.profile.id),
+      "filter[user_id]":
+        !!userState.profile?.id && isEmployee
+          ? String(userState.profile.id)
+          : !!driver_id
+          ? String(driver_id ?? "0")
+          : undefined,
+      "filter[organization_id]": !!organization_id
+        ? String(organization_id ?? "0")
+        : isOrganizationAdmin && !!userState.profile?.organization_id
+        ? String(userState.profile.organization_id)
+        : undefined,
       include: "vehicle.brand,user,bookings,bookings.user",
-      departure_time__gte: dayjs().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
-      sort: "departure_time",
-      "page[number]": state.ride.pagination.current,
-      "page[size]": PAGINATION.SIZE,
+      status: rideStatus ?? "in_progress",
+      sort: sort,
+      "page[number]": PAGINATION.NUMBER,
+      "page[size]": isOrganizationDetailRoute
+        ? 3
+        : isDriverDetailRoute
+        ? 3
+        : PAGINATION.SIZE,
     },
   };
 
