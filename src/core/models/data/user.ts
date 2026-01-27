@@ -3,8 +3,8 @@ import { UserProfile } from "./user_profile";
 
 export interface User {
   id: number; //1;
-  first_name: string; //"Gracie";
-  last_name: string; //"Effertz";
+  first_name: string | null; //"Gracie";
+  last_name: string | null; //"Effertz";
   email: string; //"user@example.com";
   mobile: string | null;
   city: string | null;

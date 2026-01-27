@@ -110,13 +110,13 @@ export const UserDetailDriver = () => {
         },
         firstName: {
           label: dictionaries.user.information.first_name.name,
-          value: !state.user.data?.first_name.length
+          value: !state.user.data?.first_name?.length
             ? "-"
             : state.user.data.first_name,
         },
         lastName: {
           label: dictionaries.user.information.last_name.name,
-          value: !state.user.data?.last_name.length
+          value: !state.user.data?.last_name?.length
             ? "-"
             : state.user.data.last_name,
         },
