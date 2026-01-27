@@ -224,20 +224,24 @@
             },
             "items": [
               {
-                "id": "1",
+                "id": "no",
                 "name": "Keine"
               },
               {
-                "id": "2",
+                "id": "daily",
                 "name": "Täglich"
               },
               {
-                "id": "3",
+                "id": "weekly",
                 "name": "Wöchentlich"
               },
               {
-                "id": "4",
+                "id": "biweekly",
                 "name": "Alle 2 Wochen"
+              },
+              {
+                "id": "monthly",
+                "name": "Monatlich"
               }
             ]
           },

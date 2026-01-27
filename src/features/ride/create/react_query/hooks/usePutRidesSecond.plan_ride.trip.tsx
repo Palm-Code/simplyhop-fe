@@ -11,8 +11,10 @@ import { fetchPutRidesSecond } from "@/core/services/rest/simplyhop/rides";
 import { PlanRideTripContext } from "../../context";
 import { PlanRideTripReactQueryKey } from "../keys";
 import { v4 as uuidv4 } from "uuid";
+import { getDictionaries } from "../../i18n";
 
 export const usePutRidesSecond = () => {
+  const dictionaries = getDictionaries();
   const { state } = React.useContext(PlanRideTripContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
@@ -29,7 +31,8 @@ export const usePutRidesSecond = () => {
         },
         body: {
           recurring_ride: Array.isArray(state.filters.date.selected)
-            ? "1"
+            ? (dictionaries.detail.plan.form.input.recurring.items?.[0]?.id ??
+              "no")
             : (state.detail.form.plan.recurring.selected?.id ?? undefined),
           waiting_time: state.detail.form.plan.umweg.value,
           available_seats: !state.detail.form.plan.seat.value
