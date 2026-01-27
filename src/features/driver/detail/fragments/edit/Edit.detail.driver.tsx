@@ -170,6 +170,13 @@ export const EditDetailDriver = () => {
   const handleClickSave = async () => {
     const res = await patchUserProfile();
     if (!res) return;
+    dispatch({
+      type: DetailDriverActionEnum.SetEditData,
+      payload: {
+        ...state.edit,
+        is_open: false,
+      },
+    });
     const payload: GetUserProfileIdPayloadRequestInterface = {
       path: {
         id: String(driver_id ?? "0"),

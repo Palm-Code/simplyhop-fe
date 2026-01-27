@@ -51,7 +51,8 @@ export const usePatchUserProfile = () => {
             {
               id: uuidv4(),
               variant: "success",
-              message: "Konto löschen erfolgreich",
+              message:
+                "Profil erfolgreich aktualisiert! Deine Änderungen wurden gespeichert.",
             },
           ],
         },
