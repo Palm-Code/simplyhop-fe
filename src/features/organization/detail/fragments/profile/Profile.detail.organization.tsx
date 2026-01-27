@@ -43,7 +43,7 @@ export const ProfileDetailOrganization = () => {
         break;
       }
       case "city": {
-        value = "-";
+        value = state.profile.data?.organization.city ?? "-";
         break;
       }
       case "phone": {
