@@ -55,7 +55,7 @@ export const useGetBookingId = () => {
             id: String(item.id),
             message: {
               link: AppCollectionURL.private.chat(
-                `id=${item.message_room?.id}&bookingId=${item.id}`
+                `id=${item.message_room?.id}&bookingId=${item.id}`,
               ),
             },
             driver: {
@@ -76,17 +76,17 @@ export const useGetBookingId = () => {
               image: {
                 src: !item.ride?.vehicle?.image.length
                   ? "/images/general/car.png"
-                  : item.ride.vehicle.image[0] ?? "/images/general/car.png",
+                  : (item.ride.vehicle.image[0] ?? "/images/general/car.png"),
                 alt: "car",
                 width: 145,
                 height: 46,
               },
               identity: {
                 name: !item.ride?.vehicle?.brand?.title
-                  ? item.ride?.vehicle?.model ?? ""
+                  ? (item.ride?.vehicle?.model ?? "")
                   : !item.ride?.vehicle.model
-                  ? item.ride?.vehicle.brand?.title ?? ""
-                  : `${item.ride?.vehicle.brand?.title} ${item.ride?.vehicle.model}`,
+                    ? (item.ride?.vehicle.brand?.title ?? "")
+                    : `${item.ride?.vehicle.brand?.title} ${item.ride?.vehicle.model}`,
                 number: item.ride?.vehicle?.plate_license,
               },
             },
@@ -122,14 +122,14 @@ export const useGetBookingId = () => {
                     ? "-"
                     : `${setArrivalTime(
                         dayjs(item.ride?.departure_time).format("HH:mm"),
-                        item.ride.eta
+                        item.ride.eta,
                       )} Uhr`,
               },
             },
 
             price: {
               label: "Preis",
-              price: formatEuro(item.ride?.base_price),
+              price: formatEuro(item?.offered_price ?? 0),
             },
           },
         },
