@@ -92,7 +92,7 @@ export const UserProfileListOrganization = () => {
                   .responsible_person_last_name
                   ? (state.user_profile.data?.organization
                       .responsible_person_first_name ?? "")
-                  : `${state.user_profile.data?.organization.responsible_person_last_name} ${state.user_profile.data?.organization.responsible_person_last_name}`,
+                  : `${state.user_profile.data?.organization.responsible_person_first_name} ${state.user_profile.data?.organization.responsible_person_last_name}`,
                 email: state.user_profile.data?.organization.email,
               });
         break;
