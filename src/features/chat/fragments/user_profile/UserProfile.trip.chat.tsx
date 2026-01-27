@@ -13,7 +13,6 @@ export const UserProfileTripChat = () => {
       type: ChatTripActionEnum.SetUserProfileData,
       payload: {
         ...state.user_profile,
-        data: null,
         is_open: false,
       },
     });
@@ -58,21 +57,21 @@ export const UserProfileTripChat = () => {
             case "trips": {
               value =
                 state.user_profile.data?.statistic.trip?.toLocaleString(
-                  "de-DE"
+                  "de-DE",
                 ) ?? "-";
               break;
             }
             case "ratings": {
               value =
                 state.user_profile.data?.statistic.ratings?.toLocaleString(
-                  "de-DE"
+                  "de-DE",
                 ) ?? "-";
               break;
             }
             case "passengers": {
               value =
                 state.user_profile.data?.statistic.passengers?.toLocaleString(
-                  "de-DE"
+                  "de-DE",
                 ) ?? "-";
               break;
             }
@@ -129,27 +128,27 @@ export const UserProfileTripChat = () => {
             };
           })
       : isBlocked && !isUserDoBlock
-      ? dictionaries.user_profile.cta.items
-          .filter(
-            (item) => item.id !== "unblock_user" && item.id !== "block_user"
-          )
-          .map((item) => {
-            return {
-              ...item,
-              onClick: handleClickDeleteChat,
-            };
-          })
-      : dictionaries.user_profile.cta.items
-          .filter((item) => item.id !== "unblock_user")
-          .map((item) => {
-            return {
-              ...item,
-              onClick:
-                item.id === "delete_chat"
-                  ? handleClickDeleteChat
-                  : handleClickBlock,
-            };
-          });
+        ? dictionaries.user_profile.cta.items
+            .filter(
+              (item) => item.id !== "unblock_user" && item.id !== "block_user",
+            )
+            .map((item) => {
+              return {
+                ...item,
+                onClick: handleClickDeleteChat,
+              };
+            })
+        : dictionaries.user_profile.cta.items
+            .filter((item) => item.id !== "unblock_user")
+            .map((item) => {
+              return {
+                ...item,
+                onClick:
+                  item.id === "delete_chat"
+                    ? handleClickDeleteChat
+                    : handleClickBlock,
+              };
+            });
 
   return (
     <UserProfileModal
