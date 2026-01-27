@@ -64,7 +64,7 @@ export const CompletedRideTripChat = () => {
           "!max-w-[100vw] lg:!max-w-[584px]",
           "h-[100vh] lg:!h-fit",
           "!rounded-[0px] lg:!rounded-[0.625rem]",
-          "overflow-hidden"
+          "overflow-hidden",
         )}
         open={isOpen}
         onClose={handleClose}
@@ -73,14 +73,14 @@ export const CompletedRideTripChat = () => {
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
             "px-[2rem] py-[2rem]",
-            "w-full h-full"
+            "w-full h-full",
           )}
         >
           {/* header */}
           <div
             className={clsx(
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
-              "w-full"
+              "w-full",
             )}
           >
             <button
@@ -93,13 +93,13 @@ export const CompletedRideTripChat = () => {
                 name="X"
                 className={clsx(
                   "w-[1.5rem] h-[1.5rem]",
-                  "text-[#5B5B5B] dark:text-[#C3C3C3]"
+                  "text-[#5B5B5B] dark:text-[#C3C3C3]",
                 )}
               />
             </button>
             <h2
               className={clsx(
-                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold",
               )}
             >
               {dictionaries.completed_ride.title}
@@ -111,7 +111,7 @@ export const CompletedRideTripChat = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full",
-              "bg-[#FAFDF9] dark:bg-[#242623]"
+              "bg-[#FAFDF9] dark:bg-[#242623]",
             )}
           >
             {/* dekstop trip summary */}
@@ -120,12 +120,12 @@ export const CompletedRideTripChat = () => {
                 "hidden sm:flex items-center justify-between",
                 "w-full",
                 "px-[1rem] py-[1.5rem]",
-                "bg-[white] dark:bg-[#232323]"
+                "bg-[white] dark:bg-[#232323]",
               )}
             >
               <p
                 className={clsx(
-                  "text-[1rem] text-[black] dark:text-white font-semibold"
+                  "text-[1rem] text-[black] dark:text-white font-semibold",
                 )}
               >
                 {dictionaries.completed_ride.trip_summary.title}
@@ -144,18 +144,18 @@ export const CompletedRideTripChat = () => {
             </div>
 
             {/* rating */}
-            {state.user_profile.data?.type === 'passenger' && (
+            {state.user_profile.data?.type === "passenger" && (
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-center place-items-center w-full gap-[1rem]",
                   "w-full",
                   "px-[1rem] py-[1.5rem]",
-                  "bg-[white] dark:bg-[#232323]"
+                  "bg-[white] dark:bg-[#232323]",
                 )}
               >
                 <p
                   className={clsx(
-                    "text-[1rem] text-[black] dark:text-white font-semibold"
+                    "text-[1rem] text-[black] dark:text-white font-semibold",
                   )}
                 >
                   {dictionaries.completed_ride.rating.title}
@@ -165,7 +165,7 @@ export const CompletedRideTripChat = () => {
                 <div
                   className={clsx(
                     "flex items-center justify-center gap-[0.75rem]",
-                    "w-full"
+                    "w-full",
                   )}
                 >
                   {Array(5)
@@ -190,7 +190,7 @@ export const CompletedRideTripChat = () => {
                               "w-[2rem] h-[2rem] transition-colors",
                               isStarFilled
                                 ? "fill-[#FFC403] text-[#FFC403]"
-                                : "text-[#E0E0E0]"
+                                : "text-[#E0E0E0]",
                             )}
                           />
                         </button>
@@ -206,7 +206,7 @@ export const CompletedRideTripChat = () => {
                 "flex sm:hidden items-center justify-between",
                 "w-full",
                 "px-[1rem] py-[1.5rem]",
-                "bg-[white]"
+                "bg-[white]",
               )}
             >
               <p className={clsx("text-[1rem] text-[black] font-semibold")}>
@@ -234,22 +234,20 @@ export const CompletedRideTripChat = () => {
           {!state.completed_ride.is_rated && (
             <button
               className={clsx(
-                "grid grid-cols-1 place-content-center place-items-center",
+                "flex items-center justify-center gap-2",
                 "w-full",
                 "px-[0.75rem] py-[0.75rem]",
                 "bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
                 "rounded-[0.375rem]",
                 "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
-                "cursor-pointer"
+                "cursor-pointer",
               )}
               disabled={
                 !state.completed_ride.rating || isPendingPostBookingRating
               }
               onClick={handleClickConfirmRate}
             >
-              {isPendingPostBookingRating && (
-                <MoonLoader size={20} color={"white"} />
-              )}
+              {isPendingPostBookingRating && <MoonLoader size={16} color={"white"} />}
               {dictionaries.completed_ride.cta.primary.children}
             </button>
           )}
