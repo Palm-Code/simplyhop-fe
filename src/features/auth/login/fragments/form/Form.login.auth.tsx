@@ -41,6 +41,12 @@ export const FormLoginAuth = () => {
     postAuthRequestOTP();
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && !isSubmitDisabled) {
+      handleClickLogin();
+    }
+  };
+
   const isSubmitLoading = isPendingPostAuthRequestOTP;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
@@ -52,25 +58,25 @@ export const FormLoginAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[2rem]",
-        "w-full h-full"
+        "w-full h-full",
       )}
     >
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-          "w-full"
+          "w-full",
         )}
       >
         <h1
           className={clsx(
-            "text-[#232323] dark:text-white text-[1.5rem] font-bold"
+            "text-[#232323] dark:text-white text-[1.5rem] font-bold",
           )}
         >
           {dictionaries.form.title}
         </h1>
         <p
           className={clsx(
-            "text-[#232323] dark:text-[#E9E6E6] text-base font-light"
+            "text-[#232323] dark:text-[#E9E6E6] text-base font-light",
           )}
         >
           {dictionaries.form.description}
@@ -84,7 +90,7 @@ export const FormLoginAuth = () => {
             "w-full",
             "bg-[#F9E6E6]",
             "border border-[#C50707]",
-            "rounded-md"
+            "rounded-md",
           )}
         >
           <span className={clsx("text-[#C50707] text-[0.875rem] font-medium")}>
@@ -96,7 +102,7 @@ export const FormLoginAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full h-full"
+          "w-full h-full",
         )}
       >
         <Textfield
@@ -105,15 +111,18 @@ export const FormLoginAuth = () => {
             ...dictionaries.form.input.email.inputProps,
             value: state.form.email.value,
             onChange: handleChangeEmail,
+            onKeyPress: handleKeyPress,
           }}
           disabled={isSubmitLoading}
           error={state.form.email.error?.name}
         />
 
-        <div className={clsx("flex items-center justify-start gap-2", "w-full")}>
+        <div
+          className={clsx("flex items-center justify-start gap-2", "w-full")}
+        >
           <span
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal"
+              "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal",
             )}
           >
             {dictionaries.form.register.message}{" "}
@@ -121,7 +130,7 @@ export const FormLoginAuth = () => {
           <Link
             href={dictionaries.form.register.cta.href}
             className={clsx(
-              "text-[#249124] dark:text-[#33CC33] text-base font-normal underline"
+              "text-[#249124] dark:text-[#33CC33] text-base font-normal underline",
             )}
           >
             {dictionaries.form.register.cta.children}
