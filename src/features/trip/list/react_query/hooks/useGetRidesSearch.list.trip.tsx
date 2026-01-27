@@ -64,10 +64,10 @@ export const useGetRidesSearch = () => {
   const isEnabled = isEmployee
     ? !type && !!userState.profile?.id && userState.profile.is_driver
     : isOrganizationAdmin
-    ? !!userState.profile?.organization_id
-    : isSuperAdmin
-    ? true
-    : false;
+      ? !!userState.profile?.organization_id
+      : isSuperAdmin
+        ? true
+        : false;
 
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
@@ -75,13 +75,13 @@ export const useGetRidesSearch = () => {
         !!userState.profile?.id && isEmployee
           ? String(userState.profile.id)
           : !!driver_id
-          ? String(driver_id ?? "0")
-          : undefined,
+            ? String(driver_id ?? "0")
+            : undefined,
       "filter[organization_id]": !!organization_id
         ? String(organization_id ?? "0")
         : isOrganizationAdmin && !!userState.profile?.organization_id
-        ? String(userState.profile.organization_id)
-        : undefined,
+          ? String(userState.profile.organization_id)
+          : undefined,
       include: "vehicle.brand,user,bookings,bookings.user",
       status: rideStatus ?? "in_progress",
       sort: sort,
@@ -89,8 +89,8 @@ export const useGetRidesSearch = () => {
       "page[size]": isOrganizationDetailRoute
         ? 3
         : isDriverDetailRoute
-        ? 3
-        : PAGINATION.SIZE,
+          ? 3
+          : PAGINATION.SIZE,
     },
   };
   const query = useQuery<
@@ -127,7 +127,7 @@ export const useGetRidesSearch = () => {
             .replaceAll("{{origin}}", !item.start_name ? "-" : item.start_name)
             .replaceAll(
               "{{destination}}",
-              !item.destination_name ? "-" : item.destination_name
+              !item.destination_name ? "-" : item.destination_name,
             )
             .replaceAll(
               "{{departure_time}}",
@@ -135,11 +135,11 @@ export const useGetRidesSearch = () => {
                 ? "-"
                 : `${dayjs
                     .utc(item.departure_time)
-                    .format("DD.MM.YYYY HH.mm [Uhr]")}`
+                    .format("DD.MM.YYYY HH.mm [Uhr]")}`,
             )
             .replaceAll(
               "{{share_link}}",
-              !item.url ? ENVIRONMENTS.SITE_URL : item.url
+              !item.url ? ENVIRONMENTS.SITE_URL : item.url,
             );
         return {
           id: String(item.id),
@@ -164,17 +164,17 @@ export const useGetRidesSearch = () => {
             image: {
               src: !item.vehicle.image.length
                 ? "/images/general/car.png"
-                : item.vehicle.image[0] ?? "/images/general/car.png",
+                : (item.vehicle.image[0] ?? "/images/general/car.png"),
               alt: "car",
               width: 145,
               height: 46,
             },
             identity: {
               name: !item.vehicle.brand?.title
-                ? item.vehicle.model ?? ""
+                ? (item.vehicle.model ?? "")
                 : !item.vehicle.model
-                ? item.vehicle.brand?.title ?? ""
-                : `${item.vehicle.brand?.title} ${item.vehicle.model}`,
+                  ? (item.vehicle.brand?.title ?? "")
+                  : `${item.vehicle.brand?.title} ${item.vehicle.model}`,
               number: item.vehicle.plate_license,
             },
             facility: isSuperAdmin
@@ -201,15 +201,15 @@ export const useGetRidesSearch = () => {
                                     .replaceAll(
                                       "{{number}}",
                                       item?.available_seats.toLocaleString(
-                                        "de-DE"
-                                      )
+                                        "de-DE",
+                                      ),
                                     )
                                     .replaceAll("(Max. 2 auf der Rückbank)", "")
                                 : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                     "{{number}}",
                                     item?.available_seats.toLocaleString(
-                                      "de-DE"
-                                    )
+                                      "de-DE",
+                                    ),
                                   ),
                               color: isDarkMode
                                 ? globalDictionaries.vehicle.seat.available.name
@@ -422,7 +422,7 @@ export const useGetRidesSearch = () => {
                 ? "-"
                 : `${setArrivalTime(
                     dayjs.utc(item.departure_time).format("HH:mm"),
-                    item.eta
+                    item.eta,
                   )} Uhr`,
             },
           },
@@ -443,11 +443,14 @@ export const useGetRidesSearch = () => {
                     children: "Siehe Details",
                     href: `${pathname}?${urlSearchParams.toString()}`,
                   },
-            share: {
-              onClick: () => {},
-              href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
-              message: shareMessage,
-            },
+            share:
+              rideStatus === "archive"
+                ? undefined
+                : {
+                    onClick: () => {},
+                    href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
+                    message: shareMessage,
+                  },
           },
         };
       });
@@ -457,8 +460,8 @@ export const useGetRidesSearch = () => {
           state.ride.pagination.current === 1
             ? [...newPayload]
             : !newPayload.length
-            ? state.ride.data
-            : [...state.ride.data, ...newPayload],
+              ? state.ride.data
+              : [...state.ride.data, ...newPayload],
       });
       dispatch({
         type: ListTripActionEnum.SetRideDataPaginationLast,
