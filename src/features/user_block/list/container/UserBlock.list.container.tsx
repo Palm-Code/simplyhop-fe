@@ -5,19 +5,23 @@ import { useGetUserBlockList } from "../react_query/hooks";
 import { HeaderListUserBlock } from "../fragments/header";
 
 import { DataTableListUserBlock } from "../fragments/data_table";
+import { UnblockConfirmationListUserBlock } from "../fragments/unblock_confirmation";
 
 export const ListUserBlockContainer = () => {
   useGetUserBlockList();
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[36px]",
-        "w-full h-full",
-        "relative"
-      )}
-    >
-      <HeaderListUserBlock />
-      <DataTableListUserBlock />
-    </div>
+    <>
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[36px]",
+          "w-full h-full",
+          "relative",
+        )}
+      >
+        <HeaderListUserBlock />
+        <DataTableListUserBlock />
+      </div>
+      <UnblockConfirmationListUserBlock />
+    </>
   );
 };

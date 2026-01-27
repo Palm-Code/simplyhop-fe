@@ -6,9 +6,12 @@ import { useDeleteUserBlock } from "../../react_query/hooks";
 import { UserUnblockConfirmation } from "@/core/components/user_unblock_confirmation";
 import { queryClient } from "@/core/utils/react_query";
 import { ListUserBlockReactQueryKey } from "../../react_query/keys";
+import { GetUserBlockListPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_block";
+import { UserContext } from "@/core/modules/app/context";
 
 export const UnblockConfirmationListUserBlock = () => {
   const dictionaries = getDictionaries();
+  const { state: userState } = React.useContext(UserContext);
 
   const { state, dispatch } = React.useContext(ListUserBlockContext);
 
@@ -45,8 +48,16 @@ export const UnblockConfirmationListUserBlock = () => {
     });
     const res = await deleteUserBlock();
     if (!res) return;
+    const payload: GetUserBlockListPayloadRequestInterface = {
+      params: {
+        "filter[user_id]": String(userState.profile?.id ?? -1),
+        include: "user,blockedUser",
+        "page[number]": 1,
+        "page[size]": 30,
+      },
+    };
     queryClient.invalidateQueries({
-      queryKey: ListUserBlockReactQueryKey.GetUserBlockList(),
+      queryKey: ListUserBlockReactQueryKey.GetUserBlockList(payload),
       exact: false,
     });
   };
