@@ -249,7 +249,7 @@ export const RideDetailListTrip = () => {
         <AdaptiveModalContent
           className={clsx(
             "!bg-[white] dark:bg-[#232323]!",
-            "!px-[0rem] !py-[0rem]",
+            "!px-[0rem] pt-[0rem] pb-10!",
             "!gap-[0.5rem]",
             "!max-h-full",
           )}
