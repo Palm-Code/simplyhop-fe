@@ -39,6 +39,14 @@ export const CompletedRideTripChat = () => {
   const handleClickConfirmRate = async () => {
     const res = await postBookingRating();
     if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetCompletedRideData,
+      payload: {
+        ...state.completed_ride,
+        booking: null,
+        is_open: false,
+      },
+    });
     toast.custom(() => <SuccessRatingToast message="Bewertung gesendet!" />, {
       duration: 5000,
       position: "top-center",
@@ -247,7 +255,9 @@ export const CompletedRideTripChat = () => {
               }
               onClick={handleClickConfirmRate}
             >
-              {isPendingPostBookingRating && <MoonLoader size={16} color={"white"} />}
+              {isPendingPostBookingRating && (
+                <MoonLoader size={16} color={"white"} />
+              )}
               {dictionaries.completed_ride.cta.primary.children}
             </button>
           )}
