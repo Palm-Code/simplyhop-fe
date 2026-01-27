@@ -335,10 +335,7 @@ export const RideDetailListTrip = () => {
                     state.complete_ride_confirmation.confirmed_booking
                       .map((confirmedItem) => confirmedItem.id)
                       .includes(item.booking?.id ?? -1);
-                  console.log(
-                    isPresentStatusNotNull,
-                    "ini present status not null",
-                  );
+
                   const isPresent =
                     state.complete_ride_confirmation.confirmed_booking.find(
                       (confirmedItem) => confirmedItem.id === item.booking?.id,
