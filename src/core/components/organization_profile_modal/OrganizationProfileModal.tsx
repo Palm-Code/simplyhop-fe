@@ -70,7 +70,7 @@ export const OrganizationProfileModal = ({
         "!max-w-[100vw] lg:!max-w-[584px]",
         "max-h-[100vh] lg:!h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-hidden"
+        "overflow-hidden",
       )}
       open={isOpen}
       onClose={onClose}
@@ -80,7 +80,7 @@ export const OrganizationProfileModal = ({
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
           "px-[0rem] sm:px-[2rem] py-[2rem]",
           "w-full h-full max-h-[80vh]",
-          "overflow-auto"
+          "overflow-auto",
         )}
       >
         {/* header */}
@@ -88,7 +88,7 @@ export const OrganizationProfileModal = ({
           className={clsx(
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
             "w-full",
-            "px-[2rem] sm:px-[0rem]"
+            "px-[2rem] sm:px-[0rem]",
           )}
         >
           <button
@@ -99,12 +99,15 @@ export const OrganizationProfileModal = ({
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dadrk:text-[#767676]")}
+              className={clsx(
+                "w-[1.5rem] h-[1.5rem]",
+                "text-[#5B5B5B] dadrk:text-[#767676]",
+              )}
             />
           </button>
           <h2
             className={clsx(
-              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
+              "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold",
             )}
           >
             {title}
@@ -118,14 +121,14 @@ export const OrganizationProfileModal = ({
             "w-full",
             "bg-[#F6F6F6CC] dark:bg-[#292929]",
             "px-[1rem] py-[1rem]",
-            "rounded-[0.5rem]"
+            "rounded-[0.5rem]",
           )}
         >
           {/* profile */}
           <div
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
-              "w-full"
+              "w-full",
             )}
           >
             {user.avatar && (
@@ -138,20 +141,26 @@ export const OrganizationProfileModal = ({
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-center place-items-center",
-                "w-full"
+                "w-full",
               )}
             >
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-center place-items-center",
-                  "w-full"
+                  "w-full",
                 )}
               >
-                <p className={clsx("text-[1rem] text-[black] dark:text-[white] font-semibold")}>
+                <p
+                  className={clsx(
+                    "text-[1rem] text-[black] dark:text-[white] font-semibold",
+                  )}
+                >
                   {user.name}
                 </p>
                 <p
-                  className={clsx("text-[0.875rem] text-[#767676] dark:text-[#C3C3C3] font-medium")}
+                  className={clsx(
+                    "text-[0.875rem] text-[#767676] dark:text-[#C3C3C3] font-medium",
+                  )}
                 >
                   {user.phone}
                 </p>
@@ -167,7 +176,8 @@ export const OrganizationProfileModal = ({
                   "rounded-md",
                   "bg-[#249124] dark:bg-[#33CC33]",
                   "text-white dark:text-text-primary text-xs font-semibold",
-                  "cursor-pointer"
+                  "cursor-pointer",
+                  "hover:opacity-80",
                 )}
                 onClick={cta.open.onClick}
               >
@@ -184,7 +194,7 @@ export const OrganizationProfileModal = ({
                 "w-full",
                 "bg-[white] dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
-                "rounded-[0.5rem]"
+                "rounded-[0.5rem]",
               )}
               style={{
                 gridTemplateColumns: `repeat(${user.summary.length},1fr)`,
@@ -195,19 +205,19 @@ export const OrganizationProfileModal = ({
                   key={index}
                   className={clsx(
                     "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
-                    "w-full"
+                    "w-full",
                   )}
                 >
                   <p
                     className={clsx(
-                      "text-[0.75rem] text-[#606060] font-normal"
+                      "text-[0.75rem] text-[#606060] font-normal",
                     )}
                   >
                     {item.name}
                   </p>
                   <div
                     className={clsx(
-                      "flex items-center justify-center gap-[0.5rem]"
+                      "flex items-center justify-center gap-[0.5rem]",
                     )}
                   >
                     {item.id === "ratings" && (
@@ -215,13 +225,13 @@ export const OrganizationProfileModal = ({
                         name="Star"
                         className={clsx(
                           "w-[1rem] h-[1rem]",
-                          "fill-[#FAC248] text-[#FAC248]"
+                          "fill-[#FAC248] text-[#FAC248]",
                         )}
                       />
                     )}
                     <p
                       className={clsx(
-                        "text-[0.875rem] text-[#232323] dark:text-[white] font-bold"
+                        "text-[0.875rem] text-[#232323] dark:text-[white] font-bold",
                       )}
                     >
                       {item.value}
@@ -240,7 +250,7 @@ export const OrganizationProfileModal = ({
                 "w-full",
                 "bg-[white] dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
-                "rounded-[0.5rem]"
+                "rounded-[0.5rem]",
               )}
             >
               {user.detail.map((item, index) => (
@@ -248,29 +258,32 @@ export const OrganizationProfileModal = ({
                   key={index}
                   className={clsx(
                     "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]",
-                    "w-full"
+                    "w-full",
                   )}
                 >
                   <SVGIcon
                     name={item.icon as SVGIconProps["name"]}
-                    className={clsx("w-[1rem] h-[1rem]", "text-[#767676] dark:text-[#F6F6F6]")}
+                    className={clsx(
+                      "w-[1rem] h-[1rem]",
+                      "text-[#767676] dark:text-[#F6F6F6]",
+                    )}
                   />
                   <div
                     className={clsx(
                       "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                      "w-full"
+                      "w-full",
                     )}
                   >
                     <p
                       className={clsx(
-                        "text-[0.75rem] text-[#606060] font-normal"
+                        "text-[0.75rem] text-[#606060] font-normal",
                       )}
                     >
                       {item.name}
                     </p>
                     <p
                       className={clsx(
-                        "text-[0.875rem] text-[#232323] dark:text-[white] font-medium"
+                        "text-[0.875rem] text-[#232323] dark:text-[white] font-medium",
                       )}
                     >
                       {item.value}
@@ -289,7 +302,7 @@ export const OrganizationProfileModal = ({
                 "w-full",
                 "bg-[white] dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
-                "rounded-[0.5rem]"
+                "rounded-[0.5rem]",
               )}
             >
               {user.statistic.map((item, index) => (
@@ -297,35 +310,38 @@ export const OrganizationProfileModal = ({
                   key={index}
                   className={clsx(
                     "flex items-center justify-between",
-                    "w-full"
+                    "w-full",
                   )}
                 >
                   <div
                     className={clsx(
                       "grid grid-flow-col place-content-start place-items-start gap-[0.5rem]",
-                      "w-full"
+                      "w-full",
                     )}
                   >
                     <SVGIcon
                       name={item.icon as SVGIconProps["name"]}
-                      className={clsx("w-[1rem] h-[1rem]", "text-[#767676] dark:text-[#F6F6F6]")}
+                      className={clsx(
+                        "w-[1rem] h-[1rem]",
+                        "text-[#767676] dark:text-[#F6F6F6]",
+                      )}
                     />
                     <div
                       className={clsx(
                         "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                        "w-full"
+                        "w-full",
                       )}
                     >
                       <p
                         className={clsx(
-                          "text-[0.75rem] text-[#606060] font-normal"
+                          "text-[0.75rem] text-[#606060] font-normal",
                         )}
                       >
                         {item.name}
                       </p>
                       <p
                         className={clsx(
-                          "text-[0.875rem] text-[#232323] dark:text-white font-medium"
+                          "text-[0.875rem] text-[#232323] dark:text-white font-medium",
                         )}
                       >
                         {item.value}
@@ -339,7 +355,7 @@ export const OrganizationProfileModal = ({
                         name="ArrowRight"
                         className={clsx(
                           "w-[0.75rem] h-[0.75rem]",
-                          "text-[#767676]"
+                          "text-[#767676]",
                         )}
                       />
                     </Link>
@@ -357,7 +373,7 @@ export const OrganizationProfileModal = ({
                 "w-full",
                 "bg-white dark:bg-[#232323]",
                 "px-[0.5rem] py-[0.5rem]",
-                "rounded-[0.5rem]"
+                "rounded-[0.5rem]",
               )}
             >
               {user.cta.map((item, index) => (
@@ -370,13 +386,16 @@ export const OrganizationProfileModal = ({
                       "px-[0.75rem] py-[0.75rem]",
                       "rounded-[0.375rem]",
                       "text-[1rem] text-[#B30606] dark:text-[#D13939] font-normal",
-                      "cursor-pointer"
+                      "cursor-pointer",
                     )}
                     onClick={item.onClick}
                   >
                     <SVGIcon
                       name={item.icon as SVGIconProps["name"]}
-                      className={clsx("w-[1rem] h-[1rem]", "text-[#C50707] dark:text-[#D13939]")}
+                      className={clsx(
+                        "w-[1rem] h-[1rem]",
+                        "text-[#C50707] dark:text-[#D13939]",
+                      )}
                     />
                     {item.label}
                   </button>
