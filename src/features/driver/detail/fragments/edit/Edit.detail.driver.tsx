@@ -174,6 +174,9 @@ export const EditDetailDriver = () => {
       path: {
         id: String(driver_id ?? "0"),
       },
+      params: {
+        include: "organization",
+      },
     };
     queryClient.invalidateQueries({
       queryKey: DetailDriverReactQueryKey.GetUserProfileId(payload),
