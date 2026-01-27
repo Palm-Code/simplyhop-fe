@@ -11,10 +11,14 @@ import { MoonLoader } from "@/core/components/moon_loader";
 import { BookingRatingRideCardChatTrip } from "../../components/booking_ride_rating_card";
 import { toast, Toaster } from "sonner";
 import { SuccessRatingToast } from "@/core/components/success_rating_toast";
+import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const CompletedRideTripChat = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
+  const { state: globalState, dispatch: dispatchGlobal } =
+    React.useContext(GlobalContext);
   const { isLg } = useTailwindBreakpoint();
   const [hoveredRating, setHoveredRating] = React.useState<number | null>(null);
   const isOpen = state.completed_ride.is_open;
@@ -39,6 +43,20 @@ export const CompletedRideTripChat = () => {
   const handleClickConfirmRate = async () => {
     const res = await postBookingRating();
     if (!res) return;
+    dispatchGlobal({
+      type: GlobalActionEnum.SetAlertData,
+      payload: {
+        ...globalState.alert,
+        items: [
+          ...globalState.alert.items,
+          {
+            id: uuidv4(),
+            variant: "error",
+            message: "Deine Reise wurde abgeschlossen.",
+          },
+        ],
+      },
+    });
     dispatch({
       type: ChatTripActionEnum.SetCompletedRideData,
       payload: {
