@@ -296,6 +296,30 @@ export const RideDetailListTrip = () => {
                 "bg-[white] dark:bg-[#232323]",
               )}
             >
+              {isEmployee && (
+                <div
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
+                    "w-full",
+                  )}
+                >
+                  <p
+                    className={clsx(
+                      "text-[1rem] text-[black] dark:text-white font-semibold",
+                    )}
+                  >
+                    {dictionaries.ride_detail.passenger.title}
+                  </p>
+                  <span
+                    className={clsx(
+                      "text-[0.75rem] text-[#5B5B5B] dark:text-[#DADADA] font-normal",
+                    )}
+                  >
+                    {dictionaries.ride_detail.passenger.description}
+                  </span>
+                </div>
+              )}
+
               {!!filteredData.booking.length && (
                 <div className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")} />
               )}
