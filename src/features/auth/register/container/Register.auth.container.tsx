@@ -15,25 +15,25 @@ export const RegisterAuthContainer = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full"
+        "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full",
       )}
     >
       <NavigationBarRegisterAuth />
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start w-full max-w-[1068px] h-full",
-          "pt-28"
+          "grid grid-cols-1 place-content-start place-items-start w-full max-w-[1092px] px-6 h-full",
+          "pt-6 lg:pt-28",
         )}
       >
         {state.step.name === "otp" ? (
           <div
             className={clsx(
-              "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full"
+              "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full",
             )}
           >
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] gap-8 w-full"
+                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] gap-8 w-full",
               )}
             >
               <OTPFormRegisterAuth />
@@ -47,12 +47,12 @@ export const RegisterAuthContainer = () => {
         ) : state.step.name === "form" ? (
           <div
             className={clsx(
-              "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full"
+              "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full",
             )}
           >
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] gap-8 h-full"
+                "grid grid-cols-1 place-content-start place-items-start w-full max-w-[680px] gap-8 h-full",
               )}
             >
               <FormRegisterAuth />
@@ -66,12 +66,12 @@ export const RegisterAuthContainer = () => {
         ) : (
           <div
             className={clsx(
-              "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full"
+              "grid grid-cols-1 items-start content-start justify-center justify-items-center w-full h-full",
             )}
           >
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start w-full h-full gap-8"
+                "grid grid-cols-1 place-content-start place-items-start w-full h-full gap-8",
               )}
             >
               <OrganizationRegisterAuth />

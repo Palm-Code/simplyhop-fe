@@ -26,19 +26,24 @@ export const OrganizationRegisterAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-4",
-          "w-full"
+          "w-full",
         )}
       >
-        <div className={clsx("flex items-center justify-between", "w-full")}>
+        <div
+          className={clsx(
+            "flex items-start lg:items-center justify-start lg:justify-between flex-col lg:flex-row gap-2",
+            "w-full",
+          )}
+        >
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-2",
-              "w-full"
+              "w-full",
             )}
           >
             <h1
               className={clsx(
-                "text-[#232323] dark:text-[white] text-[1.5rem] font-bold"
+                "text-[#232323] dark:text-[white] text-[1.5rem] font-bold",
               )}
             >
               {dictionaries.organization.title}
@@ -46,18 +51,18 @@ export const OrganizationRegisterAuth = () => {
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-2",
-                "w-full"
+                "w-full",
               )}
             >
               <div
                 className={clsx(
                   "flex items-center justify-start gap-2",
-                  "w-full"
+                  "w-full",
                 )}
               >
                 <span
                   className={clsx(
-                    "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal"
+                    "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal",
                   )}
                 >
                   {dictionaries.organization.login.message}{" "}
@@ -65,7 +70,7 @@ export const OrganizationRegisterAuth = () => {
                 <Link
                   href={dictionaries.organization.login.cta.href}
                   className={clsx(
-                    "text-[#249124] dark:text-[#33CC33] text-base font-normal underline"
+                    "text-[#249124] dark:text-[#33CC33] text-base font-normal underline",
                   )}
                 >
                   {dictionaries.organization.login.cta.children}
@@ -74,7 +79,7 @@ export const OrganizationRegisterAuth = () => {
             </div>
           </div>
 
-          <div className={clsx("max-w-[256px]", "w-full")}>
+          <div className={clsx("max-w-full sm:max-w-[256px]", "w-full")}>
             <SearchRegisterAuth />
           </div>
         </div>
@@ -82,7 +87,7 @@ export const OrganizationRegisterAuth = () => {
         <div
           className={clsx(
             "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-4",
-            "w-full h-100"
+            "w-full h-100",
           )}
         >
           <LoadingState />
@@ -95,19 +100,24 @@ export const OrganizationRegisterAuth = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-4",
-          "w-full"
+          "w-full",
         )}
       >
-        <div className={clsx("flex items-center justify-between", "w-full")}>
+        <div
+          className={clsx(
+            "flex items-start lg:items-center justify-start lg:justify-between flex-col lg:flex-row gap-2",
+            "w-full",
+          )}
+        >
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-2",
-              "w-full"
+              "w-full",
             )}
           >
             <h1
               className={clsx(
-                "text-[#232323] dark:text-[white] text-[1.5rem] font-bold"
+                "text-[#232323] dark:text-[white] text-[1.5rem] font-bold",
               )}
             >
               {dictionaries.organization.title}
@@ -115,18 +125,18 @@ export const OrganizationRegisterAuth = () => {
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-2",
-                "w-full"
+                "w-full",
               )}
             >
               <div
                 className={clsx(
                   "flex items-center justify-start gap-2",
-                  "w-full"
+                  "w-full",
                 )}
               >
                 <span
                   className={clsx(
-                    "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal"
+                    "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal",
                   )}
                 >
                   {dictionaries.organization.login.message}{" "}
@@ -134,7 +144,7 @@ export const OrganizationRegisterAuth = () => {
                 <Link
                   href={dictionaries.organization.login.cta.href}
                   className={clsx(
-                    "text-[#249124] dark:text-[#33CC33] text-base font-normal underline"
+                    "text-[#249124] dark:text-[#33CC33] text-base font-normal underline",
                   )}
                 >
                   {dictionaries.organization.login.cta.children}
@@ -143,7 +153,7 @@ export const OrganizationRegisterAuth = () => {
             </div>
           </div>
 
-          <div className={clsx("max-w-[256px]", "w-full")}>
+          <div className={clsx("max-w-full sm:max-w-[256px]", "w-full")}>
             <SearchRegisterAuth />
           </div>
         </div>
@@ -151,7 +161,7 @@ export const OrganizationRegisterAuth = () => {
         <div
           className={clsx(
             "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-4",
-            "w-full h-100"
+            "w-full h-100",
           )}
         >
           <EmptyState
@@ -195,19 +205,24 @@ export const OrganizationRegisterAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-4",
-        "w-full"
+        "w-full",
       )}
     >
-      <div className={clsx("flex items-center justify-between", "w-full")}>
+      <div
+        className={clsx(
+          "flex items-start lg:items-center justify-start lg:justify-between flex-col lg:flex-row gap-2",
+          "w-full",
+        )}
+      >
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-2",
-            "w-full"
+            "w-full",
           )}
         >
           <h1
             className={clsx(
-              "text-[#232323] dark:text-[white] text-[1.5rem] font-bold"
+              "text-[#232323] dark:text-[white] text-[1.5rem] font-bold",
             )}
           >
             {dictionaries.organization.title}
@@ -215,18 +230,18 @@ export const OrganizationRegisterAuth = () => {
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-2",
-              "w-full"
+              "w-full",
             )}
           >
             <div
               className={clsx(
                 "flex items-center justify-start gap-2",
-                "w-full"
+                "w-full",
               )}
             >
               <span
                 className={clsx(
-                  "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal"
+                  "text-[#5B5B5B] dark:text-[#DADADA] text-base font-normal",
                 )}
               >
                 {dictionaries.organization.login.message}{" "}
@@ -234,7 +249,7 @@ export const OrganizationRegisterAuth = () => {
               <Link
                 href={dictionaries.organization.login.cta.href}
                 className={clsx(
-                  "text-[#249124] dark:text-[#33CC33] text-base font-normal underline"
+                  "text-[#249124] dark:text-[#33CC33] text-base font-normal underline",
                 )}
               >
                 {dictionaries.organization.login.cta.children}
@@ -243,7 +258,7 @@ export const OrganizationRegisterAuth = () => {
           </div>
         </div>
 
-        <div className={clsx("max-w-[256px]", "w-full")}>
+        <div className={clsx("max-w-full sm:max-w-[256px]", "w-full")}>
           <SearchRegisterAuth />
         </div>
       </div>
@@ -260,8 +275,8 @@ export const OrganizationRegisterAuth = () => {
       >
         <div
           className={clsx(
-            "grid grid-rows-1 grid-cols-4 place-content-start place-items-start gap-4",
-            "w-full"
+            "grid grid-rows-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 place-content-start place-items-start gap-4",
+            "w-full",
           )}
         >
           {state.organization.data.map((item, itemIndex) => {
@@ -269,10 +284,10 @@ export const OrganizationRegisterAuth = () => {
               !item?.address?.length && !item?.address_line_2?.length
                 ? "-"
                 : !item?.address_line_2?.length
-                ? item?.address ?? ""
-                : !item?.address?.length
-                ? item?.address_line_2 ?? ""
-                : `${item?.address} ${item?.address_line_2}`;
+                  ? (item?.address ?? "")
+                  : !item?.address?.length
+                    ? (item?.address_line_2 ?? "")
+                    : `${item?.address} ${item?.address_line_2}`;
             return (
               <OrganizationCardRegisterAuth
                 key={itemIndex}

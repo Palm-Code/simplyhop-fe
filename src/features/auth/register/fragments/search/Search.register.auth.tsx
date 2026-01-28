@@ -66,7 +66,7 @@ export const SearchRegisterAuth = () => {
   };
 
   return (
-    <div className={clsx("w-[256px]")}>
+    <div className={clsx("w-full lg:w-[256px]")}>
       <Textfield
         labelProps={{ ...dictionaries.organization.search.labelProps }}
         inputProps={{
