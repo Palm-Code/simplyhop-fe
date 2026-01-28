@@ -7,8 +7,23 @@ import { getDictionaries } from "../../i18n";
 import { ListTripActionEnum, ListTripContext } from "../../context";
 import { usePostRidesArchive } from "../../react_query/hooks/usePostRidesArchive.list.trip";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import {
+  GlobalActionEnum,
+  GlobalContext,
+  UserContext,
+} from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
+import { PAGINATION } from "@/core/utils/pagination/contants";
+import { queryClient } from "@/core/utils/react_query";
+import { ListTripReactQueryKey } from "../../react_query/keys";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const CompletedRideListTrip = () => {
   const dictionaries = getDictionaries();
@@ -20,6 +35,53 @@ export const CompletedRideListTrip = () => {
 
   const { mutateAsync: postRidesArchive, isPending: isPendingRidesArchive } =
     usePostRidesArchive();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { organization_id } = useParams();
+  const { driver_id } = useParams();
+  const { state: userState } = React.useContext(UserContext);
+
+  const rideStatus = searchParams.get("ride-status");
+  const sortSearchParams = searchParams.get("sort");
+  const sort = !sortSearchParams
+    ? rideStatus === "finished"
+      ? "-departure_time"
+      : "departure_time"
+    : sortSearchParams;
+
+  const isEmployee = userState.profile?.role === "employee";
+  const isOrganizationAdmin =
+    userState.profile?.role === "admin" &&
+    userState.profile.is_super_admin === false;
+  const isOrganizationDetailRoute =
+    pathname.startsWith("/support/organisation/detail") && !!organization_id;
+  const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
+
+  const payload: GetRidesSearchPayloadRequestInterface = {
+    params: {
+      "filter[user_id]":
+        !!userState.profile?.id && isEmployee
+          ? String(userState.profile.id)
+          : !!driver_id
+            ? String(driver_id ?? "0")
+            : undefined,
+      "filter[organization_id]": !!organization_id
+        ? String(organization_id ?? "0")
+        : isOrganizationAdmin && !!userState.profile?.organization_id
+          ? String(userState.profile.organization_id)
+          : undefined,
+      include: "vehicle.brand,user,bookings,bookings.user",
+      status: rideStatus ?? "in_progress",
+      sort: sort,
+      "page[number]": PAGINATION.NUMBER,
+      "page[size]": isOrganizationDetailRoute
+        ? 3
+        : isDriverDetailRoute
+          ? 3
+          : PAGINATION.SIZE,
+    },
+  };
 
   const handleClose = () => {
     dispatch({
@@ -66,22 +128,43 @@ export const CompletedRideListTrip = () => {
         ],
       },
     });
-    // dispatch({
-    //   type: ListTripActionEnum.SetCompleteRideConfirmationData,
-    //   payload: {
-    //     ...state.complete_ride_confirmation,
-    //     is_open: false,
-    //     confirmed_booking: [],
-    //   },
-    // });
-    // const params = new URLSearchParams(searchParams.toString());
-    // params.delete("ride_id");
+    dispatch({
+      type: ListTripActionEnum.SetCompleteRideConfirmationData,
+      payload: {
+        ...state.complete_ride_confirmation,
+        is_open: false,
+        confirmed_booking: [],
+      },
+    });
+    dispatch({
+      type: ListTripActionEnum.SetRideData,
+      payload: {
+        ...state.ride,
+        data: [],
+        pagination: {
+          ...state.ride.pagination,
+          current: PAGINATION.NUMBER,
+          last: null,
+        },
+        detail: null,
+      },
+    });
 
-    // const hasParams = params.toString().length > 0;
+    queryClient.invalidateQueries({
+      queryKey: ListTripReactQueryKey.GetRidesSearch(payload),
+      refetchType: "all",
+      type: "all",
+    });
 
-    // router.push(hasParams ? `${pathname}?${params.toString()}` : pathname, {
-    //   scroll: false,
-    // });
+    const type = searchParams.get("type");
+    const rideStatus = searchParams.get("ride-status");
+    let url = AppCollectionURL.private.myList();
+    const params = [];
+    if (type) params.push(`type=${type}`);
+    if (rideStatus) params.push(`ride-status=${rideStatus}`);
+    if (params.length > 0) url += `?${params.join("&")}`;
+
+    router.push(url);
   };
 
   return (
