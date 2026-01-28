@@ -141,7 +141,7 @@ export const UserProfileListDriver = () => {
         .map((item) => {
           return {
             ...item,
-            onClick: handleClickBlockList,
+            onClick: handleClickDeleteAccount,
           };
         })
     : dictionaries.user_profile.cta.organizational_admin.items.map((item) => {
