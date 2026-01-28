@@ -573,7 +573,7 @@
         "items": [
           {
             "id": "invalid_license_plate",
-            "name": "Bitte geben Du ein gültiges Kennzeichen ein.",
+            "name": "Bitte gib ein gültiges Kennzeichen ein.",
             "regex": "^[A-ZÄÖÜ]{1,3}[-: ]?[A-ZÄÖÜ]{1,2}[-: ]?[0-9]{1,4}$"
           }
         ]
