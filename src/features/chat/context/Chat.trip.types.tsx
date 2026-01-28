@@ -68,7 +68,7 @@ export interface ChatTripRoom {
       id: string;
       type: string;
       role: string;
-      booking_role: "passenger" | "driver";
+      booking_role: "passenger" | "driver" | null;
       sender_id: string;
       time: string;
       name: string;
@@ -118,7 +118,7 @@ export interface ChatTripCompletedRide {
   booking: BookingCardChatTripProps | null;
   rating: null | number;
   is_rated: boolean;
-  booking_role: "driver" | "passenger";
+  booking_role: "driver" | "passenger" | null;
 }
 
 export interface ChatTripUserProfile {

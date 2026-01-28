@@ -82,6 +82,7 @@ const initialState: ChatTripInitialStateType = {
     booking: null,
     rating: null,
     is_rated: false,
+    booking_role: "driver",
   },
 
   user_profile: {
@@ -121,7 +122,7 @@ const mainReducer = (
     unblock_confirmation,
     delete_chat_confirmation,
   }: ChatTripInitialStateType,
-  action: ChatTripActions
+  action: ChatTripActions,
 ) => ({
   list: ChatTripListReducers(list, action),
   room: ChatTripRoomReducers(room, action),
@@ -130,15 +131,15 @@ const mainReducer = (
   user_profile: ChatTripUserProfileReducers(user_profile, action),
   block_confirmation: ChatTripBlockConfirmationReducers(
     block_confirmation,
-    action
+    action,
   ),
   unblock_confirmation: ChatTripUnblockConfirmationReducers(
     unblock_confirmation,
-    action
+    action,
   ),
   delete_chat_confirmation: ChatTripDeleteChatConfirmationReducers(
     delete_chat_confirmation,
-    action
+    action,
   ),
 });
 

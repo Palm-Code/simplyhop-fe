@@ -200,7 +200,7 @@ export const RoomChatTrip = () => {
     data: BookingCardChatTripProps | null,
     is_rated: boolean,
     rating: number | null,
-    booking_role: "driver" | "passenger",
+    booking_role: "driver" | "passenger" | null,
   ) => {
     dispatch({
       type: ChatTripActionEnum.SetCompletedRideData,
