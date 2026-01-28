@@ -231,7 +231,7 @@
       },
       "empty": {
         "message": "Noch keine Fahrerliste",
-        "description": "Noch keine Fahrerliste"
+        "description": ""
       }
     }
   },
@@ -343,7 +343,7 @@
       },
       "empty": {
         "message": "Noch keine Fahrerliste",
-        "description": "Noch keine Fahrerliste"
+        "description": ""
       }
     }
   }

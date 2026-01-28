@@ -3,7 +3,7 @@
   "items": {
     "empty": {
       "message": "Noch keine Fahrerliste",
-      "description": "Noch keine Fahrerliste"
+      "description": ""
     },
     "head": {
       "items": [
