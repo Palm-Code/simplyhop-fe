@@ -126,6 +126,12 @@ export const FormRegisterAuth = () => {
     });
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && !isSubmitDisabled) {
+      handleClickRegister();
+    }
+  };
+
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
   const isSubmitDisabled =
@@ -137,7 +143,7 @@ export const FormRegisterAuth = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-8",
-        "px-4",
+        "lg:px-4",
         "rounded-[1.25rem]",
         "w-full h-full",
       )}
@@ -200,6 +206,7 @@ export const FormRegisterAuth = () => {
             ...dictionaries.form.email.inputProps,
             value: state.form.email.value,
             onChange: handleChangeEmail,
+            onKeyPress: handleKeyPress,
           }}
           error={state.form.email.error?.name}
         />
