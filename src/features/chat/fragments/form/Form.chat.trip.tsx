@@ -92,6 +92,7 @@ export const FormChatTrip = () => {
   };
 
   const isLoadingSendChat = isPendingPostMessageChat;
+  const isBookingStatusAccepted = state.room.booking.status === "accepted";
   const isDisabledSendChat =
     isPendingPostMessageChat || state.room.booking.status !== "accepted";
 
@@ -126,7 +127,7 @@ export const FormChatTrip = () => {
           "grid grid-cols-2 place-content-center place-items-center gap-[1rem]",
           "w-full",
           "border-t border-t-[#DFDFDF] dark:border-[#464646]",
-          "px-[0.75rem] py-[1rem]"
+          "px-[0.75rem] py-[1rem]",
         )}
       >
         <button
@@ -138,7 +139,7 @@ export const FormChatTrip = () => {
             "bg-[white] dark:bg-[#232323] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
             "text-[#B30606] disabled:text-[#A6A6A6] text-[1rem] font-semibold",
             "border border-[#B30606]",
-            "box-border"
+            "box-border",
           )}
           onClick={handleClickDeleteChat}
         >
@@ -151,7 +152,7 @@ export const FormChatTrip = () => {
             "px-[0.75rem] py-[0.75rem]",
             "rounded-[6px]",
             "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
-            "text-[#232323] dark:text-white disabled:text-[#A6A6A6] text-[1rem] font-semibold"
+            "text-[#232323] dark:text-white disabled:text-[#A6A6A6] text-[1rem] font-semibold",
           )}
           onClick={handleClickUnblock}
         >
@@ -168,11 +169,42 @@ export const FormChatTrip = () => {
           "w-full",
           "border-t border-t-[#DFDFDF] dark:border-t-[#464646]",
           "px-[0.75rem] py-[1rem]",
-          "bg-[#F6F6F6CC] dark:bg-[#292929]"
+          "bg-[#F6F6F6CC] dark:bg-[#292929]",
         )}
       >
-        <p className={clsx("text-[#767676] dark:text-[#C3C3C3] text-[1rem] font-normal")}>
+        <p
+          className={clsx(
+            "text-[#767676] dark:text-[#C3C3C3] text-[1rem] font-normal",
+          )}
+        >
           {"Sorry, du kannst dieser Person keine Nachricht senden."}
+        </p>
+      </div>
+    );
+  }
+  if (!isBookingStatusAccepted) {
+    return (
+      <div
+        className={clsx(
+          "flex items-center justify-start",
+          "w-full",
+          "border-t border-t-[#DFDFDF] dark:border-t-[#464646]",
+          "px-[0.75rem] py-[1rem]",
+          "bg-[#F6F6F6CC] dark:bg-[#292929]",
+        )}
+      >
+        <SVGIcon
+          name="Info"
+          className={clsx("w-6 h-6", "text-[#767676] dark:text-[#C3C3C3]")}
+        />
+        <p
+          className={clsx(
+            "text-[#767676] dark:text-[#C3C3C3] text-[1rem] font-normal",
+          )}
+        >
+          {
+            "Der Direktchat ist deaktiviert, bis sich beide Parteien über die Fahrtkonfiguration und den Preis geeinigt haben."
+          }
         </p>
       </div>
     );
@@ -185,8 +217,8 @@ export const FormChatTrip = () => {
         "w-full sticky bottom-0",
         "bg-[white] dark:bg-[#232323]",
         "px-[1rem] lg:px-[2.5rem] py-[1rem]",
-        'h-[72px]',
-        "border-t border-t-[#E9E6E6] dark:border-t-[#464646]"
+        "h-[72px]",
+        "border-t border-t-[#E9E6E6] dark:border-t-[#464646]",
       )}
     >
       <div className={clsx("relative")}>
@@ -208,7 +240,7 @@ export const FormChatTrip = () => {
             className={clsx(
               "!absolute",
               "top-[-480px] lg:left-[-175px] left-[0px]",
-              "z-[10]"
+              "z-[10]",
             )}
             onEmojiClick={handleSelectEmoji}
           />
@@ -237,7 +269,7 @@ export const FormChatTrip = () => {
           "px-[0.75rem] py-[0.625rem]",
           "bg-[#249124] dark:bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
           "rounded-[0.375rem]",
-          "text-[0.875rem] text-[white] dark:text-[#232323] disabled:text-[#5B5B5B] dark:disabled:text-[#C3C3C3] font-normal"
+          "text-[0.875rem] text-[white] dark:text-[#232323] disabled:text-[#5B5B5B] dark:disabled:text-[#C3C3C3] font-normal",
         )}
         type="submit"
         disabled={isDisabledSendChat}
@@ -251,7 +283,9 @@ export const FormChatTrip = () => {
             name="SendHorizonal"
             className={clsx(
               "w-[1rem] h-[1rem]",
-              isDisabledSendChat ? "text-[#5B5B5B] dark:text-[#C3C3C3]" : "text-[white] dark:text-[#232323]"
+              isDisabledSendChat
+                ? "text-[#5B5B5B] dark:text-[#C3C3C3]"
+                : "text-[white] dark:text-[#232323]",
             )}
           />
         )}
