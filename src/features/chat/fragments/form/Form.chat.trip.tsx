@@ -186,7 +186,7 @@ export const FormChatTrip = () => {
     return (
       <div
         className={clsx(
-          "flex items-center justify-start gap-2",
+          "grid grid-cols-[24px_1fr] items-center content-center justify-start justify-items-start gap-2",
           "w-full",
           "border-t border-t-[#DFDFDF] dark:border-t-[#464646]",
           "px-[0.75rem] py-[1rem]",
@@ -199,7 +199,7 @@ export const FormChatTrip = () => {
         />
         <p
           className={clsx(
-            "text-[#767676] dark:text-[#C3C3C3] text-[0.875rem] font-normal",
+            "text-[#767676] dark:text-[#C3C3C3] text-[0.625rem] sm:text-[0.875rem] font-normal",
           )}
         >
           {

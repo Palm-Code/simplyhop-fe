@@ -4,6 +4,7 @@ import { getDictionaries } from "../../i18n";
 import { ChatTripContext, ChatTripActionEnum } from "../../context";
 import { usePostUserBlock } from "../../react_query/hooks";
 import { UserBlockConfirmation } from "@/core/components/user_block_confirmation";
+import clsx from "clsx";
 
 export const BlockConfirmationChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -68,6 +69,7 @@ export const BlockConfirmationChatTrip = () => {
         isLoading: isPendingUserBlock,
         disabled: isPendingUserBlock,
       }}
+      modalClassName={clsx("!z-[9999]")}
     />
   );
 };

@@ -4,6 +4,7 @@ import { getDictionaries } from "../../i18n";
 import { ChatTripContext, ChatTripActionEnum } from "../../context";
 import { useDeleteUserBlock } from "../../react_query/hooks";
 import { UserUnblockConfirmation } from "@/core/components/user_unblock_confirmation";
+import clsx from "clsx";
 
 export const UnblockConfirmationChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -68,6 +69,7 @@ export const UnblockConfirmationChatTrip = () => {
         isLoading: isPendingDeleteUserBlock,
         disabled: isPendingDeleteUserBlock,
       }}
+      modalClassName={clsx("!z-[9999]")}
     />
   );
 };

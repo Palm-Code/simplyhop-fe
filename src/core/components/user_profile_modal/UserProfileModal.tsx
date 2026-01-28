@@ -70,7 +70,7 @@ export const UserProfileModal = ({
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
           "px-[0rem] sm:px-[2rem] py-[2rem]",
-          "w-full h-full max-h-[80vh]",
+          "w-full h-full max-h-screen lg:max-h-[80vh]",
           "overflow-auto",
         )}
       >
@@ -297,7 +297,7 @@ export const UserProfileModal = ({
               )}
             >
               {user.cta.map((item, index) => (
-                <>
+                <React.Fragment key={index}>
                   <button
                     key={`cta-${index}`}
                     className={clsx(
@@ -326,7 +326,7 @@ export const UserProfileModal = ({
                       className={clsx("w-full h-[1px]", "bg-[#F6F6F6]")}
                     />
                   )}
-                </>
+                </React.Fragment>
               ))}
             </div>
           )}

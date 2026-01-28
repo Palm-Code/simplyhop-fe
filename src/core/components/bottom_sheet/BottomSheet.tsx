@@ -16,6 +16,7 @@ export interface BottomSheetProps {
   children?: React.ReactNode;
   direction?: BottomSheetDirection;
   onClose?: () => void;
+  className?: string;
 }
 
 export const BottomSheet = ({
@@ -23,6 +24,7 @@ export const BottomSheet = ({
   children,
   direction = "bottom",
   onClose = () => {},
+  className,
 }: BottomSheetProps) => {
   const [mounted, setMounted] = React.useState(false);
 
@@ -63,7 +65,8 @@ export const BottomSheet = ({
       {open && (
         <motion.div
           className={clsx(
-            "fixed inset-0 z-[900] flex justify-center items-end"
+            "fixed inset-0 z-[900] flex justify-center items-end",
+            className,
           )}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -87,7 +90,7 @@ export const BottomSheet = ({
               direction === "bottom" && "fixed bottom-0 left-0 right-0",
               direction === "top" && "fixed top-0 left-0 right-0",
               direction === "left" && "fixed top-0 bottom-0 left-0 w-3/4",
-              direction === "right" && "fixed top-0 bottom-0 right-0 w-3/4"
+              direction === "right" && "fixed top-0 bottom-0 right-0 w-3/4",
             )}
             initial={animation.initial}
             animate={animation.animate}
@@ -100,6 +103,6 @@ export const BottomSheet = ({
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 };

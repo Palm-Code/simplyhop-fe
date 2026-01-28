@@ -6,6 +6,7 @@ import { useDeleteMessageRoomsId } from "../../react_query/hooks";
 import { UserBlockConfirmation } from "@/core/components/user_block_confirmation";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import clsx from "clsx";
 
 export const DeleteChatConfirmationChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -73,6 +74,7 @@ export const DeleteChatConfirmationChatTrip = () => {
         isLoading: isPendingDeleteMessageRoomsId,
         disabled: isPendingDeleteMessageRoomsId,
       }}
+      modalClassName={clsx("!z-[9999]")}
     />
   );
 };
