@@ -673,7 +673,7 @@
   "vehicle": {
     "umweg": {
       "label": {
-        "text": "Umweg: {{number}} minuten",
+        "text": "Umweg: {{number}} Minuten",
         "icon": {
           "name": "Timer",
           "color": "#767676",
