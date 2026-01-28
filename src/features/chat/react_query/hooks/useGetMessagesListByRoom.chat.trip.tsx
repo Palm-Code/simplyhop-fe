@@ -81,7 +81,8 @@ export const useGetMessagesListByRoom = () => {
       const data = query.data;
 
       const rawPayload = data.data.map((item) => {
-        const isPassenger = userState.profile?.id === item.passenger_id;
+        const isSenderAsPassenger = userState.profile?.id === item.passenger_id;
+        const isPassenger = item.sender_id === item.passenger_id;
         const isSender = userState.profile?.id === item.sender_id;
 
         const content =
@@ -93,7 +94,7 @@ export const useGetMessagesListByRoom = () => {
           type: content.type,
           updated_at: item.updated_at,
           role: isSender ? "sender" : "recipient",
-          booking_role: (isPassenger ? "passenger" : "driver") as
+          booking_role: (isSenderAsPassenger ? "passenger" : "driver") as
             | "passenger"
             | "driver",
           sender_id: String(item.sender_id),
