@@ -226,7 +226,7 @@ export const PageSheetRoute = ({
                   "w-full",
                   "cursor-pointer",
                   "text-[0.875rem] text-left",
-                  "text-[#232323] font-normal"
+                  "text-[#232323] dark:text-white font-normal"
                 )}
               >
                 {emptyMessage}
