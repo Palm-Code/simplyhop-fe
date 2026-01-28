@@ -65,10 +65,10 @@ export const BottomSheetAuto = ({
           <button aria-label={"schließen"} name={"schließen"} onClick={onClose}>
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B] dark:text-[#C3C3C3]")}
             />
           </button>
-          <h2 className={clsx("text-[1.125rem] text-[#292929] font-bold")}>
+          <h2 className={clsx("text-[1.125rem] text-[#292929] dark:text-white font-bold")}>
             {title}
           </h2>
         </div>
@@ -143,7 +143,7 @@ export const BottomSheetAuto = ({
                   "text-[0.875rem] text-left",
                   item.id === selected?.id
                     ? "text-[#333FFF] font-semibold"
-                    : "text-[#232323] font-normal"
+                    : "text-[#232323] dark:text-white font-normal"
                 )}
                 onClick={() => onSelect(item)}
               >
