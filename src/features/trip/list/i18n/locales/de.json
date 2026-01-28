@@ -149,7 +149,7 @@
   },
   "delete_ride_notification": {
     "title": "Die Fahrt absagen?",
-    "message": "Wenn du diese Fahrt löschst, wird Du dauerhaft entfernt und kann nicht wiederhergestellt werden.",
+    "message": "Wenn du diese Fahrt löschst, wird sie dauerhaft entfernt und kann nicht wiederhergestellt werden.",
     "cta": {
       "back": {
         "children": "Zurück zu meiner Fahrt"
