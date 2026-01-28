@@ -37,11 +37,11 @@
       "items": [
         {
           "id": "driver",
-          "name": "Driver"
+          "name": "Fahrer"
         },
         {
           "id": "rides",
-          "name": "Rides"
+          "name": "Fahrten"
         },
         {
           "id": "bewertungen",
@@ -49,7 +49,7 @@
         },
         {
           "id": "passengers",
-          "name": "Passengers"
+          "name": "Mitfahrer"
         }
       ]
     }
