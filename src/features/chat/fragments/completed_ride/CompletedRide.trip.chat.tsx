@@ -251,13 +251,25 @@ export const CompletedRideTripChat = () => {
                       const displayRating =
                         hoveredRating !== null ? hoveredRating : currentRating;
                       const isStarFilled = starNumber <= displayRating;
-
+                      const isRoomAlreadyRated = state.completed_ride.is_rated;
                       return (
                         <button
                           key={index}
-                          onClick={() => handleClickRating(starNumber)}
-                          onMouseEnter={() => setHoveredRating(starNumber)}
-                          onMouseLeave={() => setHoveredRating(null)}
+                          onClick={() => {
+                            if (!isRoomAlreadyRated) {
+                              handleClickRating(starNumber);
+                            }
+                          }}
+                          onMouseEnter={() => {
+                            if (!isRoomAlreadyRated) {
+                              setHoveredRating(starNumber);
+                            }
+                          }}
+                          onMouseLeave={() => {
+                            if (!isRoomAlreadyRated) {
+                              setHoveredRating(null);
+                            }
+                          }}
                         >
                           <SVGIcon
                             name="Star"
