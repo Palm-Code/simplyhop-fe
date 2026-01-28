@@ -17,7 +17,7 @@ export const fetchPatchUserProfile = async (
     const token = cookies.get("token");
     const res = await axios.patch(
       url,
-      {},
+      payload.body,
       {
         headers: {
           Authorization: `Bearer ${token}`,

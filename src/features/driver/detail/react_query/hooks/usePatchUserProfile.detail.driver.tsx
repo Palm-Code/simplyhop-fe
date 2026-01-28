@@ -36,7 +36,7 @@ export const usePatchUserProfile = () => {
           city: state.edit.form.city.value,
           mobile: state.edit.form.phonenumber.value,
           bio: state.edit.form.about_me.value,
-          gender: state.edit.form.gender.selected?.name,
+          gender: state.edit.form.gender.selected?.id,
         },
       };
       return fetchPatchUserProfile(payload);

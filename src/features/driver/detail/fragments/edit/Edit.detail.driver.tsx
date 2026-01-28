@@ -187,6 +187,8 @@ export const EditDetailDriver = () => {
     };
     queryClient.invalidateQueries({
       queryKey: DetailDriverReactQueryKey.GetUserProfileId(payload),
+      refetchType: "all",
+      type: "all",
     });
   };
 
