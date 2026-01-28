@@ -443,14 +443,11 @@ export const useGetRidesSearch = () => {
                     children: "Siehe Details",
                     href: `${pathname}?${urlSearchParams.toString()}`,
                   },
-            share:
-              rideStatus === "archive"
-                ? undefined
-                : {
-                    onClick: () => {},
-                    href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
-                    message: shareMessage,
-                  },
+            share: {
+              onClick: () => {},
+              href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
+              message: shareMessage,
+            },
           },
         };
       });

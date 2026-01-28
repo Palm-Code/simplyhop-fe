@@ -20,7 +20,7 @@ export const RideListTrip = () => {
   const rideStatus = searchParams.get("ride-status");
 
   const isOrganizationDetailRoute = pathname.startsWith(
-    "/support/organisation/detail"
+    "/support/organisation/detail",
   );
   const isDriverDetailRoute = pathname.startsWith("/support/fahrer/detail");
 
@@ -33,7 +33,7 @@ export const RideListTrip = () => {
       <div
         className={clsx(
           "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-[1rem]",
-          "w-full h-[400px]"
+          "w-full h-[400px]",
         )}
       >
         <LoadingState />
@@ -46,7 +46,7 @@ export const RideListTrip = () => {
       <div
         className={clsx(
           "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-[1rem]",
-          "w-full h-[400px]"
+          "w-full h-[400px]",
         )}
       >
         <EmptyState message={dictionaries.list.empty_data.message} />
@@ -92,7 +92,7 @@ export const RideListTrip = () => {
       <div
         className={clsx(
           "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "w-full",
         )}
       >
         {state.ride.data.map((item, itemIndex) => (
@@ -102,7 +102,7 @@ export const RideListTrip = () => {
             cta={{
               ...item.cta,
               share:
-                rideStatus === "finished"
+                rideStatus === "finished" || rideStatus === "archive"
                   ? undefined
                   : {
                       ...item.cta?.share,
