@@ -186,7 +186,7 @@ export const FormChatTrip = () => {
     return (
       <div
         className={clsx(
-          "flex items-center justify-start",
+          "flex items-center justify-start gap-2",
           "w-full",
           "border-t border-t-[#DFDFDF] dark:border-t-[#464646]",
           "px-[0.75rem] py-[1rem]",
