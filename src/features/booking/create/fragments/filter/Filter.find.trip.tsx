@@ -904,7 +904,7 @@ export const FilterFindTrip = () => {
                   locationSwitch: {
                     ...dictionaries.filter.form.destination.autocomplete
                       .locationSwitch,
-                    show: false,
+                    show: true,
                     disabled:
                       !isOriginCompanyOfficeChecked && !!selectedItemOrigin,
                     checked: isDestinationCompanyOfficeChecked,
