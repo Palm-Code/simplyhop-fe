@@ -7,14 +7,18 @@ import { getDictionaries } from "../../i18n";
 import { ListTripActionEnum, ListTripContext } from "../../context";
 import { usePostRidesArchive } from "../../react_query/hooks/usePostRidesArchive.list.trip";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const CompletedRideListTrip = () => {
   const dictionaries = getDictionaries();
 
   const { isLg } = useTailwindBreakpoint();
   const { state, dispatch } = React.useContext(ListTripContext);
+  const { state: globalState, dispatch: dispatchGlobal } =
+    React.useContext(GlobalContext);
 
-  const { mutate: postRidesArchive, isPending: isPendingRidesArchive } =
+  const { mutateAsync: postRidesArchive, isPending: isPendingRidesArchive } =
     usePostRidesArchive();
 
   const handleClose = () => {
@@ -37,7 +41,7 @@ export const CompletedRideListTrip = () => {
     });
   };
 
-  const handleClickOKConfirmRideComplete = () => {
+  const handleClickOKConfirmRideComplete = async () => {
     dispatch({
       type: ListTripActionEnum.SetCompleteRideConfirmationData,
       payload: {
@@ -46,7 +50,38 @@ export const CompletedRideListTrip = () => {
       },
     });
 
-    postRidesArchive();
+    const res = await postRidesArchive();
+    if (!res) return;
+    dispatchGlobal({
+      type: GlobalActionEnum.SetAlertData,
+      payload: {
+        ...globalState.alert,
+        items: [
+          ...globalState.alert.items,
+          {
+            id: uuidv4(),
+            variant: "success",
+            message: "Deine Reise wurde abgeschlossen.",
+          },
+        ],
+      },
+    });
+    // dispatch({
+    //   type: ListTripActionEnum.SetCompleteRideConfirmationData,
+    //   payload: {
+    //     ...state.complete_ride_confirmation,
+    //     is_open: false,
+    //     confirmed_booking: [],
+    //   },
+    // });
+    // const params = new URLSearchParams(searchParams.toString());
+    // params.delete("ride_id");
+
+    // const hasParams = params.toString().length > 0;
+
+    // router.push(hasParams ? `${pathname}?${params.toString()}` : pathname, {
+    //   scroll: false,
+    // });
   };
 
   return (
