@@ -24,13 +24,13 @@ export const RegistrationProfileContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "lg:pt-[2rem] px-[1rem]"
+          "lg:pt-[2rem] px-[1rem]",
         )}
       >
         <div
           className={clsx(
             "grid grid-cols-1 lg:grid-cols-[421px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[100px]",
-            "w-full max-w-container"
+            "w-full max-w-container",
           )}
         >
           <div
@@ -39,12 +39,12 @@ export const RegistrationProfileContainer = () => {
               "w-full",
               "pt-[2rem] lg:pt-[0rem]",
               "sticky top-0 lg:top-[calc(90px+2rem)] z-[30]",
-              "pb-[1.5rem]"
+              "pb-[1.5rem]",
             )}
           >
             <h1
               className={clsx(
-                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold"
+                "text-[#292929] dark:text-white text-[1.125rem] lg:text-[1.5rem] font-bold",
               )}
             >
               {dictionaries.title}
@@ -56,17 +56,21 @@ export const RegistrationProfileContainer = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full",
-              "px-[0rem] py-[0rem] lg:px-[1.5rem] lg:py-[1.5rem]"
+              "px-[0rem] py-[0rem] lg:px-[1.5rem] lg:py-[1.5rem]",
             )}
           >
             <div
               id={dictionaries.personal_information.id}
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-                "w-full"
+                "w-full",
               )}
             >
-              <h2 className={clsx("text-[1.5rem] text-[#292929] dark:text-white font-bold")}>
+              <h2
+                className={clsx(
+                  "text-[1.5rem] text-[#292929] dark:text-white font-bold",
+                )}
+              >
                 {dictionaries.personal_information.form.title}
               </h2>
               <PicturePersonalInformationFormRegistrationProfile />
@@ -78,10 +82,14 @@ export const RegistrationProfileContainer = () => {
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-                  "w-full"
+                  "w-full",
                 )}
               >
-                <h2 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
+                <h2
+                  className={clsx(
+                    "text-[1.5rem] text-[#292929] dark:text-white font-bold",
+                  )}
+                >
                   {dictionaries.vehicle_information.title}
                 </h2>
                 <GeneralVehicleInformationFormRegistrationProfile />
