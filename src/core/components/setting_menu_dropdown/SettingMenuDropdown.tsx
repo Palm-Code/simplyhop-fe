@@ -42,14 +42,14 @@ export const SettingMenuDropdown = ({
           "rounded-[0.75rem]",
           "text-[0.875rem] font-medium",
           "text-[#249124] dark:text-[#33CC33]",
-          "cursor-pointer"
+          "cursor-pointer",
         )}
         onClick={handleClickDropdownButton}
       >
         <div
           className={clsx(
             "flex items-center justify-start gap-[0.5rem]",
-            "w-full"
+            "w-full",
           )}
         >
           {selectedItem?.icon && (
@@ -78,13 +78,13 @@ export const SettingMenuDropdown = ({
             "bg-[white] dark:bg-[#232323]",
             "rounded-2xl",
             "overflow-auto",
-            "border border-[#E9E6E6] dark:border-[#464646]"
+            "border border-[#E9E6E6] dark:border-[#464646]",
           )}
         >
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-              "w-full"
+              "w-full",
             )}
           >
             {items.map((menu, index) => {
@@ -95,6 +95,7 @@ export const SettingMenuDropdown = ({
                   href={menu.href}
                   aria-label={menu.name}
                   className={clsx("w-full")}
+                  onClick={() => setIsOpen(false)}
                 >
                   <SettingTabButton
                     selected={isSelected}
