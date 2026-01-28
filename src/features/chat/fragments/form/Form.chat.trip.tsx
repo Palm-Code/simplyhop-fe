@@ -199,7 +199,7 @@ export const FormChatTrip = () => {
         />
         <p
           className={clsx(
-            "text-[#767676] dark:text-[#C3C3C3] text-[1rem] font-normal",
+            "text-[#767676] dark:text-[#C3C3C3] text-[0.875rem] font-normal",
           )}
         >
           {
