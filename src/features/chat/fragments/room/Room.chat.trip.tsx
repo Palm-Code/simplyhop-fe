@@ -106,7 +106,7 @@ export const RoomChatTrip = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
-            "w-full"
+            "w-full",
           )}
         >
           <SVGIcon
@@ -199,7 +199,8 @@ export const RoomChatTrip = () => {
   const handleClickViewTripDetails = (
     data: BookingCardChatTripProps | null,
     is_rated: boolean,
-    rating: number | null
+    rating: number | null,
+    booking_role: "driver" | "passenger",
   ) => {
     dispatch({
       type: ChatTripActionEnum.SetCompletedRideData,
@@ -209,6 +210,7 @@ export const RoomChatTrip = () => {
         is_open: true,
         is_rated: is_rated,
         rating: rating,
+        booking_role: booking_role,
       },
     });
   };
@@ -231,7 +233,7 @@ export const RoomChatTrip = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full"
+            "w-full",
           )}
         >
           {conversationData.map((chat, chatIndex) => {
@@ -252,7 +254,8 @@ export const RoomChatTrip = () => {
                         handleClickViewTripDetails(
                           chat.booking,
                           state.room.is_rated,
-                          state.room.rating
+                          state.room.rating,
+                          chat.booking_role,
                         ),
                     },
                   }}
@@ -263,7 +266,7 @@ export const RoomChatTrip = () => {
               const lastOfferCardIndex = findLastIndexOfferCard(
                 conversationData,
                 "type",
-                "text"
+                "text",
               );
               return (
                 <BookingCardChatTrip

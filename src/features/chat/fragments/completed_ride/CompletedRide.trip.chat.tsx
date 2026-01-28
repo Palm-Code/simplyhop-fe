@@ -13,9 +13,19 @@ import { toast, Toaster } from "sonner";
 import { SuccessRatingToast } from "@/core/components/success_rating_toast";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
+import { queryClient } from "@/core/utils/react_query";
+import { useSearchParams } from "next/navigation";
+import { ChatTripReactQueryKey } from "../../react_query/keys";
+import { GetBookingIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
+import { GetMessagesListByRoomPayloadRequestInterface } from "@/core/models/rest/simplyhop/messages";
 
 export const CompletedRideTripChat = () => {
   const dictionaries = getDictionaries();
+  const searchParams = useSearchParams();
+  const id = searchParams.get("bookingId");
+  const chatId = searchParams.get("id");
+  const messageRoomId = !chatId ? "0" : String(chatId);
+
   const { state, dispatch } = React.useContext(ChatTripContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
@@ -51,7 +61,7 @@ export const CompletedRideTripChat = () => {
           ...globalState.alert.items,
           {
             id: uuidv4(),
-            variant: "error",
+            variant: "success",
             message: "Deine Reise wurde abgeschlossen.",
           },
         ],
@@ -68,6 +78,45 @@ export const CompletedRideTripChat = () => {
     toast.custom(() => <SuccessRatingToast message="Bewertung gesendet!" />, {
       duration: 5000,
       position: "top-center",
+    });
+    const bookingIdPayload: GetBookingIdPayloadRequestInterface = {
+      path: {
+        id: !id ? "0" : String(id),
+      },
+      params: {
+        include: "ride.vehicle.brand,user",
+      },
+    };
+    queryClient.invalidateQueries({
+      queryKey: ChatTripReactQueryKey.GetBookingId(bookingIdPayload),
+      type: "all",
+      refetchType: "all",
+    });
+
+    const messageListByRoomPayload: GetMessagesListByRoomPayloadRequestInterface =
+      {
+        path: {
+          roomId: messageRoomId,
+        },
+        params: {
+          include:
+            "booking,bookingCount,bookingExists,booking,booking.ride,booking.ride.vehicle,booking.ride.vehicle.brand,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
+          sort: "-updated_at",
+          "page[number]": state.room.message.pagination.current,
+          "page[size]": 100,
+        },
+      };
+
+    queryClient.invalidateQueries({
+      queryKey: ChatTripReactQueryKey.GetMessagesListByRoom({
+        ...messageListByRoomPayload,
+        params: {
+          ...messageListByRoomPayload.params,
+        },
+        counter: state.room.message.pagination.counter,
+      }),
+      type: "all",
+      refetchType: "all",
     });
   };
 
@@ -170,7 +219,7 @@ export const CompletedRideTripChat = () => {
             </div>
 
             {/* rating */}
-            {state.user_profile.data?.type === "passenger" && (
+            {state.completed_ride.booking_role === "passenger" && (
               <div
                 className={clsx(
                   "grid grid-cols-1 place-content-center place-items-center w-full gap-[1rem]",
@@ -257,28 +306,29 @@ export const CompletedRideTripChat = () => {
             />
           </div>
 
-          {!state.completed_ride.is_rated && (
-            <button
-              className={clsx(
-                "flex items-center justify-center gap-2",
-                "w-full",
-                "px-[0.75rem] py-[0.75rem]",
-                "bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
-                "rounded-[0.375rem]",
-                "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
-                "cursor-pointer",
-              )}
-              disabled={
-                !state.completed_ride.rating || isPendingPostBookingRating
-              }
-              onClick={handleClickConfirmRate}
-            >
-              {isPendingPostBookingRating && (
-                <MoonLoader size={16} color={"white"} />
-              )}
-              {dictionaries.completed_ride.cta.primary.children}
-            </button>
-          )}
+          {!state.completed_ride.is_rated &&
+            state.completed_ride.booking_role === "passenger" && (
+              <button
+                className={clsx(
+                  "flex items-center justify-center gap-2",
+                  "w-full",
+                  "px-[0.75rem] py-[0.75rem]",
+                  "bg-[#33CC33] disabled:bg-[#F6F6F6] dark:disabled:bg-[#5B5B5B]",
+                  "rounded-[0.375rem]",
+                  "text-[1rem] text-[#232323] disabled:text-[#A6A6A6] font-semibold",
+                  "cursor-pointer",
+                )}
+                disabled={
+                  !state.completed_ride.rating || isPendingPostBookingRating
+                }
+                onClick={handleClickConfirmRate}
+              >
+                {isPendingPostBookingRating && (
+                  <MoonLoader size={16} color={"white"} />
+                )}
+                {dictionaries.completed_ride.cta.primary.children}
+              </button>
+            )}
         </div>
       </AdaptiveModal>
     </>

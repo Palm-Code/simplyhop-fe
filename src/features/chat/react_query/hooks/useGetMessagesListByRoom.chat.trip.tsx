@@ -81,7 +81,7 @@ export const useGetMessagesListByRoom = () => {
       const data = query.data;
 
       const rawPayload = data.data.map((item) => {
-        const isPassenger = item.sender_id === item.passenger_id;
+        const isPassenger = userState.profile?.id === item.passenger_id;
         const isSender = userState.profile?.id === item.sender_id;
 
         const content =
@@ -93,6 +93,9 @@ export const useGetMessagesListByRoom = () => {
           type: content.type,
           updated_at: item.updated_at,
           role: isSender ? "sender" : "recipient",
+          booking_role: (isPassenger ? "passenger" : "driver") as
+            | "passenger"
+            | "driver",
           sender_id: String(item.sender_id),
           time: formatChatTime(item.created_at),
           date: dayjs(item.created_at).format("DD.MM.YYYY"),
@@ -132,18 +135,18 @@ export const useGetMessagesListByRoom = () => {
               image: {
                 src: !item.booking?.ride?.vehicle?.image.length
                   ? "/images/general/car.png"
-                  : item.booking.ride?.vehicle.image[0] ??
-                    "/images/general/car.png",
+                  : (item.booking.ride?.vehicle.image[0] ??
+                    "/images/general/car.png"),
                 alt: "car",
                 width: 145,
                 height: 46,
               },
               identity: {
                 name: !item.booking?.ride?.vehicle?.brand?.title
-                  ? item.booking?.ride?.vehicle?.model ?? ""
+                  ? (item.booking?.ride?.vehicle?.model ?? "")
                   : !item.booking?.ride?.vehicle.model
-                  ? item.booking?.ride?.vehicle.brand?.title ?? ""
-                  : `${item.booking?.ride?.vehicle.brand?.title} ${item.booking?.ride?.vehicle.model}`,
+                    ? (item.booking?.ride?.vehicle.brand?.title ?? "")
+                    : `${item.booking?.ride?.vehicle.brand?.title} ${item.booking?.ride?.vehicle.model}`,
                 number: item.booking?.ride?.vehicle?.plate_license,
               },
               facility: {
@@ -163,8 +166,8 @@ export const useGetMessagesListByRoom = () => {
                               globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                 "{{number}}",
                                 item.booking.ride.available_seats.toLocaleString(
-                                  "de-DE"
-                                )
+                                  "de-DE",
+                                ),
                               ),
                           },
                         },
@@ -285,7 +288,7 @@ export const useGetMessagesListByRoom = () => {
               date: !item.booking?.ride?.departure_time
                 ? "-"
                 : dayjs(item.booking?.ride?.departure_time).format(
-                    "DD.MM.YYYY"
+                    "DD.MM.YYYY",
                   ),
             },
 
@@ -297,7 +300,7 @@ export const useGetMessagesListByRoom = () => {
                 time: !item.booking?.ride?.departure_time
                   ? "-"
                   : dayjs(item.booking?.ride?.departure_time).format(
-                      "HH.mm [Uhr]"
+                      "HH.mm [Uhr]",
                     ),
               },
               travelTime: {
@@ -314,9 +317,9 @@ export const useGetMessagesListByRoom = () => {
                     ? "-"
                     : `${setArrivalTime(
                         dayjs(item.booking.ride?.departure_time).format(
-                          "HH:mm"
+                          "HH:mm",
                         ),
-                        item.booking.ride.eta
+                        item.booking.ride.eta,
                       )} Uhr`,
               },
             },
@@ -353,8 +356,8 @@ export const useGetMessagesListByRoom = () => {
           state.room.message.pagination.current === 1
             ? [...newPayload]
             : !newPayload.length
-            ? state.room.message.items
-            : [...newPayload, ...state.room.message.items],
+              ? state.room.message.items
+              : [...newPayload, ...state.room.message.items],
       });
       dispatch({
         type: ChatTripActionEnum.SetRoomMessagePaginationLast,
