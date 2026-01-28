@@ -17,7 +17,7 @@ export const NavigationBarRegisterAuth = () => {
           : "fixed top-0 left-0 right-0",
         "w-full",
         "z-[200]",
-        "hidden lg:block"
+        "block"
       )}
     >
       <div

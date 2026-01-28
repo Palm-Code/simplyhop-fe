@@ -22,7 +22,7 @@ export const RegisterAuthContainer = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start w-full max-w-[1092px] px-6 h-full",
-          "pt-6 lg:pt-28",
+          "pt-28",
         )}
       >
         {state.step.name === "otp" ? (
