@@ -205,7 +205,7 @@ export const RideDetailListTrip = () => {
       >
         {/* header */}
         <AdaptiveModalHeader
-          className={clsx("!px-[0rem] !pt-[2rem] !pb-[1rem]")}
+          className={clsx("!px-[0rem] pt-[1rem] lg:!pt-[2rem] !pb-[1rem]")}
         >
           <div
             className={clsx(
