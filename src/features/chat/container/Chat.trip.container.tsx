@@ -30,7 +30,7 @@ export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const { isLg } = useTailwindBreakpoint();
+  const { isXl } = useTailwindBreakpoint();
   const { state, dispatch } = React.useContext(ChatTripContext);
 
   useSetInitialContextValue();
@@ -109,7 +109,7 @@ export const ChatTripContainer = () => {
             {/* NOTES: Room */}
 
             <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
-              <PageSheet open={!!id && !isLg} direction={"right"}>
+              <PageSheet open={!!id && !isXl} direction={"right"}>
                 <div
                   className={clsx(
                     "grid grid-rows-[60px_1fr] pb-12 grid-cols-1 place-content-start place-items-start gap-[2rem]",

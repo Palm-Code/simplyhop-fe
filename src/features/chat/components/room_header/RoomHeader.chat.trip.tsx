@@ -39,7 +39,7 @@ export const RoomHeaderChatTrip = ({
         "h-20"
       )}
     >
-      <Link href={href} className={clsx("block lg:hidden")}>
+      <Link href={href} className={clsx("block xl:hidden")}>
         <SVGIcon
           name="ArrowLeft"
           className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
