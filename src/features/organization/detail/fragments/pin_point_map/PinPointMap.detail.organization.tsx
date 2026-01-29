@@ -32,13 +32,14 @@ export const PinPointMapDetailOrganization = () => {
 
   if (!apiKey) {
     console.error(
-      "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local"
+      "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local",
     );
   }
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
     libraries: LIBRARIES,
+    language: "de",
   });
 
   const mapRef = useRef<google.maps.Map | null>(null);
@@ -82,7 +83,7 @@ export const PinPointMapDetailOrganization = () => {
           addressComponents.find(
             (c) =>
               c.types.includes("sublocality_level_1") ||
-              c.types.includes("sublocality")
+              c.types.includes("sublocality"),
           )?.long_name || "";
 
         // Build street name with priority: route + number > sublocality > formatted_address
@@ -104,7 +105,7 @@ export const PinPointMapDetailOrganization = () => {
         // City: administrative_area_level_2 (Kota/Kabupaten) or locality
         const city =
           addressComponents.find((c) =>
-            c.types.includes("administrative_area_level_2")
+            c.types.includes("administrative_area_level_2"),
           )?.long_name ||
           addressComponents.find((c) => c.types.includes("locality"))
             ?.long_name ||
@@ -214,7 +215,7 @@ export const PinPointMapDetailOrganization = () => {
       addressComponents.find(
         (c) =>
           c.types.includes("sublocality_level_1") ||
-          c.types.includes("sublocality")
+          c.types.includes("sublocality"),
       )?.long_name || "";
 
     // Build street name with priority: route + number > sublocality > formatted_address
@@ -236,7 +237,7 @@ export const PinPointMapDetailOrganization = () => {
     // City: administrative_area_level_2 (Kota/Kabupaten) or locality
     const city =
       addressComponents.find((c) =>
-        c.types.includes("administrative_area_level_2")
+        c.types.includes("administrative_area_level_2"),
       )?.long_name ||
       addressComponents.find((c) => c.types.includes("locality"))?.long_name ||
       "";
@@ -285,18 +286,18 @@ export const PinPointMapDetailOrganization = () => {
       const mapCoordinate = !!state.pin_point.location.selected.item
         ? state.pin_point.location.selected.lat_lng
         : userLocationError
-        ? COORDINATE.germany
-        : userLocation;
+          ? COORDINATE.germany
+          : userLocation;
       const mode = !!state.pin_point.location.selected.item
         ? "coordinate"
         : userLocationError
-        ? "country"
-        : "coordinate";
+          ? "country"
+          : "coordinate";
       const marker = !!state.pin_point.location.selected.item
         ? true
         : userLocationError
-        ? false
-        : true;
+          ? false
+          : true;
       dispatch({
         type: DetailOrganizationActionEnum.SetPinPointData,
         payload: {
@@ -339,7 +340,7 @@ export const PinPointMapDetailOrganization = () => {
             addressComponents.find(
               (c) =>
                 c.types.includes("sublocality_level_1") ||
-                c.types.includes("sublocality")
+                c.types.includes("sublocality"),
             )?.long_name || "";
 
           // Build street name with priority: route + number > sublocality > formatted_address
@@ -361,7 +362,7 @@ export const PinPointMapDetailOrganization = () => {
           // City: administrative_area_level_2 (Kota/Kabupaten) or locality
           const city =
             addressComponents.find((c) =>
-              c.types.includes("administrative_area_level_2")
+              c.types.includes("administrative_area_level_2"),
             )?.long_name ||
             addressComponents.find((c) => c.types.includes("locality"))
               ?.long_name ||
@@ -485,9 +486,9 @@ export const PinPointMapDetailOrganization = () => {
             !!state.pin_point.map.initial_coordinate
               ? state.pin_point.map.initial_coordinate
               : state.pin_point.map.mode === "coordinate" &&
-                !!state.pin_point.map.initial_coordinate
-              ? state.pin_point.map.initial_coordinate
-              : undefined
+                  !!state.pin_point.map.initial_coordinate
+                ? state.pin_point.map.initial_coordinate
+                : undefined
           }
           options={mapOptions}
         >
@@ -520,7 +521,7 @@ export const PinPointMapDetailOrganization = () => {
               "absolute bottom-3 left-0 right-0 z-10",
               "grid grid-cols-1 place-content-start place-items-start gap-2",
               "w-full",
-              "px-3"
+              "px-3",
             )}
           >
             {hasMovedFromInitial && userLocation && (
