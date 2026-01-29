@@ -108,7 +108,7 @@ export const ChatTripContainer = () => {
 
             {/* NOTES: Room */}
 
-            <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
+            <div className={clsx("pt-[1.5rem]", "block xl:hidden", "w-full")}>
               <PageSheet open={!!id && !isXl} direction={"right"}>
                 <div
                   className={clsx(
@@ -132,7 +132,7 @@ export const ChatTripContainer = () => {
 
             <div
               className={clsx(
-                !!id ? "hidden lg:block" : "hidden",
+                !!id ? "hidden xl:block" : "hidden",
                 "w-full h-full"
               )}
             >
