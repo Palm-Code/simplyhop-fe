@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         >
           <div
             className={clsx(
-              "grid grid-cols-1 grid-rows-1 h-full lg:grid-cols-[271px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[54px]",
+              "grid grid-cols-1 h-full lg:grid-cols-[271px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[54px]",
               "w-full max-w-container min-h-screen"
             )}
           >
