@@ -40,6 +40,7 @@ export const RegistrationProfileContainer = () => {
               "pt-[2rem] lg:pt-[0rem]",
               "sticky top-0 lg:top-[calc(90px+2rem)] z-[30]",
               "pb-[1.5rem]",
+              "bg-white dark:bg-[#232323]"
             )}
           >
             <h1
