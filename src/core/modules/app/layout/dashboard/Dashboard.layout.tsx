@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div
                 className={clsx(
                   "w-full",
-                  "pt-[2rem]",
+                  "pt-0 lg:pt-[2rem]",
                   "pb-[4rem] lg:pb-[0rem]"
                 )}
               >

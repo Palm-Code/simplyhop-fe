@@ -29,20 +29,20 @@ export const DashboardHeader = ({
     >
       <h1
         className={clsx(
-          "text-[1.5rem] text-[#232323] dark:text-white font-bold"
+          "text-[1rem] lg:text-[1.5rem] text-[#232323] dark:text-white font-bold"
         )}
       >
         {title}
       </h1>
 
-      <div className={clsx("flex items-center justify-center gap-4")}>
+      <div className={clsx("flex items-center justify-center gap-2 lg:gap-4")}>
         {/* user profile */}
         <div
           className={clsx(
             "grid grid-cols-[2rem_1fr] items-center justify-end gap-[0.5rem]"
           )}
         >
-          <Avatar {...avatar} className={clsx("w-[2rem] h-[2rem]")} />
+          <Avatar {...avatar} className={clsx("w-6 h-6 lg:w-[2rem] lg:h-[2rem]")} />
           <div
             className={clsx(
               "grid grid-cols-1 items-center content-center justify-start justify-items-start",
@@ -51,14 +51,14 @@ export const DashboardHeader = ({
           >
             <p
               className={clsx(
-                "text-[#232323] dark:text-white text-[0.75rem] font-medium"
+                "text-[#232323] dark:text-white text-[0.75rem] font-medium truncate text-ellipsis w-full"
               )}
             >
               {name}
             </p>
             <p
               className={clsx(
-                "text-[#5B5B5B] dark:text-[#DADADA] text-[0.625rem] font-normal"
+                "text-[#5B5B5B] dark:text-[#DADADA] text-[0.625rem] font-normal truncate text-ellipsis w-full"
               )}
             >
               {role}
@@ -73,7 +73,7 @@ export const DashboardHeader = ({
 
         {/* theme */}
 
-        <ThemeToggleButton />
+        <ThemeToggleButton className="w-6! h-6! lg:w-8! lg:h-8!" />
       </div>
     </div>
   );
