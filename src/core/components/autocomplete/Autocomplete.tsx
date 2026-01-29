@@ -26,6 +26,8 @@ export interface AutocompleteProps {
   };
 }
 
+const POSITION_BUFFER = 100; // Buffer zone to prevent flickering
+
 export const Autocomplete = ({
   selected = null,
   disabled = false,
@@ -41,10 +43,29 @@ export const Autocomplete = ({
 }: AutocompleteProps) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [dropdownPosition, setDropdownPosition] = useState<"top" | "bottom">(
+    "bottom"
+  );
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const debounced = useDebounceCallback(onQuery, 500);
+
+  const updatePosition = () => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const middleWithBuffer = viewportHeight / 2;
+
+      // Use hysteresis: only change position if we're clearly above/below middle
+      if (rect.top < middleWithBuffer - POSITION_BUFFER) {
+        setDropdownPosition("bottom");
+      } else if (rect.top > middleWithBuffer + POSITION_BUFFER) {
+        setDropdownPosition("top");
+      }
+      // If within buffer zone, keep current position (no change)
+    }
+  };
   const containerRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(containerRef as any, () => {
     setQuery(selected?.name ?? "");
@@ -86,6 +107,7 @@ export const Autocomplete = ({
                 if (disabled) {
                   return;
                 }
+                updatePosition();
                 setIsOpen(true);
               }}
               onChange={(event) => {
@@ -121,6 +143,7 @@ export const Autocomplete = ({
 
         {!disabled && (
           <AutocompleteOptionsContainer
+            position={dropdownPosition}
             className={clsx(isOpen ? "inline" : "hidden")}
           >
             {filteredItems.length === 0 && !option?.add ? (
