@@ -176,6 +176,7 @@ export const CompletedRideListTrip = () => {
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-hidden",
         "!px-[0rem] !py-[0rem]",
+        "!z-[9999]"
       )}
       open={state.complete_ride_confirmation.is_open}
       onClose={handleClose}
@@ -211,7 +212,7 @@ export const CompletedRideListTrip = () => {
         {/* actions */}
         <div
           className={clsx(
-            "grid sm:grid-cols-2 lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
             "w-full",
           )}
         >
