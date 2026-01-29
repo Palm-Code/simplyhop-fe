@@ -33,13 +33,14 @@ export const MapFindTrip = () => {
 
   if (!apiKey) {
     console.error(
-      "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local"
+      "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local",
     );
   }
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
     libraries: LIBRARIES,
+    language: "de",
   });
 
   const mapRef = useRef<google.maps.Map | null>(null);
@@ -57,16 +58,16 @@ export const MapFindTrip = () => {
     const mapCoordinate = !!state.filters.origin.selected.item
       ? state.filters.origin.selected.lat_lng
       : !!userLocationError
-      ? COORDINATE.germany
-      : userLocation;
+        ? COORDINATE.germany
+        : userLocation;
 
     const mode =
       !!state.filters.origin.selected.item &&
       !!state.filters.destination.selected.item
         ? "route"
         : !!userLocationError
-        ? "country"
-        : "coordinate";
+          ? "country"
+          : "coordinate";
 
     // Guard: skip dispatch if value is not changed
     if (
@@ -86,8 +87,8 @@ export const MapFindTrip = () => {
         marker: !!state.filters.origin.selected.item
           ? true
           : !!userLocationError
-          ? false
-          : true,
+            ? false
+            : true,
       },
     });
   }, [
@@ -110,7 +111,7 @@ export const MapFindTrip = () => {
 
       mapRef.current.fitBounds(
         bounds,
-        isLg ? ROUTE_BOUND_CONSTANTS.desktop : ROUTE_BOUND_CONSTANTS.mobile
+        isLg ? ROUTE_BOUND_CONSTANTS.desktop : ROUTE_BOUND_CONSTANTS.mobile,
       );
     }
   }, [isLoaded, state.map.polyline_path, isLg, state.map.mode]);
@@ -127,13 +128,13 @@ export const MapFindTrip = () => {
         state.map.mode === "country" && !!state.map.initial_coordinate
           ? state.map.initial_coordinate
           : state.map.mode === "coordinate" && !!state.map.initial_coordinate
-          ? {
-              lat:
-                state.map.initial_coordinate.lat -
-                LATITUDE_COORDINATE_MARKER_CORRECTION,
-              lng: state.map.initial_coordinate.lng,
-            }
-          : undefined
+            ? {
+                lat:
+                  state.map.initial_coordinate.lat -
+                  LATITUDE_COORDINATE_MARKER_CORRECTION,
+                lng: state.map.initial_coordinate.lng,
+              }
+            : undefined
       }
       options={mapOptions}
     >
