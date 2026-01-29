@@ -78,8 +78,8 @@ export const OrganizationProfileModal = ({
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
-          "px-[0rem] sm:px-[2rem] py-[2rem]",
-          "w-full h-full max-h-[80vh]",
+          "px-[0rem] sm:px-[2rem] py-[1rem] sm:py-[2rem]",
+          "w-full h-full max-h-screen lg:max-h-[80vh]",
           "overflow-auto",
         )}
       >
@@ -88,7 +88,7 @@ export const OrganizationProfileModal = ({
           className={clsx(
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
             "w-full",
-            "px-[2rem] sm:px-[0rem]",
+            "px-[1rem] sm:px-[0rem]",
           )}
         >
           <button
