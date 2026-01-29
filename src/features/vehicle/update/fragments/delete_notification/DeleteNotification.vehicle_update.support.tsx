@@ -11,13 +11,17 @@ import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useDeleteVehicleId } from "../../react_query/hooks";
+import MoonLoader from "react-spinners/MoonLoader";
+import { ThemeContext } from "@/core/modules/app/context/theme/Theme.context";
 
 export const DeleteNotificationVehicleUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
+  const { isDarkMode } = React.useContext(ThemeContext);
 
-  const { mutateAsync: deleteVehicleId } = useDeleteVehicleId();
+  const { mutateAsync: deleteVehicleId, isPending: isPendingDeleteVehicleId } =
+    useDeleteVehicleId();
 
   const isOpen = state.delete_notification.is_open;
   const handleClose = () => {
@@ -48,6 +52,8 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
       },
     });
   };
+
+  const isSubmitLoading = isPendingDeleteVehicleId;
   return (
     <AdaptiveModal
       className={clsx(
@@ -55,7 +61,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
         "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "!px-[0rem] !py-[0rem]",
       )}
       open={isOpen}
       variant={isLg ? "modal" : "page_sheet"}
@@ -66,13 +72,13 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
           "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full lg:h-fit",
           "overflow-auto",
-          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]",
         )}
       >
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center",
-            "w-full"
+            "w-full",
           )}
         >
           <div
@@ -80,12 +86,15 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5] dark:bg-[#2A2A2A]"
+              "bg-[#F5F5F5] dark:bg-[#2A2A2A]",
             )}
           >
             <SVGIcon
               name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black] dark:text-white")}
+              className={clsx(
+                "w-[5rem] h-[5rem]",
+                "text-[black] dark:text-white",
+              )}
             />
           </div>
         </div>
@@ -93,22 +102,24 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <h1
-            className={clsx("text-[1.5rem] text-[black] dark:text-white font-bold text-center")}
+            className={clsx(
+              "text-[1.5rem] text-[black] dark:text-white font-bold text-center",
+            )}
           >
             {dictionaries.delete_notification.title}
           </h1>
           <h2
             className={clsx(
-              "text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center"
+              "text-[1rem] text-[#888888] dark:text-[#C3C3C3] font-normal text-center",
             )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.delete_notification.message.replace(
                 "{{type}}",
-                `${state.vehicle_information.general.form.car_model.value}`
+                `${state.vehicle_information.general.form.car_model.value}`,
               ),
             }}
           />
@@ -117,10 +128,14 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-            "w-full"
+            "w-full",
           )}
         >
-          <p className={clsx("text-[1rem] text-[#232323] dark:text-white font-semibold")}>
+          <p
+            className={clsx(
+              "text-[1rem] text-[#232323] dark:text-white font-semibold",
+            )}
+          >
             {dictionaries.delete_notification.title}
           </p>
           <ol
@@ -128,18 +143,20 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               "list-disc",
               "pl-[1rem]",
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-              "w-full"
+              "w-full",
             )}
           >
             {dictionaries.delete_notification.information.items.map(
               (item, index) => (
                 <li
                   key={index}
-                  className={clsx("text-[#888888] dark:text-[#C3C3C3] text-[1rem] font-normal")}
+                  className={clsx(
+                    "text-[#888888] dark:text-[#C3C3C3] text-[1rem] font-normal",
+                  )}
                 >
                   {item.name}
                 </li>
-              )
+              ),
             )}
           </ol>
         </div>
@@ -147,7 +164,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center gap-[1rem]",
-            "w-full"
+            "w-full",
           )}
         >
           <button
@@ -157,7 +174,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
               "text-[1rem] text-[#249124] dark:text-[#33CC33] font-medium",
-              "cursor-pointer"
+              "cursor-pointer",
             )}
             onClick={handleClose}
           >
@@ -169,10 +186,13 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
             className={clsx(
               "py-[1rem]",
               "!bg-[#C50707]",
-              "border border-[#C50707]!"
+              "border border-[#C50707]!",
             )}
             onClick={handleClickDelete}
           >
+            {isSubmitLoading && (
+              <MoonLoader size={20} color={isDarkMode ? "#232323" : "white"} />
+            )}
             {dictionaries.delete_notification.cta.confirm.children}
           </Button>
         </div>
