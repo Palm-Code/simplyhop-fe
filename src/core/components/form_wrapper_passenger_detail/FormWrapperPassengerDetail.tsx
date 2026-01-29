@@ -12,29 +12,29 @@ export const FormWrapperPassengerDetail = (
 
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
+  const POSITION_BUFFER = 100; // Buffer zone to prevent flickering
+
   const updatePosition = React.useCallback(() => {
     const dropdownPosition =
       dropdownRef.current?.getBoundingClientRect().top ?? 0;
     const viewportHeight = window.innerHeight;
+    const threshold = viewportHeight / 2;
 
-    if (dropdownPosition < viewportHeight / 2) {
+    // Hysteresis: only change position if outside buffer zone
+    if (dropdownPosition < threshold - POSITION_BUFFER) {
       setPosition("below");
-    } else {
+    } else if (dropdownPosition > threshold + POSITION_BUFFER) {
       setPosition("above");
     }
+    // In buffer zone: keep current position
   }, []);
 
   React.useEffect(() => {
     if (isOpen) {
+      // Lock position: only update once when dropdown opens
       updatePosition();
-      window.addEventListener("resize", updatePosition);
-      window.addEventListener("scroll", updatePosition, true); // true supaya dia bisa detect scroll dalam container juga
+      // No event listeners - position stays fixed while open
     }
-
-    return () => {
-      window.removeEventListener("resize", updatePosition);
-      window.removeEventListener("scroll", updatePosition, true);
-    };
   }, [isOpen, updatePosition]);
 
   if (!isOpen) {
