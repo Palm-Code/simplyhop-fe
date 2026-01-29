@@ -191,6 +191,7 @@ export const RideDetailListTrip = () => {
         "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[80vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-hidden",
+        "px-2 lg:px-0"
       )}
       open={isOpen}
       onClose={handleClose}
