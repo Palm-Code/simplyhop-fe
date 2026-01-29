@@ -26,10 +26,12 @@ export const OrganizationCardDashboard = ({
         "border-[0.5px] border-[#E9E6E6] dark:border-[#464646]"
       )}
     >
-      <table className={clsx("table w-full")}>
-        <TableHead table={table} />
-        <TableBody table={table} />
-      </table>
+      <div className={clsx("overflow-x-auto w-full")}>
+        <table className={clsx("table w-full min-w-[400px]")}>
+          <TableHead table={table} />
+          <TableBody table={table} />
+        </table>
+      </div>
     </div>
   );
 };
