@@ -257,6 +257,12 @@
               "name": "Fahrten",
               "href": "/support/fahrten",
               "icon": "CarFront"
+            },
+            {
+              "id": "logout",
+              "name": "Abmelden",
+              "href": "/logout",
+              "icon": "LogOut"
             }
           ]
         },
@@ -311,6 +317,12 @@
               "name": "Dashboard",
               "href": "/support/dashboard",
               "icon": "LayoutDashboard"
+            },
+            {
+              "id": "logout",
+              "name": "Abmelden",
+              "href": "/logout",
+              "icon": "LogOut"
             }
           ]
         },
@@ -377,6 +389,12 @@
               "name": "Hilfe-Center",
               "href": "/support/hilfe-center",
               "icon": "HelpCircleIcon"
+            },
+            {
+              "id": "logout",
+              "name": "Abmelden",
+              "href": "/logout",
+              "icon": "LogOut"
             }
           ]
         },

@@ -6,6 +6,7 @@ import { useOnClickOutside } from "usehooks-ts";
 import Link from "next/link";
 import { SettingTabButton } from "../setting_tab_button";
 import { usePathname } from "next/navigation";
+import { usePostAuthLogout } from "@/features/account/detail/react_query/hooks";
 
 export interface SettingMenuDropdownProps {
   label?: string;
@@ -19,9 +20,16 @@ export const SettingMenuDropdown = ({
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
+  const { mutate: postAuthLogout } = usePostAuthLogout();
+
   useOnClickOutside(ref as any, () => {
     setIsOpen(false);
   });
+
+  const handleClickLogOut = () => {
+    postAuthLogout();
+  };
+
   const handleClickDropdownButton = () => {
     setIsOpen((prev) => !prev);
   };
@@ -92,10 +100,14 @@ export const SettingMenuDropdown = ({
               return (
                 <Link
                   key={index}
-                  href={menu.href}
+                  href={menu.id === "logout" ? "" : menu.href}
                   aria-label={menu.name}
                   className={clsx("w-full")}
-                  onClick={() => setIsOpen(false)}
+                  onClick={
+                    menu.id === "logout"
+                      ? handleClickLogOut
+                      : () => setIsOpen(false)
+                  }
                 >
                   <SettingTabButton
                     selected={isSelected}
