@@ -13,6 +13,7 @@ export const fetchAutocompletePlace = async (
         input,
         // componentRestrictions: { country: "de" },
         types: ["establishment"],
+        language: "de",
       },
       (businessResults, status) => {
         if (status === "OK" && businessResults) {
@@ -24,6 +25,7 @@ export const fetchAutocompletePlace = async (
             input,
             // componentRestrictions: { country: "de" },
             types: ["geocode"],
+            language: "de",
           },
           (geocodeResults, status) => {
             if (status === "OK" && geocodeResults) {
@@ -36,6 +38,7 @@ export const fetchAutocompletePlace = async (
                 input,
                 // componentRestrictions: { country: "de" },
                 types: ["address"],
+                language: "de",
               },
               (addressResults, status) => {
                 if (status === "OK" && addressResults) {

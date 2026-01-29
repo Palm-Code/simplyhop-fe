@@ -22,8 +22,8 @@ export const getLatLngFromPlaceId = (
     // });
     const place = new google.maps.places.Place({
       id: placeId,
-      requestedLanguage: "en", // optional
-      requestedRegion: "US", // optional
+      requestedLanguage: "de", // optional
+      requestedRegion: "DE", // optional
     });
 
     place

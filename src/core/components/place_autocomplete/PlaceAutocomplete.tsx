@@ -43,6 +43,7 @@ export const PlaceAutocomplete = ({
       {
         input: searchValue,
         componentRestrictions: { country: "de" }, // Restrict to Germany
+        language: "de",
       },
       (predictions, status) => {
         if (

@@ -64,7 +64,7 @@ export const PinPointMapDetailOrganization = () => {
     // Get place information using Geocoding API
     try {
       const geocoder = new google.maps.Geocoder();
-      const result = await geocoder.geocode({ location: newCoordinate });
+      const result = await geocoder.geocode({ location: newCoordinate, language: "de" });
 
       if (result.results && result.results[0]) {
         const place = result.results[0];
@@ -323,7 +323,7 @@ export const PinPointMapDetailOrganization = () => {
       !state.pin_point.location.selected.item
     ) {
       const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ location: userLocation }, (results, status) => {
+      geocoder.geocode({ location: userLocation, language: "de" }, (results, status) => {
         if (status === "OK" && results && results[0]) {
           const place = results[0];
 
