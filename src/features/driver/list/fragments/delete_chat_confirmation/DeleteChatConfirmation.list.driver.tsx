@@ -4,6 +4,7 @@ import { getDictionaries } from "../../i18n";
 import { ListDriverContext, ListDriverActionEnum } from "../../context";
 import { useDeleteMessageRoomsUserId } from "../../react_query/hooks";
 import { UserBlockConfirmation } from "@/core/components/user_block_confirmation";
+import clsx from "clsx";
 
 export const DeleteChatConfirmationListDriver = () => {
   const dictionaries = getDictionaries();
@@ -62,6 +63,7 @@ export const DeleteChatConfirmationListDriver = () => {
         isLoading: isPendingDeleteMessageRoomsUserId,
         disabled: isPendingDeleteMessageRoomsUserId,
       }}
+      modalClassName={clsx("!z-[9999]")}
     />
   );
 };

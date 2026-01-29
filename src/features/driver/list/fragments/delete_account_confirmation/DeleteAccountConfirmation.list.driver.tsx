@@ -9,6 +9,7 @@ import { UserContext } from "@/core/modules/app/context";
 import { useParams, useSearchParams } from "next/navigation";
 import { GetDashboardSuperAdminPayloadRequestInterface } from "@/core/models/rest/simplyhop/dashboard";
 import { ListDriverReactQueryKey } from "../../react_query/keys";
+import clsx from "clsx";
 
 export const DeleteAccountConfirmationListDriver = () => {
   const dictionaries = getDictionaries();
@@ -106,6 +107,7 @@ export const DeleteAccountConfirmationListDriver = () => {
         isLoading: isPendingPatchUserDeactivate,
         disabled: isPendingPatchUserDeactivate,
       }}
+      modalClassName={clsx("!z-[9999]")}
     />
   );
 };

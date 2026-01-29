@@ -7,6 +7,7 @@ import {
 } from "../../context";
 import { usePatchOrganizationDeactivate } from "../../react_query/hooks";
 import { UserBlockConfirmation } from "@/core/components/user_block_confirmation";
+import clsx from "clsx";
 
 export const DeleteAccountConfirmationListOrganization = () => {
   const dictionaries = getDictionaries();
@@ -65,6 +66,7 @@ export const DeleteAccountConfirmationListOrganization = () => {
         isLoading: isPendingPatchOrganizationDeactivate,
         disabled: isPendingPatchOrganizationDeactivate,
       }}
+      modalClassName={clsx("!z-[9999]")}
     />
   );
 };
