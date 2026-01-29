@@ -551,7 +551,7 @@
         "items": [
           {
             "id": "invalid_phonenumber",
-            "name": "Bitte gib eine eine gültige Telefonnummer ein.",
+            "name": "Bitte gib eine gültige Telefonnummer ein.",
             "regex": "^(?:\\+49|0049|0)[1-9][0-9]{1,4}[ \\-]?[0-9]{3,}$"
           }
         ]
@@ -562,7 +562,7 @@
         "items": [
           {
             "id": "invalid_phonenumber",
-            "name": "Bitte gib eine eine gültige Telefonnummer ein.",
+            "name": "Bitte gib eine gültige Telefonnummer ein.",
             "regex": "^(?:\\+49|0049|0)[1-9][0-9]{1,4}[ \\-]?[0-9]{3,}$"
           }
         ]
