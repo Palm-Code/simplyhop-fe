@@ -263,7 +263,7 @@ export const useRideFilterResultTrip = () => {
             },
           },
           date: {
-            mode: dateData.length > 1 ? "multiple" : "single",
+            ...state.filters.date,
             selected: dateData.length === 1 ? dateData[0] : dateData,
           },
 
