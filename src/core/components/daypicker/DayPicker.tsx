@@ -9,43 +9,37 @@ import {
 } from "@/core/utils/calendar";
 
 const addMonthNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-
-  const month = new Date(date).getMonth() + 1;
-  let newMonth = month + number;
-  let newYear = year;
-  if (newMonth > 12) {
-    newMonth = newMonth - 12;
-    newYear = year + 1;
-  }
-
-  const day = new Date().getDate();
-  const newDate = new Date(
-    `${newYear}-${newMonth < 10 ? `0${newMonth}` : newMonth}-${
-      day < 10 ? `0${day}` : day
-    }`
-  );
-  return newDate;
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  
+  // Hitung bulan dan tahun baru
+  const newMonth = month + number;
+  const newYear = year + Math.floor(newMonth / 12);
+  const finalMonth = ((newMonth % 12) + 12) % 12;
+  
+  // Cap hari ke maksimum hari di bulan target
+  const maxDayInTargetMonth = new Date(newYear, finalMonth + 1, 0).getDate();
+  const finalDay = Math.min(day, maxDayInTargetMonth);
+  
+  return new Date(newYear, finalMonth, finalDay);
 };
 
 const subtractMonthNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-
-  const month = new Date(date).getMonth() + 1;
-  let newMonth = month - number;
-  let newYear = year;
-  if (newMonth < 1) {
-    newMonth = 12 - Math.abs(1 - newMonth) + 1;
-    newYear = year - 1;
-  }
-
-  const day = new Date().getDate();
-  const newDate = new Date(
-    `${newYear}-${newMonth < 10 ? `0${newMonth}` : newMonth}-${
-      day < 10 ? `0${day}` : day
-    }`
-  );
-  return newDate;
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  
+  // Hitung bulan dan tahun baru
+  const newMonth = month - number;
+  const newYear = year + Math.floor(newMonth / 12);
+  const finalMonth = ((newMonth % 12) + 12) % 12;
+  
+  // Cap hari ke maksimum hari di bulan target
+  const maxDayInTargetMonth = new Date(newYear, finalMonth + 1, 0).getDate();
+  const finalDay = Math.min(day, maxDayInTargetMonth);
+  
+  return new Date(newYear, finalMonth, finalDay);
 };
 
 type CalendarDate = {

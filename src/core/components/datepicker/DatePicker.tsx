@@ -145,13 +145,13 @@ export const DatePicker = ({
       // Multiple mode logic with single-click toggle
       const dateString = data.toDateString();
       const isAlreadySelected = selectedDates.some(
-        (d) => d.toDateString() === dateString
+        (d) => d.toDateString() === dateString,
       );
 
       if (isAlreadySelected) {
         // Single click on selected date: unselect it
         const newSelectedDates = selectedDates.filter(
-          (d) => d.toDateString() !== dateString
+          (d) => d.toDateString() !== dateString,
         );
         setSelectedDates(newSelectedDates);
         setCurrentDate(data);
@@ -180,17 +180,15 @@ export const DatePicker = ({
   };
 
   const handleSelectMonth = (data: Date) => {
-    const newDate = new Date(
-      `${currentDate.getFullYear()}-${
-        data.getMonth() + 1 < 10
-          ? `0${data.getMonth() + 1}`
-          : data.getMonth() + 1
-      }-${
-        currentDate.getDate() < 10
-          ? `0${currentDate.getDate()}`
-          : currentDate.getDate()
-      }`
-    );
+    const targetMonth = data.getMonth();
+    const targetYear = currentDate.getFullYear();
+    const currentDay = currentDate.getDate();
+    
+    // Cap ke maksimum hari di bulan target
+    const maxDay = new Date(targetYear, targetMonth + 1, 0).getDate();
+    const finalDay = Math.min(currentDay, maxDay);
+    
+    const newDate = new Date(targetYear, targetMonth, finalDay);
     setCurrentDate(newDate);
     if (mode === "single") {
       setSelectedDates([newDate]);
@@ -203,17 +201,15 @@ export const DatePicker = ({
   };
 
   const handleSelectYear = (data: Date) => {
-    const newDate = new Date(
-      `${data.getFullYear()}-${
-        data.getMonth() + 1 < 10
-          ? `0${data.getMonth() + 1}`
-          : data.getMonth() + 1
-      }-${
-        currentDate.getDate() < 10
-          ? `0${currentDate.getDate()}`
-          : currentDate.getDate()
-      }`
-    );
+    const targetYear = data.getFullYear();
+    const targetMonth = data.getMonth();
+    const currentDay = currentDate.getDate();
+    
+    // Cap ke maksimum hari di bulan target
+    const maxDay = new Date(targetYear, targetMonth + 1, 0).getDate();
+    const finalDay = Math.min(currentDay, maxDay);
+    
+    const newDate = new Date(targetYear, targetMonth, finalDay);
     setCurrentDate(newDate);
     if (mode === "single") {
       setSelectedDates([newDate]);
@@ -257,14 +253,14 @@ export const DatePicker = ({
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-        "w-full"
+        "w-full",
       )}
     >
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
           "w-full",
-          "relative"
+          "relative",
         )}
         ref={ref}
       >
@@ -279,7 +275,7 @@ export const DatePicker = ({
               ? "text-[#C3C3C3] dark:text-[#C3C3C3]"
               : "text-[#232323] dark:text-white",
             disabled && "!bg-[#F6F6F6] dark:!bg-[#5B5B5B]",
-            inputContainerProps?.className
+            inputContainerProps?.className,
           )}
           onClick={() => {
             if (disabled) return;
@@ -290,7 +286,7 @@ export const DatePicker = ({
           <InputLabel
             {...labelProps}
             className={clsx(
-              "top-[25%] !left-[0.75rem] sm:!left-[26px] translate-y-[-50%] text-[0.75rem]"
+              "top-[25%] !left-[0.75rem] sm:!left-[26px] translate-y-[-50%] text-[0.75rem]",
             )}
           />
         </InputContainer>
@@ -306,7 +302,7 @@ export const DatePicker = ({
               "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
               "w-full max-w-[306px]",
               "rounded-[0.25rem]",
-              "bg-[white] dark:bg-[#232323]"
+              "bg-[white] dark:bg-[#232323]",
             )}
             style={{
               backdropFilter: "blur(20px)",
@@ -317,7 +313,7 @@ export const DatePicker = ({
               className={clsx(
                 "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[0.75rem]",
                 "w-full max-w-[calc(258px+3rem)]",
-                "px-[1.5rem] py-[1.5rem]"
+                "px-[1.5rem] py-[1.5rem]",
               )}
             >
               {isDayShow && (
