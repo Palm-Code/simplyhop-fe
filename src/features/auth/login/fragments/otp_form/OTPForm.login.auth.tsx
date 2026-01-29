@@ -160,29 +160,25 @@ export const OTPFormLoginAuth = () => {
           {dictionaries.otp_form.cta.verify_code.children}
         </Button>
 
-        <div
+        <p
           className={clsx(
-            "flex items-center justify-center gap-[0.25rem]",
+            "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal text-center",
             "w-full",
           )}
         >
+          {dictionaries.otp_form.request_otp.description}{" "}
           <span
             className={clsx(
-              "text-[#5B5B5B] dark:text-[#E9E6E6] text-[1rem] font-normal whitespace-nowrap",
-            )}
-          >
-            {dictionaries.otp_form.request_otp.description}
-          </span>
-          <button
-            className={clsx(
-              "cursor-pointer",
-              "text-[#33CC33] text-[1rem] font-normal whitespace-nowrap",
+              "cursor-pointer inline",
+              "text-[#33CC33] text-[1rem] font-normal",
             )}
             onClick={handleRequestOTP}
+            role="button"
+            tabIndex={0}
           >
             {dictionaries.otp_form.request_otp.cta.request_otp.children}
-          </button>
-        </div>
+          </span>
+        </p>
       </div>
     </div>
   );
