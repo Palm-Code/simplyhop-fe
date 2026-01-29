@@ -52,19 +52,22 @@ export const ChatTripContainer = () => {
           "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
           "w-full lg:h-[calc(100vh-64px)]",
           // "pb-[0.75rem] px-[1rem]",
-          "relative"
+          "relative",
+          !!id && !isXl && "overflow-hidden"
         )}
       >
         <div
           className={clsx(
             "grid grid-rows-1 grid-cols-1 items-start content-start justify-center justify-items-center",
-            "w-full h-full"
+            "w-full h-full",
+            !!id && !isXl && "overflow-hidden"
           )}
         >
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-1 lg:grid-cols-[560px_auto_1fr] place-content-start place-items-start",
-              "w-full h-full"
+              "w-full h-full",
+              !!id && !isXl && "overflow-hidden"
             )}
           >
             {/* NOTES: List */}
@@ -75,7 +78,8 @@ export const ChatTripContainer = () => {
                 // "pt-[1.5rem]",
                 // "sticky top-[calc(90px+1.5rem)]",
                 "bg-white dark:bg-[#232323]",
-                "px-[1.5rem] pt-[1.5rem]"
+                "px-[1.5rem] pt-[1.5rem]",
+                !!id && !isXl && "overflow-hidden"
               )}
             >
               <h1
@@ -112,7 +116,7 @@ export const ChatTripContainer = () => {
               <PageSheet open={!!id && !isXl} direction={"right"}>
                 <div
                   className={clsx(
-                    "grid grid-rows-[60px_1fr] pb-12 grid-cols-1 place-content-start place-items-start gap-[2rem]",
+                    "grid grid-rows-[60px_1fr_auto] grid-cols-1 place-content-start place-items-start gap-[2rem]",
                     "w-full h-full"
                   )}
                 >
