@@ -27,7 +27,15 @@ export const useGetMessageRoomsUnreadList = () => {
       return fetchGetMessageRoomsUnreadList(payload);
     },
     enabled: !!token,
-    refetchInterval: 15000,
+    // Polling dengan Page Visibility API protection
+    // 1 menit interval + pause saat tab hidden = optimal balance
+    refetchInterval: (query) => {
+      // Stop polling jika tab di-background untuk prevent freezing
+      if (typeof document !== "undefined" && document.hidden) {
+        return false;
+      }
+      return 60000; // 1 menit saat tab active (75% reduction dari 15 detik)
+    },
   });
 
   return query;

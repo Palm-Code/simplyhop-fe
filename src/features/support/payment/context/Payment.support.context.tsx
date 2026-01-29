@@ -56,7 +56,8 @@ const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
       const data = paymentStatusQuery.data;
       if (!!callback) {
         if (!!data.active) {
-          router.push(AppCollectionURL.private.support_payment());
+          // Payment success: remove callback param to stop polling
+          router.replace(AppCollectionURL.private.support_payment());
           refetch();
           dispatch({
             type: PaymentSupportActionEnum.SetSubscriptionStatusData,

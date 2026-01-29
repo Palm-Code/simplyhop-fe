@@ -32,13 +32,13 @@ export default async function ProtectedLayout({
   }
   return (
     <UserProvider>
-      <PaymentSupportProvider>
+      {/* <PaymentSupportProvider> */}
         {children}
 
         {process.env.NEXT_PUBLIC_SIMPLY_HOP_MAINTENANCE_FEATURE === "true" && (
           <MaintenanceModal mode="fixed" />
         )}
-      </PaymentSupportProvider>
+      {/* </PaymentSupportProvider> */}
     </UserProvider>
   );
 }

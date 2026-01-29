@@ -66,6 +66,11 @@ export const RoomChatTrip = () => {
   React.useEffect(() => {
     if (!!bookingId) {
       const interval = setInterval(() => {
+        // Skip update jika tab di-background
+        if (typeof document !== "undefined" && document.hidden) {
+          return;
+        }
+
         counterRef.current += 1;
 
         dispatch({
