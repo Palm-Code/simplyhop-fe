@@ -87,7 +87,7 @@ export const UserUnblockConfirmation = ({
         {/* actions */}
         <div
           className={clsx(
-            "grid sm:grid-cols-2 lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
             "w-full"
           )}
         >
