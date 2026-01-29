@@ -61,7 +61,7 @@
     },
     "errors": {
       "company_code": {
-        "message": "Der eingegebene Firmen-Code ist falsch. Bitte wenden Du sich an den Unternehmens-Admin."
+        "message": "Der eingegebene Firmen-Code ist falsch. Bitte wende dich an den Unternehmensadministrator."
       },
       "domain": {
         "message": "Deine E-Mail-Adresse ist bei dem Unternehmen noch nicht registriert. Bitte wende dich an das Unternehmen oder versuche es mit einer anderen registrierten E-Mail-Adresse."
