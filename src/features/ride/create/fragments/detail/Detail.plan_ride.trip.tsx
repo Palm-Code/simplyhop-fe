@@ -169,6 +169,14 @@ export const DetailPlanRideTrip = () => {
   };
 
   const handleChangeUmweg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.currentTarget.value;
+    const numValue = Number(inputValue);
+
+    // Prevent NaN - only allow valid numbers or empty string
+    if (inputValue !== "" && isNaN(numValue)) {
+      return;
+    }
+
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
@@ -179,10 +187,7 @@ export const DetailPlanRideTrip = () => {
             ...state.detail.form.plan,
             umweg: {
               ...state.detail.form.plan.umweg,
-              value:
-                e.currentTarget.value === ""
-                  ? ""
-                  : String(Number(e.currentTarget.value)),
+              value: inputValue === "" ? "" : String(numValue),
             },
           },
         },
@@ -191,6 +196,14 @@ export const DetailPlanRideTrip = () => {
   };
 
   const handleChangeSeat = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.currentTarget.value;
+    const numValue = Number(inputValue);
+
+    // Prevent NaN - only allow valid numbers or empty string
+    if (inputValue !== "" && isNaN(numValue)) {
+      return;
+    }
+
     const invalidSeatDictionary =
       globalDictionaries.form.available_seat.validations.items.find(
         (item) => item.id === "invalid_available_seat",
@@ -210,21 +223,18 @@ export const DetailPlanRideTrip = () => {
             ...state.detail.form.plan,
             seat: {
               ...state.detail.form.plan.seat,
-              value:
-                e.currentTarget.value === ""
-                  ? ""
-                  : String(Number(e.currentTarget.value)),
+              value: inputValue === "" ? "" : String(numValue),
               error:
-                e.currentTarget.value === ""
+                inputValue === ""
                   ? null
-                  : Number(e.currentTarget.value) > filteredCar.seat
+                  : numValue > filteredCar.seat
                     ? !invalidSeatDictionary
                       ? null
                       : {
                           id: invalidSeatDictionary.id,
                           name: invalidSeatDictionary.name,
                         }
-                    : Number(e.currentTarget.value) <= 0
+                    : numValue <= 0
                       ? !mustGreaterThanSeatDictionary
                         ? null
                         : {
@@ -242,6 +252,14 @@ export const DetailPlanRideTrip = () => {
   const handleChangeAvailableChildSeat = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
+    const inputValue = e.currentTarget.value;
+    const numValue = Number(inputValue);
+
+    // Prevent NaN - only allow valid numbers or empty string
+    if (inputValue !== "" && isNaN(numValue)) {
+      return;
+    }
+
     const invalidSeatDictionary =
       globalDictionaries.form.available_child_seat.validations.items.find(
         (item) => item.id === "invalid_available_child_seat",
@@ -260,21 +278,18 @@ export const DetailPlanRideTrip = () => {
             ...state.detail.form.plan,
             available_child_seat: {
               ...state.detail.form.plan.available_child_seat,
-              value:
-                e.currentTarget.value === ""
-                  ? ""
-                  : String(Number(e.currentTarget.value)),
+              value: inputValue === "" ? "" : String(numValue),
               error:
-                e.currentTarget.value === ""
+                inputValue === ""
                   ? null
-                  : Number(e.currentTarget.value) > filteredCar.seat
+                  : numValue > filteredCar.seat
                     ? !invalidSeatDictionary
                       ? null
                       : {
                           id: invalidSeatDictionary.id,
                           name: invalidSeatDictionary.name,
                         }
-                    : Number(e.currentTarget.value) < 0
+                    : numValue < 0
                       ? !mustGreaterThanSeatDictionary
                         ? null
                         : {
