@@ -15,7 +15,7 @@ export const ListDriverContainer = () => {
         )}
       >
         <HeaderListDriver />
-        <div className={clsx("flex items-center justify-between", "w-full")}>
+        <div className={clsx("flex flex-col lg:flex-row items-center justify-between gap-4", "w-full")}>
           <NavigationListDriver />
           <SearchListDriver />
         </div>

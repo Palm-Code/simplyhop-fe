@@ -48,7 +48,7 @@ export const SearchListDriver = () => {
       setSearchValue(e.target.value);
     };
     return (
-      <div className={clsx("w-[320px]")}>
+      <div className={clsx("w-full lg:w-[320px]")}>
         <Textfield
           labelProps={{ ...dictionaries.search.labelProps }}
           inputProps={{

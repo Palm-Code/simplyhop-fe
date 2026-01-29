@@ -100,14 +100,16 @@ export const DataTableListOrganization = () => {
           "border border-[#E9E6E6] dark:border-[#464646]"
         )}
       >
-        <table className={clsx("table w-full")}>
-          <TableHead table={table} />
-          <TableBody
-            table={table}
-            tdClassName={"!h-[56px]"}
-            onRowClick={handleRowClick}
-          />
-        </table>
+        <div className={clsx("overflow-x-auto w-full")}>
+          <table className={clsx("table w-full min-w-[600px]")}>
+            <TableHead table={table} />
+            <TableBody
+              table={table}
+              tdClassName={"!h-[56px]"}
+              onRowClick={handleRowClick}
+            />
+          </table>
+        </div>
       </div>
     </InfiniteScrollWrapper>
   );
