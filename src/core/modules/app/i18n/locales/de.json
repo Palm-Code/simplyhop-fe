@@ -118,6 +118,11 @@
         "title": "Rechtliches",
         "items": [
           {
+            "id": "FAQ",
+            "name": "FAQ",
+            "href": "/faq"
+          },
+          {
             "id": "Barrierefreiheitserklärung",
             "name": "Barrierefreiheitserklärung",
             "href": "/accessibility"
