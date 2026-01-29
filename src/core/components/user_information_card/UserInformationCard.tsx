@@ -148,7 +148,9 @@ export const UserInformationCard = ({
             "rounded-[0.5rem]",
           )}
           style={{
-            gridTemplateColumns: !isLg ? "1fr" : `repeat(${summary.length},1fr)`,
+            gridTemplateColumns: !isLg
+              ? "1fr"
+              : `repeat(${summary.length},1fr)`,
           }}
         >
           {summary.map((item, index) => (
@@ -159,7 +161,7 @@ export const UserInformationCard = ({
                 "w-full",
                 "py-2 lg:py-0",
                 index < summary.length - 1 &&
-                  "border-b border-b-border-subdued lg:border-r lg:border-r-border-subdued",
+                  "border-b border-b-border-subdued lg:border-b-0 lg:border-r lg:border-r-border-subdued",
               )}
             >
               <p
