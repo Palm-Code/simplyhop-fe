@@ -136,11 +136,11 @@
       "passenger": {
         "labelProps": {
           "id": "passenger",
-          "children": "Passagiere",
+          "children": "Mitfahrer",
           "required": false
         },
         "detail": {
-          "title": "Passagiere",
+          "title": "Mitfahrer",
           "carSeat": {
             "input": {
               "label": "Kindersitz erforderlich"
@@ -149,7 +149,7 @@
           "items": [
             {
               "id": "adult",
-              "name": "Erwachsene",
+              "name": "Mitfahrer",
               "description": "Alter: 18 oder älter",
               "value": 1
             },

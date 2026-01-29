@@ -141,7 +141,7 @@ export const FormPassenger = ({
           "cursor-pointer",
           "font-medium text-[0.875rem] leading-[1.25rem]",
           "text-[#232323] dark:text-white whitespace-nowrap",
-          "w-full"
+          "w-full",
         )}
         onClick={handleClick}
       >
@@ -150,7 +150,7 @@ export const FormPassenger = ({
           {...labelProps}
           className={clsx(
             "cursor-pointer",
-            "top-[25%] !left-[0.75rem] sm:!left-[26px] translate-y-[-50%] text-[0.75rem]"
+            "top-[25%] !left-[0.75rem] sm:!left-[26px] translate-y-[-50%] text-[0.75rem]",
           )}
         />
       </InputContainer>
@@ -159,10 +159,14 @@ export const FormPassenger = ({
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-              "w-full"
+              "w-full",
             )}
           >
-            <span className={clsx("text-[#606060] dark:text-[#C3C3C3] text-[0.75rem] font-normal")}>
+            <span
+              className={clsx(
+                "text-[#606060] dark:text-[#C3C3C3] text-[0.75rem] font-normal",
+              )}
+            >
               {detail?.title}
             </span>
             <FormPassengerDetail {...detail} />
@@ -175,19 +179,19 @@ export const FormPassenger = ({
               "grid grid-cols-1 items-stretch content-between justify-start justify-items-start gap-[1.5rem]",
               "w-full",
               "min-h-[480px]",
-              "px-[1rem] py-[2rem]"
+              "px-[1rem] py-[2rem]",
             )}
           >
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-                "w-full"
+                "w-full",
               )}
             >
               <div
                 className={clsx(
                   "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                  "w-full"
+                  "w-full",
                 )}
               >
                 <button
@@ -197,11 +201,16 @@ export const FormPassenger = ({
                 >
                   <SVGIcon
                     name="X"
-                    className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
+                    className={clsx(
+                      "w-[1.5rem] h-[1.5rem]",
+                      "text-[#5B5B5B] dark:text-[#C3C3C3]",
+                    )}
                   />
                 </button>
                 <span
-                  className={clsx("text-[#292929] text-[1.125rem] font-bold")}
+                  className={clsx(
+                    "text-[#292929] dark:text-white text-[1.125rem] font-bold",
+                  )}
                 >
                   {detail?.title}
                 </span>
@@ -216,7 +225,7 @@ export const FormPassenger = ({
                         ...item,
                         value:
                           passenger.value.find(
-                            (passengerItem) => passengerItem.id === item.id
+                            (passengerItem) => passengerItem.id === item.id,
                           )?.value ?? 0,
                       };
                     }) ?? [],
