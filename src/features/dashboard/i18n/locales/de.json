@@ -206,11 +206,11 @@
           "items": [
             {
               "id": "driver",
-              "name": "Driver"
+              "name": "Fahrer"
             },
             {
               "id": "rides",
-              "name": "Rides"
+              "name": "Fahrten"
             },
             {
               "id": "bewertungen",
@@ -218,7 +218,7 @@
             },
             {
               "id": "passengers",
-              "name": "Passengers"
+              "name": "Mitfahrer"
             }
           ]
         }
@@ -279,19 +279,19 @@
           "items": [
             {
               "id": "company",
-              "name": "Company"
+              "name": "Unternehmen"
             },
             {
               "id": "rides",
-              "name": "Rides"
+              "name": "Fahrten"
             },
             {
               "id": "driver",
-              "name": "Driver"
+              "name": "Fahrer"
             },
             {
               "id": "passengers",
-              "name": "Passengers"
+              "name": "Mitfahrer"
             }
           ]
         }
@@ -318,11 +318,11 @@
           "items": [
             {
               "id": "driver",
-              "name": "Driver"
+              "name": "Fahrer"
             },
             {
               "id": "rides",
-              "name": "Rides"
+              "name": "Fahrten"
             },
             {
               "id": "bewertungen",
@@ -330,7 +330,7 @@
             },
             {
               "id": "passengers",
-              "name": "Passengers"
+              "name": "Mitfahrer"
             }
           ]
         }
