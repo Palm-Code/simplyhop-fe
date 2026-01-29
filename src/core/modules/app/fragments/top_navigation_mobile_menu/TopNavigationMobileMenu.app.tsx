@@ -144,7 +144,7 @@ export const TopNavigationMobileMenu = () => {
               "w-[2rem] h-[2rem]",
               "rounded-full",
               "flex items-center justify-center",
-              "bg-white"
+              "bg-white dark:bg-[#232323]"
             )}
             href={AppCollectionURL.private.support_account()}
           >
