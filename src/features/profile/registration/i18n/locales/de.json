@@ -223,7 +223,7 @@
       }
     },
     "capacity": {
-      "title": "Kapazität der Fahrzeuge",
+      "title": "Verfügbare Mitfahrplätze",
       "description": "Die Kapazität deines Autos für Sitze und Gepäckstücke",
       "passenger_seats": {
         "title": "Fahrgastsitze",
