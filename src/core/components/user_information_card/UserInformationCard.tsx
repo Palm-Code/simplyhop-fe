@@ -4,6 +4,7 @@ import { Avatar } from "@/core/components/avatar";
 import { UserInformationItem } from "@/core/components/user_information_item";
 import SVGIcon from "@/core/icons";
 import { Divider } from "../divider";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export interface UserInformationCardProps {
   summary: {
@@ -85,6 +86,7 @@ export const UserInformationCard = ({
   },
   containerClassName,
 }: UserInformationCardProps) => {
+  const { isLg } = useTailwindBreakpoint();
   return (
     <div
       className={clsx(
@@ -112,7 +114,7 @@ export const UserInformationCard = ({
           />
           <h2
             className={clsx(
-              "text-[#292929] dark:text-white text-2xl font-bold",
+              "text-[#292929] dark:text-white text-base lg:text-2xl font-bold truncate text-ellipsis w-full",
             )}
           >
             {displayName}
@@ -146,17 +148,18 @@ export const UserInformationCard = ({
             "rounded-[0.5rem]",
           )}
           style={{
-            gridTemplateColumns: `repeat(${summary.length},1fr)`,
+            gridTemplateColumns: !isLg ? "1fr" : `repeat(${summary.length},1fr)`,
           }}
         >
           {summary.map((item, index) => (
             <div
               key={index}
               className={clsx(
-                "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]",
+                "grid grid-cols-1 place-content-start lg:place-content-center place-items-start lg:place-items-center gap-[0.5rem]",
                 "w-full",
+                "py-2 lg:py-0",
                 index < summary.length - 1 &&
-                  "border-r border-r-border-subdued",
+                  "border-b border-b-border-subdued lg:border-r lg:border-r-border-subdued",
               )}
             >
               <p

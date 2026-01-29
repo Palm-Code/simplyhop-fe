@@ -144,7 +144,7 @@ export const DashboardVehicleCard = ({
             <SVGIcon
               name="Car"
               className={clsx(
-                "w-[128px] h-[128px]",
+                "w-10 h-10 lg:w-[128px] lg:h-[128px]",
                 "text-icon-primary-subdued"
               )}
             />

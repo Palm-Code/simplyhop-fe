@@ -57,11 +57,11 @@ export const OrganizationInformationCard = ({
           <Avatar
             src={avatar?.src}
             variant="avatar"
-            className={clsx("w-[3rem] h-[3rem]", avatar?.className)}
+            className={clsx("w-[1.5rem] h-[1.5rem] sm:w-[3rem] sm:h-[3rem]", avatar?.className)}
           />
           <h2
             className={clsx(
-              "text-[#292929] dark:text-white text-2xl font-bold"
+              "text-[#292929] dark:text-white text-base sm:text-2xl font-bold"
             )}
           >
             {displayName}
@@ -84,16 +84,16 @@ export const OrganizationInformationCard = ({
         </button>
       </div>
 
-      <div className={clsx("flex items-center justify-between gap-8", "w-full")}>
+      <div className={clsx("flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-8", "w-full")}>
         <div
-          className={clsx("flex items-center justify-start gap-4", "flex-1")}
+          className={clsx("flex flex-col lg:flex-row items-center justify-start gap-4 w-full lg:w-fit", "flex-1")}
         >
           {summary.map((item, index) => (
             <div
               key={index}
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                "w-[118px]"
+                "w-full lg:w-[118px]"
               )}
             >
               <p
@@ -129,7 +129,7 @@ export const OrganizationInformationCard = ({
           ))}
         </div>
 
-        <div className={clsx("flex items-center justify-end gap-4", "flex-1")}>
+        <div className={clsx("flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-end gap-4 w-full lg:w-fit", "flex-1")}>
           {detail.map((item, index) => (
             <OrganizationInformationItem
               key={index}
