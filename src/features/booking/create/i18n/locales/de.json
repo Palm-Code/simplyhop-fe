@@ -80,7 +80,7 @@
         }
       },
       "destination": {
-        "title": "Zielunkt wählen",
+        "title": "Zielpunkt wählen",
         "inputProps": {
           "id": "end",
           "placeholder": " ",
