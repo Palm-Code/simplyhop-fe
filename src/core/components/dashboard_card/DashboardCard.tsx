@@ -82,7 +82,7 @@ export const DashboardCard = ({
         <div
           className={clsx(
             "bg-[#FAFDF9] dark:bg-[#242623]",
-            "px-4 py-4",
+            "lg:px-4 lg:py-4",
             "rounded-2xl",
             "w-full"
           )}

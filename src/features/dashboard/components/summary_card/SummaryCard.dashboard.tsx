@@ -27,18 +27,8 @@ export const SummaryCardDashboard = ({
   ratingValue = 0,
   variant = "compact",
 }: SummaryCardDashboardProps) => {
-  return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 items-stretch content-between justify-start justify-items-start",
-        variant === "extend" ? "gap-20.5" : "gap-6",
-        "w-full",
-        "px-4 py-4",
-        "bg-[white] dark:bg-[#232323]",
-        "rounded-2xl",
-        "border border-[#E9E6E6] dark:border-[#464646]"
-      )}
-    >
+  const content = (
+    <>
       <div className={clsx("flex items-center justify-between", "w-full")}>
         <div
           className={clsx("flex items-center justify-start gap-2", "w-full")}
@@ -49,7 +39,8 @@ export const SummaryCardDashboard = ({
               "flex items-center justify-center",
               "rounded-full",
               "w-6 h-6",
-              "bg-[#EFF9EC] dark:bg-[#26531A]"
+              "bg-[#EFF9EC] dark:bg-[#26531A]",
+              "shrink-0",
             )}
           >
             <SVGIcon
@@ -59,7 +50,7 @@ export const SummaryCardDashboard = ({
           </div>
           <p
             className={clsx(
-              "text-sm text-[#5B5B5B] dark:text-[#DADADA] font-normal whitespace-nowrap"
+              "text-xs lg:text-sm text-[#5B5B5B] dark:text-[#DADADA] font-normal lg:whitespace-nowrap",
             )}
           >
             {title}
@@ -67,36 +58,35 @@ export const SummaryCardDashboard = ({
         </div>
 
         {href && (
-          <Link
-            href={href}
+          <div
             className={clsx(
-              "flex items-center justify-center",
+              "hidden lg:flex items-center justify-center",
               "rounded-full",
               "w-6 h-6",
-              "bg-transparent"
+              "bg-transparent",
             )}
           >
             <SVGIcon
               name={"ArrowRight"}
               className={clsx(
                 "w-3.5 h-3.5",
-                "text-[#767676] dark:text-[#C3C3C3]"
+                "text-[#767676] dark:text-[#C3C3C3]",
               )}
             />
-          </Link>
+          </div>
         )}
       </div>
 
       <div
         className={clsx(
           "grid grid-cols-1 items-end content-end justify-start justify-items-start gap-0",
-          "w-full"
+          "w-full",
         )}
       >
         <p
           className={clsx(
             "text-[#232323] dark:text-white font-bold",
-            variant === "extend" ? "text-5xl" : "text-2xl"
+            variant === "extend" ? "text-5xl" : "text-2xl",
           )}
         >
           {value}
@@ -118,12 +108,38 @@ export const SummaryCardDashboard = ({
         <span
           className={clsx(
             "text-[#767676] dark:text-[#C3C3C3] font-normal",
-            variant === "extend" ? "text-base" : "text-sm"
+            variant === "extend" ? "text-base" : "text-sm",
           )}
         >
           {unit}
         </span>
       </div>
-    </div>
+    </>
   );
+
+  const cardClasses = clsx(
+    "grid grid-cols-1 items-stretch content-between justify-start justify-items-start",
+    variant === "extend" ? "gap-20.5" : "gap-6",
+    "w-full",
+    "px-4 py-4",
+    "bg-[white] dark:bg-[#232323]",
+    "rounded-2xl",
+    "border border-[#E9E6E6] dark:border-[#464646]",
+    href && [
+      "transition-all duration-200 ease-in-out",
+      "hover:shadow-lg hover:scale-[1.02]",
+      "hover:border-[#26531A] dark:hover:border-[#33CC33]",
+      "cursor-pointer",
+    ],
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={cardClasses}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={cardClasses}>{content}</div>;
 };
