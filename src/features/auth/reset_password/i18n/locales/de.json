@@ -13,7 +13,7 @@
       }
     },
     "title": "Neues Passwort erstellen",
-    "description": "Du werden von allen aktiven X-Sitzungen abgemeldet, nachdem Ihr Passwort geändert wurde.",
+    "description": "Du wirst von allen aktiven X-Sitzungen abgemeldet, nachdem dein Passwort geändert wurde.",
     "input": {
       "password": {
         "inputProps": {
@@ -48,8 +48,8 @@
     }
   },
   "success": {
-    "message": "Du sind bereit!",
-    "description": "Du haben Ihr Passwort erfolgreich geändert.",
+    "message": "Du bist bereit!",
+    "description": "Du hast dein Passwort erfolgreich geändert.",
     "cta": {
       "back": {
         "children": "Zurück zum Login"

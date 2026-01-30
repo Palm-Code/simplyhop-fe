@@ -74,7 +74,7 @@
         "pictures": {
           "title": "Firmenlogo",
           "form": {
-            "message": "Ziehen Du das Firmenlogo hierher oder klicken Sie, um Dateien auszuwählen.",
+            "message": "Ziehe das Firmenlogo hierher oder klicke, um Dateien auszuwählen.",
             "description": "Maximale Dateigröße: 2 MB, empfohlene Höhe: 60 px."
           },
           "square_input": {
@@ -177,7 +177,7 @@
           "inputProps": {
             "id": "address_name",
             "placeholder": " ",
-            "helperText": "Du können bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
+            "helperText": "Du kannst bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
           },
           "labelProps": {
             "id": "address_name",
@@ -250,7 +250,7 @@
   },
   "notification": {
     "title": "Willkommen bei Simply Hop!",
-    "description": "Das Unternehmenskonto ist bereit. Bitten Du den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
+    "description": "Das Unternehmenskonto ist bereit. Bitte den Unternehmensadministrator, sich anzumelden und mit der Verwaltung der Fahrer und Fahrten zu beginnen.",
     "cta": {
       "back": {
         "children": "Weiter"
@@ -297,7 +297,7 @@
   },
   "pin_point_delete_confirmation": {
     "title": "Simply Hop Office 2 löschen?",
-    "description": "Möchten Du diesen Standort wirklich entfernen?",
+    "description": "Möchtest du diesen Standort wirklich entfernen?",
     "cta": {
       "cancel": {
         "children": "Behalten"

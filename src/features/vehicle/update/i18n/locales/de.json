@@ -223,7 +223,7 @@
   },
   "delete_notification": {
     "title": "Auto löschen?",
-    "message": "Du werden den <span class='text-black dark:text-white font-bold'>{{type}}</span> löschen",
+    "message": "Möchtest du den <span class='text-black dark:text-white font-bold'>{{type}}</span> wirklich löschen?",
     "information": {
       "items": [
         {
@@ -232,7 +232,7 @@
         },
         {
           "id": "2",
-          "name": "Du können dieses Auto nicht mehr für den nächsten Fahrplan verwenden."
+          "name": "Du kannst dieses Auto nicht mehr für die nächste Fahrt verwenden."
         }
       ]
     },

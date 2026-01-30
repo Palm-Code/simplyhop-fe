@@ -227,7 +227,7 @@
           "title": "Profilbilder",
           "description": "Lade Bilder hoch, die dein Gesicht zeigen.",
           "form": {
-            "message": "Ziehen Du Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
+            "message": "Ziehe dein Bild hierher oder klicke, um Dateien auszuwählen",
             "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
           },
           "square_input": {
@@ -249,7 +249,7 @@
   },
   "delete_account_confirmation": {
     "title": "Fahrtende bestätigen",
-    "description": "Bevor Du bestätigen, überprüfen Du bitte, ob alle Daten korrekt sind.",
+    "description": "Bevor du bestätigst, überprüfe bitte, ob alle Daten korrekt sind.",
     "cta": {
       "cancel": {
         "children": "Erneut überprüfen"

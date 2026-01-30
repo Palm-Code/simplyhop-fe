@@ -67,7 +67,7 @@ export const useRestGooglePostRouteDirections = () => {
               {
                 id: uuidv4(),
                 variant: "error",
-                message: "Entschuldigung, wir können Ihre Route nicht finden.",
+                message: "Entschuldigung, wir können deine Route nicht finden.",
               },
             ],
           },
@@ -84,7 +84,7 @@ export const useRestGooglePostRouteDirections = () => {
               {
                 id: uuidv4(),
                 variant: "error",
-                message: "Entschuldigung, wir können Ihre Route nicht finden.",
+                message: "Entschuldigung, wir können deine Route nicht finden.",
               },
             ],
           },

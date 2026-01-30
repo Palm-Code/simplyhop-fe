@@ -172,7 +172,7 @@
           "title": "Profilbilder",
           "description": "Lade Bilder hoch, die dein Gesicht zeigen.",
           "form": {
-            "message": "Ziehen Du Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
+            "message": "Ziehe dein Bild hierher oder klicke, um Dateien auszuwählen",
             "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
           },
           "square_input": {
@@ -194,7 +194,7 @@
   },
   "delete_account_confirmation": {
     "title": "Fahrtende bestätigen",
-    "description": "Bevor Du bestätigen, überprüfen Du bitte, ob alle Daten korrekt sind.",
+    "description": "Bevor du bestätigst, überprüfe bitte, ob alle Daten korrekt sind.",
     "cta": {
       "cancel": {
         "children": "Erneut überprüfen"
@@ -286,7 +286,7 @@
         "pictures": {
           "title": "Firmenlogo",
           "form": {
-            "message": "Ziehen Du das Firmenlogo hierher oder klicken Sie, um Dateien auszuwählen.",
+            "message": "Ziehe das Firmenlogo hierher oder klicke, um Dateien auszuwählen.",
             "description": "Maximale Dateigröße: 2 MB, empfohlene Höhe: 60 px."
           },
           "square_input": {
@@ -389,7 +389,7 @@
           "inputProps": {
             "id": "address_name",
             "placeholder": " ",
-            "helperText": "Du können bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
+            "helperText": "Du kannst bei der Auswahl des Standorts als Benutzerkennung beispielsweise „Hauptsitz, Büro 1” hinzufügen."
           },
           "labelProps": {
             "id": "address_name",
@@ -462,7 +462,7 @@
   },
   "notification": {
     "title": "Willkommen bei Simply Hop!",
-    "description": "Das Unternehmenskonto ist bereit. Bitten Du den Unternehmensadministrator, sich anzumelden und mit der Verwaltung seiner Fahrer und Fahrten zu beginnen.",
+    "description": "Das Unternehmenskonto ist bereit. Bitte den Unternehmensadministrator, sich anzumelden und mit der Verwaltung der Fahrer und Fahrten zu beginnen.",
     "cta": {
       "back": {
         "children": "Weiter"
@@ -509,7 +509,7 @@
   },
   "pin_point_delete_confirmation": {
     "title": "Simply Hop Office 2 löschen?",
-    "description": "Möchten Du diesen Standort wirklich entfernen?",
+    "description": "Möchtest du diesen Standort wirklich entfernen?",
     "cta": {
       "cancel": {
         "children": "Behalten"

@@ -135,7 +135,7 @@
       },
       "empty": {
         "message": "Noch kein Auto",
-        "description": "Bitte bestätigen Du Ihre Bereitschaft, Fahrten als Fahrer bei Simply Hop anzubieten.",
+        "description": "Bitte bestätige deine Bereitschaft, Fahrten als Fahrer bei Simply Hop anzubieten.",
         "cta": {
           "label": "Fahrten Anbieten"
         }
