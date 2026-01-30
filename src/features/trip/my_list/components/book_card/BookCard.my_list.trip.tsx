@@ -107,7 +107,7 @@ export const BookCardMyListTrip = ({
   },
   cta = {
     detail: {
-      children: "Siehe Details",
+      children: "Details ansehen",
       href: "",
     },
   },

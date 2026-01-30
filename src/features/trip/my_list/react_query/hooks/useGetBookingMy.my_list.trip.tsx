@@ -133,7 +133,7 @@ export const useGetBookingMy = () => {
           },
           cta: {
             detail: {
-              children: "Siehe Details",
+              children: "Details ansehen",
               href: AppCollectionURL.private.myList(urlSearchParams.toString()),
             },
           },

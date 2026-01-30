@@ -206,7 +206,7 @@ export const useGetVehicleMy = () => {
                   href: AppCollectionURL.private.support_vehicle_detail(
                     item.id.toString()
                   ),
-                  children: "Siehe Details",
+                  children: "Details ansehen",
                 },
               },
             };

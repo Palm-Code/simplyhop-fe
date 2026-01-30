@@ -113,7 +113,7 @@ export const RideCardMyListTrip = ({
   },
   cta = {
     detail: {
-      children: "Siehe Details",
+      children: "Details ansehen",
       href: "",
     },
     share: {

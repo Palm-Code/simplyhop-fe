@@ -107,7 +107,7 @@ export const RideCardArchiveTrip = ({
   },
   cta = {
     detail: {
-      children: "Siehe Details",
+      children: "Details ansehen",
       href: "",
     },
   },
