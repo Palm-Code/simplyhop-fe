@@ -45,7 +45,7 @@
           },
           "labelProps": {
             "id": "admin_email",
-            "children": "Admin Email",
+            "children": "Admin E-Mail",
             "required": true
           }
         },

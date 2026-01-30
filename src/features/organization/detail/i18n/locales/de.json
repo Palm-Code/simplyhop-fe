@@ -95,7 +95,7 @@
           },
           "labelProps": {
             "id": "email",
-            "children": "Admin Email",
+            "children": "Admin E-Mail",
             "required": false
           }
         },
@@ -257,7 +257,7 @@
           },
           "labelProps": {
             "id": "admin_email",
-            "children": "Admin Email",
+            "children": "Admin E-Mail",
             "required": true
           }
         },
