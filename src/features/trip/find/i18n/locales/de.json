@@ -107,7 +107,7 @@
           "items": [
             {
               "id": "adult",
-              "name": "Erwachsene",
+              "name": "Mitfahrer",
               "description": "Alter: 18 oder älter",
               "value": 1
             },
@@ -125,7 +125,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
+        "maskedValue": "{{adult}} Mitfahrer"
       }
     },
     "cta": {
