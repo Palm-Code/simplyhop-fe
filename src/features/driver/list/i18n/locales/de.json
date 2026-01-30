@@ -125,7 +125,7 @@
 
   "delete_chat_confirmation": {
     "title": "Fahrtende bestätigen",
-    "description": "Bevor Du bestätigen, überprüfen Du bitte, ob alle Daten korrekt sind.",
+    "description": "Bevor du bestätigst, überprüfe bitte, ob alle Daten korrekt sind.",
     "cta": {
       "cancel": {
         "children": "Erneut überprüfen"

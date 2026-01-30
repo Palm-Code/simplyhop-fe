@@ -177,7 +177,7 @@ export const FormChatTrip = () => {
             "text-[#767676] dark:text-[#C3C3C3] text-[1rem] font-normal",
           )}
         >
-          {"Sorry, du kannst dieser Person keine Nachricht senden."}
+          {"Entschuldigung, du kannst dieser Person keine Nachricht senden."}
         </p>
       </div>
     );

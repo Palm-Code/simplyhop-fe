@@ -66,7 +66,7 @@ export const NotificationDetailOrganization = () => {
             {/* Content */}
 
             <p className="text-[1rem] text-[#5B5B5B] dark:text-[#DADADA] text-center">
-              Deine Unternehmen details wurden erfolgreich aktualisiert. Du
+              Deine Unternehmensdetails wurden erfolgreich aktualisiert. Du
               kannst jederzeit weitere Änderungen vornehmen oder direkt mit dem
               Planen deiner Fahrt loslegen.
             </p>
