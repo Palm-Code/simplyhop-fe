@@ -6,7 +6,7 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Trip",
+  title: "Fahrt",
 };
 
 type TripLayoutProps = {

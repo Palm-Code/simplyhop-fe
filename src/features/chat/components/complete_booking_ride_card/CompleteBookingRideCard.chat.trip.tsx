@@ -156,7 +156,7 @@ export const CompleteBookingRideCardChatTrip = ({
                 "text-[0.875rem] text-[#232323] dark:text-white font-bold"
               )}
             >
-              {"Trip Complete"}
+              {"Fahrt abgeschlossen"}
             </p>
           </div>
           <div className="grid grid-cols-1 gap-1">

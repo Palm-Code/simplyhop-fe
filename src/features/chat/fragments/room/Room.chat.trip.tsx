@@ -252,7 +252,7 @@ export const RoomChatTrip = () => {
                   key={chatIndex}
                   cta={{
                     trip_details: {
-                      children: "View Trip Details",
+                      children: "Details ansehen",
                       disabled: false,
                       loading: false,
                       onClick: () =>

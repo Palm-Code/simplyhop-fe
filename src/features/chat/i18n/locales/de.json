@@ -144,16 +144,16 @@
     }
   },
   "completed_ride": {
-    "title": "Trip Completed",
+    "title": "Fahrt abgeschlossen",
     "rating": {
-      "title": "How was your trip?"
+      "title": "Wie war deine Fahrt?"
     },
     "trip_summary": {
-      "title": "Trip Summary"
+      "title": "Fahrtübersicht"
     },
     "cta": {
       "primary": {
-        "children": "Geschehen"
+        "children": "Bestätigen"
       }
     }
   },
