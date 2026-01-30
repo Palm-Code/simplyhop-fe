@@ -167,7 +167,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene"
+        "maskedValue": "{{adult}} Mitfahrer"
       },
       "time": {
         "inputProps": {

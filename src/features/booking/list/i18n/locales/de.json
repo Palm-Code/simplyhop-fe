@@ -96,7 +96,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene"
+        "maskedValue": "{{adult}} Mitfahrer"
       }
     },
     "cta": {
@@ -210,7 +210,7 @@
     "title": "Details zur Fahrt",
     "passenger": {
       "label": "Mitfahrer",
-      "maskedValue": "{{adult}} Erwachsene"
+      "maskedValue": "{{adult}} Mitfahrer"
     },
     "price": {
       "form": {

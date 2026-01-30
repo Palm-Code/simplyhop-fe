@@ -139,7 +139,7 @@
           }
         },
 
-        "maskedValue": "{{adult}} Erwachsene"
+        "maskedValue": "{{adult}} Mitfahrer"
       }
     },
     "cta": {
