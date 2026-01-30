@@ -547,7 +547,7 @@
         "items": [
           {
             "id": "invalid_city",
-            "name": "Bitte geben Du eine gültige Stadt ein.",
+            "name": "Bitte gib eine gültige Stadt ein.",
             "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*\\s*$"
           }
         ]
@@ -928,7 +928,7 @@
   "cookie": {
     "consentModal": {
       "title": "Wir verwenden Cookies",
-      "description": "Wir verwenden Cookies, um Inhalte und Anzeigen zu personalisieren, Funktionen für soziale Medien anbieten zu können und die Zugriffe auf unsere Services zu analysieren. Außerdem geben wir Informationen zu Ihrer Verwendung unserer Services an unsere Partner für soziale Medien, Werbung und Analysen weiter. Unsere Partner führen diese Informationen möglicherweise mit weiteren Daten zusammen, die Du ihnen bereitgestellt haben oder die Du im Rahmen Ihrer Nutzung der Dienste gesammelt haben. Funktionale Cookies sind notwendig. Alle anderen Cookies sind optional.",
+      "description": "Wir verwenden Cookies, um Inhalte und Anzeigen zu personalisieren, Funktionen für soziale Medien anbieten zu können und Zugriffe auf unsere Services zu analysieren. Außerdem geben wir Informationen zu deiner Nutzung unserer Services an unsere Partner für soziale Medien, Werbung und Analysen weiter. Diese Partner führen die Informationen möglicherweise mit weiteren Daten zusammen, die du ihnen bereitgestellt hast oder die sie im Rahmen deiner Nutzung der Dienste gesammelt haben. Funktionale Cookies sind notwendig. Alle anderen Cookies sind optional.",
       "closeIconLabel": "",
       "acceptAllBtn": "Alles akzeptieren",
       "acceptNecessaryBtn": "Alle ablehnen",
@@ -954,12 +954,12 @@
         },
         {
           "title": "Statistik Cookies",
-          "description": "Diese Cookies ermöglichen uns die Analyse der Services, damit wir deren Leistung messen und verbessern können. Du kannst deine persönlichen Einstellungen der Statistik Cookies ändern, indem Du auf den entsprechenden Opt-Out Link klicken.",
+          "description": "Diese Cookies ermöglichen uns die Analyse unserer Services, damit wir deren Leistung messen und verbessern können. Du kannst deine persönlichen Einstellungen für Statistik-Cookies ändern, indem du auf den entsprechenden Opt-out-Link klickst.",
           "linkedCategory": "analytics"
         },
         {
           "title": "Marketing Cookies",
-          "description": "Diese Cookies werden von uns verwendet, um dir Werbung zu unterbreiten, die für deine Interessen relevant sein könnte. Diese Cookies ermöglichen bspw. das Teilen von Seiten über Soziale Netzwerke und das Schreiben von Kommentaren. Ebenso werden Angebote, die deinen Interessen entsprechen könnten, angezeigt. Du kannst deine persönlichen Einstellungen der Marketing Cookies ändern, indem Du auf den entsprechenden Opt-Out Link klicken.",
+          "description": "Diese Cookies werden von uns verwendet, um dir Werbung anzuzeigen, die für deine Interessen relevant sein könnte. Außerdem ermöglichen diese Cookies beispielsweise das Teilen von Seiten über soziale Netzwerke und das Schreiben von Kommentaren. Ebenso werden dir Angebote angezeigt, die deinen Interessen entsprechen könnten. Du kannst deine persönlichen Einstellungen für Marketing-Cookies ändern, indem du auf den entsprechenden Opt-out-Link klickst.",
           "linkedCategory": "marketing"
         }
       ]

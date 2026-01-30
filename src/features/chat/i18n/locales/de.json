@@ -33,7 +33,7 @@
         "id": "",
         "image_url": "/images/general/default_avatar.jpeg",
         "name": "Suzana Colin",
-        "message": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a",
+        "message": "Hallo! Freust du dich schon auf die gemeinsame Fahrt morgen? Ich habe ein paar Fragen zur Route und würde gerne die Details mit dir besprechen. Lass mich wissen, wann du Zeit hast. Vielen Dank!",
         "date": "Dez 16"
       },
       "empty": {
@@ -64,7 +64,7 @@
               "height": 36,
               "alt": "sender"
             },
-            "message": "Hey Grace, how's it going?"
+            "message": "Hallo Grace, wie geht's dir?"
           },
           "recipient": {
             "id": "recipient",
@@ -78,7 +78,7 @@
               "height": 36,
               "alt": "recipient"
             },
-            "message": "Hi Jack! I'm doing well, thanks. Can't wait for our ride tomorrow!"
+            "message": "Hi Jack! Mir geht's gut, danke. Ich freue mich schon auf unsere Fahrt morgen!"
           }
         }
       },
@@ -171,7 +171,7 @@
         },
         {
           "id": "passengers",
-          "name": "Passengers"
+          "name": "Mitfahrer"
         }
       ]
     },
