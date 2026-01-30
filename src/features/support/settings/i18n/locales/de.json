@@ -5,7 +5,7 @@
       {
         "id": "block",
         "name": "Blockierte Nutzer",
-        "description": "Liste der Benutzer, die Du blockiert hast.",
+        "description": "Liste der Benutzer, die du blockiert hast.",
         "cta": {
           "children": "Siehe Liste"
         }
@@ -28,7 +28,7 @@
     "title": "Konto löschen",
     "message": "Du bist dabei, den Prozess zur Deaktivierung deines Simply Hop-Kontos zu starten. Dein Benutzername und dein öffentliches Profil werden nach 30 Tagen nicht mehr auf der Plattform sichtbar sein.",
     "tnc": {
-      "title": "Was solltest Du sonst noch wissen?",
+      "title": "Was solltest du sonst noch wissen?",
       "items": [
         {
           "id": "1",
@@ -48,7 +48,7 @@
   },
   "deactivate_confirmation": {
     "title": "Kontolöschung bestätigen",
-    "message": "Der Schutz deines Kontos hat für uns oberste Priorität. Bitte bestätige deine Aktivität, indem Du dein Passwort  eingibst.",
+    "message": "Der Schutz deines Kontos hat für uns oberste Priorität. Bitte bestätige deine Aktivität, indem du dein Passwort eingibst.",
     "form": {
       "input": {
         "password": {
