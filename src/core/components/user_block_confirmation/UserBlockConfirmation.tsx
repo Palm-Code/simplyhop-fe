@@ -9,24 +9,24 @@ export interface UserBlockConfirmationProps {
   // Modal state
   isOpen: boolean;
   onClose: () => void;
-  
+
   // Content
   title: string;
   description: string;
-  
+
   // Buttons
   cancelButton: {
     text: string;
     onClick: () => void;
   };
-  
+
   confirmButton: {
     text: string;
     onClick: () => void;
     isLoading?: boolean;
     disabled?: boolean;
   };
-  
+
   // Optional styling
   modalClassName?: string;
   contentClassName?: string;
@@ -83,7 +83,7 @@ export const UserBlockConfirmation = ({
             {description}
           </span>
         </div>
-        
+
         {/* actions */}
         <div
           className={clsx(
@@ -101,13 +101,14 @@ export const UserBlockConfirmation = ({
               "text-[1rem] text-[#B30606] font-semibold",
               "border border-[#B30606]",
               "box-border",
-              "cursor-pointer"
+              "cursor-pointer",
+              "hover:bg-[#F6F6F6] dark:hover:bg-[#5B5B5B]"
             )}
             onClick={cancelButton.onClick}
           >
             {cancelButton.text}
           </button>
-          
+
           <button
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center",

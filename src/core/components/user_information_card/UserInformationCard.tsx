@@ -124,10 +124,11 @@ export const UserInformationCard = ({
         <button
           className={clsx(
             "flex items-center justify-center",
-            "px-4 py-2",
+            "px-4 py-2 cursor-pointer",
             "rounded-md",
             "border dark:border-[#33CC33] border-[#249124]",
             "dark:text-[#33CC33] text-[#249124] text-xs font-semibold",
+            "hover:bg-[#249124] hover:text-[white] dark:hover:bg-[#33CC33] dark:hover:text-[#232323]",
           )}
           onClick={cta.onClick}
         >
@@ -161,7 +162,7 @@ export const UserInformationCard = ({
                 "w-full",
                 "py-2 lg:py-0",
                 index < summary.length - 1 &&
-                  "border-b border-b-border-subdued lg:border-b-0 lg:border-r lg:border-r-border-subdued",
+                "border-b border-b-border-subdued lg:border-b-0 lg:border-r lg:border-r-border-subdued",
               )}
             >
               <p
