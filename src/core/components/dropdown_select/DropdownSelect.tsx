@@ -11,12 +11,16 @@ export interface DropdownSelectProps {
     name: string;
   }[];
   onSelect?: (data: { id: string; name: string }) => void;
+  triggerClassName?: string;
+  optionsClassName?: string;
 }
 
 export const DropdownSelect = ({
   selected = null,
   items = [],
-  onSelect = () => {},
+  onSelect = () => { },
+  triggerClassName = "",
+  optionsClassName = "",
 }: DropdownSelectProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -38,7 +42,8 @@ export const DropdownSelect = ({
       <DropdownSelectButton
         className={clsx(
           "!items-center !content-center",
-          "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal"
+          "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal",
+          triggerClassName
         )}
         onClick={handleClickDropdownSelectButton}
       >
@@ -66,7 +71,8 @@ export const DropdownSelect = ({
             "bg-[white] dark:bg-[#232323]",
             "rounded-[0.375rem]",
             "border border-[#E2E2E2] dark:border-[#464646]",
-            "z-[10]"
+            "z-[10]",
+            optionsClassName
           )}
         >
           {items.map((item, itemIndex) => (
@@ -76,9 +82,10 @@ export const DropdownSelect = ({
               key={itemIndex}
               className={clsx(
                 "w-full",
-                "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] !font-normal text-left",
+                "!text-[#5B5B5B] dark:!text-[#DADADA] !text-[0.875rem] text-left",
                 "py-[0.5rem]",
-                "cursor-pointer disabled:cursor-default"
+                "cursor-pointer disabled:cursor-default",
+                item.id === selected?.id ? "!font-bold" : "!font-normal"
               )}
               onClick={() => handleSelect(item)}
             >

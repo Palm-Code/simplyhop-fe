@@ -33,8 +33,8 @@ export const RideTripContainer = () => {
         <ListTripProvider>
           <div
             className={clsx(
-              "flex items-center justify-between gap-2",
-              "w-full"
+              "flex md:items-center justify-between gap-2",
+              "w-full max-md:flex-col"
             )}
           >
             <RideFilterListTrip />
