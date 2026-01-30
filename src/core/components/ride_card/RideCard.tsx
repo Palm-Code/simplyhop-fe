@@ -115,7 +115,7 @@ export const RideCard = ({
   price,
   cta = {
     detail: {
-      children: "Siehe Details",
+      children: "Details ansehen",
       href: "",
     },
     share: {

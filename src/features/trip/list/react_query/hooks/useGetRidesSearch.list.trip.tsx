@@ -440,7 +440,7 @@ export const useGetRidesSearch = () => {
               (isOrganizationAdmin || isSuperAdmin) && rideStatus === "finished"
                 ? undefined
                 : {
-                    children: "Siehe Details",
+                    children: "Details ansehen",
                     href: `${pathname}?${urlSearchParams.toString()}`,
                   },
             share: {
