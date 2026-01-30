@@ -123,7 +123,7 @@ export const CompletedRideListTrip = () => {
           {
             id: uuidv4(),
             variant: "success",
-            message: "Deine Reise wurde abgeschlossen.",
+            message: "Deine Fahrt wurde abgeschlossen.",
           },
         ],
       },
