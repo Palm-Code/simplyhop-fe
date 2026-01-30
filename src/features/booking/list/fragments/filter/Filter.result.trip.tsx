@@ -7,8 +7,9 @@ import {
   ResultTripContext,
   useRideFilterResultTrip,
 } from "../../context";
+import { hasSearchFilterChanged } from "@/core/utils/router/functions";
 import { DatePicker } from "@/core/components/datepicker";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
@@ -25,10 +26,14 @@ import { storageService } from "@/core/services/storage/indexdb";
 import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
 import { UserContext } from "@/core/modules/app/context";
+import { useQueryClient } from "@tanstack/react-query";
+import { ResultTripReactQueryKey } from "../../react_query/keys";
 
 export const FilterResultTrip = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
+  const queryClient = useQueryClient();
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(ResultTripContext);
   const { isLg } = useTailwindBreakpoint();
@@ -100,16 +105,16 @@ export const FilterResultTrip = () => {
           items: isOriginCompanyOfficeChecked
             ? !input.length
               ? companyOfficeItems.filter(
-                  (item) =>
-                    item.id !== state.filters.destination.selected.item?.id,
-                )
+                (item) =>
+                  item.id !== state.filters.destination.selected.item?.id,
+              )
               : state.filters.origin.items.filter(
-                  (item) =>
-                    item.name.toLowerCase().includes(input.toLowerCase()) ||
-                    item.description
-                      ?.toLowerCase()
-                      .includes(input.toLowerCase()),
-                )
+                (item) =>
+                  item.name.toLowerCase().includes(input.toLowerCase()) ||
+                  item.description
+                    ?.toLowerCase()
+                    .includes(input.toLowerCase()),
+              )
             : !input.length
               ? []
               : state.filters.origin.items,
@@ -301,9 +306,9 @@ export const FilterResultTrip = () => {
           ...state.filters.origin,
           items: checked
             ? companyOfficeItems.filter(
-                (item) =>
-                  item.id !== state.filters.destination.selected.item?.id,
-              )
+              (item) =>
+                item.id !== state.filters.destination.selected.item?.id,
+            )
             : [],
           company_office: {
             ...state.filters.origin.company_office,
@@ -361,15 +366,15 @@ export const FilterResultTrip = () => {
           items: isDestinationCompanyOfficeChecked
             ? !input.length
               ? companyOfficeItems.filter(
-                  (item) => item.id !== state.filters.origin.selected.item?.id,
-                )
+                (item) => item.id !== state.filters.origin.selected.item?.id,
+              )
               : state.filters.destination.items.filter(
-                  (item) =>
-                    item.name.toLowerCase().includes(input.toLowerCase()) ||
-                    item.description
-                      ?.toLowerCase()
-                      .includes(input.toLowerCase()),
-                )
+                (item) =>
+                  item.name.toLowerCase().includes(input.toLowerCase()) ||
+                  item.description
+                    ?.toLowerCase()
+                    .includes(input.toLowerCase()),
+              )
             : !input.length
               ? []
               : state.filters.destination.items,
@@ -560,8 +565,8 @@ export const FilterResultTrip = () => {
           ...state.filters.destination,
           items: checked
             ? companyOfficeItems.filter(
-                (item) => item.id !== state.filters.origin.selected.item?.id,
-              )
+              (item) => item.id !== state.filters.origin.selected.item?.id,
+            )
             : [],
           company_office: {
             ...state.filters.destination.company_office,
@@ -643,13 +648,13 @@ export const FilterResultTrip = () => {
       value: !state.filters.origin.saved_items.length
         ? [state.filters.origin.selected.item]
         : [
-            state.filters.origin.selected.item,
-            ...state.filters.origin.saved_items.filter((_, index) => index < 5),
-          ].filter(
-            (obj, index, self) =>
-              index ===
-              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name),
-          ),
+          state.filters.origin.selected.item,
+          ...state.filters.origin.saved_items.filter((_, index) => index < 5),
+        ].filter(
+          (obj, index, self) =>
+            index ===
+            self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name),
+        ),
     });
     await storageService({
       method: "setItem",
@@ -657,15 +662,15 @@ export const FilterResultTrip = () => {
       value: !state.filters.destination.saved_items.length
         ? [state.filters.destination.selected.item]
         : [
-            state.filters.destination.selected.item,
-            ...state.filters.destination.saved_items.filter(
-              (_, index) => index < 5,
-            ),
-          ].filter(
-            (obj, index, self) =>
-              index ===
-              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name),
+          state.filters.destination.selected.item,
+          ...state.filters.destination.saved_items.filter(
+            (_, index) => index < 5,
           ),
+        ].filter(
+          (obj, index, self) =>
+            index ===
+            self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name),
+        ),
     });
     let params = "";
     if (state.filters.origin.selected.item) {
@@ -690,24 +695,37 @@ export const FilterResultTrip = () => {
       }
     }
     if (state.filters.passenger.value) {
-      const adult = `&${RIDE_FILTER.ADULT_PASSENGER}=${
-        state.filters.passenger.value.find(
-          (passengerItem) => passengerItem.id === "adult",
-        )?.value ?? 0
-      }`;
+      const adult = `&${RIDE_FILTER.ADULT_PASSENGER}=${state.filters.passenger.value.find(
+        (passengerItem) => passengerItem.id === "adult",
+      )?.value ?? 0
+        }`;
       params = params + adult;
 
-      const children = `&${RIDE_FILTER.CHILDREN_PASSENGER}=${
-        state.filters.passenger.value.find(
-          (passengerItem) => passengerItem.id === "children",
-        )?.value ?? 0
-      }`;
+      const children = `&${RIDE_FILTER.CHILDREN_PASSENGER}=${state.filters.passenger.value.find(
+        (passengerItem) => passengerItem.id === "children",
+      )?.value ?? 0
+        }`;
       params = params + children;
     }
     if (state.filters.passenger.car_seat.checked) {
       const carSeat = `&${RIDE_FILTER.CAR_SEAT}=true`;
       params = params + carSeat;
     }
+
+    if (!hasSearchFilterChanged(searchParams, params)) {
+      dispatch({
+        type: ResultTripActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          is_open: false,
+        },
+      });
+      await queryClient.invalidateQueries({
+        queryKey: [ResultTripReactQueryKey.GetRidesSearch()[0]],
+      });
+      return;
+    }
+
     dispatch({
       type: ResultTripActionEnum.SetFiltersData,
       payload: {
@@ -769,16 +787,16 @@ export const FilterResultTrip = () => {
               pageSheet: {
                 emptyMessage:
                   !state.filters.origin.saved_items.length &&
-                  !state.filters.origin.query.length
+                    !state.filters.origin.query.length
                     ? dictionaries.filter.form.origin.autocomplete.emptyMessage
-                        .no_saved_place
+                      .no_saved_place
                     : dictionaries.filter.form.origin.autocomplete.emptyMessage
-                        .no_result,
+                      .no_result,
                 selected: state.filters.origin.selected.item,
                 items: isOriginCompanyOfficeChecked
                   ? state.filters.origin.items
                   : !state.filters.origin.items.length &&
-                      !state.filters.origin.query.length
+                    !state.filters.origin.query.length
                     ? state.filters.origin.saved_items
                     : state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
@@ -802,7 +820,7 @@ export const FilterResultTrip = () => {
                     (state.filters.destination.selected.lat_lng?.lat ===
                       userLocation?.lat &&
                       state.filters.destination.selected.lat_lng?.lng ===
-                        userLocation?.lng) ||
+                      userLocation?.lng) ||
                     (!isDestinationCompanyOfficeChecked &&
                       !!selectedItemDestination),
                   onClick: handleClickUseUserLocationOrigin,
@@ -821,11 +839,11 @@ export const FilterResultTrip = () => {
               autocomplete: {
                 emptyMessage:
                   !state.filters.origin.saved_items.length &&
-                  !state.filters.origin.query.length
+                    !state.filters.origin.query.length
                     ? dictionaries.filter.form.origin.autocomplete.emptyMessage
-                        .no_saved_place
+                      .no_saved_place
                     : dictionaries.filter.form.origin.autocomplete.emptyMessage
-                        .no_result,
+                      .no_result,
                 selected: state.filters.origin.selected.item,
                 items: isOriginCompanyOfficeChecked
                   ? state.filters.origin.items
@@ -845,7 +863,7 @@ export const FilterResultTrip = () => {
                     (state.filters.destination.selected.lat_lng?.lat ===
                       userLocation?.lat &&
                       state.filters.destination.selected.lat_lng?.lng ===
-                        userLocation?.lng) ||
+                      userLocation?.lng) ||
                     (!isDestinationCompanyOfficeChecked &&
                       !!selectedItemDestination),
                   onClick: handleClickUseUserLocationOrigin,
@@ -877,11 +895,11 @@ export const FilterResultTrip = () => {
               pageSheet: {
                 emptyMessage:
                   !state.filters.destination.saved_items.length &&
-                  !state.filters.destination.query.length
+                    !state.filters.destination.query.length
                     ? dictionaries.filter.form.destination.autocomplete
-                        .emptyMessage.no_saved_place
+                      .emptyMessage.no_saved_place
                     : dictionaries.filter.form.destination.autocomplete
-                        .emptyMessage.no_result,
+                      .emptyMessage.no_result,
                 selected: state.filters.destination.selected.item,
                 items: isDestinationCompanyOfficeChecked
                   ? state.filters.destination.items
@@ -909,7 +927,7 @@ export const FilterResultTrip = () => {
                     (state.filters.origin.selected.lat_lng?.lat ===
                       userLocation?.lat &&
                       state.filters.origin.selected.lat_lng?.lng ===
-                        userLocation?.lng) ||
+                      userLocation?.lng) ||
                     (!isOriginCompanyOfficeChecked && !!selectedItemOrigin),
                   onClick: handleClickUseUserLocationDestination,
                 },
@@ -926,11 +944,11 @@ export const FilterResultTrip = () => {
               autocomplete: {
                 emptyMessage:
                   !state.filters.destination.saved_items.length &&
-                  !state.filters.destination.query.length
+                    !state.filters.destination.query.length
                     ? dictionaries.filter.form.destination.autocomplete
-                        .emptyMessage.no_saved_place
+                      .emptyMessage.no_saved_place
                     : dictionaries.filter.form.destination.autocomplete
-                        .emptyMessage.no_result,
+                      .emptyMessage.no_result,
                 selected: state.filters.destination.selected.item,
                 items: isDestinationCompanyOfficeChecked
                   ? state.filters.destination.items
@@ -949,7 +967,7 @@ export const FilterResultTrip = () => {
                     (state.filters.origin.selected.lat_lng?.lat ===
                       userLocation?.lat &&
                       state.filters.origin.selected.lat_lng?.lng ===
-                        userLocation?.lng) ||
+                      userLocation?.lng) ||
                     (!isOriginCompanyOfficeChecked && !!selectedItemOrigin),
                   onClick: handleClickUseUserLocationDestination,
                 },
