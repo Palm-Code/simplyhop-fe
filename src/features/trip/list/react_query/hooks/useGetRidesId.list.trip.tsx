@@ -36,6 +36,7 @@ export const useGetRidesId = () => {
     params: {
       include: "vehicle.brand,user,bookings,bookings.user",
       booking_status: "accepted",
+      append: "status"
     },
   };
   const query = useQuery<
@@ -67,8 +68,8 @@ export const useGetRidesId = () => {
             !item.departure_time
               ? "-"
               : `${dayjs
-                  .utc(item.departure_time)
-                  .format("DD.MM.YYYY HH.mm [Uhr]")}`
+                .utc(item.departure_time)
+                .format("DD.MM.YYYY HH.mm [Uhr]")}`
           )
           .replaceAll(
             "{{share_link}}",
@@ -80,14 +81,15 @@ export const useGetRidesId = () => {
           ...state.ride,
           detail: {
             id: String(item.id),
+            status: item.status,
             driver: {
               profile: {
                 avatar: !item.user.avatar
                   ? undefined
                   : {
-                      src: item.user.avatar,
-                      alt: "photo_profile",
-                    },
+                    src: item.user.avatar,
+                    alt: "photo_profile",
+                  },
                 name: formatDisplayName({
                   first_name: item.user.first_name,
                   email: item.user.email,
@@ -107,8 +109,8 @@ export const useGetRidesId = () => {
                 name: !item.vehicle.brand?.title
                   ? item.vehicle.model ?? ""
                   : !item.vehicle.model
-                  ? item.vehicle.brand?.title ?? ""
-                  : `${item.vehicle.brand?.title} ${item.vehicle.model}`,
+                    ? item.vehicle.brand?.title ?? ""
+                    : `${item.vehicle.brand?.title} ${item.vehicle.model}`,
                 number: item.vehicle.plate_license,
               },
             },
@@ -140,9 +142,9 @@ export const useGetRidesId = () => {
                 time: !item.eta
                   ? "-"
                   : `${setArrivalTime(
-                      dayjs.utc(item.departure_time).format("HH:mm"),
-                      item.eta
-                    )} Uhr`,
+                    dayjs.utc(item.departure_time).format("HH:mm"),
+                    item.eta
+                  )} Uhr`,
               },
             },
 
@@ -160,7 +162,7 @@ export const useGetRidesId = () => {
                 ),
               },
               share: {
-                onClick: () => {},
+                onClick: () => { },
                 href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
                 message: shareMessage,
               },

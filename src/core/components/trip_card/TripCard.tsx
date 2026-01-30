@@ -77,12 +77,13 @@ export interface TripCardCTA {
 
 export interface TripCardProps
   extends TripCardDriver,
-    TripCardCar,
-    TripCardRoutes,
-    TripCardPrice,
-    TripCardRide,
-    TripCardCTA {
+  TripCardCar,
+  TripCardRoutes,
+  TripCardPrice,
+  TripCardRide,
+  TripCardCTA {
   id?: string;
+  status?: string;
   variant?: "split" | "merge";
 }
 

@@ -16,6 +16,7 @@ export type GetRidesIdPathPayloadRequestInterface = {
 
 export type GetRidesIdParamPayloadRequestInterface = {
   booking_status?: string;
+  append?: string;
   //mandatory
   include?: string; //user, userCount, userExists, user.profile, vehicle, vehicleCount, vehicleExists, vehicle.brand, vehicle.category, rideTimes, rideTimesCount, rideTimesExists, bookings, bookingsCount, bookingsExists, bookings.rideTime, bookings.bargainOffers
 };
@@ -54,6 +55,7 @@ export interface GetRidesIdSuccessResponseInterface {
     available_seats: number; // 1;
     departure_time: string; // "2025-04-22T10:00:00.000000Z";
     vehicle: Vehicle;
+    status: string;
     user: User;
     bookings: Booking[];
     url: string | null;

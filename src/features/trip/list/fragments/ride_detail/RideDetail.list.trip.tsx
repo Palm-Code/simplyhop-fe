@@ -289,7 +289,7 @@ export const RideDetailListTrip = () => {
                 "bg-[white] dark:bg-[#232323]",
               )}
             >
-              {isEmployee && (
+              {(isEmployee && filteredData.status === 'active') && (
                 <div
                   className={clsx(
                     "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
