@@ -25,7 +25,7 @@ export const DatePicker = ({
   maxSelection, // Optional prop - no default value
   labelProps,
   inputContainerProps,
-  onSelect = () => {},
+  onSelect = () => { },
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -183,11 +183,11 @@ export const DatePicker = ({
     const targetMonth = data.getMonth();
     const targetYear = currentDate.getFullYear();
     const currentDay = currentDate.getDate();
-    
+
     // Cap ke maksimum hari di bulan target
     const maxDay = new Date(targetYear, targetMonth + 1, 0).getDate();
     const finalDay = Math.min(currentDay, maxDay);
-    
+
     const newDate = new Date(targetYear, targetMonth, finalDay);
     setCurrentDate(newDate);
     if (mode === "single") {
@@ -197,6 +197,7 @@ export const DatePicker = ({
       setIsOpen(false);
     } else {
       setIsMonthShow(false);
+      setIsDayShow(true);
     }
   };
 
@@ -204,11 +205,11 @@ export const DatePicker = ({
     const targetYear = data.getFullYear();
     const targetMonth = data.getMonth();
     const currentDay = currentDate.getDate();
-    
+
     // Cap ke maksimum hari di bulan target
     const maxDay = new Date(targetYear, targetMonth + 1, 0).getDate();
     const finalDay = Math.min(currentDay, maxDay);
-    
+
     const newDate = new Date(targetYear, targetMonth, finalDay);
     setCurrentDate(newDate);
     if (mode === "single") {
@@ -218,6 +219,7 @@ export const DatePicker = ({
       setIsOpen(false);
     } else {
       setIsYearShow(false);
+      setIsMonthShow(true);
     }
   };
 
