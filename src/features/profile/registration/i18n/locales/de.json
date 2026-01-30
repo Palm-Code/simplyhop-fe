@@ -25,7 +25,7 @@
           },
           "labelProps": {
             "id": "email",
-            "children": "Email",
+            "children": "E-Mail",
             "required": false
           }
         },

@@ -22,7 +22,7 @@
           },
           "labelProps": {
             "id": "email",
-            "children": "Email",
+            "children": "E-Mail",
             "required": false
           }
         },
@@ -96,7 +96,7 @@
           },
           "labelProps": {
             "id": "email",
-            "children": "Email",
+            "children": "E-Mail",
             "required": false
           }
         },
